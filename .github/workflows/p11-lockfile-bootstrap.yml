@@ -1,0 +1,52 @@
+name: P11 dependency lockfile bootstrap
+
+# One-time bootstrap for reproducible source builds. The original 2026-11-04
+# P11 package-lock.json remains preserved in the local full-source archive.
+# This creates a NEW, independently build-tested npm 11 lockfile on develop,
+# not a byte-for-byte restoration of the archived original.
+on:
+  push:
+    branches: [develop]
+    paths:
+      - '.github/workflows/p11-lockfile-bootstrap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-pin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Use peer-resolver-fixed npm
+        run: npm install --global npm@11.19.1
+      - name: Generate audited-from-package-json npm lockfile
+        run: |
+          if [ -e package-lock.json ]; then
+            echo "package-lock.json already tracked or present; refusing to replace it."
+            exit 1
+          fi
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          sha256sum package-lock.json
+      - name: Strict install from generated lockfile
+        run: npm ci --no-audit --no-fund
+      - name: Validate generated dependency tree
+        run: |
+          npm run test:syntax
+          npm run build
+          npm run lint
+      - name: Commit validated lockfile to develop (no force)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package-lock.json
+          git diff --cached --exit-code && { echo 'No lockfile change'; exit 0; } || true
+          git commit -m 'build: pin npm 11 validated P11 dependency tree'
+          git push origin HEAD:develop
