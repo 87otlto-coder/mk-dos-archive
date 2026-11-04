@@ -32,13 +32,8 @@ jobs:
           node-version: '22'
       - name: Use npm 11 peer-dependency resolver for lockfile generation
         run: npm install --global npm@11.19.1
-      - name: Install dependencies (non-reproducible fallback until archived lockfile restored)
-        run: |
-          if [ ! -f package-lock.json ]; then
-            echo "::warning::Audited original package-lock.json is not yet committed; generating temporary lockfile for build smoke only."
-            npm install --package-lock-only --ignore-scripts --no-audit --no-fund
-          fi
-          npm ci --no-audit --no-fund
+      - name: Strict install from committed dependency lock
+        run: npm ci --no-audit --no-fund
       - name: Source syntax validation
         run: npm run test:syntax
       - name: Production Vite build
@@ -68,3 +63,11 @@ jobs:
             echo 'Expected source-offline onboarding did not render'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
           fi
           echo 'PASS: P11 React application mounted, brand and source-offline onboarding visible in headless Chrome.'
+      - name: Upload verified static build (no original game assets)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-dos-p11-browser-build
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
