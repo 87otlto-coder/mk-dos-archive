@@ -4,3 +4,12 @@
 .asset-fallback-notice { margin: 12px 0; padding: 12px 15px; background: #3b2c14; border: 1px solid #a17833; border-radius: 8px; color: #f9e2af; }
 .asset-fallback-notice strong { display: block; margin-bottom: 4px; }
 .asset-fallback-notice p { margin: 5px 0 0; font-size: 0.85rem; }
+
+/* P11: keep asset browsing local to the results pane. Preserve paging controls and the inspector. */
+.asset-results{min-width:0}
+.asset-grid-viewport{max-height:min(70vh,740px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:4px}
+.asset-grid-viewport:focus-visible{outline:2px solid #fbbf24;outline-offset:2px}
+.asset-page-controls{position:sticky;bottom:0;background:#18181b;padding:8px 0;z-index:1}
+@media(min-width:801px){
+  .asset-inspector{position:sticky;top:16px;align-self:start;max-height:min(82vh,860px);overflow-y:auto}
+}

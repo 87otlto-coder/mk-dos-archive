@@ -58,7 +58,7 @@ function errorMessage(error: unknown) {
   return error instanceof Error ? error.message : String(error);
 }
 
-export function AssetBrowser({ source, game, initialSearch = '', initialCollection = null }: { source: DirectorySource; game: Game; initialSearch?: string; initialCollection?: AssetCollection | null }) {
+export function AssetBrowser({ source, game, initialSearch = '', navigationRevision = 0, initialCollection = null }: { source: DirectorySource; game: Game; initialSearch?: string; navigationRevision?: number; initialCollection?: AssetCollection | null }) {
   const [collection, setCollection] = useState<AssetCollection | null>(null);
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState('');
@@ -125,14 +125,15 @@ export function AssetBrowser({ source, game, initialSearch = '', initialCollecti
         a =>
           (!kind || a.kind === kind) &&
           (!group || a.group === group) &&
-          `${a.name} ${a.group} ${a.confidence}`.toLowerCase().includes(search.toLowerCase()),
+          `${a.name} ${a.group} ${a.confidence} ${a.source.path}`.toLowerCase().includes(search.toLowerCase()),
       ),
     [assets, kind, group, search],
   );
   const selectedGraphicsOnly = selected.length > 0 && selected.every(a => !!a.rgba && !!a.width && !!a.height);
 
   useEffect(() => setPage(0), [kind, group, search]);
-  useEffect(() => { if (initialSearch) { setSearch(initialSearch); setPage(0); } }, [initialSearch]);
+  // Navigation into Asset Library resets stale Stage Gallery deep-link filters without clearing the export queue.
+  useEffect(() => { setSearch(initialSearch); setKind(''); setGroup(''); setFocus(null); setAnchor(null); setPage(0); }, [initialSearch, navigationRevision]);
   useEffect(() => {
     if (!selected.length) {
       setPlaying(false);
@@ -392,8 +393,9 @@ export function AssetBrowser({ source, game, initialSearch = '', initialCollecti
         </div>
         <p className="asset-help">Click to select. Ctrl/⌘+click adds or removes; Shift+click selects a range. Drag graphics to the canvas independently.</p>
         <div className="asset-workspace">
-          <div>
-            <div className="asset-grid" role="listbox" aria-label="Assets" aria-multiselectable="true">
+          <div className="asset-results">
+            <div className="asset-grid-viewport" tabIndex={0} aria-label="Scrollable asset results">
+              <div className="asset-grid" role="listbox" aria-label="Assets" aria-multiselectable="true">
               {filtered.slice(page * 60, (page + 1) * 60).map(a => <button
                 key={a.id}
                 role="option"
@@ -408,8 +410,9 @@ export function AssetBrowser({ source, game, initialSearch = '', initialCollecti
                 <small>{a.group}</small>
                 <small>{a.width ? `${a.width} × ${a.height} · ` : ''}{a.format}</small>
               </button>)}
+              </div>
             </div>
-            <div className="asset-toolbar">
+            <div className="asset-toolbar asset-page-controls">
               <button disabled={!page} onClick={() => setPage(p => p - 1)}>Previous</button>
               <span>{filtered.length ? `${page * 60 + 1}–${Math.min((page + 1) * 60, filtered.length)} of ${filtered.length}` : 'No matches'}</span>
               <button disabled={(page + 1) * 60 >= filtered.length} onClick={() => setPage(p => p + 1)}>Next</button>
