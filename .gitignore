@@ -1,0 +1,44 @@
+# Build/package outputs
+node_modules/
+dist/
+build/
+coverage/
+.vite/
+.cache/
+*.tsbuildinfo
+
+# Secrets and local machines
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.DS_Store
+Thumbs.db
+
+# Commercial game binaries and installations
+**/MK1.EXE
+**/MK2.EXE
+**/MK3.EXE
+**/DATA.MK3
+**/DOS4GW.EXE
+**/GRAPHICS/*.GRA
+**/graphics/*.gra
+**/*.FTR
+**/*.ftr
+**/*.U8
+**/*.u8
+**/SAMPLES.DAT
+**/SFX/*.VOC
+**/fx/*.u8
+**/game-fixtures/
+**/original-games/
+**/dosbox-captures/
+
+# Exported commercial audio/graphics/video (review exceptions explicitly)
+**/extracted-assets/
+**/exports/
+**/fixture-output/
+**/local-evidence-dumps/
