@@ -6,10 +6,10 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 
 ## Current checkpoint
 
-- **Released source checkpoint:** **P6**, dated **2026-11-04**, headless MK2 extraction verified against the original installation at **5,016 assets**.
-- **Latest interim work:** **P10**, dated **2026-11-04**, adding original Pit II bridge background actor frame loops. Cumulative headless MK2 census: **5,053 unique assets**.
-- **Next scheduled source checkpoint:** **P11** (consolidation and regression testing for P7–P10).
-- **Current repository state:** project governance and status files are established. **The complete P6 application source has not yet been imported into GitHub.** Do not confuse this repository's initial commits with the P6 source release.
+- **Verified P6 source baseline on `main`**, code import commit `eb9691510ce57dd1a7670fcf404de0c0dbd6941b`; MK2 canonical headless fixture census: **5,016 assets**.
+- **P11 consolidated source on `develop`**, import commit `65023df71d20eb049a571d6a0d1672d670cddf92`; MK2 canonical headless fixture census from the filtered local P11 source: **5,053 assets**.
+- Both branches have been inspected through GitHub; full `src` and research code files are present. The committed source has **not yet been rebuilt or independently re-run from a fresh GitHub clone**.
+- **Next quality gates:** independent fresh-clone tests, Vite/React build, browser preview/export checks and relevant MK1/MK3 regressions. Do not prematurely promote P11 to `main`.
 
 See [PROJECT_STATUS.md](PROJECT_STATUS.md) for the live handoff and [docs/REPOSITORY_POLICY.md](docs/REPOSITORY_POLICY.md) for source/research preservation rules.
 
@@ -33,7 +33,7 @@ This repository **does not distribute commercial game installations, game execut
 ## GitHub branch use
 
 - `main`: verified checkpoints and stable project documentation.
-- `develop`: interim implementation work and integration testing. P7–P10 remain interim until the P11 consolidation.
+- `develop`: P11 consolidated source candidate and ongoing implementation. Promotion to `main` requires remaining validation.
 
 ## Project continuity
 

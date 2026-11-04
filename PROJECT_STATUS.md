@@ -4,13 +4,13 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
-## P11 local consolidation verified — GitHub source import pending (2026-11-04)
+## P11 local consolidation verified — GitHub source import confirmed (2026-11-04)
 
 - Local full-source P11 ZIP: `MK_DOS_Extractor_P11_Cumulative_Full_Source_2026-11-04.zip`, SHA-256 `7889917a4e8678c5e625f92a90b9ecb42ea80286a37358392a99d2578b7f00f4`. Not in GitHub.
 - P11 cumulative original-MK2 fixture scan: **5,053 assets**, 40 cross-pass source/package checks plus 225 P10 integration checks and 61 independent O220/O221 checks. Independent P8 O210 and P9 O205 suites and cross-stage O195 regression also passed.
 - Strictly filtered Git-safe source imports prepared: **P6 2,011 ZIP entries** (includes audit manifest), **P11 2,033 entries** (includes audit manifest and 4 interim patches). All application `src` and source scripts retained; original binary/extracted game media and raw evidence omitted with hashes documented. The P11 *filtered* source was re-tested successfully against the canonical local MK2 fixture.
 - Import kit filename `MK_DOS_GitHub_Import_Kit_P6_to_P11_2026-11-04.zip`, SHA-256 `1dda3165ab6d71a110360690a59763492c23e3d080cd86d6b28ae8919bdfcd95`, available in the project conversation (not committed to GitHub).
-- **Remaining blocker:** the connected GitHub file-write actions cannot ingest the large local archive directly. The kit includes an audited, hash-checked PowerShell Git importer. Do not mark Issue #1 or #2 complete until full source commits are visible on `main` and `develop`.
+- **GitHub import completed and directly verified:** `main` source commit `eb9691510ce57dd1a7670fcf404de0c0dbd6941b`; `develop` P11 source commit `65023df71d20eb049a571d6a0d1672d670cddf92`. GitHub file trees include 358 and 362 `src` files respectively, with 2,070 and 2,094 total tree entries (directories included). Expected P7–P10 and P11 scripts are present on `develop`. No tracked files matching reviewed commercial game/archive/media extensions were found in either GitHub tree. Fresh checkout builds, fixture reruns and UI verification remain pending.
 - Browser build and interactive UI remain **validation pending**; no gameplay-stage assembly/palette/timing overclaims.
 
 ## Governing objective
@@ -24,17 +24,17 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P11 local consolidated archive (2026-11-04), not yet on GitHub**; P6 remains previous validated baseline |
+| Last *full source* checkpoint | **P6 committed on `main`; P11 consolidation candidate committed on `develop`** (2026-11-04) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P10** |
 | P10 cumulative MK2 headless scanner | **5,053 unique assets** |
-| Next planned pass | **Import P6/P11 source to GitHub, then qualify browser / release gates** |
+| Next planned pass | **Fresh GitHub checkout regression, browser build, P11 release gate** |
 | Browser / full React + Vite verification | **Not yet validated** in current environment |
-| Full P6 app source uploaded to GitHub | **No — pending import** |
+| Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
 
-The archived P6 source ZIP is retained in the original project conversation. The repository currently contains status/governance documents, **not an equivalent source baseline**. Treat application source history as incomplete until import and hash comparison finish.
+The original P6 ZIP and unfiltered P11 archive remain in the project conversation. GitHub contains the **audited, Git-safe application and research source**, not commercial game installations or all raw forensic evidence. Verify fresh-clone source and runtime behavior before the final P11 promotion.
 
 ## P7–P10 cumulative work (headless and fixture verified)
 
@@ -48,16 +48,16 @@ The archived P6 source ZIP is retained in the original project conversation. The
 
 Keep confidence boundaries: source-local layers are **not** completed full stages; palette candidates are not runtime-confirmed DAC selection; source frame order and loop-backs do not imply known milliseconds or world placement.
 
-**P10 tested:** 225 integration checks, 61 independent parity checks, original O221 mutation controls; exported 14 original frame records. Previous headless MK2 asset groups remained available. P7–P10 edits are preserved in interim patch/handoff artifacts in project conversation and have **not** been merged into a full source ZIP.
+**P10 tested:** 225 integration checks, 61 independent parity checks, original O221 mutation controls; exported 14 original frame records. Previous headless MK2 asset groups remained available. P7–P10 changes are consolidated in the local P11 full archive and the **GitHub `develop` source tree**, with all four interim patch files preserved. Independent browser/UI verification remains pending.
 
 ## Near-term next steps
 
-1. Import the full **P6 application source** into GitHub in a provenance-preserving way, excluding game binaries, copyrighted extracted assets, sensitive secrets and generated test output.
-2. Establish a reproducible `develop` worktree based on that source. Recover P7–P10 from recorded interim patches, checking the patch chain and published fixture evidence.
-3. At **P11**, consolidate P7–P10 into one source tree. Confirm the cumulative 5,053 MK2 asset census, export ZIP content and independent source verifiers. Do not silently substitute synthetic assets for original binaries.
-4. Run full React/Vite build and browser-level asset preview/export tests **when dependencies and browser test environment are available**. No unsupported browser success claim.
+1. **Fresh-clone source verification:** check out `main` and `develop`, compare source/manifests with the audited Git-safe ZIP snapshots, and rerun P6 and P11 checks using authorized local DOS game fixtures. Keep excluded raw forensic evidence separately archived.
+2. Confirm P11 cumulative **5,053 MK2 assets**, parity and negative-fixture tests from the actual GitHub worktree; the filtered local P11 package passed this previously, but a fresh-clone GitHub rerun has not yet been done.
+3. Install dependencies and run **Vite/React build and real browser asset preview/export tests**. Do not conflate headless scan accuracy with browser functionality.
+4. Keep P11 on `develop` until release gates pass. At that point merge or fast-forward appropriately into `main`, document checkpoint hashes, and close relevant issues.
 5. Review, but do not automatically prioritize, the deferred interface requests in [docs/UI_BACKLOG.md](docs/UI_BACKLOG.md).
-6. Continue extractor-relevant research for MK1/MK2/MK3. Cross-stage mechanisms may generalize only after independent validation; avoid expanding into gameplay reverse engineering.
+6. Continue extractor-relevant research for MK1/MK2/MK3 after release validation, testing cross-stage mechanisms before generalization and avoiding gameplay reverse engineering.
 
 ## Scope discipline
 
@@ -68,8 +68,8 @@ A verified source relationship is not automatically verified runtime timing, own
 ## Release conventions
 
 - P6 = source checkpoint, **headless verified**.
-- P7–P10 = interim verified changes, **not a new source checkpoint**.
-- P11 = planned consolidation and checkpoint, pending real validation.
+- P7–P10 = headless-verified changes incorporated in the **P11 consolidated source on `develop`**.
+- P11 = source imported and local headless-verified, **not promoted to `main` pending fresh-clone/browser gates**.
 - Never describe code that is not actually committed to GitHub as “uploaded” or “tracked in GitHub.”
 
 Update this file whenever the authoritative baseline or release status changes.
