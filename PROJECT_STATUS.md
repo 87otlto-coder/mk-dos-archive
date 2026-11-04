@@ -9,7 +9,7 @@
 - Local full-source P11 ZIP: `MK_DOS_Extractor_P11_Cumulative_Full_Source_2026-11-04.zip`, SHA-256 `7889917a4e8678c5e625f92a90b9ecb42ea80286a37358392a99d2578b7f00f4`. Not in GitHub.
 - P11 cumulative original-MK2 fixture scan: **5,053 assets**, 40 cross-pass source/package checks plus 225 P10 integration checks and 61 independent O220/O221 checks. Independent P8 O210 and P9 O205 suites and cross-stage O195 regression also passed.
 - Strictly filtered Git-safe source imports prepared: **P6 2,011 ZIP entries** (includes audit manifest), **P11 2,033 entries** (includes audit manifest and 4 interim patches). All application `src` and source scripts retained; original binary/extracted game media and raw evidence omitted with hashes documented. The P11 *filtered* source was re-tested successfully against the canonical local MK2 fixture.
-- Import kit filename `MK_DOS_GitHub_Import_Kit_P6_to_P11_2026-11-04.zip`, SHA-256 `9335c0da8b77b6df371a144e1038b4f09f943d6d6f8669409f023d9c70c9e4d0`, available in the project conversation (not committed to GitHub).
+- Import kit filename `MK_DOS_GitHub_Import_Kit_P6_to_P11_2026-11-04.zip`, SHA-256 `1dda3165ab6d71a110360690a59763492c23e3d080cd86d6b28ae8919bdfcd95`, available in the project conversation (not committed to GitHub).
 - **Remaining blocker:** the connected GitHub file-write actions cannot ingest the large local archive directly. The kit includes an audited, hash-checked PowerShell Git importer. Do not mark Issue #1 or #2 complete until full source commits are visible on `main` and `develop`.
 - Browser build and interactive UI remain **validation pending**; no gameplay-stage assembly/palette/timing overclaims.
 

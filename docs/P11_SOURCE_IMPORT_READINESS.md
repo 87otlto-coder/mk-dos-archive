@@ -7,7 +7,7 @@
 | Full P11 source checkpoint ZIP | `7889917a4e8678c5e625f92a90b9ecb42ea80286a37358392a99d2578b7f00f4` |
 | P6 Git-safe source ZIP | `4721c2692994cee31dc756e725149fcdbbdc867c49680896ba944d882cc7ef92` |
 | P11 Git-safe source ZIP | `a6a8a6e9eecc4d01f48accf0e2cd37e735c9846621ea60099690e2acfa25296b` |
-| Windows Git import kit | `9335c0da8b77b6df371a144e1038b4f09f943d6d6f8669409f023d9c70c9e4d0` |
+| Windows Git import kit | `1dda3165ab6d71a110360690a59763492c23e3d080cd86d6b28ae8919bdfcd95` |
 
 **This repository currently holds only documentation and governance, not these files.** The artifacts are retained in the associated MK Dos Extractor project conversation. The full source archive is for local custody; **do not upload it unfiltered to GitHub**.
 
