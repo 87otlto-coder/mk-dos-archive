@@ -31,3 +31,9 @@ Periodically test shared source-decoding grammar across multiple stage files. Th
 ## Timing
 
 Revisit at **P11** as a planning and usability audit, but do not let opportunistic UI redesign displace extractor capability, source preservation or source/regression validation.
+
+## P11 implementation status (2026-11-04)
+
+The focused Asset Library deep-link and independent-scroll improvements were **implemented on `develop`** (commit `4e3c370`) and have passed production build, TypeScript checking, and source-offline Chrome boot. **Do not mark them fully browser-verified yet.** Stage Gallery resource matching, reset behavior and sticky scroll require a trusted local browser run with an original MK2 installation (Issue #4).
+
+Stage completeness percentages, fresh card research coverage, and credible assembled-stage previews remain **deferred / unimplemented**; percentages must have an explicit, reproducible evidence denominator. Do not conflate original source-local layers with completed stage compositions.

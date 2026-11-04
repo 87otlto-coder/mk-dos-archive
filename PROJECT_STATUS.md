@@ -19,6 +19,14 @@
 
 **Release gate still open:** the ZIP import omitted root `package-lock.json`, so reproducible `npm ci` and the browser build are not qualified; dependencies are not cached and online installation stalled in this environment. Full browser UI inspection/export and MK1/MK3 regressions remain unverified. An old P8 standalone test hardcodes its interim 5,033 census; the proper P11 cumulative suite and independent P8 parity pass. See [the full validation record](docs/P11_GITHUB_SOURCE_REGRESSION_2026-11-04.md), [Issue #3](https://github.com/87otlto-coder/mk-dos-archive/issues/3) and [P11 release Issue #2](https://github.com/87otlto-coder/mk-dos-archive/issues/2).
 
+## P11 production build and browser boot qualified — 2026-11-04
+
+P11 `develop` now **passes GitHub Actions strict `npm ci`, Vite production build, full TypeScript check, source syntax check, and headless Chrome source-offline onboarding**. Verified run: [41920807431](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/41920807431). The compiled static artifact passed ZIP integrity checking; the original game binaries were not added to GitHub.
+
+A reproducible **new npm 11-generated lockfile** is committed on `develop` (it differs from the archived original P11 lockfile, which remains in local custody). The older O198 Forest typing issue was corrected without any change to its deterministic forensic ZIP. Low-risk Asset Library navigation and independent-scroll changes were committed and built, with the original-MK2 **5,053 assets / 40 cumulative checks** preserved.
+
+**Still pending:** browser interactions with actual original game files, particularly Stage Gallery resource filters, asset previews and export, plus MK1/MK3 regression. Local browser navigation was blocked by this tool environment's Chromium administrator policy, which is not an application test failure. See [P11 build / browser QA record](docs/P11_BUILD_BROWSER_QA_2026-11-04.md) and [Issue #4](https://github.com/87otlto-coder/mk-dos-archive/issues/4). **P11 remains on `develop`; `main` stays P6.**
+
 ## Governing objective
 
 The first major milestone is a sophisticated extractor for original DOS **MK1, MK2 and MK3**, capable of showing and exporting original resources with correct index pixels, palettes where evidenced, sprite/background animation groups, stage construction information, sound, speech and music. Investigate executable behavior only when it serves that extractor. Gameplay, control, combat and damage logic are not current work.
@@ -36,8 +44,8 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P10** |
 | P10 cumulative MK2 headless scanner | **5,053 unique assets** |
-| Next planned pass | **Fresh GitHub checkout regression, browser build, P11 release gate** |
-| Browser / full React + Vite verification | **Not yet validated** in current environment |
+| Next planned pass | **Real-game browser QA on local MK2/MK1/MK3; P11 promotion gate** |
+| Browser / full React + Vite verification | **Production build and Chrome onboarding PASS; actual game file inspection/export pending** |
 | Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
 
 The original P6 ZIP and unfiltered P11 archive remain in the project conversation. GitHub contains the **audited, Git-safe application and research source**, not commercial game installations or all raw forensic evidence. Verify fresh-clone source and runtime behavior before the final P11 promotion.

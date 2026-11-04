@@ -14,6 +14,8 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 
 See [PROJECT_STATUS.md](PROJECT_STATUS.md) for the live handoff and [docs/REPOSITORY_POLICY.md](docs/REPOSITORY_POLICY.md) for source/research preservation rules.
 
+- **P11 build qualified on `develop`:** strict locked `npm ci`, production Vite build, full TypeScript and headless Chrome onboarding passed. Actual original-game Asset Library/Stage Gallery interactions remain **validation pending**. [P11 build/browser report](docs/P11_BUILD_BROWSER_QA_2026-11-04.md).
+
 ## In scope
 
 Asset identification, graphics and source indices, palette attribution, sprite and background animation structures, stage layers and compositions, audio/speech/music, previews, metadata and batch export.
