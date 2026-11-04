@@ -30,6 +30,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Use npm 11 peer-dependency resolver for lockfile generation
+        run: npm install --global npm@11.19.1
       - name: Install dependencies (non-reproducible fallback until archived lockfile restored)
         run: |
           if [ ! -f package-lock.json ]; then
