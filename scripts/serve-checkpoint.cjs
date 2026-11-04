@@ -1,0 +1,6 @@
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'../dist'),port=Number(process.argv[2]||3001);
+if(!fs.existsSync(path.join(root,'index.html')))throw new Error('Build missing: run npm install and npm run build first.');
+if(!Number.isInteger(port)||port<1024||port>65535)throw new Error('Invalid port');
+const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png','.json':'application/json','.svg':'image/svg+xml','.wasm':'application/wasm'};
+http.createServer((req,res)=>{try{const url=new URL(req.url,'http://127.0.0.1'),name=decodeURIComponent(url.pathname),file=path.resolve(root,'.'+(name==='/'?'/index.html':name));if(!file.startsWith(root+path.sep)||!['GET','HEAD'].includes(req.method)){res.writeHead(403).end();return;}if(!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff'});if(req.method==='HEAD')res.end();else fs.createReadStream(file).pipe(res);}catch{res.writeHead(400).end();}}).listen(port,'127.0.0.1',()=>console.log(`MK DOS Archive checkpoint: http://127.0.0.1:${port}/\nOpen this address in Chrome or Edge. Keep this window open; Ctrl+C stops the server.`));

@@ -1,0 +1,120 @@
+{
+  "format": "mkdos_p6_archived_export_parity_v1",
+  "p2ArchiveSHA256": "68f99207aa5b9963c3d0ecb551680a9edb227f8f8969cfbe596b2c314d28be72",
+  "packages": {
+    "P3": [
+      {
+        "id": "mk2-stage-setup:tomb:object2_17358",
+        "sha256": "7e31dee31a50236209a7969cffc8b600903d8e71430f620b7bc971b686f345af",
+        "width": 896,
+        "height": 56,
+        "indicesSHA256": "a9a2b18a5c2aedebc7991f5f1ae6a2c80ef59e25ea7bd6d0a065e3307efe5306",
+        "maskSHA256": "bfb6f18f1d5448e70421a73039b138feb95ade63c5fd22b3633b1e7b79a21bcd"
+      },
+      {
+        "id": "mk2-stage-setup:tomb:object2_1736A",
+        "sha256": "0dc71ae82ea7244cfb7986581dc561abc8a603848cb6fe0c50d1eff50bf0dfdf",
+        "width": 896,
+        "height": 48,
+        "indicesSHA256": "c76ed3c70b65349d168deddb1e06568cba096bdfcdaea5a8c36f38de911cd404",
+        "maskSHA256": "8f19c5ac056c4f7df28fec5ed23c016080f9cbb0577bfbc1211c876a244d31a1"
+      },
+      {
+        "id": "mk2-stage-setup:tomb:object2_1737C",
+        "sha256": "173417b70c8a78fbc8b95b14b47aef623dfdf5f382388c1536c5fe57b152056a",
+        "width": 850,
+        "height": 224,
+        "indicesSHA256": "6824ba6ce49c6eae7a5552b518975876f3ee01b8eb1de52ff9fe4507b9f3a553",
+        "maskSHA256": "5fc74b83d16954f7abcc48a76120ba9495642a9c1a32bdfbf5a06eddba844dfa"
+      },
+      {
+        "id": "mk2-stage-setup:tomb:object2_1738E",
+        "sha256": "f32e9f4483f91bddeb53787e6a63aa3a1214d6cd0247967e1c1fbdd77e4b7d91",
+        "width": 850,
+        "height": 224,
+        "indicesSHA256": "20f63fdac23080ca209d2f96cbaf549b955e2939ff600783c42b1da09aaa0ada",
+        "maskSHA256": "2cf903da007f1025fff545b2c926ed0832bd5c9e736cf322d69d98b6a6cf54c2"
+      },
+      {
+        "id": "mk2-stage-setup:tomb:object2_173A0",
+        "sha256": "4bac4c4c528821f13b744b750f122fc155be2f9128918f772fb0f15c73b3e8af",
+        "width": 800,
+        "height": 30,
+        "indicesSHA256": "2377690653b56b9ad936e414a23cbe293b41e27f11940f0e20f1a8286e165d8f",
+        "maskSHA256": "e2e69430a56e3063b9c55a3e29282da499a21c8fd2cbd6f8fc03c3dbded3d08e"
+      },
+      {
+        "id": "mk2-stage-setup:tomb:object2_173B2",
+        "sha256": "39f15a5b03d2835f2f86e00c4728306ebc99b44beba7c07d8ff7b7a791d8d8ac",
+        "width": 320,
+        "height": 80,
+        "indicesSHA256": "7415b4c4456e9daa9e78c55b7e33cd0658e8e006fe165c8c308192c26c5d7de2",
+        "maskSHA256": "81f435abcb1ae9bfe8ee4b7499b726a2ea63fd0f28f1d13392d8c780c2d7fe2a"
+      },
+      {
+        "id": "mk2-stage-setup:portal:object2_16514",
+        "sha256": "0a7b0b9a7b8bcea5a2b58147316e2088cfe46b2a18902f3dee5c87037fa662d0",
+        "width": 896,
+        "height": 176,
+        "indicesSHA256": "fa022510d2644c4847e87fafa13372ca22063b2e574b78b2295ee61831e33837",
+        "maskSHA256": "df1ef54d62e6590b658053857f09cfb98e0de7e83870f409d3f77027a766f034"
+      },
+      {
+        "id": "mk2-stage-setup:portal:object2_16526",
+        "sha256": "055b60d5fcdd42f4d6eb3678d7461736cab97dd29e1431b9a6ef1d9203ac6902",
+        "width": 320,
+        "height": 168,
+        "indicesSHA256": "705b66265ce257395746a5bd89dccb7552cd7938b0e0a07252cfa0550a6b8ae6",
+        "maskSHA256": "cc3e34ee7d361cf04d64757e79553923ee8987d88e47e2425587d75798e6dcbc"
+      }
+    ],
+    "P4": [
+      {
+        "id": "mk2-floor:tomb:rgba",
+        "sha256": "56ef6b32292429738db135b4c8e72c17218e56401bd73f43a987212a864a7b46",
+        "width": 896,
+        "height": 48,
+        "indicesSHA256": "c8b68c1b14f8c031ec55882438aff366ddcc2a254a01744febf04d19b3fc37a7"
+      },
+      {
+        "id": "mk2-floor:tomb:indices",
+        "sha256": "c8b68c1b14f8c031ec55882438aff366ddcc2a254a01744febf04d19b3fc37a7",
+        "width": null,
+        "height": null
+      },
+      {
+        "id": "mk2-floor:portal:rgba",
+        "sha256": "9a914d9f5286c2596980e4d1674af36b75d71acbd0e31b3ccd89e96cfdeacfaf",
+        "width": 896,
+        "height": 40,
+        "indicesSHA256": "eb99434188317a0adac30f378c2362b857efcba7690180bd60dc80b9432158ff"
+      },
+      {
+        "id": "mk2-floor:portal:indices",
+        "sha256": "eb99434188317a0adac30f378c2362b857efcba7690180bd60dc80b9432158ff",
+        "width": null,
+        "height": null
+      },
+      {
+        "id": "mk2-floor:forest:indices-preview",
+        "sha256": "ca40d86ec05f088871be8a74167b6ca088966cec8ee9f9ddb8c47a22fe5ac799",
+        "width": 896,
+        "height": 32,
+        "indicesSHA256": "04b8d6b67c89d83aa2514edd0107690e0812f399da2f32f2e60367c3fad5b688"
+      },
+      {
+        "id": "mk2-floor:forest:candidate-rgba",
+        "sha256": "fb1d42412e6532b0c0747136a932380bf2702136be81de7c412c1033f2f4c280",
+        "width": 896,
+        "height": 32,
+        "indicesSHA256": "04b8d6b67c89d83aa2514edd0107690e0812f399da2f32f2e60367c3fad5b688"
+      },
+      {
+        "id": "mk2-floor:forest:indices",
+        "sha256": "04b8d6b67c89d83aa2514edd0107690e0812f399da2f32f2e60367c3fad5b688",
+        "width": null,
+        "height": null
+      }
+    ]
+  }
+}

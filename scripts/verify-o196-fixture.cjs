@@ -1,0 +1,50 @@
+/** Dependency-light fixture-backed tests, independent of Vite. */
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {webcrypto}=require('node:crypto');
+let ts;try{ts=require('typescript')}catch{ts=require(process.env.TYPESCRIPT_PATH||'/opt/nvm/versions/node/v22.16.0/lib/node_modules/typescript');}
+require('node:module')._extensions['.ts']=function(mod,file){const src=fs.readFileSync(file,'utf8');const t=ts.transpileModule(src,{fileName:file,compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020,esModuleInterop:true}});mod._compile(t.outputText,file)};
+if(!globalThis.crypto)globalThis.crypto=webcrypto;
+const {MemoryDirectorySource}=require('../src/core/filesystem/DirectorySource.ts');
+const {runO196ForestFloor,buildO196ForestForensicZip,o196ColorPng,o196IndexPreviewPng}=require('../src/core/experiments/o196.ts');
+const {parseAnimationStoreZip}=require('../src/games/mk1/research/browserAnimationExportBundleValidation.ts');
+const folder=process.argv[2];if(!folder)throw new Error('Usage: node scripts/verify-o196-fixture.cjs <original-MK2-folder>');
+const sources={};for(const n of ['MK2.EXE','FOREST.GRA'])sources[n]=new Uint8Array(fs.readFileSync(path.join(folder,n.toLowerCase())));
+const src=(data)=>{const m=new MemoryDirectorySource('O196 fixture');for(const [k,b] of Object.entries(data))m.setFile(k,b);return m;};
+const as=(zip,name)=>{const file=parseAnimationStoreZip(zip).get(name);assert(file,`missing zip member ${name}`);return file.bytes;};
+const txt=(zip,name)=>new TextDecoder().decode(as(zip,name));
+(async()=>{
+ const a=await runO196ForestFloor(src(sources));
+ assert.equal(a.status,'source-verified-plus-candidate-colors');assert.equal(a.floor.width,896);assert.equal(a.floor.height,32);
+ assert.equal(a.floor.indices.length,28672);assert.equal(a.floor.rgba.length,114688);
+ assert.equal(a.floor.indicesSHA256,'04b8d6b67c89d83aa2514edd0107690e0812f399da2f32f2e60367c3fad5b688');
+ assert.equal(a.palette.sourcePhysical,0x89324);assert.equal(a.palette.recordCount,80);assert.equal(a.palette.runtimeSelectionVerified,false);
+ assert.equal(a.palette.sourceRecordSHA256,'d1f3800877bb1556784b284ecdef9eefb723488f5cd526f05ff153ea462b864f');
+ assert.equal(a.setups.length,5);assert.deepEqual(a.setups.map(x=>x.controlCount),[18,10,13,15,4]);
+ assert.equal(a.setups.flatMap(x=>x.controls).length,60);
+ assert(a.setups.flatMap(x=>x.controls).every(x=>x.resourceID===27&&x.paletteSlot===2));
+ assert.equal(a.floor.histogram.reduce((t,x)=>t+x.count,0),28672);assert.equal(a.floor.histogram.length,37);
+ assert.equal(a.floor.histogram[0].index,2);assert.equal(a.floor.histogram.at(-1).index,76);
+ assert.equal(a.rendererEvidence.rawDestinationY,172);assert.equal(a.rendererEvidence.requestedRows,32);
+ assert.deepEqual(a.floor.indices, sources['FOREST.GRA'].slice(198116));
+ const zip=buildO196ForestForensicZip(a),man=JSON.parse(txt(zip,'MANIFEST.json'));
+ assert.equal(man.sourceGameFilesBundled,false);assert.equal(man.derivedOriginalPixelsIncluded,true);
+ assert.equal(man.original.forestSHA256,a.original.forestSHA256);
+ assert.deepEqual(as(zip,'results/forest_896x32_original_indices.bin'),a.floor.indices);
+ assert.deepEqual(as(zip,'results/forest_896x32_candidate_rgba.png'),o196ColorPng(a));
+ assert.deepEqual(as(zip,'results/forest_896x32_index_preview.png'),o196IndexPreviewPng(a));
+ assert.equal(JSON.parse(txt(zip,'evidence/forest_setup_palette_descriptor_links.json')).length,5);
+ assert.equal(JSON.parse(txt(zip,'evidence/palette_80_original_words_and_candidate_rgb.json')).colors.length,80);
+ assert.equal(JSON.parse(txt(zip,'results/source_index_histogram.json')).length,37);
+ assert(txt(zip,'SUMMARY.md').includes('No runtime palette/DAC witness'));
+ assert(!Array.from(parseAnimationStoreZip(zip).keys()).some(x=>/\.(GRA|EXE)$/i.test(x)));
+ assert.equal(parseAnimationStoreZip(zip).size,12);
+ const wrongGra={...sources,'FOREST.GRA':sources['FOREST.GRA'].slice()};wrongGra['FOREST.GRA'][198116]^=1;
+ await assert.rejects(runO196ForestFloor(src(wrongGra)),/FOREST.GRA identity mismatch/);
+ const wrongExe={...sources,'MK2.EXE':sources['MK2.EXE'].slice()};wrongExe['MK2.EXE'][0x89324+3]^=1;
+ await assert.rejects(runO196ForestFloor(src(wrongExe)),/MK2.EXE identity mismatch/);
+ const missing={...sources};delete missing['FOREST.GRA'];await assert.rejects(runO196ForestFloor(src(missing)),/expected one FOREST.GRA/);
+ const ambiguous=src(sources);ambiguous.setFile('other/FOREST.GRA',sources['FOREST.GRA']);await assert.rejects(runO196ForestFloor(ambiguous),/expected one FOREST.GRA/);
+ if(process.env.O196_ZIP_PATH)fs.writeFileSync(process.env.O196_ZIP_PATH,zip);
+ if(process.env.O196_REPORT_PATH){const {indices,rgba,...f}=a.floor;fs.writeFileSync(process.env.O196_REPORT_PATH,JSON.stringify({...a,floor:f},null,2));}
+ console.log('O196 PASS: original Forest source suffix and 5 palette-linked setup variants, 60 controls, 80 original words, 28,672 pixels, forensic ZIP, tamper/missing-file/ambiguity rejection.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

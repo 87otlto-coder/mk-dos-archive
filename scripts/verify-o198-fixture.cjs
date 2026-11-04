@@ -1,0 +1,44 @@
+/** O198 fixture / ZIP checks, no installed React/Vite packages needed. */
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {webcrypto}=require('node:crypto');
+const ts=require('/opt/nvm/versions/node/v22.16.0/lib/node_modules/typescript');
+require('node:module')._extensions['.ts']=function(mod,file){mod._compile(ts.transpileModule(fs.readFileSync(file,'utf8'),{fileName:file,compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020,esModuleInterop:true}}).outputText,file);};
+if(!globalThis.crypto)globalThis.crypto=webcrypto;
+const {MemoryDirectorySource}=require('../src/core/filesystem/DirectorySource.ts');
+const {runO198ForestConditionalRoots,buildO198ForestForensicZip}=require('../src/core/experiments/o198.ts');
+const {parseAnimationStoreZip}=require('../src/games/mk1/research/browserAnimationExportBundleValidation.ts');
+const root=process.argv[2];assert(root,'usage: node scripts/verify-o198-fixture.cjs <original MK2 game folder>');
+const files={};for(const n of ['MK2.EXE','FOREST.GRA'])files[n]=new Uint8Array(fs.readFileSync(path.join(root,n.toLowerCase())));
+const mk=(input)=>{const s=new MemoryDirectorySource('Original fixtures');for(const [n,b] of Object.entries(input))s.setFile(n,b);return s;};
+(async()=>{
+ const a=await runO198ForestConditionalRoots(mk(files));assert.equal(a.modes.length,3);
+ assert.deepEqual(a.modes.map(m=>m.rootObject2),[0x16b56,0x16bda,0x16c46]);
+ assert.deepEqual(a.modes.map(m=>m.selectedVariants),[[1,2,3,4,5],[1,2,5],[1,2,5]]);
+ assert.deepEqual(a.modes.map(m=>m.staticPairs.length),[5,3,3]);
+ assert.deepEqual(a.modes.map(m=>m.accumulatorPairs.length),[5,3,3]);
+ assert.equal(a.modes[1].rootByteSHA256,a.modes[2].rootByteSHA256);
+ assert.equal(a.layers.length,5);assert.equal(a.layers.reduce((n,l)=>n+l.placementCount,0),60);
+ assert.deepEqual(a.sourceReferences.originalPositiveStreamChannelIndices,[0,1,2,3,4,5,7,7,7]);
+ assert.deepEqual(a.modes[0].accumulatorPairs.map(p=>p.motionChannelIndex),[5,4,2,1,0]);
+ assert(a.modes.every(m=>m.accumulatorPairs.every(p=>p.positiveStreamHighWordReferences.length>=1)));
+ assert.equal(a.modes[0].staticPairs[2].operand,0x300000);assert.equal(a.modes[0].accumulatorPairs[2].operand,0x84318);
+ assert.deepEqual(a.sourceReferences.originalMotionWords,[0,49152,61440,73728,73728,98304,98304,98304,0]);
+ assert(a.modes.every(m=>m.runtimeSelected===false));assert.equal(a.paletteRuntimeVerified,false);
+ const zip=buildO198ForestForensicZip(a);assert.deepEqual(zip,buildO198ForestForensicZip(a));
+ const entries=parseAnimationStoreZip(zip);assert.equal(entries.size,24);
+ assert(![...entries.keys()].some(x=>/\.(exe|gra)$/i.test(x)));
+ const read=(n)=>entries.get(n).bytes;
+ const manifest=JSON.parse(new TextDecoder().decode(read('MANIFEST.json')));
+ assert.equal(manifest.format,a.format);assert.equal(manifest.sourceGameFilesBundled,false);
+ for(const l of a.layers){const d=`results/forest_source_layers/variant_${l.variant}_${l.width}x${l.height}`;
+  assert.deepEqual(read(d+'/indices.bin'),l.indices);assert.deepEqual(read(d+'/opacity_mask.bin'),l.opacity);
+  assert(read(d+'/candidate_color.png').length>100);}
+ const altered={...files,'MK2.EXE':files['MK2.EXE'].slice()};altered['MK2.EXE'][0xb77aa+0x30]^=1;
+ await assert.rejects(runO198ForestConditionalRoots(mk(altered)),/identity mismatch/);
+ const graChanged={...files,'FOREST.GRA':files['FOREST.GRA'].slice()};graChanged['FOREST.GRA'][100000]^=1;
+ await assert.rejects(runO198ForestConditionalRoots(mk(graChanged)),/identity mismatch/);
+ await assert.rejects(runO198ForestConditionalRoots(mk({'MK2.EXE':files['MK2.EXE']})),/expected one FOREST.GRA/);
+ if(process.env.O198_ZIP_PATH)fs.writeFileSync(process.env.O198_ZIP_PATH,zip);
+ if(process.env.O198_REPORT_PATH)fs.writeFileSync(process.env.O198_REPORT_PATH,JSON.stringify({...a,layers:a.layers.map(({rgba,indices,opacity,...l})=>l)},null,2));
+ console.log('PASS O198: 3 roots, [5,3,3] conditional layer sets, 22 typed setup pairs, nine motion source words, 24-member deterministic ZIP; corruption and missing fixture rejected.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

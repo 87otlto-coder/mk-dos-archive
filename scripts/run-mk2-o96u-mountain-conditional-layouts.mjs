@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+/** O96U: exact conditional token -> decoded indexed image -> packed placement joins. */
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const [fixture,out=root]=process.argv.slice(2);if(!fixture)throw Error('usage: <fixture-dir> [out-dir]');
+const H=b=>crypto.createHash('sha256').update(b).digest('hex'),C=(x,s)=>{if(!x)throw Error('O96U FAIL '+s)};
+const exe=fs.readFileSync(path.join(fixture,'mk2.exe'));C(H(exe)==='fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65','exe');
+const tFile=fs.readFileSync(path.join(root,'mk2_mountain_selected_indexed_graphics_o96t_2026-10-09.json')),sFile=fs.readFileSync(path.join(root,'mk2_static_word_stream_descriptor_consumer_join_o96s_2026-10-09.json'));
+const t=JSON.parse(tFile),s=JSON.parse(sFile);C(t.status==='SUCCESS'&&s.status==='SUCCESS','prerequisites');
+const variants=s.variants.map((v,i)=>{let rows=[];let seen=new Set();for(let j=0;j<14;j++){
+ const row=v.conditionalRows[j],slot=row.token;C(slot!==13&&slot>=0&&slot<=14,'token outside bounded domain');const img=t.records[Math.min(slot,13)]; C(row.selectedDescriptorOffset===img.descriptorOffset,'selected object pointer');C(row.sourceParameter===771-47*j&&row.lowWordToObjectPlus1A===197,'exact separate positional source');
+ C(!seen.has(img.descriptorOffset),'each of 14 selected images occurs once');seen.add(img.descriptorOffset);
+ rows.push({ordinal:j,token:slot,decodedImageOrdinal:img.ordinal,descriptorOffset:img.descriptorOffset,graOffset:img.graOffset,pixelSha256:img.pixelSha256,lowWordObjectPlus1A:row.lowWordToObjectPlus1A,highWordObjectPlus1E:row.highWordToObjectPlus1E});
+ } C(seen.size===14,'14 distinct images per static variant');return {choice:i,streamOffset:v.sourceRecordOffset,conditionalObjects:14,stopToken:13,rows};});
+C(variants.length===6,'six variants');const arrangements=variants.map(v=>v.rows.map(r=>r.decodedImageOrdinal).join(',')); C(new Set(arrangements).size===5&&arrangements[2]===arrangements[3],'five distinct layout arrangements');
+const report={format:'mk2_o96u_mountain_conditional_indexed_layouts_v1',status:'SUCCESS',exeSha256:H(exe),o96sSha256:H(sFile),o96tSha256:H(tFile),variantCount:6,uniqueOrderedArrangements:5,knownDuplicateSelections:[2,3],distinctIndexedSpritesPerVariant:14,variants,hypotheses:[{id:'U1',claim:'Six static selector alternatives each choose a permutation of the same 14 decoded MOUNTAIN.GRA images',verdict:'SUPPORTED_CONDITIONAL'},{id:'U2',claim:'Token 14 selects the adjacent fifteenth image',verdict:'REJECTED_ALIASES_SLOT_13'},{id:'U3',claim:'The 197 and descending 47-step fields specify proven on-screen pixel positions',verdict:'UNPROVEN'},{id:'U4',claim:'Correct palette or actual visual layer ordering is established for runtime',verdict:'UNPROVEN'}],boundary:{gameplaySelectionObserved:false,objectSpawnGuaranteed:false,screenCoordinateScaleProven:false,paletteProven:false,stageExportReady:false}};
+fs.mkdirSync(out,{recursive:true});const dest=path.join(out,'mk2_mountain_conditional_image_layouts_o96u_2026-10-09.json');fs.writeFileSync(dest,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({pass:'O96U',status:'PASS',variants:variants.length,uniqueLayouts:new Set(arrangements).size,imagesPerVariant:14,report:dest}));

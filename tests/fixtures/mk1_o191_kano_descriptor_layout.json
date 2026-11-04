@@ -1,0 +1,1501 @@
+{
+  "description": "Metadata-only regression fixture; no commercial executable or GRA bytes",
+  "descriptors": [
+    {
+      "exeOffset": 685156,
+      "width": 58,
+      "height": 104,
+      "x": 23,
+      "y": -7,
+      "graOffset": 0
+    },
+    {
+      "exeOffset": 685168,
+      "width": 59,
+      "height": 105,
+      "x": 24,
+      "y": -7,
+      "graOffset": 4432
+    },
+    {
+      "exeOffset": 685180,
+      "width": 54,
+      "height": 105,
+      "x": 20,
+      "y": -7,
+      "graOffset": 8840
+    },
+    {
+      "exeOffset": 685192,
+      "width": 54,
+      "height": 104,
+      "x": 20,
+      "y": -7,
+      "graOffset": 12680
+    },
+    {
+      "exeOffset": 685204,
+      "width": 54,
+      "height": 104,
+      "x": 20,
+      "y": -9,
+      "graOffset": 16540
+    },
+    {
+      "exeOffset": 685216,
+      "width": 54,
+      "height": 104,
+      "x": 20,
+      "y": -9,
+      "graOffset": 20384
+    },
+    {
+      "exeOffset": 685228,
+      "width": 54,
+      "height": 104,
+      "x": 20,
+      "y": -10,
+      "graOffset": 24124
+    },
+    {
+      "exeOffset": 685240,
+      "width": 54,
+      "height": 105,
+      "x": 20,
+      "y": -8,
+      "graOffset": 27936
+    },
+    {
+      "exeOffset": 685252,
+      "width": 54,
+      "height": 105,
+      "x": 20,
+      "y": -7,
+      "graOffset": 32128
+    },
+    {
+      "exeOffset": 685264,
+      "width": 54,
+      "height": 94,
+      "x": 24,
+      "y": -20,
+      "graOffset": 36384
+    },
+    {
+      "exeOffset": 685276,
+      "width": 54,
+      "height": 73,
+      "x": 24,
+      "y": -40,
+      "graOffset": 40448
+    },
+    {
+      "exeOffset": 685288,
+      "width": 63,
+      "height": 48,
+      "x": 24,
+      "y": -65,
+      "graOffset": 43952
+    },
+    {
+      "exeOffset": 685300,
+      "width": 49,
+      "height": 109,
+      "x": 20,
+      "y": -4,
+      "graOffset": 46448
+    },
+    {
+      "exeOffset": 685312,
+      "width": 48,
+      "height": 109,
+      "x": 20,
+      "y": -3,
+      "graOffset": 51008
+    },
+    {
+      "exeOffset": 685324,
+      "width": 50,
+      "height": 109,
+      "x": 20,
+      "y": -3,
+      "graOffset": 55460
+    },
+    {
+      "exeOffset": 685336,
+      "width": 95,
+      "height": 98,
+      "x": 27,
+      "y": -14,
+      "graOffset": 59828
+    },
+    {
+      "exeOffset": 685348,
+      "width": 81,
+      "height": 95,
+      "x": 23,
+      "y": -17,
+      "graOffset": 64012
+    },
+    {
+      "exeOffset": 685360,
+      "width": 91,
+      "height": 98,
+      "x": 22,
+      "y": -14,
+      "graOffset": 67828
+    },
+    {
+      "exeOffset": 685372,
+      "width": 81,
+      "height": 100,
+      "x": 25,
+      "y": -12,
+      "graOffset": 71836
+    },
+    {
+      "exeOffset": 685384,
+      "width": 64,
+      "height": 105,
+      "x": 20,
+      "y": -8,
+      "graOffset": 75756
+    },
+    {
+      "exeOffset": 685396,
+      "width": 60,
+      "height": 106,
+      "x": 9,
+      "y": -8,
+      "graOffset": 79852
+    },
+    {
+      "exeOffset": 685408,
+      "width": 82,
+      "height": 104,
+      "x": 9,
+      "y": -10,
+      "graOffset": 83468
+    },
+    {
+      "exeOffset": 685420,
+      "width": 78,
+      "height": 104,
+      "x": 9,
+      "y": -10,
+      "graOffset": 87380
+    },
+    {
+      "exeOffset": 685432,
+      "width": 81,
+      "height": 105,
+      "x": 8,
+      "y": -10,
+      "graOffset": 91300
+    },
+    {
+      "exeOffset": 685444,
+      "width": 79,
+      "height": 105,
+      "x": 9,
+      "y": -9,
+      "graOffset": 95196
+    },
+    {
+      "exeOffset": 685456,
+      "width": 63,
+      "height": 106,
+      "x": 10,
+      "y": -7,
+      "graOffset": 98936
+    },
+    {
+      "exeOffset": 685468,
+      "width": 52,
+      "height": 82,
+      "x": 26,
+      "y": -31,
+      "graOffset": 102632
+    },
+    {
+      "exeOffset": 685480,
+      "width": 74,
+      "height": 66,
+      "x": 27,
+      "y": -48,
+      "graOffset": 105820
+    },
+    {
+      "exeOffset": 685492,
+      "width": 57,
+      "height": 49,
+      "x": 24,
+      "y": -67,
+      "graOffset": 108820
+    },
+    {
+      "exeOffset": 685504,
+      "width": 90,
+      "height": 44,
+      "x": 24,
+      "y": -72,
+      "graOffset": 111348
+    },
+    {
+      "exeOffset": 685516,
+      "width": 89,
+      "height": 64,
+      "x": 24,
+      "y": -65,
+      "graOffset": 113908
+    },
+    {
+      "exeOffset": 685528,
+      "width": 80,
+      "height": 75,
+      "x": 33,
+      "y": -42,
+      "graOffset": 116692
+    },
+    {
+      "exeOffset": 685540,
+      "width": 92,
+      "height": 95,
+      "x": 26,
+      "y": -18,
+      "graOffset": 120036
+    },
+    {
+      "exeOffset": 685552,
+      "width": 76,
+      "height": 74,
+      "x": 24,
+      "y": -39,
+      "graOffset": 123980
+    },
+    {
+      "exeOffset": 685564,
+      "width": 66,
+      "height": 103,
+      "x": 20,
+      "y": -9,
+      "graOffset": 127340
+    },
+    {
+      "exeOffset": 685576,
+      "width": 50,
+      "height": 114,
+      "x": 8,
+      "y": 0,
+      "graOffset": 131200
+    },
+    {
+      "exeOffset": 685588,
+      "width": 73,
+      "height": 110,
+      "x": 6,
+      "y": -5,
+      "graOffset": 135252
+    },
+    {
+      "exeOffset": 685600,
+      "width": 56,
+      "height": 114,
+      "x": 0,
+      "y": 0,
+      "graOffset": 139500
+    },
+    {
+      "exeOffset": 685612,
+      "width": 61,
+      "height": 103,
+      "x": 21,
+      "y": -10,
+      "graOffset": 143576
+    },
+    {
+      "exeOffset": 685624,
+      "width": 64,
+      "height": 53,
+      "x": 29,
+      "y": -62,
+      "graOffset": 147444
+    },
+    {
+      "exeOffset": 685636,
+      "width": 62,
+      "height": 55,
+      "x": 16,
+      "y": -67,
+      "graOffset": 150156
+    },
+    {
+      "exeOffset": 685648,
+      "width": 85,
+      "height": 73,
+      "x": 17,
+      "y": -49,
+      "graOffset": 152960
+    },
+    {
+      "exeOffset": 685660,
+      "width": 60,
+      "height": 106,
+      "x": 20,
+      "y": -7,
+      "graOffset": 156112
+    },
+    {
+      "exeOffset": 685672,
+      "width": 52,
+      "height": 107,
+      "x": 8,
+      "y": -6,
+      "graOffset": 160440
+    },
+    {
+      "exeOffset": 685684,
+      "width": 51,
+      "height": 104,
+      "x": 8,
+      "y": -7,
+      "graOffset": 164696
+    },
+    {
+      "exeOffset": 685696,
+      "width": 55,
+      "height": 102,
+      "x": 8,
+      "y": -10,
+      "graOffset": 169056
+    },
+    {
+      "exeOffset": 685708,
+      "width": 76,
+      "height": 98,
+      "x": 7,
+      "y": -14,
+      "graOffset": 172912
+    },
+    {
+      "exeOffset": 685720,
+      "width": 92,
+      "height": 95,
+      "x": 6,
+      "y": -17,
+      "graOffset": 176612
+    },
+    {
+      "exeOffset": 685732,
+      "width": 86,
+      "height": 91,
+      "x": 17,
+      "y": -21,
+      "graOffset": 180604
+    },
+    {
+      "exeOffset": 685744,
+      "width": 90,
+      "height": 104,
+      "x": 19,
+      "y": -9,
+      "graOffset": 184604
+    },
+    {
+      "exeOffset": 685756,
+      "width": 57,
+      "height": 92,
+      "x": 25,
+      "y": -21,
+      "graOffset": 188848
+    },
+    {
+      "exeOffset": 685768,
+      "width": 53,
+      "height": 113,
+      "x": 26,
+      "y": 0,
+      "graOffset": 192736
+    },
+    {
+      "exeOffset": 685780,
+      "width": 48,
+      "height": 98,
+      "x": 22,
+      "y": 0,
+      "graOffset": 197408
+    },
+    {
+      "exeOffset": 685792,
+      "width": 54,
+      "height": 116,
+      "x": 21,
+      "y": 0,
+      "graOffset": 201448
+    },
+    {
+      "exeOffset": 685804,
+      "width": 44,
+      "height": 80,
+      "x": 8,
+      "y": -5,
+      "graOffset": 205712
+    },
+    {
+      "exeOffset": 685816,
+      "width": 44,
+      "height": 54,
+      "x": 6,
+      "y": -16,
+      "graOffset": 208872
+    },
+    {
+      "exeOffset": 685828,
+      "width": 51,
+      "height": 52,
+      "x": 11,
+      "y": -20,
+      "graOffset": 210920
+    },
+    {
+      "exeOffset": 685840,
+      "width": 55,
+      "height": 43,
+      "x": 24,
+      "y": -19,
+      "graOffset": 212936
+    },
+    {
+      "exeOffset": 685852,
+      "width": 53,
+      "height": 50,
+      "x": 28,
+      "y": -14,
+      "graOffset": 214864
+    },
+    {
+      "exeOffset": 685864,
+      "width": 44,
+      "height": 54,
+      "x": 18,
+      "y": -1,
+      "graOffset": 216984
+    },
+    {
+      "exeOffset": 685876,
+      "width": 50,
+      "height": 54,
+      "x": 16,
+      "y": 0,
+      "graOffset": 219088
+    },
+    {
+      "exeOffset": 685888,
+      "width": 54,
+      "height": 45,
+      "x": 8,
+      "y": -12,
+      "graOffset": 221192
+    },
+    {
+      "exeOffset": 685900,
+      "width": 47,
+      "height": 76,
+      "x": 4,
+      "y": -6,
+      "graOffset": 223176
+    },
+    {
+      "exeOffset": 685912,
+      "width": 88,
+      "height": 74,
+      "x": 16,
+      "y": -4,
+      "graOffset": 225964
+    },
+    {
+      "exeOffset": 685924,
+      "width": 95,
+      "height": 67,
+      "x": 19,
+      "y": -7,
+      "graOffset": 229280
+    },
+    {
+      "exeOffset": 685936,
+      "width": 49,
+      "height": 67,
+      "x": 0,
+      "y": -13,
+      "graOffset": 232572
+    },
+    {
+      "exeOffset": 685948,
+      "width": 67,
+      "height": 68,
+      "x": 0,
+      "y": -14,
+      "graOffset": 235216
+    },
+    {
+      "exeOffset": 685960,
+      "width": 54,
+      "height": 106,
+      "x": 24,
+      "y": -5,
+      "graOffset": 238376
+    },
+    {
+      "exeOffset": 685972,
+      "width": 54,
+      "height": 105,
+      "x": 24,
+      "y": -7,
+      "graOffset": 242640
+    },
+    {
+      "exeOffset": 685984,
+      "width": 54,
+      "height": 106,
+      "x": 25,
+      "y": -7,
+      "graOffset": 246852
+    },
+    {
+      "exeOffset": 685996,
+      "width": 63,
+      "height": 66,
+      "x": 26,
+      "y": -48,
+      "graOffset": 250804
+    },
+    {
+      "exeOffset": 686008,
+      "width": 66,
+      "height": 73,
+      "x": 28,
+      "y": -41,
+      "graOffset": 253668
+    },
+    {
+      "exeOffset": 686020,
+      "width": 48,
+      "height": 107,
+      "x": 6,
+      "y": -3,
+      "graOffset": 256700
+    },
+    {
+      "exeOffset": 686032,
+      "width": 86,
+      "height": 89,
+      "x": 14,
+      "y": -7,
+      "graOffset": 260444
+    },
+    {
+      "exeOffset": 686044,
+      "width": 65,
+      "height": 104,
+      "x": 24,
+      "y": -8,
+      "graOffset": 264044
+    },
+    {
+      "exeOffset": 686056,
+      "width": 62,
+      "height": 104,
+      "x": 12,
+      "y": -7,
+      "graOffset": 268288
+    },
+    {
+      "exeOffset": 686068,
+      "width": 67,
+      "height": 105,
+      "x": 11,
+      "y": -7,
+      "graOffset": 272060
+    },
+    {
+      "exeOffset": 686080,
+      "width": 54,
+      "height": 107,
+      "x": 24,
+      "y": -7,
+      "graOffset": 275984
+    },
+    {
+      "exeOffset": 686092,
+      "width": 61,
+      "height": 101,
+      "x": 28,
+      "y": -12,
+      "graOffset": 280120
+    },
+    {
+      "exeOffset": 686104,
+      "width": 74,
+      "height": 101,
+      "x": 35,
+      "y": -13,
+      "graOffset": 284136
+    },
+    {
+      "exeOffset": 686116,
+      "width": 66,
+      "height": 104,
+      "x": 34,
+      "y": -10,
+      "graOffset": 288144
+    },
+    {
+      "exeOffset": 686128,
+      "width": 61,
+      "height": 102,
+      "x": 28,
+      "y": -10,
+      "graOffset": 292320
+    },
+    {
+      "exeOffset": 686140,
+      "width": 66,
+      "height": 102,
+      "x": 29,
+      "y": -11,
+      "graOffset": 296372
+    },
+    {
+      "exeOffset": 686152,
+      "width": 65,
+      "height": 102,
+      "x": 33,
+      "y": -12,
+      "graOffset": 300316
+    },
+    {
+      "exeOffset": 686164,
+      "width": 62,
+      "height": 102,
+      "x": 28,
+      "y": -12,
+      "graOffset": 304420
+    },
+    {
+      "exeOffset": 686176,
+      "width": 58,
+      "height": 103,
+      "x": 30,
+      "y": -10,
+      "graOffset": 308480
+    },
+    {
+      "exeOffset": 686188,
+      "width": 50,
+      "height": 106,
+      "x": 27,
+      "y": -7,
+      "graOffset": 312352
+    },
+    {
+      "exeOffset": 686200,
+      "width": 60,
+      "height": 100,
+      "x": 29,
+      "y": -11,
+      "graOffset": 316496
+    },
+    {
+      "exeOffset": 686212,
+      "width": 68,
+      "height": 100,
+      "x": 36,
+      "y": -10,
+      "graOffset": 320372
+    },
+    {
+      "exeOffset": 686224,
+      "width": 64,
+      "height": 101,
+      "x": 32,
+      "y": -11,
+      "graOffset": 324448
+    },
+    {
+      "exeOffset": 686236,
+      "width": 58,
+      "height": 105,
+      "x": 29,
+      "y": -8,
+      "graOffset": 328684
+    },
+    {
+      "exeOffset": 686248,
+      "width": 53,
+      "height": 103,
+      "x": 24,
+      "y": -10,
+      "graOffset": 332784
+    },
+    {
+      "exeOffset": 686260,
+      "width": 79,
+      "height": 109,
+      "x": 33,
+      "y": -9,
+      "graOffset": 336072
+    },
+    {
+      "exeOffset": 686272,
+      "width": 90,
+      "height": 78,
+      "x": 34,
+      "y": -22,
+      "graOffset": 339548
+    },
+    {
+      "exeOffset": 686284,
+      "width": 81,
+      "height": 62,
+      "x": 32,
+      "y": -43,
+      "graOffset": 342660
+    },
+    {
+      "exeOffset": 686296,
+      "width": 78,
+      "height": 50,
+      "x": 30,
+      "y": -63,
+      "graOffset": 345572
+    },
+    {
+      "exeOffset": 686308,
+      "width": 92,
+      "height": 52,
+      "x": 40,
+      "y": -71,
+      "graOffset": 347996
+    },
+    {
+      "exeOffset": 686320,
+      "width": 76,
+      "height": 80,
+      "x": 36,
+      "y": -8,
+      "graOffset": 350844
+    },
+    {
+      "exeOffset": 686332,
+      "width": 73,
+      "height": 56,
+      "x": 31,
+      "y": -13,
+      "graOffset": 354192
+    },
+    {
+      "exeOffset": 686344,
+      "width": 54,
+      "height": 77,
+      "x": 4,
+      "y": -7,
+      "graOffset": 356908
+    },
+    {
+      "exeOffset": 686356,
+      "width": 81,
+      "height": 83,
+      "x": -2,
+      "y": -21,
+      "graOffset": 360068
+    },
+    {
+      "exeOffset": 686368,
+      "width": 81,
+      "height": 97,
+      "x": 27,
+      "y": -12,
+      "graOffset": 363460
+    },
+    {
+      "exeOffset": 686380,
+      "width": 77,
+      "height": 49,
+      "x": 31,
+      "y": -44,
+      "graOffset": 367228
+    },
+    {
+      "exeOffset": 686392,
+      "width": 58,
+      "height": 71,
+      "x": 27,
+      "y": -35,
+      "graOffset": 369748
+    },
+    {
+      "exeOffset": 686404,
+      "width": 50,
+      "height": 58,
+      "x": 19,
+      "y": -50,
+      "graOffset": 372772
+    },
+    {
+      "exeOffset": 686416,
+      "width": 86,
+      "height": 35,
+      "x": 40,
+      "y": -73,
+      "graOffset": 375140
+    },
+    {
+      "exeOffset": 686428,
+      "width": 45,
+      "height": 59,
+      "x": 19,
+      "y": -50,
+      "graOffset": 377004
+    },
+    {
+      "exeOffset": 686440,
+      "width": 33,
+      "height": 77,
+      "x": 13,
+      "y": -32,
+      "graOffset": 379148
+    },
+    {
+      "exeOffset": 686452,
+      "width": 43,
+      "height": 46,
+      "x": 24,
+      "y": -57,
+      "graOffset": 382168
+    },
+    {
+      "exeOffset": 686464,
+      "width": 44,
+      "height": 85,
+      "x": 21,
+      "y": -29,
+      "graOffset": 384052
+    },
+    {
+      "exeOffset": 686476,
+      "width": 57,
+      "height": 102,
+      "x": 23,
+      "y": -10,
+      "graOffset": 387776
+    },
+    {
+      "exeOffset": 686488,
+      "width": 67,
+      "height": 101,
+      "x": 37,
+      "y": -10,
+      "graOffset": 391984
+    },
+    {
+      "exeOffset": 686500,
+      "width": 102,
+      "height": 90,
+      "x": 37,
+      "y": -21,
+      "graOffset": 395812
+    },
+    {
+      "exeOffset": 686512,
+      "width": 84,
+      "height": 114,
+      "x": 36,
+      "y": 2,
+      "graOffset": 399676
+    },
+    {
+      "exeOffset": 686524,
+      "width": 69,
+      "height": 123,
+      "x": 39,
+      "y": 8,
+      "graOffset": 404100
+    },
+    {
+      "exeOffset": 686536,
+      "width": 93,
+      "height": 74,
+      "x": 65,
+      "y": -40,
+      "graOffset": 408640
+    },
+    {
+      "exeOffset": 686548,
+      "width": 84,
+      "height": 61,
+      "x": 56,
+      "y": -57,
+      "graOffset": 412108
+    },
+    {
+      "exeOffset": 686560,
+      "width": 63,
+      "height": 54,
+      "x": 28,
+      "y": -59,
+      "graOffset": 415812
+    },
+    {
+      "exeOffset": 686572,
+      "width": 63,
+      "height": 59,
+      "x": 28,
+      "y": -54,
+      "graOffset": 418568
+    },
+    {
+      "exeOffset": 686584,
+      "width": 63,
+      "height": 56,
+      "x": 27,
+      "y": -56,
+      "graOffset": 421392
+    },
+    {
+      "exeOffset": 686596,
+      "width": 54,
+      "height": 98,
+      "x": 24,
+      "y": -14,
+      "graOffset": 424148
+    },
+    {
+      "exeOffset": 686608,
+      "width": 54,
+      "height": 98,
+      "x": 23,
+      "y": -14,
+      "graOffset": 427756
+    },
+    {
+      "exeOffset": 686620,
+      "width": 54,
+      "height": 94,
+      "x": 24,
+      "y": -18,
+      "graOffset": 431432
+    },
+    {
+      "exeOffset": 686632,
+      "width": 54,
+      "height": 91,
+      "x": 24,
+      "y": -21,
+      "graOffset": 435264
+    },
+    {
+      "exeOffset": 686644,
+      "width": 53,
+      "height": 93,
+      "x": 23,
+      "y": -19,
+      "graOffset": 439128
+    },
+    {
+      "exeOffset": 686656,
+      "width": 54,
+      "height": 98,
+      "x": 23,
+      "y": -14,
+      "graOffset": 442852
+    },
+    {
+      "exeOffset": 686668,
+      "width": 54,
+      "height": 100,
+      "x": 24,
+      "y": -12,
+      "graOffset": 446536
+    },
+    {
+      "exeOffset": 686680,
+      "width": 55,
+      "height": 83,
+      "x": 24,
+      "y": -30,
+      "graOffset": 450276
+    },
+    {
+      "exeOffset": 686692,
+      "width": 55,
+      "height": 62,
+      "x": 24,
+      "y": -50,
+      "graOffset": 453692
+    },
+    {
+      "exeOffset": 686704,
+      "width": 22,
+      "height": 97,
+      "x": 6,
+      "y": -18,
+      "graOffset": 456260
+    },
+    {
+      "exeOffset": 686716,
+      "width": 39,
+      "height": 88,
+      "x": 4,
+      "y": -27,
+      "graOffset": 459008
+    },
+    {
+      "exeOffset": 686728,
+      "width": 42,
+      "height": 66,
+      "x": -2,
+      "y": -50,
+      "graOffset": 461792
+    },
+    {
+      "exeOffset": 686740,
+      "width": 54,
+      "height": 68,
+      "x": -4,
+      "y": -47,
+      "graOffset": 464156
+    },
+    {
+      "exeOffset": 686752,
+      "width": 67,
+      "height": 62,
+      "x": -4,
+      "y": -53,
+      "graOffset": 466900
+    },
+    {
+      "exeOffset": 686764,
+      "width": 102,
+      "height": 41,
+      "x": -2,
+      "y": -77,
+      "graOffset": 469416
+    },
+    {
+      "exeOffset": 686776,
+      "width": 95,
+      "height": 25,
+      "x": -9,
+      "y": -93,
+      "graOffset": 472032
+    },
+    {
+      "exeOffset": 686788,
+      "width": 14,
+      "height": 20,
+      "x": 6,
+      "y": 8,
+      "graOffset": 473948
+    },
+    {
+      "exeOffset": 686800,
+      "width": 17,
+      "height": 16,
+      "x": 8,
+      "y": 7,
+      "graOffset": 474368
+    },
+    {
+      "exeOffset": 686812,
+      "width": 14,
+      "height": 18,
+      "x": 7,
+      "y": 8,
+      "graOffset": 474724
+    },
+    {
+      "exeOffset": 686824,
+      "width": 17,
+      "height": 17,
+      "x": 8,
+      "y": 9,
+      "graOffset": 475108
+    },
+    {
+      "exeOffset": 686836,
+      "width": 56,
+      "height": 83,
+      "x": 26,
+      "y": -28,
+      "graOffset": 475504
+    },
+    {
+      "exeOffset": 686848,
+      "width": 74,
+      "height": 102,
+      "x": 45,
+      "y": -10,
+      "graOffset": 479204
+    },
+    {
+      "exeOffset": 686860,
+      "width": 74,
+      "height": 111,
+      "x": 40,
+      "y": 0,
+      "graOffset": 483412
+    },
+    {
+      "exeOffset": 686872,
+      "width": 52,
+      "height": 102,
+      "x": 26,
+      "y": -10,
+      "graOffset": 487496
+    },
+    {
+      "exeOffset": 686884,
+      "width": 79,
+      "height": 98,
+      "x": 28,
+      "y": -14,
+      "graOffset": 491448
+    },
+    {
+      "exeOffset": 686896,
+      "width": 24,
+      "height": 21,
+      "x": 22,
+      "y": -32,
+      "graOffset": 495564
+    },
+    {
+      "exeOffset": 686912,
+      "width": 9,
+      "height": 10,
+      "x": 34,
+      "y": 0,
+      "graOffset": 495892
+    },
+    {
+      "exeOffset": 686924,
+      "width": 17,
+      "height": 3,
+      "x": 38,
+      "y": -14,
+      "graOffset": 496068
+    },
+    {
+      "exeOffset": 686936,
+      "width": 58,
+      "height": 30,
+      "x": -17,
+      "y": -16,
+      "graOffset": 496116
+    },
+    {
+      "exeOffset": 686948,
+      "width": 38,
+      "height": 23,
+      "x": -51,
+      "y": -25,
+      "graOffset": 496924
+    },
+    {
+      "exeOffset": 686960,
+      "width": 40,
+      "height": 32,
+      "x": -68,
+      "y": 0,
+      "graOffset": 497524
+    },
+    {
+      "exeOffset": 686972,
+      "width": 42,
+      "height": 27,
+      "x": -72,
+      "y": -3,
+      "graOffset": 498600
+    },
+    {
+      "exeOffset": 686984,
+      "width": 34,
+      "height": 39,
+      "x": -82,
+      "y": -8,
+      "graOffset": 499520
+    },
+    {
+      "exeOffset": 686996,
+      "width": 28,
+      "height": 43,
+      "x": -84,
+      "y": -10,
+      "graOffset": 500724
+    },
+    {
+      "exeOffset": 687008,
+      "width": 40,
+      "height": 32,
+      "x": -66,
+      "y": -21,
+      "graOffset": 501840
+    },
+    {
+      "exeOffset": 687020,
+      "width": 44,
+      "height": 27,
+      "x": -59,
+      "y": -25,
+      "graOffset": 502848
+    },
+    {
+      "exeOffset": 687032,
+      "width": 35,
+      "height": 38,
+      "x": -59,
+      "y": -9,
+      "graOffset": 503844
+    },
+    {
+      "exeOffset": 687044,
+      "width": 28,
+      "height": 41,
+      "x": -63,
+      "y": -1,
+      "graOffset": 504996
+    },
+    {
+      "exeOffset": 687056,
+      "width": 28,
+      "height": 24,
+      "x": -81,
+      "y": -14,
+      "graOffset": 506084
+    },
+    {
+      "exeOffset": 687068,
+      "width": 21,
+      "height": 25,
+      "x": -88,
+      "y": -14,
+      "graOffset": 506608
+    },
+    {
+      "exeOffset": 687080,
+      "width": 10,
+      "height": 5,
+      "x": -98,
+      "y": -24,
+      "graOffset": 507104
+    },
+    {
+      "exeOffset": 687092,
+      "width": 54,
+      "height": 104,
+      "x": 23,
+      "y": -8,
+      "graOffset": 507168
+    },
+    {
+      "exeOffset": 687104,
+      "width": 54,
+      "height": 102,
+      "x": 24,
+      "y": -10,
+      "graOffset": 511360
+    },
+    {
+      "exeOffset": 687116,
+      "width": 69,
+      "height": 91,
+      "x": 24,
+      "y": -21,
+      "graOffset": 515280
+    },
+    {
+      "exeOffset": 687128,
+      "width": 54,
+      "height": 102,
+      "x": 22,
+      "y": -9,
+      "graOffset": 518968
+    },
+    {
+      "exeOffset": 687140,
+      "width": 63,
+      "height": 104,
+      "x": 30,
+      "y": -7,
+      "graOffset": 522916
+    },
+    {
+      "exeOffset": 687152,
+      "width": 92,
+      "height": 99,
+      "x": 20,
+      "y": -12,
+      "graOffset": 526592
+    },
+    {
+      "exeOffset": 687164,
+      "width": 60,
+      "height": 99,
+      "x": 10,
+      "y": -14,
+      "graOffset": 530452
+    },
+    {
+      "exeOffset": 687176,
+      "width": 44,
+      "height": 109,
+      "x": 15,
+      "y": -3,
+      "graOffset": 533644
+    },
+    {
+      "exeOffset": 687188,
+      "width": 51,
+      "height": 92,
+      "x": 28,
+      "y": -21,
+      "graOffset": 537064
+    },
+    {
+      "exeOffset": 687200,
+      "width": 52,
+      "height": 95,
+      "x": 28,
+      "y": -19,
+      "graOffset": 540560
+    },
+    {
+      "exeOffset": 687212,
+      "width": 36,
+      "height": 44,
+      "x": 12,
+      "y": -7,
+      "graOffset": 544360
+    },
+    {
+      "exeOffset": 687224,
+      "width": 32,
+      "height": 60,
+      "x": 12,
+      "y": 8,
+      "graOffset": 545876
+    },
+    {
+      "exeOffset": 687236,
+      "width": 63,
+      "height": 58,
+      "x": 26,
+      "y": 7,
+      "graOffset": 548224
+    },
+    {
+      "exeOffset": 687248,
+      "width": 91,
+      "height": 44,
+      "x": 40,
+      "y": -7,
+      "graOffset": 550592
+    },
+    {
+      "exeOffset": 687260,
+      "width": 67,
+      "height": 104,
+      "x": 30,
+      "y": -9,
+      "graOffset": 552736
+    },
+    {
+      "exeOffset": 687272,
+      "width": 62,
+      "height": 103,
+      "x": 24,
+      "y": -10,
+      "graOffset": 557420
+    },
+    {
+      "exeOffset": 687284,
+      "width": 105,
+      "height": 92,
+      "x": 26,
+      "y": -21,
+      "graOffset": 561552
+    },
+    {
+      "exeOffset": 687296,
+      "width": 64,
+      "height": 106,
+      "x": 26,
+      "y": -7,
+      "graOffset": 565644
+    },
+    {
+      "exeOffset": 687308,
+      "width": 64,
+      "height": 106,
+      "x": 26,
+      "y": -7,
+      "graOffset": 569984
+    },
+    {
+      "exeOffset": 687320,
+      "width": 56,
+      "height": 49,
+      "x": 24,
+      "y": -7,
+      "graOffset": 574736
+    },
+    {
+      "exeOffset": 687332,
+      "width": 55,
+      "height": 65,
+      "x": 26,
+      "y": -48,
+      "graOffset": 576844
+    },
+    {
+      "exeOffset": 687344,
+      "width": 59,
+      "height": 50,
+      "x": 27,
+      "y": -6,
+      "graOffset": 579640
+    },
+    {
+      "exeOffset": 687356,
+      "width": 60,
+      "height": 72,
+      "x": 28,
+      "y": 11,
+      "graOffset": 581776
+    },
+    {
+      "exeOffset": 687368,
+      "width": 52,
+      "height": 107,
+      "x": -17,
+      "y": -14,
+      "graOffset": 584160
+    },
+    {
+      "exeOffset": 687380,
+      "width": 35,
+      "height": 106,
+      "x": -22,
+      "y": -14,
+      "graOffset": 587956
+    },
+    {
+      "exeOffset": 687392,
+      "width": 48,
+      "height": 109,
+      "x": -16,
+      "y": -10,
+      "graOffset": 591328
+    }
+  ]
+}

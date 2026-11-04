@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import json,sys
+root=Path(sys.argv[1]);out=Path(sys.argv[2]);checks=[]
+def ck(i,ok,d=''):checks.append({'id':i,'passed':bool(ok),'detail':str(d)})
+def txt(p):return (root/p).read_text()
+paths=['src/games/mk2/research/lk0PaletteContextRgbaFixtures.ts','src/components/MK2FoundationPanel.tsx','src/appMetadata.ts','package.json','scripts/run-mk2-lk0-palette-context-rgba.mjs','scripts/audit-mk2-o77.py']
+for p in paths:ck('exists_'+p,(root/p).is_file(),p)
+s=txt(paths[0]);panel=txt(paths[1]);meta=txt(paths[2]);pkg=json.loads(txt(paths[3]));runner=txt(paths[4]);audit=txt(paths[5])
+ck('verdict','MK2_LK0_THIRD_FIGHTER_RESOURCE_TWO_SEMANTIC_PALETTE_CONTEXT_RGBA_FIXTURES_ESTABLISHED' in s)
+ck('lk0_identity',"RESOURCE='LK0.GRA'" in s and 'RESOURCE_ID=103' in s and 'SLOT=1' in s)
+ck('lk0_hash','9a01fb1924bf97a1005514cff7dfeeb343c49dba56a48cd50091bad4f4d1b874' in s)
+ck('slot1_palette_A','0x254a0' in s.lower() and '0x870f4' in s.lower() and '63b2271ae86c2ebb59202020df619132aafe1c4b68a8e187355373e0a0774c93' in s)
+ck('slot1_palette_B','0x25520' in s.lower() and '0x87174' in s.lower() and '431d31b771524d80c2addaa8ccbd724a6e656775f9039eb2a2f1785c04dcab96' in s)
+ck('semantic_A','DEFAULT_CHARACTER_PALETTE' in s)
+ck('semantic_B','SAME_CHARACTER_DUPLICATE_OVERRIDE_PALETTE' in s)
+ck('stream_count','streamCount:36' in s and 'pngEntryCount:72' in s)
+ck('scope_boundary',"scope:'LK0_ONLY_NOT_WHOLE_LK_FAMILY'" in s and 'wholeLKFamilyPaletteOwnershipPromoted:false' in s and 'humanFighterNamePromoted:false' in s)
+ck('renderer_mapping','opaque sprite index N (1..63) -> palette record colour N-1' in s and 'lut_physical=0xa1cd8' in s.lower())
+ck('panel_scope','O67–O77' in panel)
+ck('panel_card','O77 LK0 third fighter-resource RGBA verified' in panel)
+ck('panel_counts','36 LK0 streams × 2 semantic palette contexts' in panel)
+ck('panel_boundary','Scope is LK0.GRA only. LK1+ and a human fighter name are not promoted.' in panel)
+ck('panel_json','O77 LK0 RGBA JSON' in panel)
+ck('panel_download','Download LK0 RGBA Package' in panel)
+ck('panel_runner','executeMK2LK0PaletteContextRgbaFixtures' in panel)
+ck('milestone','1E.3O.77' in meta)
+ck('package_script',pkg['scripts'].get('smoke:mk2-lk0-palette-context-rgba')=='node scripts/run-mk2-lk0-palette-context-rgba.mjs')
+ck('o75_script_retained','smoke:mk2-palette-selector-semantics' in pkg['scripts'])
+ck('o74_script_retained','smoke:mk2-jc0-palette-context-rgba' in pkg['scripts'])
+ck('o70_script_retained','smoke:mk2-indexed-graphics-package' in pkg['scripts'])
+ck('mk1_workflow_retained','smoke:unified-mk1-asset-archive' in pkg['scripts'])
+ck('runner_chain',all(x in runner for x in ['executeMK2BroadIndexedGraphicsCorpusCensus','executeMK2CharacterResourcePaletteSlotJoin','executeMK2PaletteSelectorGameplaySemantics','executeMK2LK0PaletteContextRgbaFixtures']))
+ck('independent_audit_lk0','lk0_candidate_descriptor_count' in audit and 'lk0_exact_eof' in audit and 'lk0_index_domain' in audit)
+ck('independent_audit_all_rgba','rgba_{name}_{i:02}' in audit and 'all72RgbaPayloadsIndependentlyReconstructed' in audit)
+ck('independent_audit_scope','wholeLKFamilyPaletteOwnershipNotPromoted' in audit and 'humanFighterNameNotPromoted' in audit)
+failed=[c for c in checks if not c['passed']]
+res={'format':'mk2_o77_source_integration_audit_v1','checkCount':len(checks),'passedCount':len(checks)-len(failed),'failedCount':len(failed),'allChecksPassed':not failed,'checks':checks,'decision':{'o77SourceIntegrated':not failed,'lk0ThirdFighterFixtureExposed':not failed,'lk0OnlyScopePreserved':True,'wholeLKFamilyPaletteOwnershipNotPromoted':True,'humanFighterNameNotPromoted':True,'mk1WorkflowStillSeparate':True,'verdict':'MK2_O77_SOURCE_UI_INTEGRATION_AUDIT_PASSED' if not failed else 'AUDIT_FAILED'}}
+out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(res,indent=2));print(json.dumps({k:res[k] for k in ['checkCount','passedCount','failedCount','allChecksPassed']},indent=2))
+if failed:print(json.dumps(failed,indent=2));sys.exit(1)

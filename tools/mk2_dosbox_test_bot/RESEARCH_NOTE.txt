@@ -1,0 +1,5 @@
+O110X.3 — screenshot-based keyboard mapping correction (2026-10-11)
+Status: script configuration changed and packaging statically verified; Windows/DOSBox runtime validation pending.
+No MK2.EXE or game asset modified.
+F1 is Player 1 Start (verified against DOS MK2 instruction/FAQ); Q is assumed fighter confirm because it is configured High Punch; verify in character selection.
+Screen is in-game key-assignment; bot cannot automatically exit/reconfigure it.

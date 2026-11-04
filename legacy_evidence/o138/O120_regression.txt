@@ -1,0 +1,28 @@
+test_01_authentic (__main__.TestO120.test_01_authentic) ... ok
+test_02_unique_sites (__main__.TestO120.test_02_unique_sites) ... ok
+test_03_expected_pointer_counts (__main__.TestO120.test_03_expected_pointer_counts) ... ok
+test_04_setup_groups (__main__.TestO120.test_04_setup_groups) ... ok
+test_05_explicit_code (__main__.TestO120.test_05_explicit_code) ... ok
+test_06_source_record_mismatch (__main__.TestO120.test_06_source_record_mismatch) ... ok
+test_07_forced_runtime_claim (__main__.TestO120.test_07_forced_runtime_claim) ... ok
+test_08_fake_dac_start (__main__.TestO120.test_08_fake_dac_start) ... ok
+test_09_forged_record_source (__main__.TestO120.test_09_forged_record_source) ... ok
+test_10_forged_direct_pointer (__main__.TestO120.test_10_forged_direct_pointer) ... ok
+test_11_forged_table_count (__main__.TestO120.test_11_forged_table_count) ... ok
+test_12_forged_palette_table_link (__main__.TestO120.test_12_forged_palette_table_link) ... ok
+test_13_forged_setup_data (__main__.TestO120.test_13_forged_setup_data) ... ok
+test_14_forged_setup_provenance (__main__.TestO120.test_14_forged_setup_provenance) ... ok
+test_15_missing_setup (__main__.TestO120.test_15_missing_setup) ... ok
+test_16_fake_alternative_unused (__main__.TestO120.test_16_fake_alternative_unused) ... ok
+test_17_forged_fixup_count (__main__.TestO120.test_17_forged_fixup_count) ... ok
+test_18_forged_untabled_pointer (__main__.TestO120.test_18_forged_untabled_pointer) ... ok
+test_19_forged_consumer_location (__main__.TestO120.test_19_forged_consumer_location) ... ok
+test_20_forged_color_record_digest (__main__.TestO120.test_20_forged_color_record_digest) ... ok
+test_21_forged_pointer_field_semantics (__main__.TestO120.test_21_forged_pointer_field_semantics) ... ok
+test_22_fake_runtime_setup_binding (__main__.TestO120.test_22_fake_runtime_setup_binding) ... ok
+test_23_output_refuses_overwrite (__main__.TestO120.test_23_output_refuses_overwrite) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 2.087s
+
+OK

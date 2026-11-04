@@ -1,0 +1,21 @@
+/** Pass the root of an original MK1 fixture (with GRAPHICS/*HDRS.GRA). */
+const fs=require('fs'),path=require('path'),ts=require(process.env.TYPESCRIPT_PATH || '/opt/nvm/versions/node/v22.16.0/lib/node_modules/typescript');
+require.extensions['.ts']=(m,file)=>m._compile(ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText,file);
+const {webcrypto}=require('crypto');if(!globalThis.crypto)globalThis.crypto=webcrypto;
+const assert=require('assert/strict');
+const {MemoryDirectorySource}=require('../src/core/filesystem/DirectorySource.ts');
+const {compileAllKnowns,buildKnownEvidenceZip}=require('../src/core/experiments/o194.ts');
+const {parseAnimationStoreZip}=require('../src/games/mk1/research/browserAnimationExportBundleValidation.ts');
+const root=process.argv[2];if(!root)throw new Error('Pass original MK1 fixture root path');
+const source=new MemoryDirectorySource('MK1 source fixture');
+for(const file of fs.readdirSync(root+'/GRAPHICS'))if(/HDRS\.GRA$/i.test(file))source.setFile(`GRAPHICS/${file}`,new Uint8Array(fs.readFileSync(path.join(root,'GRAPHICS',file))));
+source.setFile('MK1.EXE',new Uint8Array(fs.readFileSync(path.join(root,'MK1.EXE'))));
+(async()=>{const r=await compileAllKnowns(source,'mk1',undefined,undefined,false);
+ assert.equal(r.steps.find(x=>x.id==='stage-resources').evidence.stageResources.length,17);
+ assert.equal(r.steps.find(x=>x.id==='stage-resources').status,'partial');
+ assert.equal(r.sourceWitnesses.length,18);
+ assert.equal(r.assets.length,0);
+ const zip=buildKnownEvidenceZip(r,'forensic');const entries=parseAnimationStoreZip(zip);
+ assert(entries.has('evidence/source_hashes.json'));assert(entries.has('diagnostics/warnings.json'));
+ console.log('O194 MK1 fixture checks passed: 17 source background candidates, 18 hashes, no invented decoded stage assets.');
+})().catch(e=>{console.error(e);process.exitCode=1});

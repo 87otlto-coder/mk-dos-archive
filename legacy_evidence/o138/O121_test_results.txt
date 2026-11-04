@@ -1,0 +1,37 @@
+test_01_original_independent (__main__.O121Controls.test_01_original_independent) ... ok
+test_02_group_and_entry_counts (__main__.O121Controls.test_02_group_and_entry_counts) ... ok
+test_03_selected_palette_indices (__main__.O121Controls.test_03_selected_palette_indices) ... ok
+test_04_tomb_exact_resource (__main__.O121Controls.test_04_tomb_exact_resource) ... ok
+test_05_portal_exact_resource (__main__.O121Controls.test_05_portal_exact_resource) ... ok
+test_06_alternatives_both_images_resource (__main__.O121Controls.test_06_alternatives_both_images_resource) ... ok
+test_07_corpus_descriptors (__main__.O121Controls.test_07_corpus_descriptors) ... ok
+test_08_negative_alternatives_do_not_imply_never_used (__main__.O121Controls.test_08_negative_alternatives_do_not_imply_never_used) ... ok
+test_09_canonical_exe_hash (__main__.O121Controls.test_09_canonical_exe_hash) ... ok
+test_10_descriptor_record_offsets_source_bounded (__main__.O121Controls.test_10_descriptor_record_offsets_source_bounded) ... ok
+test_11_forged_selected_palette_index (__main__.O121Controls.test_11_forged_selected_palette_index) ... ok
+test_12_forged_file_id (__main__.O121Controls.test_12_forged_file_id) ... ok
+test_13_forged_file_name (__main__.O121Controls.test_13_forged_file_name) ... ok
+test_14_forged_record_offset (__main__.O121Controls.test_14_forged_record_offset) ... ok
+test_15_fake_live_palette_handle (__main__.O121Controls.test_15_fake_live_palette_handle) ... ok
+test_16_fake_runtime_setup_binding (__main__.O121Controls.test_16_fake_runtime_setup_binding) ... ok
+test_17_false_vga_dac_assignment (__main__.O121Controls.test_17_false_vga_dac_assignment) ... ok
+test_18_fake_graphics_composition (__main__.O121Controls.test_18_fake_graphics_composition) ... ok
+test_19_wrong_sprite_size (__main__.O121Controls.test_19_wrong_sprite_size) ... ok
+test_20_wrong_descriptor_byte_offset (__main__.O121Controls.test_20_wrong_descriptor_byte_offset) ... ok
+test_21_wrong_graphics_byte_offset (__main__.O121Controls.test_21_wrong_graphics_byte_offset) ... ok
+test_22_wrong_signed_placement (__main__.O121Controls.test_22_wrong_signed_placement) ... ok
+test_23_missing_control_entry (__main__.O121Controls.test_23_missing_control_entry) ... ok
+test_24_extra_family (__main__.O121Controls.test_24_extra_family) ... ok
+test_25_modified_resource_rejected (__main__.O121Controls.test_25_modified_resource_rejected) ... ok
+test_26_modified_exe_rejected (__main__.O121Controls.test_26_modified_exe_rejected) ... ok
+test_27_refuse_existing_output (__main__.O121Controls.test_27_refuse_existing_output) ... ok
+test_28_reproduce_report_exactly (__main__.O121Controls.test_28_reproduce_report_exactly) ... ok
+test_29_six_exact_rectangle_tilings (__main__.O121Controls.test_29_six_exact_rectangle_tilings) ... ok
+test_30_tomb_exact_rectangle_groups (__main__.O121Controls.test_30_tomb_exact_rectangle_groups) ... ok
+test_31_portal_and_images_tiling (__main__.O121Controls.test_31_portal_and_images_tiling) ... ok
+test_32_complex_groups_not_overstated (__main__.O121Controls.test_32_complex_groups_not_overstated) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 3.612s
+
+OK

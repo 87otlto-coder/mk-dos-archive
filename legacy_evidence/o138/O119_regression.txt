@@ -1,0 +1,17 @@
+test_build_reproduces_report (__main__.O119RuntimeTests.test_build_reproduces_report) ... ok
+test_colors_are_exact_and_negative_controls_clean (__main__.O119RuntimeTests.test_colors_are_exact_and_negative_controls_clean) ... ok
+test_distinct_patched_exes (__main__.O119RuntimeTests.test_distinct_patched_exes) ... ok
+test_floor_region_carries_patch (__main__.O119RuntimeTests.test_floor_region_carries_patch) ... ok
+test_four_evidence_pngs (__main__.O119RuntimeTests.test_four_evidence_pngs) ... ok
+test_independent_verifier (__main__.O119RuntimeTests.test_independent_verifier) ... ok
+test_no_false_live_handle_claim (__main__.O119RuntimeTests.test_no_false_live_handle_claim) ... ok
+test_paired_stage_record_offsets_are_different (__main__.O119RuntimeTests.test_paired_stage_record_offsets_are_different) ... ok
+test_reject_forged_kit_binary_hash (__main__.O119RuntimeTests.test_reject_forged_kit_binary_hash) ... ok
+test_reject_forged_report_color_counts (__main__.O119RuntimeTests.test_reject_forged_report_color_counts) ... ok
+test_reject_forged_report_word_address (__main__.O119RuntimeTests.test_reject_forged_report_word_address) ... ok
+test_reject_forged_screenshot_hash (__main__.O119RuntimeTests.test_reject_forged_screenshot_hash) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 5.572s
+
+OK

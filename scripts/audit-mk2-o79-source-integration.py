@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import json,sys
+root=Path(sys.argv[1]);out=Path(sys.argv[2]);checks=[]
+def ck(i,ok,d=''):checks.append({'id':i,'passed':bool(ok),'detail':str(d)})
+def txt(p):return (root/p).read_text()
+paths=['src/games/mk2/research/ba0PaletteContextRgbaFixtures.ts','src/components/MK2FoundationPanel.tsx','src/appMetadata.ts','package.json','scripts/run-mk2-ba0-palette-context-rgba.mjs','scripts/audit-mk2-o79.py']
+for p in paths:ck('exists_'+p,(root/p).is_file(),p)
+s=txt(paths[0]);panel=txt(paths[1]);meta=txt(paths[2]);pkg=json.loads(txt(paths[3]));runner=txt(paths[4]);audit=txt(paths[5])
+ck('verdict','MK2_BA0_FOURTH_FIGHTER_RESOURCE_TWO_SEMANTIC_PALETTE_CONTEXT_RGBA_FIXTURES_ESTABLISHED' in s)
+ck('ba0_identity',"RESOURCE='BA0.GRA'" in s and 'RESOURCE_ID=91' in s and 'SLOT=3' in s)
+ck('ba0_hash','bce354dc74b2e12d05a0e6643364ffaabbc3b8bc789a834fe4c8113fd36023fd' in s)
+ck('slot3_palette_A','0x2594a' in s.lower() and '0x8759e' in s.lower() and '88c20a63940c97ccd0a8bfd5a534959fd2901ddd65b44e41687cad4d360a8347' in s)
+ck('slot3_palette_B','0x259ca' in s.lower() and '0x8761e' in s.lower() and '8e69dfc77db334ce295a2de71fe1db119139a7221733bb9b09592cef0ae0f3eb' in s)
+ck('semantic_A','DEFAULT_CHARACTER_PALETTE' in s)
+ck('semantic_B','SAME_CHARACTER_DUPLICATE_OVERRIDE_PALETTE' in s)
+ck('stream_count','streamCount:44' in s and 'pngEntryCount:88' in s)
+ck('scope_boundary',"scope:'BA0_ONLY_NOT_WHOLE_BA_FAMILY'" in s and 'wholeBAFamilyPaletteOwnershipPromoted:false' in s and 'humanFighterNamePromoted:false' in s)
+ck('renderer_mapping','opaque sprite index N (1..63) -> palette record colour N-1' in s and 'lut_physical=0xa1cd8' in s.lower())
+ck('panel_scope','O67–O79' in panel)
+ck('panel_card','O79 BA0 fourth fighter-resource RGBA verified' in panel)
+ck('panel_counts','44 BA0 streams × 2 semantic palette contexts' in panel)
+ck('panel_boundary','Scope is BA0.GRA only. BA1+ and a human fighter name are not promoted.' in panel)
+ck('panel_json','O79 BA0 RGBA JSON' in panel)
+ck('panel_download','Download BA0 RGBA Package' in panel)
+ck('panel_runner','executeMK2BA0PaletteContextRgbaFixtures' in panel)
+ck('milestone','1E.3O.79' in meta)
+ck('package_script',pkg['scripts'].get('smoke:mk2-ba0-palette-context-rgba')=='node scripts/run-mk2-ba0-palette-context-rgba.mjs')
+ck('o75_script_retained','smoke:mk2-palette-selector-semantics' in pkg['scripts'])
+ck('o74_script_retained','smoke:mk2-jc0-palette-context-rgba' in pkg['scripts'])
+ck('o70_script_retained','smoke:mk2-indexed-graphics-package' in pkg['scripts'])
+ck('mk1_workflow_retained','smoke:unified-mk1-asset-archive' in pkg['scripts'])
+ck('runner_chain',all(x in runner for x in ['executeMK2BroadIndexedGraphicsCorpusCensus','executeMK2CharacterResourcePaletteSlotJoin','executeMK2PaletteSelectorGameplaySemantics','executeMK2BA0PaletteContextRgbaFixtures']))
+ck('independent_audit_ba0','ba0_candidate_descriptor_count' in audit and 'ba0_exact_eof' in audit and 'ba0_index_domain' in audit)
+ck('independent_audit_all_rgba','rgba_{name}_{i:02}' in audit and 'all88RgbaPayloadsIndependentlyReconstructed' in audit)
+ck('independent_audit_scope','wholeBAFamilyPaletteOwnershipNotPromoted' in audit and 'humanFighterNameNotPromoted' in audit)
+failed=[c for c in checks if not c['passed']]
+res={'format':'mk2_o79_source_integration_audit_v1','checkCount':len(checks),'passedCount':len(checks)-len(failed),'failedCount':len(failed),'allChecksPassed':not failed,'checks':checks,'decision':{'o79SourceIntegrated':not failed,'ba0FourthFighterFixtureExposed':not failed,'ba0OnlyScopePreserved':True,'wholeBAFamilyPaletteOwnershipNotPromoted':True,'humanFighterNameNotPromoted':True,'mk1WorkflowStillSeparate':True,'verdict':'MK2_O79_SOURCE_UI_INTEGRATION_AUDIT_PASSED' if not failed else 'AUDIT_FAILED'}}
+out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(res,indent=2));print(json.dumps({k:res[k] for k in ['checkCount','passedCount','failedCount','allChecksPassed']},indent=2))
+if failed:print(json.dumps(failed,indent=2));sys.exit(1)

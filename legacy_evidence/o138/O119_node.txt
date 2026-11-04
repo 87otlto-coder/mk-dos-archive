@@ -1,0 +1,7 @@
+(node:5644) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "checks": 15,
+  "status": "PASS",
+  "meaning": "Runtime source-record perturbation, not VGA handle assignment"
+}

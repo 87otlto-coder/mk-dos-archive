@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+// O97M independent byte and control-flow verifier. No producer imports.
+import {readFileSync} from 'node:fs';import{join}from'node:path';import{createHash}from'node:crypto';
+const [fixture,root]=process.argv.slice(2);const b=readFileSync(join(fixture,'mk2.exe'));const raw=readFileSync(join(root,'mk2_mountain_accumulator_initializers_o97m_2026-10-09.json'));const r=JSON.parse(raw);let count=0;const chk=(v,msg)=>{count++;if(!v)throw Error('O97M REJECT: '+msg)};const sha=x=>createHash('sha256').update(x).digest('hex');const u=x=>b.readUInt32LE(x);
+chk(sha(b)==='fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65','fixture');const prior=readFileSync(join(root,'mk2_mountain_base_accumulator_double_add_o97l_2026-10-09.json'));chk(r.priorO97lSha256===sha(prior)&&r.fixtureSha256===sha(b)&&r.status==='PASS','authentic parent');
+const sections=[['zero_caller',0x81b88,0x81b94],['setup_sign_extend_then_broadcast',0x81f17,0x81f28],['nine_broadcasts',0x86a95,0x86ac3],['nine_source_zeroes',0x826fa,0x8272a],['base_initialization',0x81fde,0x81ff2],['two_scalar_clears',0x93a40,0x93a57],['conditional_base_selection',0x860ea,0x860fc]];
+chk(r.codeSegments.length===sections.length,'sections');for(let i=0;i<sections.length;i++){let [name,start,end]=sections[i],s=r.codeSegments[i];chk(s.name===name&&s.start===start&&s.end===end,'section coordinate '+name);chk(s.hex===b.subarray(start,end).toString('hex'),'section bytes '+name)}
+const call=(p,dst)=>chk(b[p]===0xe8&&p+5+b.readInt32LE(p+1)===dst,'call target '+p.toString(16));
+chk(b[0x81b88]===0x33&&b[0x81b89]===0xc0,'zero EAX caller');call(0x81b8a,0x86a95);call(0x81b8f,0x826fa);
+chk(b.subarray(0x81f17,0x81f23).toString('hex')==='0fbf1883c002c1e310508bc3','signed-word upper shift');call(0x81f23,0x86a95);
+for(let i=0;i<9;i++){const t=0x84330-i*4,p=0x86a95+i*5;chk(b[p]===0xa3&&u(p+1)===t,'broadcast address '+i);chk(r.broadcastTargets[i]===t,'broadcast reported '+i);const q=0x826fc+5*i,s=0x8430c-4*i;chk(b[q]===0xa3&&u(q+1)===s,'clear address '+i);chk(r.sourceZeroTargets[i]===s,'clear reported '+i)}
+chk(b[0x86ac2]===0xc3&&b[0x82729]===0xc3,'return after nine');chk(b.subarray(0x826fa,0x826fc).toString('hex')==='33c0','zero source');
+chk(b.subarray(0x81fde,0x81ff2).toString('hex')==='33c0a3e4420800a1165d0700c1e010a3e8420800','base two stores');chk(b.subarray(0x93a40,0x93a57).toString('hex')==='5033c0a308430800a3e4420800a32c430800a3e8420800','two scalar clears');
+chk(b.subarray(0x860ea,0x860fc).toString('hex')==='d1e005a8c201000fbf00c1e010a3e8420800','conditional index table');
+chk(r.conditionalScalarInputs.baseSource===0x842e4&&r.conditionalScalarInputs.baseAccumulator===0x842e8,'globals');chk(r.conditionalScalarInputs.conditionalWordTableObject2Offset===0x1c2a8,'indexed source');
+for(let n of [-32768,-1,0,1,32767]){const v=(n<<16)>>>0;chk(((v>>16)<<16)>>>0===v,'signed source test '+n)}
+const H={zeroInitCallSetsNineAccumulatorsToZero:'SUPPORTED_ON_0x81B88_PATH',signedSetupWordBroadcastToNineAccumulators:'SUPPORTED_ON_0x81F17_PATH',nineSourceValuesCanBeClearedToZero:'SUPPORTED_ON_0x826FA_PATH',baseAccumulatorHasMultipleWriters:'SUPPORTED',broadcastAlwaysZero:'REJECTED',cameraOrFPSUnitsKnown:'UNPROVEN',runtimeSelectionAndValueKnown:'UNPROVEN'};for(const [k,v]of Object.entries(H))chk(r.hypotheses[k]===v,'hypothesis '+k);console.log(JSON.stringify({pass:'O97M',status:'PASS',independent_checks:count,failures:0}));

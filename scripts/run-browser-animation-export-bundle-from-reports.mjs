@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
+const require=createRequire(import.meta.url);
+const [installRootArg,o59Arg,preDirArg,o60OutArg,zipArg]=process.argv.slice(2);
+if(!preDirArg){console.error('Usage: node scripts/run-browser-animation-export-bundle-from-reports.mjs <MK1-dir> <o59.json> <prereq-dir> [o60.json] [zip]');process.exit(2);}
+const installRoot=path.resolve(installRootArg),o59Path=path.resolve(o59Arg),preDir=path.resolve(preDirArg),o60Out=path.resolve(o60OutArg??'mk1_browser_animation_export_bundle_direct.json'),zipPath=path.resolve(zipArg??'MK1_O60_BROWSER_ANIMATION_EXPORT_PACKAGE.zip');
+const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'mk1-o60-only-')),emit=path.join(tmp,'emit'),types=path.join(tmp,'types');fs.mkdirSync(emit,{recursive:true});fs.mkdirSync(types,{recursive:true});const shim=path.join(tmp,'node-shim.d.ts');fs.writeFileSync(shim,"declare const process: { env?: Record<string,string|undefined>; platform: string };\n");
+const root=path.resolve(path.dirname(new URL(import.meta.url).pathname),'..');execFileSync('tsc',['--target','ES2022','--module','commonjs','--moduleResolution','node','--esModuleInterop','--skipLibCheck','--lib','ES2022,DOM','--typeRoots',types,'--outDir',emit,shim,'src/games/mk1/research/browserAnimationExportBundle.ts'],{cwd:root,stdio:'inherit'});const api=require(path.join(emit,'games/mk1/research/browserAnimationExportBundle.js'));
+function walk(dir,rel='',out=[]){for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const r=rel?`${rel}/${ent.name}`:ent.name,p=path.join(dir,ent.name);if(ent.isDirectory())walk(p,r,out);else if(ent.isFile())out.push({path:r,name:ent.name,extension:ent.name.includes('.')?ent.name.split('.').pop().toUpperCase():'',size:fs.statSync(p).size});}return out;}const files=walk(installRoot),cache=new Map();const source={directoryName:installRoot,isSynthetic:false,async listRecursive(){return files;},async readSlice(p,o,l){if(!cache.has(p))cache.set(p,fs.readFileSync(path.join(installRoot,p)));const b=cache.get(p);return new Uint8Array(b.subarray(o,o+l));}};
+const read=p=>JSON.parse(fs.readFileSync(path.resolve(p),'utf8'));const o59=read(o59Path),transfer=read(path.join(preDir,'transfer.json')),o18=read(path.join(preDir,'o18.json')),o22=read(path.join(preDir,'o22.json')),o23=read(path.join(preDir,'o23.json')),o24=read(path.join(preDir,'o24.json')),o25=read(path.join(preDir,'o25.json')),o26=read(path.join(preDir,'o26.json'));
+const result=await api.executeBrowserAnimationExportBundle(source,o59,o18,o22,o23,o24,o25,o26,transfer);fs.writeFileSync(o60Out,JSON.stringify(result.report,null,2));fs.writeFileSync(zipPath,Buffer.from(result.zipBytes));console.log(JSON.stringify({status:result.report.status,verdict:result.report.decision.verdict,bundle:result.report.bundle,indexed:result.report.indexedPayload,o60Out,zipPath},null,2));

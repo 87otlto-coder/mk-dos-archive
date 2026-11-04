@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import json,sys
+root=Path(sys.argv[1]);out=Path(sys.argv[2]);checks=[]
+def ck(i,ok,d=''):checks.append({'id':i,'passed':bool(ok),'detail':str(d)})
+def txt(p):return (root/p).read_text()
+paths=['src/games/mk2/research/verifiedFighterRgbaBundleO86.ts','src/components/MK2FoundationPanel.tsx','src/appMetadata.ts','metadata.json','package.json','scripts/run-mk2-verified-identity-resource-rgba-bundle-o86.mjs','scripts/audit-mk2-o86.py','src/games/mk2/research/fn4Slot16PaletteContextRgbaFixtures.ts']
+for p in paths:ck('exists_'+p,(root/p).is_file(),p)
+s=txt(paths[0]);panel=txt(paths[1]);meta=txt(paths[2]);md=json.loads(txt(paths[3]));pkg=json.loads(txt(paths[4]));runner=txt(paths[5]);audit=txt(paths[6]);o85=txt(paths[7])
+ck('verdict','MK2_SEVEN_VERIFIED_IDENTITY_RESOURCE_RGBA_CONTRACTS_INTEGRATED_WITHOUT_SEMANTIC_PROMOTION' in s)
+ck('format','mk2_verified_identity_resource_rgba_bundle_o86_v1' in s)
+ck('slot16_import','MK2FN4Slot16PaletteContextRgbaFixturesResult' in s)
+for slot,name,h in [(0,'HH0.GRA','1cf5f1453ada5ff80febd0e2a5eb62afcda43d75cb3f9e6361fe107288e932d2'),(1,'LK0.GRA','04723ef7c8f69099875746e76d7dd30aa297ccb121b89ae6e68d0d7ffb49f836'),(2,'JC0.GRA','d5b76bd511b5f985c1968126788925a92da669bda84a500cb405b326c95dcfd7'),(3,'BA0.GRA','8507677f9b3b7e322f92c64ba204fd7cb1a05fe5aea39b761a2fd0fd5bcf5133'),(4,'FN4.GRA','f6e116dc1bb9dc9c4b09147368a5d1ea18b9c6ad640ba6055c6641f116c10726'),(5,'FN6.GRA','68bbba61b49d7e5a1bc3ca43babdd04f2ccb2a9b642b553406249f3a52256ff3'),(16,'FN4.GRA','f15d5425f359ab6db21a31d82650ecd2c90105c9036194d1ef1e61e91e9079ff')]:
+ ck(f'expected_slot_{slot}',f"slot:{slot}" in s and f"resource:'{name}'" in s and h in s,name)
+ck('counts','outerEntryCount:9' in s and 'nestedPackageCount:7' in s and 'nestedLogicalEntryCount:537' in s and 'totalPngCount:502' in s)
+ck('slot_set',"==='0,1,2,3,4,5,16'" in s)
+ck('resource_set',"==='HH0.GRA,LK0.GRA,JC0.GRA,BA0.GRA,FN4.GRA,FN6.GRA,FN4.GRA'" in s)
+ck('slot16_path',"packages/slot_16_FN4_RGBA.zip" in s and "scope:'FN4_SLOT16_ONLY_NOT_WHOLE_FN_FAMILY'" in s)
+ck('integration_boundaries','newPaletteOwnershipPromoted:false' in s and 'siblingResourceOwnershipPromoted:false' in s and 'humanFighterNamesPromoted:false' in s and 'mk1AssumptionsImported:false' in s)
+ck('readme_slot16','Slot 16 shares FN4 geometry with slot 4 but is a separate identity-slot fixture' in s)
+ck('panel_range','O67–O86' in panel)
+ck('panel_import','executeMK2VerifiedFighterRgbaBundleO86' in panel and 'MK2VerifiedFighterRgbaBundleO86Result' in panel)
+ck('panel_state','[o86,setO86]' in panel)
+ck('panel_run','const u86=await executeMK2VerifiedFighterRgbaBundleO86' in panel and 'setO86(u86)' in panel)
+ck('panel_card','O86 seven identity/resource RGBA contracts integrated' in panel)
+ck('panel_counts','7 exact nested fixture packages' in panel and 'Slots 0,1,2,3,4,5,16' in panel)
+ck('panel_boundary','FN4 appears under separately proven slots 4 and 16' in panel)
+ck('panel_json','O86 Bundle JSON' in panel)
+ck('panel_download','Download 7-Contract RGBA Bundle' in panel)
+ck('panel_o85_retained','O85 FN4 slot-16 connected-provenance RGBA verified' in panel)
+ck('panel_alert','O86 only nests the exact accepted HH0/LK0/JC0/BA0/FN4-slot4/FN6-slot5/FN4-slot16 packages' in panel)
+ck('milestone','1E.3O.86' in meta)
+ck('metadata','1E.3O.86' in md.get('description',''))
+ck('package_script',pkg['scripts'].get('smoke:mk2-verified-identity-resource-rgba-bundle-o86')=='node scripts/run-mk2-verified-identity-resource-rgba-bundle-o86.mjs')
+ck('o85_script_retained','smoke:mk2-fn4-slot16-palette-context-rgba' in pkg['scripts'])
+ck('runner_o85','executeMK2FN4Slot16PaletteContextRgbaFixtures' in runner)
+ck('runner_o86','executeMK2VerifiedFighterRgbaBundleO86' in runner)
+ck('runner_report','mk2_verified_identity_resource_rgba_bundle_o86_2026-10-02.json' in runner)
+ck('audit_slot16','slot_16_FN4_RGBA.zip' in audit and 'f15d5425f359ab6db21a31d82650ecd2c90105c9036194d1ef1e61e91e9079ff' in audit)
+ck('audit_totals','manifest[\'totalPngCount\']==502' in audit and "manifest['nestedLogicalEntryCount']==537" in audit)
+ck('audit_verdict','MK2_O86_INDEPENDENT_INTEGRATION_AUDIT_PASSED' in audit)
+ck('o85_alias_boundary','slot16PaletteSelectorsAliasSameRecord:true' in o85 and 'sameCharacterDuplicateVisualOverrideNoOpForSlot16:true' in o85)
+failed=[c for c in checks if not c['passed']]
+res={'format':'mk2_o86_source_integration_audit_v1','checkCount':len(checks),'passedCount':len(checks)-len(failed),'failedCount':len(failed),'allChecksPassed':not failed,'checks':checks,'decision':{'o86SourceIntegrated':not failed,'sevenExactFixtureContractsExposed':not failed,'slot4AndSlot16FN4ContractsDistinct':not failed,'integrationOnlyBoundaryPreserved':True,'humanFighterNamesNotPromoted':True,'verdict':'MK2_O86_SOURCE_UI_INTEGRATION_AUDIT_PASSED' if not failed else 'AUDIT_FAILED'}}
+out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(res,indent=2));print(json.dumps({k:res[k] for k in ['checkCount','passedCount','failedCount','allChecksPassed']},indent=2))
+if failed:print(json.dumps(failed,indent=2));sys.exit(1)

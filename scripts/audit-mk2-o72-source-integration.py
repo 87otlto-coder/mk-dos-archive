@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import json,sys
+root=Path(sys.argv[1]);out=Path(sys.argv[2]);checks=[]
+def ck(i,ok,d=''):checks.append({'id':i,'passed':bool(ok),'detail':str(d)})
+def txt(p):return (root/p).read_text()
+paths=['src/games/mk2/research/leFixupPointerProvenanceQualification.ts','src/components/MK2FoundationPanel.tsx','src/appMetadata.ts','package.json','scripts/run-mk2-le-fixup-pointer-provenance.mjs','scripts/audit-mk2-o72.py']
+for p in paths:ck('exists_'+p,(root/p).is_file(),p)
+s=txt(paths[0]);p=txt(paths[1]);m=txt(paths[2]);pkg=json.loads(txt(paths[3]));run=txt(paths[4]);audit=txt(paths[5])
+ck('verdict','MK2_BOUND_LE_FIXUP_AND_PALETTE_POINTER_PROVENANCE_ESTABLISHED_JC0_SLOT_JOIN_UNRESOLVED' in s)
+ck('fixture_auth','EXPECTED_EXE_SHA256' in s and 'fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65' in s)
+ck('bound_module_base','0x26654' in s and 'BOUND_MODULE_BASE' in s and 'bindingShift:BOUND_MODULE_BASE' in s)
+ck('le_header','0x28f0c' in s.lower() or '0x28F0C' in s)
+ck('data_pages_corrected','0x61c54' in s.lower() or '0x61C54' in s)
+ck('fixup_count','27004' in s)
+ck('type7_count','26900' in s)
+ck('selector_tables','0x1c1b8' in s.lower() and '0x1c1fc' in s.lower())
+ck('selector_slots','17' in s and 'uniquePaletteRecordCount' in s)
+ck('palette_29','29' in s and 'uniquePaletteRecordCount' in s)
+ck('palette_63','63' in s and 'colorCount' in s)
+ck('jc0_unresolved','jc0PaletteOwnershipEstablished:false' in s and 'correctColorRgbaEstablished:false' in s)
+ck('o67_overlay_superseded','SUPERSEDED' in s and 'post' in s.lower() and 'overlay' in s.lower())
+ck('panel_scope','O67–O72' in p)
+ck('panel_o67_correction',"post-LE overlay interpretation is superseded by O72" in p)
+ck('panel_o72_card','O72 bound-LE fixup provenance verified' in p)
+ck('panel_counts','selector slots' in p and 'unique 63-colour records' in p)
+ck('panel_jc0_boundary','JC0 descriptors are file-backed Object-2 data' in p and 'JC0 → palette slot ownership is still unresolved' in p)
+ck('panel_warning','previously scanned region is file-backed bound-LE Object-2 page data' in p)
+ck('panel_download','O72 Fixup JSON' in p)
+ck('milestone','1E.3O.72' in m)
+ck('package_script',pkg['scripts'].get('smoke:mk2-le-fixup-provenance')=='node scripts/run-mk2-le-fixup-pointer-provenance.mjs')
+ck('o71_retained','smoke:mk2-palette-recon' in pkg['scripts'])
+ck('o70_retained','smoke:mk2-indexed-graphics-package' in pkg['scripts'])
+ck('mk1_workflow_retained','smoke:unified-mk1-asset-archive' in pkg['scripts'])
+ck('runner_chain','executeMK2FixtureResourceExecutableTopology' in run and 'executeMK2IndexedGraphicsDecodeFoundation' in run and 'executeMK2PaletteStorageSelectionReconnaissance' in run and 'executeMK2LEFixupPointerProvenanceQualification' in run)
+ck('independent_audit_fixups','27004' in audit and '26900' in audit and 'selector' in audit.lower())
+ck('no_rgba_promotion','correctColorRgbaEstablished:false' in s)
+failed=[c for c in checks if not c['passed']]
+res={'format':'mk2_o72_source_integration_audit_v1','checkCount':len(checks),'passedCount':len(checks)-len(failed),'failedCount':len(failed),'allChecksPassed':not failed,'checks':checks,'decision':{'o72SourceIntegrated':not failed,'o67OverlayInterpretationSuperseded':True,'jc0PaletteBoundaryPreserved':True,'mk1WorkflowStillSeparate':True,'verdict':'MK2_O72_SOURCE_UI_INTEGRATION_AUDIT_PASSED' if not failed else 'AUDIT_FAILED'}}
+out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(res,indent=2))
+print(json.dumps({k:res[k] for k in ['checkCount','passedCount','failedCount','allChecksPassed']},indent=2))
+if failed:print(json.dumps(failed,indent=2));sys.exit(1)

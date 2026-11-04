@@ -1,0 +1,109 @@
+import { DirectorySource } from '../filesystem/DirectorySource';
+import { Asset, AssetCollection, Game, safeName } from './model';
+import { runMK1Pipeline } from './mk1Pipeline';
+import { scanMK1ReadOnlyFallback } from './mk1ReadOnlyFallback';
+import { runMK2Pipeline } from './mk2Pipeline';
+import { indexedRgba, scanMK3 } from './mk3Collection';
+import { parseAnimationStoreZip, decodeAnimationBundlePng } from '../../games/mk1/research/browserAnimationExportBundleValidation';
+import { executeVerifiedIdentityBundleO90 } from '../../games/mk2/research/verifiedIdentityBundleO90';
+import { decodeMK2Music,writeMidi } from './mk2Music';
+import { hash } from './model';
+import { buildMK2P5SourceFloorAssets, P5_MK2_SOURCE_FLOOR_LIMITATION } from './mk2P5SourceFloors';
+import { buildMK2StageVisualAssetsP2P4, MK2_STAGE_P2P4_LIMITATIONS } from './mk2StageVisualIntegrationP2P4';
+
+export async function scanAssets(source:DirectorySource,game:Game,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
+  if(game==='mk3')return scanMK3(source,progress,signal);
+  const assets:Asset[]=[],packages:AssetCollection['packages']=[];
+  const addPng=(id:string,bytes:Uint8Array,group:string,kind:Asset['kind'],confidence:string,meta:Record<string,unknown>={})=>{
+    const decoded=decodeAnimationBundlePng(bytes);
+    assets.push({id,name:id.split('/').at(-1)!,group,kind,format:'PNG',confidence,source:{path:String(meta.resourcePath??meta.resourceName??id),offset:Number(meta.graOffset??0),length:0},metadata:{...meta,sourceExtent:'See evidence package for original resource extent'},...decoded,filename:safeName(id)+'.png'});
+  };
+  if(game==='mk1') {
+    // Canonical-only research/editors must not block ordinary browsing of a
+    // user-modified MK1 installation. Preserve the strict gates; provide a
+    // separate read-only path instead of bypassing source identity checks.
+    const entries = await source.listRecursive();
+    const exe = entries.find(e => e.name.toUpperCase() === 'MK1.EXE');
+    if (!exe) return scanMK1ReadOnlyFallback(source, progress, signal, 'MK1.EXE not found');
+    const bytes = await source.readSlice(exe.path, 0, exe.size);
+    const actualSha = await hash(bytes);
+    const canonicalSha = '750792337f71b2f7991450fa92d2240073b089c917e3c6f1f373404544941b14';
+    if (actualSha !== canonicalSha) {
+      return scanMK1ReadOnlyFallback(source, progress, signal,
+        `Selected MK1.EXE SHA-256 ${actualSha} differs from the qualified research fixture ${canonicalSha}`);
+    }
+    let result;
+    try {
+      result = await runMK1Pipeline(source,progress,signal);
+    } catch (error) {
+      if (signal?.aborted) throw error;
+      return scanMK1ReadOnlyFallback(source, progress, signal,
+        error instanceof Error ? error.message : String(error));
+    }
+    const w=result.animationAssetsWorkspace;
+    for(const a of w.characterAssets)addPng(a.path,a.pngBytes,`${a.identityLabel} · ${a.mode} · ${a.paletteSymbols.join('+')}`,'sprite','Explicit character palette context',a as unknown as Record<string,unknown>);
+    for(const a of w.effectAssets)addPng(a.path,a.pngBytes,'Verified effects','sprite',a.tier);
+    for(const a of w.unresolvedAssets)assets.push({id:`unresolved:${a.tableSymbol}:${a.descriptorWatcomOffset}`,name:a.symbol,group:'Unresolved palette',kind:'sprite',format:'PNG index preview',confidence:'Grayscale indices; palette unknown',source:{path:a.resourcePath,offset:0,length:0},metadata:{descriptorWatcomOffset:a.descriptorWatcomOffset},width:a.width,height:a.height,rgba:a.indexVisualizationRgba,filename:safeName(a.symbol)+'_index-preview.png'});
+    for(const [name,bundle] of [['stages',result.browserBundle],['animations',result.animationBundle],['audio',result.audioBundle]] as const){
+      packages.push({name:`MK1_${name}_evidence.zip`,bytes:bundle.zipBytes});
+      if(name==='animations')continue;
+      for(const [path,f] of parseAnimationStoreZip(bundle.zipBytes)){
+        if(path.endsWith('.png'))addPng(path,f.bytes,path.split('/').slice(0,-1).join('/'),'stage','Qualified bounded stage composition; see evidence');
+        if(path.toLowerCase().endsWith('.wav'))assets.push({id:path,name:path.split('/').at(-1)!,group:'MK1 audio',kind:'audio',format:'WAV',confidence:'Validated PCM export',source:{path,offset:0,length:f.bytes.length},metadata:{provenance:'Generated path; original offsets in audio evidence package'},bytes:f.bytes,mime:'audio/wav',filename:safeName(path)});
+      }
+    }
+    return {game,assets,packages,reports:{workspace:w.report,stages:result.browserBundleValidation,audio:result.audioBundleValidation,animationGraph:result.fighterAnimationComparison,timing:result.streamControlTiming},limitations:['Animation chaining uses your chosen presentation timing. Gameplay timing and canonical animation names are not inferred.','Stage images represent the qualified snapshots named in their evidence packages.']};
+  }
+  const r=await runMK2Pipeline(source,progress,signal),o90=await executeVerifiedIdentityBundleO90(r.w88,r.x89);
+  packages.push({name:'MK2_indexed_evidence.zip',bytes:r.d.zipBytes},{name:o90.report.package.downloadFileName,bytes:o90.zipBytes});
+  const indexed=parseAnimationStoreZip(r.d.zipBytes),manifest=JSON.parse(new TextDecoder().decode(indexed.get('manifests/indexed_graphics_assets.json')!.bytes));
+  for(const resource of manifest.resources)for(const s of resource.streams){
+    const indices=indexed.get(s.indicesPath)!.bytes,mask=indexed.get(s.maskPath)!.bytes;
+    assets.push({id:s.indicesPath,name:`${resource.resourceName} #${s.ordinal}`,group:`${resource.resourceName} · indexed`,kind:'sprite',format:'PNG index preview',confidence:'Exact indexed decode; palette unassigned',source:{path:resource.resourceName,offset:s.graOffset,length:s.encodedByteLength,sha256:resource.sha256},metadata:{...s,indices,mask},width:s.width,height:s.height,rgba:indexedRgba(indices,mask),filename:`${resource.resourceName}_${s.ordinal}_index-preview.png`});
+  }
+  for(const [key,bundle]of Object.entries({i:r.i,k:r.k,l:r.l,n:r.n,p:r.p,r:r.r,t85:r.t85,v87:r.v87,x89:r.x89})){
+    const zip=parseAnimationStoreZip(bundle.zipBytes),m=JSON.parse(new TextDecoder().decode(zip.get('manifests/assets.json')!.bytes));
+    for(const a of m.assets)addPng(`${key}/${a.pngPath}`,zip.get(a.pngPath)!.bytes,`${m.resourceName} · ${a.structuralContext??a.context}`,'sprite','Verified bounded identity/resource palette context',{...a,resourceName:m.resourceName});
+  }
+  // O94D already proves the exact mixer-readable interval, mono signed 8-bit
+  // source data, and 11,025/22,050 Hz rates for the canonical 312-file corpus.
+  // Make those qualified WAVs discoverable; keep the authoritative original U8s
+  // (including excluded/unknown tails) in the existing O94D evidence ZIP.
+  if(r.u8){
+    const rows=new Map(r.u8.report.corpus.assets.map(a=>[a.path,a]));
+    for(const wav of r.u8.wavAssets){
+      const evidence=rows.get(wav.sourcePath);
+      if(!evidence)throw new Error(`O94D evidence missing for ${wav.sourcePath}`);
+      assets.push({id:`u8:${wav.sourcePath}`,name:wav.filename,group:'MK2 original sound effects',kind:'audio',format:'WAV · mono 8-bit PCM',confidence:'O94D verified source-domain WAV; runtime mixer output not claimed',
+        source:{path:wav.sourcePath,offset:evidence.start,length:evidence.activeBytes,sha256:evidence.sourceSha256},
+        metadata:{sourceFormat:'U8',sourceSampleRate:wav.sampleRate,originalFileBytes:evidence.fileBytes,
+          excludedTailBytes:evidence.unreadBytes,activeEndExclusive:evidence.endExclusive,
+          activeSha256:evidence.activeSha256,wavSha256:evidence.wavSha256,provenance:'MK2 O94D'},
+        bytes:wav.bytes,mime:'audio/wav',filename:wav.filename});
+    }
+    packages.push({name:r.u8.report.package.fileName,bytes:r.u8.zipBytes});
+  }
+  // Qualified stage source assets recovered from the unchanged O177/O122/O132/O196
+  // research code. P2–P4 are independent of P5 and retain uncertainty labels.
+  progress('MK2 stage effects, setup layers and original floors (P2–P4)');
+  const stageVisuals = await buildMK2StageVisualAssetsP2P4(source);
+  assets.push(...stageVisuals.assets);
+  packages.push(...stageVisuals.packages);
+  const p5Floors = await buildMK2P5SourceFloorAssets(source);
+  assets.push(...p5Floors.assets);
+  const music=[];
+  for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
+    const bytes=await source.readSlice(e.path,0,e.size);
+    assets.push({id:`raw:${e.path}`,name:e.name+' (original)',group:'Original music sequences',kind:'raw',format:'Sound Images Gen2',confidence:'Original bytes',source:{path:e.path,offset:0,length:bytes.length},metadata:{},bytes,filename:e.name+'.soundimages.bin'});
+    try{const sequence=decodeMK2Music(bytes);music.push({path:e.path,...sequence});assets.push({id:`midi:${e.path}`,name:e.name,group:'MK2 MIDI music',kind:'sequence',format:'MIDI',confidence:'Driver-derived MIDI events; one traversal, loops in metadata',source:{path:e.path,offset:0,length:bytes.length},metadata:sequence,bytes:writeMidi(sequence),filename:e.name,mime:'audio/midi'});}catch(error){music.push({path:e.path,error:String(error)});}
+  }
+  return {game,assets,packages,reports:{integration:o90.report,indexed:manifest,music,
+    u8Audio:r.u8?.report ?? {status:'NOT_QUALIFIED',reason:r.u8Failure ?? 'O94D pipeline unavailable'},
+    p2p4StageVisuals:stageVisuals.status,
+    p5SourceFloors:p5Floors.stageResults},
+    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+      'Stage assembly and gameplay animation ordering/timing remain unresolved.',
+      ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
+        : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),
+      'Music exports contain one traversal. Loop points are retained in metadata; soundbank choice changes the preview sound.']};
+}

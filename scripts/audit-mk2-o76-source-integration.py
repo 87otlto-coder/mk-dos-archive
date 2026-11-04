@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import json,sys
+root=Path(sys.argv[1]);out=Path(sys.argv[2]);checks=[]
+def ck(i,ok,d=''):checks.append({'id':i,'passed':bool(ok),'detail':str(d)})
+def txt(p):return (root/p).read_text()
+paths=['src/games/mk2/research/hh0PaletteContextRgbaFixtures.ts','src/components/MK2FoundationPanel.tsx','src/appMetadata.ts','package.json','scripts/run-mk2-hh0-palette-context-rgba.mjs','scripts/audit-mk2-o76.py']
+for p in paths:ck('exists_'+p,(root/p).is_file(),p)
+s=txt(paths[0]);panel=txt(paths[1]);meta=txt(paths[2]);pkg=json.loads(txt(paths[3]));runner=txt(paths[4]);audit=txt(paths[5])
+ck('verdict','MK2_HH0_SECOND_FIGHTER_TWO_SEMANTIC_PALETTE_CONTEXT_RGBA_FIXTURES_ESTABLISHED' in s)
+ck('hh0_identity',"RESOURCE='HH0.GRA'" in s and 'RESOURCE_ID=97' in s and 'SLOT=0' in s)
+ck('hh0_hash','bee34a00af661a1e6d8771dab41cc4b0e084c2a8791c80cafc0147902519247f' in s)
+ck('slot0_palette_A','0x252a0' in s.lower() and '0x86ef4' in s.lower() and 'd15b71319a074b382cf89cb605d140392085d2b4c1391f1848cf11889f2a2c1a' in s)
+ck('slot0_palette_B','0x25320' in s.lower() and '0x86f74' in s.lower() and 'cc292774415c99138b7eeff2afc3e3742b5b87ce1e10c40f7f95e28eb50622cb' in s)
+ck('semantic_A','DEFAULT_CHARACTER_PALETTE' in s)
+ck('semantic_B','SAME_CHARACTER_DUPLICATE_OVERRIDE_PALETTE' in s)
+ck('stream_count','streamCount:36' in s and 'pngEntryCount:72' in s)
+ck('scope_boundary',"scope:'HH0_ONLY_NOT_WHOLE_HH_FAMILY'" in s and 'wholeHHFamilyPaletteOwnershipPromoted:false' in s and 'humanFighterNamePromoted:false' in s)
+ck('renderer_mapping','opaque sprite index N (1..63) -> palette record colour N-1' in s and 'lut_physical=0xa1cd8' in s.lower())
+ck('panel_scope','O67–O76' in panel)
+ck('panel_card','O76 HH0 second fighter-resource RGBA verified' in panel)
+ck('panel_counts','36 HH0 streams × 2 semantic palette contexts' in panel)
+ck('panel_boundary','Scope is HH0.GRA only. HH1–HH5 and a human fighter name are not promoted.' in panel)
+ck('panel_json','O76 HH0 RGBA JSON' in panel)
+ck('panel_download','Download HH0 RGBA Package' in panel)
+ck('panel_runner','executeMK2HH0PaletteContextRgbaFixtures' in panel)
+ck('milestone','1E.3O.76' in meta)
+ck('package_script',pkg['scripts'].get('smoke:mk2-hh0-palette-context-rgba')=='node scripts/run-mk2-hh0-palette-context-rgba.mjs')
+ck('o75_script_retained','smoke:mk2-palette-selector-semantics' in pkg['scripts'])
+ck('o74_script_retained','smoke:mk2-jc0-palette-context-rgba' in pkg['scripts'])
+ck('o70_script_retained','smoke:mk2-indexed-graphics-package' in pkg['scripts'])
+ck('mk1_workflow_retained','smoke:unified-mk1-asset-archive' in pkg['scripts'])
+ck('runner_chain',all(x in runner for x in ['executeMK2BroadIndexedGraphicsCorpusCensus','executeMK2CharacterResourcePaletteSlotJoin','executeMK2PaletteSelectorGameplaySemantics','executeMK2HH0PaletteContextRgbaFixtures']))
+ck('independent_audit_hh0','hh0_candidate_descriptor_count' in audit and 'hh0_exact_eof' in audit and 'hh0_index_domain' in audit)
+ck('independent_audit_all_rgba','rgba_{name}_{i:02}' in audit and 'all72RgbaPayloadsIndependentlyReconstructed' in audit)
+ck('independent_audit_scope','wholeHHFamilyPaletteOwnershipNotPromoted' in audit and 'humanFighterNameNotPromoted' in audit)
+failed=[c for c in checks if not c['passed']]
+res={'format':'mk2_o76_source_integration_audit_v1','checkCount':len(checks),'passedCount':len(checks)-len(failed),'failedCount':len(failed),'allChecksPassed':not failed,'checks':checks,'decision':{'o76SourceIntegrated':not failed,'hh0SecondFighterFixtureExposed':not failed,'hh0OnlyScopePreserved':True,'wholeHHFamilyPaletteOwnershipNotPromoted':True,'humanFighterNameNotPromoted':True,'mk1WorkflowStillSeparate':True,'verdict':'MK2_O76_SOURCE_UI_INTEGRATION_AUDIT_PASSED' if not failed else 'AUDIT_FAILED'}}
+out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(res,indent=2));print(json.dumps({k:res[k] for k in ['checkCount','passedCount','failedCount','allChecksPassed']},indent=2))
+if failed:print(json.dumps(failed,indent=2));sys.exit(1)

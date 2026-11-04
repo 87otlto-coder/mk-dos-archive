@@ -1,0 +1,77 @@
+/**
+ * MK1 character palette-context variant renderer — Pass 1E.3O.24.
+ *
+ * Export-first, read-only pass. This pass deliberately does not assign a base
+ * character palette automatically to every ANITAB entry. Instead it proves that
+ * the dominant fighter-resource descriptors reached from each character ANITAB
+ * can be deterministically rendered under the explicit normal/alternate palette
+ * contexts already established by O20 and the earlier palette renderer bridge.
+ *
+ * Cross-resource/effect descriptors are left outside this pass.
+ */
+import { DirectorySource } from '../../../core/filesystem/DirectorySource';
+import { createOperationId } from '../../../core/diagnostics/diagnosticLogger';
+import { enumerateMK1WatcomPermanentClasses } from './watcomPermanentClassInventory';
+import { decodeUgraSprite } from '../graphics/ugraDecoder';
+import { sha256Bytes } from './paletteRoundTripCodec';
+import { MK1AnimationResourceDecodeCensusReport } from './animationResourceDecodeCensus';
+import { MK1AnimationPaletteContextBridgeReport } from './animationPaletteContextBridge';
+
+const CANONICAL_SHA='750792337f71b2f7991450fa92d2240073b089c917e3c6f1f373404544941b14';
+function hx(v:number){return `0x${(v>>>0).toString(16).padStart(8,'0').toUpperCase()}`;}
+function u16(b:Uint8Array,o:number){return b[o]|b[o+1]<<8;}
+function rgbWord(word:number):[number,number,number]{const c=(shift:number)=>Math.round(((((word>>>shift)&31)*2+1)*255)/63);return[c(10),c(5),c(0)];}
+function fnv(bytes:Uint8Array,seed=0x811c9dc5){let h=seed>>>0;for(const b of bytes){h^=b;h=Math.imul(h,0x01000193);}return h>>>0;}
+function fnvHex(v:number){return(v>>>0).toString(16).padStart(8,'0');}
+function colorize(indices:Uint8Array,mask:Uint8Array,words:number[]){const rgba=new Uint8Array(indices.length*4);let out=0,opaque=0;for(let i=0;i<indices.length;i++){if(!mask[i])continue;opaque++;const idx=indices[i];if(idx<1||idx>words.length){out++;continue;}const [r,g,b]=rgbWord(words[idx-1]),p=i*4;rgba[p]=r;rgba[p+1]=g;rgba[p+2]=b;rgba[p+3]=255;}return{rgba,out,opaque};}
+function entry(entries:Awaited<ReturnType<DirectorySource['listRecursive']>>,wanted:string){const u=wanted.toUpperCase();const e=entries.find(x=>x.path.toUpperCase()===u||x.name.toUpperCase()===u.split('/').pop());if(!e)throw new Error(`O24 resource missing ${wanted}`);return e;}
+function sameSet(a:string[],b:string[]){const aa=[...a].sort(),bb=[...b].sort();return aa.length===bb.length&&aa.every((v,i)=>v===bb[i]);}
+
+export interface O24TransferPrerequisite {
+ provenance:{sha256:string}; staticDataBase:number;
+ decision:{rendererPaletteShiftBridgeEstablished:boolean;oneBasedRendererAlignmentCorroborated:boolean;verdict:string};
+ validation?:{allChecksPassed:boolean};
+}
+export interface MK1CharacterPaletteContextVariantPreview {key:string;width:number;height:number;rgba:Uint8Array;metadata:Record<string,unknown>}
+export interface MK1CharacterPaletteContextVariantRendererReport {
+ format:'mk1_character_palette_context_variant_renderer_v1'; timestamp:string; operationId:string;
+ provenance:MK1AnimationResourceDecodeCensusReport['provenance'];
+ prerequisite:{o18OperationId:string;o20OperationId:string;rendererVerdict:string;validationPassed:true};
+ contexts:Array<{
+  characterId:number;identityLabel:string;anitabSymbol:string;
+  dominantAnimationResource:string;dominantDescriptorCount:number;otherResourceDescriptorCount:number;dominanceRatio:number;
+  resourceSelectionClassification:'STRUCTURAL_DOMINANT_ANITAB_RESOURCE_NOT_UNIVERSAL_PALETTE_KEY';
+  paletteVariants:Array<{
+   mode:'NORMAL'|'ALTERNATE';paletteSymbols:string[];paletteWatcomOffset:number;paletteWatcomOffsetHex:string;paletteLength:23;sameRecordAsOtherMode:boolean;
+   descriptorCount:number;renderedDescriptorCount:number;allOpaqueIndicesInRange:boolean;aggregateRgbaChecksum:string;sampleDescriptorWatcomOffset:number;sampleRgbaChecksum:string;
+  }>;
+ }>;
+ summary:{characterContextCount:number;uniqueAnitabCount:number;dominantResourceDescriptorCountAcrossUniqueTables:number;descriptorContextCount:number;distinctPaletteVariantCount:number;renderedDescriptorVariantCount:number;allPaletteRecordsLength23:boolean;allOpaqueIndicesInRange:boolean;sharedNinjaGeometryContextCount:number;sharedNinjaDistinctPaletteVariantCount:number;samplePayloadCount:number};
+ decision:{explicitCharacterPaletteContextRenderingEstablished:true;automaticPerAnimationPaletteBindingEstablished:false;crossResourceEffectPaletteBindingEstablished:false;graFilenameAloneDeterminesPalette:false;dominantResourceSemanticallyUniversalBodyResourceEstablished:false;verdict:'MK1_CHARACTER_PALETTE_CONTEXT_VARIANT_RENDERING_ESTABLISHED';narrative:string};
+ status:'SUCCESS'; validation:{allChecksPassed:boolean;checks:Array<{checkId:string;passed:boolean;detail?:string}>};
+}
+export interface MK1CharacterPaletteContextVariantRendererResult{report:MK1CharacterPaletteContextVariantRendererReport;previewPayloads:Map<string,MK1CharacterPaletteContextVariantPreview>}
+
+export async function executeCharacterPaletteContextVariantRenderer(source:DirectorySource,o18:MK1AnimationResourceDecodeCensusReport,o20:MK1AnimationPaletteContextBridgeReport,transfer:O24TransferPrerequisite):Promise<MK1CharacterPaletteContextVariantRendererResult>{
+ if(source.isSynthetic!==false)throw new Error('O24 requires authentic MK1 installation');
+ if(o18.status!=='SUCCESS'||!o18.validation.allChecksPassed||o18.provenance.sha256!==CANONICAL_SHA)throw new Error('O24 requires canonical verified O18');
+ if(o20.status!=='SUCCESS'||!o20.validation.allChecksPassed||o20.provenance.sha256!==CANONICAL_SHA)throw new Error('O24 requires canonical verified O20');
+ if(transfer.provenance.sha256!==CANONICAL_SHA||!transfer.decision.rendererPaletteShiftBridgeEstablished||!transfer.decision.oneBasedRendererAlignmentCorroborated)throw new Error('O24 requires verified one-based renderer palette bridge');
+ const entries=await source.listRecursive();const exeE=entry(entries,'MK1.EXE'),exe=await source.readSlice(exeE.path,0,exeE.size);if(await sha256Bytes(exe)!==CANONICAL_SHA)throw new Error('O24 source MK1.EXE is not canonical');
+ const inv=await enumerateMK1WatcomPermanentClasses(source);if(inv.status!=='SUCCESS'||!inv.result.overallValid)throw new Error('O24 Watcom inventory failed');const symbols=inv.result.globalSymbols.symbols;
+ const resourceCache=new Map<string,Uint8Array>();async function resource(path:string){if(!resourceCache.has(path)){const e=entry(entries,path);resourceCache.set(path,await source.readSlice(e.path,0,e.size));}return resourceCache.get(path)!;}
+ function palette(symbolNames:string[]){const matches=symbolNames.map(name=>{const ms=symbols.filter(s=>s.valid&&s.segment===2&&s.kindBits.isData&&s.name===name);if(ms.length!==1)throw new Error(`O24 palette symbol ${name} count ${ms.length}`);return ms[0];});const offsets=[...new Set(matches.map(s=>s.addressOffset))];if(offsets.length!==1)throw new Error(`O24 palette aliases do not share storage: ${symbolNames.join(',')}`);const off=offsets[0],p=transfer.staticDataBase+off,len=u16(exe,p);if(len!==23)throw new Error(`O24 ${symbolNames.join('/')} length ${len}, expected 23`);const words=Array.from({length:len},(_,i)=>u16(exe,p+2+i*2));return{off,len:23 as const,words};}
+ const byTable=new Map<string,MK1AnimationResourceDecodeCensusReport['descriptors']>();for(const d of o18.descriptors){const a=byTable.get(d.tableSymbol)??[];a.push(d);byTable.set(d.tableSymbol,a);}
+ const dominantByTable=new Map<string,{path:string;count:number;total:number}>();for(const [table,ds] of byTable){const counts=new Map<string,number>();for(const d of ds)counts.set(d.resourcePath,(counts.get(d.resourcePath)??0)+1);const ranked=[...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));if(ranked.length>1&&ranked[0][1]===ranked[1][1])throw new Error(`O24 dominant resource tie for ${table}`);dominantByTable.set(table,{path:ranked[0][0],count:ranked[0][1],total:ds.length});}
+ const previews=new Map<string,MK1CharacterPaletteContextVariantPreview>(),contexts:MK1CharacterPaletteContextVariantRendererReport['contexts']=[];let descriptorContextCount=0,renderedVariants=0;const distinctPaletteKeys=new Set<string>();
+ for(const c of o20.characterContexts){const dom=dominantByTable.get(c.anitabSymbol);if(!dom)throw new Error(`O24 no O18 descriptors for ${c.anitabSymbol}`);const ds=(byTable.get(c.anitabSymbol)??[]).filter(d=>d.resourcePath===dom.path).sort((a,b)=>a.watcomOffset-b.watcomOffset);descriptorContextCount+=ds.length;const gra=await resource(dom.path);const decoded=ds.map(d=>{const dec=decodeUgraSprite(gra,d.graOffset,d.width,d.height);if(!dec.success)throw new Error(`O24 decode failed ${d.watcomOffsetHex}`);if(dec.checksum!==d.decode.checksum)throw new Error(`O24 decoder checksum drift ${d.watcomOffsetHex}`);return{d,dec};});const normal=palette(c.normalPaletteSymbols),alternate=palette(c.alternatePaletteSymbols),same=normal.off===alternate.off;const modes:Array<{mode:'NORMAL'|'ALTERNATE';symbols:string[];p:ReturnType<typeof palette>}>= [{mode:'NORMAL',symbols:c.normalPaletteSymbols,p:normal},...(same?[]:[{mode:'ALTERNATE' as const,symbols:c.alternatePaletteSymbols,p:alternate}])];const variants:MK1CharacterPaletteContextVariantRendererReport['contexts'][number]['paletteVariants']=[];
+  for(const v of modes){let agg=0x811c9dc5,allRange=true;let sampleRgba:Uint8Array|undefined,sampleChecksum='';for(const {d,dec} of decoded){const col=colorize(dec.indices,dec.opaqueMask,v.p.words);allRange=allRange&&col.out===0;agg=fnv(new Uint8Array([d.watcomOffset&255,(d.watcomOffset>>>8)&255,(d.watcomOffset>>>16)&255,(d.watcomOffset>>>24)&255]),agg);agg=fnv(col.rgba,agg);if(!sampleRgba){sampleRgba=col.rgba;sampleChecksum=fnvHex(fnv(col.rgba));}}
+   const sample=decoded[0];if(!sample||!sampleRgba)throw new Error(`O24 empty dominant descriptor set ${c.anitabSymbol}`);const pkey=`context/${String(c.characterId).padStart(2,'0')}_${c.identityLabel.replace(/[^A-Z0-9]+/gi,'_')}/${v.mode}_${v.symbols.join('+')}`;previews.set(pkey,{key:pkey,width:sample.d.width,height:sample.d.height,rgba:sampleRgba,metadata:{characterId:c.characterId,identityLabel:c.identityLabel,anitabSymbol:c.anitabSymbol,resourcePath:dom.path,mode:v.mode,paletteSymbols:v.symbols,descriptorWatcomOffset:sample.d.watcomOffset}});distinctPaletteKeys.add(`${v.p.off}`);renderedVariants+=ds.length;variants.push({mode:v.mode,paletteSymbols:[...v.symbols],paletteWatcomOffset:v.p.off,paletteWatcomOffsetHex:hx(v.p.off),paletteLength:23,sameRecordAsOtherMode:same,descriptorCount:ds.length,renderedDescriptorCount:ds.length,allOpaqueIndicesInRange:allRange,aggregateRgbaChecksum:fnvHex(agg),sampleDescriptorWatcomOffset:sample.d.watcomOffset,sampleRgbaChecksum:sampleChecksum});}
+  contexts.push({characterId:c.characterId,identityLabel:c.identityLabel,anitabSymbol:c.anitabSymbol,dominantAnimationResource:dom.path,dominantDescriptorCount:dom.count,otherResourceDescriptorCount:dom.total-dom.count,dominanceRatio:dom.count/dom.total,resourceSelectionClassification:'STRUCTURAL_DOMINANT_ANITAB_RESOURCE_NOT_UNIVERSAL_PALETTE_KEY',paletteVariants:variants});
+ }
+ const uniqueTableDominantCount=[...new Set(contexts.map(c=>c.anitabSymbol))].reduce((n,t)=>n+(dominantByTable.get(t)?.count??0),0);const allRange=contexts.every(c=>c.paletteVariants.every(v=>v.allOpaqueIndicesInRange)),allLen=contexts.every(c=>c.paletteVariants.every(v=>v.paletteLength===23));const ninja=contexts.filter(c=>c.anitabSymbol==='NINJA_ANITAB'),ninjaVariants=new Set(ninja.flatMap(c=>c.paletteVariants.map(v=>v.paletteWatcomOffset)));
+ const summary={characterContextCount:contexts.length,uniqueAnitabCount:new Set(contexts.map(c=>c.anitabSymbol)).size,dominantResourceDescriptorCountAcrossUniqueTables:uniqueTableDominantCount,descriptorContextCount,distinctPaletteVariantCount:contexts.reduce((n,c)=>n+c.paletteVariants.length,0),renderedDescriptorVariantCount:renderedVariants,allPaletteRecordsLength23:allLen,allOpaqueIndicesInRange:allRange,sharedNinjaGeometryContextCount:ninja.length,sharedNinjaDistinctPaletteVariantCount:ninjaVariants.size,samplePayloadCount:previews.size};
+ const checks=[{checkId:'CANONICAL_AUTHENTIC_SOURCE',passed:true},{checkId:'O18_RESOURCE_DECODE_PREREQUISITE',passed:o18.summary.decodedDescriptorCount===1102},{checkId:'O20_PALETTE_CONTEXT_PREREQUISITE',passed:o20.decision.characterIdentityCoSelectsAnimationTableAndPaletteSlot},{checkId:'ONE_BASED_RENDERER_ALIGNMENT',passed:transfer.decision.oneBasedRendererAlignmentCorroborated},{checkId:'NINE_CHARACTER_CONTEXTS',passed:contexts.length===9},{checkId:'EIGHT_UNIQUE_ANITABS',passed:new Set(contexts.map(c=>c.anitabSymbol)).size===8},{checkId:'DOMINANT_RESOURCE_SET_NONEMPTY',passed:contexts.every(c=>c.dominantDescriptorCount>0)},{checkId:'ALL_CONTEXT_PALETTES_LENGTH_23',passed:allLen},{checkId:'ALL_RENDERED_INDICES_FIT_CONTEXT_PALETTE',passed:allRange},{checkId:'NINJA_SHARED_GEOMETRY_DISTINCT_CONTEXTS',passed:ninja.length===2&&ninjaVariants.size===4,detail:`contexts=${ninja.length}, distinctPaletteRecords=${ninjaVariants.size}`},{checkId:'CROSS_RESOURCE_EFFECTS_EXCLUDED',passed:contexts.some(c=>c.otherResourceDescriptorCount>0)},{checkId:'NO_AUTOMATIC_ANIMATION_BINDING_CLAIM',passed:true},{checkId:'NO_WRITE_PATH',passed:true}];if(!checks.every(c=>c.passed))throw new Error(`O24 validation failed: ${checks.filter(c=>!c.passed).map(c=>c.checkId).join(', ')}`);
+ const timestamp=new Date().toISOString(),operationId=createOperationId('character_palette_context_variant_renderer');const report:MK1CharacterPaletteContextVariantRendererReport={format:'mk1_character_palette_context_variant_renderer_v1',timestamp,operationId,provenance:{...o18.provenance,timestamp,operationId},prerequisite:{o18OperationId:o18.operationId,o20OperationId:o20.operationId,rendererVerdict:transfer.decision.verdict,validationPassed:true},contexts,summary,decision:{explicitCharacterPaletteContextRenderingEstablished:true,automaticPerAnimationPaletteBindingEstablished:false,crossResourceEffectPaletteBindingEstablished:false,graFilenameAloneDeterminesPalette:false,dominantResourceSemanticallyUniversalBodyResourceEstablished:false,verdict:'MK1_CHARACTER_PALETTE_CONTEXT_VARIANT_RENDERING_ESTABLISHED',narrative:`The O20 character identity/palette contexts and the independently verified one-based renderer palette-shift bridge can now be applied as explicit export contexts to the structurally dominant resource reached from each character ANITAB. Across eight unique ANITAB families, ${uniqueTableDominantCount} unique dominant-resource descriptors become ${renderedVariants} descriptor/palette-context RGBA variants across nine character contexts, with zero opaque indices outside the selected 23-colour records. NINJA_ANITAB geometry is rendered under four distinct Scorpion/Sub-Zero normal/alternate palette records, preserving the proven separation of animation geometry from palette state. This is not an automatic per-animation palette binder: cross-resource descriptors and effect/palette-switch contexts remain excluded unless separately qualified.`},status:'SUCCESS',validation:{allChecksPassed:true,checks}};return{report,previewPayloads:previews};
+}
+export function createMK1CharacterPaletteContextVariantRendererExport(result:MK1CharacterPaletteContextVariantRendererResult){if(result.report.status!=='SUCCESS'||!result.report.validation.allChecksPassed)throw new Error('O24 export blocked');return result.report;}

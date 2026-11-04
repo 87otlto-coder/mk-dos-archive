@@ -1,0 +1,4 @@
+const fs=require('node:fs'),path=require('node:path'),{sourceFromDirectory}=require('./local-runtime.cjs');
+const {scanAssets}=require('../src/core/assets/collection.ts');
+const {ZipDirectorySource}=require('../src/core/filesystem/ZipDirectorySource.ts');
+(async()=>{const report={date:'2026-10-07',collections:[],zipChecks:[]};for(const game of ['mk1','mk2','mk3']){const c=await scanAssets(sourceFromDirectory(path.resolve(process.argv[2]||'../fixtures',game)),game,()=>{});const counts={};for(const a of c.assets)counts[a.kind]=(counts[a.kind]||0)+1;const result={game,counts,assets:c.assets.length,uniqueIds:new Set(c.assets.map(a=>a.id)).size,limitations:c.limitations};if(result.uniqueIds!==result.assets)throw new Error('Duplicate asset IDs');report.collections.push(result);console.log(result.game,result.counts);}fs.writeFileSync('evidence/checkpoint-verification.json',JSON.stringify(report,null,2));})().catch(e=>{console.error(e);process.exitCode=1;});
