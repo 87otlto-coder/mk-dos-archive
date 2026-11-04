@@ -13,6 +13,12 @@
 - **GitHub import completed and directly verified:** `main` source commit `eb9691510ce57dd1a7670fcf404de0c0dbd6941b`; `develop` P11 source commit `65023df71d20eb049a571d6a0d1672d670cddf92`. GitHub file trees include 358 and 362 `src` files respectively, with 2,070 and 2,094 total tree entries (directories included). Expected P7–P10 and P11 scripts are present on `develop`. No tracked files matching reviewed commercial game/archive/media extensions were found in either GitHub tree. Fresh checkout builds, fixture reruns and UI verification remain pending.
 - Browser build and interactive UI remain **validation pending**; no gameplay-stage assembly/palette/timing overclaims.
 
+## P11 source regression update — 2026-11-04
+
+**GitHub code identity and local source testing passed:** all **1,068** P6 source/test/tool files and **1,080** P11 source/test/tool files match their audited Git-safe ZIP snapshots via Git blob identity summaries. From clean ZIP extraction against the original local MK2 fixture, P6 passed **5,016 assets / 121 tests** and P11 passed **5,053 assets / 40 tests**. P10 integration **225**, P8 O210 independent **68**, P9 O205 independent **205**, and P10 O220/O221 independent **61** checks also passed, and all three regenerated P8–P10 ZIP hashes match reference.
+
+**Release gate still open:** the ZIP import omitted root `package-lock.json`, so reproducible `npm ci` and the browser build are not qualified; dependencies are not cached and online installation stalled in this environment. Full browser UI inspection/export and MK1/MK3 regressions remain unverified. An old P8 standalone test hardcodes its interim 5,033 census; the proper P11 cumulative suite and independent P8 parity pass. See [the full validation record](docs/P11_GITHUB_SOURCE_REGRESSION_2026-11-04.md), [Issue #3](https://github.com/87otlto-coder/mk-dos-archive/issues/3) and [P11 release Issue #2](https://github.com/87otlto-coder/mk-dos-archive/issues/2).
+
 ## Governing objective
 
 The first major milestone is a sophisticated extractor for original DOS **MK1, MK2 and MK3**, capable of showing and exporting original resources with correct index pixels, palettes where evidenced, sprite/background animation groups, stage construction information, sound, speech and music. Investigate executable behavior only when it serves that extractor. Gameplay, control, combat and damage logic are not current work.
