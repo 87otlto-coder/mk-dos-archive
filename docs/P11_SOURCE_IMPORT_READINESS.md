@@ -9,7 +9,7 @@
 | P11 Git-safe source ZIP | `a6a8a6e9eecc4d01f48accf0e2cd37e735c9846621ea60099690e2acfa25296b` |
 | Windows Git import kit | `1dda3165ab6d71a110360690a59763492c23e3d080cd86d6b28ae8919bdfcd95` |
 
-**This repository currently holds only documentation and governance, not these files.** The artifacts are retained in the associated MK Dos Extractor project conversation. The full source archive is for local custody; **do not upload it unfiltered to GitHub**.
+**The audited P6 application source has been committed to `main`, and the audited P11 application source to `develop`.** The full ZIP archives listed above remain outside GitHub in the associated MK Dos Extractor project conversation. The full source archive is for local custody; **do not upload it unfiltered to GitHub**.
 
 ## Audit and validation
 
@@ -26,4 +26,4 @@
 
 The import kit includes `IMPORT_TO_GITHUB_WINDOWS.ps1`, which verifies ZIP hashes, clones this private repository with the user's normal Git credentials, creates a P6 source commit on `main`, fast-forwards `develop`, then commits P11 consolidated source on `develop`. The script is included as an auditable option because direct connector upload of the archive is unsupported; no force-push is used.
 
-After the import, verify source-bearing commits actually exist on both branches; re-run independent source and browser checks before promoting P11 to `main`. Update `PROJECT_STATUS.md` and close #1/#2 **only after** their acceptance criteria are met.
+Imported source-bearing commits were checked directly against GitHub: `main` `eb96915`, `develop` `65023df`, with expected source directories, per-pass modules and P11 verifier present. See `docs/GIT_IMPORT_VERIFICATION_2026-11-04.md`. The **next gates** are independent fixture/source regression from a fresh GitHub clone and browser build/preview/export verification before promoting P11 to `main`. Close issues only after their complete acceptance criteria are met.
