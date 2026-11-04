@@ -1,0 +1,410 @@
+diff -ruN before/docs/EXTRACTOR_P10_PIT_II_BRIDGE_ACTOR_FRAMES.md after/docs/EXTRACTOR_P10_PIT_II_BRIDGE_ACTOR_FRAMES.md
+--- before/docs/EXTRACTOR_P10_PIT_II_BRIDGE_ACTOR_FRAMES.md	1970-01-01 00:00:00.000000000 +0000
++++ after/docs/EXTRACTOR_P10_PIT_II_BRIDGE_ACTOR_FRAMES.md	2026-11-04 18:51:43.332582093 +0000
+@@ -0,0 +1,47 @@
++# MK DOS Extractor — P10 original Pit II bridge actor sprite loops
++
++**Date:** 2026-11-04  
++**Base:** P9 interim work, itself based on P8/P7 over frozen P6 source.  
++**Release discipline:** P10 is **an interim pass**, not a new full application source release. The next full source checkpoint is P11.
++
++## Extractor-facing result
++
++Exactly **14 original PIT.GRA native frames** are registered in the MK2 asset library, as two independently authenticated seven-frame original source loops. They are *background actors*, not playable characters:
++
++- Original green bridge actor: 7 frames, **16 × 24** pixels per frame.
++- Original flame bridge actor: 7 frames, **16 × 32** pixels per frame.
++- All 14 original sprite descriptors reside in `MK2.EXE:0xB98E4..0xB9994` (individual verified offsets in manifest). They cover the **final 7,764 bytes** of `PIT.GRA`, starting at offset **61,620**, through its exact end **69,384**.
++- Resource ID 32 is authenticated through the original packed references. The original EXE pointer joins to its **81-color Pit palette record** at physical `0x895AC`; colors are source-linked previews, not a fresh live DAC trace.
++- Two source list structures at Object 2 `0x18AFC` (green) and `0x18B20` (flame) each contain 7 original descriptor references, token 1, and a loop-back pointer. The O221 callback identity and literal six-scheduler-yield code are checked, but **not converted to milliseconds**.
++- Every asset exposes original indices, original 0/1 paint coverage, palette-linked RGBA preview, descriptor provenance and original GRA source offset. The evidence ZIP includes all PNG/index/mask triplets, both source lists, and limitations.
++
++The prior P9 MK2 scan contained **5,039** discoverable assets. P10's full canonical MK2 scan contains **5,053** unique assets. All earlier category counts remain present, including 312 source-domain sound effect WAVs, 43 stage effect frames, eight Tomb/Portal setup layers, 15 native floor assets, ten Forest representations, seven Pit lower-wall graphics and six Pit upper setup-local layers.
++
++## Validation run
++
++- `node scripts/verify-mk2-p10-pit-bridge.cjs <canonical MK2 directory> [report.json] [package.zip]` — **PASS, 225 checks**, including full 5,053-asset scan, ID uniqueness, mixed-asset selection ZIP, and negative tests for missing/mutated/duplicate EXE and PIT.GRA. The P10 builder remains qualified when unrelated `PORTAL.GRA` is missing.
++- `python scripts/verify-mk2-p10-bridge-independent.py <canonical dir> <P10 package ZIP> <report.json> <preview PNG>` — **PASS, 61 independent checks**; compares all fourteen source descriptor stream indices, masks and PNG RGBA pixels against independent original O220 RLE/palette equations; verifies both EXE pointer-loop arrays.
++- `python scripts/verify-o221-pit-bridge-animation-list-flow.py --game-zip <canonical MK2 zip> --out <fresh output dir>` — existing unchanged research verifier passed **both seven-descriptor lists and five deliberate EXE mutation controls**.
++- Targeted TypeScript checking of the new module and integrated collection passed with a local `process` declaration shim for an unrelated Node diagnostics type gap.
++- Full Vite/browser build and interactive UI tests are **not claimed**; no npm dependencies were installed for this pass.
++
++## Scope and confidence limitations
++
++**Proved:** original two source loops, exact sprite bytes, source-local dimensions, original descriptor offsets, original palette-word preview and asset-export preservation.
++
++**Not proved by this pass:** exact runtime display intervals, stage activation time, inter-layer/world positioning, final bridge scene, actor direction/occlusion, or live palette DAC selection. Loop token/repeated callback is *source control evidence*, not a time-correct APNG animation export. Export frames in original order; allow user-chosen preview speed with an explicit 'noncanonical timing' label.
++
++No combat, damage, player controls, collision or unrelated gameplay reverse engineering was performed.
++
++## Change boundary
++
++Only these source files change relative to P9:
++
++1. New `src/core/assets/mk2PitBridgeActorsP10.ts`.
++2. Updated `src/core/assets/collection.ts` to register the new qualified assets/package/status.
++3. New `scripts/verify-mk2-p10-pit-bridge.cjs` and `scripts/verify-mk2-p10-bridge-independent.py`.
++4. This P10 handoff file.
++
++No O220/O221 research source or P7 UI-backlog content was modified.
++
++**P11 next:** reconcile P7–P10 on P6, run canonical MK2 extraction and export regressions, then consider deferred asset-browser navigation/preview improvements *only where the code and UI tests can support them*. Produce a full source checkpoint only after cumulative verification.
+diff -ruN before/scripts/verify-mk2-p10-bridge-independent.py after/scripts/verify-mk2-p10-bridge-independent.py
+--- before/scripts/verify-mk2-p10-bridge-independent.py	1970-01-01 00:00:00.000000000 +0000
++++ after/scripts/verify-mk2-p10-bridge-independent.py	2026-11-04 18:51:43.331427578 +0000
+@@ -0,0 +1,67 @@
++#!/usr/bin/env python3
++"""Independent P10 parity against original O220 descriptor/RLE/palette equations.
++No video fitting, no app decoder imports, does not infer animation timing.
++"""
++import json,struct,hashlib,sys,zipfile,io
++from pathlib import Path
++from PIL import Image,ImageOps,ImageDraw
++
++game,export,report,preview=map(Path,sys.argv[1:5])
++exe=(game/'mk2.exe').read_bytes();gra=(game/'pit.gra').read_bytes()
++sha=lambda b:hashlib.sha256(b).hexdigest()
++assert sha(exe)=='fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65'
++assert sha(gra)=='af6c10b676011cbbd0b8ef3fe4523cf52b36ebd3be15b2dcb4190b9a34c81d96'
++assert struct.unpack_from('<H',exe,0x895ac)[0]==81
++pal=[(0,0,0)]
++for i in range(1,82):
++ word=struct.unpack_from('<H',exe,0x895ac+2*i)[0]
++ cs=[((word>>9)&63)|1,((word>>4)&63)|1,((word<<1)&63)|1]
++ pal.append(tuple((c<<2)|(c>>4) for c in cs))
++phis=[0xb98e4,0xb98f4]+[0xb9900+12*i for i in range(5)]+[0xb993c,0xb994c]+[0xb9958+12*i for i in range(5)]
++checks=0
++with zipfile.ZipFile(export) as z:
++ manifest=json.loads(z.read('manifest.json'))
++ assert len(manifest['originalFrameLists'])==2 and len(manifest['frames'])==14;checks+=1
++ atlas=Image.new('RGB',(7*100,2*130),(32,35,40));draw=ImageDraw.Draw(atlas)
++ for i,off in enumerate(phis):
++  w,h,x,y,packed=struct.unpack_from('<HHhhI',exe,off)
++  assert (w,h,x,y,packed>>24)==(16,24 if i<7 else 32,0,0,32)
++  offset=packed&0xffffff
++  raw=bytearray(w*h);mask=bytearray(w*h);at=offset
++  for row in range(h):
++   col=0
++   while col<w:
++    command=struct.unpack_from('<I',gra,at)[0];at+=4
++    if command&1: length=command>>1
++    elif command&2:
++     length=command>>10
++     for col2 in range(col,col+length):raw[row*w+col2]=(command>>2)&255;mask[row*w+col2]=1
++    else:
++     length=command>>2
++     raw[row*w+col:row*w+col+length]=gra[at:at+length]
++     mask[row*w+col:row*w+col+length]=bytes([1])*length
++     at+=(length+3)&~3
++    assert length>0 and col+length<=w
++    col+=length
++  entry=manifest['frames'][i]
++  assert (entry['originalDescriptorPhysical'],entry['originalGraOffset'],entry['originalEncodedEndExclusive'])==(off,offset,at);checks+=1
++  assert z.read(entry['paths']['indices'])==raw;checks+=1
++  assert z.read(entry['paths']['mask'])==mask;checks+=1
++  rgba=bytes(channel for p in range(w*h) for channel in (*pal[raw[p]],255 if mask[p] else 0))
++  png=Image.open(io.BytesIO(z.read(entry['paths']['png']))).convert('RGBA')
++  assert png.size==(w,h) and png.tobytes()==rgba;checks+=1
++  tile=png.resize((w*4,h*3),resample=Image.Resampling.NEAREST)
++  back=Image.new('RGBA',tile.size,(55,58,67,255));back.alpha_composite(tile)
++  xx=(i%7)*100+18;yy=(i//7)*130+20
++  atlas.paste(back.convert('RGB'),(xx,yy));draw.text(((i%7)*100+12,(i//7)*130+5),f'{"Green" if i<7 else "Flame"} {i%7+1}',fill=(235,230,215))
++ # Check original pointer-list order without reusing TS code
++ for g,start in enumerate((0x18afc,0x18b20)):
++  original=[struct.unpack_from('<I',exe,0xa0c54+start+4*n)[0] for n in range(9)]
++  expect=[p-0xa0c54 for p in phis[g*7:(g+1)*7]]+[1,start]
++  assert original==expect;checks+=1
++  assert manifest['originalFrameLists'][g]['orderedFrameOrdinals']==list(range(7*g,7*g+7));checks+=1
++ atlas.save(preview)
++result={'status':'PASS','checks':checks,'source':'Original O220 independently implemented sprite RLE and palette equations; O221 original pointer loop values',
++ 'originalSourcedFrames':14,'originalLists':2,'PNGRGBAExact':True,'sourceIndexAndMaskExact':True,'loopOrderExact':True,
++ 'nativePresentationTimingClaimed':False,'archiveSha256':sha(export.read_bytes())}
++report.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
+diff -ruN before/scripts/verify-mk2-p10-pit-bridge.cjs after/scripts/verify-mk2-p10-pit-bridge.cjs
+--- before/scripts/verify-mk2-p10-pit-bridge.cjs	1970-01-01 00:00:00.000000000 +0000
++++ after/scripts/verify-mk2-p10-pit-bridge.cjs	2026-11-04 18:51:43.331394588 +0000
+@@ -0,0 +1,92 @@
++#!/usr/bin/env node
++/** P10 original MK2 Pit II bridge actor integration smoke. npm install not required.
++ * node scripts/verify-mk2-p10-pit-bridge.cjs <canonical MK2 dir> [report.json] [package.zip]
++ */
++const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
++let ts;try{ts=require('typescript')}catch{ts=require('/opt/nvm/versions/node/v22.16.0/lib/node_modules/typescript')}
++for(const ext of ['.ts','.tsx'])require.extensions[ext]=(m,file)=>m._compile(ts.transpileModule(fs.readFileSync(file,'utf8'),{fileName:file,compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true,allowImportingTsExtensions:true}}).outputText,file);
++if(!globalThis.crypto)globalThis.crypto=crypto.webcrypto;
++const {buildMK2PitBridgeActorsP10}=require('../src/core/assets/mk2PitBridgeActorsP10.ts');
++const {scanAssets}=require('../src/core/assets/collection.ts');
++const {assetBytes,selectedZip}=require('../src/core/assets/export.ts');
++const {parseAnimationStoreZip}=require('../src/games/mk1/research/browserAnimationExportBundleValidation.ts');
++const root=process.argv[2];if(!root)throw Error('Usage: verify-mk2-p10-pit-bridge.cjs <MK2 dir> [report.json] [zip]');
++const sha=b=>crypto.createHash('sha256').update(b).digest('hex');let checks=0;
++function eq(actual,expected,label){assert.deepStrictEqual(actual,expected,label);checks++;}
++const files=new Map();(function walk(dir,prefix=''){for(const x of fs.readdirSync(dir,{withFileTypes:true})){
++ const rel=prefix?prefix+'/'+x.name:x.name,p=path.join(dir,x.name);
++ if(x.isDirectory())walk(p,rel);else if(x.isFile())files.set(rel,new Uint8Array(fs.readFileSync(p)));
++}})(root);
++function source(m=files){return {directoryName:'canonical MK2',isSynthetic:false,
++ async listRecursive(){return [...m].map(([p,b])=>({path:p,name:path.basename(p),extension:path.extname(p).slice(1).toUpperCase(),size:b.length}));},
++ async readSlice(p,start,count){const b=m.get(p);if(!b)throw Error('file missing '+p);return b.slice(start,start+count);}};}
++function modified(basename,mode){const m=new Map(files);const name=[...files.keys()].find(p=>path.basename(p).toLowerCase()===basename);
++ assert(name);const b=m.get(name);
++ if(mode==='remove')m.delete(name);
++ else if(mode==='mutate'){const bytes=b.slice();bytes[Math.floor(bytes.length/2)]^=1;m.set(name,bytes);}
++ else if(mode==='duplicate')m.set('duplicate/'+basename,b);
++ return m;
++}
++(async()=>{
++ const original=await buildMK2PitBridgeActorsP10(source());
++ eq(original.status.status,'VERIFIED','canonical fixture accepted');
++ eq(original.assets.length,14,'all fourteen original bridge frames');
++ eq(original.status.actorGroups,2,'both original loop groups');
++ eq(original.packages.length,1,'one original source package');
++ const zipped=parseAnimationStoreZip(original.packages[0].bytes),manifest=JSON.parse(new TextDecoder().decode(zipped.get('manifest.json').bytes));
++ eq(zipped.size,44,'42 source payloads plus manifest and README');
++ eq(manifest.originalFrameLists.length,2,'two original lists');
++ eq(manifest.frames.length,14,'14 source frame entries');
++ eq(manifest.nativeFrameDurationsKnown,false,'no invented ms durations');
++ eq(manifest.liveActivationKnown,false,'no invented activation');
++ eq(manifest.finalStageCompositionKnown,false,'no invented full scene');
++ eq(manifest.sourceCallbackLiteralSchedulerYieldCount,6,'original literal 6 yields, not milliseconds');
++ for(let g=0;g<2;g++){
++  const list=manifest.originalFrameLists[g];
++  eq(list.orderedFrameOrdinals,Array.from({length:7},(_,i)=>g*7+i),`loop ${g} source order`);
++  eq(list.loopBackToStart,true,`loop ${g} back-pointer`);
++  eq(list.terminatorToken,1,`loop ${g} terminator`);
++ }
++ for(let i=0;i<14;i++){
++  const a=original.assets[i],m=manifest.frames[i],dims=[16,i<7?24:32];
++  eq([a.width,a.height],dims,`native dimensions ${i}`);
++  eq(a.metadata.sourceFrameOrdinal,i,`source ordinal ${i}`);
++  eq(a.metadata.sourceLoopEstablished,true,`source list verified ${i}`);
++  eq(a.metadata.nativeFrameDurationVerified,false,`no timing claim ${i}`);
++  eq(a.metadata.finalStagePlacementVerified,false,`no scene pose claim ${i}`);
++  eq(a.metadata.indices.length,dims[0]*dims[1],`indices extent ${i}`);
++  eq(a.metadata.mask.length,dims[0]*dims[1],`mask extent ${i}`);
++  eq(a.metadata.mask.every(x=>x===0||x===1),true,`mask binary ${i}`);
++  eq(sha(a.metadata.indices),sha(zipped.get(m.paths.indices).bytes),`indexed data ${i}`);
++  eq(sha(a.metadata.mask),sha(zipped.get(m.paths.mask).bytes),`mask data ${i}`);
++  eq(sha(assetBytes(a)),sha(zipped.get(m.paths.png).bytes),`PNG bytes ${i}`);
++  eq(a.source.offset,m.originalGraOffset,`original GRA source offset ${i}`);
++  eq(a.source.length,m.originalEncodedEndExclusive-m.originalGraOffset,`original GRA length ${i}`);
++ }
++ for(const name of ['mk2.exe','pit.gra'])for(const mode of ['remove','mutate','duplicate']){
++  const bad=await buildMK2PitBridgeActorsP10(source(modified(name,mode)));
++  eq(bad.status.status,'UNAVAILABLE',`reject ${name} ${mode}`);
++  eq(bad.assets.length,0,`no untrusted assets ${name} ${mode}`);
++ }
++ eq((await buildMK2PitBridgeActorsP10(source(modified('portal.gra','remove')))).status.status,'VERIFIED','Portal unrelated');
++ const selected=selectedZip([original.assets[0],original.assets[7]]);
++ eq(parseAnimationStoreZip(selected).size,7,'two PNG + two index/mask + manifest');
++ const whole=await scanAssets(source(),'mk2',()=>{});
++ eq(whole.assets.length,5053,'P9 5039 + P10 14');
++ eq(new Set(whole.assets.map(a=>a.id)).size,5053,'all IDs unique');
++ for(const [id,count]of [['u8:',312],['mk2-stage-effect:',43],['mk2-stage-setup:',8],['mk2-floor:',15],
++ ['mk2-forest-setup:',10],['mk2-pit-fall-source:',7],['mk2-pit-upper-setup:',6],['mk2-pit-bridge:',14]]){
++  eq(whole.assets.filter(x=>x.id.startsWith(id)).length,count,`${id} preserved`);
++ }
++ eq(whole.reports.p10PitBridgeActors.status,'VERIFIED','report surfaced');
++ eq(whole.packages.some(x=>x.name==='MK2_P10_PIT_II_ORIGINAL_BRIDGE_ACTOR_FRAMES.zip'),true,'source package surfaced');
++ const report={pass:'P10',status:'PASS',checks,assets:whole.assets.length,newAssets:14,
++ sourceSprites:14,sourceLoopGroups:2,originalSchedulerYieldLiteral:6,nativeFrameDurationVerified:false,
++ completeStageCompositionVerified:false,browserBuildValidated:false,
++ sourcePackage:{name:original.packages[0].name,bytes:original.packages[0].bytes.length,sha256:sha(original.packages[0].bytes)},
++ selectedExport:{assets:2,bytes:selected.length,sha256:sha(selected)},
++ negativeCases:['missing/corrupt/duplicate MK2.EXE','missing/corrupt/duplicate PIT.GRA','missing Portal independent']};
++ if(process.argv[3])fs.writeFileSync(process.argv[3],JSON.stringify(report,null,2)+'\n');
++ if(process.argv[4])fs.writeFileSync(process.argv[4],original.packages[0].bytes);
++ console.log(JSON.stringify(report,null,2));
++})().catch(e=>{console.error(e.stack||e);process.exitCode=1});
+diff -ruN before/src/core/assets/collection.ts after/src/core/assets/collection.ts
+--- before/src/core/assets/collection.ts	2026-11-04 18:51:43.328535577 +0000
++++ after/src/core/assets/collection.ts	2026-11-04 18:51:43.329827791 +0000
+@@ -13,6 +13,7 @@
+ import { buildMK2ForestLayersP7, MK2_P7_FOREST_LIMITATION } from './mk2ForestLayersP7';
+ import { buildMK2PitLowerWallP8, P8_PIT_LOWER_WALL_LIMITATION } from './mk2PitLowerWallP8';
+ import { buildMK2PitUpperLayersP9, MK2_P9_PIT_UPPER_LIMITATION } from './mk2PitUpperLayersP9';
++import { buildMK2PitBridgeActorsP10, MK2_P10_PIT_BRIDGE_LIMITATION } from './mk2PitBridgeActorsP10';
+ 
+ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
+   if(game==='mk3')return scanMK3(source,progress,signal);
+@@ -106,6 +107,10 @@
+   const p9PitUpper = await buildMK2PitUpperLayersP9(source);
+   assets.push(...p9PitUpper.assets);
+   packages.push(...p9PitUpper.packages);
++  progress('MK2 original Pit II far-bridge actor sprite loops (P10)');
++  const p10Bridge = await buildMK2PitBridgeActorsP10(source);
++  assets.push(...p10Bridge.assets);
++  packages.push(...p10Bridge.packages);
+   const music=[];
+   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
+     const bytes=await source.readSlice(e.path,0,e.size);
+@@ -118,8 +123,9 @@
+     p5SourceFloors:p5Floors.stageResults,
+     p7ForestLayers:p7Forest.status,
+     p8PitLowerWall:p8Pit.status,
+-    p9PitUpper:p9PitUpper.status},
+-    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
++    p9PitUpper:p9PitUpper.status,
++    p10PitBridgeActors:p10Bridge.status},
++    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
+       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
+         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),
+diff -ruN before/src/core/assets/mk2PitBridgeActorsP10.ts after/src/core/assets/mk2PitBridgeActorsP10.ts
+--- before/src/core/assets/mk2PitBridgeActorsP10.ts	1970-01-01 00:00:00.000000000 +0000
++++ after/src/core/assets/mk2PitBridgeActorsP10.ts	2026-11-04 18:51:43.329862954 +0000
+@@ -0,0 +1,154 @@
++/** P10: original Pit II far-bridge actor sprites and two source-loop lists.
++ * Strict source extraction from unchanged O220/O221 fixture facts; no inferred
++ * animation milliseconds, activation instant or complete stage composition.
++ */
++import type { DirectorySource, SourceFileEntry } from '../filesystem/DirectorySource';
++import type { Asset } from './model';
++import { hash, utf8 } from './model';
++import { buildStoredZip } from '../research/researchArtifactDownloads';
++import { encodeOriginalEffectRgbaPngO177 } from '../../games/mk2/research/stageSourcePngO177';
++
++const EXE_SHA='fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65';
++const PIT_SHA='af6c10b676011cbbd0b8ef3fe4523cf52b36ebd3be15b2dcb4190b9a34c81d96';
++const OBJ1=0x61c54, OBJ2=0xa0c54;
++const RESOURCE_ID=32, PALETTE_PHYSICAL=0x895ac, PALETTE_COUNT=81;
++const DESCRIPTORS=[0xb98e4,0xb98f4,...Array.from({length:5},(_,i)=>0xb9900+i*12),
++  0xb993c,0xb994c,...Array.from({length:5},(_,i)=>0xb9958+i*12)];
++const LOOPS=[{name:'green',object2:0x18afc},{name:'flame',object2:0x18b20}] as const;
++export const MK2_P10_PIT_BRIDGE_LIMITATION=
++ 'P10 Pit II far-bridge actors: 14 exact original PIT.GRA indexed frames in two seven-pose original EXE lists, '
++ +'with a source-linked 81-color palette preview. The source lists loop, but per-pose millisecond duration, '
++ +'live onset, final placement/draw order, runtime DAC state and complete on-screen scene assembly are NOT established.';
++
++interface Frame {ordinal:number;actor:'green'|'flame';pose:number;descriptor:number;offset:number;end:number;
++ width:number;height:number;indices:Uint8Array;mask:Uint8Array;rgba:Uint8Array;paintedPixels:number;}
++export interface P10PitBridgeResult {
++ assets:Asset[];
++ packages:Array<{name:string;bytes:Uint8Array}>;
++ status:{status:'VERIFIED'|'UNAVAILABLE';count:number;actorGroups:number;detail?:string};
++}
++function must(ok:unknown,msg:string):asserts ok{if(!ok)throw Error(`P10 original Pit bridge actors: ${msg}`);}
++function one(entries:SourceFileEntry[],name:string):SourceFileEntry {
++ const hits=entries.filter(e=>e.name.toLowerCase()===name);
++ must(hits.length===1,`expected exactly one ${name}, found ${hits.length}`);
++ return hits[0];
++}
++function decode(exe:Uint8Array,gra:Uint8Array){
++ const ev=new DataView(exe.buffer,exe.byteOffset,exe.byteLength),gv=new DataView(gra.buffer,gra.byteOffset,gra.byteLength);
++ const u16=(p:number)=>{must(p>=0&&p+2<=exe.length,'EXE 16-bit access out of bounds');return ev.getUint16(p,true);};
++ const u32=(p:number)=>{must(p>=0&&p+4<=exe.length,'EXE 32-bit access out of bounds');return ev.getUint32(p,true);};
++ const i16=(p:number)=>{must(p>=0&&p+2<=exe.length,'EXE signed16 access out of bounds');return ev.getInt16(p,true);};
++ const checkCode=(p:number,h:string)=>{const b=Uint8Array.from(h.match(/../g)!.map(x=>parseInt(x,16)));
++  must(exe.subarray(p,p+b.length).every((v,i)=>v===b[i]),`O221 original callback bytes at 0x${p.toString(16)}`);};
++ must(u32(OBJ2+0x18d40)===PALETTE_PHYSICAL-OBJ1,'original palette pointer');
++ must(u16(PALETTE_PHYSICAL)===PALETTE_COUNT,'original 81-color palette');
++ const palette=new Uint8Array((PALETTE_COUNT+1)*3);
++ for(let i=1;i<=PALETTE_COUNT;i++){
++  const word=u16(PALETTE_PHYSICAL+i*2),c=[((word>>>9)&63)|1,((word>>>4)&63)|1,((word<<1)&63)|1];
++  for(let j=0;j<3;j++)palette[i*3+j]=(c[j]<<2)|(c[j]>>>4);
++ }
++ must(DESCRIPTORS.length===14,'expected exactly fourteen source descriptors');
++ // O221: exact original pointer lists: seven descriptor pointers, loop token 1,
++ // and a typed-back-pointer value into the same list. Original EXE hash is pinned.
++ const lists=[];
++ for(let group=0;group<2;group++){
++  const l=LOOPS[group],base=OBJ2+l.object2;
++  for(let i=0;i<7;i++)must(u32(base+i*4)===DESCRIPTORS[group*7+i]-OBJ2,
++   `${l.name} original descriptor pointer ${i}`);
++  must(u32(base+28)===1,`${l.name} original loop token`);
++  must(u32(base+32)===l.object2,`${l.name} original list back-pointer`);
++  lists.push({actor:l.name,sourceListObject2:l.object2,descriptorPhysical:DESCRIPTORS.slice(group*7,group*7+7),
++   orderedFrameOrdinals:Array.from({length:7},(_,i)=>group*7+i),terminatorToken:1,loopBackToStart:true});
++ }
++ // Source callback identity from O221, without interpreting six scheduler yields
++ // as a real-time frame duration or claiming a live presentation trace.
++ for(const [p,h] of [
++   [0x831d8,'c7056c5a0700908c0100'],[0x831f2,'c705805a0700fc8a0100'],
++   [0x831fc,'c7056c5a0700e88c0100'],[0x83210,'c705785a0700208b0100'],
++   [0x8321a,'e8a63a0000'],[0x8323a,'e8863a0000'],
++   [0x83254,'b806000000e8b13efeff'],[0x8325e,'ebba']
++ ] as [number,string][])checkCode(p,h);
++ must(exe.subarray(0x86cc5,0x86ccb).every((v,i)=>v===[0x8b,0x15,0x78,0x5a,0x07,0x00][i]),
++  'original animation cursor reader identity');
++ const frames:Frame[]=[];
++ let previousEnd=61620;
++ for(let i=0;i<14;i++){
++  const d=DESCRIPTORS[i],w=u16(d),h=u16(d+2),packed=u32(d+8),atStart=packed&0xffffff;
++  must(w===16&&h===(i<7?24:32),`descriptor ${i} native dimensions`);
++  must(i16(d+4)===0&&i16(d+6)===0,`descriptor ${i} local X/Y`);
++  must(packed>>>24===RESOURCE_ID,`descriptor ${i} resource ID`);
++  must(atStart===previousEnd,`sprite ${i} original contiguous stream`);
++  const indices=new Uint8Array(w*h),mask=new Uint8Array(w*h),rgba=new Uint8Array(w*h*4);
++  let at=atStart,painted=0;
++  for(let y=0;y<h;y++){
++   let x=0;
++   while(x<w){
++    must(at+4<=gra.length,`sprite ${i} command range`);
++    const cmd=gv.getUint32(at,true);at+=4;
++    const n=(cmd&1)?(cmd>>>1):((cmd&2)?cmd>>>10:cmd>>>2);
++    must(n>0&&n<=w-x,`sprite ${i} row overflow`);
++    if(!(cmd&1)){
++     if(cmd&2)indices.fill((cmd>>>2)&255,y*w+x,y*w+x+n);
++     else{must(at+n<=gra.length,`sprite ${i} literal range`);
++      indices.set(gra.subarray(at,at+n),y*w+x);at+=(n+3)&~3;
++     }
++     mask.fill(1,y*w+x,y*w+x+n);painted+=n;
++    }
++    x+=n;
++   }
++  }
++  must(painted>0&&painted<w*h,`sprite ${i} contains image pixels and transparency`);
++  for(let p=0;p<w*h;p++)if(mask[p]){
++   const ci=indices[p];must(ci<=PALETTE_COUNT,`sprite ${i} palette index range`);
++   rgba.set(palette.subarray(ci*3,ci*3+3),p*4);rgba[p*4+3]=255;
++  }
++  frames.push({ordinal:i,actor:i<7?'green':'flame',pose:i%7,descriptor:d,offset:atStart,end:at,
++   width:w,height:h,indices,mask,rgba,paintedPixels:painted});
++  previousEnd=at;
++ }
++ must(previousEnd===gra.length,'14 source sprite streams end exactly at PIT.GRA EOF');
++ return {frames,lists,palette};
++}
++export async function buildMK2PitBridgeActorsP10(source:DirectorySource):Promise<P10PitBridgeResult>{
++ try{
++  const entries=await source.listRecursive(),exeEntry=one(entries,'mk2.exe'),pitEntry=one(entries,'pit.gra');
++  const exe=await source.readSlice(exeEntry.path,0,exeEntry.size),gra=await source.readSlice(pitEntry.path,0,pitEntry.size);
++  must(exe.length===861133&&await hash(exe)===EXE_SHA,'canonical executable identity');
++  must(gra.length===69384&&await hash(gra)===PIT_SHA,'canonical PIT.GRA identity');
++  const {frames,lists,palette}=decode(exe,gra);
++  const assets:Asset[]=[],files:Array<{name:string;bytes:Uint8Array}>=[],manifestFrames:Record<string,unknown>[]=[];
++  for(const frame of frames){
++   const name=`PIT_bridge_${frame.actor}_${String(frame.pose+1).padStart(2,'0')}`;
++   const paths={png:`images/${name}.png`,indices:`indexed/${name}.indices.bin`,mask:`indexed/${name}.mask.bin`};
++   const png=encodeOriginalEffectRgbaPngO177(frame.width,frame.height,frame.rgba);
++   files.push({name:paths.png,bytes:png},{name:paths.indices,bytes:frame.indices},{name:paths.mask,bytes:frame.mask});
++   const metadata={sourceResearch:'O220 original source sprite decode; O221 original source list/callback',
++    sourceActor:frame.actor,sourcePoseOrdinal:frame.pose,sourceFrameOrdinal:frame.ordinal,
++    originalDescriptorPhysical:frame.descriptor,originalGraOffset:frame.offset,originalEncodedEndExclusive:frame.end,
++    paintedPixels:frame.paintedPixels,originalListObject2:LOOPS[frame.ordinal<7?0:1].object2,
++    originalLoopSize:7,sourceLoopEstablished:true,nativeFrameDurationVerified:false,liveActivationVerified:false,
++    finalStagePlacementVerified:false,sourcePalettePhysical:'0x895AC',sourcePaletteCount:81,
++    sourcePaletteRuntimeDACVerified:false,indices:frame.indices,mask:frame.mask};
++   assets.push({id:`mk2-pit-bridge:${frame.actor}:${frame.pose}`,name:`The Pit II · bridge ${frame.actor} · pose ${frame.pose+1}`,
++    group:`MK2 The Pit II · original bridge ${frame.actor} background actors`,kind:'sprite',
++    format:'PNG · original source-palette preview (timing unverified)',
++    confidence:'O220 original sprites + O221 original seven-pose loop; no live display timing',
++    source:{path:pitEntry.path,offset:frame.offset,length:frame.end-frame.offset,sha256:PIT_SHA},
++    metadata,width:frame.width,height:frame.height,rgba:frame.rgba,filename:`${name}.png`});
++   manifestFrames.push({actor:frame.actor,ordinal:frame.ordinal,pose:frame.pose,originalDescriptorPhysical:frame.descriptor,
++    originalGraOffset:frame.offset,originalEncodedEndExclusive:frame.end,width:frame.width,height:frame.height,
++    paintedPixels:frame.paintedPixels,paths});
++  }
++  must(assets.length===14,'all fourteen source frames required');
++  files.push({name:'manifest.json',bytes:utf8.encode(JSON.stringify({format:'mkdos_p10_pit_ii_bridge_original_actors_v1',
++   source:{exeSha256:EXE_SHA,pitGraSha256:PIT_SHA,resourceId:RESOURCE_ID},
++   originalPalette:{physical:'0x895AC',colorCount:PALETTE_COUNT,rgb:Array.from(palette)},
++   originalFrameLists:lists,frames:manifestFrames,sourceCallbackLiteralSchedulerYieldCount:6,
++   sourceLoopEstablished:true,nativeFrameDurationsKnown:false,liveActivationKnown:false,finalStageCompositionKnown:false,
++   qualification:MK2_P10_PIT_BRIDGE_LIMITATION},null,2))});
++  files.push({name:'README.txt',bytes:utf8.encode(MK2_P10_PIT_BRIDGE_LIMITATION+'\n'+
++   'Frame lists are original EXE ordering; play with user-selected presentation timing only.\n')});
++  return {assets,packages:[{name:'MK2_P10_PIT_II_ORIGINAL_BRIDGE_ACTOR_FRAMES.zip',bytes:buildStoredZip(files)}],
++   status:{status:'VERIFIED',count:14,actorGroups:2}};
++ }catch(error){return {assets:[],packages:[],status:{status:'UNAVAILABLE',count:0,actorGroups:0,detail:String(error)}};}
++}

@@ -10,6 +10,10 @@ import { decodeMK2Music,writeMidi } from './mk2Music';
 import { hash } from './model';
 import { buildMK2P5SourceFloorAssets, P5_MK2_SOURCE_FLOOR_LIMITATION } from './mk2P5SourceFloors';
 import { buildMK2StageVisualAssetsP2P4, MK2_STAGE_P2P4_LIMITATIONS } from './mk2StageVisualIntegrationP2P4';
+import { buildMK2ForestLayersP7, MK2_P7_FOREST_LIMITATION } from './mk2ForestLayersP7';
+import { buildMK2PitLowerWallP8, P8_PIT_LOWER_WALL_LIMITATION } from './mk2PitLowerWallP8';
+import { buildMK2PitUpperLayersP9, MK2_P9_PIT_UPPER_LIMITATION } from './mk2PitUpperLayersP9';
+import { buildMK2PitBridgeActorsP10, MK2_P10_PIT_BRIDGE_LIMITATION } from './mk2PitBridgeActorsP10';
 
 export async function scanAssets(source:DirectorySource,game:Game,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
   if(game==='mk3')return scanMK3(source,progress,signal);
@@ -91,6 +95,22 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   packages.push(...stageVisuals.packages);
   const p5Floors = await buildMK2P5SourceFloorAssets(source);
   assets.push(...p5Floors.assets);
+  progress('MK2 Forest original setup-local layers (P7)');
+  const p7Forest = await buildMK2ForestLayersP7(source);
+  assets.push(...p7Forest.assets);
+  packages.push(...p7Forest.packages);
+  progress('MK2 original Pit II lower-wall source graphics (P8)');
+  const p8Pit = await buildMK2PitLowerWallP8(source);
+  assets.push(...p8Pit.assets);
+  packages.push(...p8Pit.packages);
+  progress('MK2 original Pit II upper setup-local background layers (P9)');
+  const p9PitUpper = await buildMK2PitUpperLayersP9(source);
+  assets.push(...p9PitUpper.assets);
+  packages.push(...p9PitUpper.packages);
+  progress('MK2 original Pit II far-bridge actor sprite loops (P10)');
+  const p10Bridge = await buildMK2PitBridgeActorsP10(source);
+  assets.push(...p10Bridge.assets);
+  packages.push(...p10Bridge.packages);
   const music=[];
   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
     const bytes=await source.readSlice(e.path,0,e.size);
@@ -100,8 +120,12 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   return {game,assets,packages,reports:{integration:o90.report,indexed:manifest,music,
     u8Audio:r.u8?.report ?? {status:'NOT_QUALIFIED',reason:r.u8Failure ?? 'O94D pipeline unavailable'},
     p2p4StageVisuals:stageVisuals.status,
-    p5SourceFloors:p5Floors.stageResults},
-    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+    p5SourceFloors:p5Floors.stageResults,
+    p7ForestLayers:p7Forest.status,
+    p8PitLowerWall:p8Pit.status,
+    p9PitUpper:p9PitUpper.status,
+    p10PitBridgeActors:p10Bridge.status},
+    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),

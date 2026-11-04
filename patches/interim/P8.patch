@@ -1,0 +1,378 @@
+--- a/src/core/assets/collection.ts
++++ b/src/core/assets/collection.ts
+@@ -11,6 +11,7 @@
+ import { buildMK2P5SourceFloorAssets, P5_MK2_SOURCE_FLOOR_LIMITATION } from './mk2P5SourceFloors';
+ import { buildMK2StageVisualAssetsP2P4, MK2_STAGE_P2P4_LIMITATIONS } from './mk2StageVisualIntegrationP2P4';
+ import { buildMK2ForestLayersP7, MK2_P7_FOREST_LIMITATION } from './mk2ForestLayersP7';
++import { buildMK2PitLowerWallP8, P8_PIT_LOWER_WALL_LIMITATION } from './mk2PitLowerWallP8';
+ 
+ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
+   if(game==='mk3')return scanMK3(source,progress,signal);
+@@ -96,6 +97,10 @@
+   const p7Forest = await buildMK2ForestLayersP7(source);
+   assets.push(...p7Forest.assets);
+   packages.push(...p7Forest.packages);
++  progress('MK2 original Pit II lower-wall source graphics (P8)');
++  const p8Pit = await buildMK2PitLowerWallP8(source);
++  assets.push(...p8Pit.assets);
++  packages.push(...p8Pit.packages);
+   const music=[];
+   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
+     const bytes=await source.readSlice(e.path,0,e.size);
+@@ -106,8 +111,9 @@
+     u8Audio:r.u8?.report ?? {status:'NOT_QUALIFIED',reason:r.u8Failure ?? 'O94D pipeline unavailable'},
+     p2p4StageVisuals:stageVisuals.status,
+     p5SourceFloors:p5Floors.stageResults,
+-    p7ForestLayers:p7Forest.status},
+-    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
++    p7ForestLayers:p7Forest.status,
++    p8PitLowerWall:p8Pit.status},
++    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
+       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
+         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),
+--- a/src/core/assets/mk2PitLowerWallP8.ts
++++ b/src/core/assets/mk2PitLowerWallP8.ts
+@@ -0,0 +1,164 @@
++/** P8: original Pit II lower-wall/crack source tiles from the unchanged O210/O214/O224
++ * forensic chain. This is source-art extraction, NOT a timed/reconstructed scene.
++ * O224 proves the 32-byte source selector and its 7 original palette-linked descriptors;
++ * O214 independently compares the source palette against recorded DOS pixels, but
++ * did NOT observe runtime DAC loading. All original buffers stay read-only.
++ */
++import type { DirectorySource, SourceFileEntry } from '../filesystem/DirectorySource';
++import type { Asset } from './model';
++import { hash } from './model';
++import { buildStoredZip } from '../research/researchArtifactDownloads';
++import { encodeOriginalEffectRgbaPngO177 } from '../../games/mk2/research/stageSourcePngO177';
++
++const EXE_SHA='fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65';
++const FALL_SHA='60e6c56f7720b2bda89714b818c885e41c523e978807697d0d7d8f07d37551a0';
++const RENDER_GRA_ID=123;
++const PALETTE_OFFSET=0x895ac, PALETTE_COUNT=81;
++const OBJECT2_IMAGE=0xa0c54;
++const EXPECTED_DIMS: Record<number,[number,number]>={
++ 54:[96,96],55:[96,96],56:[80,80],57:[64,64],58:[96,96],59:[96,96],60:[96,96]
++};
++const EXPECTED_SELECTOR_COUNTS: ReadonlyArray<[number,number]> = [
++ [60,12],[59,6],[58,5],[57,4],[56,3],[55,2]
++];
++export const P8_PIT_LOWER_WALL_LIMITATION =
++ 'P8 Pit II FALL.GRA 54–60 are original, source-palette-linked lower-wall/crack graphics. ' +
++ 'The 32-step 60→55 selector is original source order, NOT confirmed display timing or captured frame order. ' +
++ 'Source palette has DOS video support but no direct runtime DAC trace. ' +
++ 'This does not establish final tile placement, camera, transition visibility, or a complete stage composition.';
++
++interface SourceSprite {number:number;width:number;height:number;graOffset:number;graEnd:number;
++  indices:Uint8Array;mask:Uint8Array;rgba:Uint8Array;descriptorPhysical:number;}
++export interface P8PitLowerWallResult {
++ assets:Asset[];
++ packages:Array<{name:string;bytes:Uint8Array}>;
++ status:{status:'VERIFIED'|'UNAVAILABLE';count:number;detail?:string};
++}
++function requireFact(ok:unknown,msg:string):asserts ok {
++ if(!ok) throw Error(`P8 original Pit II lower-wall source: ${msg}`);
++}
++function findOriginal(entries:SourceFileEntry[],name:string):SourceFileEntry {
++ const found=entries.filter(x=>x.name.toLowerCase()===name.toLowerCase());
++ requireFact(found.length===1,`expected one ${name}; found ${found.length}`);
++ return found[0];
++}
++function decoder(exe:Uint8Array,gra:Uint8Array) {
++ const ev=new DataView(exe.buffer,exe.byteOffset,exe.byteLength),gv=new DataView(gra.buffer,gra.byteOffset,gra.byteLength);
++ const u16=(p:number)=>ev.getUint16(p,true),u32=(p:number)=>ev.getUint32(p,true);
++ requireFact(u16(PALETTE_OFFSET)===PALETTE_COUNT,'source palette count');
++ requireFact(u32(OBJECT2_IMAGE+0x18d40)===PALETTE_OFFSET-0x61c54,'original palette pointer');
++ const palette=new Uint8Array((PALETTE_COUNT+1)*3);
++ for(let i=1;i<=PALETTE_COUNT;i++){
++  const word=u16(PALETTE_OFFSET+2*i);
++  const channels=[((word>>>9)&63)|1,((word>>>4)&63)|1,((word<<1)&63)|1];
++  for(let c=0;c<3;c++)palette[i*3+c]=(channels[c]<<2)|(channels[c]>>>4);
++ }
++ const sprites:SourceSprite[]=[];let previousEnd=0;
++ for(let i=0;i<=60;i++){
++  const descriptor=i<54?0xc39b8+12*i:0xc3c40+16*(i-54);
++  const w=u16(descriptor),h=u16(descriptor+2),packed=u32(descriptor+8),start=packed&0xffffff;
++  requireFact(packed>>>24===RENDER_GRA_ID,`sprite ${i}: resource id`);
++  requireFact(w>=1&&w<=160&&h>=1&&h<=140,`sprite ${i}: unreasonable dimensions`);
++  requireFact(start===previousEnd,`sprite ${i}: original packed offset not contiguous`);
++  if(i>=54){
++   requireFact(w===EXPECTED_DIMS[i][0]&&h===EXPECTED_DIMS[i][1],`sprite ${i}: special dimensions`);
++   requireFact(ev.getInt16(descriptor+4,true)===0&&ev.getInt16(descriptor+6,true)===0,`sprite ${i}: signed XY`);
++   requireFact(u32(descriptor+12)===0x27958,`sprite ${i}: source palette reference`);
++  }
++  const ix=new Uint8Array(w*h),mask=new Uint8Array(w*h);let at=start;
++  for(let y=0;y<h;y++){
++   let x=0;while(x<w){
++    requireFact(at+4<=gra.length,`sprite ${i}: truncated command`);
++    const cmd=gv.getUint32(at,true);at+=4;
++    let n:number;
++    if(cmd&1) n=cmd>>>1;
++    else if(cmd&2){n=cmd>>>10;requireFact(n>0&&n<=w-x,`sprite ${i}: run overflow`);
++     ix.fill((cmd>>>2)&255,y*w+x,y*w+x+n);mask.fill(1,y*w+x,y*w+x+n);
++    } else {n=cmd>>>2;requireFact(n>0&&n<=w-x&&at+n<=gra.length,`sprite ${i}: literal overflow`);
++     ix.set(gra.subarray(at,at+n),y*w+x);mask.fill(1,y*w+x,y*w+x+n);at+=(n+3)&~3;
++    }
++    requireFact(n>0&&n<=w-x,`sprite ${i}: row overflow`);x+=n;
++   }
++  }
++  previousEnd=at;
++  if(i>=54){
++   const rgba=new Uint8Array(w*h*4);
++   for(let p=0;p<w*h;p++)if(mask[p]){
++    const index=ix[p];requireFact(index>=1&&index<=PALETTE_COUNT,`sprite ${i}: palette index ${index}`);
++    rgba.set(palette.subarray(index*3,index*3+3),p*4);rgba[p*4+3]=255;
++   }
++   sprites.push({number:i,width:w,height:h,graOffset:start,graEnd:at,indices:ix,mask,rgba,descriptorPhysical:descriptor});
++  }
++ }
++ requireFact(previousEnd===gra.length,'all 61 original streams tile FALL.GRA exactly');
++ // The six named wall graphics are indexed in source order by the 32 original
++ // selector bytes; 54 is a separate post-selector crack overlay.
++ const raw=[...exe.subarray(0xb4d84,0xb4da4)];
++ requireFact(raw.length===32&&exe[0xb4da4]===0xff,'selector length/terminator');
++ const sequence=raw.map((index,i)=>{
++  requireFact(index>=0&&index<=5,`selector step ${i} out of range`);
++  return {sourceStep:i,selectorIndex:index,originalSprite:55+index};
++ });
++ const counts:Array<[number,number]>=[];
++ for(const item of sequence){const last=counts[counts.length-1];if(last&&last[0]===item.originalSprite)last[1]++;else counts.push([item.originalSprite,1]);}
++ requireFact(JSON.stringify(counts)===JSON.stringify(EXPECTED_SELECTOR_COUNTS),'selector run order differs from O224');
++ // The source list pairs are original, separately from duration/activation.
++ for(let i=0;i<6;i++){
++  requireFact(u32(OBJECT2_IMAGE+0x14151+i*8)===0x22ffc+i*16,`paired source descriptor ${i}`);
++  requireFact([0x14181,0x141c1,0x14201].includes(u32(OBJECT2_IMAGE+0x14155+i*8)),`paired source grid ${i}`);
++ }
++ return {sprites,sequence,counts,palette};
++}
++export async function buildMK2PitLowerWallP8(source:DirectorySource):Promise<P8PitLowerWallResult>{
++ try {
++  const entries=await source.listRecursive();
++  const exeEntry=findOriginal(entries,'mk2.exe'),fallEntry=findOriginal(entries,'fall.gra');
++  const exe=await source.readSlice(exeEntry.path,0,exeEntry.size),gra=await source.readSlice(fallEntry.path,0,fallEntry.size);
++  requireFact(exe.length===861133&&await hash(exe)===EXE_SHA,'canonical MK2 executable SHA-256');
++  requireFact(gra.length===250804&&await hash(gra)===FALL_SHA,'canonical FALL.GRA SHA-256');
++  const r=decoder(exe,gra);
++  const files:Array<{name:string;bytes:Uint8Array}>=[];
++  const assets:Asset[]=[];
++  const manifestSprites:Record<string,unknown>[]=[];
++  for(const s of r.sprites){
++   const folder=`FALL_sprite_${s.number}`;
++   const png=encodeOriginalEffectRgbaPngO177(s.width,s.height,s.rgba);
++   const paths={png:`images/${folder}.png`,indices:`indexed/${folder}.indices.bin`,mask:`indexed/${folder}.mask.bin`};
++   files.push({name:paths.png,bytes:png},{name:paths.indices,bytes:s.indices},{name:paths.mask,bytes:s.mask});
++   manifestSprites.push({sourceSprite:s.number,width:s.width,height:s.height,
++    originalDescriptorPhysical:`0x${s.descriptorPhysical.toString(16).toUpperCase()}`,
++    originalPackedGraOffset:s.graOffset,originalEncodedEndExclusive:s.graEnd,
++    originalPaletteRecordPhysical:'0x895AC',sourcePaletteColorCount:81,paths});
++   assets.push({id:`mk2-pit-fall-source:${s.number}:palette-linked`,
++    name:`The Pit II · original ${s.number===54?'crack overlay':'wall tile'} ${s.number}`,
++    group:'MK2 The Pit II · original lower-wall source',kind:'stage',
++    format:'PNG · original source palette preview (runtime DAC not directly witnessed)',
++    confidence:'O210/O214/O224: original source-linked 81-color palette and decoded sprite; runtime frame presentation unverified',
++    source:{path:fallEntry.path,offset:s.graOffset,length:s.graEnd-s.graOffset,sha256:FALL_SHA},
++    metadata:{stage:'pit_ii',sourceSprite:s.number,descriptorPhysical:s.descriptorPhysical,
++     sourcePalettePhysical:PALETTE_OFFSET,originalSourcePaletteLinked:true,
++     originalPaletteCorroboratedByDOSVideo:true,runtimeDACDirectlyObserved:false,
++     originalSourceSelectorStepCount:s.number===54?0:r.sequence.filter(x=>x.originalSprite===s.number).length,
++     sourceSequencePositionKnown:s.number!==54,originalSourceFPSKnown:false,
++     finalStagePlacementKnown:false,actualPresentationObservedForEveryStep:false,
++     indices:s.indices,mask:s.mask,
++     use:s.number===54?'post-selector crack overlay source':'source-timed wall transition tile',
++     evidence:'O210 source decoder; O214 palette holdout video; O224 original 32-step selector; O225 source tile placement scripts'},
++    width:s.width,height:s.height,rgba:s.rgba,
++    filename:`MK2_Pit_II_FALL_sprite_${s.number}_SOURCE_PALETTE.png`});
++  }
++  requireFact(assets.length===7,'exactly seven original source assets');
++  const manifest={schema:'mk2_p8_pit_fall_lower_wall_original_source_v1',originalExeSHA256:EXE_SHA,originalFallGraSHA256:FALL_SHA,
++    originalFullResourceStreamsDecoded:61,fullResourceTiled:true,palettePhysical:'0x895AC',paletteColorCount:81,
++    paletteStatus:'ORIGINAL_EXE_LINK_AND_DOS_CAPTURE_CORROBORATION_NOT_LIVE_DAC',
++    originalSelectorSteps:r.sequence,originalSelectorRuns:r.counts,
++    selectorStepCount:32,sourceFPSKnown:false,sourceSchedulerYieldCountPerStep:1,
++    elapsedRuntimeTimingKnown:false,actualRuntimeVisibilityOfSprite58Unknown:true,
++    finalStageSceneReconstructed:false,sprites:manifestSprites,limitations:P8_PIT_LOWER_WALL_LIMITATION};
++  files.push({name:'manifest.json',bytes:new TextEncoder().encode(JSON.stringify(manifest,null,2))});
++  files.push({name:'README.md',bytes:new TextEncoder().encode('# The Pit II original FALL.GRA lower-wall source graphics — P8\n\n' +
++    'Seven original sprite sources (54 crack; 55–60 changing lower wall) are supplied as source-palette RGBA PNG, exact index and alpha masks. ' +
++    'The 32-entry original selector sequence is metadata only: NOT observed video frame timing. Sprite 58 occurs in the source list but was not selected by the older sampled O214 video frames. ' + P8_PIT_LOWER_WALL_LIMITATION+'\n')});
++  return {assets,packages:[{name:'MK2_P8_PIT_II_SEVEN_ORIGINAL_LOWER_WALL_SOURCES.zip',bytes:buildStoredZip(files)}],status:{status:'VERIFIED',count:7}};
++ }catch(error){return {assets:[],packages:[],status:{status:'UNAVAILABLE',count:0,detail:String(error)}};}
++}
+--- a/scripts/verify-mk2-p8-pit-source-integration.cjs
++++ b/scripts/verify-mk2-p8-pit-source-integration.cjs
+@@ -0,0 +1,91 @@
++#!/usr/bin/env node
++/** P8 fixture-backed independent extractor integration smoke. No npm install required.
++ * node scripts/verify-mk2-p8-pit-source-integration.cjs <untouched mk2 dir> <report.json> <package.zip>
++ */
++const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
++let ts;try{ts=require('typescript')}catch{ts=require('/opt/nvm/versions/node/v22.16.0/lib/node_modules/typescript')}
++for(const ext of ['.ts','.tsx'])require.extensions[ext]=(mod,file)=>mod._compile(ts.transpileModule(fs.readFileSync(file,'utf8'),{fileName:file,compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true,allowImportingTsExtensions:true}}).outputText,file);
++if(!globalThis.crypto)globalThis.crypto=crypto.webcrypto;
++const {scanAssets}=require('../src/core/assets/collection.ts');
++const {buildMK2PitLowerWallP8}=require('../src/core/assets/mk2PitLowerWallP8.ts');
++const {assetBytes,selectedZip}=require('../src/core/assets/export.ts');
++const {parseAnimationStoreZip}=require('../src/games/mk1/research/browserAnimationExportBundleValidation.ts');
++const root=process.argv[2];if(!root)throw Error('Usage: verify-mk2-p8-pit-source-integration.cjs <original MK2 dir> [report.json] [package.zip]');
++const hash=b=>crypto.createHash('sha256').update(b).digest('hex');let checks=0;
++function eq(actual,expected,msg){assert.deepStrictEqual(actual,expected,msg);checks++}
++const all=new Map();function walk(dir,prefix=''){for(const d of fs.readdirSync(dir,{withFileTypes:true})){const rel=prefix?prefix+'/'+d.name:d.name;if(d.isDirectory())walk(path.join(dir,d.name),rel);else if(d.isFile())all.set(rel,new Uint8Array(fs.readFileSync(path.join(dir,d.name))));}}walk(root);
++function source(entries=all){return {directoryName:'original MK2',isSynthetic:false,
++ async listRecursive(){return [...entries].map(([name,b])=>({path:name,name:path.basename(name),extension:path.extname(name).slice(1).toUpperCase(),size:b.length}));},
++ async readSlice(name,start,n){const b=entries.get(name);if(!b)throw Error('Unavailable '+name);return b.slice(start,start+n);}};}
++function altered(name,mode){const m=new Map(all),real=[...m.keys()].find(k=>path.basename(k).toLowerCase()===name.toLowerCase());if(!real)throw Error('missing '+name);const b=m.get(real);
++ if(mode==='remove')m.delete(real);if(mode==='mutate'){const n=b.slice();n[Math.floor(n.length/2)]^=1;m.set(real,n);}if(mode==='duplicate')m.set('duplicate/'+name,b);return m;}
++(async()=>{const start=Date.now();const p8=await buildMK2PitLowerWallP8(source());
++ eq(p8.status.status,'VERIFIED','P8 source qualified');eq(p8.assets.length,7,'seven original source sprites');eq(p8.packages.length,1,'source ZIP');
++ const names=p8.assets.map(a=>a.metadata.sourceSprite);eq(names,[54,55,56,57,58,59,60],'original sprite identifiers');
++ const dims=[[96,96],[96,96],[80,80],[64,64],[96,96],[96,96],[96,96]];
++ const z=parseAnimationStoreZip(p8.packages[0].bytes);eq(z.size,23,'seven pngs, fourteen index/mask buffers, manifest, README');
++ const manifest=JSON.parse(new TextDecoder().decode(z.get('manifest.json').bytes));
++ eq(manifest.originalFullResourceStreamsDecoded,61,'full stream consistency');eq(manifest.selectorStepCount,32,'32 original selector steps');
++ eq(manifest.originalSelectorRuns,[[60,12],[59,6],[58,5],[57,4],[56,3],[55,2]],'original selector runs');
++ eq(manifest.originalSelectorSteps.length,32,'selector order retained');
++ eq(manifest.elapsedRuntimeTimingKnown,false,'do not infer wall timing');eq(manifest.finalStageSceneReconstructed,false,'not full scene');
++ for(let i=0;i<7;i++){
++  const a=p8.assets[i],id=54+i,m=manifest.sprites[i];
++  eq([a.width,a.height],dims[i],`original dimensions ${id}`);
++  eq(a.metadata.sourceSprite,id,`source name ${id}`);eq(a.metadata.runtimeDACDirectlyObserved,false,`no live DAC claim ${id}`);
++  eq(a.metadata.originalSourceFPSKnown,false,`no original FPS ${id}`);
++  eq(a.source.offset,m.originalPackedGraOffset,`original source offset ${id}`);
++  eq(a.source.length,m.originalEncodedEndExclusive-m.originalPackedGraOffset,`source extent ${id}`);
++  const ix=z.get(m.paths.indices).bytes,mask=z.get(m.paths.mask).bytes,png=z.get(m.paths.png).bytes;
++  eq(hash(ix),hash(a.metadata.indices),`source index buffer ${id}`);
++  eq(hash(mask),hash(a.metadata.mask),`source alpha mask ${id}`);
++  eq(hash(png),hash(assetBytes(a)),`lossless PNG ${id}`);
++  eq(ix.length,a.width*a.height,`index dimensions ${id}`);
++  eq(mask.length,ix.length,`mask dimensions ${id}`);
++  eq(mask.every(v=>v===0||v===1),true,`binary opacity ${id}`);
++ }
++ const selection=selectedZip([p8.assets[0],p8.assets[2],p8.assets[6]]),selected=parseAnimationStoreZip(selection);
++ eq(selected.size,10,'three PNGs + six index/mask + manifest');
++ const sm=JSON.parse(new TextDecoder().decode(selected.get('manifest.json').bytes));
++ eq(sm.selectionOrder.length,3,'selective export preserved');
++ for(const mode of ['remove','mutate','duplicate']){
++  const r=await buildMK2PitLowerWallP8(source(altered('fall.gra',mode)));
++  eq(r.status.status,'UNAVAILABLE',`bad FALL ${mode} rejected`);eq(r.assets.length,0,`bad FALL ${mode} yields no pseudo-assets`);
++ }
++ for(const mode of ['mutate','duplicate']){
++  const r=await buildMK2PitLowerWallP8(source(altered('mk2.exe',mode)));
++  eq(r.status.status,'UNAVAILABLE',`bad executable ${mode} rejected`);
++ }
++ const missingPortal=await buildMK2PitLowerWallP8(source(altered('portal.gra','remove')));
++ eq(missingPortal.status.status,'VERIFIED','Pit II package independent of Portal');
++ const scan=await scanAssets(source(),'mk2',()=>{});const ids=new Set(scan.assets.map(a=>a.id));
++ eq(scan.assets.length,5033,'P7 5026 + seven P8 graphics');eq(ids.size,5033,'all IDs unique');
++ eq(scan.assets.filter(a=>a.id.startsWith('u8:')).length,312,'312 original sound effects retained');
++ eq(scan.assets.filter(a=>a.id.startsWith('mk2-stage-effect:')).length,43,'43 stage-effect frames retained');
++ eq(scan.assets.filter(a=>a.id.startsWith('mk2-stage-setup:')).length,8,'8 Tomb/Portal setup layers retained');
++ eq(scan.assets.filter(a=>a.id.startsWith('mk2-floor:')).length,15,'15 floor assets retained');
++ eq(scan.assets.filter(a=>a.id.startsWith('mk2-forest-setup:')).length,10,'10 Forest representations retained');
++ eq(scan.assets.filter(a=>a.id.startsWith('mk2-pit-fall-source:')).length,7,'seven Pit II originals in scanner');
++ eq(scan.reports.p8PitLowerWall.status,'VERIFIED','P8 status reported');
++ eq(scan.packages.some(x=>x.name==='MK2_P8_PIT_II_SEVEN_ORIGINAL_LOWER_WALL_SOURCES.zip'),true,'full source archive in library');
++ // Cross-check every source indexed buffer with the already independent O70 broad
++ // graphics census: same canonical physical starting offset, index and opacity.
++ const broad=scan.assets.filter(a=>a.source.path.toLowerCase().endsWith('fall.gra')&&a.id.includes('.indices.bin'));
++ for(const a of p8.assets){
++  const match=broad.find(x=>x.source.offset===a.source.offset&&x.width===a.width&&x.height===a.height);
++  eq(Boolean(match),true,`O70 indexed census includes sprite ${a.metadata.sourceSprite}`);
++  if(match){eq(hash(match.metadata.indices),hash(a.metadata.indices),`O70 exact indexed bytes ${a.metadata.sourceSprite}`);
++   eq(hash(match.metadata.mask),hash(a.metadata.mask),`O70 exact mask ${a.metadata.sourceSprite}`);}
++ }
++ const report={pass:'P8',status:'PASS',checks,assetTotal:scan.assets.length,
++  newAssets:7,originalFallStreamsValidated:61,sourcePaletteColors:81,sourceSelectorSteps:32,
++  originalWallGraphics:6,crackOverlayGraphics:1,sourcePaletteRuntimeDACVerified:false,
++  runtimeTimelineOrFullSceneVerified:false,browserBuildValidated:false,
++  regressions:{soundEffects:312,stageEffectFrames:43,tombPortalSetupLayers:8,stageFloorAssets:15,forestPreviewRepresentations:10},
++  negativePaths:['missing FALL','mutated FALL','duplicate FALL','mutated MK2.EXE','duplicate MK2.EXE'],
++  independentFromMissingPortal:true,selectedExport:{assets:3,bytes:selection.length,sha256:hash(selection)},
++  sourceArchive:{bytes:p8.packages[0].bytes.length,sha256:hash(p8.packages[0].bytes)},elapsedMs:Date.now()-start};
++ if(process.argv[3])fs.writeFileSync(process.argv[3],JSON.stringify(report,null,2)+'\n');
++ if(process.argv[4])fs.writeFileSync(process.argv[4],Buffer.from(p8.packages[0].bytes));
++ console.log(JSON.stringify(report,null,2));
++})().catch(e=>{console.error(e.stack||e);process.exitCode=1});
+--- a/scripts/verify-mk2-p8-source-parity.py
++++ b/scripts/verify-mk2-p8-source-parity.py
+@@ -0,0 +1,47 @@
++#!/usr/bin/env python3
++"""Independent P8 check: O210 Python decoder vs the TS-generated source ZIP.
++Requires numpy/PIL/cv2 from existing legacy research environment.
++Usage: python scripts/verify-mk2-p8-source-parity.py <canonical-mk2.zip> <p8-output.zip>
++"""
++import hashlib, importlib.util, io, json, struct, sys, zipfile
++from pathlib import Path
++import numpy as np
++from PIL import Image
++EXPECTED_EXE='fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65'
++EXPECTED_FALL='60e6c56f7720b2bda89714b818c885e41c523e978807697d0d7d8f07d37551a0'
++def sha(x):return hashlib.sha256(x).hexdigest()
++def main():
++ src=Path(sys.argv[1]);export=Path(sys.argv[2]);checks=0
++ with zipfile.ZipFile(src) as z:
++  exe=next(z.read(n) for n in z.namelist() if n.lower().endswith('/mk2.exe'))
++  fall=next(z.read(n) for n in z.namelist() if n.lower().endswith('/fall.gra'))
++ assert sha(exe)==EXPECTED_EXE and sha(fall)==EXPECTED_FALL;checks+=2
++ old=Path(__file__).parent/'verify-o210-pit-fatality.py'
++ spec=importlib.util.spec_from_file_location('original_o210',old);o210=importlib.util.module_from_spec(spec);spec.loader.exec_module(o210)
++ sprites,meta=o210.decode(exe,fall)
++ assert len(sprites)==61 and len(meta)==61 and meta[-1]['graEnd']==len(fall);checks+=3
++ count=struct.unpack_from('<H',exe,0x895ac)[0];assert count==81;checks+=1
++ pal=np.zeros((82,3),dtype=np.uint8)
++ for i in range(1,82):
++  w=struct.unpack_from('<H',exe,0x895ac+2*i)[0]
++  dac=[((w>>9)&63)|1,((w>>4)&63)|1,((w<<1)&63)|1]
++  pal[i]=[(v<<2)|(v>>4) for v in dac]
++ with zipfile.ZipFile(export) as z:
++  manifest=json.loads(z.read('manifest.json'))
++  assert manifest['selectorStepCount']==32 and len(manifest['sprites'])==7;checks+=2
++  for item in manifest['sprites']:
++   i=item['sourceSprite'];index,mask=sprites[i]
++   raw_ix=z.read(item['paths']['indices']);raw_mask=z.read(item['paths']['mask'])
++   assert np.array_equal(np.frombuffer(raw_ix,dtype='uint8').reshape(index.shape),index),i;checks+=1
++   assert np.array_equal(np.frombuffer(raw_mask,dtype='uint8').reshape(mask.shape),(mask>0).astype('uint8')),i;checks+=1
++   actual=np.array(Image.open(io.BytesIO(z.read(item['paths']['png']))).convert('RGBA'))
++   expected=np.zeros((index.shape[0],index.shape[1],4),dtype='uint8')
++   expected[:,:,:3]=pal[index];expected[:,:,3]=mask
++   assert np.array_equal(actual,expected),i;checks+=1
++   assert item['originalPackedGraOffset']==meta[i]['graStart'] and item['originalEncodedEndExclusive']==meta[i]['graEnd'];checks+=1
++  for i in range(32):
++   assert manifest['originalSelectorSteps'][i]['originalSprite']==55+exe[0xb4d84+i];checks+=1
++ print(json.dumps({'status':'PASS','independent':'O210 original Python 61-sprite decoder','checks':checks,
++  'sourceSprites':7,'exactIndexMaskRgbaParity':True,'sourceSelectorSteps':32,
++  'sourcePaletteIsRuntimeDACObserved':False},indent=2))
++if __name__=='__main__':main()
+--- a/docs/EXTRACTOR_P8_PIT_II_LOWER_WALL_SOURCE_INTEGRATION.md
++++ b/docs/EXTRACTOR_P8_PIT_II_LOWER_WALL_SOURCE_INTEGRATION.md
+@@ -0,0 +1,31 @@
++# MK DOS Archive — P8 original Pit II lower-wall source extraction
++
++**Date:** 2026-11-04  
++**Baseline:** P7 interim on preserved P6 source. This is **P8 of P7–P11**; no full source release before P11.  
++**Purpose:** carry source-proven Pit II imagery into the extractor without pursuing further framebuffer/video-timing internals.
++
++## Included capability
++
++- **Seven original FALL.GRA graphics**: 54 (post-selector crack overlay), 55–60 (lower-wall transition tiles), original 64/80/96-pixel dimensions.
++- Canonical `MK2.EXE` and `FALL.GRA` SHA-256 hard gates. The builder validates **all 61** consecutive packed sprite streams, their original descriptor starts and full GRA coverage, rather than accepting unrelated byte patterns.
++- All seven source graphics are linked to the **81-color original PIT palette record** at `MK2.EXE:0x895AC`, through original descriptor palette-reference value `0x27958`; DOS capture comparisons corroborate that source palette, but no direct live DAC observation is claimed.
++- **32 source-ordered wall selector steps** (`60 ×12, 59 ×6, 58 ×5, 57 ×4, 56 ×3, 55 ×2`) are preserved only as metadata; sprite 54 is separately available. The original one-yield-per-selector-step source behavior is **not** converted into milliseconds or runtime frame rate.
++- Each source sprite is available as a palette-linked PNG preview with original unmodified index plane and 0/1 opacity mask. The supplemental evidence ZIP contains all 7 PNGs, 7 index planes, 7 masks, a source-selector manifest, and a caveat README.
++- The existing source broad indexed corpus remains intact. P8 offers **human-readable source-identified** stage assets while keeping generic index-only sprite assets unchanged.
++
++## Validation
++
++- `node scripts/verify-mk2-p8-pit-source-integration.cjs <untouched mk2 dir> <report.json> <source_zip>` **PASS 137 checks**. Full canonical headless scan **5,033 assets**, 7 new P8 assets beyond P7 5,026; unique IDs and all prior category counts preserved.
++- Independent `python scripts/verify-mk2-p8-source-parity.py <original mk2 zip> <p8 source zip>` **PASS 68 checks**, comparing original O210 Python 61-sprite stream decoder with the actual P8 index/mask/RGBA PNGs and 32 source-selector values.
++- Targeted `tsc` compilation of `src/core/assets/mk2PitLowerWallP8.ts` and `src/core/assets/collection.ts` **PASS** using local process declaration shim where required.
++- Negative tests: missing/corrupted/duplicate FALL.GRA, modified/duplicate MK2.EXE → no falsely qualified P8 assets. Missing Portal leaves P8 qualified. Three-asset selected ZIP export works.
++- No full Vite/browser build in this environment; **headless-verified only**.
++
++## What is still NOT claimed
++
++- Runtime DAC selection; exact frame intervals, continuous displayed frame order or sprite 58 visibility; tile-grid composition; full upper/lower Pit II stage reconstruction, final camera, foreground, palette transitions, or gameplay controls.
++- P8 does not replace the research archive's O210–O282 evidence or alter the older decoding modules. Source GIF/APNG timing must not be generated using guessed game timing.
++
++## Next direction
++
++P9 should prioritize actual extractor stage composition previews based on **existing authenticated source placements and layers** (e.g. qualified Pit II upper-scene source compositions), but should not invent complete-stage transforms. Reuse independently supported geometry/parser mechanisms across stages. Preserve P7 UI backlog for P11 review; do not refactor navigation during P9.
