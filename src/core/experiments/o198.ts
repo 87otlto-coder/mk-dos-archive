@@ -62,10 +62,11 @@ export async function runO198ForestConditionalRoots(source:DirectorySource):Prom
     need(setupObject2===SETUPS[variant-1]&&operand===expected,`${spec.mode} ${group} layer ${variant} linked operand`);
     need(r.layers[variant-1].setupObject2Offset===setupObject2,'O197 layer identity mismatch');
     const channel=group==='accumulator'?(operand-0x84310)/4:-1;
+    const operandRole:O198Pair['operandRole']=group==='static'?'raw-fixed-operand':'accumulator-address';
     if(group==='accumulator')need(Number.isInteger(channel)&&channel>=0&&channel<9&&originalHighWords.includes(operand+2),'source setup channel has no original positive-stream consumer');
     return{setupVariant:variant,setupObject2,setupPhysical:BASE+setupObject2,fieldObject2:at,fieldPhysical:BASE+at,
       operandFieldObject2:at+4,operandFieldPhysical:BASE+at+4,operand,
-      operandRole:group==='static'?'raw-fixed-operand':'accumulator-address',
+      operandRole,
       ...(channel>=0?{motionChannelIndex:channel,originalChannelInputRaw:originalWords[channel],
        originalChannelInput16_16:originalWords[channel]/65536,positiveStreamHighWordReferences:streamTokens.filter(t=>t.kind==='positive-pair'&&t.extraDwords[0]===operand+2).map(t=>t.object2Offset)}:{})};
    });
