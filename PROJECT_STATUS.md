@@ -4,6 +4,19 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P13 MK2 MOUNTAIN.GRA original indexed graphics — interim `develop` pass, 2026-11-05
+
+**P11 remains the stable `main` checkpoint.** P12 and P13 are focused, recoverable interim changes on `develop`.
+
+- **Original MK2 asset census: 5,099 unique assets** (P11 5,053 + P12 31 + P13 **15 original indexed MOUNTAIN.GRA graphics**). P13 source commit: [`9ea61f3`](https://github.com/87otlto-coder/mk-dos-archive/commit/9ea61f358a6c940cdb0462343a76131068183be5).
+- **Source relationship VERIFIED:** 14 original 35×41 graphics are reached through source pointer table records, plus **one adjacent original 35×41 graphic not selected by that table**. All 15 native streams tile exactly the 23,024-byte original MOUNTAIN.GRA suffix. The 168,724-byte prefix remains outside this qualification.
+- **Source-list interpretation VERIFIED / bounded:** six original conditional selection orders, five distinct, source token 14 aliases record 13. The selected runtime variant, object activation, coordinates, animation timing and stage identity are **UNKNOWN**.
+- **Palette boundary:** original indices span 1–96; a direct unmodified 63-colour palette cannot represent them. The new previews are **diagnostic grayscale only**, never reconstructed runtime RGB. Source indices, paint masks and all-zero palette-known masks are available in the selected ZIP and a separate 15-image forensic package.
+- **Original-file tests PASS:** 2,198 independent Python checks; 358 TypeScript adapter/export/negative-fixture parity checks; **57 P13 cumulative checks** at 5,099 assets. P8/P9/P10 source evidence ZIP hashes are unchanged. Focused P13 source ZIP SHA-256: `e7eabb5d6444d249b7b08a1197c7cc7767a8e70df668f661d5d0eff762d67c86`.
+- **Production build and Chrome startup are a separate gate.** Source-binary parity and headless fixture tests do not prove P13 interactive browsing. See [P13 integration handoff](docs/EXTRACTOR_P13_MK2_MOUNTAIN_ORIGINAL_INDEXED_GRAPHICS.md).
+
+Next pass should prioritize **reusable MK2 palette/placement attribution backed by original evidence**, or integrate another already independently qualified original graphical family if palette/placement cannot be proven without speculation. Do not spend time on gameplay mechanics unrelated to extraction.
+
 ## P12 MK2 intro LZW integration — interim `develop` pass, 2026-11-05
 
 **P11 remains the stable checkpoint on `main`.** New P12 source was committed to `develop` at [`576d2d2`](https://github.com/87otlto-coder/mk-dos-archive/commit/576d2d28fea53ee5463bb5fd46b907d4f7b361b8). The previous P11 workbench and P7–P10 registrations are retained.
@@ -72,7 +85,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P10** |
 | P10 cumulative MK2 headless scanner | **5,053 unique assets** |
-| Next planned pass | **MK2-first P12→P15 extraction progress; P12 intro LZW done on develop** |
+| Next planned pass | **MK2-first P14: verified palette/placement or additional source-qualified graphics** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
 
