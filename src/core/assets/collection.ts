@@ -14,6 +14,7 @@ import { buildMK2ForestLayersP7, MK2_P7_FOREST_LIMITATION } from './mk2ForestLay
 import { buildMK2PitLowerWallP8, P8_PIT_LOWER_WALL_LIMITATION } from './mk2PitLowerWallP8';
 import { buildMK2PitUpperLayersP9, MK2_P9_PIT_UPPER_LIMITATION } from './mk2PitUpperLayersP9';
 import { buildMK2PitBridgeActorsP10, MK2_P10_PIT_BRIDGE_LIMITATION } from './mk2PitBridgeActorsP10';
+import { buildMK2IntroLzwP12, MK2_P12_INTRO_LIMITATION } from './mk2IntroLzwP12';
 
 export async function scanAssets(source:DirectorySource,game:Game,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
   if(game==='mk3')return scanMK3(source,progress,signal);
@@ -111,6 +112,9 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   const p10Bridge = await buildMK2PitBridgeActorsP10(source);
   assets.push(...p10Bridge.assets);
   packages.push(...p10Bridge.packages);
+  progress('MK2 source-qualified Probe / Acclaim LZW intro images (P12)');
+  const p12Intro=await buildMK2IntroLzwP12(source);
+  assets.push(...p12Intro.assets);
   const music=[];
   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
     const bytes=await source.readSlice(e.path,0,e.size);
@@ -124,8 +128,9 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
     p7ForestLayers:p7Forest.status,
     p8PitLowerWall:p8Pit.status,
     p9PitUpper:p9PitUpper.status,
-    p10PitBridgeActors:p10Bridge.status},
-    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+    p10PitBridgeActors:p10Bridge.status,
+    p12IntroLzw:p12Intro.status},
+    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),
