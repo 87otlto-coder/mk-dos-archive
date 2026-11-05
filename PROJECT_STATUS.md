@@ -1,8 +1,14 @@
 # MK DOS Extractor — project status
 
-**Last status reconciliation:** 2026-11-04  
+**Last status reconciliation:** 2026-11-05
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
+
+## Current P11 release gate — 2026-11-05
+
+The user verified MK1, MK2 and MK3 sprite previews and Pit II resource navigation. From a fresh checkout of `develop` at `240de32`, the canonical MK1 scan produced 24 normalized module previews, 24 ordinary rasters and one shared moon layer. The modified MK1 fixture used the read-only fallback. MK3 returned zero stage-classified assets. The original MK2 cumulative scan passed 40 checks with 5,053 unique assets.
+
+In local Chrome the new batch action above the grid downloaded all 24 MK1 module previews. ZIP integrity, PNG dimensions and manifest order passed independent inspection. MK1 Stage Gallery links to normalized module previews independently of the header-resource cards. See the [source pass and release handoff](docs/P11_MK1_STAGE_AND_BATCH_EXPORT_2026-11-05.md) for fixture identities, coverage and remaining browser gates. P11 stays on `develop`.
 
 ## P11 local consolidation verified — GitHub source import confirmed (2026-11-04)
 
@@ -25,7 +31,7 @@ P11 `develop` now **passes GitHub Actions strict `npm ci`, Vite production build
 
 A reproducible **new npm 11-generated lockfile** is committed on `develop` (it differs from the archived original P11 lockfile, which remains in local custody). The older O198 Forest typing issue was corrected without any change to its deterministic forensic ZIP. Low-risk Asset Library navigation and independent-scroll changes were committed and built, with the original-MK2 **5,053 assets / 40 cumulative checks** preserved.
 
-**Still pending:** browser interactions with actual original game files, particularly Stage Gallery resource filters, asset previews and export, plus MK1/MK3 regression. Local browser navigation was blocked by this tool environment's Chromium administrator policy, which is not an application test failure. See [P11 build / browser QA record](docs/P11_BUILD_BROWSER_QA_2026-11-04.md) and [Issue #4](https://github.com/87otlto-coder/mk-dos-archive/issues/4). **P11 remains on `develop`; `main` stays P6.**
+**Open at the November 4 checkpoint:** browser interactions with actual original game files, particularly Stage Gallery resource filters, asset previews and export, plus MK1/MK3 regression. Local browser navigation was blocked by this tool environment's Chromium administrator policy, which is not an application test failure. See [P11 build / browser QA record](docs/P11_BUILD_BROWSER_QA_2026-11-04.md) and [Issue #4](https://github.com/87otlto-coder/mk-dos-archive/issues/4). **P11 remains on `develop`; `main` stays P6.**
 
 ## Governing objective
 
@@ -45,7 +51,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Most recent interim pass | **P10** |
 | P10 cumulative MK2 headless scanner | **5,053 unique assets** |
 | Next planned pass | **Real-game browser QA on local MK2/MK1/MK3; P11 promotion gate** |
-| Browser / full React + Vite verification | **Production build and Chrome onboarding PASS; actual game file inspection/export pending** |
+| Browser / full React + Vite verification | **Build and onboarding passed; see current release gate above for fixture and browser results** |
 | Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
 
 The original P6 ZIP and unfiltered P11 archive remain in the project conversation. GitHub contains the **audited, Git-safe application and research source**, not commercial game installations or all raw forensic evidence. Verify fresh-clone source and runtime behavior before the final P11 promotion.
@@ -66,9 +72,9 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. **Fresh-clone source verification:** check out `main` and `develop`, compare source/manifests with the audited Git-safe ZIP snapshots, and rerun P6 and P11 checks using authorized local DOS game fixtures. Keep excluded raw forensic evidence separately archived.
-2. Confirm P11 cumulative **5,053 MK2 assets**, parity and negative-fixture tests from the actual GitHub worktree; the filtered local P11 package passed this previously, but a fresh-clone GitHub rerun has not yet been done.
-3. Install dependencies and run **Vite/React build and real browser asset preview/export tests**. Do not conflate headless scan accuracy with browser functionality.
+1. Use the November 4 source comparison and November 5 fixture handoff as the baseline for release testing.
+2. Complete the remaining interactive preview, inspector and download checks in Issue #4.
+3. Record the tested game, source mode and exported payload for each gate.
 4. Keep P11 on `develop` until release gates pass. At that point merge or fast-forward appropriately into `main`, document checkpoint hashes, and close relevant issues.
 5. Review, but do not automatically prioritize, the deferred interface requests in [docs/UI_BACKLOG.md](docs/UI_BACKLOG.md).
 6. Continue extractor-relevant research for MK1/MK2/MK3 after release validation, testing cross-stage mechanisms before generalization and avoiding gameplay reverse engineering.

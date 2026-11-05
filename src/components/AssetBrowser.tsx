@@ -176,6 +176,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     }
   };
 
+  function exportSelectionZip() {
+    attempt(() => download(selectedZip(selected), 'MKDOS_selection.zip', 'application/zip'));
+  }
+
   async function scan() {
     const run = ++scanRun.current;
     abort.current?.abort();
@@ -369,7 +373,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
         {collection.reports.mode === 'MK1_READ_ONLY_FALLBACK' && (
           <div role="status" className="asset-fallback-notice">
             <strong>MK1 read-only browsing mode</strong>
-            <p>This installation does not meet the exact executable identity required by the specialized research/editors. You can still inspect and export original GRA resources and any independently checked indexed previews. No files are changed.</p>
+            <p>The full MK1 research scan was unavailable for this installation. You can inspect and export original GRA resources and any independently checked indexed previews.</p>
             <p>See Coverage &amp; evidence for the precise identity/validation reason.</p>
           </div>
         )}
@@ -390,6 +394,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
             <option value="">All resource groups</option>
             {[...new Set(assets.map(a => a.group))].sort().map(g => <option key={g}>{g}</option>)}
           </select>
+        </div>
+        <div className="asset-toolbar" role="group" aria-label="Batch export">
+          <button disabled={!filtered.length} onClick={addFiltered}>Add all {filtered.length.toLocaleString()} matches to selection</button>
+          <button disabled={!selected.length} onClick={exportSelectionZip}>Export selection ZIP ({selected.length.toLocaleString()})</button>
         </div>
         <p className="asset-help">Click to select. Ctrl/⌘+click adds or removes; Shift+click selects a range. Drag graphics to the canvas independently.</p>
         <div className="asset-workspace">
@@ -416,7 +424,6 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
               <button disabled={!page} onClick={() => setPage(p => p - 1)}>Previous</button>
               <span>{filtered.length ? `${page * 60 + 1}–${Math.min((page + 1) * 60, filtered.length)} of ${filtered.length}` : 'No matches'}</span>
               <button disabled={(page + 1) * 60 >= filtered.length} onClick={() => setPage(p => p + 1)}>Next</button>
-              <button onClick={addFiltered}>Add filtered to selection</button>
             </div>
           </div>
           <aside className="asset-inspector">
@@ -439,7 +446,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
           <p>This ordered list is separate from the canvas. Graphics chain in the order shown, aligned at the top left. Duplicate a queued frame when a presentation chain needs the same asset more than once.</p>
           <div className="asset-toolbar">
             <button disabled={!selected.length} onClick={() => setQueue([])}>Clear selection</button>
-            <button disabled={!selected.length} onClick={() => attempt(() => download(selectedZip(selected), 'MKDOS_selection.zip', 'application/zip'))}>Export ZIP + metadata</button>
+            <button disabled={!selected.length} onClick={exportSelectionZip}>Export ZIP + metadata</button>
             <label>Frame duration (ms) <input type="number" min={10} max={60000} value={frameMs} onChange={e => setFrameMs(Math.max(10, Math.min(60000, Math.trunc(Number(e.target.value) || 10))))} /></label>
             <button disabled={!selectedGraphicsOnly} onClick={() => attempt(() => download(animatedPng(selected, frameMs), 'MKDOS_animation.png', 'image/apng'))}>Export animated PNG</button>
             <label>Sheet columns <input type="number" min={1} max={2000} value={columns} onChange={e => setColumns(Math.max(1, Math.min(2000, Math.trunc(Number(e.target.value) || 1))))} /></label>

@@ -94,6 +94,10 @@ export function MuseumStages({ inventory, detection, source, goTo, onSelectResou
   return <div className="mw-page">
     <div className="mw-intro"><span className="mw-eyebrow mw-accent">MUSEUM / STAGES</span><h1>Stage gallery</h1><p>Browse discovered background resources. Full scene composition is not implied by the presence of a resource file.</p><p className="mw-muted mw-xs">Color panels below are navigation markers, not source-image reconstructions.</p></div>
     <div className="mw-toolbar"><label className="mw-search"><Search size={17}/><input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search stage names or resources" aria-label="Search stages"/></label><span className="mw-muted">{cards.length} matching resources</span></div>
+    {detection.game === 'mk1' && <div className="mw-research-banner">
+      <Layers3 size={21}/><div><strong>Decoded MK1 backgrounds</strong><p>The full MK1 scan groups normalized previews by module. The cards below identify source headers.</p></div>
+      <button onClick={() => onSelectResource('normalized_combined_background')}>Browse normalized previews <ChevronRight size={15}/></button>
+    </div>}
     {cards.length ? <div className="mw-stage-grid">
       {cards.map((stage, index) => <article className="mw-stage-card" key={stage.file}>
         <div className={`mw-stage-visual mw-stage-color-${index % 5}`} aria-hidden="true"><Layers3 size={38}/><span>{stage.file}</span></div>
