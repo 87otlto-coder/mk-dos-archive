@@ -1,0 +1,427 @@
+{
+  "format": "mk2_p13_o96t_o96u_original_source_hashes_v1",
+  "fixture": {
+    "mk2ExeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+    "mountainGraSha256": "0dc92ef698a139eacaf57d1b7ebe47b40c8b1c08952251d8274c818be05c2ff6",
+    "mountainGraBytes": 191748
+  },
+  "bounds": {
+    "prefixUnqualifiedBytes": 168724,
+    "suffixStart": 168724,
+    "suffixEndExclusive": 191748,
+    "suffixEncodedBytes": 23024
+  },
+  "pointerTable": {
+    "slots": 15,
+    "distinctSelectedDescriptors": 14,
+    "slot14Aliases13": true
+  },
+  "records": [
+    {
+      "ordinal": 0,
+      "selected": true,
+      "descriptorPhysical": 774432,
+      "descriptorSHA256": "c8517d3b09f7efe6316229f5d7a05e54f21a58c35707603ece700c5627258a87",
+      "offset": 168724,
+      "endExclusive": 170300,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "f9a0787d9042ca3ef77881f077462154360d9c86bfc3a953f4639d16e46eb63b",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "afd93625491e571035779f243b00af0929d56a0e7ed464cfdf69fa7195bb59b1",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 30,
+        "literal": 62
+      }
+    },
+    {
+      "ordinal": 1,
+      "selected": true,
+      "descriptorPhysical": 774448,
+      "descriptorSHA256": "ac9231eccab79647736c5e7106e1897efe82adda80c8361efca9a6c5dc040edb",
+      "offset": 170300,
+      "endExclusive": 171876,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "b931a1e69e49522e3ec2d445416109600e98ccfd256b1b69b5f1d3cececb289e",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "f259c577f0983a2d448f00ee4ad3c45a401d4a39e0bf878efdf17ce9d01cba38",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 31,
+        "literal": 62
+      }
+    },
+    {
+      "ordinal": 2,
+      "selected": true,
+      "descriptorPhysical": 774464,
+      "descriptorSHA256": "d5257137ce1d70774905dfd68ba07b3d2edcc01a691f3175316fc4ba9a346950",
+      "offset": 171876,
+      "endExclusive": 173448,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "901dba877e7e0bf635f703a8bdef79fd0b048282270dbae39b3c119eb094cb93",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "ccaa9d2622504f5464b3c2deeb9b13db7ddbcc1b7fc5410449d74659ade29beb",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 22,
+        "literal": 55
+      }
+    },
+    {
+      "ordinal": 3,
+      "selected": true,
+      "descriptorPhysical": 774480,
+      "descriptorSHA256": "5952c728d0fdc14d287415c43d17ec233a5219c4449201f4b44652b10a0f15e5",
+      "offset": 173448,
+      "endExclusive": 175016,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "173986b6760c21ff0d8a1962353451e090aaf1e869f2c33280efdd9523c25150",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "229feb5db85bc5523a44a18c7b63e5328435c25045d49593ed1e9c78daef42fc",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 23,
+        "literal": 56
+      }
+    },
+    {
+      "ordinal": 4,
+      "selected": true,
+      "descriptorPhysical": 774496,
+      "descriptorSHA256": "00eb0713eecdef68cc1412497c17f90b92f20156d6f3a0397434cf715359144e",
+      "offset": 175016,
+      "endExclusive": 176592,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "7c7c5033d845a74593c6ffcdae1d484801427ac1e5c5826407240c501d961802",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "ed046eb998f0a2dda792ef2abb2883022066d94d4faf2cb2e4fe24a777463a20",
+      "colorIndexMin": 1,
+      "colorIndexMax": 96,
+      "commands": {
+        "skip": 0,
+        "rle": 26,
+        "literal": 59
+      }
+    },
+    {
+      "ordinal": 5,
+      "selected": true,
+      "descriptorPhysical": 774512,
+      "descriptorSHA256": "eda61cfd87caec7120ca6d74327d37d84134064019d3f33a5ebb89d7272d7b18",
+      "offset": 176592,
+      "endExclusive": 178172,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "521323c95c1f04907bcea0c7331903f0e5bf63c683d6678da7067c7de51008df",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "b49d253f2e53acdf8a4893594a18f4e9ab655bfde4e5b95e473455881c593ff1",
+      "colorIndexMin": 1,
+      "colorIndexMax": 93,
+      "commands": {
+        "skip": 0,
+        "rle": 31,
+        "literal": 62
+      }
+    },
+    {
+      "ordinal": 6,
+      "selected": true,
+      "descriptorPhysical": 774528,
+      "descriptorSHA256": "ff6a34d63740dcd52fb8e96e485f73b6b56a506f525901224f0a5b4d8e199db2",
+      "offset": 178172,
+      "endExclusive": 179720,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "a74b7d2b9d55ee4942b4a3fab2b95ad4fa34faa25995bb1541b3b160840894c3",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "4bc9441127adb91ac791f7cd0d0fcec97d4ddf3d5b7022aa6b085a00b30fce27",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 18,
+        "literal": 51
+      }
+    },
+    {
+      "ordinal": 7,
+      "selected": true,
+      "descriptorPhysical": 774544,
+      "descriptorSHA256": "c81fb00699338de7d4aa75fdb5f822ea5129cd272104f391eb867a1e35654dcf",
+      "offset": 179720,
+      "endExclusive": 181308,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "f328c79ab3b1147f7ac4bf371bc2a6a9b3a3f5b579c8dd71591130de570d49c2",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "3e2f3232ac52cbd96c251ba4e1dc6f9bc37e1f3d67b3f2272970f87d8270469a",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 38,
+        "literal": 70
+      }
+    },
+    {
+      "ordinal": 8,
+      "selected": true,
+      "descriptorPhysical": 774560,
+      "descriptorSHA256": "36f970111dad56bdd8ee0ca928ee45576f59f7eeedc712e1faf2b45f8f76e9b2",
+      "offset": 181308,
+      "endExclusive": 182952,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "08a7939e278d359b0720db3cd0e237e71d8cbe841eba0304149c025f3ccdb112",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "7fe1b68744288a682e6a0fc7230406cc71c014df64a3e733b5f4ac4966316c93",
+      "colorIndexMin": 1,
+      "colorIndexMax": 91,
+      "commands": {
+        "skip": 0,
+        "rle": 48,
+        "literal": 78
+      }
+    },
+    {
+      "ordinal": 9,
+      "selected": true,
+      "descriptorPhysical": 774576,
+      "descriptorSHA256": "ab92c1ec44b33a59d0b279703bd16cc3279ff29a6dc1b61a4bddc403e8fd8351",
+      "offset": 182952,
+      "endExclusive": 184604,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "967b5d59b26a88f1adda3b081c44b22a97f3687ed2b6aff796952e625cf0fdb5",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "0b1a6ad8de949a971fe38f6e2722becb827c9537f4b54fd3a14349fc54d2e1b1",
+      "colorIndexMin": 1,
+      "colorIndexMax": 95,
+      "commands": {
+        "skip": 0,
+        "rle": 50,
+        "literal": 83
+      }
+    },
+    {
+      "ordinal": 10,
+      "selected": true,
+      "descriptorPhysical": 774592,
+      "descriptorSHA256": "3cb4e47a8712bc73378dda74a74bf09fb3d5b8ae10bb7a5b76910c4c29440e43",
+      "offset": 184604,
+      "endExclusive": 186248,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "568019caea2df47dccada37e9241f69ea64541e4c60f406ff47d2b3ac1cf8fcd",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "2abc37e6fd28d92871b77ebc833b8b11c85f95f9af3e23978e0fba07e5146035",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 44,
+        "literal": 77
+      }
+    },
+    {
+      "ordinal": 11,
+      "selected": true,
+      "descriptorPhysical": 774608,
+      "descriptorSHA256": "fb1bfb7feab08ab61dcaac779b53ba31ce7c25adfc51ddd1ff32d694280bcb6c",
+      "offset": 186248,
+      "endExclusive": 187796,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "ac2c078e2ba50ad2e3a9a62756b776592c52dba62f4faa558762a4f04e46817b",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "80b1011a6896aaf6931f8e9864cd1349dc424d976a718c320e724a14d9745517",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 17,
+        "literal": 50
+      }
+    },
+    {
+      "ordinal": 12,
+      "selected": true,
+      "descriptorPhysical": 774624,
+      "descriptorSHA256": "ced5530d5de28258ba1188bc661777e103e82b825a04c9c693d707b44ba98bbc",
+      "offset": 187796,
+      "endExclusive": 189340,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "46b4e3b937567bd2879f32633408cebb185804e81856d3bfeacfbade8f5326e8",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "78ed1ef405d1d7c9a96e15065c026ce4f5a47a629672a087c47347b252e30b6a",
+      "colorIndexMin": 1,
+      "colorIndexMax": 89,
+      "commands": {
+        "skip": 0,
+        "rle": 32,
+        "literal": 64
+      }
+    },
+    {
+      "ordinal": 13,
+      "selected": true,
+      "descriptorPhysical": 774640,
+      "descriptorSHA256": "b1d9af1d6799d5fb778e1aa9525e8ecc92b5b7d2b41c58fabb26a3f1362ca909",
+      "offset": 189340,
+      "endExclusive": 190920,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "c446bd9db0d343eccced47ed08b4b4d88b0cda022906bc0261d4fa3e82a1e290",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "1f2e98b0a4a70024a55b21adc257bd67d7bc2480292ba5dc078084e0848ba33e",
+      "colorIndexMin": 29,
+      "colorIndexMax": 88,
+      "commands": {
+        "skip": 0,
+        "rle": 41,
+        "literal": 74
+      }
+    },
+    {
+      "ordinal": 14,
+      "selected": false,
+      "descriptorPhysical": 774656,
+      "descriptorSHA256": "f9b34af038bee897d2ee0ff5bdd19e6756cbba0d6ce774d284e62fc1194bba2f",
+      "offset": 190920,
+      "endExclusive": 191748,
+      "width": 35,
+      "height": 41,
+      "pixelSHA256": "1852be29d480c71d59afa1ee5135adb08dba131e94934cd1109918c7476418e2",
+      "maskSHA256": "aa6a8ca9c941121aca7cac0d12a2b16a2503767ef6dc0ab5e45976fda9874373",
+      "diagnosticRgbaSHA256": "99be0d90cf83780cc9e9d4a6a75a61c1da5ac22c278a04cac9366a6af7a0b009",
+      "colorIndexMin": 1,
+      "colorIndexMax": 77,
+      "commands": {
+        "skip": 0,
+        "rle": 46,
+        "literal": 79
+      }
+    }
+  ],
+  "conditionalVariants": [
+    [
+      11,
+      7,
+      4,
+      0,
+      3,
+      9,
+      2,
+      10,
+      5,
+      8,
+      1,
+      14,
+      6,
+      12
+    ],
+    [
+      8,
+      2,
+      0,
+      1,
+      9,
+      3,
+      11,
+      4,
+      5,
+      10,
+      7,
+      14,
+      6,
+      12
+    ],
+    [
+      3,
+      9,
+      11,
+      7,
+      4,
+      1,
+      8,
+      5,
+      2,
+      0,
+      10,
+      14,
+      6,
+      12
+    ],
+    [
+      3,
+      9,
+      11,
+      7,
+      4,
+      1,
+      8,
+      5,
+      2,
+      0,
+      10,
+      14,
+      6,
+      12
+    ],
+    [
+      10,
+      5,
+      3,
+      11,
+      2,
+      4,
+      1,
+      9,
+      8,
+      7,
+      0,
+      14,
+      6,
+      12
+    ],
+    [
+      7,
+      4,
+      0,
+      11,
+      1,
+      3,
+      8,
+      5,
+      9,
+      2,
+      10,
+      14,
+      6,
+      12
+    ]
+  ],
+  "limits": {
+    "runtimePaletteVerified": false,
+    "scenePlacementVerified": false,
+    "timingVerified": false,
+    "namedArenaVerified": false,
+    "adjacentFifteenthSelected": false,
+    "sourcePrefixComplete": false
+  }
+}
