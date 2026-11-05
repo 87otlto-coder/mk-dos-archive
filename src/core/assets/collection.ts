@@ -16,6 +16,7 @@ import { buildMK2PitUpperLayersP9, MK2_P9_PIT_UPPER_LIMITATION } from './mk2PitU
 import { buildMK2PitBridgeActorsP10, MK2_P10_PIT_BRIDGE_LIMITATION } from './mk2PitBridgeActorsP10';
 import { buildMK2IntroLzwP12, MK2_P12_INTRO_LIMITATION } from './mk2IntroLzwP12';
 import { buildMK2MountainSourceP13, MK2_P13_MOUNTAIN_LIMITATION } from './mk2MountainSourceP13';
+import { buildMK2NativeViewportFloorsP14, MK2_P14_VIEWPORT_LIMITATION } from './mk2NativeFloorViewportsP14';
 
 export async function scanAssets(source:DirectorySource,game:Game,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
   if(game==='mk3')return scanMK3(source,progress,signal);
@@ -120,6 +121,10 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   const p13Mountain=await buildMK2MountainSourceP13(source);
   assets.push(...p13Mountain.assets);
   packages.push(...p13Mountain.packages);
+  progress('MK2 seven original native 320-column stage floor viewport projections (P14)');
+  const p14NativeViewports=await buildMK2NativeViewportFloorsP14(source);
+  assets.push(...p14NativeViewports.assets);
+  packages.push(...p14NativeViewports.packages);
   const music=[];
   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
     const bytes=await source.readSlice(e.path,0,e.size);
@@ -135,8 +140,9 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
     p9PitUpper:p9PitUpper.status,
     p10PitBridgeActors:p10Bridge.status,
     p12IntroLzw:p12Intro.status,
-    p13MountainSource:p13Mountain.status},
-    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+    p13MountainSource:p13Mountain.status,
+    p14NativeViewports:p14NativeViewports.status},
+    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),

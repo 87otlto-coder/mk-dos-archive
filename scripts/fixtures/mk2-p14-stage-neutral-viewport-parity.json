@@ -1,0 +1,176 @@
+{
+  "sourceResearch": "O110C",
+  "referenceFormat": "mk2_o110c_packed_floor_normalized_viewports_v1",
+  "originalExeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "neutralProjection": {
+    "x": 288,
+    "paletteBankStart": 1,
+    "nativeSourceStride": 896,
+    "destinationWidth": 320,
+    "adder": "DWORD ADD: original source word + 0x00000000",
+    "identity": "normalized source control input, NOT observed live camera or palette allocation"
+  },
+  "resources": [
+    {
+      "label": "tomb",
+      "filename": "tomb.gra",
+      "sha256": "be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613",
+      "resourceId": 28,
+      "tableSlot": 0,
+      "offset": 63776,
+      "rows": 48,
+      "sourcePlaneSha256": "c8b68c1b14f8c031ec55882438aff366ddcc2a254a01744febf04d19b3fc37a7",
+      "indexSha256": "9c0e093d534602d354a1837b2173b60f5aaefa7fda15b6d84322e104a68283ec",
+      "range": [
+        2,
+        51
+      ],
+      "resourceSHA256": "be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613",
+      "sourceOffset": 63776,
+      "nativeRows": 48,
+      "indicesSHA256": "9c0e093d534602d354a1837b2173b60f5aaefa7fda15b6d84322e104a68283ec",
+      "indicesMinMax": [
+        2,
+        51
+      ]
+    },
+    {
+      "label": "battle",
+      "filename": "battle.gra",
+      "sha256": "ebc7cb5170ec8927f87b726a0d4e7f99a1dce1de615d4fd493fd38680be0be63",
+      "resourceId": 34,
+      "tableSlot": 1,
+      "offset": 59436,
+      "rows": 40,
+      "sourcePlaneSha256": "4ba70a5724b78e35d583a8b18b86d743c8eaa94e4dc07e124c87473260e343e6",
+      "indexSha256": "068f9aaf252ed0e8598be67c3d21c4b99f52df1d32ff21fead47647a073d8bdf",
+      "range": [
+        2,
+        74
+      ],
+      "resourceSHA256": "ebc7cb5170ec8927f87b726a0d4e7f99a1dce1de615d4fd493fd38680be0be63",
+      "sourceOffset": 59436,
+      "nativeRows": 40,
+      "indicesSHA256": "068f9aaf252ed0e8598be67c3d21c4b99f52df1d32ff21fead47647a073d8bdf",
+      "indicesMinMax": [
+        2,
+        74
+      ]
+    },
+    {
+      "label": "tower",
+      "filename": "tower.gra",
+      "sha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "resourceId": 30,
+      "tableSlot": 2,
+      "offset": 56268,
+      "rows": 64,
+      "sourcePlaneSha256": "39433e089201493902762ddefc891a7fc62653ea3c1a06f8a85c7c509bd2193a",
+      "indexSha256": "6bc3334fcaa23831ee94e8a27e35c40046795726f4710ceffd7051bc8b45db07",
+      "range": [
+        2,
+        79
+      ],
+      "resourceSHA256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "sourceOffset": 56268,
+      "nativeRows": 64,
+      "indicesSHA256": "6bc3334fcaa23831ee94e8a27e35c40046795726f4710ceffd7051bc8b45db07",
+      "indicesMinMax": [
+        2,
+        79
+      ]
+    },
+    {
+      "label": "forest",
+      "filename": "forest.gra",
+      "sha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+      "resourceId": 27,
+      "tableSlot": 3,
+      "offset": 198116,
+      "rows": 32,
+      "sourcePlaneSha256": "04b8d6b67c89d83aa2514edd0107690e0812f399da2f32f2e60367c3fad5b688",
+      "indexSha256": "c9c63bcf466c4e13def0863eab2a03ed74a32f0385a50f1cfa0a569f323c771e",
+      "range": [
+        3,
+        76
+      ],
+      "resourceSHA256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+      "sourceOffset": 198116,
+      "nativeRows": 32,
+      "indicesSHA256": "c9c63bcf466c4e13def0863eab2a03ed74a32f0385a50f1cfa0a569f323c771e",
+      "indicesMinMax": [
+        3,
+        76
+      ]
+    },
+    {
+      "label": "armory",
+      "filename": "armory.gra",
+      "sha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "resourceId": 26,
+      "tableSlot": 4,
+      "offset": 126336,
+      "rows": 56,
+      "sourcePlaneSha256": "7f8c956a82b7f7b062b05a1f37b90f604a7e7a1c284c6209ba81bd03f7125226",
+      "indexSha256": "290cc586432cba230da09d72ef3ed471b1abaedd5fd0f5c76ac2236fafb098c0",
+      "range": [
+        1,
+        64
+      ],
+      "resourceSHA256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "sourceOffset": 126336,
+      "nativeRows": 56,
+      "indicesSHA256": "290cc586432cba230da09d72ef3ed471b1abaedd5fd0f5c76ac2236fafb098c0",
+      "indicesMinMax": [
+        1,
+        64
+      ]
+    },
+    {
+      "label": "portal",
+      "filename": "portal.gra",
+      "sha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+      "resourceId": 25,
+      "tableSlot": 6,
+      "offset": 56916,
+      "rows": 40,
+      "sourcePlaneSha256": "eb99434188317a0adac30f378c2362b857efcba7690180bd60dc80b9432158ff",
+      "indexSha256": "3f8488e9ba1a6857727da8d24ea04fc5005fde2f62519531e8478c87cad3a878",
+      "range": [
+        3,
+        80
+      ],
+      "resourceSHA256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+      "sourceOffset": 56916,
+      "nativeRows": 40,
+      "indicesSHA256": "3f8488e9ba1a6857727da8d24ea04fc5005fde2f62519531e8478c87cad3a878",
+      "indicesMinMax": [
+        3,
+        80
+      ]
+    },
+    {
+      "label": "arena",
+      "filename": "arena.gra",
+      "sha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "resourceId": 31,
+      "tableSlot": 7,
+      "offset": 90488,
+      "rows": 40,
+      "sourcePlaneSha256": "c0a80a4ae3adec186475fd04dbd597b2f4d79f37a43a6e30cfe359a5da442ac5",
+      "indexSha256": "0bb15c19f63420716f2fc4b36eb6d8112930dcca0d53a10657fe8e4a6e6b9334",
+      "range": [
+        6,
+        75
+      ],
+      "resourceSHA256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "sourceOffset": 90488,
+      "nativeRows": 40,
+      "indicesSHA256": "0bb15c19f63420716f2fc4b36eb6d8112930dcca0d53a10657fe8e4a6e6b9334",
+      "indicesMinMax": [
+        6,
+        75
+      ]
+    }
+  ]
+}

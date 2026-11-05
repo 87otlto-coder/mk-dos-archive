@@ -4,6 +4,18 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P14 MK2 native packed-floor viewport projections — interim `develop` pass, 2026-11-05
+
+**P11 is still the stable `main` source checkpoint.** P12–P14 are recoverable interim source changes on `develop`; preserve all original research code and prior decoder paths.
+
+- **Original MK2 assets: 5,106 unique** (P11 5,053 + P12 intro 31 + P13 Mountain 15 + **P14 seven native packed-stage floor viewport projections**). Every earlier registered source family remained discoverable.
+- **Original-file O110C projection VERIFIED:** the seven native 896-column packed resource suffixes (`TOMB`, `BATTLE`, `TOWER`, `FOREST`, `ARMORY`, `PORTAL`, `ARENA.GRA`) each yield one original-source-backed **320 × source-row-count** viewport using exact neutral input x=288 and hypothetical palette-bank base 1. This is **NOT** a full 320×200 scene nor a verified live gameplay camera/palette.
+- **Independent test evidence PASS:** original O110C producer and independent native DWORD/row verifier; **409,790 new focused pixel/metadata/ZIP/negative checks**, **102,400 PNG pixels independently redecoded** against exported indices and masks, **66 P14 cumulative checks**. The P8/P9/P10 forensic archive SHA-256 hashes stayed byte-identical to their source references.
+- **Palette scope UNKNOWN:** grayscale is diagnostic numeric index values. Runtime RGB selection, palette ownership, camera placement, parallax and stage composition remain unqualified; source index/opacity/colour-known masks and provenance are retained in exports.
+- The focused, reproducible handoff is [P14 MK2 packed-floor native viewport integration](docs/EXTRACTOR_P14_MK2_PACKED_FLOOR_NATIVE_VIEWPORTS.md). **Browser UI and CI are separate gates from source fixture verification.**
+
+**Next:** P15 MK2-first, prioritize source-verified palette/placement joins or another reusable extractor improvement; avoid speculative scene assembly. Do not create a full source archive at every interim pass.
+
 ## P13 MK2 MOUNTAIN.GRA original indexed graphics — interim `develop` pass, 2026-11-05
 
 **P11 remains the stable `main` checkpoint.** P12 and P13 are focused, recoverable interim changes on `develop`.
@@ -85,7 +97,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P10** |
 | P10 cumulative MK2 headless scanner | **5,053 unique assets** |
-| Next planned pass | **MK2-first P14: verified palette/placement or additional source-qualified graphics** |
+| Next planned pass | **MK2-first P15: verified stage palette/placement or further source-qualified extraction** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
 
