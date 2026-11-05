@@ -4,6 +4,17 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P12 MK2 intro LZW integration — interim `develop` pass, 2026-11-05
+
+**P11 remains the stable checkpoint on `main`.** New P12 source was committed to `develop` at [`576d2d2`](https://github.com/87otlto-coder/mk-dos-archive/commit/576d2d28fea53ee5463bb5fd46b907d4f7b361b8). The previous P11 workbench and P7–P10 registrations are retained.
+
+- **Original MK2 assets:** **5,084 unique** (P11 5,053 + **31 newly exposed original intro LZW frames**: 30 `PROBE.GRA`, one `ACCLAIM.GRA`). These are 320×200 indexed images, **not gameplay stage backgrounds**.
+- **Independent original-binary evidence:** O110B and O110E independently qualified LZW source pixels and source DAC6 palette equations. New P12 targeted verifier passed **524 checks**, including exact independent index/conditional-colour/mask hashes, selected ZIP index/known-mask preservation and altered/missing/ambiguous negative fixtures.
+- **P12 cumulative scanner:** **47 checks passed** against the canonical original MK2 fixture, all P7–P10 stage asset counts preserved, and historical P8/P9/P10 generated package SHA-256 values unchanged.
+- **Interpretation boundary:** a diagnostic source-DAC6 colour preview does **not** establish runtime palette bank, actual index-zero colour, event timing, sprite placement or full stage composition. The exporter preserves original pixel indices plus explicit palette-known masks.
+- The focused research and test record is [EXTRACTOR_P12_MK2_PROBE_ACCLAIM_LZW_INTEGRATION.md](docs/EXTRACTOR_P12_MK2_PROBE_ACCLAIM_LZW_INTEGRATION.md). **Production build/browser verification of P12 is separate from the completed original-fixture tests.**
+- This is an **interim pass**, not a full source-package release and not a reason to move away from MK2.
+
 ## Current source checkpoint — P11 (2026-11-05)
 
 **P11 is the stable source checkpoint on `main`**, promoted after GitHub CI, full MK2 cumulative regression and local user acceptance of all three game's asset previews and exports. Development continues on `develop` after this checkpoint; preserve the earlier P6 commit in Git history. See [P11 promotion / acceptance record](docs/P11_PROMOTION_2026-11-05.md).
@@ -61,7 +72,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P10** |
 | P10 cumulative MK2 headless scanner | **5,053 unique assets** |
-| Next planned pass | **Post-P11 extractor completeness and targeted optional QA (Issue #5)** |
+| Next planned pass | **MK2-first P12→P15 extraction progress; P12 intro LZW done on develop** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
 
