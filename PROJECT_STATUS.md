@@ -4,11 +4,22 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
-## Current P11 release gate — 2026-11-05
+## Current source checkpoint — P11 (2026-11-05)
 
-The user verified MK1, MK2 and MK3 sprite previews and Pit II resource navigation. From a fresh checkout of `develop` at `240de32`, the canonical MK1 scan produced 24 normalized module previews, 24 ordinary rasters and one shared moon layer. The modified MK1 fixture used the read-only fallback. MK3 returned zero stage-classified assets. The original MK2 cumulative scan passed 40 checks with 5,053 unique assets.
+**P11 is the stable source checkpoint on `main`**, promoted after GitHub CI, full MK2 cumulative regression and local user acceptance of all three game's asset previews and exports. Development continues on `develop` after this checkpoint; preserve the earlier P6 commit in Git history. See [P11 promotion / acceptance record](docs/P11_PROMOTION_2026-11-05.md).
 
-In local Chrome the new batch action above the grid downloaded all 24 MK1 module previews. ZIP integrity, PNG dimensions and manifest order passed independent inspection. MK1 Stage Gallery links to normalized module previews independently of the header-resource cards. See the [source pass and release handoff](docs/P11_MK1_STAGE_AND_BATCH_EXPORT_2026-11-05.md) for fixture identities, coverage and remaining browser gates. P11 stays on `develop`.
+- **Production / source:** GitHub Actions latest candidate `350b44a` passed locked `npm ci`, syntax, Vite build, TypeScript and Chrome startup.
+- **MK2:** Original-fixture **5,053 unique assets / 40 checks**; independent P8–P10 pixel/package parity retained.
+- **MK1:** Canonical fixture 24 normalized and 24 ordinary module backgrounds plus one moon PNG; a source-pass Chrome ZIP of 24 320×200 normalized modules was independently validated. `*HDRS.GRA` stage tiles are source candidates, **not full scene reconstructions**.
+- **MK3:** Original-fixture 9,186 assets, including 416 images; none are yet established as stages.
+- **User acceptance:** MK1/MK2/MK3 previews, Pit II Gallery navigation, requested Asset Library interaction and exports were confirmed in Windows. Exports are **USER-VERIFIED**, not every game/format permutation independently checksum-verified.
+- **Known limitations:** Stage associations, full compositions and runtime palette/timing qualifications remain separate from P11 correctness. Additional optional browser/regression checks are in [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
+
+P11 source promotion is **not** a complete extractor product release; no original game binaries or extracted artwork are in GitHub.
+
+## Historical P11 source-import record — 2026-11-04
+
+The statements below describe the earlier November 4 release gate; the November 5 source checkpoint above supersedes their pending-build status.
 
 ## P11 local consolidation verified — GitHub source import confirmed (2026-11-04)
 
@@ -44,14 +55,14 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P6 committed on `main`; P11 consolidation candidate committed on `develop`** (2026-11-04) |
+| Last *full source* checkpoint | **P11 source checkpoint committed to `main`** (2026-11-05; earlier P6 preserved in Git history) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P10** |
 | P10 cumulative MK2 headless scanner | **5,053 unique assets** |
-| Next planned pass | **Real-game browser QA on local MK2/MK1/MK3; P11 promotion gate** |
-| Browser / full React + Vite verification | **Build and onboarding passed; see current release gate above for fixture and browser results** |
+| Next planned pass | **Post-P11 extractor completeness and targeted optional QA (Issue #5)** |
+| Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
 
 The original P6 ZIP and unfiltered P11 archive remain in the project conversation. GitHub contains the **audited, Git-safe application and research source**, not commercial game installations or all raw forensic evidence. Verify fresh-clone source and runtime behavior before the final P11 promotion.
@@ -68,16 +79,15 @@ The original P6 ZIP and unfiltered P11 archive remain in the project conversatio
 
 Keep confidence boundaries: source-local layers are **not** completed full stages; palette candidates are not runtime-confirmed DAC selection; source frame order and loop-backs do not imply known milliseconds or world placement.
 
-**P10 tested:** 225 integration checks, 61 independent parity checks, original O221 mutation controls; exported 14 original frame records. Previous headless MK2 asset groups remained available. P7–P10 changes are consolidated in the local P11 full archive and the **GitHub `develop` source tree**, with all four interim patch files preserved. Independent browser/UI verification remains pending.
+**P10 tested:** 225 integration checks, 61 independent parity checks, original O221 mutation controls; exported 14 original frame records. Previous headless MK2 asset groups remained available. P7–P10 changes are consolidated in the local P11 full archive and the **GitHub P11 source checkpoint**, with all four interim patch files preserved. Core Windows browser preview/export validation has since passed; detailed remaining QA is in Issue #5.
 
 ## Near-term next steps
 
-1. Use the November 4 source comparison and November 5 fixture handoff as the baseline for release testing.
-2. Complete the remaining interactive preview, inspector and download checks in Issue #4.
-3. Record the tested game, source mode and exported payload for each gate.
-4. Keep P11 on `develop` until release gates pass. At that point merge or fast-forward appropriately into `main`, document checkpoint hashes, and close relevant issues.
-5. Review, but do not automatically prioritize, the deferred interface requests in [docs/UI_BACKLOG.md](docs/UI_BACKLOG.md).
-6. Continue extractor-relevant research for MK1/MK2/MK3 after release validation, testing cross-stage mechanisms before generalization and avoiding gameplay reverse engineering.
+1. Continue from the **P11 GitHub `main` checkpoint**, branching focused interim changes through `develop`. Always inspect committed source and the latest handoff before altering extraction code.
+2. Prioritize extraction accuracy and completeness: verified MK1 normalized background access, MK3 stage-image provenance, palette/index preservation, and sound/music export usability.
+3. Address only useful targeted UI and regression follow-ups in [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5). User-confirmed export testing is not an open request.
+4. Preserve original DOS binary fixtures offline; keep copyrighted assets out of GitHub and avoid speculative full-scene/timing/palette claims.
+5. Return to the five-pass development cycle. Consolidate, independently regress and checkpoint after another meaningful series of extractor improvements; do not package full source every pass.
 
 ## Scope discipline
 
@@ -88,8 +98,8 @@ A verified source relationship is not automatically verified runtime timing, own
 ## Release conventions
 
 - P6 = source checkpoint, **headless verified**.
-- P7–P10 = headless-verified changes incorporated in the **P11 consolidated source on `develop`**.
-- P11 = source imported and local headless-verified, **not promoted to `main` pending fresh-clone/browser gates**.
+- P7–P10 = headless-verified changes incorporated in the **P11 consolidated source on `main`**.
+- P11 = consolidated, GitHub CI qualified, source-fixture regressed and core-user-browser-verified **source checkpoint on `main`** (2026-11-05); not a claim of full stage reconstruction.
 - Never describe code that is not actually committed to GitHub as “uploaded” or “tracked in GitHub.”
 
 Update this file whenever the authoritative baseline or release status changes.
