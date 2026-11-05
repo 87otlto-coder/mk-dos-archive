@@ -4,6 +4,17 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P15 MK2 screenshot-witnessed packed floors — interim `develop` pass, 2026-11-05
+
+**MK2 remains the development priority.** The P11 source checkpoint is preserved on `main`; P12–P15 are interim, recoverable changes on `develop`.
+
+- **Canonical original MK2: 5,108 unique assets** (P11 5,053 + P12 intro 31 + P13 Mountain 15 + P14 native floor projections 7 + **P15 two screenshot-witnessed RGB floor previews**).
+- **VERIFIED:** Original TOMB.GRA 320×48 floor at conditional source-left 291 and PORTAL.GRA 320×40 floor at conditional source-left 292, original index planes and bounded O115 screenshot colour mappings. O117 Tomb unmodified screenshot **12,222/12,222** disjoint holdout matches; O115B/O116 Portal original screenshot **4,420/4,420** qualified matches. These are **floor-only**, not full scenes.
+- **Original fixture testing PASS:** independently pinned O115 witness JSON report hashes, original resource hashes and Python reference produce **28,160 exact source pixels**; P15 adapter/ZIP **28,244 focused checks**, **83 cumulative checks** with 5,108 unique assets; original P8/P9/P10 evidence ZIP SHA256 identities are unchanged. Private PNG ZIP readback verified every one of the 28,160 source/witnessed-RGB pixels and CRCs.
+- **Important distinction:** observed screenshot RGB is *not* verified live DAC-bank ownership; the source-index and opacity masks are retained, while the **native palette-known masks remain zero**. No runtime camera, layer placement, animation timing or complete stage is inferred.
+- **Git-safe P15 source and tests:** [P15 original MK2 witnessed-floor handoff](docs/EXTRACTOR_P15_MK2_SCREENSHOT_WITNESSED_PACKED_FLOORS.md). Browser build/TypeScript/Chrome CI and user in-app interactions are separate from original-file parity.
+- **Development cadence:** P15 is the fourth interim pass; **P16 is the fifth-pass consolidation candidate**, not an automatic completed-product release. Preserve the research workbench and do not commit copyrighted game resources or screenshot-media captures.
+
 ## P14 MK2 native packed-floor viewport projections — interim `develop` pass, 2026-11-05
 
 **P11 is still the stable `main` source checkpoint.** P12–P14 are recoverable interim source changes on `develop`; preserve all original research code and prior decoder paths.
@@ -97,7 +108,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P10** |
 | P10 cumulative MK2 headless scanner | **5,053 unique assets** |
-| Next planned pass | **MK2-first P15: verified stage palette/placement or further source-qualified extraction** |
+| Next planned pass | **P16 fifth-pass consolidation, MK2 cumulative regression and source checkpoint gate** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
 

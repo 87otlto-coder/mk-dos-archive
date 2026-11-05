@@ -1,0 +1,63 @@
+{
+  "schema": "mk2_p15_original_floor_screenshot_witness_reference_v1",
+  "producer": "independent Python source-resource and O115 screenshot report parser (no TypeScript imports)",
+  "originalFilePixelsStored": false,
+  "screenshotPixelsStored": false,
+  "sourceResearch": [
+    "O115",
+    "O116",
+    "O117"
+  ],
+  "stages": [
+    {
+      "stage": "tomb",
+      "resource": "tomb.gra",
+      "resourceSHA256": "be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613",
+      "sourceOffset": 63776,
+      "rows": 48,
+      "left": 291,
+      "lo": 2,
+      "hi": 51,
+      "reportSHA256": "3015abb40e57ffbc449d110c855b0b6c25d0074e77742988ce352dfbc2f7ebdb",
+      "screenshotSHA256": "30e1b00ba361e40a791dffd3d10abdbc2cf77402cacee78f6d07676ae0b83791",
+      "heldoutExactPixels": 12222,
+      "stageWitness": "O117 independent held-out original Tomb screenshot",
+      "width": 320,
+      "height": 48,
+      "sourceStride": 896,
+      "pixelCount": 15360,
+      "observedIndexCount": 43,
+      "indicesSHA256": "4c4efa6ece27329f1193091fe8853148e45f8b7cc0b7964cf055ba7847a8b1f9",
+      "rgbaSHA256": "178f4081315010234f4f6471d60326e0ef1eaac9986ca42ceb399b30ce1e1965",
+      "paletteKnownMaskSHA256": "0299f757a85a1aad6cbe1ad2b0eda925d8df667cd04e646af8917f65cbf24537",
+      "sourcePaintMaskSHA256": "ed7ce35ab4cff17325eb70d2be55565644e3b10f483861a43a91deacf2b87b1e",
+      "sourceLeftExplanation": "Conditional screenshot-source alignment, not runtime camera",
+      "rgbMeaning": "O115 original DOSBox screenshot-observed conditional colour table; NOT native DAC bank"
+    },
+    {
+      "stage": "portal",
+      "resource": "portal.gra",
+      "resourceSHA256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+      "sourceOffset": 56916,
+      "rows": 40,
+      "left": 292,
+      "lo": 3,
+      "hi": 80,
+      "reportSHA256": "94419d55de3d62577a3fe04f260d6299cf1214116b1f8e4c5911171f2598dd5e",
+      "screenshotSHA256": "fbce84f4c85fc608241148bafed9baac76c78bc394736ebecce8926b6648f9ed",
+      "heldoutExactPixels": 4420,
+      "stageWitness": "O115/O116 independent original Portal control screenshot",
+      "width": 320,
+      "height": 40,
+      "sourceStride": 896,
+      "pixelCount": 12800,
+      "observedIndexCount": 26,
+      "indicesSHA256": "1677bcabb7c1a53f7ea3f847deca04359837e3a479dc20ac9d398a9191b5b8bc",
+      "rgbaSHA256": "7847decd98d78d2e23cd1dcf6550eb676c6cbe08e268fd2f16cf426e2e177200",
+      "paletteKnownMaskSHA256": "59ec91dcb7dc65b5f928091cb0e25c26729a0a4453ebe7d8244fc1ceae7d9712",
+      "sourcePaintMaskSHA256": "700225aade81ae4685a1934e62b40a065c61607ceccf93f80855c747e701c92d",
+      "sourceLeftExplanation": "Conditional screenshot-source alignment, not runtime camera",
+      "rgbMeaning": "O115 original DOSBox screenshot-observed conditional colour table; NOT native DAC bank"
+    }
+  ]
+}
