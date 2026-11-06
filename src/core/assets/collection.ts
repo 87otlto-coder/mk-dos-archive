@@ -24,6 +24,7 @@ import { buildMK2CaveSourceP22, MK2_P22_CAVE_LIMITATION } from './mk2CaveSourceP
 import { buildMK2ArmorySourceP23, MK2_P23_ARMORY_LIMITATION } from './mk2ArmorySourceP23';
 import { buildMK2BattleSourceP24, MK2_P24_BATTLE_LIMITATION } from './mk2BattleSourceP24';
 import { buildMK2ArenaSourceP25, MK2_P25_ARENA_LIMITATION } from './mk2ArenaSourceP25';
+import { buildMK2ForestSourceP30, MK2_P30_FOREST_LIMITATION } from './mk2ForestSourceP30';
 import { buildMK2TowerSourceP29, MK2_P29_TOWER_LIMITATION } from './mk2TowerSourceP29';
 import { buildMK2PortalSourceP28, MK2_P28_PORTAL_LIMITATION } from './mk2PortalSourceP28';
 import { buildMK2TombSourceP27, MK2_P27_TOMB_LIMITATION } from './mk2TombSourceP27';
@@ -182,6 +183,11 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   const p29Tower=await buildMK2TowerSourceP29(source);
   assets.push(...p29Tower.assets);
   packages.push(...p29Tower.packages);
+  signal?.throwIfAborted();
+  progress('MK2 FOREST.GRA full original components and P7 layer provenance (P30)');
+  const p30Forest=await buildMK2ForestSourceP30(source);
+  assets.push(...p30Forest.assets);
+  packages.push(...p30Forest.packages);
   const music=[];
   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
     const bytes=await source.readSlice(e.path,0,e.size);
@@ -206,8 +212,8 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
     p23ArmorySource:p23Armory.status,
     p24BattleSource:p24Battle.status,
     p25ArenaSource:p25Arena.status,
-    p27TombSource:p27Tomb.status,p28PortalSource:p28Portal.status,p29TowerSource:p29Tower.status},
-    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,MK2_P15_OBSERVED_FLOOR_LIMITATION,MK2_P17_IMAGES_SETUP_LIMITATION,MK2_P18_SOURCE_SEQUENCE_LIMITATION,MK2_P22_CAVE_LIMITATION,MK2_P23_ARMORY_LIMITATION,MK2_P24_BATTLE_LIMITATION,MK2_P25_ARENA_LIMITATION,MK2_P27_TOMB_LIMITATION,MK2_P28_PORTAL_LIMITATION,MK2_P29_TOWER_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+    p27TombSource:p27Tomb.status,p28PortalSource:p28Portal.status,p29TowerSource:p29Tower.status,p30ForestSource:p30Forest.status},
+    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,MK2_P15_OBSERVED_FLOOR_LIMITATION,MK2_P17_IMAGES_SETUP_LIMITATION,MK2_P18_SOURCE_SEQUENCE_LIMITATION,MK2_P22_CAVE_LIMITATION,MK2_P23_ARMORY_LIMITATION,MK2_P24_BATTLE_LIMITATION,MK2_P25_ARENA_LIMITATION,MK2_P27_TOMB_LIMITATION,MK2_P28_PORTAL_LIMITATION,MK2_P29_TOWER_LIMITATION,MK2_P30_FOREST_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),

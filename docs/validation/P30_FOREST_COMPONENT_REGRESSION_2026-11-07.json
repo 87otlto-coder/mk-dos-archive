@@ -1,0 +1,816 @@
+{
+  "schema": "mkdos_p30_forest_component_regression_v1",
+  "status": "PASS",
+  "baselineCommit": "8722a5d256640e9dd42f8925f9e85dfaab4fc157",
+  "newStandaloneRepresentations": 49,
+  "newlyDiscoveredSourceImages": 0,
+  "usedInExistingSetups": 43,
+  "unlinkedToExistingSetups": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "priorForestRepresentations": 14,
+  "beforeRegistryObservation": {
+    "schema": "mkdos_p30_p29_registry_observation_v1",
+    "classification": "OBSERVED_P29_COLLECTION_NOT_INDEPENDENT_SOURCE_GOLDEN",
+    "sourceCensus": 5255,
+    "forestRepresentations": [
+      {
+        "id": "mk2-floor:forest:indices-preview",
+        "dimensions": [
+          896,
+          32
+        ],
+        "sourceOffset": 198116,
+        "sourceLength": 28672,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "04b8d6b67c89d83aa2514edd0107690e0812f399da2f32f2e60367c3fad5b688",
+        "maskSha256": null,
+        "rgbaSha256": "d09344f7984b7c84ded0b07ce81621451aff9b33f1e6e05cbd2ffe1e8fae2fe2"
+      },
+      {
+        "id": "mk2-floor:forest:candidate-rgba",
+        "dimensions": [
+          896,
+          32
+        ],
+        "sourceOffset": 198116,
+        "sourceLength": 28672,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "04b8d6b67c89d83aa2514edd0107690e0812f399da2f32f2e60367c3fad5b688",
+        "maskSha256": null,
+        "rgbaSha256": "be2ba0f9df678e8c5a497c44c16c238e83c339b954f43468ca33bf825c5c98ff"
+      },
+      {
+        "id": "mk2-floor:forest:indices",
+        "dimensions": [
+          null,
+          null
+        ],
+        "sourceOffset": 198116,
+        "sourceLength": 28672,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": null,
+        "maskSha256": null,
+        "rgbaSha256": null
+      },
+      {
+        "id": "mk2-forest-setup:1:indices-preview",
+        "dimensions": [
+          968,
+          184
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "cdf63bff8460ae7ed67db974b00b3c73d97510340727bdb5563f65cb390ea6bc",
+        "maskSha256": "3199e4da9a2245f7c3b7e3cca20e9215f86418024835e21e9041737f97201a06",
+        "rgbaSha256": "e0245045dd3620b2add4e5191ddd6b14e79bdc0031bdd57740a774cbdd4a4794"
+      },
+      {
+        "id": "mk2-forest-setup:1:candidate-colors",
+        "dimensions": [
+          968,
+          184
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "cdf63bff8460ae7ed67db974b00b3c73d97510340727bdb5563f65cb390ea6bc",
+        "maskSha256": "3199e4da9a2245f7c3b7e3cca20e9215f86418024835e21e9041737f97201a06",
+        "rgbaSha256": "ac591d17bcfe137cfa5bacac61d4adb1bacc2e984a8b4fd6d41f31e80b06a3a8"
+      },
+      {
+        "id": "mk2-forest-setup:2:indices-preview",
+        "dimensions": [
+          728,
+          160
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "36a26b95055a2b088706807c67eab5c89f1f6a19716f9530ea8c6ffa4e3d0822",
+        "maskSha256": "8ae679c535f9fbe73b768e44484102c199257f17c4b806574e7644de82c40aa3",
+        "rgbaSha256": "e25ce3487a8af930aae19b582da84f0be07f539d590981c52aae1d9bd9230f4f"
+      },
+      {
+        "id": "mk2-forest-setup:2:candidate-colors",
+        "dimensions": [
+          728,
+          160
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "36a26b95055a2b088706807c67eab5c89f1f6a19716f9530ea8c6ffa4e3d0822",
+        "maskSha256": "8ae679c535f9fbe73b768e44484102c199257f17c4b806574e7644de82c40aa3",
+        "rgbaSha256": "6bde320a7997dbd457d8b63a482ef36985ce420a64d808bbd58765e453e9a70c"
+      },
+      {
+        "id": "mk2-forest-setup:3:indices-preview",
+        "dimensions": [
+          640,
+          112
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "a0f3f64be11fe3750ca965c6bf9ce92c8b37141be484c05a59b086cfbcdd034c",
+        "maskSha256": "c5e01cf6a7fd82d60c150076dd8d02f98c05ece3c9ca6cd656230c2f395b0f47",
+        "rgbaSha256": "d58332c05a5b7ceb89e9ae98c9078208bc1b0c662043c95b018382496c9ecf81"
+      },
+      {
+        "id": "mk2-forest-setup:3:candidate-colors",
+        "dimensions": [
+          640,
+          112
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "a0f3f64be11fe3750ca965c6bf9ce92c8b37141be484c05a59b086cfbcdd034c",
+        "maskSha256": "c5e01cf6a7fd82d60c150076dd8d02f98c05ece3c9ca6cd656230c2f395b0f47",
+        "rgbaSha256": "09a83361d51d14d0f7d9ba728b460bc424b1fe0c3664dd49dad2ed94568a325e"
+      },
+      {
+        "id": "mk2-forest-setup:4:indices-preview",
+        "dimensions": [
+          616,
+          96
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "b5b0bb2956a61164244de6f7111934b3ae62df81eef924f1a1079425b048ed85",
+        "maskSha256": "b1c86222767fce39c5a1db0961f1abab87efa49bb47ffd95ac7d6e363ef6438f",
+        "rgbaSha256": "5973c5bc2ae14d2fd0eb6bb9a26d484908dd8a8d4f8bbfebd7abe7da5f9c89e9"
+      },
+      {
+        "id": "mk2-forest-setup:4:candidate-colors",
+        "dimensions": [
+          616,
+          96
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "b5b0bb2956a61164244de6f7111934b3ae62df81eef924f1a1079425b048ed85",
+        "maskSha256": "b1c86222767fce39c5a1db0961f1abab87efa49bb47ffd95ac7d6e363ef6438f",
+        "rgbaSha256": "1f2095bf843c4f503257a9db749fdfc3150efe5c8bd51a4ab156b00da6c861b9"
+      },
+      {
+        "id": "mk2-forest-setup:5:indices-preview",
+        "dimensions": [
+          384,
+          56
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "24339f3719b7096e8532c039637aeefb5da997829f993cf4c4302c3e2b9ce6e3",
+        "maskSha256": "7caf33b5813f289e4b01cdcf58c18419d1f6ef1127b1419614a75821752a7559",
+        "rgbaSha256": "5c6e7d14bfe890fb786129df03649634062a5532b6184e78d10dfedb533ad628"
+      },
+      {
+        "id": "mk2-forest-setup:5:candidate-colors",
+        "dimensions": [
+          384,
+          56
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 198116,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "24339f3719b7096e8532c039637aeefb5da997829f993cf4c4302c3e2b9ce6e3",
+        "maskSha256": "7caf33b5813f289e4b01cdcf58c18419d1f6ef1127b1419614a75821752a7559",
+        "rgbaSha256": "5f23a0cbd344c8f04689164139357aad6908fc43b6c34936a9be6921ab5ead37"
+      },
+      {
+        "id": "mk2-viewport-floor:forest:x288-bank1",
+        "dimensions": [
+          320,
+          32
+        ],
+        "sourceOffset": 198116,
+        "sourceLength": 28672,
+        "sourceSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "indicesSha256": "c9c63bcf466c4e13def0863eab2a03ed74a32f0385a50f1cfa0a569f323c771e",
+        "maskSha256": "445d72bc039eaa0e37ab998887e830ab86f259df1053fe866eb84a14a46247a1",
+        "rgbaSha256": "cf9f9f9388800f3d1a81981dd95a4fd893cb4b4fa596497b17951ba7ea0adccc"
+      }
+    ],
+    "componentCoverage": [
+      {
+        "ordinal": 0,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 1,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 2,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 3,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 4,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 5,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 6,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 7,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 8,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 9,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 10,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 11,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 12,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 13,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 14,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 15,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 16,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 17,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 18,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 19,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 20,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 21,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 22,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 23,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 24,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 25,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 26,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 27,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 28,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 29,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 30,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 31,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 32,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 33,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 34,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 35,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 36,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 37,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 38,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 39,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 40,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 41,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 42,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 43,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 44,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 45,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 46,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 47,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 48,
+        "matchingStandaloneIds": []
+      }
+    ]
+  },
+  "independentOriginalSource": {
+    "pass": "P30",
+    "status": "PASS",
+    "checks": 1222897,
+    "originalForestImages": 49,
+    "existingSetupLayers": 5,
+    "originalSetupPlacements": 60,
+    "newlyDiscoveredSourceImages": 0,
+    "indexedPixels": 164382,
+    "sourceImagePrefixBytes": 164752,
+    "outsideImageFamilyBytes": 62036,
+    "exportPngAndSidecarParity": false,
+    "nativePaletteKnown": false,
+    "fullStageScene": false
+  },
+  "adapterAndMosaicReconstruction": {
+    "pass": "P30",
+    "status": "PASS",
+    "checks": 1094,
+    "originalForestImages": 49,
+    "indexedPixels": 164382,
+    "existingSetupLayers": 5,
+    "originalSetupPlacements": 60,
+    "reconstructedSetupCells": 446912,
+    "newlyDiscoveredSourceImages": 0,
+    "negativeFixtures": 8,
+    "evidenceZipSha256": "59b02f8bea8684bd4d1721db5ccb27bed914601c15fe82e8309717d4154a3e9c",
+    "sourceOutsideImageFamilyBytes": 62036,
+    "nativePaletteKnown": false,
+    "fullStageScene": false,
+    "browserInteractionVerified": false
+  },
+  "independentExport": {
+    "pass": "P30",
+    "status": "PASS",
+    "checks": 1881013,
+    "originalForestImages": 49,
+    "existingSetupLayers": 5,
+    "originalSetupPlacements": 60,
+    "newlyDiscoveredSourceImages": 0,
+    "indexedPixels": 164382,
+    "sourceImagePrefixBytes": 164752,
+    "outsideImageFamilyBytes": 62036,
+    "exportPngAndSidecarParity": true,
+    "nativePaletteKnown": false,
+    "fullStageScene": false
+  },
+  "negativeExports": {
+    "pass": "P30",
+    "status": "PASS",
+    "falsifiedExportsRejected": 5,
+    "zipAndPngCrcRecomputed": true,
+    "cleanExportReverified": true
+  },
+  "standardMK2Runner": {
+    "schema": "mkdos_checkpoint_regression_v2",
+    "through": "p30",
+    "status": "PASS",
+    "startedAt": "2026-11-06T22:41:21.979Z",
+    "suites": [
+      {
+        "name": "MK2 input identity",
+        "pass": "P16",
+        "status": "PASS",
+        "classification": "ORIGINAL_INPUT_IDENTITY_ONLY",
+        "checks": 642,
+        "fileCount": 614,
+        "sourceFileHashesVerified": 13,
+        "archiveSha256": null,
+        "extensionCensus": {
+          "(none)": 1,
+          "awe": 33,
+          "bat": 1,
+          "bin": 6,
+          "drv": 1,
+          "exe": 2,
+          "gra": 124,
+          "gvs": 33,
+          "ini": 1,
+          "lap": 33,
+          "mid": 33,
+          "sbl": 33,
+          "txt": 1,
+          "u8": 312
+        },
+        "gameArtworkStoredInReport": false,
+        "p15FullCumulativeRerun": false,
+        "gameBrowserVerified": false
+      },
+      {
+        "name": "MK2 p30-cumulative",
+        "pass": "P30",
+        "status": "PASS",
+        "checks": 1940,
+        "assets": 5304,
+        "uniqueAssets": 5304,
+        "originalMK2FixtureOnly": true,
+        "fullCurrentSourceRegression": true,
+        "p22AddedImages": 49,
+        "p23AddedImages": 18,
+        "p24AddedImages": 20,
+        "p25AddedImages": 15,
+        "p27StandaloneComponentRepresentations": 16,
+        "p27NewlyDiscoveredSourceImages": 0,
+        "p28StandaloneComponentRepresentations": 13,
+        "p28NewlyDiscoveredSourceImages": 0,
+        "p29StandaloneComponentRepresentations": 6,
+        "p29NewlyDiscoveredSourceImages": 0,
+        "p30StandaloneComponentRepresentations": 49,
+        "p30NewlyDiscoveredSourceImages": 0,
+        "p24DescriptorWitnesses": 40,
+        "sourceOrderQueueFrames": 57,
+        "groups": {
+          "u8:": 312,
+          "mk2-stage-effect:": 43,
+          "mk2-stage-setup:": 8,
+          "mk2-floor:": 15,
+          "mk2-forest-setup:": 10,
+          "mk2-pit-fall-source:": 7,
+          "mk2-pit-upper-setup:": 6,
+          "mk2-pit-bridge:": 14,
+          "mk2-intro-lzw:": 31,
+          "mk2-mountain-source:": 15,
+          "mk2-viewport-floor:": 7,
+          "mk2-witnessed-floor:": 2,
+          "mk2-images-setup:": 2,
+          "mk2-source-animation-sheet:": 8,
+          "mk2-cave-source:": 49,
+          "mk2-armory-source:": 18,
+          "mk2-battle-source:": 20,
+          "mk2-arena-source:": 15,
+          "mk2-tomb-source:": 16,
+          "mk2-portal-source:": 13,
+          "mk2-tower-source:": 6,
+          "mk2-forest-source:": 49
+        },
+        "originalArchiveParity": {
+          "MK2_P8_PIT_II_SEVEN_ORIGINAL_LOWER_WALL_SOURCES.zip": "7832bae102ab952024f8fa2b48f86379d5a519f2302491757027b4568654bdd5",
+          "MK2_P9_PIT_II_SIX_ORIGINAL_UPPER_SETUP_LAYERS.zip": "25abe08f1471a46c9e205bed3693559499afd7b0893bd277c5c51130769f652d",
+          "MK2_P10_PIT_II_ORIGINAL_BRIDGE_ACTOR_FRAMES.zip": "6aedb63e4b974468c64a2a80afc4270be0815d716fa265cee21278b612ddf79c"
+        },
+        "selectedExportAssets": 8,
+        "browserUIVerified": false,
+        "fullSceneAssemblyVerified": false,
+        "nativeAnimationTimingVerified": false,
+        "copyrightGameFilesIncludedInRepository": false
+      },
+      {
+        "name": "MK2 p30-forest",
+        "pass": "P30",
+        "status": "PASS",
+        "checks": 1094,
+        "originalForestImages": 49,
+        "indexedPixels": 164382,
+        "existingSetupLayers": 5,
+        "originalSetupPlacements": 60,
+        "reconstructedSetupCells": 446912,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "59b02f8bea8684bd4d1721db5ccb27bed914601c15fe82e8309717d4154a3e9c",
+        "sourceOutsideImageFamilyBytes": 62036,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p29-tower",
+        "pass": "P29",
+        "status": "PASS",
+        "checks": 161,
+        "originalTowerImages": 6,
+        "indexedPixels": 43653,
+        "sourceSetupRecords": 2,
+        "originalSetupControls": 22,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "0f30349355a6db84a2220e653301a993921500ddf8083ef6db8a61e0856a132c",
+        "sourceOutsideImageFamilyBytes": 72836,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p28-portal",
+        "pass": "P28",
+        "status": "PASS",
+        "checks": 327,
+        "originalPortalImages": 13,
+        "indexedPixels": 60566,
+        "existingSetupLayers": 2,
+        "originalSetupPlacements": 28,
+        "reconstructedSetupCells": 211456,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "b159383cee493fcb0ce4fba8cd69a7ff1d554e267f5d729492bede12069a6e90",
+        "sourceOutsideImageFamilyBytes": 56844,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p27-tomb",
+        "pass": "P27",
+        "status": "PASS",
+        "checks": 466,
+        "originalTombImages": 16,
+        "indexedPixels": 64971,
+        "existingSetupLayers": 6,
+        "originalSetupPlacements": 87,
+        "reconstructedSetupCells": 523584,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "a408f7e4000e0bec4d2db717925ac9e4dfd31d05591a641eb02d30e7521faa90",
+        "sourceOutsideImageFamilyBytes": 52456,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p25-arena",
+        "pass": "P25",
+        "status": "PASS",
+        "checks": 284,
+        "originalArenaImages": 15,
+        "indexedPixels": 65736,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "1cad7584431335343cf95a0c6cabda74d88a2a50b6f3c76a669ba03ed3f60dc5",
+        "sourceOutsideImageFamilyBytes": 90156,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p24-battle",
+        "pass": "P24",
+        "status": "PASS",
+        "checks": 432,
+        "originalBattleImages": 20,
+        "indexedPixels": 85188,
+        "sourceDescriptorWitnesses": 40,
+        "duplicateWitnessesPreserved": 20,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "3faed3ece5808182446d64092184300da667719cc95948c3f8a2db1f2c06f5eb",
+        "sourceOutsideImageFamilyBytes": 35840,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p23-armory",
+        "pass": "P23",
+        "status": "PASS",
+        "checks": 335,
+        "originalArmoryImages": 18,
+        "indexedPixels": 156767,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "7e5870cdeebf6c17c36a50024592115a1e3172b4a299f379e234ace86ed410ac",
+        "sourceOutsideImageFamilyBytes": 59904,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p22-cave",
+        "pass": "P22",
+        "status": "PASS",
+        "checks": 862,
+        "originalCaveImages": 49,
+        "indexedPixels": 49765,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "e7c407cd1727b003387eb95c91a7e5a131c3eed0c5967fb1d7761ee3f81e9745",
+        "sourcePrefixUnqualifiedBytes": 120,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p12-intro",
+        "pass": "P12",
+        "status": "PASS",
+        "checks": 524,
+        "originalIntroFrames": 31,
+        "originalSourceIndicesAndConditionalDAC6Parity": "all 31 original frames",
+        "negativeCases": 7,
+        "selectedZipExport": [
+          "indices",
+          "mask",
+          "paletteKnownMask"
+        ],
+        "runtimeAnimationTimingKnown": false,
+        "livePaletteIndex0Known": false,
+        "commercialGameDataInGit": false
+      },
+      {
+        "name": "MK2 p13-mountain",
+        "pass": "P13",
+        "status": "PASS",
+        "checks": 358,
+        "newOriginalIndexedGraphics": 15,
+        "consumerSelected": 14,
+        "adjacentStructurallyQualifiedOnly": 1,
+        "originalSuffixBytes": 23024,
+        "sourceOrders": 6,
+        "diagnosticColorOnly": true,
+        "originalSourceIndicesPreserved": true,
+        "negativeFixtureCases": 5,
+        "commercialAssetsCommitted": false,
+        "packageSha256": "e7eabb5d6444d249b7b08a1197c7cc7767a8e70df668f661d5d0eff762d67c86"
+      },
+      {
+        "name": "MK2 p14-source-viewport",
+        "pass": "P14",
+        "status": "PASS",
+        "checks": 409790,
+        "newNativeViewportPreviews": 7,
+        "canonicalOriginalEXE": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+        "sourceResearch": "O110C",
+        "nativeProjection": "320 x source rows, source-x 288, hypothetical bank base 1",
+        "runtimeColorKnown": false,
+        "runtimeCameraKnown": false,
+        "completeStageScenes": false,
+        "evidencePackageSHA256": "e7b588f7f84807b3dab054e0b8ce99336570f29256056617b6c38bafad2b36ca",
+        "negativeFixtureVariants": 9,
+        "gameMediaCommitted": false
+      },
+      {
+        "name": "MK2 p15-observed-floors",
+        "pass": "P15",
+        "status": "PASS",
+        "checks": 28244,
+        "independentOriginalWitness": "O115 screenshot RGB tables, O117 Tomb control and O115B Portal control",
+        "assets": 2,
+        "sourcePixels": 28160,
+        "nativePaletteKnown": false,
+        "liveCameraKnown": false,
+        "completeStage": false,
+        "sourceArchiveSha256": "1ded7e25adc7043e908cf2268fc208321fed6afa8779526dda1e17739455454b",
+        "negativeFixtureVariants": 10
+      },
+      {
+        "name": "MK2 p17-unassigned-images",
+        "pass": "P17",
+        "status": "PASS",
+        "checks": 77,
+        "originalIndexedMosaics": 2,
+        "originalIndexPixels": 128000,
+        "independentO122SourceHashes": true,
+        "sourceBundleIntegrity": true,
+        "negativeFixtures": 8,
+        "nativePaletteOwnershipKnown": false,
+        "completeStageSceneVerified": false,
+        "cumulativeP16RegressionRerun": false,
+        "gameBrowserVerified": false
+      },
+      {
+        "name": "MK2 p18-ordered-sequences",
+        "pass": "P18",
+        "status": "PASS",
+        "checks": 379422,
+        "tracks": 8,
+        "orderedSourceFrames": 57,
+        "comparedIndexedPixels": 63112,
+        "screenshotRgbClaim": false,
+        "nativeFrameTimingKnown": false,
+        "worldPlacementKnown": false,
+        "currentFullP16P17P18SourceScanned": false,
+        "canonicalOriginalFixtureUsed": true
+      },
+      {
+        "name": "MK2 p19-source-order-queue",
+        "pass": "P19",
+        "status": "PASS",
+        "checks": 280,
+        "sourceTracks": 8,
+        "originalOrderedFrames": 57,
+        "originalFramePixelsReExported": 63112,
+        "presentationMillisecondsTested": 137,
+        "nativeFrameTimeKnown": false,
+        "originalPaletteOwnershipKnown": false,
+        "canonicalOriginalFixture": true,
+        "currentFullP16P17P18ScannerVerified": false
+      }
+    ],
+    "notRun": [
+      "mk1",
+      "mk3"
+    ],
+    "browserInteractionVerified": false,
+    "commercialAssetsIncluded": false,
+    "finishedAt": "2026-11-06T22:41:39.767Z"
+  },
+  "localChecks": {
+    "sourceSyntaxFiles": 374,
+    "syntaxErrors": 0,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "newCjsSyntax": "PASS",
+    "diffWhitespace": "PASS"
+  },
+  "resolvedTestHarnessIssues": [
+    "Copied cumulative variable name collision scoped locally",
+    "Lost-relationship mutation now targets a linked component; additional invented-unlinked-relationship control added"
+  ],
+  "unqualifiedByThisPassBeforeFloor": {
+    "start": 164752,
+    "endExclusive": 198116,
+    "bytes": 33364
+  },
+  "browserInteractionVerified": false,
+  "mk1mk3FreshlyRerun": false,
+  "mainPromoted": false,
+  "originalGameMediaCommitted": false
+}

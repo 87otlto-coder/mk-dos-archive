@@ -4,6 +4,16 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P30 standalone FOREST originals with P7 layer provenance - interim develop pass, 2026-11-07
+
+**Fresh MK2 census: 5,304 unique representations**, adding **49 standalone FOREST originals** from known O110A descriptors. **Zero newly discovered source images claimed.** Fourth interim after P26; main remains P16.
+
+- Before join: **14 prior FOREST records / zero exact standalone matches**. All fourteen retain geometry, provenance, indexed/opacity and RGBA hashes. **43 components** join existing P7 layers; **six (ordinals 0-5)** have no link to those setups.
+- Exact table prefix **[0,164752)** / **164,382 indexed pixels**. New components reproduce all **five canvases / 446,912 cells / 60 original placements** exactly. Native floor **[198116,226788)** is retained; **33,364 intervening bytes** receive no new qualification.
+- **1,094 focused / 1,881,013 independent export checks PASS**, eight rejected source fixtures and five rejected false exports/claims. Full MK2: **5,304 / 1,940 cumulative checks PASS; 17 suites PASS**.
+- Local **374-file syntax**, TypeScript and production build PASS. Original-data browser actions remain **VALIDATION PENDING**; live palette/timing/world composition **UNKNOWN**. P26 remains MK1/MK3 latest full fixture checkpoint.
+- [P30 handoff](docs/EXTRACTOR_P30_MK2_FOREST_STANDALONE_COMPONENTS.md), [evidence](docs/validation/P30_FOREST_COMPONENT_REGRESSION_2026-11-07.json). Next **P31 fifth-pass consolidation assessment**, with fresh three-game, all eight family independent verifiers/negative controls and full source audit. No main promotion.
+
 ## P29 standalone TOWER mixed-descriptor components - interim develop pass, 2026-11-07
 
 **Fresh MK2 census: 5,255 unique representations**, adding **six standalone TOWER originals** from four eight-byte and two twelve-byte descriptors. **Zero newly discovered source images claimed.** Third interim after P26; main remains P16.
@@ -271,9 +281,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P29**, after the P26 source checkpoint |
-| Latest full MK2 original-fixture cumulative result | **P29: 5,255 representations / 1,436 cumulative checks**, full prior suites and independent component/source parity |
-| Next planned pass | **P30 FOREST component coverage audit against existing P7 layers** |
+| Most recent interim pass | **P30**, after the P26 source checkpoint |
+| Latest full MK2 original-fixture cumulative result | **P30: 5,304 representations / 1,940 cumulative checks**, full prior suites and independent component/source parity |
+| Next planned pass | **P31 fifth-pass consolidation assessment and fresh three-game regression** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -295,9 +305,9 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P30 from committed P29 on develop; verify its handoff and preserve the P26 checkpoint and earlier research.
-2. Remain MK2-first: audit original FOREST descriptor components against existing P7 layers before adding standalone representations. Preserve existing-use provenance; do not label known composite components as newly discovered artwork.
-3. Use the standard current-source fixture runner for interim changes. P26's full runner deliberately pins this checkpoint and includes all three games, four independent original-file verifiers and falsification tests. Historical fixed-census scripts require matching source.
+1. Begin P31 from committed P30 on develop; verify all four interim handoffs and preserve P26 and earlier source checkpoints.
+2. Assess fifth-pass consolidation: fresh MK1/MK2/MK3 collection/export checks, independent verification of all eight P22-P30 MK2 families and false-export controls, and complete committed-source hash/media audit. Preserve used/unlinked provenance and report actual source coverage boundaries.
+3. Create a P31 current-census checkpoint runner if consolidation is justified. Keep P26 frozen to its original census and evidence; standard interim runner defaults to P30. Historical fixed-census scripts require matching source.
 4. Keep original-data browser action checks, native timing, live palette ownership and stage composition separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 5. Preserve all native data/provenance and the full workbench. Accumulate four recoverable interim passes, then assess the fifth-pass checkpoint. Main promotion remains separately authorized; source consolidation is not automatic product acceptance.
 
