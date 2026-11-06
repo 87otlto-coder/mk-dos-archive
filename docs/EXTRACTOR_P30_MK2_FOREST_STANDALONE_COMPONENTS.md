@@ -83,3 +83,9 @@ The interim runner defaults to P30. Historical fixed-census choices require matc
 
 P27-P30 now form four recoverable interim passes adding **84 standalone representations** (TOMB 16, PORTAL 13, TOWER 6, FOREST 49) beyond P26. Next **P31**: assess fifth-pass consolidation with fresh three-game regression, independent rechecks of all eight P22-P30 families and false-export controls, complete committed-source audit, and documented runtime/browser uncertainties. Introduce a current-census checkpoint runner rather than changing P26's historical evidence. Keep the workbench intact, originals/artwork private and main unchanged; source consolidation does not authorize promotion or imply product completeness.
 
+
+## Committed source and CI evidence
+
+Verified source candidate: `222f4b006fc83a5b9d49ebdd65dc986cdaa978ff`; tree `870f9815128ba0f1340beacbb0d8e8a608bbff5c`. All **15 selected local files** match committed Git blob hashes after normal checkout newline conversion. Recursive tree audit: **2,162 blobs / 378 src files**, no removed paths, no tracked original game media/archive extensions, and no node_modules/dist/cache paths. Runtime changes are limited to the new adapter and additive collection registration.
+
+GitHub [source-build run 42307063237](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42307063237) completed **SUCCESS** on this exact source candidate. Strict dependency installation, source syntax, tracked-file guard, production build, TypeScript and headless Chrome application boot **without game data** passed. This does not establish original-data browser actions, native palette/timing or complete scene composition. The following evidence commit changes documentation only.

@@ -12,6 +12,7 @@
 - Exact table prefix **[0,164752)** / **164,382 indexed pixels**. New components reproduce all **five canvases / 446,912 cells / 60 original placements** exactly. Native floor **[198116,226788)** is retained; **33,364 intervening bytes** receive no new qualification.
 - **1,094 focused / 1,881,013 independent export checks PASS**, eight rejected source fixtures and five rejected false exports/claims. Full MK2: **5,304 / 1,940 cumulative checks PASS; 17 suites PASS**.
 - Local **374-file syntax**, TypeScript and production build PASS. Original-data browser actions remain **VALIDATION PENDING**; live palette/timing/world composition **UNKNOWN**. P26 remains MK1/MK3 latest full fixture checkpoint.
+- Source commit `222f4b006fc83a5b9d49ebdd65dc986cdaa978ff` verified: all 15 changed blobs match; tree audit 2,162 blobs / 378 src, no removed/media/cache paths. [CI run 42307063237](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42307063237) **SUCCESS**, including source-only Chrome boot.
 - [P30 handoff](docs/EXTRACTOR_P30_MK2_FOREST_STANDALONE_COMPONENTS.md), [evidence](docs/validation/P30_FOREST_COMPONENT_REGRESSION_2026-11-07.json). Next **P31 fifth-pass consolidation assessment**, with fresh three-game, all eight family independent verifiers/negative controls and full source audit. No main promotion.
 
 ## P29 standalone TOWER mixed-descriptor components - interim develop pass, 2026-11-07
