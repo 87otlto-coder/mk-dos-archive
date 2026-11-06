@@ -6,6 +6,7 @@ import type {DirectorySource, SourceFileEntry} from '../filesystem/DirectorySour
 import type {Asset} from './model';
 import {hash} from './model';
 import {selectedZip} from './export';
+import {decodeMK2NativeIndexedRows} from './mk2NativeIndexedRows';
 
 const EXE_SHA='fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65';
 const GRA_SHA='11e7988cabae63c8ee618700da47de648ef3bb1d9f7f8a8b23332c0513c83cb7';
@@ -21,26 +22,6 @@ export interface P22CaveResult{assets:Asset[];packages:{name:string;bytes:Uint8A
 function need(value:unknown,reason:string):asserts value{if(!value)throw Error('P22 CAVE.GRA: '+reason);}
 function only(files:SourceFileEntry[],name:string){const matches=files.filter(f=>f.name.toLowerCase()===name);
  need(matches.length===1,`exactly one ${name} required`);return matches[0];}
-function decode(gra:Uint8Array,start:number,width:number,height:number){
- need(width>0&&width<=640&&height>0&&height<=480,'native geometry out of bounds');
- const view=new DataView(gra.buffer,gra.byteOffset,gra.byteLength),indices=new Uint8Array(width*height),mask=new Uint8Array(indices.length);
- let pos=start;
- for(let y=0;y<height;y++)for(let x=0;x<width;){
-  need(pos+4<=gra.length,'truncated command');const command=view.getUint32(pos,true);pos+=4;
-  let count:number;const cell=y*width+x;
-  if(command&1)count=command>>>1;
-  else if(command&2){count=command>>>10;need(count>0&&count<=width-x,'RLE crosses row');
-   indices.fill((command>>>2)&255,cell,cell+count);mask.fill(1,cell,cell+count);
-  }else{count=command>>>2;const padded=(count+3)&~3;
-   need(count>0&&count<=64&&count<=width-x&&pos+padded<=gra.length,'invalid literal');
-   indices.set(gra.subarray(pos,pos+count),cell);mask.fill(1,cell,cell+count);pos+=padded;
-  }
-  need(count>0&&count<=width-x,'command crosses row');x+=count;
- }
- const rgba=new Uint8Array(indices.length*4);
- for(let i=0;i<indices.length;i++){const v=indices[i],p=i*4;rgba[p]=v;rgba[p+1]=v;rgba[p+2]=v;rgba[p+3]=mask[i]*255;}
- return {end:pos,indices,mask,rgba};
-}
 export async function buildMK2CaveSourceP22(source:DirectorySource):Promise<P22CaveResult>{
  try{
   need(!source.isSynthetic,'synthetic fixture is not an authenticated source');
@@ -55,7 +36,7 @@ export async function buildMK2CaveSourceP22(source:DirectorySource):Promise<P22C
    const descriptorPhysical=OBJECT2+TABLE+ordinal*8,width=view.getUint16(descriptorPhysical,true),height=view.getUint16(descriptorPhysical+2,true);
    const packed=view.getUint32(descriptorPhysical+4,true),start=packed&0xffffff;
    need((packed>>>24)===29&&start===previous,'original descriptor resource/contiguous extent');
-   const decoded=decode(gra,start,width,height);previous=decoded.end;
+   const decoded=decodeMK2NativeIndexedRows(gra,start,width,height);previous=decoded.end;
    assets.push({id:`mk2-cave-source:${ordinal}:original-indices`,name:`CAVE.GRA original indexed image ${String(ordinal).padStart(2,'0')}`,
     group:'MK2 CAVE.GRA original indexed images (scene unknown)',kind:'sprite',format:'PNG diagnostic index-value preview',
     confidence:'O110A source descriptor and native indices VERIFIED; runtime RGB UNKNOWN',

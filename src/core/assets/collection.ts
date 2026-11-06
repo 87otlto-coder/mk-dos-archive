@@ -21,6 +21,7 @@ import { buildMK2ObservedFloorsP15, MK2_P15_OBSERVED_FLOOR_LIMITATION } from './
 import { buildMK2ImagesSetupsP17, MK2_P17_IMAGES_SETUP_LIMITATION } from './mk2ImagesSetupP17';
 import { buildMK2OrderedSequenceBundlesP18, MK2_P18_SOURCE_SEQUENCE_LIMITATION } from './mk2OrderedSequenceBundlesP18';
 import { buildMK2CaveSourceP22, MK2_P22_CAVE_LIMITATION } from './mk2CaveSourceP22';
+import { buildMK2ArmorySourceP23, MK2_P23_ARMORY_LIMITATION } from './mk2ArmorySourceP23';
 
 export async function scanAssets(source:DirectorySource,game:Game,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
   if(game==='mk3')return scanMK3(source,progress,signal);
@@ -146,6 +147,11 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   const p22Cave=await buildMK2CaveSourceP22(source);
   assets.push(...p22Cave.assets);
   packages.push(...p22Cave.packages);
+  signal?.throwIfAborted();
+  progress('MK2 ARMORY.GRA original descriptor-backed indexed images (P23)');
+  const p23Armory=await buildMK2ArmorySourceP23(source);
+  assets.push(...p23Armory.assets);
+  packages.push(...p23Armory.packages);
   const music=[];
   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
     const bytes=await source.readSlice(e.path,0,e.size);
@@ -166,8 +172,9 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
     p15ObservedFloors:p15ObservedFloors.status,
     p17ImagesSetups:p17Images.status,
     p18OrderedSequences:p18OrderedSequences.status,
-    p22CaveSource:p22Cave.status},
-    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,MK2_P15_OBSERVED_FLOOR_LIMITATION,MK2_P17_IMAGES_SETUP_LIMITATION,MK2_P18_SOURCE_SEQUENCE_LIMITATION,MK2_P22_CAVE_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+    p22CaveSource:p22Cave.status,
+    p23ArmorySource:p23Armory.status},
+    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,MK2_P15_OBSERVED_FLOOR_LIMITATION,MK2_P17_IMAGES_SETUP_LIMITATION,MK2_P18_SOURCE_SEQUENCE_LIMITATION,MK2_P22_CAVE_LIMITATION,MK2_P23_ARMORY_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),

@@ -41,6 +41,8 @@ jobs:
           node --check scripts/verify-cross-game-p21.cjs
           node --check scripts/verify-mk2-p22-cave.cjs
           node --check scripts/verify-mk2-p22-cumulative.cjs
+          node --check scripts/verify-mk2-p23-armory.cjs
+          node --check scripts/verify-mk2-p23-cumulative.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |
