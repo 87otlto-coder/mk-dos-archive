@@ -1,0 +1,780 @@
+{
+  "schema": "mkdos_p28_portal_component_regression_v1",
+  "status": "PASS",
+  "baselineCommit": "7166f9d16cf4ba5ba09e5975d45752f55cef43b7",
+  "newStandaloneRepresentations": 13,
+  "newlyDiscoveredSourceImages": 0,
+  "priorPortalRepresentations": 29,
+  "beforeRegistryObservation": {
+    "schema": "mkdos_p28_p27_registry_observation_v1",
+    "classification": "OBSERVED_P27_COLLECTION_NOT_INDEPENDENT_SOURCE_GOLDEN",
+    "sourceCensus": 5236,
+    "portalRepresentations": [
+      {
+        "id": "mk2-stage-effect:portal_swaying:00",
+        "dimensions": [
+          41,
+          63
+        ],
+        "sourceOffset": 35912,
+        "sourceLength": 2200,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "9a9e3693d918d66fbccce3aca86dc5fe5eb99d5c020f557b77ffc868353b37b1",
+        "maskSha256": "21909ce120ad153097f32f67318b0bef2cdf8a8bcdffd6752d6cf4a9bbd01e6a"
+      },
+      {
+        "id": "mk2-stage-effect:portal_swaying:01",
+        "dimensions": [
+          38,
+          63
+        ],
+        "sourceOffset": 38112,
+        "sourceLength": 2184,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "c5e9f9e4644f628939f66c4c19bb3d383fc175523bedd6196730275ed39262f3",
+        "maskSha256": "0c4103c8920f85decef15ccbcc28f29d57bc563ba7702ea24f3f30fa4d5189e7"
+      },
+      {
+        "id": "mk2-stage-effect:portal_swaying:02",
+        "dimensions": [
+          37,
+          63
+        ],
+        "sourceOffset": 40296,
+        "sourceLength": 2184,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "b1e399992495ca1c88d23a9c92f5f3717581e4f1983b9af12dff702d86b349fd",
+        "maskSha256": "af58feb63136ff33285d1e0cb693845aefcc0284aec53a0bb5e1aa5e01bc1f99"
+      },
+      {
+        "id": "mk2-stage-effect:portal_swaying:03",
+        "dimensions": [
+          38,
+          63
+        ],
+        "sourceOffset": 42480,
+        "sourceLength": 2192,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "b065d9e932cbd39794afdd9f54b48d92bf88b41501e5862bce7e156eddc3e6f0",
+        "maskSha256": "41acfa94d882edf039f058b421593ea7d9f9d47ae20b09d622313af6ed759baf"
+      },
+      {
+        "id": "mk2-stage-effect:portal_swaying:04",
+        "dimensions": [
+          39,
+          63
+        ],
+        "sourceOffset": 44672,
+        "sourceLength": 2228,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "f306e30d4384caf0e40fad55cdf4742c7892640452cbf59b1f0fb75826be280d",
+        "maskSha256": "8aa6c9ab0bd6133937ce205c11b9a164883e437eff9812aab246943dbdddf20f"
+      },
+      {
+        "id": "mk2-stage-effect:portal_swaying:05",
+        "dimensions": [
+          41,
+          63
+        ],
+        "sourceOffset": 46900,
+        "sourceLength": 2260,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "5ab085ec93455458292a0d5c118573e30ccd528637426bb2497ce48e7b51c1d2",
+        "maskSha256": "8f236cc985300568993a65185937fe86a3f0ab68c2f2bfb9edc8c50cb2acd342"
+      },
+      {
+        "id": "mk2-stage-effect:portal_swaying:06",
+        "dimensions": [
+          42,
+          63
+        ],
+        "sourceOffset": 49160,
+        "sourceLength": 2248,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "7f282049382917a8007801dd20d9d88cc04c3713edfa00f4c438fb7f6346c9b3",
+        "maskSha256": "38875163c8b4b7ef3310dd5d6798509e713084762feae4fdc36c6969c6d1efc6"
+      },
+      {
+        "id": "mk2-stage-effect:portal_hanging:00",
+        "dimensions": [
+          14,
+          24
+        ],
+        "sourceOffset": 51408,
+        "sourceLength": 632,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "88c084025c537684b39b46ec76059bae511490ada9986f50f414c1ae2cdf0eb2",
+        "maskSha256": "4cbd85d8565b71a2f30d877d6063189bf1a4eed7b754302d1405e826f038e8d7"
+      },
+      {
+        "id": "mk2-stage-effect:portal_hanging:01",
+        "dimensions": [
+          14,
+          24
+        ],
+        "sourceOffset": 52040,
+        "sourceLength": 628,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "4cbf6dc1108c729444ab827aa64a4b7dcbac20fffc36bc0970445710912c6587",
+        "maskSha256": "f03780945d7c280b73dd340ad0cf48f492274a957c842b076d0c82b881f2e619"
+      },
+      {
+        "id": "mk2-stage-effect:portal_hanging:02",
+        "dimensions": [
+          14,
+          24
+        ],
+        "sourceOffset": 52668,
+        "sourceLength": 636,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "2881883f6422869244f69ee026d81023f877cdbfae4b8a54f267c440200a3baf",
+        "maskSha256": "154be675c848b9b53382b24c2faad7a1f5a772387ed1cba2e93e89b9856e5ab2"
+      },
+      {
+        "id": "mk2-stage-effect:portal_hanging:03",
+        "dimensions": [
+          13,
+          23
+        ],
+        "sourceOffset": 53304,
+        "sourceLength": 596,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "9787a8e61bc116dbf4b22e7fb4d90e7f93bc7b4e0617c0a062fe7aa7d70dfb47",
+        "maskSha256": "26f8c173e5fe262508f040241e7adc8c10c3f9db8cf40e406f9b8f7b7a145058"
+      },
+      {
+        "id": "mk2-stage-effect:portal_hanging:04",
+        "dimensions": [
+          14,
+          24
+        ],
+        "sourceOffset": 53900,
+        "sourceLength": 620,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "f558f0e09fd16c6b0810ee0e0db4f485c6c03034b06fb3ebd712c3816f65df26",
+        "maskSha256": "013a1a9685b4eb7bfe61440cf72aac3d979c06199db8c03b40f29dbd115154b4"
+      },
+      {
+        "id": "mk2-stage-effect:portal_hanging:05",
+        "dimensions": [
+          15,
+          24
+        ],
+        "sourceOffset": 54520,
+        "sourceLength": 632,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "61fa4a68ffcdd4a9d054ece81a4a88ad3bd3fa2acf1d2bacbd34823ec1765c3e",
+        "maskSha256": "813423984e174d29490aaf1b40c7f4e9c639795ad5f2a0a26cf004f397ecea23"
+      },
+      {
+        "id": "mk2-stage-effect:portal_hanging:06",
+        "dimensions": [
+          15,
+          24
+        ],
+        "sourceOffset": 55152,
+        "sourceLength": 628,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "2b8c0f1f3d352e5cae0dea51de4880f864f0f4839ed82295320d7ddedadbb344",
+        "maskSha256": "efece5f7af317b49fc8e5ea95716c54ba51948c95e3cc24f968065ae922d1d69"
+      },
+      {
+        "id": "mk2-stage-effect:portal_electric:00",
+        "dimensions": [
+          21,
+          14
+        ],
+        "sourceOffset": 55780,
+        "sourceLength": 156,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "0f806d899a31e5eb2426ba09e03718a07fd256a2c5248551b5628067b79f858c",
+        "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5"
+      },
+      {
+        "id": "mk2-stage-effect:portal_electric:01",
+        "dimensions": [
+          21,
+          14
+        ],
+        "sourceOffset": 55936,
+        "sourceLength": 188,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "9791f1e1a7c3ad6f68f948171081a5ab7a523768c492778fc14eb115216d75e1",
+        "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5"
+      },
+      {
+        "id": "mk2-stage-effect:portal_electric:02",
+        "dimensions": [
+          21,
+          14
+        ],
+        "sourceOffset": 56124,
+        "sourceLength": 192,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "cb5943ad2de14bbfeaa4ceec553c0dc78e46845a68b809cca7f196b2dac0ae21",
+        "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5"
+      },
+      {
+        "id": "mk2-stage-effect:portal_electric:03",
+        "dimensions": [
+          21,
+          14
+        ],
+        "sourceOffset": 56316,
+        "sourceLength": 228,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "0d24fac502ac6279928ce6b030d126172ab68f41d11781604e4e1c954c0e7be1",
+        "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5"
+      },
+      {
+        "id": "mk2-stage-effect:portal_electric:04",
+        "dimensions": [
+          21,
+          14
+        ],
+        "sourceOffset": 56544,
+        "sourceLength": 192,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "718e39a84fbe24934dc0721a6276363c7e5ef4fb377a5a78b8e7d2ecab7c308d",
+        "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5"
+      },
+      {
+        "id": "mk2-stage-effect:portal_electric:05",
+        "dimensions": [
+          21,
+          14
+        ],
+        "sourceOffset": 56736,
+        "sourceLength": 180,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "0ddaecddb70ef78e3358ebc3f49e9dfd36a6cf96764d0197950179577d73c406",
+        "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5"
+      },
+      {
+        "id": "mk2-stage-setup:portal:object2_16514",
+        "dimensions": [
+          896,
+          176
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 92756,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "fa022510d2644c4847e87fafa13372ca22063b2e574b78b2295ee61831e33837",
+        "maskSha256": "df1ef54d62e6590b658053857f09cfb98e0de7e83870f409d3f77027a766f034"
+      },
+      {
+        "id": "mk2-stage-setup:portal:object2_16526",
+        "dimensions": [
+          320,
+          168
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 92756,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "705b66265ce257395746a5bd89dccb7552cd7938b0e0a07252cfa0550a6b8ae6",
+        "maskSha256": "cc3e34ee7d361cf04d64757e79553923ee8987d88e47e2425587d75798e6dcbc"
+      },
+      {
+        "id": "mk2-floor:portal:rgba",
+        "dimensions": [
+          896,
+          40
+        ],
+        "sourceOffset": 56916,
+        "sourceLength": 35840,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "eb99434188317a0adac30f378c2362b857efcba7690180bd60dc80b9432158ff",
+        "maskSha256": null
+      },
+      {
+        "id": "mk2-floor:portal:indices",
+        "dimensions": [
+          null,
+          null
+        ],
+        "sourceOffset": 56916,
+        "sourceLength": 35840,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": null,
+        "maskSha256": null
+      },
+      {
+        "id": "mk2-viewport-floor:portal:x288-bank1",
+        "dimensions": [
+          320,
+          40
+        ],
+        "sourceOffset": 56916,
+        "sourceLength": 35840,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "3f8488e9ba1a6857727da8d24ea04fc5005fde2f62519531e8478c87cad3a878",
+        "maskSha256": "700225aade81ae4685a1934e62b40a065c61607ceccf93f80855c747e701c92d"
+      },
+      {
+        "id": "mk2-witnessed-floor:portal:x292",
+        "dimensions": [
+          320,
+          40
+        ],
+        "sourceOffset": 56916,
+        "sourceLength": 35840,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "1677bcabb7c1a53f7ea3f847deca04359837e3a479dc20ac9d398a9191b5b8bc",
+        "maskSha256": "700225aade81ae4685a1934e62b40a065c61607ceccf93f80855c747e701c92d"
+      },
+      {
+        "id": "mk2-source-animation-sheet:stage_portal_swaying",
+        "dimensions": [
+          294,
+          63
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 0,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "9a928b767a8c21a132b5c8a70e713ba126ddd8b555cfcb8f4541484ded25303e",
+        "maskSha256": "f10657ece8096edfb944c3fec18942cb3a378ae49a71abfbd732cf877b8e8684"
+      },
+      {
+        "id": "mk2-source-animation-sheet:stage_portal_hanging",
+        "dimensions": [
+          105,
+          24
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 0,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "13bae95afcb66e92f27d913b307cd55c9adbd3a7b55b8f84df7a68286a0df691",
+        "maskSha256": "04e12aa9c312987973a2f61ce21ce2f96281ff088239d089091e1db2679b08aa"
+      },
+      {
+        "id": "mk2-source-animation-sheet:stage_portal_electric",
+        "dimensions": [
+          126,
+          14
+        ],
+        "sourceOffset": 0,
+        "sourceLength": 0,
+        "sourceSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "indicesSha256": "07837b65dc6ec9f3b0d0691db1e608e7e8c63dc1188516ebcd5dfbed7939703c",
+        "maskSha256": "cc64d6f93b25376422bdd11a4bd288e7197e2a58ca10689ccba241d33f3ee89f"
+      }
+    ],
+    "componentCoverage": [
+      {
+        "ordinal": 0,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 1,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 2,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 3,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 4,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 5,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 6,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 7,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 8,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 9,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 10,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 11,
+        "matchingStandaloneIds": []
+      },
+      {
+        "ordinal": 12,
+        "matchingStandaloneIds": []
+      }
+    ]
+  },
+  "independentOriginalSource": {
+    "pass": "P28",
+    "status": "PASS",
+    "checks": 544141,
+    "originalPortalImages": 13,
+    "existingSetupLayers": 2,
+    "originalSetupPlacements": 28,
+    "newlyDiscoveredSourceImages": 0,
+    "indexedPixels": 60566,
+    "sourceImagePrefixBytes": 35912,
+    "outsideImageFamilyBytes": 56844,
+    "exportPngAndSidecarParity": false,
+    "nativePaletteKnown": false,
+    "fullStageScene": false
+  },
+  "adapterAndMosaicReconstruction": {
+    "pass": "P28",
+    "status": "PASS",
+    "checks": 327,
+    "originalPortalImages": 13,
+    "indexedPixels": 60566,
+    "existingSetupLayers": 2,
+    "originalSetupPlacements": 28,
+    "reconstructedSetupCells": 211456,
+    "newlyDiscoveredSourceImages": 0,
+    "negativeFixtures": 8,
+    "evidenceZipSha256": "b159383cee493fcb0ce4fba8cd69a7ff1d554e267f5d729492bede12069a6e90",
+    "sourceOutsideImageFamilyBytes": 56844,
+    "nativePaletteKnown": false,
+    "fullStageScene": false,
+    "browserInteractionVerified": false
+  },
+  "independentExport": {
+    "pass": "P28",
+    "status": "PASS",
+    "checks": 786561,
+    "originalPortalImages": 13,
+    "existingSetupLayers": 2,
+    "originalSetupPlacements": 28,
+    "newlyDiscoveredSourceImages": 0,
+    "indexedPixels": 60566,
+    "sourceImagePrefixBytes": 35912,
+    "outsideImageFamilyBytes": 56844,
+    "exportPngAndSidecarParity": true,
+    "nativePaletteKnown": false,
+    "fullStageScene": false
+  },
+  "negativeExports": {
+    "pass": "P28",
+    "status": "PASS",
+    "falsifiedExportsRejected": 4,
+    "zipAndPngCrcRecomputed": true,
+    "cleanExportReverified": true
+  },
+  "standardMK2Runner": {
+    "schema": "mkdos_checkpoint_regression_v2",
+    "through": "p28",
+    "status": "PASS",
+    "startedAt": "2026-11-06T22:00:54.058Z",
+    "suites": [
+      {
+        "name": "MK2 input identity",
+        "pass": "P16",
+        "status": "PASS",
+        "classification": "ORIGINAL_INPUT_IDENTITY_ONLY",
+        "checks": 642,
+        "fileCount": 614,
+        "sourceFileHashesVerified": 13,
+        "archiveSha256": null,
+        "extensionCensus": {
+          "(none)": 1,
+          "awe": 33,
+          "bat": 1,
+          "bin": 6,
+          "drv": 1,
+          "exe": 2,
+          "gra": 124,
+          "gvs": 33,
+          "ini": 1,
+          "lap": 33,
+          "mid": 33,
+          "sbl": 33,
+          "txt": 1,
+          "u8": 312
+        },
+        "gameArtworkStoredInReport": false,
+        "p15FullCumulativeRerun": false,
+        "gameBrowserVerified": false
+      },
+      {
+        "name": "MK2 p28-cumulative",
+        "pass": "P28",
+        "status": "PASS",
+        "checks": 1277,
+        "assets": 5249,
+        "uniqueAssets": 5249,
+        "originalMK2FixtureOnly": true,
+        "fullCurrentSourceRegression": true,
+        "p22AddedImages": 49,
+        "p23AddedImages": 18,
+        "p24AddedImages": 20,
+        "p25AddedImages": 15,
+        "p27StandaloneComponentRepresentations": 16,
+        "p27NewlyDiscoveredSourceImages": 0,
+        "p28StandaloneComponentRepresentations": 13,
+        "p28NewlyDiscoveredSourceImages": 0,
+        "p24DescriptorWitnesses": 40,
+        "sourceOrderQueueFrames": 57,
+        "groups": {
+          "u8:": 312,
+          "mk2-stage-effect:": 43,
+          "mk2-stage-setup:": 8,
+          "mk2-floor:": 15,
+          "mk2-forest-setup:": 10,
+          "mk2-pit-fall-source:": 7,
+          "mk2-pit-upper-setup:": 6,
+          "mk2-pit-bridge:": 14,
+          "mk2-intro-lzw:": 31,
+          "mk2-mountain-source:": 15,
+          "mk2-viewport-floor:": 7,
+          "mk2-witnessed-floor:": 2,
+          "mk2-images-setup:": 2,
+          "mk2-source-animation-sheet:": 8,
+          "mk2-cave-source:": 49,
+          "mk2-armory-source:": 18,
+          "mk2-battle-source:": 20,
+          "mk2-arena-source:": 15,
+          "mk2-tomb-source:": 16,
+          "mk2-portal-source:": 13
+        },
+        "originalArchiveParity": {
+          "MK2_P8_PIT_II_SEVEN_ORIGINAL_LOWER_WALL_SOURCES.zip": "7832bae102ab952024f8fa2b48f86379d5a519f2302491757027b4568654bdd5",
+          "MK2_P9_PIT_II_SIX_ORIGINAL_UPPER_SETUP_LAYERS.zip": "25abe08f1471a46c9e205bed3693559499afd7b0893bd277c5c51130769f652d",
+          "MK2_P10_PIT_II_ORIGINAL_BRIDGE_ACTOR_FRAMES.zip": "6aedb63e4b974468c64a2a80afc4270be0815d716fa265cee21278b612ddf79c"
+        },
+        "selectedExportAssets": 8,
+        "browserUIVerified": false,
+        "fullSceneAssemblyVerified": false,
+        "nativeAnimationTimingVerified": false,
+        "copyrightGameFilesIncludedInRepository": false
+      },
+      {
+        "name": "MK2 p28-portal",
+        "pass": "P28",
+        "status": "PASS",
+        "checks": 327,
+        "originalPortalImages": 13,
+        "indexedPixels": 60566,
+        "existingSetupLayers": 2,
+        "originalSetupPlacements": 28,
+        "reconstructedSetupCells": 211456,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "b159383cee493fcb0ce4fba8cd69a7ff1d554e267f5d729492bede12069a6e90",
+        "sourceOutsideImageFamilyBytes": 56844,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p27-tomb",
+        "pass": "P27",
+        "status": "PASS",
+        "checks": 466,
+        "originalTombImages": 16,
+        "indexedPixels": 64971,
+        "existingSetupLayers": 6,
+        "originalSetupPlacements": 87,
+        "reconstructedSetupCells": 523584,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "a408f7e4000e0bec4d2db717925ac9e4dfd31d05591a641eb02d30e7521faa90",
+        "sourceOutsideImageFamilyBytes": 52456,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p25-arena",
+        "pass": "P25",
+        "status": "PASS",
+        "checks": 284,
+        "originalArenaImages": 15,
+        "indexedPixels": 65736,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "1cad7584431335343cf95a0c6cabda74d88a2a50b6f3c76a669ba03ed3f60dc5",
+        "sourceOutsideImageFamilyBytes": 90156,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p24-battle",
+        "pass": "P24",
+        "status": "PASS",
+        "checks": 432,
+        "originalBattleImages": 20,
+        "indexedPixels": 85188,
+        "sourceDescriptorWitnesses": 40,
+        "duplicateWitnessesPreserved": 20,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "3faed3ece5808182446d64092184300da667719cc95948c3f8a2db1f2c06f5eb",
+        "sourceOutsideImageFamilyBytes": 35840,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p23-armory",
+        "pass": "P23",
+        "status": "PASS",
+        "checks": 335,
+        "originalArmoryImages": 18,
+        "indexedPixels": 156767,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "7e5870cdeebf6c17c36a50024592115a1e3172b4a299f379e234ace86ed410ac",
+        "sourceOutsideImageFamilyBytes": 59904,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p22-cave",
+        "pass": "P22",
+        "status": "PASS",
+        "checks": 862,
+        "originalCaveImages": 49,
+        "indexedPixels": 49765,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "e7c407cd1727b003387eb95c91a7e5a131c3eed0c5967fb1d7761ee3f81e9745",
+        "sourcePrefixUnqualifiedBytes": 120,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p12-intro",
+        "pass": "P12",
+        "status": "PASS",
+        "checks": 524,
+        "originalIntroFrames": 31,
+        "originalSourceIndicesAndConditionalDAC6Parity": "all 31 original frames",
+        "negativeCases": 7,
+        "selectedZipExport": [
+          "indices",
+          "mask",
+          "paletteKnownMask"
+        ],
+        "runtimeAnimationTimingKnown": false,
+        "livePaletteIndex0Known": false,
+        "commercialGameDataInGit": false
+      },
+      {
+        "name": "MK2 p13-mountain",
+        "pass": "P13",
+        "status": "PASS",
+        "checks": 358,
+        "newOriginalIndexedGraphics": 15,
+        "consumerSelected": 14,
+        "adjacentStructurallyQualifiedOnly": 1,
+        "originalSuffixBytes": 23024,
+        "sourceOrders": 6,
+        "diagnosticColorOnly": true,
+        "originalSourceIndicesPreserved": true,
+        "negativeFixtureCases": 5,
+        "commercialAssetsCommitted": false,
+        "packageSha256": "e7eabb5d6444d249b7b08a1197c7cc7767a8e70df668f661d5d0eff762d67c86"
+      },
+      {
+        "name": "MK2 p14-source-viewport",
+        "pass": "P14",
+        "status": "PASS",
+        "checks": 409790,
+        "newNativeViewportPreviews": 7,
+        "canonicalOriginalEXE": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+        "sourceResearch": "O110C",
+        "nativeProjection": "320 x source rows, source-x 288, hypothetical bank base 1",
+        "runtimeColorKnown": false,
+        "runtimeCameraKnown": false,
+        "completeStageScenes": false,
+        "evidencePackageSHA256": "e7b588f7f84807b3dab054e0b8ce99336570f29256056617b6c38bafad2b36ca",
+        "negativeFixtureVariants": 9,
+        "gameMediaCommitted": false
+      },
+      {
+        "name": "MK2 p15-observed-floors",
+        "pass": "P15",
+        "status": "PASS",
+        "checks": 28244,
+        "independentOriginalWitness": "O115 screenshot RGB tables, O117 Tomb control and O115B Portal control",
+        "assets": 2,
+        "sourcePixels": 28160,
+        "nativePaletteKnown": false,
+        "liveCameraKnown": false,
+        "completeStage": false,
+        "sourceArchiveSha256": "1ded7e25adc7043e908cf2268fc208321fed6afa8779526dda1e17739455454b",
+        "negativeFixtureVariants": 10
+      },
+      {
+        "name": "MK2 p17-unassigned-images",
+        "pass": "P17",
+        "status": "PASS",
+        "checks": 77,
+        "originalIndexedMosaics": 2,
+        "originalIndexPixels": 128000,
+        "independentO122SourceHashes": true,
+        "sourceBundleIntegrity": true,
+        "negativeFixtures": 8,
+        "nativePaletteOwnershipKnown": false,
+        "completeStageSceneVerified": false,
+        "cumulativeP16RegressionRerun": false,
+        "gameBrowserVerified": false
+      },
+      {
+        "name": "MK2 p18-ordered-sequences",
+        "pass": "P18",
+        "status": "PASS",
+        "checks": 379422,
+        "tracks": 8,
+        "orderedSourceFrames": 57,
+        "comparedIndexedPixels": 63112,
+        "screenshotRgbClaim": false,
+        "nativeFrameTimingKnown": false,
+        "worldPlacementKnown": false,
+        "currentFullP16P17P18SourceScanned": false,
+        "canonicalOriginalFixtureUsed": true
+      },
+      {
+        "name": "MK2 p19-source-order-queue",
+        "pass": "P19",
+        "status": "PASS",
+        "checks": 280,
+        "sourceTracks": 8,
+        "originalOrderedFrames": 57,
+        "originalFramePixelsReExported": 63112,
+        "presentationMillisecondsTested": 137,
+        "nativeFrameTimeKnown": false,
+        "originalPaletteOwnershipKnown": false,
+        "canonicalOriginalFixture": true,
+        "currentFullP16P17P18ScannerVerified": false
+      }
+    ],
+    "notRun": [
+      "mk1",
+      "mk3"
+    ],
+    "browserInteractionVerified": false,
+    "commercialAssetsIncluded": false,
+    "finishedAt": "2026-11-06T22:01:17.381Z"
+  },
+  "localChecks": {
+    "sourceSyntaxFiles": 372,
+    "syntaxErrors": 0,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "newCjsSyntax": "PASS",
+    "diffWhitespace": "PASS"
+  },
+  "initialFailureResolved": "Copied cumulative expectation 16 corrected to independently observed 13; full runner passed afterwards.",
+  "browserInteractionVerified": false,
+  "mk1mk3FreshlyRerun": false,
+  "mainPromoted": false,
+  "originalGameMediaCommitted": false
+}

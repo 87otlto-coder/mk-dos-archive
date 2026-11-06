@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /** P21 repeatable original-fixture regression runner. No network or game writes.
- * node scripts/verify-p21-checkpoint.cjs --mk2 <dir> [--mk1 <dir>] [--mk3 <dir>] [--through p21|p22|p23|p24|p25|p27] --report <json>
- * Defaults to current P27; earlier --through choices require matching historical source.
+ * node scripts/verify-p21-checkpoint.cjs --mk2 <dir> [--mk1 <dir>] [--mk3 <dir>] [--through p21|p22|p23|p24|p25|p27|p28] --report <json>
+ * Defaults to current P28; earlier --through choices require matching historical source.
  * Missing optional games are explicitly NOT_RUN, never inferred as passing.
  */
 const fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:child_process');
@@ -10,8 +10,8 @@ const args={};for(let i=2;i<process.argv.length;i+=2){const key=process.argv[i];
  args[key]=process.argv[i+1];
 }
 if(!args['--mk2']||!args['--report'])throw Error('Require --mk2 <directory> --report <output.json>');
-const through=args['--through']||'p27';
-if(!['p21','p22','p23','p24','p25','p27'].includes(through))throw Error('Unknown source checkpoint '+through);
+const through=args['--through']||'p28';
+if(!['p21','p22','p23','p24','p25','p27','p28'].includes(through))throw Error('Unknown source checkpoint '+through);
 const reportPath=path.resolve(args['--report']);
 for(const key of ['--mk1','--mk2','--mk3'])if(args[key]){
  const fixture=fs.realpathSync(args[key]);
@@ -31,7 +31,8 @@ function run(name,command,argv){
 }
 try{
  run('MK2 input identity',process.env.PYTHON||'python',['scripts/verify-mk2-p16-fixture-identity.py',args['--mk2']]);
- const current=through==='p27'?['p27-cumulative','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
+ const current=through==='p28'?['p28-cumulative','p28-portal','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
+  through==='p27'?['p27-cumulative','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
   through==='p25'?['p25-cumulative','p25-arena','p24-battle','p23-armory','p22-cave']:
   through==='p24'?['p24-cumulative','p24-battle','p23-armory','p22-cave']:
   through==='p23'?['p23-cumulative','p23-armory','p22-cave']:

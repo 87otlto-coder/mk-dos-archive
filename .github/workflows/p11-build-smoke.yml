@@ -50,6 +50,8 @@ jobs:
           node --check scripts/verify-p26-checkpoint.cjs
           node --check scripts/verify-p26-visual-baseline.cjs
           node --check scripts/verify-mk2-p27-tomb.cjs
+          node --check scripts/verify-mk2-p28-portal.cjs
+          node --check scripts/verify-mk2-p28-cumulative.cjs
           node --check scripts/verify-mk2-p27-cumulative.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
