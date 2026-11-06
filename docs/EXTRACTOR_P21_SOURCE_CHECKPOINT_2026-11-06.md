@@ -44,6 +44,10 @@ The authoritative P20 parent tree `33351d372ce2bc7461e9e487a429ca46adb8616a` con
 
 P21 adds two test scripts, the regression record and this checkpoint document; updates the source-only CI syntax step and current documentation. It does not remove or restructure established source. The complete Git-safe source is recoverable from the committed tree; no redundant full-source ZIP is issued. Original game files and generated asset archives remain outside GitHub.
 
+**Committed candidate verified:** `2d7410bf4775473abbc95abc08a474cb0235b58b`, tree `8a8c7c0bac4953eb1b2a0cb957bd5ca6c16813f5`: **2,089 file blobs**, all **369 src files byte-identical** to the parent, zero removals and zero reviewed game/media paths. All ten changed/added files match local Git blob hashes. Local syntax, TypeScript, production build and diff-whitespace checks passed; the existing Vite large-chunk warning remains.
+
+**GitHub CI PASS:** [run 42283644918](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42283644918) completed successfully on candidate `2d7410b`: strict locked install, TypeScript source and new CJS syntax checks, media guard, production build, TypeScript, source-offline headless Chrome startup and build artifact upload. Original-fixture regression is the separately recorded local 11-suite run, not a claim that copyrighted game data was tested in CI.
+
 ## Reproduce
 
 ```powershell

@@ -12,6 +12,7 @@
 - **MK1 fresh regression:** **2,656 assets** (2,363 sprites, 244 audio, 49 stage PNGs), **2,615 checks PASS**. All 49 stage PNG exports read back against collection pixels; 24 normalized module previews retained.
 - **MK3 fresh regression:** **9,186 assets** (6,654 sprites, 1,046 raw, 1,024 audio, 416 images, 46 music), **7,110 checks PASS**. Ten representative exports across all five kinds preserve payloads/order/sidecars. No new stage ownership inferred.
 - P20 parent complete source tree: **2,085 blobs / 369 src files**, no reviewed commercial-game/media/archive extensions. P21 retains the full workbench and adds test/CI/docs only.
+- P21 committed candidate **`2d7410b`**: **2,089 tracked files**, all 369 src files unchanged, no removals or reviewed game-media paths. [CI 42283644918](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42283644918) **PASS**: strict install, syntax/media guard, Vite, TypeScript, Chrome source-offline startup and build upload. Main is unchanged.
 - Browser interaction with original P12–P19 data remains **VALIDATION PENDING**; source-offline CI is separate. Fresh MK2 ZIP hash/re-extraction remains unverified; existing extracted fixture identity is qualified as recorded in P20. Runtime palette, native timing and complete stage composition remain **UNKNOWN**.
 - [Machine-readable P21 results](docs/validation/P21_CHECKPOINT_REGRESSION_2026-11-06.json). Next: **P22 MK2 coverage reconciliation and one evidence-backed missing-family integration**. No main promotion in this continuation.
 

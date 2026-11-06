@@ -253,5 +253,32 @@
   },
   "verifierSyntax": "PASS",
   "mainPromoted": false,
-  "extractorImplementationChanged": false
+  "extractorImplementationChanged": false,
+  "committedSourceAudit": {
+    "commit": "2d7410bf4775473abbc95abc08a474cb0235b58b",
+    "treeSha": "8a8c7c0bac4953eb1b2a0cb957bd5ca6c16813f5",
+    "trackedFileBlobs": 2089,
+    "srcFiles": 369,
+    "srcFilesUnchanged": 369,
+    "removedPaths": 0,
+    "forbiddenGameMediaPaths": 0,
+    "changedFileBlobHashesVerified": 10
+  },
+  "localSourceChecks": {
+    "typescriptSyntaxFiles": 365,
+    "syntaxErrors": 0,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "verifierSyntax": "PASS",
+    "diffWhitespace": "PASS",
+    "warning": "Existing Vite large output chunk"
+  },
+  "githubCI": {
+    "runId": 42283644918,
+    "commit": "2d7410bf4775473abbc95abc08a474cb0235b58b",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42283644918",
+    "originalGameDataTested": false
+  }
 }
