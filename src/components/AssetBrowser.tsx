@@ -436,6 +436,13 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
               <p>{focus.source.path} · offset {focus.source.offset}</p>
               {['audio', 'music'].includes(focus.kind) && <AudioPreview asset={focus} />}
               <button onClick={() => attempt(() => download(assetBytes(focus), focus.filename, focus.mime))}>Export this asset</button>
+              {typeof focus.metadata.originalFrameZip === 'string' && collection?.packages.some(p => p.name === focus.metadata.originalFrameZip) && (
+                <button onClick={() => attempt(() => {
+                  const archive = collection?.packages.find(p => p.name === focus.metadata.originalFrameZip);
+                  if (!archive) throw new Error('Original source frame archive unavailable');
+                  download(archive.bytes, archive.name, 'application/zip');
+                })}>Export source-ordered frames ZIP</button>
+              )}
               {focus.rgba && <button onClick={() => setLayers(current => [...current, { asset: focus, x: 0, y: 0, flip: false }])}>Add to canvas</button>}
               <details><summary>Metadata</summary><pre>{JSON.stringify(metadata(focus), null, 2)}</pre></details>
             </> : <p>Select an asset to inspect it.</p>}

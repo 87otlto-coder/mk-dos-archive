@@ -4,6 +4,18 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P18 MK2 original source-ordered animation ZIPs — interim `develop` pass, 2026-11-06
+
+**P16 remains the stable `main` checkpoint.** P18 is the second MK2-first interim pass after P16. It applies verified O136/O177 (43 stage effect frames in six lists) and O220/O221 (14 Pit II bridge sprites in two seven-frame lists) to a practical export workflow.
+
+- **Eight original-list contact-sheet previews plus eight directly downloadable source-ordered frame ZIPs** now group **57 existing original indexed frames**. Each frame ZIP includes independent original PNGs, indexed planes, transparency masks, a versioned source list/control manifest and explicitly unknown timing. Contact-sheet cell spacing is diagnostic, **NOT** source world placement.
+- **VERIFIED original-fixture tests:** P18 focused adapter/export parity **379,422 checks PASS**, including 63,112 exact source-frame pixel-cell comparisons, independent eight-contact-sheet PNG readback, original frame ZIP byte/index/mask parity and negative source order/loop/timing controls.
+- **VALIDATED compatibility only:** original MK2 original-fixture scan on frozen P11 + P17 + P18 **5,063 assets / 32 checks PASS**, P8–P10 source ZIP hashes unchanged. The latest P16+P17+P18 cumulative is **EXPECTED 5,118** but **VALIDATION PENDING**. Reproduce through `scripts/verify-mk2-p18-cumulative.cjs` in the complete current source; the `--p11-p17-baseline` option is deliberately not this full gate.
+- **No speculative animation:** original source loop/zero-end markers and frame order are retained. Live DAC palette ownership, native millisecond timing, frame activation, layer composition, cameras and screen placement are unknown. Original indexed frames remain unchanged.
+- **Handoff:** [P18 source-ordered animation export integration](docs/EXTRACTOR_P18_MK2_SOURCE_ORDERED_SEQUENCE_EXPORTS.md). GitHub build/TypeScript/Chrome verification and user in-app action checks are separate from original binary parity.
+
+Continue MK2-first in P19. Do not promote P18 to `main`, issue a full source archive, or alter original copyrighted assets during an interim pass.
+
 ## P17 MK2 original IMAGES.GRA indexed setup-local mosaics — interim `develop` pass, 2026-11-06
 
 **P16 remains the stable `main` source checkpoint.** P17 is a narrow, additive MK2 extractor improvement applying the independently original-file-verified O121/O122 research; it does not modify the research workbench.
@@ -133,7 +145,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P15**, consolidated at P16 |
 | Latest full MK2 original-fixture cumulative result | **P15: 5,108 assets / 83 checks** (previously verified; P16 independently reran P11 baseline) |
-| Next planned pass | **P18 MK2-first source-backed extraction and background/animation improvements** |
+| Next planned pass | **P19 MK2-first extraction improvements; current P18 total 5,118 awaits full source scan** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
