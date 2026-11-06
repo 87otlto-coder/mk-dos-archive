@@ -74,3 +74,9 @@ Keep outputs outside original games and the Git checkout. The current interim ru
 **VALIDATION PENDING:** original-data browser interactions. Source-offline Chrome CI remains separate. MK1/MK3 fixture suites were not freshly rerun in P27; P26 contains their latest full verification. Existing extracted MK2 fixtures and pinned complete EXE/TOMB hashes were used; no fresh archive-level download/hash/re-extraction is claimed.
 
 Next P28: apply a separately verified PORTAL descriptor/component coverage join against existing setup mosaics/effects, then expose only useful missing full originals with explicit existing-use provenance. Preserve P26 and the workbench, continue on develop, and keep main unchanged. No full-source packaging in this interim pass.
+
+## Committed source and CI evidence
+
+Verified source candidate: `6ec69900f46d6d6e33d288ecf667bd483bcaf7df`; tree `2a1a1eadb3c6642dcf0a3928a440c04ba80c7ff4`. All 15 selected local files match committed Git blob hashes after normal checkout newline conversion. Recursive tree audit: **2,135 blobs / 375 src files**, no removed paths and no tracked original game media/archive extensions.
+
+GitHub [source-build run 42297458244](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42297458244) completed **SUCCESS** on the exact source candidate. Strict dependency install, syntax, tracked-file guard, production build, TypeScript and headless Chrome application boot without game data passed. This does not establish original-data browser interaction or runtime palette/timing/world placement. The following evidence-only commit changes documentation, not source.

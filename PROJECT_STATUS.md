@@ -13,6 +13,7 @@
 - **466 focused checks**, **1,437,357 independent original-control/PNG/sidecar checks**, eight source-negative cases and four false export/claim controls PASS. Lost setup provenance is rejected. Current full gate: **5,236 / 1,079 checks PASS**; all 28 prior TOMB records retain source extents and index/opacity hashes.
 - **14 current MK2 suites PASS**, retaining earlier four families, seven older focused suites (**818,695 checks**) and archive/floor identities. Local 371-file syntax, TypeScript and production build PASS. Prior research/renderers and UI are unchanged; current runner defaults to `--through p27`.
 - Browser actions remain **VALIDATION PENDING**. MK1/MK3 were not rerun in P27; P26 is their latest full source-fixture checkpoint. [P27 handoff](docs/EXTRACTOR_P27_MK2_TOMB_STANDALONE_COMPONENTS.md), [evidence](docs/validation/P27_TOMB_COMPONENT_REGRESSION_2026-11-06.json).
+- Verified source commit: `6ec69900f46d6d6e33d288ecf667bd483bcaf7df`; all 15 changed blob hashes match. Tree audit: 2,135 blobs / 375 src; no game media/archive paths. [GitHub CI run 42297458244](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42297458244) **SUCCESS**, including source-only Chrome boot; original-data browser validation remains pending.
 - Next: **P28 PORTAL descriptor/component coverage join**, preserving existing mosaic/effect provenance before standalone exposure. Keep develop recoverable; no main promotion or full-source release.
 
 ## P26 fifth-pass source consolidation — develop checkpoint, 2026-11-06
