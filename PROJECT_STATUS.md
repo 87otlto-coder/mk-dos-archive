@@ -13,6 +13,7 @@
 - **12 current MK2 suites PASS**, including CAVE/ARMORY parity and unchanged source ZIP hashes, seven older focused suites (**818,695 checks**) and original package identities. The native row decoder and prior adapters/research implementation remain unchanged.
 - Local 369-file TypeScript syntax, typecheck and production build PASS. Runner defaults to `--through p24`. MK1/MK3 were explicitly not rerun; P21 results remain historical. Browser interaction remains **VALIDATION PENDING**; native palette/timing/placement/full scenes remain **UNKNOWN**.
 - [P24 handoff](docs/EXTRACTOR_P24_MK2_BATTLE_DEDUPLICATED_IMAGES.md), [results](docs/validation/P24_BATTLE_REGRESSION_2026-11-06.json). Next: **P25 original ARENA descriptor coverage and qualified missing-image integration**. P26 is the next consolidation candidate; no main promotion or full-source release now.
+- Committed P24 source **`a8ec7d2`** passed [CI 42288449917](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42288449917): strict install, syntax/media guard, Vite, TypeScript, source-offline Chrome and build upload. All fourteen changed/added file blobs verified; no removals or tracked game media. Main is unchanged.
 
 ## P23 original ARMORY.GRA image integration — interim develop pass, 2026-11-06
 

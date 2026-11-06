@@ -46,6 +46,10 @@ The Python row decoder/reference reads original EXE/GRA independently of TypeScr
 
 [Machine-readable P24 record](validation/P24_BATTLE_REGRESSION_2026-11-06.json).
 
+**Committed source verified:** `a8ec7d2bf7e4c25a46ca8985a08dcc030d4e9c13`, tree `92892120b7854b770c4bfba81c7508e5e6901c3b`: **2,114 tracked file blobs / 373 src files**. All fourteen changed/added file blobs match the local candidate. No paths were removed; no reviewed original-game/media/archive extensions are tracked. Prior adapters, shared decoder and research source remain unchanged.
+
+**GitHub CI PASS:** [run 42288449917](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42288449917) completed successfully on `a8ec7d2`: strict locked dependency install, source/new verifier syntax, media guard, Vite production, TypeScript, source-offline headless Chrome startup and build upload. This source-only CI does not contain commercial fixtures or establish real-data browser interactions.
+
 ## Reproduce
 
 ```powershell
