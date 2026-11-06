@@ -35,7 +35,10 @@ jobs:
       - name: Strict install from committed dependency lock
         run: npm ci --no-audit --no-fund
       - name: Source syntax validation
-        run: npm run test:syntax
+        run: |
+          npm run test:syntax
+          node --check scripts/verify-p21-checkpoint.cjs
+          node --check scripts/verify-cross-game-p21.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |

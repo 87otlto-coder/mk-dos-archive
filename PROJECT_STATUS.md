@@ -4,6 +4,17 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P21 fifth-pass source consolidation — develop checkpoint, 2026-11-06
+
+**P21 is the current consolidated source checkpoint on develop; main remains P16.** P17–P20 are preserved together. No decoder/research implementation, asset count, or runtime interpretation changed. Full checkpoint: [P21 handoff](docs/EXTRACTOR_P21_SOURCE_CHECKPOINT_2026-11-06.md).
+
+- New repeatable checkpoint runner: **11 suites PASS**, including MK2 input identity, full **5,118 unique assets / 536 cumulative checks**, all seven focused P12–P19 suites (**818,695 checks**), and MK1/MK3 compatibility. Invalid input fails closed and writes FAIL.
+- **MK1 fresh regression:** **2,656 assets** (2,363 sprites, 244 audio, 49 stage PNGs), **2,615 checks PASS**. All 49 stage PNG exports read back against collection pixels; 24 normalized module previews retained.
+- **MK3 fresh regression:** **9,186 assets** (6,654 sprites, 1,046 raw, 1,024 audio, 416 images, 46 music), **7,110 checks PASS**. Ten representative exports across all five kinds preserve payloads/order/sidecars. No new stage ownership inferred.
+- P20 parent complete source tree: **2,085 blobs / 369 src files**, no reviewed commercial-game/media/archive extensions. P21 retains the full workbench and adds test/CI/docs only.
+- Browser interaction with original P12–P19 data remains **VALIDATION PENDING**; source-offline CI is separate. Fresh MK2 ZIP hash/re-extraction remains unverified; existing extracted fixture identity is qualified as recorded in P20. Runtime palette, native timing and complete stage composition remain **UNKNOWN**.
+- [Machine-readable P21 results](docs/validation/P21_CHECKPOINT_REGRESSION_2026-11-06.json). Next: **P22 MK2 coverage reconciliation and one evidence-backed missing-family integration**. No main promotion in this continuation.
+
 ## P20 full current-source MK2 cumulative regression — interim `develop` pass, 2026-11-06
 
 **Freshly VERIFIED: 5,118 asset representations / 5,118 unique IDs** from the existing original MK2 extracted fixture on the complete P16–P19 source at `17af1a5`. The earlier P17–P19 cumulative validation gap is closed; P16 remains on `main` and P21 is not started.
@@ -164,13 +175,13 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P16 Git-safe source checkpoint on main** (2026-11-06; P11 and P6 preserved in Git history) |
+| Last *full source* checkpoint | **P21 consolidated on develop; P16 accepted on main** (2026-11-06; prior checkpoints preserved) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P15**, consolidated at P16 |
-| Latest full MK2 original-fixture cumulative result | **P15: 5,108 assets / 83 checks** (previously verified; P16 independently reran P11 baseline) |
-| Next planned pass | **P20 MK2 full-source cumulative gate and focused extraction completeness** |
+| Most recent interim pass | **P20**, consolidated in P21 on develop |
+| Latest full MK2 original-fixture cumulative result | **P21: 5,118 unique assets / 536 cumulative checks**, plus seven focused suites |
+| Next planned pass | **P22 MK2 coverage reconciliation, then one verified missing source family** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -192,11 +203,11 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Start P17 on develop from the P16 main source checkpoint. Verify actual committed code and latest P16 handoff before editing; do not assume the historical private ZIP contains current P12–P16 source.
-2. Remain MK2-first: prioritize verified, reusable stage/animation/audio extraction and practical user preview/export completeness; avoid speculative palette-bank ownership, camera positions or full-scene names.
-3. Re-run relevant original-fixture checks as changes warrant. The P16 input-identity verifier is not a replacement for the P15 83-check cumulative decoder suite.
-4. Maintain confidence labels and the existing research workbench. Keep commercial game files, extracted artwork and emulator captures out of GitHub.
-5. Accumulate four recoverable interim passes and consolidate on the fifth when verified. UI follow-up tests remain [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
+1. Begin P22 from the P21 develop checkpoint, after verifying committed source and the P21 handoff.
+2. Remain MK2-first: reconcile verified research with registry coverage, then integrate one useful missing source family. O110A held-resource components are a coverage-audit candidate; preserve ambiguous interpretations without invented geometry, palette ownership or stage labels.
+3. Use `scripts/verify-p21-checkpoint.cjs` for the consolidated fixture gate. Run relevant focused checks when changes warrant; input identity alone does not prove decoder correctness.
+4. Keep native timing, live palette ownership, full stage assembly and real-data browser interaction separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
+5. Preserve the full research workbench and commercial-media exclusion. Accumulate four recoverable interim passes, then assess the next fifth-pass checkpoint. Main promotion requires separate acceptance; P21 does not promote automatically.
 
 ## Scope discipline
 

@@ -13,7 +13,8 @@ Complete a faithful, previewable, exportable asset extractor for MK1, MK2 and MK
 
 ## Source import guardrails
 
-- Start from frozen **P6** (not a guessed mixture of O270 or old numbered ZIPs).
+- For current development, start from the latest committed checkpoint named in `PROJECT_STATUS.md`; verify its source tree and relevant handoff. Do not mix old numbered ZIPs into the current source.
+- Historical initial-import rule: frozen **P6** was the source baseline for the first Git import. Preserve that checkpoint and its evidence; do not restart current development from it.
 - Verify P6 source ZIP SHA-256: `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e`.
 - Keep P7→P10 small patches in order; no history rewrite or source deletion.
 - Do not commit original commercial `MK1.EXE`, `MK2.EXE`, `MK3.EXE`, game directories, `.GRA`, `.FTR`, audio/music extracted from commercial fixtures, DOSBox captures, original game ZIPs, or confidential/sensitive files.

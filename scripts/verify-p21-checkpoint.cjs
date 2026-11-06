@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+/** P21 repeatable original-fixture regression runner. No network or game writes.
+ * node scripts/verify-p21-checkpoint.cjs --mk2 <dir> [--mk1 <dir>] [--mk3 <dir>] --report <json>
+ * Missing optional games are explicitly NOT_RUN, never inferred as passing.
+ */
+const fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:child_process');
+const args={};for(let i=2;i<process.argv.length;i+=2){const key=process.argv[i];
+ if(!['--mk1','--mk2','--mk3','--report'].includes(key)||!process.argv[i+1]||args[key])throw Error('Invalid or duplicate option '+key);
+ args[key]=process.argv[i+1];
+}
+if(!args['--mk2']||!args['--report'])throw Error('Require --mk2 <directory> --report <output.json>');
+const reportPath=path.resolve(args['--report']);
+for(const key of ['--mk1','--mk2','--mk3'])if(args[key]){
+ const fixture=fs.realpathSync(args[key]);
+ if(!fs.statSync(fixture).isDirectory())throw Error('Fixture must be an extracted directory: '+key);
+ const relative=path.relative(fixture,reportPath);
+ if(relative===''||(!relative.startsWith('..'+path.sep)&&relative!=='..'&&!path.isAbsolute(relative)))throw Error('Report must be outside every game directory');
+ args[key]=fixture;
+}
+const report={schema:'mkdos_p21_checkpoint_regression_v1',status:'RUNNING',startedAt:new Date().toISOString(),
+ suites:[],notRun:['--mk1','--mk3'].filter(k=>!args[k]).map(k=>k.slice(2)),browserInteractionVerified:false,commercialAssetsIncluded:false};
+function run(name,command,argv){
+ process.stderr.write('Running '+name+'\n');
+ const r=spawnSync(command,argv,{cwd:path.resolve(__dirname,'..'),encoding:'utf8',timeout:600000,maxBuffer:16*1024*1024,windowsHide:true});
+ if(r.error||r.status!==0)throw Error(name+': '+(r.error?.message||r.stderr||r.stdout||'exit '+r.status));
+ const result=JSON.parse(r.stdout);if(result.status!=='PASS')throw Error(name+' did not report PASS');
+ report.suites.push({name,...result});
+}
+try{
+ run('MK2 input identity',process.env.PYTHON||'python',['scripts/verify-mk2-p16-fixture-identity.py',args['--mk2']]);
+ for(const suffix of ['p20-cumulative','p12-intro','p13-mountain','p14-source-viewport','p15-observed-floors','p17-unassigned-images','p18-ordered-sequences','p19-source-order-queue'])
+  run('MK2 '+suffix,process.execPath,['scripts/verify-mk2-'+suffix+'.cjs',args['--mk2']]);
+ for(const game of ['mk1','mk3'])if(args['--'+game])run(game+' compatibility',process.execPath,['scripts/verify-cross-game-p21.cjs',game,args['--'+game]]);
+ report.status='PASS';
+}catch(e){report.status='FAIL';report.error=e.message;process.exitCode=1;}
+report.finishedAt=new Date().toISOString();
+fs.mkdirSync(path.dirname(reportPath),{recursive:true});fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify({status:report.status,suites:report.suites.length,notRun:report.notRun,error:report.error},null,2));

@@ -6,15 +6,14 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 
 ## Current checkpoint
 
-- **P16 is the verified, consolidated Git-safe source checkpoint on main** (2026-11-06). P11 and earlier P6 remain in Git history; new extractor work continues on develop.
-- MK2 original-file scanner: **5,108 unique assets / 83 P15 cumulative checks previously passed**, up from P11 5,053 / 40. The P12–P15 cycle adds 31 original PROBE/ACCLAIM intro frames, 15 native Mountain images, seven neutral stage-floor projections and two screenshot-witnessed Tomb/Portal floor previews.
-- P16 independently verified the canonical 614-file ZIP and 13 critical source hashes (**643 input-identity checks**), and independently reran the preserved P11 baseline (**5,053 assets / 40 checks**; original P8–P10 ZIP hashes unchanged). The P15 complete decoder suite was **not rerun in P16**, since no decoder code changed.
-- [P16 source CI](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42261497116) passed strict dependency install, syntax, forbidden-media audit, Vite build, TypeScript and Chrome source-offline startup. CI now covers main and develop.
-- The user verified MK1/MK2/MK3 browser import, previews and exports at P11. Browser interaction with newly added P12–P15 records remains pending independent confirmation. Existing MK1/MK3 known extraction limitations remain unchanged.
-- Index pixels and source provenance are preserved. Conditional screenshot colour is **not proof of live DAC palette ownership**; normalised floor views are **not complete 320×200 gameplay stages**; animation timing and world placement are not invented.
-- Commercial game binaries and extracted copyrighted media are excluded. Remaining optional browser QA and stage research are tracked in [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
+- **P21 is the consolidated source checkpoint on develop; main remains the accepted P16 checkpoint.** Earlier P11/P6 source is retained in Git history.
+- Fresh P21 regression: **11 suites PASS**. MK2: **5,118 unique asset representations / 536 cumulative checks**, plus **818,695 focused checks**. MK1: **2,656 assets**, including 49 stage previews with PNG export readback. MK3: **9,186 assets**, with representative exports across five kinds.
+- Run `node scripts/verify-p21-checkpoint.cjs --mk2 <dir> --mk1 <dir> --mk3 <dir> --report <json>` with original local installations. Omitted optional games are explicitly not run. Keep reports outside the game directories.
+- The full research workbench is preserved. Commercial game binaries, extracted artwork/audio and emulator captures remain outside GitHub.
+- Source fixture tests and source-offline Chrome startup do not prove real-data browser interaction. P12–P19 browser action checks remain pending. Native timing, live palette ownership and full stage composition are not inferred.
+- Next cycle: **P22 MK2 coverage reconciliation**, followed by a bounded missing-family integration grounded in existing verified research.
 
-Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P16 checkpoint and regression handoff](docs/EXTRACTOR_P16_CUMULATIVE_CHECKPOINT_2026-11-06.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
+Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P21 checkpoint](docs/EXTRACTOR_P21_SOURCE_CHECKPOINT_2026-11-06.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 
 ## In scope
 
@@ -36,7 +35,7 @@ This repository **does not distribute commercial game installations, game execut
 ## GitHub branch use
 
 - `main`: verified P16 Git-safe source checkpoint and stable project documentation.
-- `develop`: next MK2-focused interim extractor work after P16; merge only tested, evidence-grounded changes.
+- `develop`: P21 source checkpoint and subsequent MK2-focused interim work; preserve tested, evidence-grounded changes.
 
 ## Project continuity
 
