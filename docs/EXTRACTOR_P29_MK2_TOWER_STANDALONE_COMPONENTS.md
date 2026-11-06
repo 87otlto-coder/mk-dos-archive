@@ -76,3 +76,9 @@ python scripts/test-mk2-p29-tower-negative.py <original-directory> <private-comp
 
 Next **P30**: audit FOREST source-component coverage against the existing P7 layers, then expose useful missing originals only after independent source verification. Preserve layer/effect provenance and distinguish new standalone representations from new artwork. Assess the fifth-pass consolidation at **P31**, after four recoverable interim passes. Develop only; main unchanged; no interim full-source packaging.
 
+
+## Committed source and CI evidence
+
+Verified source candidate: `8068feb5e079d73529e9da9082c52fa4d8268d39`; tree `8b4a8f3f7c7a99ace9132396142febfb9210627e`. All **15 selected local files** match committed Git blob hashes after normal checkout newline conversion. Recursive tree audit: **2,153 blobs / 377 src files**, no removed paths, no tracked original game media/archive extensions, and no node_modules/dist/cache paths. Runtime changes are limited to the new adapter and additive collection registration.
+
+GitHub [source-build run 42305438278](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42305438278) completed **SUCCESS** on this exact source candidate. Strict dependency installation, source syntax, tracked-file guard, production build, TypeScript and headless Chrome application boot **without game data** passed. This does not establish original-data browser actions or native palette/timing/transform semantics. The subsequent evidence commit changes documentation only.

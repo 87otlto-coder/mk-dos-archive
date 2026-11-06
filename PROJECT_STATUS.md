@@ -13,6 +13,7 @@
 - **22 original setup controls** retained as raw flags/coordinates/pairs. Setup transform semantics and activation remain **UNKNOWN**; no new TOWER mosaic or runtime scene is asserted.
 - **161 focused / 296,737 independent export checks PASS**, eight rejected source fixtures and **five rejected false exports/claims**. Full MK2: **5,255 / 1,436 cumulative checks PASS; 16 suites PASS**.
 - Local **373-file syntax**, TypeScript and production build PASS. Original-data browser actions remain **VALIDATION PENDING**; native palette/timing/world composition **UNKNOWN**. P26 remains MK1/MK3 latest full fixture checkpoint.
+- Source commit `8068feb5e079d73529e9da9082c52fa4d8268d39` verified: all 15 changed blobs match; tree audit 2,153 blobs / 377 src, no removed/media/cache paths. [CI run 42305438278](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42305438278) **SUCCESS**, including source-only Chrome boot.
 - [P29 handoff](docs/EXTRACTOR_P29_MK2_TOWER_STANDALONE_COMPONENTS.md), [evidence](docs/validation/P29_TOWER_COMPONENT_REGRESSION_2026-11-07.json). Next **P30 FOREST component coverage audit** against existing P7 layers; assess fifth-pass consolidation at P31. No main promotion.
 
 ## P28 standalone PORTAL setup components - interim develop pass, 2026-11-06
