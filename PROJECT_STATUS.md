@@ -4,6 +4,16 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P20 full current-source MK2 cumulative regression — interim `develop` pass, 2026-11-06
+
+**Freshly VERIFIED: 5,118 asset representations / 5,118 unique IDs** from the existing original MK2 extracted fixture on the complete P16–P19 source at `17af1a5`. The earlier P17–P19 cumulative validation gap is closed; P16 remains on `main` and P21 is not started.
+
+- New reproducible P20 cumulative gate: **536 checks PASS**, including retained P15 export/archive checks, P17 mosaics and all eight P19 source-order queues / 57 original frames, with exact exported index/opacity parity. Existing P18 default full-source gate: **40 checks PASS / 5,118**.
+- Seven focused P12–P19 suites freshly passed **818,695 checks**. Historical P8–P10 and P13–P15 evidence ZIP hashes are unchanged. No extractor implementation failure or decoder change was needed; research functionality is preserved.
+- Original extracted input: **614-file census / 13 critical resource hashes / 642 identity checks PASS**. Fresh attached ZIP download failed with DNS, so its archive-level hash/re-extraction was **not rerun in this continuation**. See the explicit input confidence boundary in the handoff.
+- Local 365-file source syntax, TypeScript and production build PASS. Browser clicking with original game data remains **VALIDATION PENDING**; native palette ownership, timing and final stage composition remain **UNKNOWN**. No new MK1/MK3 fixture regression is claimed.
+- [P20 handoff](docs/EXTRACTOR_P20_MK2_FULL_CUMULATIVE_REGRESSION.md) and [machine-readable results](docs/validation/P20_MK2_REGRESSION_2026-11-06.json). Keep changes on `develop`; no promotion or P21 consolidation.
+
 ## P19 MK2 direct source-order animation preview — interim `develop` pass, 2026-11-06
 
 **P16 remains the stable main checkpoint.** P19 is the third MK2-first interim improvement, extending P18's eight original source-order animation groups into a one-click user presentation workflow. It adds no new extracted asset records and makes no new native timing or palette claims.
