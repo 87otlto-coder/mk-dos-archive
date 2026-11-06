@@ -7,12 +7,12 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 ## Current checkpoint
 
 - **P21 is the consolidated source checkpoint on develop; main remains the accepted P16 checkpoint.** Earlier P11/P6 source is retained in Git history.
-- P22–P24 add **49 CAVE, 18 ARMORY and 20 BATTLE original indexed images**, for **5,205 MK2 representations / 826 cumulative checks**. BATTLE preserves all 40 paired descriptor witnesses without duplicating image assets. Original floors and earlier suites remain preserved. Read the [P24 handoff](docs/EXTRACTOR_P24_MK2_BATTLE_DEDUPLICATED_IMAGES.md).
+- P22–P25 add **102 original indexed images**: CAVE 49, ARMORY 18, BATTLE 20, ARENA 15. MK2 now has **5,220 representations / 865 cumulative checks**. All 40 BATTLE descriptor witnesses, earlier floors and source evidence remain preserved. Read the [P25 handoff](docs/EXTRACTOR_P25_MK2_ARENA_ORIGINAL_IMAGES.md).
 - Fresh P21 regression: **11 suites PASS**. MK2: **5,118 unique asset representations / 536 cumulative checks**, plus **818,695 focused checks**. MK1: **2,656 assets**, including 49 stage previews with PNG export readback. MK3: **9,186 assets**, with representative exports across five kinds.
 - Run `node scripts/verify-p21-checkpoint.cjs --mk2 <dir> --mk1 <dir> --mk3 <dir> --report <json>` with original local installations. Omitted optional games are explicitly not run. Keep reports outside the game directories.
 - The full research workbench is preserved. Commercial game binaries, extracted artwork/audio and emulator captures remain outside GitHub.
 - Source fixture tests and source-offline Chrome startup do not prove real-data browser interaction. P12–P19 browser action checks remain pending. Native timing, live palette ownership and full stage composition are not inferred.
-- Next pass: **P25 ARENA descriptor coverage**, followed by independently verified missing-image integration. The checkpoint runner defaults to P24 (`--through p24`); P26 is the next consolidation candidate.
+- Next pass: **P26 fifth-pass consolidation**, complete current multi-game regression and source audit. The checkpoint runner defaults to P25 (`--through p25`). Main promotion remains separate.
 
 Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P21 checkpoint](docs/EXTRACTOR_P21_SOURCE_CHECKPOINT_2026-11-06.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 

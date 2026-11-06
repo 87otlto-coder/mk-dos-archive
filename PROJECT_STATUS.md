@@ -4,6 +4,16 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P25 original ARENA.GRA image integration — interim develop pass, 2026-11-06
+
+**Fresh MK2 collection: 5,220 unique representations**, adding **15 original ARENA.GRA indexed images** to P24's 5,205. All three previous ARENA floor representations and uncropped raw floor bytes are preserved. P25 is the fourth interim pass after P21; P26 is the next consolidation candidate. Main remains P16.
+
+- Original descriptor-backed **[0,36172)** prefix: **15 distinct images / 65,736 pixels**. The remaining **90,156 bytes** are outside this image-family qualification, including the existing floor **[90488,126328)**. No new palette, animation or scene interpretation.
+- **284 focused adapter/export checks**, **394,675 independent original-file PNG/sidecar checks**, eight source-negative cases and three valid-CRC false export/claim controls PASS. Full current collection: **5,220 / 865 cumulative checks PASS**.
+- **13 current MK2 suites PASS**, preserving CAVE/ARMORY/BATTLE bytes and evidence ZIP hashes, seven earlier focused suites (**818,695 checks**) and original archive identities. The row decoder, prior adapters and research code remain unchanged.
+- Local 370-file TypeScript syntax, typecheck and production build PASS. Runner defaults to `--through p25`. MK1/MK3 were explicitly not freshly rerun; P21 results remain historical. Browser interaction is **VALIDATION PENDING**; native palette/timing/placement/full scenes remain **UNKNOWN**.
+- [P25 handoff](docs/EXTRACTOR_P25_MK2_ARENA_ORIGINAL_IMAGES.md), [results](docs/validation/P25_ARENA_REGRESSION_2026-11-06.json). P22–P25 add **102 original indexed image representations**. Next: **P26 fifth-pass consolidation, complete current multi-game regression and source audit**. No main promotion or full-source release in P25.
+
 ## P24 BATTLE images and duplicate descriptor provenance — interim develop pass, 2026-11-06
 
 **Fresh MK2 collection: 5,205 unique representations**, adding **20 original BATTLE.GRA images from 40 descriptor witnesses**. Both byte-identical original records per image are retained in metadata, not counted as separate artwork. P24 is the third interim pass after P21; main remains P16.
@@ -213,9 +223,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P24** after P21 develop consolidation |
-| Latest full MK2 original-fixture cumulative result | **P24: 5,205 unique assets / 826 cumulative checks**, plus earlier suites and CAVE/ARMORY/BATTLE parity |
-| Next planned pass | **P25 ARENA descriptor coverage and qualified missing-image integration** |
+| Most recent interim pass | **P25**, fourth interim pass after P21 develop consolidation |
+| Latest full MK2 original-fixture cumulative result | **P25: 5,220 unique assets / 865 cumulative checks**, plus earlier suites and four new-family parity suites |
+| Next planned pass | **P26 fifth-pass consolidation, current multi-game regression and full source audit** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -237,9 +247,9 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P25 from committed P24 on develop; verify its handoff and preserve the P21 checkpoint.
-2. Remain MK2-first: audit ARENA descriptor coverage before exposing independently verified missing originals. Preserve native floors, descriptor witnesses, source indices and uncertainty labels; do not inflate image counts from duplicate witnesses.
-3. Use `scripts/verify-p21-checkpoint.cjs --through p24` for the current fixture gate. Historical P20/P21 scripts retain their frozen census; input identity alone does not prove decoder correctness.
+1. Begin P26 from committed P25 on develop; verify its handoff and preserve the P21 checkpoint and four interim passes.
+2. Consolidate verified P22–P25 work: fresh complete current MK1/MK2/MK3 regressions, Git-safe source audit and explicit browser/runtime confidence boundaries. Preserve research and native indices/provenance; do not add speculative palette or scene claims.
+3. Use `scripts/verify-p21-checkpoint.cjs --through p25` for the current fixture gate. Historical P20/P21 scripts retain their frozen census; input identity alone does not prove decoder correctness.
 4. Keep native timing, live palette ownership, full stage assembly and real-data browser interaction separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 5. Preserve the full research workbench and commercial-media exclusion. Accumulate four recoverable interim passes, then assess the next fifth-pass checkpoint. Main promotion requires separate acceptance; P21 does not promote automatically.
 
