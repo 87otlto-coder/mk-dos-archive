@@ -13,6 +13,7 @@
 - Current checkpoint runner defaults to P22 and accepts `--through p22`; **10 MK2 suites PASS**. Optional MK1/MK3 were explicitly not rerun this pass; their P21 evidence remains valid historical evidence. TypeScript, 366-file syntax and production build PASS locally.
 - New images use existing Asset Library preview/PNG/selected-ZIP workflows; Coverage & evidence includes the 49-image source bundle. Actual original-data browser interaction remains **VALIDATION PENDING**. Runtime palette, stage ownership, placement, native timing and full scenes remain **UNKNOWN**.
 - [P22 handoff](docs/EXTRACTOR_P22_MK2_CAVE_ORIGINAL_IMAGES.md), [results](docs/validation/P22_CAVE_REGRESSION_2026-11-06.json). Next: **P23 original ARMORY descriptor coverage audit and qualified missing-image integration**. No main promotion or full-source release.
+- Committed P22 source **`2272c00`** passed [CI 42285496421](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42285496421), including strict install, build, TypeScript, syntax/media guard and source-offline Chrome startup. All 14 changed/added file blobs verified; no removals or tracked game media.
 
 ## P21 fifth-pass source consolidation — develop checkpoint, 2026-11-06
 

@@ -58,6 +58,10 @@ An initial independent PNG check could not import Pillow in this runtime. It was
 
 Machine-readable results: [P22 verification](validation/P22_CAVE_REGRESSION_2026-11-06.json).
 
+**Committed source candidate:** `2272c00f2ef636dbd08b9d717ad9fbdd0fe786fe`, tree `ad57d8af3dc8890702ee92f3b085ac31532c66f2`. All 14 changed/added files match local Git blob hashes. The complete tree has **2,097 tracked file blobs / 370 src files**, no removed paths and no reviewed original-game/media/archive extensions. Research implementation is unchanged; runtime changes are the additive CAVE adapter and collection registration.
+
+**GitHub CI PASS:** [run 42285496421](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42285496421) completed successfully on `2272c00`: strict locked dependency install, source/new CJS syntax, media guard, Vite production, TypeScript, source-offline headless Chrome startup and build upload. It does not include commercial fixtures or prove original-data browser clicks.
+
 ## Reproduce
 
 ```powershell
