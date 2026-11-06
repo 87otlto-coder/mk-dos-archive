@@ -13,6 +13,7 @@
 - **13 current MK2 suites PASS**, preserving CAVE/ARMORY/BATTLE bytes and evidence ZIP hashes, seven earlier focused suites (**818,695 checks**) and original archive identities. The row decoder, prior adapters and research code remain unchanged.
 - Local 370-file TypeScript syntax, typecheck and production build PASS. Runner defaults to `--through p25`. MK1/MK3 were explicitly not freshly rerun; P21 results remain historical. Browser interaction is **VALIDATION PENDING**; native palette/timing/placement/full scenes remain **UNKNOWN**.
 - [P25 handoff](docs/EXTRACTOR_P25_MK2_ARENA_ORIGINAL_IMAGES.md), [results](docs/validation/P25_ARENA_REGRESSION_2026-11-06.json). P22–P25 add **102 original indexed image representations**. Next: **P26 fifth-pass consolidation, complete current multi-game regression and source audit**. No main promotion or full-source release in P25.
+- Committed P25 source **`6003d16`** passed [CI 42290617764](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42290617764): strict install, syntax/media guard, Vite, TypeScript, source-offline Chrome and build upload. All fourteen changed/added file blobs verified; no removals or tracked game media. Main is unchanged.
 
 ## P24 BATTLE images and duplicate descriptor provenance — interim develop pass, 2026-11-06
 

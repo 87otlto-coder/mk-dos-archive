@@ -42,6 +42,10 @@ CAVE/ARMORY/BATTLE evidence ZIPs retain their exact previous hashes. The indepen
 
 [Machine-readable P25 results](validation/P25_ARENA_REGRESSION_2026-11-06.json).
 
+**Committed source verified:** `6003d16ac5b25772e77428440028d5a409511c79`, tree `630aae1a3cf9d5edcf747400fc1f2e817d1d77fa`: **2,122 tracked file blobs / 374 src files**. All fourteen changed/added file blobs match the local candidate. No paths were removed; no reviewed original-game/media/archive extensions are tracked. Earlier adapters, shared row decoder and research source remain unchanged.
+
+**GitHub CI PASS:** [run 42290617764](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42290617764) completed successfully on `6003d16`: strict locked install, source/new verifier syntax, media guard, Vite production, TypeScript, source-offline headless Chrome startup and build upload. Original-fixture tests are separate local evidence; source-offline Chrome does not verify original-data browser actions.
+
 ## Reproduce
 
 ```powershell
