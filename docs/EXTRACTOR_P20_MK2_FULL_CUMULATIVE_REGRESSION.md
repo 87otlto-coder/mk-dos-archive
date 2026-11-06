@@ -11,6 +11,7 @@ The complete P16–P19 extractor source at `17af1a5151999b77b31945b82e5b7fdee58a
 - Fresh focused suites: P12 **524**, P13 **358**, P14 **409,790**, P15 **28,244**, P17 **77**, P18 **379,422**, P19 **280** checks PASS (**818,695** total). These include existing missing/corrupt/synthetic/ordering/timing negative controls. They are adapter/export tests, not native game playback tests.
 - P8/P9/P10 evidence ZIPs retain their historical SHA-256 identities. P13 Mountain, P14 native viewport and P15 witnessed-floor evidence ZIP hashes also remain unchanged under the P20 gate.
 - Local syntax: **365 TypeScript source files / zero syntax errors**. TypeScript `--noEmit`, production Vite build and new verifier `node --check` PASS using installed dependencies. Vite retains a large-chunk warning. A fresh strict dependency install was not run locally.
+- GitHub CI on committed P20 candidate `504cb056faa74a5e5fdbf747178984b0a26b3fc8`: [run 42281991079](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42281991079) **completed / success**. Strict locked install, source syntax, tracked-media guard, Vite production, TypeScript, source-offline headless Chrome boot and static build upload all passed. This does not test original-game browser interaction.
 
 ## Source and input evidence
 

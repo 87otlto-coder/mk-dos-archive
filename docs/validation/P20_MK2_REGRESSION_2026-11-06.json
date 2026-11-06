@@ -240,5 +240,13 @@
   "gameBrowserInteractionVerified": false,
   "nativeGamePlaybackVerified": false,
   "p21Started": false,
-  "mainPromoted": false
+  "mainPromoted": false,
+  "githubCI": {
+    "commit": "504cb056faa74a5e5fdbf747178984b0a26b3fc8",
+    "runId": 42281991079,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42281991079",
+    "originalGameBrowserInteraction": false
+  }
 }

@@ -12,6 +12,7 @@
 - Seven focused P12–P19 suites freshly passed **818,695 checks**. Historical P8–P10 and P13–P15 evidence ZIP hashes are unchanged. No extractor implementation failure or decoder change was needed; research functionality is preserved.
 - Original extracted input: **614-file census / 13 critical resource hashes / 642 identity checks PASS**. Fresh attached ZIP download failed with DNS, so its archive-level hash/re-extraction was **not rerun in this continuation**. See the explicit input confidence boundary in the handoff.
 - Local 365-file source syntax, TypeScript and production build PASS. Browser clicking with original game data remains **VALIDATION PENDING**; native palette ownership, timing and final stage composition remain **UNKNOWN**. No new MK1/MK3 fixture regression is claimed.
+- Committed P20 candidate `504cb05` passed [GitHub CI 42281991079](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42281991079): strict locked install, syntax/media guard, production build, TypeScript, source-offline Chrome startup and build upload. Verifier and evidence are recoverably committed on `develop`.
 - [P20 handoff](docs/EXTRACTOR_P20_MK2_FULL_CUMULATIVE_REGRESSION.md) and [machine-readable results](docs/validation/P20_MK2_REGRESSION_2026-11-06.json). Keep changes on `develop`; no promotion or P21 consolidation.
 
 ## P19 MK2 direct source-order animation preview — interim `develop` pass, 2026-11-06
