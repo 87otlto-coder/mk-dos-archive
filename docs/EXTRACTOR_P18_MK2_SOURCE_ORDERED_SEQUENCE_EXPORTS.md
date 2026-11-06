@@ -45,3 +45,8 @@ The P18 integration reuses, without modifying, two strict original DOS source de
 ## Development cadence
 
 P18 is the **second interim pass** after P16. Continue MK2-first for P19–P20, prioritizing improvements to useful source-grounded stage composition and animation/audio exports, then P21 consolidation only if full source/original-fixture gates justify it. Keep original game files, extracted commercial graphics and screenshots out of GitHub.
+
+
+## Post-commit GitHub build result — verified
+
+[GitHub Actions 42273807258](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42273807258) on committed source [`6c4cd8e`](https://github.com/87otlto-coder/mk-dos-archive/commit/6c4cd8eb25569f419310094e495bb4b698f168bc) **PASS**: strict npm 11 installation from committed lockfile, source syntax, Git-safe commercial-media guard, production Vite build, TypeScript check, headless Chrome source-offline boot and built artifact upload. P18 original DOS frame-group parity ran separately on the private original fixture. Source-offline CI cannot establish real MK2 browser inspection of the newly added controls, and the full P16+P17+P18 5,118-asset scanner is still a pending gate.
