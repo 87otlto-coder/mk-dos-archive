@@ -1,0 +1,656 @@
+{
+  "schema": "mkdos_p29_tower_independent_reference_v1",
+  "exeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "graSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+  "outsideImageFamilyBytes": 72836,
+  "sourceEndExclusive": 40776,
+  "images": [
+    {
+      "ordinal": 0,
+      "descriptorPhysical": 755156,
+      "descriptorBytes": 8,
+      "sourceDescriptorAnchor": null,
+      "width": 34,
+      "height": 152,
+      "start": 0,
+      "endExclusive": 6220,
+      "indicesSha256": "7e3bab9616b55856247bf3a675d54a52e9ee360bb06ec17b94cbc564d8a872c6",
+      "maskSha256": "e77735cd93502a4ed97025f7d49c5aa56b46e7ed6237f35339c7d7a5945a0177",
+      "paletteKnownSha256": "f12429b308a5d5744a9b9d6b279c82e97e623ee010b0cf4a244f733fc5f73e55",
+      "rgbaSha256": "a0124c5b24161683d8e41011f80d2e930407839a141439ff53305e2b07cdc0a6",
+      "encodedSha256": "3d715683a591699526946c26aabd7ea800d4f99dba8fcdd29108da9573d8f854",
+      "sourceSetupControls": [
+        {
+          "setupObject2Offset": 96604,
+          "controlObject2Offset": 96982,
+          "ordinal": 0,
+          "rawFlags": 16450,
+          "sourceX": 361,
+          "sourceY": 0,
+          "rawPair": 0
+        },
+        {
+          "setupObject2Offset": 96604,
+          "controlObject2Offset": 96990,
+          "ordinal": 1,
+          "rawFlags": 16466,
+          "sourceX": 635,
+          "sourceY": 0,
+          "rawPair": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 1,
+      "descriptorPhysical": 755164,
+      "descriptorBytes": 8,
+      "sourceDescriptorAnchor": null,
+      "width": 52,
+      "height": 199,
+      "start": 6220,
+      "endExclusive": 17080,
+      "indicesSha256": "7fcb9f9a1def25266c81ee1768e2df9d4c12e5be877a822ad9f451cf5b237ddd",
+      "maskSha256": "edd96892a3997e3bf97616e39576da694d7e25d62fa0b3a863fc29450f388c75",
+      "paletteKnownSha256": "bf7ad73a48bf736ee0c729874d8d9ce120964dca70b7f48c4cda628f82609aa3",
+      "rgbaSha256": "5bd5eff5a314425ca08f5f192278bde01b050d70dbaab38345d7278cab4f7ec8",
+      "encodedSha256": "9eab86fa14e95f2cd56aeadaf9ccb24842ffbd369f5cde99e1d5f6bc7232aa85",
+      "sourceSetupControls": [
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96820,
+          "ordinal": 0,
+          "rawFlags": 16450,
+          "sourceX": 0,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96828,
+          "ordinal": 1,
+          "rawFlags": 16466,
+          "sourceX": 52,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96836,
+          "ordinal": 2,
+          "rawFlags": 16450,
+          "sourceX": 104,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96844,
+          "ordinal": 3,
+          "rawFlags": 16466,
+          "sourceX": 156,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96852,
+          "ordinal": 4,
+          "rawFlags": 16450,
+          "sourceX": 208,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96860,
+          "ordinal": 5,
+          "rawFlags": 16466,
+          "sourceX": 260,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96868,
+          "ordinal": 6,
+          "rawFlags": 16450,
+          "sourceX": 312,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96876,
+          "ordinal": 7,
+          "rawFlags": 16466,
+          "sourceX": 364,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96916,
+          "ordinal": 12,
+          "rawFlags": 16450,
+          "sourceX": 615,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96924,
+          "ordinal": 13,
+          "rawFlags": 16466,
+          "sourceX": 667,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96932,
+          "ordinal": 14,
+          "rawFlags": 16450,
+          "sourceX": 719,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96940,
+          "ordinal": 15,
+          "rawFlags": 16466,
+          "sourceX": 771,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96948,
+          "ordinal": 16,
+          "rawFlags": 16450,
+          "sourceX": 823,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96956,
+          "ordinal": 17,
+          "rawFlags": 16466,
+          "sourceX": 875,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96964,
+          "ordinal": 18,
+          "rawFlags": 16450,
+          "sourceX": 927,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96972,
+          "ordinal": 19,
+          "rawFlags": 16466,
+          "sourceX": 979,
+          "sourceY": 0,
+          "rawPair": 2
+        }
+      ]
+    },
+    {
+      "ordinal": 2,
+      "descriptorPhysical": 755172,
+      "descriptorBytes": 8,
+      "sourceDescriptorAnchor": null,
+      "width": 100,
+      "height": 127,
+      "start": 17080,
+      "endExclusive": 28780,
+      "indicesSha256": "8a1d29ce3ebadf333ab63daa45e3db893c5a2c036055978d5d71dc049e1500a4",
+      "maskSha256": "7fabd541cd0572ce1a21273e5b38b1051160776302cc3cb1959ea8b5166ba003",
+      "paletteKnownSha256": "3e8a21d5fa362f7afd5e06d6cf09c1301881b61274d5bb8cf561481b42e900a6",
+      "rgbaSha256": "d3ab66c7c174ffb933a00f28adc70e037951dd35e975a668ea7f23439c76315c",
+      "encodedSha256": "3e4796b52902439afceab91dc573d2aa3a52b1f7f8f9206e4c25a0f3788f0bfb",
+      "sourceSetupControls": [
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96884,
+          "ordinal": 8,
+          "rawFlags": 16450,
+          "sourceX": 416,
+          "sourceY": 0,
+          "rawPair": 4
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96900,
+          "ordinal": 10,
+          "rawFlags": 16466,
+          "sourceX": 515,
+          "sourceY": 0,
+          "rawPair": 4
+        }
+      ]
+    },
+    {
+      "ordinal": 3,
+      "descriptorPhysical": 755180,
+      "descriptorBytes": 8,
+      "sourceDescriptorAnchor": null,
+      "width": 101,
+      "height": 73,
+      "start": 28780,
+      "endExclusive": 34652,
+      "indicesSha256": "c7056e7db1491ef003c8bce122472b1f1288d7684c6fdf730cd1053249cf6617",
+      "maskSha256": "4ee7a68491741928c3c1988fc7007e1ee01ab6c42c9423b032ad0333060bcea0",
+      "paletteKnownSha256": "1f211e70e7b3f2cb689a9e14dc321c23ccbdf41cf2ad885cf238cc90923c60f6",
+      "rgbaSha256": "f3b5541fa6769737bb15b65fea15c4e0bad90aff15b1d02a2fdca4ee1e13af44",
+      "encodedSha256": "fba4ab0316e9c78f8dfb73ca8eb60a13b3bfc4e56cf0ca1ee99e9a4cabddf3bb",
+      "sourceSetupControls": [
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96892,
+          "ordinal": 9,
+          "rawFlags": 16450,
+          "sourceX": 416,
+          "sourceY": 127,
+          "rawPair": 6
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96908,
+          "ordinal": 11,
+          "rawFlags": 16466,
+          "sourceX": 515,
+          "sourceY": 127,
+          "rawPair": 6
+        }
+      ]
+    },
+    {
+      "ordinal": 4,
+      "descriptorPhysical": 755188,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 0,
+        "y": 0
+      },
+      "width": 72,
+      "height": 64,
+      "start": 34652,
+      "endExclusive": 38288,
+      "indicesSha256": "55cad1406895a2c237e325bd25c8bc31684c874237db47d026217f364ba6f0f0",
+      "maskSha256": "81fcd9b000cbdb0d0d9cdd61b22b3b3c4597d019bd011f4187fdb7a762c72fb1",
+      "paletteKnownSha256": "606f558e014930f9c1669f03c71c28945c4631568e39cd308c6c7f4077c7bfb9",
+      "rgbaSha256": "4baa5d845e0d2bb0c6176789967b597be06a4cf16e0305f3338efd3f27985e35",
+      "encodedSha256": "7f524a8be07136a730445f10761b529019c16204f875da6b8ed94c9e8757708a",
+      "sourceSetupControls": []
+    },
+    {
+      "ordinal": 5,
+      "descriptorPhysical": 755204,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 0,
+        "y": 0
+      },
+      "width": 72,
+      "height": 48,
+      "start": 38288,
+      "endExclusive": 40776,
+      "indicesSha256": "99c28ff45cf1345af29ea13fc625ced56d689558a229bac0193bde2d9e5f238a",
+      "maskSha256": "d4399de613ccec25491e591c432dc4c89dc626a076fa48b5327898a423f2c4f6",
+      "paletteKnownSha256": "0ee0c7ac0933cd2c9de481994bf578c44ac305c8b99c0baf4b95701bb50c9476",
+      "rgbaSha256": "de0ecb2409937e3729b9042888d44cabc387b3ff3da9fdcf51a46075c85815db",
+      "encodedSha256": "e3af04074db79d57f027ea6931e1d82a68668a5613f1c3f74b4015c50147b768",
+      "sourceSetupControls": []
+    }
+  ],
+  "existingEffectFrames": [
+    {
+      "ordinal": 6,
+      "descriptorPhysical": 755220,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 22,
+        "y": 40
+      },
+      "width": 41,
+      "height": 63,
+      "start": 40776,
+      "endExclusive": 42976,
+      "indicesSha256": "627eac26600a897f390dfbd689f6fe31496e2bd08181d4bf39b750aa9985ec8d",
+      "maskSha256": "21909ce120ad153097f32f67318b0bef2cdf8a8bcdffd6752d6cf4a9bbd01e6a",
+      "paletteKnownSha256": "dfa16fa691ae09e54c06694f69287439d8bc09a8e85c3ea807d697cf3b8494fa",
+      "rgbaSha256": "442ff24497e403c31d9c931d7a4ecb000a4a9d5458c46a8fe0cbb0cffece87d0",
+      "encodedSha256": "cc41b9833b39f47f3d6310d2989a45709e9b701c6b205672812e14c6c46dd1cc"
+    },
+    {
+      "ordinal": 7,
+      "descriptorPhysical": 755236,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 22,
+        "y": 40
+      },
+      "width": 38,
+      "height": 63,
+      "start": 42976,
+      "endExclusive": 45160,
+      "indicesSha256": "7a3a7e4cfd03ef119785f222b7ccb6a396409e0f8463b0ab94c8522a9bd93ac2",
+      "maskSha256": "0c4103c8920f85decef15ccbcc28f29d57bc563ba7702ea24f3f30fa4d5189e7",
+      "paletteKnownSha256": "9f9aee74f6d7c6f92ed47623c173c3c9369233639ba1a6fa9bbbd9dbf436a342",
+      "rgbaSha256": "2b18c8a38d3acdc9e740958366cf3475ef0d08a9ee4d08e5534a3467691207ba",
+      "encodedSha256": "a8cb39406fe3cc5ab83f534c86cf4f5e02da867fbf44be27f27580000a9477f3"
+    },
+    {
+      "ordinal": 8,
+      "descriptorPhysical": 755248,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 22,
+        "y": 40
+      },
+      "width": 37,
+      "height": 63,
+      "start": 45160,
+      "endExclusive": 47344,
+      "indicesSha256": "0624accc086086557d1a719e61e72195171588edc2a404bd63a3d931dc3d32c3",
+      "maskSha256": "af58feb63136ff33285d1e0cb693845aefcc0284aec53a0bb5e1aa5e01bc1f99",
+      "paletteKnownSha256": "bd273f08077fdc292fcf07ac3c571e67b51cbabf0d11b2997963b0575324a0ee",
+      "rgbaSha256": "720dc08b3e6dd577264804062ab3b9b96b045133c473fd8ed69ef7d078824a50",
+      "encodedSha256": "862296d4e220b02980e9ebe2e68e393c88608a1fc1b650c8c5a7f457433ce342"
+    },
+    {
+      "ordinal": 9,
+      "descriptorPhysical": 755260,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 22,
+        "y": 40
+      },
+      "width": 38,
+      "height": 63,
+      "start": 47344,
+      "endExclusive": 49536,
+      "indicesSha256": "e55ae30ff6e9df23621309d3d75ac862cb035d4ab70c1d9e8f9dfa61356a1847",
+      "maskSha256": "41acfa94d882edf039f058b421593ea7d9f9d47ae20b09d622313af6ed759baf",
+      "paletteKnownSha256": "9f9aee74f6d7c6f92ed47623c173c3c9369233639ba1a6fa9bbbd9dbf436a342",
+      "rgbaSha256": "8a976c193066c98e407ad1a918556f34b27239bdba634071043d39bc2530786d",
+      "encodedSha256": "3c8e31187ed151092034841b18bd15f6b0113b22d0fbc7e34b3f4c88251d1df0"
+    },
+    {
+      "ordinal": 10,
+      "descriptorPhysical": 755272,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 22,
+        "y": 40
+      },
+      "width": 39,
+      "height": 63,
+      "start": 49536,
+      "endExclusive": 51764,
+      "indicesSha256": "7e220dfd2c670c6fd211dc0bd74472696ba8bd293083ff811cf498321968a22d",
+      "maskSha256": "8aa6c9ab0bd6133937ce205c11b9a164883e437eff9812aab246943dbdddf20f",
+      "paletteKnownSha256": "6eb259172088339897dec645ad1479ef648908afa656ccf2dec5ae09ced8f375",
+      "rgbaSha256": "ed450205c84af96642c038480dd7766e331f2a7f8a9624699105686b0c9bec42",
+      "encodedSha256": "c30a892960cb43c03d9b93f985ac3588ee37b797407b4c3c4e0265c21d7f7bef"
+    },
+    {
+      "ordinal": 11,
+      "descriptorPhysical": 755284,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 22,
+        "y": 40
+      },
+      "width": 40,
+      "height": 63,
+      "start": 51764,
+      "endExclusive": 54020,
+      "indicesSha256": "c3bba940ef55b25bd4151719f2b98ccbefca11a42ff1832cc31c7747365e5447",
+      "maskSha256": "22352de4643f0293da971fae3e39d841bcad2dd0b8cfc51dbdf7e2c6a6b40125",
+      "paletteKnownSha256": "1c71ec6b184ef378eafadf86f731339eca87693678f565d78b071e0bcbebaae7",
+      "rgbaSha256": "e82cb598f2d28ef99ec89a7c94b6cb66e4345aec5368a93e850b9a1d6ea1f236",
+      "encodedSha256": "76fa209e468402a7da5e3d3b9fea8e931542ccf37010241b1a037593c59f1227"
+    },
+    {
+      "ordinal": 12,
+      "descriptorPhysical": 755296,
+      "descriptorBytes": 12,
+      "sourceDescriptorAnchor": {
+        "x": 22,
+        "y": 40
+      },
+      "width": 42,
+      "height": 63,
+      "start": 54020,
+      "endExclusive": 56268,
+      "indicesSha256": "63f56a180dedcfe26039ed6337a9f1eab50bb3723b0e6d6ae3c96461ec6c32d4",
+      "maskSha256": "38875163c8b4b7ef3310dd5d6798509e713084762feae4fdc36c6969c6d1efc6",
+      "paletteKnownSha256": "c64f6c274968c1e25abfba2e24b3686f38c0e8484d0bfc517f77422ad03b2c0e",
+      "rgbaSha256": "53c58a60a6bb5ebf3e6bf77d302ad3b1c64fb4869c8e51ea717b78ba0e13d6c5",
+      "encodedSha256": "669bf02cacae01cfbc3d36281e807390df66109bc6378c4cc4836bb342044307"
+    }
+  ],
+  "sourceSetups": [
+    {
+      "setupObject2Offset": 96604,
+      "width": 1031,
+      "height": 64,
+      "controls": [
+        {
+          "setupObject2Offset": 96604,
+          "controlObject2Offset": 96982,
+          "ordinal": 0,
+          "rawFlags": 16450,
+          "sourceX": 361,
+          "sourceY": 0,
+          "rawPair": 0
+        },
+        {
+          "setupObject2Offset": 96604,
+          "controlObject2Offset": 96990,
+          "ordinal": 1,
+          "rawFlags": 16466,
+          "sourceX": 635,
+          "sourceY": 0,
+          "rawPair": 0
+        }
+      ]
+    },
+    {
+      "setupObject2Offset": 96622,
+      "width": 1031,
+      "height": 64,
+      "controls": [
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96820,
+          "ordinal": 0,
+          "rawFlags": 16450,
+          "sourceX": 0,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96828,
+          "ordinal": 1,
+          "rawFlags": 16466,
+          "sourceX": 52,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96836,
+          "ordinal": 2,
+          "rawFlags": 16450,
+          "sourceX": 104,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96844,
+          "ordinal": 3,
+          "rawFlags": 16466,
+          "sourceX": 156,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96852,
+          "ordinal": 4,
+          "rawFlags": 16450,
+          "sourceX": 208,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96860,
+          "ordinal": 5,
+          "rawFlags": 16466,
+          "sourceX": 260,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96868,
+          "ordinal": 6,
+          "rawFlags": 16450,
+          "sourceX": 312,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96876,
+          "ordinal": 7,
+          "rawFlags": 16466,
+          "sourceX": 364,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96884,
+          "ordinal": 8,
+          "rawFlags": 16450,
+          "sourceX": 416,
+          "sourceY": 0,
+          "rawPair": 4
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96892,
+          "ordinal": 9,
+          "rawFlags": 16450,
+          "sourceX": 416,
+          "sourceY": 127,
+          "rawPair": 6
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96900,
+          "ordinal": 10,
+          "rawFlags": 16466,
+          "sourceX": 515,
+          "sourceY": 0,
+          "rawPair": 4
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96908,
+          "ordinal": 11,
+          "rawFlags": 16466,
+          "sourceX": 515,
+          "sourceY": 127,
+          "rawPair": 6
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96916,
+          "ordinal": 12,
+          "rawFlags": 16450,
+          "sourceX": 615,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96924,
+          "ordinal": 13,
+          "rawFlags": 16466,
+          "sourceX": 667,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96932,
+          "ordinal": 14,
+          "rawFlags": 16450,
+          "sourceX": 719,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96940,
+          "ordinal": 15,
+          "rawFlags": 16466,
+          "sourceX": 771,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96948,
+          "ordinal": 16,
+          "rawFlags": 16450,
+          "sourceX": 823,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96956,
+          "ordinal": 17,
+          "rawFlags": 16466,
+          "sourceX": 875,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96964,
+          "ordinal": 18,
+          "rawFlags": 16450,
+          "sourceX": 927,
+          "sourceY": 0,
+          "rawPair": 2
+        },
+        {
+          "setupObject2Offset": 96622,
+          "controlObject2Offset": 96972,
+          "ordinal": 19,
+          "rawFlags": 16466,
+          "sourceX": 979,
+          "sourceY": 0,
+          "rawPair": 2
+        }
+      ]
+    }
+  ],
+  "fullEncodedPrefixEndExclusive": 56268
+}

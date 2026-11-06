@@ -1,0 +1,176 @@
+{
+  "schema": "mkdos_p29_p28_registry_observation_v1",
+  "classification": "OBSERVED_P28_COLLECTION_NOT_INDEPENDENT_SOURCE_GOLDEN",
+  "sourceCensus": 5249,
+  "towerRepresentations": [
+    {
+      "id": "mk2-stage-effect:tower_original_effect:00",
+      "dimensions": [
+        41,
+        63
+      ],
+      "sourceOffset": 40776,
+      "sourceLength": 2200,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "627eac26600a897f390dfbd689f6fe31496e2bd08181d4bf39b750aa9985ec8d",
+      "maskSha256": "21909ce120ad153097f32f67318b0bef2cdf8a8bcdffd6752d6cf4a9bbd01e6a",
+      "rgbaSha256": "0314e9641ac21c0243cf787f233ab7666572a0550635b70a27d7672a32378071"
+    },
+    {
+      "id": "mk2-stage-effect:tower_original_effect:01",
+      "dimensions": [
+        38,
+        63
+      ],
+      "sourceOffset": 42976,
+      "sourceLength": 2184,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "7a3a7e4cfd03ef119785f222b7ccb6a396409e0f8463b0ab94c8522a9bd93ac2",
+      "maskSha256": "0c4103c8920f85decef15ccbcc28f29d57bc563ba7702ea24f3f30fa4d5189e7",
+      "rgbaSha256": "4ab90f9920d949e8df9c06f0d7039d4c8c08476609d14fdfbc1aeadb81f3a879"
+    },
+    {
+      "id": "mk2-stage-effect:tower_original_effect:02",
+      "dimensions": [
+        37,
+        63
+      ],
+      "sourceOffset": 45160,
+      "sourceLength": 2184,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "0624accc086086557d1a719e61e72195171588edc2a404bd63a3d931dc3d32c3",
+      "maskSha256": "af58feb63136ff33285d1e0cb693845aefcc0284aec53a0bb5e1aa5e01bc1f99",
+      "rgbaSha256": "2d9c14db7f3d241e1052f33ae18ae2bf8c67fa37b91519ad11bd1c37531d55d5"
+    },
+    {
+      "id": "mk2-stage-effect:tower_original_effect:03",
+      "dimensions": [
+        38,
+        63
+      ],
+      "sourceOffset": 47344,
+      "sourceLength": 2192,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "e55ae30ff6e9df23621309d3d75ac862cb035d4ab70c1d9e8f9dfa61356a1847",
+      "maskSha256": "41acfa94d882edf039f058b421593ea7d9f9d47ae20b09d622313af6ed759baf",
+      "rgbaSha256": "407f1e300401b3a411f42d114136d873de87400b7ec163c0eae9f0c64f21b622"
+    },
+    {
+      "id": "mk2-stage-effect:tower_original_effect:04",
+      "dimensions": [
+        39,
+        63
+      ],
+      "sourceOffset": 49536,
+      "sourceLength": 2228,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "7e220dfd2c670c6fd211dc0bd74472696ba8bd293083ff811cf498321968a22d",
+      "maskSha256": "8aa6c9ab0bd6133937ce205c11b9a164883e437eff9812aab246943dbdddf20f",
+      "rgbaSha256": "257c4e6e561c799df172f3b8f7a98b42cd720ccac6a791362e3bc41c83ca5b34"
+    },
+    {
+      "id": "mk2-stage-effect:tower_original_effect:05",
+      "dimensions": [
+        40,
+        63
+      ],
+      "sourceOffset": 51764,
+      "sourceLength": 2256,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "c3bba940ef55b25bd4151719f2b98ccbefca11a42ff1832cc31c7747365e5447",
+      "maskSha256": "22352de4643f0293da971fae3e39d841bcad2dd0b8cfc51dbdf7e2c6a6b40125",
+      "rgbaSha256": "23dd9047fc7d100fc438d8ae37472d970cc14f113b8c0899bfcce27a5bb008e3"
+    },
+    {
+      "id": "mk2-stage-effect:tower_original_effect:06",
+      "dimensions": [
+        42,
+        63
+      ],
+      "sourceOffset": 54020,
+      "sourceLength": 2248,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "63f56a180dedcfe26039ed6337a9f1eab50bb3723b0e6d6ae3c96461ec6c32d4",
+      "maskSha256": "38875163c8b4b7ef3310dd5d6798509e713084762feae4fdc36c6969c6d1efc6",
+      "rgbaSha256": "a47b34494a28e309814db550993c6066171452deed1127bd50bcd39c978f289e"
+    },
+    {
+      "id": "mk2-floor:tower:indices-preview",
+      "dimensions": [
+        896,
+        64
+      ],
+      "sourceOffset": 56268,
+      "sourceLength": 57344,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "39433e089201493902762ddefc891a7fc62653ea3c1a06f8a85c7c509bd2193a",
+      "maskSha256": null,
+      "rgbaSha256": "0904629b98d76591140fbf11f28bf334072461157f8a56ae1b49dbedf6a0e643"
+    },
+    {
+      "id": "mk2-floor:tower:indices",
+      "dimensions": [
+        null,
+        null
+      ],
+      "sourceOffset": 56268,
+      "sourceLength": 57344,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": null,
+      "maskSha256": null,
+      "rgbaSha256": null
+    },
+    {
+      "id": "mk2-viewport-floor:tower:x288-bank1",
+      "dimensions": [
+        320,
+        64
+      ],
+      "sourceOffset": 56268,
+      "sourceLength": 57344,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "6bc3334fcaa23831ee94e8a27e35c40046795726f4710ceffd7051bc8b45db07",
+      "maskSha256": "ff0550a9e463dd52bc667d0845616b2b0813bdcc0bd978078fa0c26b102547e1",
+      "rgbaSha256": "1b301b40215ba6eb92f4cbc436689c15598275d293971e89c2ff3e3b9fbc43de"
+    },
+    {
+      "id": "mk2-source-animation-sheet:stage_tower_original_effect",
+      "dimensions": [
+        294,
+        63
+      ],
+      "sourceOffset": 0,
+      "sourceLength": 0,
+      "sourceSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+      "indicesSha256": "5e76cab6a337060d9cafb2ea35b2501b66765dedf4dd82c1a6e1f8937a107d33",
+      "maskSha256": "22a2ab540bae5a043ee0ee04c26bbcd8ed930056d602ce208945ac8fd0b6ca58",
+      "rgbaSha256": "a397d7889e8c18dca3faef53f0379a6072446203727eaea53314ae77e0f19c3d"
+    }
+  ],
+  "componentCoverage": [
+    {
+      "ordinal": 0,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 1,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 2,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 3,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 4,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 5,
+      "matchingStandaloneIds": []
+    }
+  ]
+}
