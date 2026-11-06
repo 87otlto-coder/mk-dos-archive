@@ -39,3 +39,8 @@ node scripts/verify-mk2-p18-cumulative.cjs /path/to/original/MK2 /tmp/p18-full.j
 ## Next pass
 
 P20 remains MK2-first. First close the **full actual develop-source** original-fixture acceptance gap where feasible; then prioritize original-file-backed stage/animation/audio extraction completeness over cosmetic UI. P21 is the next fifth-pass consolidation candidate. Preserve the P16 checkpoint on `main`, the research workbench and all exact indexed source data; never commit commercial game files, extracted game media or DOSBox captures.
+
+
+## GitHub source CI result — verified
+
+[P19 source build 42277356338](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42277356338) **PASS** at code commit [`4844a84`](https://github.com/87otlto-coder/mk-dos-archive/commit/4844a8477e68b490e42504f57d6036c7ff4490d0). Strict locked npm install, syntax, tracked-media guard, Vite production build, full TypeScript and headless Chrome source-offline onboarding plus artifact upload all passed. This verifies source/build integration, not user-driven original-MK2 preview controls. P19 original-file focused and compatibility test evidence remains separate; **5,118 actual full-source cumulative remains validation pending**.
