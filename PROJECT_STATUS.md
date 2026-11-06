@@ -4,6 +4,16 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P22 original CAVE.GRA image integration — interim develop pass, 2026-11-06
+
+**Fresh MK2 collection: 5,167 unique representations**, adding **49 original CAVE.GRA indexed images** to P21's 5,118. The source-backed family was absent from the registry. P21 remains the consolidated develop checkpoint; main remains P16.
+
+- Native eight-byte descriptor geometry and original index/opacity data: **49 images / 49,765 pixels**, exact **57,192-byte suffix [120,57312)**. The first 120 bytes remain outside image qualification. Diagnostic grayscale is not an original palette; table order is not animation order.
+- **862 focused adapter/export checks**, **299,427 independent original-file PNG/sidecar checks**, eight source-negative cases and three re-CRC'd false export/claim controls PASS. Full current collection: **5,167 / 689 cumulative checks PASS**. All seven earlier focused suites (**818,695 checks**) and original package identities are retained.
+- Current checkpoint runner defaults to P22 and accepts `--through p22`; **10 MK2 suites PASS**. Optional MK1/MK3 were explicitly not rerun this pass; their P21 evidence remains valid historical evidence. TypeScript, 366-file syntax and production build PASS locally.
+- New images use existing Asset Library preview/PNG/selected-ZIP workflows; Coverage & evidence includes the 49-image source bundle. Actual original-data browser interaction remains **VALIDATION PENDING**. Runtime palette, stage ownership, placement, native timing and full scenes remain **UNKNOWN**.
+- [P22 handoff](docs/EXTRACTOR_P22_MK2_CAVE_ORIGINAL_IMAGES.md), [results](docs/validation/P22_CAVE_REGRESSION_2026-11-06.json). Next: **P23 original ARMORY descriptor coverage audit and qualified missing-image integration**. No main promotion or full-source release.
+
 ## P21 fifth-pass source consolidation — develop checkpoint, 2026-11-06
 
 **P21 is the current consolidated source checkpoint on develop; main remains P16.** P17–P20 are preserved together. No decoder/research implementation, asset count, or runtime interpretation changed. Full checkpoint: [P21 handoff](docs/EXTRACTOR_P21_SOURCE_CHECKPOINT_2026-11-06.md).
@@ -180,9 +190,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P20**, consolidated in P21 on develop |
-| Latest full MK2 original-fixture cumulative result | **P21: 5,118 unique assets / 536 cumulative checks**, plus seven focused suites |
-| Next planned pass | **P22 MK2 coverage reconciliation, then one verified missing source family** |
+| Most recent interim pass | **P22** after P21 develop consolidation |
+| Latest full MK2 original-fixture cumulative result | **P22: 5,167 unique assets / 689 cumulative checks**, plus seven earlier focused suites and new CAVE parity |
+| Next planned pass | **P23 original ARMORY descriptor coverage and qualified missing-image integration** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -204,9 +214,9 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P22 from the P21 develop checkpoint, after verifying committed source and the P21 handoff.
-2. Remain MK2-first: reconcile verified research with registry coverage, then integrate one useful missing source family. O110A held-resource components are a coverage-audit candidate; preserve ambiguous interpretations without invented geometry, palette ownership or stage labels.
-3. Use `scripts/verify-p21-checkpoint.cjs` for the consolidated fixture gate. Run relevant focused checks when changes warrant; input identity alone does not prove decoder correctness.
+1. Begin P23 from committed P22 on develop; verify the P22 handoff and preserve the P21 checkpoint.
+2. Remain MK2-first: audit ARMORY eight-byte descriptors against the registry, then integrate independently verified missing originals. Preserve existing floors, ambiguous interpretations, native indices and uncertainty labels.
+3. Use `scripts/verify-p21-checkpoint.cjs --through p22` for the current fixture gate. Historical P20/P21 scripts retain their frozen census; input identity alone does not prove decoder correctness.
 4. Keep native timing, live palette ownership, full stage assembly and real-data browser interaction separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 5. Preserve the full research workbench and commercial-media exclusion. Accumulate four recoverable interim passes, then assess the next fifth-pass checkpoint. Main promotion requires separate acceptance; P21 does not promote automatically.
 

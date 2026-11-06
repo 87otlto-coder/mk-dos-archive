@@ -1,11 +1,11 @@
 # Extractor coverage matrix
 
-Current source checkpoint: P21 on develop, 2026-11-06. Main remains P16. Counts are extracted asset representations, not original file counts or completeness percentages.
+Current consolidated source checkpoint: P21 on develop, with interim P22 additions, 2026-11-06. Main remains P16. Counts are extracted asset representations, not original file counts or completeness percentages.
 
 | Game | Fresh P21 collection | Graphics and backgrounds | Palette and animation qualification | Audio and unresolved scope |
 |---|---:|---|---|---|
 | MK1 DOS | 2,656 assets | 2,363 sprite records; 49 bounded stage PNGs including 24 normalized module previews | Qualified character/effect contexts and documented bounded scene outputs; canonical gameplay timing, phase and complete arena assembly remain separate | 244 audio records; broader source and runtime limitations retained |
-| MK2 DOS | 5,118 unique assets | Original indexed resources, bounded palette contexts, stage layers, intro frames, Mountain graphics, floor projections, two additional indexed mosaics | Eight original source-order groups / 57 existing frames; user-timed queue and exports; live DAC ownership, native timing and final stage placement remain unknown | 312 original U8 sound-effect exports retained; native score/evidence exports remain available; hardware timbre and completeness are not implied by the asset census |
+| MK2 DOS | 5,167 unique assets | Original indexed resources, bounded palette contexts, stage layers, intro frames, Mountain graphics, floor projections, two additional indexed mosaics and 49 original CAVE source images | Eight original source-order groups / 57 existing frames; user-timed queue and exports; live DAC ownership, native timing and final stage placement remain unknown | 312 original U8 sound-effect exports retained; native score/evidence exports remain available; hardware timbre and completeness are not implied by the asset census |
 | MK3 DOS | 9,186 assets | 6,654 sprites, 416 images and 1,046 raw records | Existing preview interpretations retained; no new native animation or stage assignment established | 1,024 audio and 46 music records; zero stage-type records; image-to-stage ownership unresolved |
 
 P21 freshly verifies MK1's 49 stage PNG export/readback paths, MK2's cumulative and seven focused suites, and ten MK3 representative exports across all five kinds. All image planes receive geometry checks. This is headless collection/export verification; it does not establish new original-DOS runtime behavior or real-data browser interaction.
