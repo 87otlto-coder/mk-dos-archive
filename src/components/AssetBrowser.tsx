@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { DirectorySource } from '../core/filesystem/DirectorySource';
 import { Asset, AssetCollection, Game, utf8 } from '../core/assets/model';
 import { scanAssets } from '../core/assets/collection';
+import { resolveMK2OriginalSourceOrder } from '../core/assets/mk2SourceOrderQueueP19';
 import {
   animatedPng,
   assetBytes,
@@ -77,6 +78,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   const [columns, setColumns] = useState(8);
   const [playing, setPlaying] = useState(false);
   const [frame, setFrame] = useState(0);
+  const [loadedSourceOrder, setLoadedSourceOrder] = useState<{ sheetId: string; frameIds: string[]; originalControl: string } | null>(null);
 
   const abort = useRef<AbortController | null>(null);
   const scanRun = useRef(0);
@@ -100,6 +102,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     setAnchor(null);
     setPlaying(false);
     setFrame(0);
+    setLoadedSourceOrder(null);
     setProgress('');
     setError('');
     setBusy(false);
@@ -205,6 +208,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
       setAnchor(null);
       setPlaying(false);
       setFrame(0);
+      setLoadedSourceOrder(null);
     } catch (e) {
       if (!controller.signal.aborted && scanRun.current === run) setError(errorMessage(e));
     } finally {
@@ -239,6 +243,16 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
         return [...current, makeQueueItem(a.id)];
       }
       return [makeQueueItem(a.id)];
+    });
+  }
+
+  function loadSourceOrder(sheet: Asset) {
+    attempt(() => {
+      const presentation = resolveMK2OriginalSourceOrder(sheet, lookup);
+      setQueue(presentation.frames.map(a => makeQueueItem(a.id)));
+      setPlaying(false);
+      setFrame(0);
+      setLoadedSourceOrder({ sheetId: sheet.id, frameIds: presentation.frames.map(a => a.id), originalControl: presentation.originalControl });
     });
   }
 
@@ -436,6 +450,11 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
               <p>{focus.source.path} · offset {focus.source.offset}</p>
               {['audio', 'music'].includes(focus.kind) && <AudioPreview asset={focus} />}
               <button onClick={() => attempt(() => download(assetBytes(focus), focus.filename, focus.mime))}>Export this asset</button>
+              {focus.id.startsWith('mk2-source-animation-sheet:') && (
+                <button type="button" onClick={() => loadSourceOrder(focus)}>
+                  Load verified source order into animation queue
+                </button>
+              )}
               {typeof focus.metadata.originalFrameZip === 'string' && collection?.packages.some(p => p.name === focus.metadata.originalFrameZip) && (
                 <button onClick={() => attempt(() => {
                   const archive = collection?.packages.find(p => p.name === focus.metadata.originalFrameZip);
@@ -461,6 +480,13 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
             <button disabled={!selected.length} onClick={() => setPlaying(p => !p)}>{playing ? 'Stop preview' : 'Preview chain'}</button>
           </div>
           <small>Frame duration is your presentation setting; it is not verified gameplay timing.</small>
+          {loadedSourceOrder && selected.length === loadedSourceOrder.frameIds.length &&
+            selected.every((a, index) => a.id === loadedSourceOrder.frameIds[index]) && (
+              <p role="status">Loaded {selected.length} verified original-order frames from {loadedSourceOrder.sheetId}.
+                Source control: {loadedSourceOrder.originalControl}. Preview/APNG uses a user-selected interval
+                and repeats even zero-terminated lists for convenience; this does not establish original runtime looping or timing.
+              </p>
+            )}
           {playing && selected[frame % selected.length]?.rgba && <Picture asset={selected[frame % selected.length]} />}
           <ol className="asset-queue">
             {selectedRows.map(({ item, asset }, i) => <li key={item.key}>

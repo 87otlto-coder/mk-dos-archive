@@ -4,6 +4,19 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P19 MK2 direct source-order animation preview — interim `develop` pass, 2026-11-06
+
+**P16 remains the stable main checkpoint.** P19 is the third MK2-first interim improvement, extending P18's eight original source-order animation groups into a one-click user presentation workflow. It adds no new extracted asset records and makes no new native timing or palette claims.
+
+- **Practical usability:** Each P18 contact sheet now offers **Load verified source order into animation queue** in Asset Library Inspect. The existing Preview chain, APNG, sprite-sheet and selected ZIP tools work directly with the **57 existing original frames across eight verified source groups**; original frame order, original loop/end markers and source provenance are preserved.
+- **Explicit timing boundary:** Preview/APNG interval is **user-selected**, not native MK2 milliseconds/FPS. The generic APNG presentation loops *even original zero-terminated* source lists; this is clearly marked as convenience, not original playback scheduling. Native runtime palette-bank selection, actor placement and trigger/timing remain **UNKNOWN**.
+- **Original-fixture focused checks PASS:** **280 P19 checks** on all eight authentic O136/O177 and O220/O221 source groups, queue integrity, selected ZIP sidecars, APNG 137 ms user interval and negative source-list controls. Independently reran P18 original binary parity **379,422 checks PASS**.
+- **Compatibility rerun PASS:** preserved P11+P17+P18 source with P19's no-census-change UI/helper: **5,063 original MK2 asset representations / 32 checks**, P8–P10 evidence ZIP hashes unchanged. **The full current P16+P17+P18+P19 total is expected to remain 5,118, NOT freshly verified**; the local compatibility source lacks P12–P15 adapters and is not a substitute for a full current-source regression.
+- **Browser QA pending:** GitHub CI can verify production React/TypeScript/Chrome source-offline boot; user interaction with the new queue button against the original DOS folder is not independently tested yet.
+- **Handoff:** [P19 source-order presentation queue](docs/EXTRACTOR_P19_MK2_SOURCE_ORDER_TO_PRESENTATION_QUEUE.md). Keep P16 unchanged on main, original DOS game binaries/artwork outside GitHub, and research workbench untouched.
+
+P20 should prioritize closure of the full current-source original-fixture cumulative scan and further MK2 extraction completeness. P21 is the next fifth-pass consolidation candidate only if verified.
+
 ## P18 MK2 original source-ordered animation ZIPs — interim `develop` pass, 2026-11-06
 
 **P16 remains the stable `main` checkpoint.** P18 is the second MK2-first interim pass after P16. It applies verified O136/O177 (43 stage effect frames in six lists) and O220/O221 (14 Pit II bridge sprites in two seven-frame lists) to a practical export workflow.
@@ -146,7 +159,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P15**, consolidated at P16 |
 | Latest full MK2 original-fixture cumulative result | **P15: 5,108 assets / 83 checks** (previously verified; P16 independently reran P11 baseline) |
-| Next planned pass | **P19 MK2-first extraction improvements; current P18 total 5,118 awaits full source scan** |
+| Next planned pass | **P20 MK2 full-source cumulative gate and focused extraction completeness** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
