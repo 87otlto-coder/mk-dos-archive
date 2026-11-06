@@ -1,8 +1,20 @@
 # MK DOS Extractor — project status
 
-**Last status reconciliation:** 2026-11-05
+**Last status reconciliation:** 2026-11-06
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
+
+## Current P16 consolidated source checkpoint — 2026-11-06
+
+**P16 is the stable Git-safe source checkpoint on main**, superseding P11 after four additive MK2 extractor passes (P12–P15). The existing research workbench, original indices/masks, fixture provenance and earlier Git history remain preserved. Read the [P16 full source checkpoint and test record](docs/EXTRACTOR_P16_CUMULATIVE_CHECKPOINT_2026-11-06.md).
+
+- **MK2 source extraction:** **5,108 unique original-fixture asset representations**, P15 83 cumulative checks passed in the prior pass, versus P11 5,053 / 40. P12 added 31 intro images; P13 added 15 Mountain graphics; P14 added seven neutral source-floor projections; P15 added two screenshot-witnessed Tomb/Portal floor previews.
+- **P16 independent tests:** canonical DOS original ZIP plus **13 critical resource hashes and full 614-file census: 643 input-identity checks PASS**; source-preserving P11 baseline original-fixture rerun **5,053 / 40 PASS**, with identical P8–P10 evidence ZIP hashes.
+- **Code/CI:** no P16 decoder changes; consolidated source candidate **70fb677** passed locked npm installation, syntax, Git-safe tracked-media audit, Vite build, TypeScript and headless Chrome startup in [P16 CI run 42261497116](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42261497116). CI now builds source on both main and develop.
+- **Test confidence boundary:** the full 5,108 / 83 P15 scanner was **not freshly rerun in P16**; its prior original-fixture results and successful source-build evidence remain valid since P16 changes only audit/CI/docs. Real-game P12–P15 Asset Library browser interaction is not yet separately verified.
+- **Incomplete extraction:** no claim that the 55 additions are complete stage scenes; runtime palette ownership, live camera mapping, final stage composition and native animation timing remain unknown or conditional. The original MK1/MK3 coverage limitations remain unchanged.
+
+No commercial game files, indexed artwork, original audio or screenshot captures are committed to GitHub. Next focus remains **MK2 extraction completeness** in P17.
 
 ## P15 MK2 screenshot-witnessed packed floors — interim `develop` pass, 2026-11-05
 
@@ -51,9 +63,9 @@ Next pass should prioritize **reusable MK2 palette/placement attribution backed 
 - The focused research and test record is [EXTRACTOR_P12_MK2_PROBE_ACCLAIM_LZW_INTEGRATION.md](docs/EXTRACTOR_P12_MK2_PROBE_ACCLAIM_LZW_INTEGRATION.md). **Production build/browser verification of P12 is separate from the completed original-fixture tests.**
 - This is an **interim pass**, not a full source-package release and not a reason to move away from MK2.
 
-## Current source checkpoint — P11 (2026-11-05)
+## Historical P11 stable source checkpoint — 2026-11-05
 
-**P11 is the stable source checkpoint on `main`**, promoted after GitHub CI, full MK2 cumulative regression and local user acceptance of all three game's asset previews and exports. Development continues on `develop` after this checkpoint; preserve the earlier P6 commit in Git history. See [P11 promotion / acceptance record](docs/P11_PROMOTION_2026-11-05.md).
+**Historical November 5 state:** P11 was promoted to `main` after GitHub CI, full MK2 cumulative regression and local user acceptance of all three game's asset previews and exports. Development continues on `develop` after this checkpoint; preserve the earlier P6 commit in Git history. See [P11 promotion / acceptance record](docs/P11_PROMOTION_2026-11-05.md).
 
 - **Production / source:** GitHub Actions latest candidate `350b44a` passed locked `npm ci`, syntax, Vite build, TypeScript and Chrome startup.
 - **MK2:** Original-fixture **5,053 unique assets / 40 checks**; independent P8–P10 pixel/package parity retained.
@@ -102,17 +114,17 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P11 source checkpoint committed to `main`** (2026-11-05; earlier P6 preserved in Git history) |
+| Last *full source* checkpoint | **P16 Git-safe source checkpoint on main** (2026-11-06; P11 and P6 preserved in Git history) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P10** |
-| P10 cumulative MK2 headless scanner | **5,053 unique assets** |
-| Next planned pass | **P16 fifth-pass consolidation, MK2 cumulative regression and source checkpoint gate** |
+| Most recent interim pass | **P15**, consolidated at P16 |
+| Latest full MK2 original-fixture cumulative result | **P15: 5,108 assets / 83 checks** (previously verified; P16 independently reran P11 baseline) |
+| Next planned pass | **P17 MK2-first new extraction pass** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
-| Full P6 app source uploaded to GitHub | **Yes — `main` source commit `eb96915`** |
+| Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
-The original P6 ZIP and unfiltered P11 archive remain in the project conversation. GitHub contains the **audited, Git-safe application and research source**, not commercial game installations or all raw forensic evidence. Verify fresh-clone source and runtime behavior before the final P11 promotion.
+The original P6 ZIP and unfiltered P11 archive remain in the project conversation. GitHub contains the **audited, Git-safe application and research source**, not commercial game installations or all raw forensic evidence. P11 was promoted on November 5; P16 source checkpoint preserves the P11 baseline and adds source-only pass evidence.
 
 ## P7–P10 cumulative work (headless and fixture verified)
 
@@ -130,11 +142,11 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Continue from the **P11 GitHub `main` checkpoint**, branching focused interim changes through `develop`. Always inspect committed source and the latest handoff before altering extraction code.
-2. Prioritize extraction accuracy and completeness: verified MK1 normalized background access, MK3 stage-image provenance, palette/index preservation, and sound/music export usability.
-3. Address only useful targeted UI and regression follow-ups in [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5). User-confirmed export testing is not an open request.
-4. Preserve original DOS binary fixtures offline; keep copyrighted assets out of GitHub and avoid speculative full-scene/timing/palette claims.
-5. Return to the five-pass development cycle. Consolidate, independently regress and checkpoint after another meaningful series of extractor improvements; do not package full source every pass.
+1. Start P17 on develop from the P16 main source checkpoint. Verify actual committed code and latest P16 handoff before editing; do not assume the historical private ZIP contains current P12–P16 source.
+2. Remain MK2-first: prioritize verified, reusable stage/animation/audio extraction and practical user preview/export completeness; avoid speculative palette-bank ownership, camera positions or full-scene names.
+3. Re-run relevant original-fixture checks as changes warrant. The P16 input-identity verifier is not a replacement for the P15 83-check cumulative decoder suite.
+4. Maintain confidence labels and the existing research workbench. Keep commercial game files, extracted artwork and emulator captures out of GitHub.
+5. Accumulate four recoverable interim passes and consolidate on the fifth when verified. UI follow-up tests remain [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 
 ## Scope discipline
 
@@ -147,6 +159,7 @@ A verified source relationship is not automatically verified runtime timing, own
 - P6 = source checkpoint, **headless verified**.
 - P7–P10 = headless-verified changes incorporated in the **P11 consolidated source on `main`**.
 - P11 = consolidated, GitHub CI qualified, source-fixture regressed and core-user-browser-verified **source checkpoint on `main`** (2026-11-05); not a claim of full stage reconstruction.
+- P12–P15 = original-fixture-tested additive MK2 extraction passes, consolidated in **P16 Git-safe source checkpoint on main (2026-11-06)**. P16 itself has no decoder changes; its fresh fixture checks cover input identity and P11 baseline. New-asset browser interaction remains validation pending.
 - Never describe code that is not actually committed to GitHub as “uploaded” or “tracked in GitHub.”
 
 Update this file whenever the authoritative baseline or release status changes.
