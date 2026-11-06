@@ -332,5 +332,22 @@
   "browserInteractionVerified": false,
   "mk1mk3FreshlyRerun": false,
   "mainPromoted": false,
-  "commercialGameMediaCommitted": false
+  "commercialGameMediaCommitted": false,
+  "sourceCandidate": {
+    "commit": "a12dc7577dd893718cee8aef3df0e5ed91b88dac",
+    "treeSha": "d468656ad641c521335ac845d27e12228c9cfab3",
+    "trackedFileBlobs": 2106,
+    "srcFiles": 372,
+    "changedFileBlobHashesVerified": 16,
+    "removedPaths": 0,
+    "forbiddenGameMediaPaths": 0
+  },
+  "githubCI": {
+    "runId": 42287079604,
+    "commit": "a12dc7577dd893718cee8aef3df0e5ed91b88dac",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42287079604",
+    "originalGameDataTested": false
+  }
 }

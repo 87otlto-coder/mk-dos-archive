@@ -40,6 +40,10 @@ The Python reference decoder is independent of the TypeScript implementation. It
 
 [Machine-readable P23 results](validation/P23_ARMORY_REGRESSION_2026-11-06.json). All generated artwork, source fixtures, export ZIPs and falsification ZIPs remain outside GitHub. Committed fixtures contain geometry and hashes only.
 
+**Committed source verified:** `a12dc7577dd893718cee8aef3df0e5ed91b88dac`, tree `d468656ad641c521335ac845d27e12228c9cfab3`: **2,106 file blobs / 372 src files**, all sixteen changed/added file hashes match the local candidate, zero removals and no reviewed original-game/media/archive extensions.
+
+**GitHub CI PASS:** [run 42287079604](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42287079604) completed successfully on `a12dc75`: strict locked install, source/new verifier syntax, media guard, Vite production, TypeScript, source-offline headless Chrome startup and build upload. Original-fixture tests are the separate local evidence above; source-offline Chrome does not prove original-data browser interaction.
+
 ## Reproduce
 
 ```powershell

@@ -13,6 +13,7 @@
 - Native row decoding is shared only after independent CAVE/ARMORY repetition. CAVE's **862 checks** and original evidence ZIP hash remain unchanged. **11 current MK2 suites PASS**, retaining seven earlier focused suites (**818,695 checks**) and package identities.
 - Local 368-file TypeScript syntax, typecheck and production build PASS. Current checkpoint runner defaults to `--through p23`. MK1/MK3 were explicitly not freshly rerun; P21 results remain historical. Browser interaction is **VALIDATION PENDING**; native palette, timing, placement and complete scenes remain **UNKNOWN**.
 - [P23 handoff](docs/EXTRACTOR_P23_MK2_ARMORY_ORIGINAL_IMAGES.md), [results](docs/validation/P23_ARMORY_REGRESSION_2026-11-06.json). Next: **P24 BATTLE descriptor deduplication and qualified missing-image integration**. Keep develop work recoverable; no main promotion or full-source release.
+- Committed P23 source **`a12dc75`** passed [CI 42287079604](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42287079604): strict install, syntax/media guard, Vite, TypeScript, source-offline Chrome and build upload. All sixteen changed/added file blobs verified, no removals or tracked game media. Main is unchanged.
 
 ## P22 original CAVE.GRA image integration — interim develop pass, 2026-11-06
 
