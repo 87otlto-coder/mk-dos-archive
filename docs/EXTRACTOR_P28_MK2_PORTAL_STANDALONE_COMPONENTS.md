@@ -73,3 +73,9 @@ python scripts/test-mk2-p28-portal-negative.py <original-directory> <private-com
 
 Next **P29**: audit TOWER descriptor/component coverage against existing effect/setup representations before deciding whether standalone exposure improves extraction. Apply verified existing research first, retain provenance, and make no new-artwork claim without evidence. P30 remains another interim pass; assess fifth-pass consolidation at P31. Develop only; no main promotion or full-source packaging this interim.
 
+
+## Committed source and CI evidence
+
+Verified source candidate: `ce57900e112c6760467bcab08ea91c3e6beb8f90`; tree `b1d630bf5bf116c2b78a0b85f303903296a877ee`. All **15 selected local files** match committed Git blob hashes after normal checkout newline conversion. Recursive tree audit: **2,144 blobs / 376 src files**, no removed paths and no tracked original game media/archive extensions. Runtime changes are limited to the new adapter and additive collection registration.
+
+GitHub [source-build run 42301511758](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42301511758) completed **SUCCESS** on this exact source candidate. Strict dependency installation, source syntax, tracked-file safety guard, production build, TypeScript and headless Chrome application boot **without game data** passed. Real-data browser interaction remains validation pending. The subsequent evidence commit changes documentation only.

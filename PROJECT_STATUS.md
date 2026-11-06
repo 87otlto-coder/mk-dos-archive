@@ -12,6 +12,7 @@
 - Source table **0x1655c**, slot **25**, exact prefix **[0,35912)**, **60,566 indexed pixels**. Existing effect/floor bytes are retained.
 - **327 focused checks / 786,561 independent original-control/PNG/sidecar checks PASS**, eight rejected source fixtures and four rejected false exports. Current cumulative: **5,249 / 1,277 checks PASS**; **15 MK2 suites PASS**. Copied count expectation corrected before complete passing run.
 - Local **372-file syntax**, TypeScript and production build PASS. Original-data browser actions remain **VALIDATION PENDING**; live palette/timing/world composition **UNKNOWN**. MK1/MK3 latest fresh full fixture checkpoint remains P26.
+- Source commit `ce57900e112c6760467bcab08ea91c3e6beb8f90` verified: all 15 changed blobs match; tree audit 2,144 blobs / 376 src, no removed/game-media paths. [CI run 42301511758](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42301511758) **SUCCESS**, including source-only Chrome boot.
 - [P28 handoff](docs/EXTRACTOR_P28_MK2_PORTAL_STANDALONE_COMPONENTS.md), [evidence](docs/validation/P28_PORTAL_COMPONENT_REGRESSION_2026-11-06.json). Next **P29 TOWER descriptor/component coverage audit** against existing effects/setup representations. Consolidation assessment at P31; no main promotion.
 
 ## P27 standalone TOMB setup components — interim develop pass, 2026-11-06
