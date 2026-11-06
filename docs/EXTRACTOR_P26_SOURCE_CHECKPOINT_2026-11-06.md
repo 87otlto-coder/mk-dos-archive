@@ -43,6 +43,10 @@ Canonical sorted `mode blob-sha path` inventory SHA-256: `d5dbb1599930a3b382f97b
 
 This verifies the complete materialized source against GitHub, not a claim that the locally cached Git object graph was fetched successfully. Source recovery uses the authoritative committed tree and its history. Generated build outputs/dependencies, original games and private export/negative ZIPs are excluded from commits.
 
+**Committed P26 source verified:** `0129c0d3acb9b263fc510d8c8bc83bef009f92c5`, tree `62b490fd89a6b3dded66b16ed9534d1f8947beda`: **2,126 file blobs**, all **374 src files byte-identical** to P25, zero removed paths and no reviewed tracked game-media/cache paths. All eight changed/added files match the local candidate's Git blob hashes. The source checkpoint is recoverable directly from this complete Git tree; later evidence-only documentation does not change runtime or verification code.
+
+**GitHub CI PASS:** [run 42292927503](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42292927503) completed successfully on `0129c0d`: strict locked dependency install, source/new CJS syntax, media guard, Vite production, TypeScript, source-offline headless Chrome startup and static build upload. The commercial-fixture tests are the separate local P26 evidence, not tests run in GitHub with game data.
+
 ## Repeatable checkpoint runner
 
 New `scripts/verify-p26-checkpoint.cjs` requires all three fixtures, runs the complete current suite, compares MK1/MK3 decoded visuals with P21, then generates private source-family ZIPs and executes all four independent Python verifiers and falsification suites.

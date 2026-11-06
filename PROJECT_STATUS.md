@@ -14,6 +14,7 @@
 - MK1 whole research ZIP hashes differ from P21. Unchanged builders contain per-run metadata; volatile metadata is the **INFERRED** mismatch cause, not an independently performed historical ZIP byte diff. Actual decoded visuals match; deterministic MK2 source ZIP hashes remain explicitly enforced.
 - Local 370-file syntax, TypeScript, production build, new verifier syntax and negative runner/visual-baseline controls PASS. Browser interaction remains **VALIDATION PENDING**; native RGB ownership, timing, world placement and full stage composition remain **UNKNOWN**. Source-offline Chrome is a separate gate.
 - [P26 results/source audit](docs/validation/P26_CHECKPOINT_REGRESSION_2026-11-06.json). Next: **P27 TOMB descriptor-level coverage join against exposed effects/setup layers**, then independently verified missing originals. No main promotion or completed-product claim.
+- Committed P26 source **`0129c0d`** passed [CI 42292927503](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42292927503): strict install, source/verifier syntax, media guard, Vite, TypeScript, source-offline Chrome and build upload. Complete tree: **2,126 files**, all **374 src files unchanged** from P25, no removals or tracked game media/cache paths. Main is unchanged.
 
 ## P25 original ARENA.GRA image integration — interim develop pass, 2026-11-06
 
