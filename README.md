@@ -6,15 +6,15 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 
 ## Current checkpoint
 
-- **P21 is the consolidated source checkpoint on develop; main remains the accepted P16 checkpoint.** Earlier P11/P6 source is retained in Git history.
-- P22–P25 add **102 original indexed images**: CAVE 49, ARMORY 18, BATTLE 20, ARENA 15. MK2 now has **5,220 representations / 865 cumulative checks**. All 40 BATTLE descriptor witnesses, earlier floors and source evidence remain preserved. Read the [P25 handoff](docs/EXTRACTOR_P25_MK2_ARENA_ORIGINAL_IMAGES.md).
-- Fresh P21 regression: **11 suites PASS**. MK2: **5,118 unique asset representations / 536 cumulative checks**, plus **818,695 focused checks**. MK1: **2,656 assets**, including 49 stage previews with PNG export readback. MK3: **9,186 assets**, with representative exports across five kinds.
-- Run `node scripts/verify-p21-checkpoint.cjs --mk2 <dir> --mk1 <dir> --mk3 <dir> --report <json>` with original local installations. Omitted optional games are explicitly not run. Keep reports outside the game directories.
-- The full research workbench is preserved. Commercial game binaries, extracted artwork/audio and emulator captures remain outside GitHub.
-- Source fixture tests and source-offline Chrome startup do not prove real-data browser interaction. P12–P19 browser action checks remain pending. Native timing, live palette ownership and full stage composition are not inferred.
-- Next pass: **P26 fifth-pass consolidation**, complete current multi-game regression and source audit. The checkpoint runner defaults to P25 (`--through p25`). Main promotion remains separate.
+- **P26 is the consolidated source checkpoint on develop; main remains the accepted P16 checkpoint.** P21, P11 and earlier source remain in Git history.
+- Fresh P26 verification: **15 standard three-game suites PASS**, plus four independent original-file MK2 image/export verifiers and 13 rejected falsified exports. MK1 **2,656**, MK2 **5,220**, MK3 **9,186** asset representations. MK1/MK3 decoded visual hashes match P21.
+- P22–P25 added **102 original indexed image representations**: CAVE 49, ARMORY 18, BATTLE 20, ARENA 15. All 40 BATTLE descriptor witnesses, native indices/opacity, prior floors and evidence remain preserved.
+- Reproduce the full checkpoint with `node scripts/verify-p26-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <json>`. All three fixtures are required; test artwork stays outside source and original games. The standard interim runner remains available.
+- All **2,122 P25 committed file blobs** matched local materialized source before consolidation. P26 adds verification/CI/docs only; the full research workbench and runtime source are preserved. No commercial game media is committed.
+- Original-data browser action checks remain pending. Source-offline Chrome startup does not establish those interactions, native timing, live palette ownership or complete stage composition. MK1 research ZIPs contain variable per-run metadata; their whole hashes are not used as stable decoded-pixel baselines.
+- Next: **P27 TOMB descriptor-level coverage join**, followed by independently verified missing-image integration. Main promotion remains separate.
 
-Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P21 checkpoint](docs/EXTRACTOR_P21_SOURCE_CHECKPOINT_2026-11-06.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
+Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P26 checkpoint](docs/EXTRACTOR_P26_SOURCE_CHECKPOINT_2026-11-06.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 
 ## In scope
 
@@ -36,7 +36,7 @@ This repository **does not distribute commercial game installations, game execut
 ## GitHub branch use
 
 - `main`: verified P16 Git-safe source checkpoint and stable project documentation.
-- `develop`: P21 source checkpoint and subsequent MK2-focused interim work; preserve tested, evidence-grounded changes.
+- `develop`: P26 source checkpoint and subsequent MK2-focused interim work; preserve tested, evidence-grounded changes.
 
 ## Project continuity
 

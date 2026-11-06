@@ -1,6 +1,6 @@
 # Extractor coverage matrix
 
-Current consolidated source checkpoint: P21 on develop, with interim P22–P25 additions, 2026-11-06. Main remains P16. Counts are extracted asset representations, not original file counts or completeness percentages.
+Current consolidated source checkpoint: P26 on develop, 2026-11-06. Main remains P16. Counts are extracted asset representations, not original file counts or completeness percentages.
 
 | Game | Fresh P21 collection | Graphics and backgrounds | Palette and animation qualification | Audio and unresolved scope |
 |---|---:|---|---|---|
@@ -8,8 +8,8 @@ Current consolidated source checkpoint: P21 on develop, with interim P22–P25 a
 | MK2 DOS | 5,220 unique assets | Original indexed resources, bounded palette contexts, stage layers, intro frames, Mountain graphics, floor projections, two additional indexed mosaics and 49 CAVE, 18 ARMORY, 20 BATTLE and 15 ARENA original source images | Eight original source-order groups / 57 existing frames; user-timed queue and exports; live DAC ownership, native timing and final stage placement remain unknown | 312 original U8 sound-effect exports retained; native score/evidence exports remain available; hardware timbre and completeness are not implied by the asset census |
 | MK3 DOS | 9,186 assets | 6,654 sprites, 416 images and 1,046 raw records | Existing preview interpretations retained; no new native animation or stage assignment established | 1,024 audio and 46 music records; zero stage-type records; image-to-stage ownership unresolved |
 
-P21 freshly verifies MK1's 49 stage PNG export/readback paths, MK2's cumulative and seven focused suites, and ten MK3 representative exports across all five kinds. All image planes receive geometry checks. This is headless collection/export verification; it does not establish new original-DOS runtime behavior or real-data browser interaction.
+P26 freshly verifies MK1's 49 stage PNG export/readback paths, MK2's cumulative and focused suites, all four new image families independently, and ten MK3 representative exports across all five kinds. MK1/MK3 decoded visual-plane hashes match P21. All image planes receive geometry checks. This is headless collection/export verification; it does not establish new original-DOS runtime behavior or real-data browser interaction.
 
 Original-input identity is separately qualified: MK2 directory census and 13 critical hashes, MK1 canonical EXE hash, and recorded MK3 EXE hash. No newly authenticated whole-corpus hash claim is made for MK1 or MK3. Historical detection/inventory support is retained; P21 does not rerun detection qualification.
 
-See [P21 source checkpoint](EXTRACTOR_P21_SOURCE_CHECKPOINT_2026-11-06.md), [current project status](../PROJECT_STATUS.md), and the individual evidence handoffs for interpretation limits.
+See [P26 source checkpoint](EXTRACTOR_P26_SOURCE_CHECKPOINT_2026-11-06.md), [current project status](../PROJECT_STATUS.md), and the individual evidence handoffs for interpretation limits.

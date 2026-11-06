@@ -4,6 +4,17 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P26 fifth-pass source consolidation — develop checkpoint, 2026-11-06
+
+**P26 is the current consolidated source checkpoint on develop; main remains P16.** P22–P25's **102 original indexed image representations** and all earlier research/runtime functionality are preserved. No runtime file under src changes in P26. [P26 checkpoint](docs/EXTRACTOR_P26_SOURCE_CHECKPOINT_2026-11-06.md).
+
+- **Fresh complete three-game regression: 15 standard suites PASS**, no skipped games. MK1 **2,656**, MK2 **5,220 unique representations / 865 cumulative checks**, MK3 **9,186** assets. MK1/MK3 decoded visual-plane hashes exactly match P21; MK1's 49 stage PNG exports and MK3 representative exports pass.
+- **All four new MK2 families independently reverified:** **102 images / 357,456 indexed pixels / 2,146,506 checks PASS**, plus **13 false exports/claims rejected** and clean rechecks. CAVE/ARMORY/BATTLE/ARENA package hashes and previous original floor/evidence hashes are retained.
+- **Complete P25 source audit PASS:** all **2,122 committed files / 374 src files** match GitHub blobs, raw or normal checkout newline conversion; no missing/mismatched files or reviewed tracked game-media paths. New P26 runner requires all three games, keeps artwork private, writes RUNNING/PASS/FAIL progress and enforces P21 visual parity.
+- MK1 whole research ZIP hashes differ from P21. Unchanged builders contain per-run metadata; volatile metadata is the **INFERRED** mismatch cause, not an independently performed historical ZIP byte diff. Actual decoded visuals match; deterministic MK2 source ZIP hashes remain explicitly enforced.
+- Local 370-file syntax, TypeScript, production build, new verifier syntax and negative runner/visual-baseline controls PASS. Browser interaction remains **VALIDATION PENDING**; native RGB ownership, timing, world placement and full stage composition remain **UNKNOWN**. Source-offline Chrome is a separate gate.
+- [P26 results/source audit](docs/validation/P26_CHECKPOINT_REGRESSION_2026-11-06.json). Next: **P27 TOMB descriptor-level coverage join against exposed effects/setup layers**, then independently verified missing originals. No main promotion or completed-product claim.
+
 ## P25 original ARENA.GRA image integration — interim develop pass, 2026-11-06
 
 **Fresh MK2 collection: 5,220 unique representations**, adding **15 original ARENA.GRA indexed images** to P24's 5,205. All three previous ARENA floor representations and uncropped raw floor bytes are preserved. P25 is the fourth interim pass after P21; P26 is the next consolidation candidate. Main remains P16.
@@ -220,13 +231,13 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P21 consolidated on develop; P16 accepted on main** (2026-11-06; prior checkpoints preserved) |
+| Last *full source* checkpoint | **P26 consolidated on develop; P16 accepted on main** (2026-11-06; prior checkpoints preserved) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P25**, fourth interim pass after P21 develop consolidation |
-| Latest full MK2 original-fixture cumulative result | **P25: 5,220 unique assets / 865 cumulative checks**, plus earlier suites and four new-family parity suites |
-| Next planned pass | **P26 fifth-pass consolidation, current multi-game regression and full source audit** |
+| Most recent interim pass | **P25**, now consolidated in P26 on develop |
+| Latest full MK2 original-fixture cumulative result | **P26: 5,220 unique representations / 865 cumulative checks**, fresh complete multi-game and four independent family checks |
+| Next planned pass | **P27 TOMB descriptor-level coverage join and qualified missing-image integration** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -248,11 +259,11 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P26 from committed P25 on develop; verify its handoff and preserve the P21 checkpoint and four interim passes.
-2. Consolidate verified P22–P25 work: fresh complete current MK1/MK2/MK3 regressions, Git-safe source audit and explicit browser/runtime confidence boundaries. Preserve research and native indices/provenance; do not add speculative palette or scene claims.
-3. Use `scripts/verify-p21-checkpoint.cjs --through p25` for the current fixture gate. Historical P20/P21 scripts retain their frozen census; input identity alone does not prove decoder correctness.
-4. Keep native timing, live palette ownership, full stage assembly and real-data browser interaction separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
-5. Preserve the full research workbench and commercial-media exclusion. Accumulate four recoverable interim passes, then assess the next fifth-pass checkpoint. Main promotion requires separate acceptance; P21 does not promote automatically.
+1. Begin P27 from the P26 develop source checkpoint; verify actual committed source, its CI record and the P26 handoff. Preserve earlier checkpoints and research.
+2. Remain MK2-first: join original TOMB descriptor images against exposed effects/setup layers before adding representations. Deduplicate by original interval/geometry and independently verified indices/masks; no source relationship alone establishes a new unique image.
+3. Use the standard current-source fixture runner for interim changes. P26's full runner deliberately pins this checkpoint and includes all three games, four independent original-file verifiers and falsification tests. Historical fixed-census scripts require matching source.
+4. Keep original-data browser action checks, native timing, live palette ownership and stage composition separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
+5. Preserve all native data/provenance and the full workbench. Accumulate four recoverable interim passes, then assess the fifth-pass checkpoint. Main promotion remains separately authorized; source consolidation is not automatic product acceptance.
 
 ## Scope discipline
 
@@ -266,6 +277,7 @@ A verified source relationship is not automatically verified runtime timing, own
 - P7–P10 = headless-verified changes incorporated in the **P11 consolidated source on `main`**.
 - P11 = consolidated, GitHub CI qualified, source-fixture regressed and core-user-browser-verified **source checkpoint on `main`** (2026-11-05); not a claim of full stage reconstruction.
 - P12–P15 = original-fixture-tested additive MK2 extraction passes, consolidated in **P16 Git-safe source checkpoint on main (2026-11-06)**. P16 itself has no decoder changes; its fresh fixture checks cover input identity and P11 baseline. New-asset browser interaction remains validation pending.
+- P22–P25 are consolidated in **P26 on develop**, with fresh three-game/independent MK2 regression and complete source audit. Main remains P16; browser/native-runtime qualifications are separate.
 - Never describe code that is not actually committed to GitHub as “uploaded” or “tracked in GitHub.”
 
 Update this file whenever the authoritative baseline or release status changes.

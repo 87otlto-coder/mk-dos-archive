@@ -1,0 +1,546 @@
+{
+  "schema": "mkdos_p26_consolidated_source_checkpoint_v1",
+  "status": "PASS",
+  "date": "2026-11-06",
+  "sourceBaseline": "fd94bee988c6bbb00cf38f95821f05cc24972b86",
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "fd94bee988c6bbb00cf38f95821f05cc24972b86",
+    "treeSha": "03125b98b56b040d71dfe1c6ff982bdda1350b9e",
+    "fileBlobs": 2122,
+    "rawByteMatches": 73,
+    "checkoutNormalizedMatches": 2049,
+    "missing": [],
+    "mismatches": [],
+    "sourceFiles": 374,
+    "inventorySha256": "d5dbb1599930a3b382f97bb087336bbce2c2a770cba7a7b69c229f90ed92a9f2"
+  },
+  "regression": {
+    "schema": "mkdos_p26_checkpoint_regression_v1",
+    "status": "PASS",
+    "startedAt": "2026-11-06T20:54:18.270Z",
+    "standardSuite": {
+      "schema": "mkdos_checkpoint_regression_v2",
+      "through": "p25",
+      "status": "PASS",
+      "startedAt": "2026-11-06T20:54:18.335Z",
+      "suites": [
+        {
+          "name": "MK2 input identity",
+          "pass": "P16",
+          "status": "PASS",
+          "classification": "ORIGINAL_INPUT_IDENTITY_ONLY",
+          "checks": 642,
+          "fileCount": 614,
+          "sourceFileHashesVerified": 13,
+          "archiveSha256": null,
+          "extensionCensus": {
+            "(none)": 1,
+            "awe": 33,
+            "bat": 1,
+            "bin": 6,
+            "drv": 1,
+            "exe": 2,
+            "gra": 124,
+            "gvs": 33,
+            "ini": 1,
+            "lap": 33,
+            "mid": 33,
+            "sbl": 33,
+            "txt": 1,
+            "u8": 312
+          },
+          "gameArtworkStoredInReport": false,
+          "p15FullCumulativeRerun": false,
+          "gameBrowserVerified": false
+        },
+        {
+          "name": "MK2 p25-cumulative",
+          "pass": "P25",
+          "status": "PASS",
+          "checks": 865,
+          "assets": 5220,
+          "uniqueAssets": 5220,
+          "originalMK2FixtureOnly": true,
+          "fullCurrentSourceRegression": true,
+          "p22AddedImages": 49,
+          "p23AddedImages": 18,
+          "p24AddedImages": 20,
+          "p25AddedImages": 15,
+          "p24DescriptorWitnesses": 40,
+          "sourceOrderQueueFrames": 57,
+          "groups": {
+            "u8:": 312,
+            "mk2-stage-effect:": 43,
+            "mk2-stage-setup:": 8,
+            "mk2-floor:": 15,
+            "mk2-forest-setup:": 10,
+            "mk2-pit-fall-source:": 7,
+            "mk2-pit-upper-setup:": 6,
+            "mk2-pit-bridge:": 14,
+            "mk2-intro-lzw:": 31,
+            "mk2-mountain-source:": 15,
+            "mk2-viewport-floor:": 7,
+            "mk2-witnessed-floor:": 2,
+            "mk2-images-setup:": 2,
+            "mk2-source-animation-sheet:": 8,
+            "mk2-cave-source:": 49,
+            "mk2-armory-source:": 18,
+            "mk2-battle-source:": 20,
+            "mk2-arena-source:": 15
+          },
+          "originalArchiveParity": {
+            "MK2_P8_PIT_II_SEVEN_ORIGINAL_LOWER_WALL_SOURCES.zip": "7832bae102ab952024f8fa2b48f86379d5a519f2302491757027b4568654bdd5",
+            "MK2_P9_PIT_II_SIX_ORIGINAL_UPPER_SETUP_LAYERS.zip": "25abe08f1471a46c9e205bed3693559499afd7b0893bd277c5c51130769f652d",
+            "MK2_P10_PIT_II_ORIGINAL_BRIDGE_ACTOR_FRAMES.zip": "6aedb63e4b974468c64a2a80afc4270be0815d716fa265cee21278b612ddf79c"
+          },
+          "selectedExportAssets": 8,
+          "browserUIVerified": false,
+          "fullSceneAssemblyVerified": false,
+          "nativeAnimationTimingVerified": false,
+          "copyrightGameFilesIncludedInRepository": false
+        },
+        {
+          "name": "MK2 p25-arena",
+          "pass": "P25",
+          "status": "PASS",
+          "checks": 284,
+          "originalArenaImages": 15,
+          "indexedPixels": 65736,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "1cad7584431335343cf95a0c6cabda74d88a2a50b6f3c76a669ba03ed3f60dc5",
+          "sourceOutsideImageFamilyBytes": 90156,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p24-battle",
+          "pass": "P24",
+          "status": "PASS",
+          "checks": 432,
+          "originalBattleImages": 20,
+          "indexedPixels": 85188,
+          "sourceDescriptorWitnesses": 40,
+          "duplicateWitnessesPreserved": 20,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "3faed3ece5808182446d64092184300da667719cc95948c3f8a2db1f2c06f5eb",
+          "sourceOutsideImageFamilyBytes": 35840,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p23-armory",
+          "pass": "P23",
+          "status": "PASS",
+          "checks": 335,
+          "originalArmoryImages": 18,
+          "indexedPixels": 156767,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "7e5870cdeebf6c17c36a50024592115a1e3172b4a299f379e234ace86ed410ac",
+          "sourceOutsideImageFamilyBytes": 59904,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p22-cave",
+          "pass": "P22",
+          "status": "PASS",
+          "checks": 862,
+          "originalCaveImages": 49,
+          "indexedPixels": 49765,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "e7c407cd1727b003387eb95c91a7e5a131c3eed0c5967fb1d7761ee3f81e9745",
+          "sourcePrefixUnqualifiedBytes": 120,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p12-intro",
+          "pass": "P12",
+          "status": "PASS",
+          "checks": 524,
+          "originalIntroFrames": 31,
+          "originalSourceIndicesAndConditionalDAC6Parity": "all 31 original frames",
+          "negativeCases": 7,
+          "selectedZipExport": [
+            "indices",
+            "mask",
+            "paletteKnownMask"
+          ],
+          "runtimeAnimationTimingKnown": false,
+          "livePaletteIndex0Known": false,
+          "commercialGameDataInGit": false
+        },
+        {
+          "name": "MK2 p13-mountain",
+          "pass": "P13",
+          "status": "PASS",
+          "checks": 358,
+          "newOriginalIndexedGraphics": 15,
+          "consumerSelected": 14,
+          "adjacentStructurallyQualifiedOnly": 1,
+          "originalSuffixBytes": 23024,
+          "sourceOrders": 6,
+          "diagnosticColorOnly": true,
+          "originalSourceIndicesPreserved": true,
+          "negativeFixtureCases": 5,
+          "commercialAssetsCommitted": false,
+          "packageSha256": "e7eabb5d6444d249b7b08a1197c7cc7767a8e70df668f661d5d0eff762d67c86"
+        },
+        {
+          "name": "MK2 p14-source-viewport",
+          "pass": "P14",
+          "status": "PASS",
+          "checks": 409790,
+          "newNativeViewportPreviews": 7,
+          "canonicalOriginalEXE": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+          "sourceResearch": "O110C",
+          "nativeProjection": "320 x source rows, source-x 288, hypothetical bank base 1",
+          "runtimeColorKnown": false,
+          "runtimeCameraKnown": false,
+          "completeStageScenes": false,
+          "evidencePackageSHA256": "e7b588f7f84807b3dab054e0b8ce99336570f29256056617b6c38bafad2b36ca",
+          "negativeFixtureVariants": 9,
+          "gameMediaCommitted": false
+        },
+        {
+          "name": "MK2 p15-observed-floors",
+          "pass": "P15",
+          "status": "PASS",
+          "checks": 28244,
+          "independentOriginalWitness": "O115 screenshot RGB tables, O117 Tomb control and O115B Portal control",
+          "assets": 2,
+          "sourcePixels": 28160,
+          "nativePaletteKnown": false,
+          "liveCameraKnown": false,
+          "completeStage": false,
+          "sourceArchiveSha256": "1ded7e25adc7043e908cf2268fc208321fed6afa8779526dda1e17739455454b",
+          "negativeFixtureVariants": 10
+        },
+        {
+          "name": "MK2 p17-unassigned-images",
+          "pass": "P17",
+          "status": "PASS",
+          "checks": 77,
+          "originalIndexedMosaics": 2,
+          "originalIndexPixels": 128000,
+          "independentO122SourceHashes": true,
+          "sourceBundleIntegrity": true,
+          "negativeFixtures": 8,
+          "nativePaletteOwnershipKnown": false,
+          "completeStageSceneVerified": false,
+          "cumulativeP16RegressionRerun": false,
+          "gameBrowserVerified": false
+        },
+        {
+          "name": "MK2 p18-ordered-sequences",
+          "pass": "P18",
+          "status": "PASS",
+          "checks": 379422,
+          "tracks": 8,
+          "orderedSourceFrames": 57,
+          "comparedIndexedPixels": 63112,
+          "screenshotRgbClaim": false,
+          "nativeFrameTimingKnown": false,
+          "worldPlacementKnown": false,
+          "currentFullP16P17P18SourceScanned": false,
+          "canonicalOriginalFixtureUsed": true
+        },
+        {
+          "name": "MK2 p19-source-order-queue",
+          "pass": "P19",
+          "status": "PASS",
+          "checks": 280,
+          "sourceTracks": 8,
+          "originalOrderedFrames": 57,
+          "originalFramePixelsReExported": 63112,
+          "presentationMillisecondsTested": 137,
+          "nativeFrameTimeKnown": false,
+          "originalPaletteOwnershipKnown": false,
+          "canonicalOriginalFixture": true,
+          "currentFullP16P17P18ScannerVerified": false
+        },
+        {
+          "name": "mk1 compatibility",
+          "pass": "P21",
+          "game": "mk1",
+          "status": "PASS",
+          "checks": 2615,
+          "inputFiles": 326,
+          "exeSha256": "750792337f71b2f7991450fa92d2240073b089c917e3c6f1f373404544941b14",
+          "assets": 2656,
+          "counts": {
+            "sprite": 2363,
+            "stage": 49,
+            "audio": 244
+          },
+          "selectedAssetsExportVerified": 49,
+          "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+          "packageHashes": [
+            {
+              "name": "MK1_stages_evidence.zip",
+              "sha256": "52efab8450235bd08e83dd65d49b42bf58b2a58485b9da80e6d10b415bbe7e99"
+            },
+            {
+              "name": "MK1_animations_evidence.zip",
+              "sha256": "df557017e5505be2cbea049e38d5c9ea631120da57d4f672272d608511c5877e"
+            },
+            {
+              "name": "MK1_audio_evidence.zip",
+              "sha256": "b90f2dd1c321ed3c61350657181889b2ac05fe490fccbfd7296187a23850ff41"
+            }
+          ],
+          "browserInteractionVerified": false,
+          "completeCorpusIdentityVerified": false,
+          "stageOwnershipExpanded": false
+        },
+        {
+          "name": "mk3 compatibility",
+          "pass": "P21",
+          "game": "mk3",
+          "status": "PASS",
+          "checks": 7110,
+          "inputFiles": 87,
+          "exeSha256": "8aa7f3d45a086e7373afc120dc88378bda3d7766d5b69badbc707bb4570bdef0",
+          "assets": 9186,
+          "counts": {
+            "sprite": 6654,
+            "raw": 1046,
+            "audio": 1024,
+            "image": 416,
+            "music": 46
+          },
+          "selectedAssetsExportVerified": 10,
+          "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+          "packageHashes": [],
+          "browserInteractionVerified": false,
+          "completeCorpusIdentityVerified": false,
+          "stageOwnershipExpanded": false
+        }
+      ],
+      "notRun": [],
+      "browserInteractionVerified": false,
+      "commercialAssetsIncluded": false,
+      "finishedAt": "2026-11-06T20:55:41.341Z"
+    },
+    "p21VisualBaseline": {
+      "status": "PASS",
+      "baselineCheckpoint": "P21",
+      "games": [
+        {
+          "game": "mk1",
+          "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+          "unchangedFromP21": true,
+          "wholeEvidenceArchiveHashesEqual": false,
+          "wholeEvidenceArchiveCount": 3
+        },
+        {
+          "game": "mk3",
+          "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+          "unchangedFromP21": true,
+          "wholeEvidenceArchiveHashesEqual": true,
+          "wholeEvidenceArchiveCount": 0
+        }
+      ],
+      "archiveByteIdentityRequired": false
+    },
+    "imageFamilies": [
+      {
+        "pass": "p22",
+        "family": "cave",
+        "adapter": {
+          "pass": "P22",
+          "status": "PASS",
+          "checks": 862,
+          "originalCaveImages": 49,
+          "indexedPixels": 49765,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "e7c407cd1727b003387eb95c91a7e5a131c3eed0c5967fb1d7761ee3f81e9745",
+          "sourcePrefixUnqualifiedBytes": 120,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P22",
+          "status": "PASS",
+          "checks": 299427,
+          "originalCaveImages": 49,
+          "indexedPixels": 49765,
+          "sourceSuffixBytes": 57192,
+          "unqualifiedPrefixBytes": 120,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P22",
+          "status": "PASS",
+          "falsifiedExportsRejected": 3,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p23",
+        "family": "armory",
+        "adapter": {
+          "pass": "P23",
+          "status": "PASS",
+          "checks": 335,
+          "originalArmoryImages": 18,
+          "indexedPixels": 156767,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "7e5870cdeebf6c17c36a50024592115a1e3172b4a299f379e234ace86ed410ac",
+          "sourceOutsideImageFamilyBytes": 59904,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P23",
+          "status": "PASS",
+          "checks": 940912,
+          "originalArmoryImages": 18,
+          "indexedPixels": 156767,
+          "sourceImagePrefixBytes": 116608,
+          "outsideImageFamilyBytes": 59904,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P23",
+          "status": "PASS",
+          "falsifiedExportsRejected": 3,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p24",
+        "family": "battle",
+        "adapter": {
+          "pass": "P24",
+          "status": "PASS",
+          "checks": 432,
+          "originalBattleImages": 20,
+          "indexedPixels": 85188,
+          "sourceDescriptorWitnesses": 40,
+          "duplicateWitnessesPreserved": 20,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "3faed3ece5808182446d64092184300da667719cc95948c3f8a2db1f2c06f5eb",
+          "sourceOutsideImageFamilyBytes": 35840,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P24",
+          "status": "PASS",
+          "checks": 511492,
+          "originalBattleImages": 20,
+          "originalDescriptorWitnesses": 40,
+          "duplicateWitnessesPreserved": 20,
+          "indexedPixels": 85188,
+          "sourceImagePrefixBytes": 59436,
+          "outsideImageFamilyBytes": 35840,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P24",
+          "status": "PASS",
+          "falsifiedExportsRejected": 4,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p25",
+        "family": "arena",
+        "adapter": {
+          "pass": "P25",
+          "status": "PASS",
+          "checks": 284,
+          "originalArenaImages": 15,
+          "indexedPixels": 65736,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "1cad7584431335343cf95a0c6cabda74d88a2a50b6f3c76a669ba03ed3f60dc5",
+          "sourceOutsideImageFamilyBytes": 90156,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P25",
+          "status": "PASS",
+          "checks": 394675,
+          "originalArenaImages": 15,
+          "indexedPixels": 65736,
+          "sourceImagePrefixBytes": 36172,
+          "outsideImageFamilyBytes": 90156,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P25",
+          "status": "PASS",
+          "falsifiedExportsRejected": 3,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      }
+    ],
+    "census": {
+      "mk1": 2656,
+      "mk2": 5220,
+      "mk3": 9186
+    },
+    "browserInteractionVerified": false,
+    "nativePlaybackVerified": false,
+    "commercialAssetsIncluded": false,
+    "finishedAt": "2026-11-06T20:55:49.832Z"
+  },
+  "negativeGuardChecks": {
+    "status": "PASS",
+    "invalidFixtureReportsFail": true,
+    "originalFailureReasonRetained": true,
+    "repositoryLocalPrivateExportsRejected": true,
+    "fixtureLocalReportRejected": true,
+    "mutatedMK3VisualBaselineRejected": true
+  },
+  "independentTotals": {
+    "images": 102,
+    "indexedPixels": 357456,
+    "checks": 2146506,
+    "falsifiedExportsRejected": 13
+  },
+  "mk1ArchiveHashAssessment": {
+    "wholeArchiveHashesMatchP21": false,
+    "visualPlanesMatchP21": true,
+    "metadataVolatilityPresentInUnchangedBuilders": true,
+    "historicalArchiveByteDiffPerformed": false,
+    "volatileMetadataAsExactMismatchCause": "INFERRED"
+  },
+  "localChecks": {
+    "typescriptSyntaxFiles": 370,
+    "syntaxErrors": 0,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "newVerifierSyntax": "PASS",
+    "diffWhitespace": "PASS",
+    "warning": "Existing Vite large output chunk"
+  },
+  "runtimeSourceChanged": false,
+  "mainPromoted": false,
+  "browserInteractionVerified": false,
+  "nativePlaybackVerified": false,
+  "originalGameMediaCommitted": false
+}
