@@ -40,41 +40,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git ls-files | grep -Ei '\.(exe|gra|ftr|u8|mid|wav|ogg|mp3|flac|png|gif|bmp|jpg|jpeg|webp|zip|bin|7z|rar)        run: npm run build
-      - name: TypeScript checks
-        run: npm run lint
-      - name: Headless Chrome application boot smoke (no game data)
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run preview -- --host 127.0.0.1 --port 4173 --strictPort > /tmp/mk-preview.log 2>&1 &
-          preview_pid=$!
-          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
-          ready=0
-          for attempt in $(seq 1 30); do
-            if curl --silent --fail http://127.0.0.1:4173/ > /dev/null; then ready=1; break; fi
-            sleep 1
-          done
-          if [ "$ready" != 1 ]; then cat /tmp/mk-preview.log; exit 1; fi
-          browser=$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)
-          if [ -z "$browser" ]; then echo 'No Chrome/Chromium browser available on runner'; exit 1; fi
-          timeout 50s "$browser" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --virtual-time-budget=4000 --dump-dom http://127.0.0.1:4173/ > /tmp/mk-rendered-dom.html 2>/tmp/mk-chrome.log || { cat /tmp/mk-chrome.log; exit 1; }
-          if ! grep -Fq 'MK DOS ARCHIVE' /tmp/mk-rendered-dom.html; then
-            echo 'React root or brand text not present in rendered DOM'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
-          fi
-          if ! grep -Fq 'NO SOURCE LINKED' /tmp/mk-rendered-dom.html; then
-            echo 'Expected source-offline onboarding did not render'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
-          fi
-          echo 'PASS: React application mounted, brand and source-offline onboarding visible in headless Chrome.'
-      - name: Upload verified static build (no original game assets)
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mk-dos-p11-browser-build
-          path: dist/
-          if-no-files-found: error
-          retention-days: 14
- > /tmp/mk-forbidden-tracked.txt; then
+          if git ls-files | grep -Ei '\.(exe|gra|ftr|u8|mid|wav|ogg|mp3|flac|png|gif|bmp|jpg|jpeg|webp|zip|bin|7z|rar)$' > /tmp/mk-forbidden-tracked.txt; then
             echo 'Commercial game/media archive extension detected in Git-tracked source:'
             cat /tmp/mk-forbidden-tracked.txt
             exit 1
@@ -109,7 +75,7 @@ jobs:
           if ! grep -Fq 'NO SOURCE LINKED' /tmp/mk-rendered-dom.html; then
             echo 'Expected source-offline onboarding did not render'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
           fi
-          echo 'PASS: P11 React application mounted, brand and source-offline onboarding visible in headless Chrome.'
+          echo 'PASS: React application mounted, brand and source-offline onboarding visible in headless Chrome.'
       - name: Upload verified static build (no original game assets)
         if: success()
         uses: actions/upload-artifact@v4
