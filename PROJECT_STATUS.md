@@ -4,6 +4,17 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P27 standalone TOMB setup components — interim develop pass, 2026-11-06
+
+**Fresh MK2 census: 5,236 unique representations**, adding **16 complete standalone TOMB source components** already used inside six existing mosaics. **Zero newly discovered source images claimed.** P27 is the first interim pass after P26; main remains P16.
+
+- Coverage join: **28 prior TOMB representations**, **zero exact standalone matches**, all sixteen components referenced by **six original source setups / 87 controls**. New complete components reproduce **523,584 indexed/opacity canvas cells** exactly, including source portions absent from clipped composites.
+- Native source prefix **[0,54328)**: **16 images / 64,971 pixels**. Existing effects **[54328,63776)** and native floor **[63776,106784)** are preserved. Setup-local coordinates are not runtime/world placement; native palette/timing/full scenes remain **UNKNOWN**.
+- **466 focused checks**, **1,437,357 independent original-control/PNG/sidecar checks**, eight source-negative cases and four false export/claim controls PASS. Lost setup provenance is rejected. Current full gate: **5,236 / 1,079 checks PASS**; all 28 prior TOMB records retain source extents and index/opacity hashes.
+- **14 current MK2 suites PASS**, retaining earlier four families, seven older focused suites (**818,695 checks**) and archive/floor identities. Local 371-file syntax, TypeScript and production build PASS. Prior research/renderers and UI are unchanged; current runner defaults to `--through p27`.
+- Browser actions remain **VALIDATION PENDING**. MK1/MK3 were not rerun in P27; P26 is their latest full source-fixture checkpoint. [P27 handoff](docs/EXTRACTOR_P27_MK2_TOMB_STANDALONE_COMPONENTS.md), [evidence](docs/validation/P27_TOMB_COMPONENT_REGRESSION_2026-11-06.json).
+- Next: **P28 PORTAL descriptor/component coverage join**, preserving existing mosaic/effect provenance before standalone exposure. Keep develop recoverable; no main promotion or full-source release.
+
 ## P26 fifth-pass source consolidation — develop checkpoint, 2026-11-06
 
 **P26 is the current consolidated source checkpoint on develop; main remains P16.** P22–P25's **102 original indexed image representations** and all earlier research/runtime functionality are preserved. No runtime file under src changes in P26. [P26 checkpoint](docs/EXTRACTOR_P26_SOURCE_CHECKPOINT_2026-11-06.md).
@@ -236,9 +247,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P25**, now consolidated in P26 on develop |
-| Latest full MK2 original-fixture cumulative result | **P26: 5,220 unique representations / 865 cumulative checks**, fresh complete multi-game and four independent family checks |
-| Next planned pass | **P27 TOMB descriptor-level coverage join and qualified missing-image integration** |
+| Most recent interim pass | **P27**, after the P26 source checkpoint |
+| Latest full MK2 original-fixture cumulative result | **P27: 5,236 representations / 1,079 cumulative checks**, full prior suites and independent component/canvas parity |
+| Next planned pass | **P28 PORTAL descriptor/component coverage join and qualified standalone exposure** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -260,8 +271,8 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P27 from the P26 develop source checkpoint; verify actual committed source, its CI record and the P26 handoff. Preserve earlier checkpoints and research.
-2. Remain MK2-first: join original TOMB descriptor images against exposed effects/setup layers before adding representations. Deduplicate by original interval/geometry and independently verified indices/masks; no source relationship alone establishes a new unique image.
+1. Begin P28 from committed P27 on develop; verify its handoff and preserve the P26 checkpoint and earlier research.
+2. Remain MK2-first: join original PORTAL descriptor components against exposed effects/setup layers before adding standalone representations. Preserve existing-use provenance; do not label known composite components as newly discovered artwork.
 3. Use the standard current-source fixture runner for interim changes. P26's full runner deliberately pins this checkpoint and includes all three games, four independent original-file verifiers and falsification tests. Historical fixed-census scripts require matching source.
 4. Keep original-data browser action checks, native timing, live palette ownership and stage composition separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 5. Preserve all native data/provenance and the full workbench. Accumulate four recoverable interim passes, then assess the fifth-pass checkpoint. Main promotion remains separately authorized; source consolidation is not automatic product acceptance.

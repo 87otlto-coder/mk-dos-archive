@@ -1,0 +1,848 @@
+{
+  "schema": "mkdos_p27_tomb_independent_reference_v1",
+  "exeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "graSha256": "be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613",
+  "outsideImageFamilyBytes": 52456,
+  "sourceEndExclusive": 54328,
+  "images": [
+    {
+      "ordinal": 0,
+      "descriptorPhysical": 754396,
+      "width": 128,
+      "height": 56,
+      "start": 0,
+      "endExclusive": 7352,
+      "indicesSha256": "a10b9fb7c26eb8b307a8392a4531bcd2cadea4539996c66f915b214d3c5037b0",
+      "maskSha256": "9fedaffa121fdbcea5ea2120ab709bbbe08ddf63e6e0064780939def52eaee93",
+      "paletteKnownSha256": "1aae2dda4016febd2765e64d20dd992319d388cc8a8690f1ae5f7984a4734dd3",
+      "rgbaSha256": "a82dcdac4f0e4c35a23959b242cebb48fb61f5a4b040e92eb8861478fb8e9392",
+      "encodedSha256": "62b526a3f6e15f45de8d0e8bcc533faa03e8ba71b35ad0466b8cf4d73c91fe76",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_17358",
+          "setupObject2Offset": 95064,
+          "occurrences": 7,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 1,
+      "descriptorPhysical": 754404,
+      "width": 85,
+      "height": 43,
+      "start": 7352,
+      "endExclusive": 11032,
+      "indicesSha256": "650fbb845c0ac1ecba3f2eef9e826bd8b93ae1383c61db010147054af4624964",
+      "maskSha256": "dd7f2ad137131cd2abbcf83b6d6b3a4e456c4efaa23e0ed3538c68d0f5bb626e",
+      "paletteKnownSha256": "7167e76b8a0b4fd0c7f06059362e5df9873fb21a449b94891c9be982e7cd29df",
+      "rgbaSha256": "28de8fa4b2e429ac145cd0101bd062c42e206e2f119e860e3f36e5fe74728c4a",
+      "encodedSha256": "f5b83b69f4ef27865eff00e913c94e57c9a756574dc890813c6118adfad4d5ad",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1737C",
+          "setupObject2Offset": 95100,
+          "occurrences": 10,
+          "clippedPlacements": 1
+        },
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1738E",
+          "setupObject2Offset": 95118,
+          "occurrences": 10,
+          "clippedPlacements": 1
+        }
+      ]
+    },
+    {
+      "ordinal": 2,
+      "descriptorPhysical": 754412,
+      "width": 109,
+      "height": 57,
+      "start": 11032,
+      "endExclusive": 17344,
+      "indicesSha256": "7cac49c98d28f020efc3596029e3d758e82ffaad26af90bc554e79cd59f2852d",
+      "maskSha256": "d9bc27dc59917066a6d6e3e482c4297685fbcee36ed98fbbccdf25d12a4e3a9c",
+      "paletteKnownSha256": "0c8c85407592b69a90fb2f3e39b0bdc19cd5d52e177a5e1886abea93c8813d8e",
+      "rgbaSha256": "8592abe539ff41b30ee751fb9c93fb89b91b9eacf58c3983f1b442480bdd96b1",
+      "encodedSha256": "6fa9796279aa888e25c16c2f95c7025784ed8ff0dc0b6dc52e8c96b0ea8bf2f4",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1736A",
+          "setupObject2Offset": 95082,
+          "occurrences": 1,
+          "clippedPlacements": 1
+        }
+      ]
+    },
+    {
+      "ordinal": 3,
+      "descriptorPhysical": 754420,
+      "width": 31,
+      "height": 57,
+      "start": 17344,
+      "endExclusive": 19240,
+      "indicesSha256": "00473d4a9df2871bde273b6e5dfb839e7e79aaf12e59bbd0c5e854a1ee758ada",
+      "maskSha256": "55d34ab64b1353aac5e8e290b9b810c0d368d97ddf4bde92fdb960238024bf1a",
+      "paletteKnownSha256": "d8df7f73014cae455bacad3e4442f1e3d3ca1f1faaa4b4a8f08e961f0e476ff0",
+      "rgbaSha256": "81889a9abe9e3c13eb595658d0835e817124bc524acabf825c5e928217da39c9",
+      "encodedSha256": "2d27382f1f06e95a4220498f38ca72a758e63b4efe74aea0802f9b0607869dd6",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1737C",
+          "setupObject2Offset": 95100,
+          "occurrences": 4,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 4,
+      "descriptorPhysical": 754428,
+      "width": 32,
+      "height": 122,
+      "start": 19240,
+      "endExclusive": 23596,
+      "indicesSha256": "1cc4e38d2e29a3f7c6069331a4997b70c852737dd106b9ba3e93c7afa5eb1c30",
+      "maskSha256": "fc548e7ab42bf79dac24c3f9259c3410d25c075d91b9cbf7c9bd54b46153e21d",
+      "paletteKnownSha256": "e4730b22fdaee18fd70b12b9380561861428042aaaaaf79350886115e5b5c931",
+      "rgbaSha256": "5c42fe0108b055310a6c7e341a4e99bb81e6ed4adc1887e86a5df45764070fbc",
+      "encodedSha256": "7443b58219ca1961a41a8657b4188059ca1fffbea671dbd2d2bd9a895e2ff9a9",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1737C",
+          "setupObject2Offset": 95100,
+          "occurrences": 5,
+          "clippedPlacements": 1
+        }
+      ]
+    },
+    {
+      "ordinal": 5,
+      "descriptorPhysical": 754436,
+      "width": 32,
+      "height": 105,
+      "start": 23596,
+      "endExclusive": 26844,
+      "indicesSha256": "bd8572e8b3a69d64b1f8525a65cfc231f1080bcf6812bcd15b9db6c564e320fe",
+      "maskSha256": "21b66bd805e8ef52c46c35c061ce97de799ebf50c21ac324bb5aa74e3f4aa34b",
+      "paletteKnownSha256": "9b00b8930d66b11eb3cc96e31d08b2889160b0e617f1f6c229fa37c92578c23c",
+      "rgbaSha256": "9d63d8b3987a97b81dc92c93ac30e2b026a106cd9893e8592df88fd8bb28e4ad",
+      "encodedSha256": "ca2112fdbd5a2bd71f6169801a78601c2248c8e8fcf0f8020a17ee70173085b2",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1737C",
+          "setupObject2Offset": 95100,
+          "occurrences": 5,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 6,
+      "descriptorPhysical": 754444,
+      "width": 32,
+      "height": 89,
+      "start": 26844,
+      "endExclusive": 29368,
+      "indicesSha256": "851819c0900d7ca815a2522d2afc5113249f453b19c5dc633adffddc5ed3eb33",
+      "maskSha256": "102647a3450470adf6e5b9e57377861f0819e1a256abacc78a4d2f853c7eaec1",
+      "paletteKnownSha256": "d71a85341166dbd4085df5276b3534cc813d748f3ad9957b00f6b4102bf9b3a2",
+      "rgbaSha256": "ac964ed5371e0985fe248f064e99e132c4ec005269978da1b0591b31de513d82",
+      "encodedSha256": "a0f1a44fb541fca6f763dc2301ceba3f8aee9f6f98c529a9d2d8d06c970964b3",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1737C",
+          "setupObject2Offset": 95100,
+          "occurrences": 5,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 7,
+      "descriptorPhysical": 754452,
+      "width": 32,
+      "height": 87,
+      "start": 29368,
+      "endExclusive": 32012,
+      "indicesSha256": "1413e2fbe4cd78868a63116a8e3a78af7278039363bdb835477412f1e978a668",
+      "maskSha256": "5c5fc88fd9ba7dfd637d2a8563e6e273834464862cf5bcba18ec01aa1e2b23ae",
+      "paletteKnownSha256": "75d021dad37cc4b5af7b28b16bb7b23b5974a0bdf75aa584c52a73c8e292b9b8",
+      "rgbaSha256": "1e785e907288bc38895efa0e86c75dbdfcbedb295e672cd89ff8cb63aefae777",
+      "encodedSha256": "aa8269b291db2b7fee60ac0de36a187ac8b9c9d9dccf68e1a4753ee878023dff",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1737C",
+          "setupObject2Offset": 95100,
+          "occurrences": 5,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 8,
+      "descriptorPhysical": 754460,
+      "width": 32,
+      "height": 126,
+      "start": 32012,
+      "endExclusive": 35860,
+      "indicesSha256": "da1c439a9c30f48a73ba7e032f8f707c22c20a0f9a1c06622c8e5c99c9c548db",
+      "maskSha256": "28df4c0ce6927bdda99119dd092997bcb37f10789139ae92ddd0216af49fc183",
+      "paletteKnownSha256": "782972264d2f448a7741cb6afbc10275ffde7e1d3f5f9005fd45543a7c2b81b5",
+      "rgbaSha256": "d603440e74c6461ff0cee7349f01844f74733cd4b8a71c6444bc047d4c08d789",
+      "encodedSha256": "ae7bce916363d4bee40f6c7f868b1febe3f33a58dc206e563edbcec670048912",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1737C",
+          "setupObject2Offset": 95100,
+          "occurrences": 5,
+          "clippedPlacements": 1
+        }
+      ]
+    },
+    {
+      "ordinal": 9,
+      "descriptorPhysical": 754468,
+      "width": 20,
+      "height": 122,
+      "start": 35860,
+      "endExclusive": 38740,
+      "indicesSha256": "97ec1e3cd3b12a7c32d7f17b9cef16284b5bb05dcdbf1e13eca72f2c043e9ce5",
+      "maskSha256": "25c500a3284dd00944c4689a8c129eb65796a884358d3cbc175d2d42d3552fd2",
+      "paletteKnownSha256": "e3341c3186e13ce5b81511d3aa442c73c704a38f108b73cb41e1ae3490ceb346",
+      "rgbaSha256": "b143e78099600ebcb7e0fa17e273cb941aab969fb57d2dec5db95b4157ab84bf",
+      "encodedSha256": "ef4ca2d025402d6bc77eec9d1efddbf02e9e1758482402f91ec0f52c7db01cf8",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_1737C",
+          "setupObject2Offset": 95100,
+          "occurrences": 5,
+          "clippedPlacements": 1
+        }
+      ]
+    },
+    {
+      "ordinal": 10,
+      "descriptorPhysical": 754476,
+      "width": 40,
+      "height": 30,
+      "start": 38740,
+      "endExclusive": 39524,
+      "indicesSha256": "8dbca850c942ccfeb8315870d6fc12b5b6c240dfe6669787433c0419f7a3d1b5",
+      "maskSha256": "ed747ea5e2cc0d4765622472eafed694c5136d9e4c994214aa98d9c6066f1926",
+      "paletteKnownSha256": "655a3ef0465a9f30fddf25f4dde0c19a05c6f9069b83961800c1944165955273",
+      "rgbaSha256": "8f9512a7b27e95e281deb0a67963b2be22bfb90d8a2a3a788473a73f701252e1",
+      "encodedSha256": "5dc2e6adeeef3de664fab493ae648b86294f750d2d9331f245f93b34139175fe",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_173A0",
+          "setupObject2Offset": 95136,
+          "occurrences": 20,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 11,
+      "descriptorPhysical": 754484,
+      "width": 64,
+      "height": 80,
+      "start": 39524,
+      "endExclusive": 42740,
+      "indicesSha256": "0e83a856d798ee1b5f0af16170bf31711a89eba710021460cef97d7d0f265b6d",
+      "maskSha256": "435d3f630f839c3267cc1b94c136b2d847e530b41ab31812ccc7babb18b5bf67",
+      "paletteKnownSha256": "a11937f356a9b0ba592c82f5290bac8016cb33a3f9bc68d3490147c158ebb10d",
+      "rgbaSha256": "79c3e4fb42b3e30cf2e1e54353e81464aa4562c284f16150b578e6aa079c0b73",
+      "encodedSha256": "f35751f149b089859d5d53383d6f0ea906441677245c8848120bb1aad373926b",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_173B2",
+          "setupObject2Offset": 95154,
+          "occurrences": 1,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 12,
+      "descriptorPhysical": 754492,
+      "width": 64,
+      "height": 80,
+      "start": 42740,
+      "endExclusive": 45716,
+      "indicesSha256": "95d8e4626eb41b99c53c61f2818c6597acd5d74f7673e36cab0ec13969c9ae40",
+      "maskSha256": "f6a4be3a096b4f7a7f740e174a0eaae73f53549dbcea26fb7c2b6a5e8bdaac16",
+      "paletteKnownSha256": "a11937f356a9b0ba592c82f5290bac8016cb33a3f9bc68d3490147c158ebb10d",
+      "rgbaSha256": "1e7a3f0dd0e5bd95926d3507471f06d59ccf21a09584ef5b8028abe2f59767c6",
+      "encodedSha256": "6ec9623adf23acd857a1bebd902cf3183659e58f8f24def5f66097b5c1c7355f",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_173B2",
+          "setupObject2Offset": 95154,
+          "occurrences": 1,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 13,
+      "descriptorPhysical": 754500,
+      "width": 64,
+      "height": 80,
+      "start": 45716,
+      "endExclusive": 48564,
+      "indicesSha256": "4522e279df42aa58ae55adb4c22899c20df4432a9ec4d862cbd0ce407079fd3e",
+      "maskSha256": "629c6610155f387642ca71cbc02c318d8337bd0b83d4e67c2a24576b15bd546a",
+      "paletteKnownSha256": "a11937f356a9b0ba592c82f5290bac8016cb33a3f9bc68d3490147c158ebb10d",
+      "rgbaSha256": "88c68b19ccb88334114c68222e56e1a1a9de139de6264b35e0d2a870b535de42",
+      "encodedSha256": "ae9fa85ea64c4cb27f789c8e519e7d3b6dde836ec85e5e292903fd7192e211c3",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_173B2",
+          "setupObject2Offset": 95154,
+          "occurrences": 1,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 14,
+      "descriptorPhysical": 754508,
+      "width": 64,
+      "height": 80,
+      "start": 48564,
+      "endExclusive": 51016,
+      "indicesSha256": "d06a538f45b50215582e043eb68827bfaeba3a391ada564eed9489d0adac287f",
+      "maskSha256": "acd680eda26de1486b9f06c4bb9a6384c8db59bea21d558e244a51ee97ecbf87",
+      "paletteKnownSha256": "a11937f356a9b0ba592c82f5290bac8016cb33a3f9bc68d3490147c158ebb10d",
+      "rgbaSha256": "0c176cb91fba2e8a7f33c178e1e6e0fcde472745392e73b4d998af969c8dcfe5",
+      "encodedSha256": "6a1abea2ce48a12b895dae862d7779846a9fee9c0798597fa21ec7db30817bee",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_173B2",
+          "setupObject2Offset": 95154,
+          "occurrences": 1,
+          "clippedPlacements": 0
+        }
+      ]
+    },
+    {
+      "ordinal": 15,
+      "descriptorPhysical": 754516,
+      "width": 64,
+      "height": 80,
+      "start": 51016,
+      "endExclusive": 54328,
+      "indicesSha256": "e0ab3c2d08e4a4b5a7bc6e9e7df97206bacdbe618541de9dd13661b32a8e296d",
+      "maskSha256": "8298620802fdc3e80942fda87e0226bf2121bfb274d9970ff73afd5253e3fc79",
+      "paletteKnownSha256": "a11937f356a9b0ba592c82f5290bac8016cb33a3f9bc68d3490147c158ebb10d",
+      "rgbaSha256": "818072e484dc8e77b9d7e8bf2c138c775d96599e2978688254e66871df11df8b",
+      "encodedSha256": "294e82bdb492902f183fc84814eb37313948c2cf2b3e3e45991424d51e1faa91",
+      "sourceSetupUses": [
+        {
+          "assetId": "mk2-stage-setup:tomb:object2_173B2",
+          "setupObject2Offset": 95154,
+          "occurrences": 1,
+          "clippedPlacements": 0
+        }
+      ]
+    }
+  ],
+  "sourceSetupCanvases": [
+    {
+      "setupObject2Offset": 95064,
+      "assetId": "mk2-stage-setup:tomb:object2_17358",
+      "width": 896,
+      "height": 56,
+      "placements": [
+        {
+          "ordinal": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "ordinal": 0,
+          "x": 128,
+          "y": 0
+        },
+        {
+          "ordinal": 0,
+          "x": 256,
+          "y": 0
+        },
+        {
+          "ordinal": 0,
+          "x": 384,
+          "y": 0
+        },
+        {
+          "ordinal": 0,
+          "x": 512,
+          "y": 0
+        },
+        {
+          "ordinal": 0,
+          "x": 640,
+          "y": 0
+        },
+        {
+          "ordinal": 0,
+          "x": 768,
+          "y": 0
+        }
+      ],
+      "indicesSha256": "a9a2b18a5c2aedebc7991f5f1ae6a2c80ef59e25ea7bd6d0a065e3307efe5306",
+      "maskSha256": "bfb6f18f1d5448e70421a73039b138feb95ade63c5fd22b3633b1e7b79a21bcd"
+    },
+    {
+      "setupObject2Offset": 95082,
+      "assetId": "mk2-stage-setup:tomb:object2_1736A",
+      "width": 896,
+      "height": 48,
+      "placements": [
+        {
+          "ordinal": 2,
+          "x": 393,
+          "y": -54
+        }
+      ],
+      "indicesSha256": "c76ed3c70b65349d168deddb1e06568cba096bdfcdaea5a8c36f38de911cd404",
+      "maskSha256": "8f19c5ac056c4f7df28fec5ed23c016080f9cbb0577bfbc1211c876a244d31a1"
+    },
+    {
+      "setupObject2Offset": 95100,
+      "assetId": "mk2-stage-setup:tomb:object2_1737C",
+      "width": 850,
+      "height": 224,
+      "placements": [
+        {
+          "ordinal": 4,
+          "x": -26,
+          "y": 0
+        },
+        {
+          "ordinal": 5,
+          "x": 6,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 35,
+          "y": 176
+        },
+        {
+          "ordinal": 6,
+          "x": 38,
+          "y": 0
+        },
+        {
+          "ordinal": 7,
+          "x": 70,
+          "y": 0
+        },
+        {
+          "ordinal": 8,
+          "x": 102,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 120,
+          "y": 176
+        },
+        {
+          "ordinal": 9,
+          "x": 134,
+          "y": 0
+        },
+        {
+          "ordinal": 3,
+          "x": 139,
+          "y": 123
+        },
+        {
+          "ordinal": 4,
+          "x": 154,
+          "y": 0
+        },
+        {
+          "ordinal": 5,
+          "x": 184,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 205,
+          "y": 176
+        },
+        {
+          "ordinal": 6,
+          "x": 216,
+          "y": 0
+        },
+        {
+          "ordinal": 7,
+          "x": 248,
+          "y": 0
+        },
+        {
+          "ordinal": 8,
+          "x": 280,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 290,
+          "y": 176
+        },
+        {
+          "ordinal": 9,
+          "x": 312,
+          "y": 0
+        },
+        {
+          "ordinal": 3,
+          "x": 317,
+          "y": 123
+        },
+        {
+          "ordinal": 4,
+          "x": 332,
+          "y": 0
+        },
+        {
+          "ordinal": 5,
+          "x": 364,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 375,
+          "y": 176
+        },
+        {
+          "ordinal": 6,
+          "x": 396,
+          "y": 0
+        },
+        {
+          "ordinal": 7,
+          "x": 428,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 460,
+          "y": 176
+        },
+        {
+          "ordinal": 8,
+          "x": 460,
+          "y": 0
+        },
+        {
+          "ordinal": 9,
+          "x": 492,
+          "y": 0
+        },
+        {
+          "ordinal": 3,
+          "x": 497,
+          "y": 123
+        },
+        {
+          "ordinal": 4,
+          "x": 512,
+          "y": 0
+        },
+        {
+          "ordinal": 5,
+          "x": 544,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 545,
+          "y": 176
+        },
+        {
+          "ordinal": 6,
+          "x": 576,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 630,
+          "y": 176
+        },
+        {
+          "ordinal": 7,
+          "x": 608,
+          "y": 0
+        },
+        {
+          "ordinal": 8,
+          "x": 640,
+          "y": 0
+        },
+        {
+          "ordinal": 9,
+          "x": 672,
+          "y": 0
+        },
+        {
+          "ordinal": 3,
+          "x": 677,
+          "y": 123
+        },
+        {
+          "ordinal": 4,
+          "x": 692,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 715,
+          "y": 176
+        },
+        {
+          "ordinal": 5,
+          "x": 724,
+          "y": 0
+        },
+        {
+          "ordinal": 6,
+          "x": 756,
+          "y": 0
+        },
+        {
+          "ordinal": 7,
+          "x": 788,
+          "y": 0
+        },
+        {
+          "ordinal": 1,
+          "x": 800,
+          "y": 176
+        },
+        {
+          "ordinal": 8,
+          "x": 820,
+          "y": 0
+        },
+        {
+          "ordinal": 9,
+          "x": 852,
+          "y": 0
+        }
+      ],
+      "indicesSha256": "6824ba6ce49c6eae7a5552b518975876f3ee01b8eb1de52ff9fe4507b9f3a553",
+      "maskSha256": "5fc74b83d16954f7abcc48a76120ba9495642a9c1a32bdfbf5a06eddba844dfa"
+    },
+    {
+      "setupObject2Offset": 95118,
+      "assetId": "mk2-stage-setup:tomb:object2_1738E",
+      "width": 850,
+      "height": 224,
+      "placements": [
+        {
+          "ordinal": 1,
+          "x": 35,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 120,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 205,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 290,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 375,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 460,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 545,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 630,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 715,
+          "y": 176
+        },
+        {
+          "ordinal": 1,
+          "x": 800,
+          "y": 176
+        }
+      ],
+      "indicesSha256": "20f63fdac23080ca209d2f96cbaf549b955e2939ff600783c42b1da09aaa0ada",
+      "maskSha256": "2cf903da007f1025fff545b2c926ed0832bd5c9e736cf322d69d98b6a6cf54c2"
+    },
+    {
+      "setupObject2Offset": 95136,
+      "assetId": "mk2-stage-setup:tomb:object2_173A0",
+      "width": 800,
+      "height": 30,
+      "placements": [
+        {
+          "ordinal": 10,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 40,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 80,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 120,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 160,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 200,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 240,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 280,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 320,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 360,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 400,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 440,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 480,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 520,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 560,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 600,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 640,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 680,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 720,
+          "y": 0
+        },
+        {
+          "ordinal": 10,
+          "x": 760,
+          "y": 0
+        }
+      ],
+      "indicesSha256": "2377690653b56b9ad936e414a23cbe293b41e27f11940f0e20f1a8286e165d8f",
+      "maskSha256": "e2e69430a56e3063b9c55a3e29282da499a21c8fd2cbd6f8fc03c3dbded3d08e"
+    },
+    {
+      "setupObject2Offset": 95154,
+      "assetId": "mk2-stage-setup:tomb:object2_173B2",
+      "width": 320,
+      "height": 80,
+      "placements": [
+        {
+          "ordinal": 11,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "ordinal": 12,
+          "x": 64,
+          "y": 0
+        },
+        {
+          "ordinal": 13,
+          "x": 128,
+          "y": 0
+        },
+        {
+          "ordinal": 14,
+          "x": 192,
+          "y": 0
+        },
+        {
+          "ordinal": 15,
+          "x": 256,
+          "y": 0
+        }
+      ],
+      "indicesSha256": "7415b4c4456e9daa9e78c55b7e33cd0658e8e006fe165c8c308192c26c5d7de2",
+      "maskSha256": "81f435abcb1ae9bfe8ee4b7499b726a2ea63fd0f28f1d13392d8c780c2d7fe2a"
+    }
+  ]
+}
