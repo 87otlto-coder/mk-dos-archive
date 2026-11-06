@@ -4,6 +4,16 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P24 BATTLE images and duplicate descriptor provenance — interim develop pass, 2026-11-06
+
+**Fresh MK2 collection: 5,205 unique representations**, adding **20 original BATTLE.GRA images from 40 descriptor witnesses**. Both byte-identical original records per image are retained in metadata, not counted as separate artwork. P24 is the third interim pass after P21; main remains P16.
+
+- Original **[0,59436)** image prefix: **20 distinct intervals / 85,188 pixels**. The original **35,840-byte floor [59436,95276)** and all three previous BATTLE floor representations are preserved. No new palette, timing or stage-composition claim.
+- **432 focused adapter/export checks**, **511,492 independent original-file PNG/sidecar/provenance checks**, eight source-negative cases and four valid-CRC false export/claim controls PASS. Removing a duplicate witness is rejected. Full current collection: **5,205 / 826 cumulative checks PASS**.
+- **12 current MK2 suites PASS**, including CAVE/ARMORY parity and unchanged source ZIP hashes, seven older focused suites (**818,695 checks**) and original package identities. The native row decoder and prior adapters/research implementation remain unchanged.
+- Local 369-file TypeScript syntax, typecheck and production build PASS. Runner defaults to `--through p24`. MK1/MK3 were explicitly not rerun; P21 results remain historical. Browser interaction remains **VALIDATION PENDING**; native palette/timing/placement/full scenes remain **UNKNOWN**.
+- [P24 handoff](docs/EXTRACTOR_P24_MK2_BATTLE_DEDUPLICATED_IMAGES.md), [results](docs/validation/P24_BATTLE_REGRESSION_2026-11-06.json). Next: **P25 original ARENA descriptor coverage and qualified missing-image integration**. P26 is the next consolidation candidate; no main promotion or full-source release now.
+
 ## P23 original ARMORY.GRA image integration — interim develop pass, 2026-11-06
 
 **Fresh MK2 collection: 5,185 unique representations**, adding **18 original ARMORY.GRA indexed images** to P22's 5,167. All three previous ARMORY floor records and raw floor bytes are preserved. P23 is the second interim pass after P21; main remains P16.
@@ -202,9 +212,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P23** after P21 develop consolidation |
-| Latest full MK2 original-fixture cumulative result | **P23: 5,185 unique assets / 734 cumulative checks**, plus earlier suites and CAVE/ARMORY parity |
-| Next planned pass | **P24 BATTLE descriptor deduplication and qualified missing-image integration** |
+| Most recent interim pass | **P24** after P21 develop consolidation |
+| Latest full MK2 original-fixture cumulative result | **P24: 5,205 unique assets / 826 cumulative checks**, plus earlier suites and CAVE/ARMORY/BATTLE parity |
+| Next planned pass | **P25 ARENA descriptor coverage and qualified missing-image integration** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -226,9 +236,9 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P24 from committed P23 on develop; verify its handoff and preserve the P21 checkpoint.
-2. Remain MK2-first: audit BATTLE descriptor duplication before exposing independently verified missing originals. Preserve duplicate witness provenance without inflating unique image counts, existing floors, native indices and uncertainty labels.
-3. Use `scripts/verify-p21-checkpoint.cjs --through p23` for the current fixture gate. Historical P20/P21 scripts retain their frozen census; input identity alone does not prove decoder correctness.
+1. Begin P25 from committed P24 on develop; verify its handoff and preserve the P21 checkpoint.
+2. Remain MK2-first: audit ARENA descriptor coverage before exposing independently verified missing originals. Preserve native floors, descriptor witnesses, source indices and uncertainty labels; do not inflate image counts from duplicate witnesses.
+3. Use `scripts/verify-p21-checkpoint.cjs --through p24` for the current fixture gate. Historical P20/P21 scripts retain their frozen census; input identity alone does not prove decoder correctness.
 4. Keep native timing, live palette ownership, full stage assembly and real-data browser interaction separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 5. Preserve the full research workbench and commercial-media exclusion. Accumulate four recoverable interim passes, then assess the next fifth-pass checkpoint. Main promotion requires separate acceptance; P21 does not promote automatically.
 

@@ -43,6 +43,8 @@ jobs:
           node --check scripts/verify-mk2-p22-cumulative.cjs
           node --check scripts/verify-mk2-p23-armory.cjs
           node --check scripts/verify-mk2-p23-cumulative.cjs
+          node --check scripts/verify-mk2-p24-battle.cjs
+          node --check scripts/verify-mk2-p24-cumulative.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |
