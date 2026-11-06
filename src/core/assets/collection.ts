@@ -18,6 +18,7 @@ import { buildMK2IntroLzwP12, MK2_P12_INTRO_LIMITATION } from './mk2IntroLzwP12'
 import { buildMK2MountainSourceP13, MK2_P13_MOUNTAIN_LIMITATION } from './mk2MountainSourceP13';
 import { buildMK2NativeViewportFloorsP14, MK2_P14_VIEWPORT_LIMITATION } from './mk2NativeFloorViewportsP14';
 import { buildMK2ObservedFloorsP15, MK2_P15_OBSERVED_FLOOR_LIMITATION } from './mk2ObservedFloorColorsP15';
+import { buildMK2ImagesSetupsP17, MK2_P17_IMAGES_SETUP_LIMITATION } from './mk2ImagesSetupP17';
 
 export async function scanAssets(source:DirectorySource,game:Game,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
   if(game==='mk3')return scanMK3(source,progress,signal);
@@ -130,6 +131,10 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   const p15ObservedFloors=await buildMK2ObservedFloorsP15(source);
   assets.push(...p15ObservedFloors.assets);
   packages.push(...p15ObservedFloors.packages);
+  progress('MK2 original source-verified IMAGES.GRA setup-local indexed mosaics (P17)');
+  const p17Images=await buildMK2ImagesSetupsP17(source);
+  assets.push(...p17Images.assets);
+  packages.push(...p17Images.packages);
   const music=[];
   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
     const bytes=await source.readSlice(e.path,0,e.size);
@@ -147,8 +152,9 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
     p12IntroLzw:p12Intro.status,
     p13MountainSource:p13Mountain.status,
     p14NativeViewports:p14NativeViewports.status,
-    p15ObservedFloors:p15ObservedFloors.status},
-    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,MK2_P15_OBSERVED_FLOOR_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+    p15ObservedFloors:p15ObservedFloors.status,
+    p17ImagesSetups:p17Images.status},
+    limitations:[...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,MK2_P15_OBSERVED_FLOOR_LIMITATION,MK2_P17_IMAGES_SETUP_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),

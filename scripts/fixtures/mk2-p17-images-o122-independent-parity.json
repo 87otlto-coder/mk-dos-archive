@@ -1,0 +1,32 @@
+{
+  "schema": "mk2_p17_o121_o122_original_images_unassigned_setup_sha256_v1",
+  "basis": "Independent original-file O121/O122 Python source decoder, 10 setup-local mosaics; two IMAGES.GRA source families remain unattributed to runtime arenas",
+  "originalExeSHA256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "imagesGraSHA256": "2b26796a64c2aebfee75832696aeae9bbcf9df56d82cb9a39df58a557d3ad8cf",
+  "imagesSourceChain": {"start": 351472, "endExclusive": 460192, "streams": 20},
+  "setups": [
+    {
+      "sourceFamilyLabel": "tomb79",
+      "setupObject2Offset": 190436,
+      "paletteRecordPhysical": 576958,
+      "width": 320, "height": 200, "sourceControls": 10,
+      "sourceIndexSHA256": "44cc8a2c23c68b75f6c795d47f542a86487fdba7b938bc01587e31d055a40630",
+      "opacityMaskSHA256": "2b34ba57aa7918d0143e4a0a0e63e191c0801dffafe4779ae3627b9952f5fe90",
+      "opaquePixels": 58428
+    },
+    {
+      "sourceFamilyLabel": "portal79",
+      "setupObject2Offset": 190240,
+      "paletteRecordPhysical": 576798,
+      "width": 320, "height": 200, "sourceControls": 10,
+      "sourceIndexSHA256": "0b8bcbc29c6775a5391ecca256e953a78a1709efae9b547db8a3a8aceb10024b",
+      "opacityMaskSHA256": "fffa105629111d931deaffcbd7ee2deaaa2401ebbc1249ae78f1ddf8238c02be",
+      "opaquePixels": 47922
+    }
+  ],
+  "nativePaletteOwnershipKnown": false,
+  "actualRuntimeArenaIdentityKnown": false,
+  "sourceLocalPlacementKnown": true,
+  "completeStageScene": false,
+  "commercialPixelsEmbedded": false
+}

@@ -4,6 +4,19 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P17 MK2 original IMAGES.GRA indexed setup-local mosaics — interim `develop` pass, 2026-11-06
+
+**P16 remains the stable `main` source checkpoint.** P17 is a narrow, additive MK2 extractor improvement applying the independently original-file-verified O121/O122 research; it does not modify the research workbench.
+
+- **Two newly exposed 320 × 200 original source-local indexed composites** from `IMAGES.GRA` Object-2 setups `0x2E7E4` and `0x2E720`, each using ten 64 × 100 original tiles. Their twenty original indexed streams form one exact, gapless `IMAGES.GRA [351472,460192)` chain.
+- **VALIDATED:** independently reran the original O122 Python producer, which found all ten original setup mosaics and supplied SHA-256 goldens for both newly integrated index/opacity planes. New P17 TypeScript focused parity, selected ZIP mask exports and eight mutation/missing/synthetic controls: **77 checks PASS**.
+- **VALIDATED on frozen P11 source plus P17:** canonical original-fixture full scan **5,055 unique assets / 28 compatibility checks PASS**, with unchanged P8–P10 original evidence ZIP hashes. This confirms source additive behaviour but is **not** the complete current P16+P17 regression.
+- **EXPECTED, VALIDATION PENDING:** current P16 was previously 5,108 original MK2 asset representations; P17 should yield **5,110**, but the full P16+P17 cumulative scanner has **not been rerun** in this pass. `scripts/verify-mk2-p17-cumulative.cjs` provides the current full-source gate and an explicit `--p11-baseline` diagnostic mode.
+- **No runtime palette inference:** source family labels `tomb79`/`portal79` refer to unverified alternative 79-colour setups, **not authenticated arena identity or native DAC selection**. Previews show diagnostic index-value grayscale; source `indices`, opacity and all-zero native palette-known masks are preserved. No final stage composition, activation, draw order or timing is claimed.
+- **Source handoff:** [P17 original unassigned indexed mosaic integration](docs/EXTRACTOR_P17_MK2_UNASSIGNED_IMAGES_SETUP_MOSAICS.md). Source/browser build verification is separate from original-file parity.
+
+Continue MK2-first in P18; preserve P16 `main`, commercial game files remain outside GitHub, and return to a consolidation gate after further verified interim passes.
+
 ## Current P16 consolidated source checkpoint — 2026-11-06
 
 **P16 is the stable Git-safe source checkpoint on main**, superseding P11 after four additive MK2 extractor passes (P12–P15). The existing research workbench, original indices/masks, fixture provenance and earlier Git history remain preserved. Read the [P16 full source checkpoint and test record](docs/EXTRACTOR_P16_CUMULATIVE_CHECKPOINT_2026-11-06.md).
@@ -120,7 +133,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P15**, consolidated at P16 |
 | Latest full MK2 original-fixture cumulative result | **P15: 5,108 assets / 83 checks** (previously verified; P16 independently reran P11 baseline) |
-| Next planned pass | **P17 MK2-first new extraction pass** |
+| Next planned pass | **P18 MK2-first source-backed extraction and background/animation improvements** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
