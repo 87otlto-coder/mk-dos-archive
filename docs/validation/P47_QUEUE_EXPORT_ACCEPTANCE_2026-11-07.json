@@ -1,0 +1,53 @@
+{
+  "schema": "mkdos_p47_queue_acceptance_v1",
+  "status": "PASS",
+  "date": "2026-11-07",
+  "exportGeneration": {
+    "status": "PASS",
+    "sourceGroups": 8,
+    "originalFrames": 57,
+    "apngCases": 32,
+    "exportedFrames": 236,
+    "originalDataBrowserVerified": false,
+    "nativeTimingClaimed": false
+  },
+  "independent": {
+    "status": "PASS",
+    "sourceGroups": 8,
+    "originalFrames": 57,
+    "apngCases": 32,
+    "decodedPresentationFrames": 236,
+    "rgbaChannelComparisons": 1085968,
+    "timingMilliseconds": [
+      10,
+      73,
+      137,
+      60000
+    ],
+    "tamperedApngsRejected": 4,
+    "duplicatesAndReorderingVerified": true,
+    "cleanReverified": true,
+    "originalDataBrowserVerified": false,
+    "nativeTimingClaimed": false
+  },
+  "p19Compatibility": {
+    "pass": "P19",
+    "status": "PASS",
+    "checks": 280,
+    "sourceTracks": 8,
+    "originalOrderedFrames": 57,
+    "originalFramePixelsReExported": 63112,
+    "presentationMillisecondsTested": 137,
+    "nativeFrameTimeKnown": false,
+    "originalPaletteOwnershipKnown": false,
+    "canonicalOriginalFixture": true,
+    "currentFullP16P17P18ScannerVerified": false
+  },
+  "browserControlAvailableInSession": false,
+  "browserDiscovery": "No extension-control or cloud CUA tool exposed; plugin search returned no usable local-browser capability",
+  "runtimeSourceChanges": [],
+  "fullCumulativeRegressionRerun": false,
+  "latestFullRegression": "P46",
+  "newRepresentations": 0,
+  "mainPromotion": false
+}
