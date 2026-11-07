@@ -809,5 +809,29 @@
   "newRepresentations": 0,
   "originalDataBrowserVerified": false,
   "mainPromotion": false,
-  "latestFullThreeGameCheckpoint": "P46"
+  "latestFullThreeGameCheckpoint": "P46",
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "8c2634d92408bf8efba969a3d3e4ca70f04f9c8e",
+    "treeSha": "9323673c6a20616e494f6704dda00a0993cada0b",
+    "fileBlobs": 2259,
+    "sourceFiles": 386,
+    "rawByteMatches": 97,
+    "checkoutNormalizedMatches": 2162,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "9bf3f999ab079f16d0416c560b150b949abd75c1febc244dd20c4fd60967755a",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "githubTreeAssociationVerified": true,
+  "githubCI": {
+    "id": 42371498982,
+    "sha": "8c2634d92408bf8efba969a3d3e4ca70f04f9c8e",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42371498982"
+  },
+  "verifiedSourceCandidate": "8c2634d92408bf8efba969a3d3e4ca70f04f9c8e",
+  "evidenceFollowupChangesRuntimeSource": false
 }
