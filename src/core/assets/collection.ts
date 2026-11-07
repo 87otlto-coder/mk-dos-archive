@@ -1,3 +1,4 @@
+import {buildMK2SourceCoverageP40,MK2_P40_COVERAGE_LIMITATION} from './mk2SourceCoverageP40';
 import {buildMK2SourceCoverageP38,MK2_P38_COVERAGE_LIMITATION} from './mk2SourceCoverageP38';
 import {buildMK2SourceCoverageP37,MK2_P37_COVERAGE_LIMITATION} from './mk2SourceCoverageP37';
 import { DirectorySource } from '../filesystem/DirectorySource';
@@ -225,7 +226,9 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   packages.push({name:'MK2_P37_NATIVE_SOURCE_INTERVAL_COVERAGE.json',bytes:new TextEncoder().encode(JSON.stringify(p37SourceCoverage,null,2)+'\n')});
   const p38SourceCoverage=await buildMK2SourceCoverageP38(await source.listRecursive(),assets);
   packages.push({name:'MK2_P38_NATIVE_SOURCE_INTERVAL_COVERAGE.json',bytes:new TextEncoder().encode(JSON.stringify(p38SourceCoverage,null,2)+'\n')});
-  return {game,assets,packages,reports:{p38SourceCoverage,p37SourceCoverage,integration:o90.report,indexed:manifest,music,
+  const p40SourceCoverage=await buildMK2SourceCoverageP40(await source.listRecursive(),assets);
+  packages.push({name:'MK2_P40_NATIVE_SOURCE_INTERVAL_COVERAGE.json',bytes:new TextEncoder().encode(JSON.stringify(p40SourceCoverage,null,2)+'\n')});
+  return {game,assets,packages,reports:{p40SourceCoverage,p38SourceCoverage,p37SourceCoverage,integration:o90.report,indexed:manifest,music,
     u8Audio:r.u8?.report ?? {status:'NOT_QUALIFIED',reason:r.u8Failure ?? 'O94D pipeline unavailable'},
     p2p4StageVisuals:stageVisuals.status,
     p5SourceFloors:p5Floors.stageResults,
@@ -244,7 +247,7 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
     p24BattleSource:p24Battle.status,
     p25ArenaSource:p25Arena.status,
     p27TombSource:p27Tomb.status,p28PortalSource:p28Portal.status,p29TowerSource:p29Tower.status,p30ForestSource:p30Forest.status,p32ForestTailSource:p32ForestTail.status,p33PitSource:p33Pit.status,p34ArmoryTailSource:p34ArmoryTail.status,p35ArenaTailSource:p35ArenaTail.status},
-    limitations:[MK2_P38_COVERAGE_LIMITATION,MK2_P37_COVERAGE_LIMITATION,...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,MK2_P15_OBSERVED_FLOOR_LIMITATION,MK2_P17_IMAGES_SETUP_LIMITATION,MK2_P18_SOURCE_SEQUENCE_LIMITATION,MK2_P22_CAVE_LIMITATION,MK2_P23_ARMORY_LIMITATION,MK2_P24_BATTLE_LIMITATION,MK2_P25_ARENA_LIMITATION,MK2_P27_TOMB_LIMITATION,MK2_P28_PORTAL_LIMITATION,MK2_P29_TOWER_LIMITATION,MK2_P30_FOREST_LIMITATION,MK2_P32_FOREST_TAIL_LIMITATION,MK2_P33_PIT_LIMITATION,MK2_P34_ARMORY_TAIL_LIMITATION,MK2_P35_ARENA_TAIL_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
+    limitations:[MK2_P40_COVERAGE_LIMITATION,MK2_P38_COVERAGE_LIMITATION,MK2_P37_COVERAGE_LIMITATION,...MK2_STAGE_P2P4_LIMITATIONS,P5_MK2_SOURCE_FLOOR_LIMITATION,MK2_P7_FOREST_LIMITATION,P8_PIT_LOWER_WALL_LIMITATION,MK2_P9_PIT_UPPER_LIMITATION,MK2_P10_PIT_BRIDGE_LIMITATION,MK2_P12_INTRO_LIMITATION,MK2_P13_MOUNTAIN_LIMITATION,MK2_P14_VIEWPORT_LIMITATION,MK2_P15_OBSERVED_FLOOR_LIMITATION,MK2_P17_IMAGES_SETUP_LIMITATION,MK2_P18_SOURCE_SEQUENCE_LIMITATION,MK2_P22_CAVE_LIMITATION,MK2_P23_ARMORY_LIMITATION,MK2_P24_BATTLE_LIMITATION,MK2_P25_ARENA_LIMITATION,MK2_P27_TOMB_LIMITATION,MK2_P28_PORTAL_LIMITATION,MK2_P29_TOWER_LIMITATION,MK2_P30_FOREST_LIMITATION,MK2_P32_FOREST_TAIL_LIMITATION,MK2_P33_PIT_LIMITATION,MK2_P34_ARMORY_TAIL_LIMITATION,MK2_P35_ARENA_TAIL_LIMITATION,'94 exact-full resources provide 3,790 indexed sprites; nine bounded palette contracts provide 782 color variants.',
       'Stage assembly and gameplay animation ordering/timing remain unresolved.',
       ...(r.u8 ? ['312 original MK2 digital samples are source-domain WAV exports, not bit-exact runtime mixer recordings. Original U8 files and semantically unknown tails are retained in the O94D package.']
         : [`MK2 digital sample WAV export unavailable: ${r.u8Failure ?? 'O94D qualification did not complete'}. No speculative PCM conversion was attempted.`]),
