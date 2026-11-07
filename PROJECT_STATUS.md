@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P53 MK1 stage-gallery navigation truthfulness — interim develop pass, 2026-11-07
+
+**Source change committed; original-data browser retest pending.** The MK1 stage gallery builds HDRS.GRA candidate cards from the file inventory, but `Browse resource` used to filter decoded Asset Library records by filename. User screenshots demonstrated an MK1 header search returning **No matches**. P53 suppresses that unsupported per-header deep link for MK1 and explicitly states that no independently verified per-file decoded-asset link exists; the existing **Browse normalized previews** route and all MK2 stage buttons remain intact. No source decoder, palette, stage mapping, asset count or research-workbench change.
+
+- [P53 audit and handoff](docs/EXTRACTOR_P53_MK1_STAGE_GALLERY_NAVIGATION.md). Source-only [CI run 42391637568](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42391637568) initiated on commit `ac5b961`; verify final conclusion before claiming pass.
+- The user independently executed the P52 original MK1 regression script locally and supplied **PASS**, with 187 Kano frame ZIP checks, 928,368 pixels, four damaged exports rejected and modified-EXE/descriptor safety checks. No fresh three-game regression was performed in this pass; browser fallback interactions remain pending.
+- Next: verify P53 browser navigation against the current executable, then P54 evidence-backed MK1 source-to-stage relationship investigation or qualified MK2 colour display investigation. P56 next consolidation assessment; `main` unchanged.
+
 ## P52 MK1 read-only Kano native-plane preservation — interim develop, 2026-11-07
 
 **Implementation committed; original-fixture acceptance pending.** Existing 187 source-anchored Kano fallback grayscale preview records now retain the decoded native `indices` and `mask` planes for the P48 direct indexed-asset ZIP action, with unchanged asset IDs, previews, fallback strictness and unknown palette claims. No new assets, decoded algorithm or canonical research gates changed.
