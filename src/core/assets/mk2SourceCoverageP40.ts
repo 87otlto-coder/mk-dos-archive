@@ -379,7 +379,9 @@ export async function buildMK2SourceCoverageP40(files:SourceFileEntry[],assets:A
    need(await hash(m.indices)===expected.indicesSha256&&await hash(m.mask)===expected.maskSha256,'independently qualified planes');
    added.push({assetId:a.id,start:a.source.offset,endExclusive:a.source.offset+a.source.length});
   }
-  const summary=summarizeEncodedIntervals(entries[0].size,[...portal.intervals,...added]);
+  const originalIntervals=portal.intervals;
+  need(Array.isArray(originalIntervals),'P38 original intervals missing');
+  const summary=summarizeEncodedIntervals(entries[0].size,[...originalIntervals,...added]);
   need(summary.qualifiedReferences===34&&summary.coveredBytes===92756&&summary.outsideScopeBytes===0&&summary.duplicateOrOverlappingReferenceBytes===0,'no missing or overlapping native bytes');
   replacement={...portal,...summary};
   reconciliation={status:'VERIFIED',existingEffectReferences:20,newRepresentations:0,priorOutsideScopeBytes:21004,remainingOutsideScopeBytes:0,
