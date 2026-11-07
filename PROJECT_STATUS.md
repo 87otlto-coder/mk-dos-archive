@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P54 MK1 original header-to-normalized-preview source join — interim develop pass, 2026-11-07
+
+**Implementation committed, original-fixture acceptance pending.** Existing O27 authentic MK1 `BGND.ASM` module-to-HDRS.GRA roots are now joined to O54's module-keyed normalized preview records by exact identifiers. New metadata-only `MK1_P54_VERIFIED_HEADER_MODULE_PREVIEW_JOINS.json` preserves original module names, header resource paths, BMOD references, exact matching preview IDs and explicitly unavailable joins. No stage identity/palette/playable-scene claim, no decoded artwork or census change. Existing MK1 header gallery remains unlinked until this join is original-fixture verified.
+
+- Source-only positive/refusal controls **PASS**, including six deliberately invalid cases, in [CI 42393175579](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42393175579). A focused original-fixture test `scripts/verify-mk1-p54-stage-joins.cjs` is committed to assert the expected 24 preview/module joins, unchanged 2,656 assets, original HDRS file presence and export parity.
+- **VALIDATION PENDING:** full original MK1 P54 script on complete GitHub checkout, re-run current three-game regressions and local browser verification. The private MK1 ZIP is available in this chat, but full local Git checkout was unavailable due to container network DNS. Do not equate source-only CI with original-fixture success.
+- [P54 technical handoff](docs/EXTRACTOR_P54_MK1_STAGE_HEADER_PREVIEW_JOIN.md). Next P55 bounded stage usability/palette investigation after evaluating P54 acceptance; P56 fifth-pass consolidation assessment; `main` remains P16.
+
 ## P53 MK1 stage-gallery navigation truthfulness — interim develop pass, 2026-11-07
 
 **Source change committed; original-data browser retest pending.** The MK1 stage gallery builds HDRS.GRA candidate cards from the file inventory, but `Browse resource` used to filter decoded Asset Library records by filename. User screenshots demonstrated an MK1 header search returning **No matches**. P53 suppresses that unsupported per-header deep link for MK1 and explicitly states that no independently verified per-file decoded-asset link exists; the existing **Browse normalized previews** route and all MK2 stage buttons remain intact. No source decoder, palette, stage mapping, asset count or research-workbench change.
