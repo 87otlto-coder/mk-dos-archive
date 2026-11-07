@@ -26,4 +26,10 @@ All three fixtures and explicit report/work paths are required. Existing ancesto
 ## Uncertainty and next
 Shared API and original-fixture acceptance is VERIFIED; actual browser interaction/download remains VALIDATION PENDING. Embedded IFF CMAP is source-image evidence, not gameplay DAC ownership. MK1 unresolved palettes, native timing/activation and full stage composition remain unknown where unqualified.
 
-P46 remains consolidated checkpoint. Next **P51 fifth-pass consolidation**: fresh current-source three-game, independent original-image/effect/indexed/palette/queue gates and complete source audit. Main remains P16. At each stop, state current pass, verified result, uncertainty and next action. Source/CI associations follow committed verification.
+P46 remains consolidated checkpoint. Next **P51 fifth-pass consolidation**: fresh current-source three-game, independent original-image/effect/indexed/palette/queue gates and complete source audit. Main remains P16. At each stop, state current pass, verified result, uncertainty and next action. Complete source/CI are verified below.
+
+## Committed source and CI
+
+Source candidate **f91f184bd73470c47338358e356b810fc9273b2d**, tree **3772820b18c2d6011c10bcce5d4a1cd4f5311f7f**: all **2,269 blobs / 386 src files** match (98 raw / 2,171 checkout-newline-normalized), zero missing/mismatched/unsafe paths. Inventory SHA-256 **4e160eef8375556216bd26d514f03f6703cde50093f21a3dbc864574c511f3b1**. Runtime changes are additive workspace/native-plane retention and registry provenance; existing decoding, colors and rendering remain unchanged. No source removals.
+
+[CI run 42380926007](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42380926007) completed SUCCESS on the exact candidate, including new runner/sampler syntax, eight preflight refusals/seven source-audit controls without game data, existing export/palette controls, media guard, build/TypeScript and source-only Chrome startup. Original-fixture acceptance is recorded separately. Subsequent evidence-only commit changes this handoff, status and validation JSON; application/verification source match the audited CI candidate. Browser interaction remains pending; main stays P16.

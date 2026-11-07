@@ -8,7 +8,7 @@
 
 **Where:** fourth interim after P46. Twelve-step runner PASS. It exposed and fixed an MK1 registry omission: **79 unresolved-palette records** now retain existing O60 index/mask data; no new decoding, colors, assets or preview changes.
 
-**Verified:** **740,670 MK1 native plane bytes** match O60 evidence. MK1 2,656 / MK2 5,369 / MK3 9,186; MK1/MK3 visual hashes unchanged from P46. Current MK2 gates, eight independent MK2 indexed exports, all 416 MK3 CMAP exports and P47 APNG checks PASS. Eight runner refusals / seven source-audit controls and syntax/TypeScript/build PASS. [P50 handoff](docs/EXTRACTOR_P50_CROSS_GAME_INDEXED_ACCEPTANCE.md), [results](docs/validation/P50_CROSS_GAME_INDEXED_2026-11-07.json). Source/CI association follows verification.
+**Verified:** **740,670 MK1 native plane bytes** match O60 evidence. MK1 2,656 / MK2 5,369 / MK3 9,186; MK1/MK3 visual hashes unchanged from P46. Current MK2 gates, eight independent MK2 indexed exports, all 416 MK3 CMAP exports and P47 APNG checks PASS. Eight runner refusals / seven source-audit controls and syntax/TypeScript/build PASS. [P50 handoff](docs/EXTRACTOR_P50_CROSS_GAME_INDEXED_ACCEPTANCE.md), [results](docs/validation/P50_CROSS_GAME_INDEXED_2026-11-07.json). Complete source audit **2,269 blobs / 386 src files PASS**, zero missing/mismatched/unsafe paths; candidate **f91f184bd73470c47338358e356b810fc9273b2d**. [CI 42380926007](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42380926007) **SUCCESS**, including the new source-only preflight controls.
 
 **Uncertain:** browser interaction/download remains pending; unqualified native palettes/timing/stage relationships remain unknown. **Next:** P51 consolidation assessment, not started here. Main unchanged.
 
