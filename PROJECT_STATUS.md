@@ -4,6 +4,17 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P31 fifth-pass consolidated source checkpoint - develop, 2026-11-07
+
+**P31 is the current consolidated source checkpoint on develop; main remains accepted P16.** P27-P30's **84 standalone representations** and the full workbench are preserved. No runtime file under src changes in P31. [P31 checkpoint](docs/EXTRACTOR_P31_SOURCE_CHECKPOINT_2026-11-07.md).
+
+- **Fresh complete three-game regression: 19 standard suites PASS, no skipped games.** MK1 **2,656**, MK2 **5,304 / 1,940 cumulative checks**, MK3 **9,186** representations. All MK1 stage exports and MK3 representative exports pass; MK1/MK3 visual-plane hashes match P21 and P26.
+- **Eight independent MK2 families PASS: 186 representations / 691,028 indexed pixels / 6,548,174 independent checks**. **31 false exports/claims rejected**, every clean export reverified. Known-component provenance, prior mosaics/effects/floors and deterministic image archives remain retained.
+- **Complete P30 source audit PASS:** all **2,162 blobs / 378 src files** match local materialized source (80 raw / 2,082 normal checkout newline matches); zero missing/mismatched/unsafe paths. New P31 runner/source-audit tooling and source-only refusal controls support recovery and repeatable checkpoints.
+- Local 374-file syntax, TypeScript and production build PASS; **eight runner preflight refusals / seven source-audit negative controls PASS**. P26's frozen runner/evidence remain unchanged.
+- MK1 whole ZIP hashes vary; metadata volatility remains **INFERRED**, with decoded visuals verified unchanged. Browser interactions remain **VALIDATION PENDING**; live RGB/timing/world composition and TOWER transforms remain separately qualified.
+- [P31 results/source audit](docs/validation/P31_CHECKPOINT_REGRESSION_2026-11-07.json). Next **P32 FOREST [164752,198116) source coverage audit** against existing O69/O110A evidence. No main promotion or completed-product claim.
+
 ## P30 standalone FOREST originals with P7 layer provenance - interim develop pass, 2026-11-07
 
 **Fresh MK2 census: 5,304 unique representations**, adding **49 standalone FOREST originals** from known O110A descriptors. **Zero newly discovered source images claimed.** Fourth interim after P26; main remains P16.
@@ -52,7 +63,7 @@
 
 ## P26 fifth-pass source consolidation — develop checkpoint, 2026-11-06
 
-**P26 is the current consolidated source checkpoint on develop; main remains P16.** P22–P25's **102 original indexed image representations** and all earlier research/runtime functionality are preserved. No runtime file under src changes in P26. [P26 checkpoint](docs/EXTRACTOR_P26_SOURCE_CHECKPOINT_2026-11-06.md).
+**P26 is a preserved historical source checkpoint on develop; main remains P16.** P22–P25's **102 original indexed image representations** and all earlier research/runtime functionality are preserved. No runtime file under src changes in P26. [P26 checkpoint](docs/EXTRACTOR_P26_SOURCE_CHECKPOINT_2026-11-06.md).
 
 - **Fresh complete three-game regression: 15 standard suites PASS**, no skipped games. MK1 **2,656**, MK2 **5,220 unique representations / 865 cumulative checks**, MK3 **9,186** assets. MK1/MK3 decoded visual-plane hashes exactly match P21; MK1's 49 stage PNG exports and MK3 representative exports pass.
 - **All four new MK2 families independently reverified:** **102 images / 357,456 indexed pixels / 2,146,506 checks PASS**, plus **13 false exports/claims rejected** and clean rechecks. CAVE/ARMORY/BATTLE/ARENA package hashes and previous original floor/evidence hashes are retained.
@@ -108,7 +119,7 @@
 
 ## P21 fifth-pass source consolidation — develop checkpoint, 2026-11-06
 
-**P21 is the current consolidated source checkpoint on develop; main remains P16.** P17–P20 are preserved together. No decoder/research implementation, asset count, or runtime interpretation changed. Full checkpoint: [P21 handoff](docs/EXTRACTOR_P21_SOURCE_CHECKPOINT_2026-11-06.md).
+**P21 is a preserved historical source checkpoint on develop; main remains P16.** P17–P20 are preserved together. No decoder/research implementation, asset count, or runtime interpretation changed. Full checkpoint: [P21 handoff](docs/EXTRACTOR_P21_SOURCE_CHECKPOINT_2026-11-06.md).
 
 - New repeatable checkpoint runner: **11 suites PASS**, including MK2 input identity, full **5,118 unique assets / 536 cumulative checks**, all seven focused P12–P19 suites (**818,695 checks**), and MK1/MK3 compatibility. Invalid input fails closed and writes FAIL.
 - **MK1 fresh regression:** **2,656 assets** (2,363 sprites, 244 audio, 49 stage PNGs), **2,615 checks PASS**. All 49 stage PNG exports read back against collection pixels; 24 normalized module previews retained.
@@ -278,13 +289,13 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P26 consolidated on develop; P16 accepted on main** (2026-11-06; prior checkpoints preserved) |
+| Last *full source* checkpoint | **P31 consolidated on develop; P16 accepted on main** (2026-11-07; prior checkpoints preserved) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P30**, after the P26 source checkpoint |
-| Latest full MK2 original-fixture cumulative result | **P30: 5,304 representations / 1,940 cumulative checks**, full prior suites and independent component/source parity |
-| Next planned pass | **P31 fifth-pass consolidation assessment and fresh three-game regression** |
+| Latest full MK2 original-fixture cumulative result | **P31: 5,304 representations / 1,940 cumulative checks**, full prior suites and independent component/source parity |
+| Next planned pass | **P32 FOREST remaining-source coverage audit** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -306,9 +317,9 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P31 from committed P30 on develop; verify all four interim handoffs and preserve P26 and earlier source checkpoints.
-2. Assess fifth-pass consolidation: fresh MK1/MK2/MK3 collection/export checks, independent verification of all eight P22-P30 MK2 families and false-export controls, and complete committed-source hash/media audit. Preserve used/unlinked provenance and report actual source coverage boundaries.
-3. Create a P31 current-census checkpoint runner if consolidation is justified. Keep P26 frozen to its original census and evidence; standard interim runner defaults to P30. Historical fixed-census scripts require matching source.
+1. Begin P32 from committed P31 on develop; verify its handoff and preserve P26/P21 and all earlier source checkpoints.
+2. Audit FOREST [164752,198116) against existing O69/O110A descriptors and exposed assets. Add only independently qualified missing originals; preserve used/unlinked provenance and actual source coverage boundaries.
+3. Use current-source interim gates for feature changes. P31 pins P30 census 5,304 with all three games/eight independent families; P26 remains frozen to 5,220. Historical fixed-census runners require matching source.
 4. Keep original-data browser action checks, native timing, live palette ownership and stage composition separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 5. Preserve all native data/provenance and the full workbench. Accumulate four recoverable interim passes, then assess the fifth-pass checkpoint. Main promotion remains separately authorized; source consolidation is not automatic product acceptance.
 
@@ -325,6 +336,7 @@ A verified source relationship is not automatically verified runtime timing, own
 - P11 = consolidated, GitHub CI qualified, source-fixture regressed and core-user-browser-verified **source checkpoint on `main`** (2026-11-05); not a claim of full stage reconstruction.
 - P12–P15 = original-fixture-tested additive MK2 extraction passes, consolidated in **P16 Git-safe source checkpoint on main (2026-11-06)**. P16 itself has no decoder changes; its fresh fixture checks cover input identity and P11 baseline. New-asset browser interaction remains validation pending.
 - P22–P25 are consolidated in **P26 on develop**, with fresh three-game/independent MK2 regression and complete source audit. Main remains P16; browser/native-runtime qualifications are separate.
+- P27-P30 are consolidated in **P31 on develop**, with fresh three-game/eight-family verification and complete source audit. Main remains P16; source consolidation is not runtime/browser acceptance.
 - Never describe code that is not actually committed to GitHub as “uploaded” or “tracked in GitHub.”
 
 Update this file whenever the authoritative baseline or release status changes.

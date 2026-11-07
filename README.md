@@ -6,15 +6,15 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 
 ## Current checkpoint
 
-- **P26 is the consolidated source checkpoint on develop; main remains the accepted P16 checkpoint.** P21, P11 and earlier source remain in Git history.
-- Fresh P26 verification: **15 standard three-game suites PASS**, plus four independent original-file MK2 image/export verifiers and 13 rejected falsified exports. MK1 **2,656**, MK2 **5,220**, MK3 **9,186** asset representations. MK1/MK3 decoded visual hashes match P21.
-- P22–P25 added **102 original indexed image representations**: CAVE 49, ARMORY 18, BATTLE 20, ARENA 15. P27/P28 add **16 standalone TOMB and 13 standalone PORTAL components already used in existing mosaics**, and P29 adds **six mixed-descriptor TOWER originals**, and P30 adds **49 FOREST originals (43 used in P7 layers, six unlinked)**, for **5,304 current MK2 representations / 1,940 cumulative checks**. This is new standalone access, not newly discovered artwork. Prior source and provenance are preserved.
-- Reproduce the full checkpoint with `node scripts/verify-p26-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <json>`. All three fixtures are required; test artwork stays outside source and original games. The standard interim runner remains available.
-- All **2,122 P25 committed file blobs** matched local materialized source before consolidation. P26 adds verification/CI/docs only; the full research workbench and runtime source are preserved. No commercial game media is committed.
-- Original-data browser action checks remain pending. Source-offline Chrome startup does not establish those interactions, native timing, live palette ownership or complete stage composition. MK1 research ZIPs contain variable per-run metadata; their whole hashes are not used as stable decoded-pixel baselines.
-- Next: **P31 fifth-pass consolidation assessment**, including fresh three-game verification, all eight MK2 family independent checks and full committed-source audit. The interim runner defaults to P30 (`--through p30`); the P26 full checkpoint runner remains frozen to P26 source. Main promotion remains separate.
+- **P31 is the consolidated source checkpoint on develop; main remains accepted P16.** P26, P21, P11 and earlier source/evidence remain in Git history.
+- Fresh **19-suite three-game regression PASS**, no skipped games: MK1 **2,656**, MK2 **5,304 / 1,940 cumulative checks**, MK3 **9,186** representations. MK1/MK3 decoded visuals match P21 and P26.
+- **Eight independent MK2 image families PASS:** 186 representations / 691,028 indexed pixels / 6,548,174 checks; **31 altered exports rejected** and clean rechecks passed. P27-P30 add 84 standalone known components, preserving existing mosaics/effects/floors and used/unlinked provenance.
+- Reproduce with `node scripts/verify-p31-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. All three fixtures are required. P31 pins P30's census; P26 remains frozen to historical source.
+- All **2,162 P30 committed blobs / 378 src files** matched the local source before consolidation. P31 changes verification/CI/docs only. No original game media or private export artwork is committed.
+- Original-data browser action checks remain pending. Source-only Chrome does not establish original-data interaction, live palette ownership, native timing or full stage composition. MK1 ZIP metadata volatility remains inferred; decoded visuals are verified unchanged.
+- Next **P32 FOREST remaining-source audit [164752,198116)** against existing descriptor evidence. The standard interim runner defaults to P30 until a qualified feature pass updates its census. Main promotion remains separate.
 
-Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P26 checkpoint](docs/EXTRACTOR_P26_SOURCE_CHECKPOINT_2026-11-06.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
+Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P31 checkpoint](docs/EXTRACTOR_P31_SOURCE_CHECKPOINT_2026-11-07.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 
 ## In scope
 
@@ -36,7 +36,7 @@ This repository **does not distribute commercial game installations, game execut
 ## GitHub branch use
 
 - `main`: verified P16 Git-safe source checkpoint and stable project documentation.
-- `develop`: P26 source checkpoint and subsequent MK2-focused interim work; preserve tested, evidence-grounded changes.
+- `develop`: P31 source checkpoint and subsequent MK2-focused interim work; preserve tested, evidence-grounded changes.
 
 ## Project continuity
 
