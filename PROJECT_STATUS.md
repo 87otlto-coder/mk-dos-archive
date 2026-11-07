@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P57 accepted focused cross-game gallery pass — original-fixture PASS, 2026-11-07
+
+**P57 user-local original three-game thumbnail acceptance PASS.** User supplied terminal output from `scripts/verify-p57-cross-game-gallery.cjs`: `pass:P57`, `status:PASS`, **MK1 2,656 assets / 24 source thumbnails / 15 header resources; MK2 5,369 assets / 10 source thumbnails; MK3 9,186 assets / 416 IFF pictures**. Total **17,211** unchanged assets and **450** qualified original-source image representations. `syntheticArtworkAdded:false`, `originalAssetsModified:false`, `nativePaletteOrSceneClaimsAdded:false`; `actualBrowserClicksVerified:false`. This is **user-local original-fixture evidence**, not a fresh agent-executed original-game regression.
+
+- User browser screenshots show MK1 normalized source-module previews, MK2 original source layers and MK3 unassigned source-IFF pictures rendered in the new gallery. The screenshots do **not** establish every browser link/download, original runtime palette ownership, MK2 layer assembly or any MK3 picture-to-stage mapping.
+- Source-only [CI 42405044233](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42405044233) **SUCCESS** on P57 code/workflow candidate `69b9c47b0bbcb60a29959b727e6d98454cc3365c`; subsequent changes were documentation-only. P56 remains the latest full cumulative three-game regression, while P57 is an accepted focused interim original-fixture test.
+- [P57 technical handoff and acceptance evidence](docs/EXTRACTOR_P57_CROSS_GAME_SOURCE_THUMBNAILS.md). Proceed to P58–P60 targeted extractor improvements; P61 fifth-pass consolidation. `main` stays P16 and commercial data remain outside Git.
+
 ## P57 source-backed stage gallery for MK1, MK2, MK3 — interim develop, 2026-11-07
 
 **P57 source implementation and CI PASS; current original three-game P57 test and browser acceptance pending.** The gallery now draws *decoded original local* RGBA thumbnails rather than decorative gradients where source-qualified pixels are available. MK1 uses strict P54 source-header→module→normalized-preview joins (24 images/15 headers previously user-tested). MK2 uses original SHA-bound source stage layers, preserving unresolved runtime palette/assembly labels; images without qualified source binding stay visibly unassigned. MK3 shows paginated `DATA.MK3` embedded-CMAP IFF pictures explicitly labelled **UNASSIGNED to arcade stages**, not invented scenes. All original assets and research code remain unchanged; `main` stays at P16.
