@@ -1,0 +1,234 @@
+{
+  "schema": "mkdos_p50_cross_game_acceptance_evidence_v1",
+  "status": "PASS",
+  "date": "2026-11-07",
+  "acceptance": {
+    "schema": "mkdos_p50_cross_game_indexed_acceptance_v1",
+    "status": "PASS",
+    "startedAt": "2026-11-07T14:12:40.587Z",
+    "steps": [
+      {
+        "label": "MK1 compatibility",
+        "result": {
+          "pass": "P21",
+          "game": "mk1",
+          "status": "PASS",
+          "checks": 2615,
+          "inputFiles": 326,
+          "exeSha256": "750792337f71b2f7991450fa92d2240073b089c917e3c6f1f373404544941b14",
+          "assets": 2656,
+          "counts": {
+            "sprite": 2363,
+            "stage": 49,
+            "audio": 244
+          },
+          "selectedAssetsExportVerified": 49,
+          "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+          "packageHashes": [
+            {
+              "name": "MK1_stages_evidence.zip",
+              "sha256": "cb42c5f0869d28c34c433ac3b94836081e1ce9b375610c56d0fcb3eb4950de81"
+            },
+            {
+              "name": "MK1_animations_evidence.zip",
+              "sha256": "143afe868a7c2291e84029ffedd58cc148f9538119663727b3a87ea360e0f2a7"
+            },
+            {
+              "name": "MK1_audio_evidence.zip",
+              "sha256": "a9e596a8a143063b818410d4f77d64eaaefbe3c282879db94a1f0928a3c091d9"
+            }
+          ],
+          "browserInteractionVerified": false,
+          "completeCorpusIdentityVerified": false,
+          "stageOwnershipExpanded": false
+        }
+      },
+      {
+        "label": "MK3 compatibility",
+        "result": {
+          "pass": "P21",
+          "game": "mk3",
+          "status": "PASS",
+          "checks": 7118,
+          "inputFiles": 87,
+          "exeSha256": "8aa7f3d45a086e7373afc120dc88378bda3d7766d5b69badbc707bb4570bdef0",
+          "assets": 9186,
+          "counts": {
+            "sprite": 6654,
+            "raw": 1046,
+            "audio": 1024,
+            "image": 416,
+            "music": 46
+          },
+          "selectedAssetsExportVerified": 10,
+          "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+          "packageHashes": [],
+          "browserInteractionVerified": false,
+          "completeCorpusIdentityVerified": false,
+          "stageOwnershipExpanded": false
+        }
+      },
+      {
+        "label": "Current MK2 acceptance",
+        "result": {
+          "status": "PASS",
+          "uniqueAssets": 5369,
+          "standardSuites": 23,
+          "qualifiedReferences": 315,
+          "notRun": [
+            "mk1",
+            "mk3"
+          ]
+        }
+      },
+      {
+        "label": "MK1 indexed ZIP preservation",
+        "result": {
+          "status": "PASS",
+          "game": "mk1",
+          "assets": 2656,
+          "indexedCandidates": 79,
+          "indexedSamples": 79,
+          "sourcePlaneBytesCompared": 740670,
+          "existingO60EvidencePlanesVerified": true,
+          "paletteStillUnresolved": true,
+          "legacyArchiveByteParity": true,
+          "planesAndMetadataPreserved": true,
+          "originalDataBrowserVerified": false
+        }
+      },
+      {
+        "label": "MK2 indexed ZIP preservation",
+        "result": {
+          "status": "PASS",
+          "uniqueAssets": 5369,
+          "indexedAssetCases": 8,
+          "newRepresentations": 0,
+          "allArchivesByteIdenticalToLegacySelectedZip": true,
+          "sourceMetadataUnchanged": true,
+          "originalDataBrowserVerified": false
+        }
+      },
+      {
+        "label": "Independent original MK2 indexed planes",
+        "result": {
+          "status": "PASS",
+          "indexedAssetCases": 8,
+          "originalFileDecoderChecks": 4824820,
+          "nativePlaneAndPreviewChecks": 156801,
+          "missingMasksNotInvented": true,
+          "previewRgbaRoundtripOnly": true,
+          "nativeRuntimePaletteClaimed": false,
+          "originalDataBrowserVerified": false
+        }
+      },
+      {
+        "label": "All MK3 embedded-palette archives",
+        "result": {
+          "status": "PASS",
+          "assets": 9186,
+          "iffPictures": 416,
+          "paletteArchives": 416,
+          "nativeRuntimeOwnershipClaimed": false
+        }
+      },
+      {
+        "label": "Independent original IFF planes/CMAP",
+        "result": {
+          "status": "PASS",
+          "sourceIffImages": 416,
+          "nativePixelsCompared": 6256633,
+          "originalCmapBytesCompared": 319488,
+          "dataMk3Sha256": "72905bc96b752bceb0055296e26b904402909f73a1401541c0dd175135a55517",
+          "runtimePaletteOwnershipClaimed": false
+        }
+      },
+      {
+        "label": "Original source queues/APNG generation",
+        "result": {
+          "status": "PASS",
+          "sourceGroups": 8,
+          "originalFrames": 57,
+          "apngCases": 32,
+          "exportedFrames": 236,
+          "originalDataBrowserVerified": false,
+          "nativeTimingClaimed": false
+        }
+      },
+      {
+        "label": "Independent APNG frames and edits",
+        "result": {
+          "status": "PASS",
+          "sourceGroups": 8,
+          "originalFrames": 57,
+          "apngCases": 32,
+          "decodedPresentationFrames": 236,
+          "rgbaChannelComparisons": 1085968,
+          "timingMilliseconds": [
+            10,
+            73,
+            137,
+            60000
+          ],
+          "tamperedApngsRejected": 4,
+          "duplicatesAndReorderingVerified": true,
+          "cleanReverified": true,
+          "originalDataBrowserVerified": false,
+          "nativeTimingClaimed": false
+        }
+      },
+      {
+        "label": "Indexed plane refusal controls",
+        "result": {
+          "status": "PASS",
+          "invalidPlanesRejected": 7,
+          "missingMasksNotInvented": true,
+          "legacyArchiveByteParity": true,
+          "dummyDataOnly": true
+        }
+      },
+      {
+        "label": "Embedded palette refusal controls",
+        "result": {
+          "status": "PASS",
+          "invalidPalettesRejected": 5,
+          "exactCmapSidecar": true,
+          "runtimeOwnershipNotPromoted": true,
+          "dummyDataOnly": true
+        }
+      }
+    ],
+    "originalDataBrowserVerified": false,
+    "commercialAssetsIncluded": false,
+    "census": {
+      "mk1": 2656,
+      "mk2": 5369,
+      "mk3": 9186
+    },
+    "visualsUnchangedFromP46": true,
+    "finishedAt": "2026-11-07T14:15:02.558Z"
+  },
+  "initialFailure": {
+    "observed": true,
+    "reason": "MK1 indexed candidates required",
+    "cause": "Already-decoded unresolved MK1 index/mask planes discarded before asset registry",
+    "resolution": "Retain existing O60 planes through workspace and registry; no new decoding or palette assignment"
+  },
+  "sourceOnlyControls": {
+    "status": "PASS",
+    "runnerRefusals": 8,
+    "sourceAuditNegativeControls": 7
+  },
+  "localChecks": {
+    "syntaxFiles": 382,
+    "typescript": "PASS",
+    "productionBuild": "PASS"
+  },
+  "runtimeSourceChanges": [
+    "src/games/mk1/research/animationAssetsWorkspace.ts",
+    "src/core/assets/collection.ts"
+  ],
+  "newRepresentations": 0,
+  "originalDataBrowserVerified": false,
+  "mainPromotion": false
+}

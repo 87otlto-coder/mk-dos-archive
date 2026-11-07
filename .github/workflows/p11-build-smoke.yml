@@ -52,6 +52,8 @@ jobs:
           node --check scripts/verify-p36-checkpoint.cjs
           node --check scripts/verify-p41-checkpoint.cjs
           node --check scripts/verify-p46-checkpoint.cjs
+          node --check scripts/verify-p50-indexed-acceptance.cjs
+          node --check scripts/verify-mk1-p50-indexed-export.cjs
           node --check scripts/verify-mk2-p47-queue-exports.cjs
           node --check scripts/verify-mk2-p48-indexed-export.cjs
           node --check scripts/test-p48-indexed-export.cjs
@@ -103,6 +105,8 @@ jobs:
         run: node scripts/test-p49-palette-export.cjs
       - name: P49 original IFF checker load (no game data)
         run: python3 scripts/verify-mk3-p49-palettes-independent.py --help
+      - name: P50 cross-game runner refusal controls (no game data)
+        run: python3 scripts/test-p50-checkpoint-controls.py
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |

@@ -15,6 +15,7 @@ export interface MK1AnimationWorkspaceCharacterAsset extends CharacterManifestAs
 export interface MK1AnimationWorkspaceEffectAsset extends EffectManifestAsset { pngBytes: Uint8Array; tier: 'VERIFIED_EFFECT_RGBA'; }
 export interface MK1AnimationWorkspaceUnresolvedAsset {
   tier: 'INDEXED_ONLY_PALETTE_UNRESOLVED'; tableSymbol: string; descriptorWatcomOffset: number; descriptorWatcomOffsetHex: string; symbol: string | null; resourcePath: string; width: number; height: number; x: number; y: number; decodeChecksum: string;
+  indices: Uint8Array; mask: Uint8Array;
   indexVisualizationRgba: Uint8Array; visualizationPolicy: 'GRAYSCALE_INDEX_MAP_NOT_PALETTE'; opaqueIndexUnion: number[];
 }
 
@@ -69,7 +70,7 @@ export async function executeAnimationAssetsWorkspace(
     const d = indexedByKey.get(`${row.tableSymbol}:${row.watcomOffset}`); if (!d) throw new Error(`O62 unresolved indexed descriptor missing ${row.watcomOffsetHex}`);
     const indices = binary.subarray(d.indicesOffset, d.indicesOffset + d.pixelCount), mask = binary.subarray(d.maskOffset, d.maskOffset + d.pixelCount), union = new Set<number>();
     for (let i = 0; i < d.pixelCount; i++) if (mask[i]) union.add(indices[i]); const opaqueIndexUnion = [...union].sort((a, b) => a - b);
-    return { tier: 'INDEXED_ONLY_PALETTE_UNRESOLVED' as const, tableSymbol: row.tableSymbol, descriptorWatcomOffset: row.watcomOffset, descriptorWatcomOffsetHex: row.watcomOffsetHex, symbol: row.symbol, resourcePath: row.resourcePath, width: row.width, height: row.height, x: row.x, y: row.y, decodeChecksum: d.decodeChecksum, indexVisualizationRgba: indexVisualization(indices, mask, Math.max(23, ...opaqueIndexUnion)), visualizationPolicy: 'GRAYSCALE_INDEX_MAP_NOT_PALETTE' as const, opaqueIndexUnion };
+    return { tier: 'INDEXED_ONLY_PALETTE_UNRESOLVED' as const, tableSymbol: row.tableSymbol, descriptorWatcomOffset: row.watcomOffset, descriptorWatcomOffsetHex: row.watcomOffsetHex, symbol: row.symbol, resourcePath: row.resourcePath, width: row.width, height: row.height, x: row.x, y: row.y, decodeChecksum: d.decodeChecksum, indices, mask, indexVisualizationRgba: indexVisualization(indices, mask, Math.max(23, ...opaqueIndexUnion)), visualizationPolicy: 'GRAYSCALE_INDEX_MAP_NOT_PALETTE' as const, opaqueIndexUnion };
   });
 
   const identities = new Map<number, { characterId: number; identityLabel: string; assetCount: number; modes: Set<string> }>();

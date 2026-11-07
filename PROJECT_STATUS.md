@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P50 cross-game indexed/palette acceptance - 2026-11-07
+
+**Where:** fourth interim after P46. Twelve-step runner PASS. It exposed and fixed an MK1 registry omission: **79 unresolved-palette records** now retain existing O60 index/mask data; no new decoding, colors, assets or preview changes.
+
+**Verified:** **740,670 MK1 native plane bytes** match O60 evidence. MK1 2,656 / MK2 5,369 / MK3 9,186; MK1/MK3 visual hashes unchanged from P46. Current MK2 gates, eight independent MK2 indexed exports, all 416 MK3 CMAP exports and P47 APNG checks PASS. Eight runner refusals / seven source-audit controls and syntax/TypeScript/build PASS. [P50 handoff](docs/EXTRACTOR_P50_CROSS_GAME_INDEXED_ACCEPTANCE.md), [results](docs/validation/P50_CROSS_GAME_INDEXED_2026-11-07.json). Source/CI association follows verification.
+
+**Uncertain:** browser interaction/download remains pending; unqualified native palettes/timing/stage relationships remain unknown. **Next:** P51 consolidation assessment, not started here. Main unchanged.
+
 ## P49 embedded palette export preservation - 2026-11-07
 
 **Where:** third interim after P46. Fixed a demonstrated registry omission: 416 MK3 IFF images now retain their decoded index/mask/explicit CMAP planes. Indexed/queue ZIPs include the paletteRgb sidecar; unresolved sprite palettes stay unresolved. No new assets or preview changes.
@@ -447,9 +455,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P49**, after P46 |
-| Latest full MK2 original-fixture cumulative result | **P49: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
-| Next planned pass | **P50 cross-game indexed/palette acceptance** |
+| Most recent interim pass | **P50**, after P46 |
+| Latest full MK2 original-fixture cumulative result | **P50: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
+| Next planned pass | **P51 fifth-pass consolidation assessment** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -471,10 +479,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P50 from P49 on develop; preserve P46 and earlier checkpoints.
-2. Establish repeatable cross-game indexed/palette acceptance with exact native planes, explicit embedded CMAP and legacy preview/archive preservation.
-3. Keep actual browser click/download validation pending until a controlled local session is available; do not infer gameplay palette ownership or native timing.
-4. State pass, verified results, uncertainties and next action at every stop. P51 remains consolidation assessment; main promotion separate.
+1. Assess P51 from verified P50 on develop; preserve P46 and earlier checkpoints.
+2. Consolidate P47-P50 with fresh current-source three-game, independent image/effect/indexed/CMAP/APNG acceptance and complete committed-source audit. Preserve frozen runners and original data provenance.
+3. Keep actual browser actions and unqualified native palettes/timing/alpha/stage composition separate from shared API proof.
+4. State pass, verified result, uncertainty and next action at every stop. Main promotion remains separately authorized.
 
 ## Scope discipline
 
