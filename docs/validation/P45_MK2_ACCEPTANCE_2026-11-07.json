@@ -760,5 +760,135 @@
   "mainPromotion": false,
   "latestFreshThreeGameCheckpoint": "P41",
   "nextConsolidationAssessment": "P46",
-  "originalDataBrowserValidation": false
+  "originalDataBrowserValidation": false,
+  "verifiedCheckpoints": {
+    "p41": {
+      "commit": "e0ff15af4c5bc213f7a2fc9b4a165f69b7eb7aa2",
+      "ci": {
+        "id": 42367512688,
+        "sha": "e0ff15af4c5bc213f7a2fc9b4a165f69b7eb7aa2",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42367512688"
+      },
+      "sourceAudit": {
+        "status": "PASS",
+        "commit": "e0ff15af4c5bc213f7a2fc9b4a165f69b7eb7aa2",
+        "treeSha": "6c212a05f2c201dbb366706731301d4366149740",
+        "fileBlobs": 2232,
+        "sourceFiles": 385,
+        "rawByteMatches": 96,
+        "checkoutNormalizedMatches": 2136,
+        "missing": [],
+        "mismatches": [],
+        "unsafePaths": [],
+        "inventorySha256": "79a87ba75ce54ea5bbd30bc01b33410ce7c96fdff0d04f271c75daec97589d3e",
+        "remoteAssociationVerifiedByThisScript": false
+      },
+      "githubTreeAssociationVerified": true
+    },
+    "p42": {
+      "commit": "4e393667d5509809fa25f663ccf13ca901e35256",
+      "ci": {
+        "id": 42367562323,
+        "sha": "4e393667d5509809fa25f663ccf13ca901e35256",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42367562323"
+      },
+      "sourceAudit": {
+        "status": "PASS",
+        "commit": "4e393667d5509809fa25f663ccf13ca901e35256",
+        "treeSha": "ce6a3c9c75a6cde1e774ebc1b5916077cbe8180c",
+        "fileBlobs": 2235,
+        "sourceFiles": 385,
+        "rawByteMatches": 96,
+        "checkoutNormalizedMatches": 2139,
+        "missing": [],
+        "mismatches": [],
+        "unsafePaths": [],
+        "inventorySha256": "2ec24f8d49ee8791b71c35daf0cb34560e5eee8526053f8a9146dd887758dad1",
+        "remoteAssociationVerifiedByThisScript": false
+      },
+      "githubTreeAssociationVerified": true
+    },
+    "p43": {
+      "commit": "497291035bddf5bc71fe1748e423e0adfea8d512",
+      "ci": {
+        "id": 42367819609,
+        "sha": "497291035bddf5bc71fe1748e423e0adfea8d512",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42367819609"
+      },
+      "sourceAudit": {
+        "status": "PASS",
+        "commit": "497291035bddf5bc71fe1748e423e0adfea8d512",
+        "treeSha": "3edf2945fa70ef64286476c6f446e6e85a9c6d6d",
+        "fileBlobs": 2239,
+        "sourceFiles": 386,
+        "rawByteMatches": 95,
+        "checkoutNormalizedMatches": 2144,
+        "missing": [],
+        "mismatches": [],
+        "unsafePaths": [],
+        "inventorySha256": "91e84bd14fcdd8ee652855a05eb0c181e943b962d8df5a56981d9f318815d6c6",
+        "remoteAssociationVerifiedByThisScript": false
+      },
+      "githubTreeAssociationVerified": true
+    },
+    "p44": {
+      "commit": "1d471eff789954364b92d33a54097b654062b8ae",
+      "ci": {
+        "id": 42367981993,
+        "sha": "1d471eff789954364b92d33a54097b654062b8ae",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42367981993"
+      },
+      "sourceAudit": {
+        "status": "PASS",
+        "commit": "1d471eff789954364b92d33a54097b654062b8ae",
+        "treeSha": "85616d780a29de48c5b08c01fee26a8bc5fa07a8",
+        "fileBlobs": 2242,
+        "sourceFiles": 386,
+        "rawByteMatches": 95,
+        "checkoutNormalizedMatches": 2147,
+        "missing": [],
+        "mismatches": [],
+        "unsafePaths": [],
+        "inventorySha256": "1e4cc7d7bfa6c33bd49f42b6e2a898f2fcaf7781a8394da5eb06de942ad31c77",
+        "remoteAssociationVerifiedByThisScript": false
+      },
+      "githubTreeAssociationVerified": true
+    },
+    "p45": {
+      "commit": "4a282e81c09914e10fb4ad974995a1cdfa94a718",
+      "ci": {
+        "id": 42368187315,
+        "sha": "4a282e81c09914e10fb4ad974995a1cdfa94a718",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42368187315"
+      },
+      "sourceAudit": {
+        "status": "PASS",
+        "commit": "4a282e81c09914e10fb4ad974995a1cdfa94a718",
+        "treeSha": "8dc4bf8459e87ee908b6a91e10109c8cac80c60b",
+        "fileBlobs": 2246,
+        "sourceFiles": 386,
+        "rawByteMatches": 95,
+        "checkoutNormalizedMatches": 2151,
+        "missing": [],
+        "mismatches": [],
+        "unsafePaths": [],
+        "inventorySha256": "3c962dee30d5dbef4445a8c5b9f79cd1a90735649f8d64db9d5ca8f9e8182063",
+        "remoteAssociationVerifiedByThisScript": false
+      },
+      "githubTreeAssociationVerified": true
+    }
+  },
+  "allCheckpointCISuccess": true,
+  "verifiedSourceCandidate": "4a282e81c09914e10fb4ad974995a1cdfa94a718",
+  "evidenceFollowupChangesRuntimeSource": false
 }

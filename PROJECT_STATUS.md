@@ -11,7 +11,7 @@
 - **P45 PASS: 23 cumulative MK2 suites plus PORTAL/TOWER gates**, 5,369 representations / 4,357 cumulative checks; independent **315 source references / 7,064,335 decoder checks / 171,036 export checks**. Eight false reports and six altered exports rejected; clean reverified.
 - **315 qualified references / 1,064,632 union bytes**; P37/P38/P40 report hashes preserved. TOWER has 14 references accounting for all 113,612 native resource bytes. Native byte accounting remains separate from complete scenes/runtime behavior.
 - P45 runner **six preflight refusals / seven source-audit negative controls PASS**. P41 full three-game result remains MK1 2,656 / MK2 5,369 / MK3 9,186 with twelve independent image families and 54 falsified-export controls.
-- [P45 handoff](docs/EXTRACTOR_P45_CURRENT_MK2_ACCEPTANCE.md), [results](docs/validation/P45_MK2_ACCEPTANCE_2026-11-07.json). Complete source/CI associations follow committed verification. Next **P46 consolidation assessment**, not begun. Main unchanged.
+- [P45 handoff](docs/EXTRACTOR_P45_CURRENT_MK2_ACCEPTANCE.md), [results](docs/validation/P45_MK2_ACCEPTANCE_2026-11-07.json). **All P41-P45 source-tree audits and CI runs PASS.** P45 source candidate **4a282e81c09914e10fb4ad974995a1cdfa94a718**: **2,246 blobs / 386 src files**, zero mismatches/unsafe paths; [CI 42368187315](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42368187315) SUCCESS. Per-pass commit/audit/CI records are preserved in the P45 evidence. Next **P46 consolidation assessment**, not begun. Main unchanged.
 
 ## P44 independent effects/export verification - 2026-11-07
 
@@ -29,7 +29,7 @@ Focused original-fixture gate PASS: **315 qualified references / 1,064,632 sourc
 
 **P41 consolidates P37-P40 on develop; main remains P16.** Fresh **25 three-game suites plus P40 fixture gate PASS**: MK1 **2,656**, MK2 **5,369 / 4,357 checks**, MK3 **9,186**. Twelve independent image families **251 representations / 939,903 pixels / 10,712,883 checks**, **54 false exports rejected**. Prior coverage/claim controls pass; no runtime changes.
 
-MK1/MK3 decoded visuals match P21/P26/P31/P36; browser/native behavior remains separately qualified. Local syntax/build/TypeScript and eight preflight/seven source-audit negative controls pass. [P41 checkpoint](docs/EXTRACTOR_P41_SOURCE_CHECKPOINT.md), [evidence](docs/validation/P41_CHECKPOINT_2026-11-07.json). Source audit/CI result will be associated after the committed checks finish. Next P42-P45 bounded TOWER/report/export acceptance work. Main unchanged.
+MK1/MK3 decoded visuals match P21/P26/P31/P36; browser/native behavior remains separately qualified. Local syntax/build/TypeScript and eight preflight/seven source-audit negative controls pass. [P41 checkpoint](docs/EXTRACTOR_P41_SOURCE_CHECKPOINT.md), [evidence](docs/validation/P41_CHECKPOINT_2026-11-07.json). P41 source commit e0ff15af4c5bc213f7a2fc9b4a165f69b7eb7aa2: 2,232 blobs / 385 src files audited PASS; CI 42367512688 SUCCESS. Next P42-P45 bounded TOWER/report/export acceptance work. Main unchanged.
 
 ## P40 PORTAL integration - original-fixture acceptance verified, 2026-11-07
 
