@@ -1449,5 +1449,29 @@
   "mainPromotion": false,
   "originalDataBrowserValidation": false,
   "fixtureProvenance": "Existing extracted original fixtures reused; no new archive download or re-extraction",
-  "issue5Qualification": "Historical P19 cumulative pending notes are superseded by fresh current-source headless evidence; original-data browser checks remain open"
+  "issue5Qualification": "Historical P19 cumulative pending notes are superseded by fresh current-source headless evidence; original-data browser checks remain open",
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "f4bbc2e66d68e929edc133a9d398068b01979fea",
+    "treeSha": "f8d9b48b25ecb36e8d1937ce348391b8c70da2d8",
+    "fileBlobs": 2250,
+    "sourceFiles": 386,
+    "rawByteMatches": 95,
+    "checkoutNormalizedMatches": 2155,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "c6a78348916bfc2c13afa707a92090ae56b688eb8086db99665653569ae2e00c",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "githubTreeAssociationVerified": true,
+  "githubCI": {
+    "id": 42368898084,
+    "sha": "f4bbc2e66d68e929edc133a9d398068b01979fea",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42368898084"
+  },
+  "verifiedSourceCandidate": "f4bbc2e66d68e929edc133a9d398068b01979fea",
+  "evidenceFollowupChangesRuntimeSource": false
 }

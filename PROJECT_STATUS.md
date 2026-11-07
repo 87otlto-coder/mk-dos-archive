@@ -10,7 +10,7 @@
 
 - Twelve independent image families **251 representations / 939,903 pixels / 10,712,883 checks**, **54 altered exports rejected**. Current accounting/effect proof **315 source references / 7,064,335 decoder checks / 171,036 export checks**, **eight false reports / six altered exports rejected**, clean reverified.
 - P37/P38/P40 package hashes preserved. MK1/MK3 decoded visuals match P21/P26/P31/P36/P41. Native byte accounting and preview roundtrip equality remain separate from native scene/palette/timing/alpha qualification.
-- Local **382-file syntax**, TypeScript/build and **eight runner refusals / seven source-audit negative controls PASS**. Complete committed-source/CI association follows verification.
+- Local **382-file syntax**, TypeScript/build and **eight runner refusals / seven source-audit negative controls PASS**. Complete source candidate **f4bbc2e66d68e929edc133a9d398068b01979fea** audited **2,250 blobs / 386 src files PASS**, zero missing/mismatched/unsafe paths. [CI 42368898084](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42368898084) **SUCCESS** on the exact candidate, including the new source-only refusal controls and Chrome startup.
 - [P46 checkpoint](docs/EXTRACTOR_P46_SOURCE_CHECKPOINT.md), [machine-readable results](docs/validation/P46_CHECKPOINT_2026-11-07.json). Next **P47 bounded extractor/browser acceptance work**, P51 next scheduled consolidation assessment. Browser/native-runtime uncertainties remain open. Main unchanged.
 
 ## P45 current MK2 acceptance - 2026-11-07
