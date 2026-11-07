@@ -20,6 +20,19 @@ export function selectedZip(assets:Asset[]) {
   if(files.reduce((n,f)=>n+f.bytes.length,0)>512*1024*1024)throw new Error('Export exceeds 512 MiB; select a smaller batch');
   return buildStoredZip(files);
 }
+/** A single indexed asset, its existing preview/data and provenance. No planes are invented. */
+export function indexedAssetZip(asset:Asset) {
+  const indices=asset.metadata.indices;
+  if(!(indices instanceof Uint8Array)||!Number.isSafeInteger(asset.width)||!Number.isSafeInteger(asset.height)||
+    asset.width!<1||asset.height!<1||!Number.isSafeInteger(asset.width!*asset.height!)||indices.length!==asset.width!*asset.height!)
+    throw new Error('Indexed export requires a complete indexed plane and matching dimensions');
+  for(const field of ['mask','paletteKnownMask']){
+    const plane=asset.metadata[field];
+    if(plane!==undefined&&(!(plane instanceof Uint8Array)||plane.length!==indices.length))
+      throw new Error(`Indexed export has an invalid ${field} plane`);
+  }
+  return {bytes:selectedZip([asset]),filename:safeName(asset.filename).replace(/\.[^.]+$/,'')+'_INDEXED.zip'};
+}
 export interface Placement { asset:Asset;x:number;y:number;flip:boolean }
 export function compose(width:number,height:number,placements:Placement[]) {
   if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width*height>16000000)throw new Error('Canvas must contain 1–16 million pixels');

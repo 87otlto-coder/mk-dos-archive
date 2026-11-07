@@ -53,6 +53,8 @@ jobs:
           node --check scripts/verify-p41-checkpoint.cjs
           node --check scripts/verify-p46-checkpoint.cjs
           node --check scripts/verify-mk2-p47-queue-exports.cjs
+          node --check scripts/verify-mk2-p48-indexed-export.cjs
+          node --check scripts/test-p48-indexed-export.cjs
           node --check scripts/verify-p45-mk2-acceptance.cjs
           node --check scripts/verify-mk2-p37-source-coverage.cjs
           node --check scripts/verify-mk2-p38-tomb-coverage.cjs
@@ -93,6 +95,10 @@ jobs:
         run: python3 scripts/test-p46-checkpoint-controls.py
       - name: P47 independent APNG verifier load (no game data)
         run: python3 scripts/verify-mk2-p47-apng-independent.py --help
+      - name: P48 indexed export guards (dummy data only)
+        run: node scripts/test-p48-indexed-export.cjs
+      - name: P48 independent indexed verifier load (no game data)
+        run: python3 scripts/verify-mk2-p48-indexed-independent.py --help
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |

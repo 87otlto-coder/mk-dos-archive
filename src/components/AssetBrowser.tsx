@@ -6,6 +6,7 @@ import { resolveMK2OriginalSourceOrder } from '../core/assets/mk2SourceOrderQueu
 import {
   animatedPng,
   assetBytes,
+  indexedAssetZip,
   compose,
   download,
   metadata,
@@ -450,6 +451,12 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
               <p>{focus.source.path} · offset {focus.source.offset}</p>
               {['audio', 'music'].includes(focus.kind) && <AudioPreview asset={focus} />}
               <button onClick={() => attempt(() => download(assetBytes(focus), focus.filename, focus.mime))}>Export this asset</button>
+              {focus.metadata.indices instanceof Uint8Array && (
+                <button onClick={() => attempt(() => {
+                  const archive = indexedAssetZip(focus);
+                  download(archive.bytes, archive.filename, 'application/zip');
+                })}>Export indexed asset ZIP</button>
+              )}
               {focus.id.startsWith('mk2-source-animation-sheet:') && (
                 <button type="button" onClick={() => loadSourceOrder(focus)}>
                   Load verified source order into animation queue

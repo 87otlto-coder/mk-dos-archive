@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P48 direct indexed-asset export - 2026-11-07
+
+**Where:** second interim after P46. Inspector now offers **Export indexed asset ZIP** without changing the queue, preserving indices, available masks, existing preview and provenance. No native palette claims or new assets.
+
+**Verified:** eight original-data cases match legacy ZIP bytes; independent **4,824,820 source decoder / 156,801 native-plane/preview checks PASS**. Seven malformed plane cases rejected; missing masks not fabricated. Current MK2 acceptance **23 cumulative suites plus PORTAL/TOWER gates PASS**, **5,369 representations**; P47 APNG compatibility PASS. Local syntax/TypeScript/build PASS. [P48 handoff](docs/EXTRACTOR_P48_INDEXED_ASSET_EXPORT.md), [results](docs/validation/P48_INDEXED_EXPORT_2026-11-07.json). Source/CI associations follow committed verification.
+
+**Uncertain:** real browser click/download remains pending; no browser controller exposed. P46 remains full three-game checkpoint. **Next:** P49 source-qualified palette-payload preservation audit/fix only if warranted. Main unchanged; P51 next consolidation assessment.
+
 ## P47 queue/export acceptance - 2026-11-07
 
 **Where:** first interim after P46, develop only. No runtime changes/new assets. **Verified:** 8 original groups / 57 frames, **32 APNG cases / 236 decoded presentation frames / 1,085,968 RGBA channel comparisons PASS**; original/reordered/duplicated queues and user timing bounds checked. **Four corrupt APNGs rejected**, clean reverified; P19 compatibility **280 checks PASS**.
@@ -431,9 +439,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P47**, after P46 |
-| Latest full MK2 original-fixture cumulative result | **P46: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
-| Next planned pass | **P48 original-data browser acceptance or verified extractor improvement** |
+| Most recent interim pass | **P48**, after P46 |
+| Latest full MK2 original-fixture cumulative result | **P48: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
+| Next planned pass | **P49 source-qualified palette export preservation review** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -455,10 +463,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P48 from P47 on develop; preserve P46 and earlier checkpoints.
-2. Exercise report downloads, an added indexed family and source-order queue in a controlled original-data local browser when available. P47 shared API tests do not establish UI acceptance; do not repeat accepted P11 checks.
-3. If browser control is unavailable, apply existing verified research to a concrete extractor coverage/usability improvement, keeping browser validation pending.
-4. At each stopping update, state the current pass, verified results, uncertainties and next action. P48-P50 remain interim; P51 is next consolidation assessment. Main promotion remains separately authorized.
+1. Begin P49 from P48 on develop; preserve P46 and earlier checkpoints.
+2. Review whether source-qualified palette payloads are preserved in indexed exports. Fix only a demonstrated omission, preserving provenance and unknown runtime ownership; do not invent palette associations.
+3. Exercise the indexed export button, report downloads and source-order queue when a controlled original-data browser is available. Shared API acceptance is not UI acceptance.
+4. At each stopping update, state pass, verified results, uncertainty and next action. P49-P50 remain interim; P51 is consolidation assessment. Main promotion remains separately authorized.
 
 ## Scope discipline
 
