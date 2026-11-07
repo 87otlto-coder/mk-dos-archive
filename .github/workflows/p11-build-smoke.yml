@@ -99,6 +99,10 @@ jobs:
         run: node scripts/test-p48-indexed-export.cjs
       - name: P48 independent indexed verifier load (no game data)
         run: python3 scripts/verify-mk2-p48-indexed-independent.py --help
+      - name: P49 embedded palette export guards (dummy data only)
+        run: node scripts/test-p49-palette-export.cjs
+      - name: P49 original IFF checker load (no game data)
+        run: python3 scripts/verify-mk3-p49-palettes-independent.py --help
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |

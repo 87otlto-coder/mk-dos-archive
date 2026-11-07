@@ -13,7 +13,8 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 - Reproduce: `node scripts/verify-p46-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. P45 remains the MK2-only acceptance runner. P41/P36/P31/P26 stay frozen.
 - **P47 targeted queue/export acceptance PASS:** 32 APNG cases / 236 decoded frames, four altered exports rejected, P19 compatibility preserved. Shared API proof; original-data browser interaction remains pending.
 - **P48 adds direct indexed ZIP export** in the inspector, preserving native planes/provenance without changing the queue; eight original-data cases and current MK2 acceptance pass. Browser click/download remains pending.
-- Next **P49 source-qualified palette export preservation review**; P51 is the next scheduled consolidation assessment. Main promotion remains separate; original game data/artwork is excluded from Git.
+- **P49 fixes MK3 embedded-palette preservation:** 416 IFF images retain original indexed/mask/CMAP planes in indexed ZIPs; visual hashes/counts unchanged. Browser downloads remain pending.
+- Next **P50 cross-game indexed/palette acceptance**; P51 is the next scheduled consolidation assessment. Main promotion remains separate; original game data/artwork is excluded from Git.
 
 Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P46 checkpoint](docs/EXTRACTOR_P46_SOURCE_CHECKPOINT.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 

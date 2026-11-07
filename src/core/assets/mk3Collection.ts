@@ -50,9 +50,11 @@ export async function scanMK3(source:DirectorySource,progress:(s:string)=>void,s
         try {
           if(n>bytes.length-p)throw new Error('IFF exceeds DATA.MK3');
           const d=decodeIff(bytes.subarray(p,p+n));
-          const metadata={type:d.type,planes:d.planes,masking:d.masking,compression:d.compression,rowLayout:d.rowLayout,trailingBodyBytes:d.trailingBodyBytes,sourceImageOnly:true};
+          const metadata={type:d.type,planes:d.planes,masking:d.masking,compression:d.compression,rowLayout:d.rowLayout,trailingBodyBytes:d.trailingBodyBytes,sourceImageOnly:true,
+            indices:d.indices,mask:d.mask,paletteRgb:d.palette,paletteFormat:'IFF_CMAP_RGB8',paletteSource:'Embedded CMAP in this source FORM',paletteRuntimeOwnershipKnown:false};
           assets.push({id:`${e.path}@${p}`,name:`IFF ${pictures.length} · ${d.width}×${d.height}`,group:'DATA.MK3 · images',kind:'image',format:d.type.trim(),confidence:'Embedded palette and bitmap decoded',source:{path:e.path,offset:p,length:n,sha256},metadata,width:d.width,height:d.height,rgba:d.rgba,filename:`MK3_DATA_${p.toString(16)}.png`});
-          pictures.push({offset:p,length:n,width:d.width,height:d.height,...metadata});ranges.push([p,p+n]);p+=n;
+          const {indices:_indices,mask:_mask,paletteRgb:_palette,...reportMetadata}=metadata;
+          pictures.push({offset:p,length:n,width:d.width,height:d.height,...reportMetadata});ranges.push([p,p+n]);p+=n;
         }catch(error){failures.push({path:e.path,offset:p,error:String(error)});p+=4;}
       }
       let start=0;for(const [a,b] of [...ranges,[bytes.length,bytes.length] as [number,number]]){if(a>start)assets.push({id:`${e.path}:unknown:${start}`,name:`DATA.MK3 unresolved range ${start.toString(16)}`,group:'DATA.MK3 · unresolved',kind:'raw',format:'BIN',confidence:'Unknown; preserved losslessly',source:{path:e.path,offset:start,length:a-start,sha256},metadata:{},bytes:bytes.slice(start,a),filename:`MK3_DATA_${start.toString(16)}_unknown.bin`});start=b;}

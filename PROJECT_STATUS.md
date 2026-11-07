@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P49 embedded palette export preservation - 2026-11-07
+
+**Where:** third interim after P46. Fixed a demonstrated registry omission: 416 MK3 IFF images now retain their decoded index/mask/explicit CMAP planes. Indexed/queue ZIPs include the paletteRgb sidecar; unresolved sprite palettes stay unresolved. No new assets or preview changes.
+
+**Verified:** independent original IFF readback **416 images / 6,256,633 pixels / 319,488 CMAP bytes PASS**. MK1 2,656 / MK3 9,186 compatibility and unchanged visual hashes PASS; current MK2 acceptance 5,369 PASS. P48 guards and five invalid-palette refusals PASS; TypeScript/build PASS. [P49 handoff](docs/EXTRACTOR_P49_PALETTE_PRESERVATION.md), [results](docs/validation/P49_PALETTE_PRESERVATION_2026-11-07.json). Source/CI association follows verification.
+
+**Uncertain:** browser interaction/download and unqualified gameplay palette/timing/stage relationships remain open. **Next:** P50 cross-game indexed/palette acceptance gate, then P51 consolidation. Main unchanged.
+
 ## P48 direct indexed-asset export - 2026-11-07
 
 **Where:** second interim after P46. Inspector now offers **Export indexed asset ZIP** without changing the queue, preserving indices, available masks, existing preview and provenance. No native palette claims or new assets.
@@ -439,9 +447,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P48**, after P46 |
+| Most recent interim pass | **P49**, after P46 |
 | Latest full MK2 original-fixture cumulative result | **P48: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
-| Next planned pass | **P49 source-qualified palette export preservation review** |
+| Next planned pass | **P50 cross-game indexed/palette acceptance** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -463,10 +471,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P49 from P48 on develop; preserve P46 and earlier checkpoints.
-2. Review whether source-qualified palette payloads are preserved in indexed exports. Fix only a demonstrated omission, preserving provenance and unknown runtime ownership; do not invent palette associations.
-3. Exercise the indexed export button, report downloads and source-order queue when a controlled original-data browser is available. Shared API acceptance is not UI acceptance.
-4. At each stopping update, state pass, verified results, uncertainty and next action. P49-P50 remain interim; P51 is consolidation assessment. Main promotion remains separately authorized.
+1. Begin P50 from P49 on develop; preserve P46 and earlier checkpoints.
+2. Establish repeatable cross-game indexed/palette acceptance with exact native planes, explicit embedded CMAP and legacy preview/archive preservation.
+3. Keep actual browser click/download validation pending until a controlled local session is available; do not infer gameplay palette ownership or native timing.
+4. State pass, verified results, uncertainties and next action at every stop. P51 remains consolidation assessment; main promotion separate.
 
 ## Scope discipline
 
