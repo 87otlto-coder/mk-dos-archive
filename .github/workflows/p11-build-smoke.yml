@@ -51,6 +51,7 @@ jobs:
           node --check scripts/verify-p31-checkpoint.cjs
           node --check scripts/verify-p36-checkpoint.cjs
           node --check scripts/verify-mk2-p37-source-coverage.cjs
+          node --check scripts/verify-mk2-p38-tomb-coverage.cjs
           node --check scripts/test-p37-source-coverage.cjs
           node --check scripts/verify-p26-visual-baseline.cjs
           node --check scripts/verify-mk2-p27-tomb.cjs

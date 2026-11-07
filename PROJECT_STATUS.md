@@ -4,6 +4,17 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P38 TOMB existing-effect coverage reconciliation - interim develop pass, 2026-11-07
+
+**MK2 remains 5,369 unique representations.** New metadata-only **MK2_P38_NATIVE_SOURCE_INTERVAL_COVERAGE.json** adds sixteen already-exported TOMB effects to the accounting scope, without new artwork or asset inflation.
+
+- Sixteen independent original streams exactly fill **[54328,63776), 9,448 encoded bytes / 18,000 pixels**. TOMB **16 component streams + 16 effects + one native floor** partition all **106,784 original resource bytes**, without scene/runtime claims.
+- Current report: **288 qualified references / 1,028,136 union bytes** across fifteen resources. P37 report package byte-identical; all fourteen other resource records unchanged.
+- Full **23 MK2 suites PASS**, **4,357 retained cumulative checks** plus coverage gates. Independent **288 references / 6,986,406 original-file decoder checks / 54,192 existing-export checks PASS**.
+- **Ten invalid effect sets / eight falsified reports rejected**, clean rechecks PASS; source assets preserved. Local **380-file syntax**, TypeScript and production build PASS.
+- Latest MK1/MK3 fixture evidence remains P36; original-data browser and unqualified native behavior remain separate. P36 remains consolidated checkpoint.
+- [P38 handoff](docs/EXTRACTOR_P38_MK2_TOMB_EFFECT_COVERAGE.md), [evidence](docs/validation/P38_TOMB_EFFECT_COVERAGE_2026-11-07.json). Next **P39 PORTAL gap/existing-effect provenance reconciliation**. Main unchanged; P41 next consolidation assessment.
+
 ## P37 source-interval coverage report - interim develop pass, 2026-11-07
 
 **MK2 remains 5,369 unique representations.** Coverage & evidence now exports metadata-only **MK2_P37_NATIVE_SOURCE_INTERVAL_COVERAGE.json**: 15 resources, 272 explicitly qualified stream/floor references, union/gaps/overlaps and separate registered representation counts. No new image or completeness percentage is claimed.
@@ -25,7 +36,7 @@
 - Local **378-file syntax**, TypeScript and production build PASS; **eight runner preflight refusals / seven source-audit negative controls PASS**. P31/P26 runners remain frozen; new P36 runner pins the current census.
 - MK1 ZIP-byte variance remains observed with metadata volatility INFERRED; decoded visuals are unchanged. Original-data browser interactions and unqualified native behavior remain separate.
 - Complete source checkpoint **754c9abfa62fb7d2e9ed32078ccc11669a17064e**: **2,207 blobs / 382 src files** match; no runtime src changes from P35. [CI 42352615423](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42352615423) **SUCCESS**, including P36 source-only controls and Chrome boot.
-- [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [machine-readable evidence](docs/validation/P36_CHECKPOINT_REGRESSION_2026-11-07.json). Next **P38 TOMB gap/existing-effect provenance reconciliation**. No main promotion.
+- [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [machine-readable evidence](docs/validation/P36_CHECKPOINT_REGRESSION_2026-11-07.json). Next **P39 PORTAL gap/existing-effect provenance reconciliation**. No main promotion.
 
 ## P35 additional ARENA originals and complete native source-byte partition - interim develop pass, 2026-11-07
 
@@ -361,9 +372,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P37**, after P36 |
-| Latest full MK2 original-fixture cumulative result | **P37: 5,369 representations / 4,357 retained cumulative checks plus coverage gate**, full prior suites and independent component/source parity |
-| Next planned pass | **P38 TOMB gap/existing-effect provenance reconciliation** |
+| Most recent interim pass | **P38**, after P36 |
+| Latest full MK2 original-fixture cumulative result | **P38: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
+| Next planned pass | **P39 PORTAL gap/existing-effect provenance reconciliation** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -385,10 +396,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P38 from committed P37 on develop; preserve P36/P31/P26/P21 and earlier checkpoints.
-2. Reconcile TOMB [54328,63776) with existing exported effect frames and verified source descriptors. Extend qualified interval coverage only after independent source verification; do not count an in-scope gap as missing artwork.
-3. Keep original-data browser actions, native palette/timing/alpha and complete scene assembly separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
-4. Preserve native data/provenance and the workbench. Continue P38-P40 interim passes, then assess P41 consolidation. Main remains P16.
+1. Begin P39 from committed P38 on develop; preserve P36/P31/P26/P21 and all prior pass source/evidence.
+2. Reconcile PORTAL [35912,56916) with existing swaying/hanging/electric effect exports and original list/descriptor/native-row evidence. Extend scope only after independent qualification; do not count a report gap as missing artwork.
+3. Keep original-data browser actions, native palette/timing/alpha and complete scene assembly separately qualified. UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
+4. Preserve data/provenance and the workbench. Continue P39-P40 interim passes, then assess P41 consolidation. Main remains P16.
 
 ## Scope discipline
 

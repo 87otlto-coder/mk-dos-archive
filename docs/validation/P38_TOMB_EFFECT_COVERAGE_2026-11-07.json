@@ -1,0 +1,2494 @@
+{
+  "schema": "mkdos_p38_tomb_coverage_evidence_v1",
+  "status": "PASS",
+  "date": "2026-11-07",
+  "adapter": {
+    "status": "PASS",
+    "uniqueAssets": 5369,
+    "existingEffects": 16,
+    "newRepresentations": 0,
+    "qualifiedReferences": 288,
+    "coveredResourceBytes": 1028136,
+    "unaffectedResourcesPreserved": 14,
+    "invalidEffectSetsRejected": 10,
+    "cleanReverified": true,
+    "p37PackageByteIdentical": true,
+    "packageSha256": "38326a2096b6c89a68d788805fe6832a92dc48097e34d8190be3a599ea7fcf4a",
+    "privateEffectZipSha256": "bb5d911b8e9e872f8537e467afde8679ce6cda7b052bbd7c8675f538055a24f3"
+  },
+  "independent": {
+    "status": "PASS",
+    "existingTombEffectFrames": 16,
+    "originalFileDecoderChecks": 6986406,
+    "independentNativeReferences": 288,
+    "falseReportsRejected": 8,
+    "cleanReportReverified": true,
+    "exportChecks": 54192,
+    "exportNativeIndicesMasksGeometryAndDiagnosticAlphaVerified": true,
+    "exportRuntimeRgbClaimed": false,
+    "sourceImageInterval": {
+      "start": 54328,
+      "endExclusive": 63776,
+      "encodedBytes": 9448
+    }
+  },
+  "coverage": {
+    "schema": "mkdos_p38_native_source_interval_coverage_v1",
+    "status": "VERIFIED_INTERVAL_ACCOUNTING",
+    "scope": "P22-P35 standalone native indexed streams, P10 bridge streams, and one authenticated native raw floor per resource; all other representations excluded from the union. Basename-only legacy references bind only when the input basename is unique. P38 additionally includes sixteen authenticated, independently qualified existing TOMB effect streams; PORTAL/TOWER effects remain excluded.",
+    "limitation": "P38 includes sixteen existing TOMB effect streams in source-byte accounting. Complete byte coverage does not prove a complete scene, runtime alpha, palette ownership or timing. Other gaps remain outside the selected report scope.",
+    "originalDataIncluded": false,
+    "sceneCompletenessClaimed": false,
+    "resources": [
+      {
+        "name": "CAVE.GRA",
+        "path": "cave.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 49,
+        "upstreamAuthenticatedSha256": "11e7988cabae63c8ee618700da47de648ef3bb1d9f7f8a8b23332c0513c83cb7",
+        "resourceBytes": 57312,
+        "qualifiedReferences": 49,
+        "referencedBytes": 57192,
+        "coveredBytes": 57192,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 120,
+        "union": [
+          {
+            "start": 120,
+            "endExclusive": 57312
+          }
+        ],
+        "gaps": [
+          {
+            "start": 0,
+            "endExclusive": 120
+          }
+        ],
+        "intervals": [
+          {
+            "assetId": "mk2-cave-source:0:original-indices",
+            "start": 120,
+            "endExclusive": 524
+          },
+          {
+            "assetId": "mk2-cave-source:1:original-indices",
+            "start": 524,
+            "endExclusive": 1108
+          },
+          {
+            "assetId": "mk2-cave-source:2:original-indices",
+            "start": 1108,
+            "endExclusive": 2540
+          },
+          {
+            "assetId": "mk2-cave-source:3:original-indices",
+            "start": 2540,
+            "endExclusive": 2612
+          },
+          {
+            "assetId": "mk2-cave-source:4:original-indices",
+            "start": 2612,
+            "endExclusive": 4396
+          },
+          {
+            "assetId": "mk2-cave-source:5:original-indices",
+            "start": 4396,
+            "endExclusive": 5820
+          },
+          {
+            "assetId": "mk2-cave-source:6:original-indices",
+            "start": 5820,
+            "endExclusive": 7192
+          },
+          {
+            "assetId": "mk2-cave-source:7:original-indices",
+            "start": 7192,
+            "endExclusive": 8852
+          },
+          {
+            "assetId": "mk2-cave-source:8:original-indices",
+            "start": 8852,
+            "endExclusive": 10060
+          },
+          {
+            "assetId": "mk2-cave-source:9:original-indices",
+            "start": 10060,
+            "endExclusive": 11960
+          },
+          {
+            "assetId": "mk2-cave-source:10:original-indices",
+            "start": 11960,
+            "endExclusive": 13720
+          },
+          {
+            "assetId": "mk2-cave-source:11:original-indices",
+            "start": 13720,
+            "endExclusive": 14728
+          },
+          {
+            "assetId": "mk2-cave-source:12:original-indices",
+            "start": 14728,
+            "endExclusive": 15496
+          },
+          {
+            "assetId": "mk2-cave-source:13:original-indices",
+            "start": 15496,
+            "endExclusive": 16752
+          },
+          {
+            "assetId": "mk2-cave-source:14:original-indices",
+            "start": 16752,
+            "endExclusive": 22676
+          },
+          {
+            "assetId": "mk2-cave-source:15:original-indices",
+            "start": 22676,
+            "endExclusive": 28532
+          },
+          {
+            "assetId": "mk2-cave-source:16:original-indices",
+            "start": 28532,
+            "endExclusive": 34420
+          },
+          {
+            "assetId": "mk2-cave-source:17:original-indices",
+            "start": 34420,
+            "endExclusive": 34928
+          },
+          {
+            "assetId": "mk2-cave-source:18:original-indices",
+            "start": 34928,
+            "endExclusive": 36376
+          },
+          {
+            "assetId": "mk2-cave-source:19:original-indices",
+            "start": 36376,
+            "endExclusive": 37508
+          },
+          {
+            "assetId": "mk2-cave-source:20:original-indices",
+            "start": 37508,
+            "endExclusive": 38640
+          },
+          {
+            "assetId": "mk2-cave-source:21:original-indices",
+            "start": 38640,
+            "endExclusive": 40160
+          },
+          {
+            "assetId": "mk2-cave-source:22:original-indices",
+            "start": 40160,
+            "endExclusive": 41320
+          },
+          {
+            "assetId": "mk2-cave-source:23:original-indices",
+            "start": 41320,
+            "endExclusive": 41900
+          },
+          {
+            "assetId": "mk2-cave-source:24:original-indices",
+            "start": 41900,
+            "endExclusive": 42432
+          },
+          {
+            "assetId": "mk2-cave-source:25:original-indices",
+            "start": 42432,
+            "endExclusive": 42552
+          },
+          {
+            "assetId": "mk2-cave-source:26:original-indices",
+            "start": 42552,
+            "endExclusive": 45580
+          },
+          {
+            "assetId": "mk2-cave-source:27:original-indices",
+            "start": 45580,
+            "endExclusive": 45812
+          },
+          {
+            "assetId": "mk2-cave-source:28:original-indices",
+            "start": 45812,
+            "endExclusive": 46040
+          },
+          {
+            "assetId": "mk2-cave-source:29:original-indices",
+            "start": 46040,
+            "endExclusive": 46596
+          },
+          {
+            "assetId": "mk2-cave-source:30:original-indices",
+            "start": 46596,
+            "endExclusive": 47720
+          },
+          {
+            "assetId": "mk2-cave-source:31:original-indices",
+            "start": 47720,
+            "endExclusive": 47976
+          },
+          {
+            "assetId": "mk2-cave-source:32:original-indices",
+            "start": 47976,
+            "endExclusive": 49292
+          },
+          {
+            "assetId": "mk2-cave-source:33:original-indices",
+            "start": 49292,
+            "endExclusive": 49548
+          },
+          {
+            "assetId": "mk2-cave-source:34:original-indices",
+            "start": 49548,
+            "endExclusive": 49688
+          },
+          {
+            "assetId": "mk2-cave-source:35:original-indices",
+            "start": 49688,
+            "endExclusive": 49908
+          },
+          {
+            "assetId": "mk2-cave-source:36:original-indices",
+            "start": 49908,
+            "endExclusive": 50232
+          },
+          {
+            "assetId": "mk2-cave-source:37:original-indices",
+            "start": 50232,
+            "endExclusive": 50372
+          },
+          {
+            "assetId": "mk2-cave-source:38:original-indices",
+            "start": 50372,
+            "endExclusive": 50552
+          },
+          {
+            "assetId": "mk2-cave-source:39:original-indices",
+            "start": 50552,
+            "endExclusive": 51204
+          },
+          {
+            "assetId": "mk2-cave-source:40:original-indices",
+            "start": 51204,
+            "endExclusive": 51784
+          },
+          {
+            "assetId": "mk2-cave-source:41:original-indices",
+            "start": 51784,
+            "endExclusive": 52112
+          },
+          {
+            "assetId": "mk2-cave-source:42:original-indices",
+            "start": 52112,
+            "endExclusive": 53592
+          },
+          {
+            "assetId": "mk2-cave-source:43:original-indices",
+            "start": 53592,
+            "endExclusive": 53848
+          },
+          {
+            "assetId": "mk2-cave-source:44:original-indices",
+            "start": 53848,
+            "endExclusive": 53924
+          },
+          {
+            "assetId": "mk2-cave-source:45:original-indices",
+            "start": 53924,
+            "endExclusive": 54244
+          },
+          {
+            "assetId": "mk2-cave-source:46:original-indices",
+            "start": 54244,
+            "endExclusive": 54420
+          },
+          {
+            "assetId": "mk2-cave-source:47:original-indices",
+            "start": 54420,
+            "endExclusive": 56008
+          },
+          {
+            "assetId": "mk2-cave-source:48:original-indices",
+            "start": 56008,
+            "endExclusive": 57312
+          }
+        ]
+      },
+      {
+        "name": "ARMORY.GRA",
+        "path": "armory.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 33,
+        "upstreamAuthenticatedSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+        "resourceBytes": 176512,
+        "qualifiedReferences": 31,
+        "referencedBytes": 176512,
+        "coveredBytes": 176512,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 0,
+        "union": [
+          {
+            "start": 0,
+            "endExclusive": 176512
+          }
+        ],
+        "gaps": [],
+        "intervals": [
+          {
+            "assetId": "mk2-armory-source:0:original-indices",
+            "start": 0,
+            "endExclusive": 13832
+          },
+          {
+            "assetId": "mk2-armory-source:1:original-indices",
+            "start": 13832,
+            "endExclusive": 27052
+          },
+          {
+            "assetId": "mk2-armory-source:2:original-indices",
+            "start": 27052,
+            "endExclusive": 37960
+          },
+          {
+            "assetId": "mk2-armory-source:3:original-indices",
+            "start": 37960,
+            "endExclusive": 42724
+          },
+          {
+            "assetId": "mk2-armory-source:4:original-indices",
+            "start": 42724,
+            "endExclusive": 50932
+          },
+          {
+            "assetId": "mk2-armory-source:5:original-indices",
+            "start": 50932,
+            "endExclusive": 62420
+          },
+          {
+            "assetId": "mk2-armory-source:6:original-indices",
+            "start": 62420,
+            "endExclusive": 67240
+          },
+          {
+            "assetId": "mk2-armory-source:7:original-indices",
+            "start": 67240,
+            "endExclusive": 71440
+          },
+          {
+            "assetId": "mk2-armory-source:8:original-indices",
+            "start": 71440,
+            "endExclusive": 82508
+          },
+          {
+            "assetId": "mk2-armory-source:9:original-indices",
+            "start": 82508,
+            "endExclusive": 91700
+          },
+          {
+            "assetId": "mk2-armory-source:10:original-indices",
+            "start": 91700,
+            "endExclusive": 93196
+          },
+          {
+            "assetId": "mk2-armory-source:11:original-indices",
+            "start": 93196,
+            "endExclusive": 94660
+          },
+          {
+            "assetId": "mk2-armory-source:12:original-indices",
+            "start": 94660,
+            "endExclusive": 101884
+          },
+          {
+            "assetId": "mk2-armory-source:13:original-indices",
+            "start": 101884,
+            "endExclusive": 105152
+          },
+          {
+            "assetId": "mk2-armory-source:14:original-indices",
+            "start": 105152,
+            "endExclusive": 110188
+          },
+          {
+            "assetId": "mk2-armory-source:15:original-indices",
+            "start": 110188,
+            "endExclusive": 113520
+          },
+          {
+            "assetId": "mk2-armory-source:16:original-indices",
+            "start": 113520,
+            "endExclusive": 115768
+          },
+          {
+            "assetId": "mk2-armory-source:17:original-indices",
+            "start": 115768,
+            "endExclusive": 116608
+          },
+          {
+            "assetId": "mk2-armory-tail-source:0:original-indices",
+            "start": 116608,
+            "endExclusive": 117324
+          },
+          {
+            "assetId": "mk2-armory-tail-source:1:original-indices",
+            "start": 117324,
+            "endExclusive": 118196
+          },
+          {
+            "assetId": "mk2-armory-tail-source:2:original-indices",
+            "start": 118196,
+            "endExclusive": 119112
+          },
+          {
+            "assetId": "mk2-armory-tail-source:3:original-indices",
+            "start": 119112,
+            "endExclusive": 120096
+          },
+          {
+            "assetId": "mk2-armory-tail-source:4:original-indices",
+            "start": 120096,
+            "endExclusive": 121108
+          },
+          {
+            "assetId": "mk2-armory-tail-source:5:original-indices",
+            "start": 121108,
+            "endExclusive": 122032
+          },
+          {
+            "assetId": "mk2-armory-tail-source:6:original-indices",
+            "start": 122032,
+            "endExclusive": 122920
+          },
+          {
+            "assetId": "mk2-armory-tail-source:7:original-indices",
+            "start": 122920,
+            "endExclusive": 123700
+          },
+          {
+            "assetId": "mk2-armory-tail-source:8:original-indices",
+            "start": 123700,
+            "endExclusive": 124416
+          },
+          {
+            "assetId": "mk2-armory-tail-source:9:original-indices",
+            "start": 124416,
+            "endExclusive": 125060
+          },
+          {
+            "assetId": "mk2-armory-tail-source:10:original-indices",
+            "start": 125060,
+            "endExclusive": 125712
+          },
+          {
+            "assetId": "mk2-armory-tail-source:11:original-indices",
+            "start": 125712,
+            "endExclusive": 126336
+          },
+          {
+            "assetId": "mk2-floor:armory:indices",
+            "start": 126336,
+            "endExclusive": 176512
+          }
+        ]
+      },
+      {
+        "name": "BATTLE.GRA",
+        "path": "battle.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 23,
+        "upstreamAuthenticatedSha256": "ebc7cb5170ec8927f87b726a0d4e7f99a1dce1de615d4fd493fd38680be0be63",
+        "resourceBytes": 95276,
+        "qualifiedReferences": 21,
+        "referencedBytes": 95276,
+        "coveredBytes": 95276,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 0,
+        "union": [
+          {
+            "start": 0,
+            "endExclusive": 95276
+          }
+        ],
+        "gaps": [],
+        "intervals": [
+          {
+            "assetId": "mk2-battle-source:0:original-indices",
+            "start": 0,
+            "endExclusive": 1380
+          },
+          {
+            "assetId": "mk2-battle-source:1:original-indices",
+            "start": 1380,
+            "endExclusive": 5120
+          },
+          {
+            "assetId": "mk2-battle-source:2:original-indices",
+            "start": 5120,
+            "endExclusive": 7500
+          },
+          {
+            "assetId": "mk2-battle-source:3:original-indices",
+            "start": 7500,
+            "endExclusive": 10584
+          },
+          {
+            "assetId": "mk2-battle-source:4:original-indices",
+            "start": 10584,
+            "endExclusive": 14356
+          },
+          {
+            "assetId": "mk2-battle-source:5:original-indices",
+            "start": 14356,
+            "endExclusive": 20180
+          },
+          {
+            "assetId": "mk2-battle-source:6:original-indices",
+            "start": 20180,
+            "endExclusive": 25592
+          },
+          {
+            "assetId": "mk2-battle-source:7:original-indices",
+            "start": 25592,
+            "endExclusive": 29636
+          },
+          {
+            "assetId": "mk2-battle-source:8:original-indices",
+            "start": 29636,
+            "endExclusive": 31396
+          },
+          {
+            "assetId": "mk2-battle-source:9:original-indices",
+            "start": 31396,
+            "endExclusive": 33568
+          },
+          {
+            "assetId": "mk2-battle-source:10:original-indices",
+            "start": 33568,
+            "endExclusive": 35700
+          },
+          {
+            "assetId": "mk2-battle-source:11:original-indices",
+            "start": 35700,
+            "endExclusive": 37508
+          },
+          {
+            "assetId": "mk2-battle-source:12:original-indices",
+            "start": 37508,
+            "endExclusive": 39036
+          },
+          {
+            "assetId": "mk2-battle-source:13:original-indices",
+            "start": 39036,
+            "endExclusive": 40300
+          },
+          {
+            "assetId": "mk2-battle-source:14:original-indices",
+            "start": 40300,
+            "endExclusive": 41264
+          },
+          {
+            "assetId": "mk2-battle-source:15:original-indices",
+            "start": 41264,
+            "endExclusive": 44712
+          },
+          {
+            "assetId": "mk2-battle-source:16:original-indices",
+            "start": 44712,
+            "endExclusive": 48592
+          },
+          {
+            "assetId": "mk2-battle-source:17:original-indices",
+            "start": 48592,
+            "endExclusive": 52196
+          },
+          {
+            "assetId": "mk2-battle-source:18:original-indices",
+            "start": 52196,
+            "endExclusive": 55456
+          },
+          {
+            "assetId": "mk2-battle-source:19:original-indices",
+            "start": 55456,
+            "endExclusive": 59436
+          },
+          {
+            "assetId": "mk2-floor:battle:indices",
+            "start": 59436,
+            "endExclusive": 95276
+          }
+        ]
+      },
+      {
+        "name": "ARENA.GRA",
+        "path": "arena.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 34,
+        "upstreamAuthenticatedSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+        "resourceBytes": 126328,
+        "qualifiedReferences": 32,
+        "referencedBytes": 126328,
+        "coveredBytes": 126328,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 0,
+        "union": [
+          {
+            "start": 0,
+            "endExclusive": 126328
+          }
+        ],
+        "gaps": [],
+        "intervals": [
+          {
+            "assetId": "mk2-arena-source:0:original-indices",
+            "start": 0,
+            "endExclusive": 1376
+          },
+          {
+            "assetId": "mk2-arena-source:1:original-indices",
+            "start": 1376,
+            "endExclusive": 3452
+          },
+          {
+            "assetId": "mk2-arena-source:2:original-indices",
+            "start": 3452,
+            "endExclusive": 5044
+          },
+          {
+            "assetId": "mk2-arena-source:3:original-indices",
+            "start": 5044,
+            "endExclusive": 7144
+          },
+          {
+            "assetId": "mk2-arena-source:4:original-indices",
+            "start": 7144,
+            "endExclusive": 9968
+          },
+          {
+            "assetId": "mk2-arena-source:5:original-indices",
+            "start": 9968,
+            "endExclusive": 15208
+          },
+          {
+            "assetId": "mk2-arena-source:6:original-indices",
+            "start": 15208,
+            "endExclusive": 15716
+          },
+          {
+            "assetId": "mk2-arena-source:7:original-indices",
+            "start": 15716,
+            "endExclusive": 16168
+          },
+          {
+            "assetId": "mk2-arena-source:8:original-indices",
+            "start": 16168,
+            "endExclusive": 19864
+          },
+          {
+            "assetId": "mk2-arena-source:9:original-indices",
+            "start": 19864,
+            "endExclusive": 23604
+          },
+          {
+            "assetId": "mk2-arena-source:10:original-indices",
+            "start": 23604,
+            "endExclusive": 26364
+          },
+          {
+            "assetId": "mk2-arena-source:11:original-indices",
+            "start": 26364,
+            "endExclusive": 29636
+          },
+          {
+            "assetId": "mk2-arena-source:12:original-indices",
+            "start": 29636,
+            "endExclusive": 31512
+          },
+          {
+            "assetId": "mk2-arena-source:13:original-indices",
+            "start": 31512,
+            "endExclusive": 33952
+          },
+          {
+            "assetId": "mk2-arena-source:14:original-indices",
+            "start": 33952,
+            "endExclusive": 36172
+          },
+          {
+            "assetId": "mk2-arena-tail-source:0:original-indices",
+            "start": 36172,
+            "endExclusive": 37628
+          },
+          {
+            "assetId": "mk2-arena-tail-source:1:original-indices",
+            "start": 37628,
+            "endExclusive": 39076
+          },
+          {
+            "assetId": "mk2-arena-tail-source:2:original-indices",
+            "start": 39076,
+            "endExclusive": 40592
+          },
+          {
+            "assetId": "mk2-arena-tail-source:3:original-indices",
+            "start": 40592,
+            "endExclusive": 45836
+          },
+          {
+            "assetId": "mk2-arena-tail-source:4:original-indices",
+            "start": 45836,
+            "endExclusive": 51748
+          },
+          {
+            "assetId": "mk2-arena-tail-source:5:original-indices",
+            "start": 51748,
+            "endExclusive": 58148
+          },
+          {
+            "assetId": "mk2-arena-tail-source:6:original-indices",
+            "start": 58148,
+            "endExclusive": 61600
+          },
+          {
+            "assetId": "mk2-arena-tail-source:7:original-indices",
+            "start": 61600,
+            "endExclusive": 65144
+          },
+          {
+            "assetId": "mk2-arena-tail-source:8:original-indices",
+            "start": 65144,
+            "endExclusive": 68704
+          },
+          {
+            "assetId": "mk2-arena-tail-source:9:original-indices",
+            "start": 68704,
+            "endExclusive": 72232
+          },
+          {
+            "assetId": "mk2-arena-tail-source:10:original-indices",
+            "start": 72232,
+            "endExclusive": 75700
+          },
+          {
+            "assetId": "mk2-arena-tail-source:11:original-indices",
+            "start": 75700,
+            "endExclusive": 78700
+          },
+          {
+            "assetId": "mk2-arena-tail-source:12:original-indices",
+            "start": 78700,
+            "endExclusive": 81660
+          },
+          {
+            "assetId": "mk2-arena-tail-source:13:original-indices",
+            "start": 81660,
+            "endExclusive": 84620
+          },
+          {
+            "assetId": "mk2-arena-tail-source:14:original-indices",
+            "start": 84620,
+            "endExclusive": 87528
+          },
+          {
+            "assetId": "mk2-arena-tail-source:15:original-indices",
+            "start": 87528,
+            "endExclusive": 90488
+          },
+          {
+            "assetId": "mk2-floor:arena:indices",
+            "start": 90488,
+            "endExclusive": 126328
+          }
+        ]
+      },
+      {
+        "name": "TOMB.GRA",
+        "path": "tomb.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 44,
+        "upstreamAuthenticatedSha256": "be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613",
+        "resourceBytes": 106784,
+        "qualifiedReferences": 33,
+        "referencedBytes": 106784,
+        "coveredBytes": 106784,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 0,
+        "union": [
+          {
+            "start": 0,
+            "endExclusive": 106784
+          }
+        ],
+        "gaps": [],
+        "intervals": [
+          {
+            "assetId": "mk2-tomb-source:0:original-indices",
+            "start": 0,
+            "endExclusive": 7352
+          },
+          {
+            "assetId": "mk2-tomb-source:1:original-indices",
+            "start": 7352,
+            "endExclusive": 11032
+          },
+          {
+            "assetId": "mk2-tomb-source:2:original-indices",
+            "start": 11032,
+            "endExclusive": 17344
+          },
+          {
+            "assetId": "mk2-tomb-source:3:original-indices",
+            "start": 17344,
+            "endExclusive": 19240
+          },
+          {
+            "assetId": "mk2-tomb-source:4:original-indices",
+            "start": 19240,
+            "endExclusive": 23596
+          },
+          {
+            "assetId": "mk2-tomb-source:5:original-indices",
+            "start": 23596,
+            "endExclusive": 26844
+          },
+          {
+            "assetId": "mk2-tomb-source:6:original-indices",
+            "start": 26844,
+            "endExclusive": 29368
+          },
+          {
+            "assetId": "mk2-tomb-source:7:original-indices",
+            "start": 29368,
+            "endExclusive": 32012
+          },
+          {
+            "assetId": "mk2-tomb-source:8:original-indices",
+            "start": 32012,
+            "endExclusive": 35860
+          },
+          {
+            "assetId": "mk2-tomb-source:9:original-indices",
+            "start": 35860,
+            "endExclusive": 38740
+          },
+          {
+            "assetId": "mk2-tomb-source:10:original-indices",
+            "start": 38740,
+            "endExclusive": 39524
+          },
+          {
+            "assetId": "mk2-tomb-source:11:original-indices",
+            "start": 39524,
+            "endExclusive": 42740
+          },
+          {
+            "assetId": "mk2-tomb-source:12:original-indices",
+            "start": 42740,
+            "endExclusive": 45716
+          },
+          {
+            "assetId": "mk2-tomb-source:13:original-indices",
+            "start": 45716,
+            "endExclusive": 48564
+          },
+          {
+            "assetId": "mk2-tomb-source:14:original-indices",
+            "start": 48564,
+            "endExclusive": 51016
+          },
+          {
+            "assetId": "mk2-tomb-source:15:original-indices",
+            "start": 51016,
+            "endExclusive": 54328
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_b:00",
+            "start": 54328,
+            "endExclusive": 54888
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_b:01",
+            "start": 54888,
+            "endExclusive": 55600
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_b:02",
+            "start": 55600,
+            "endExclusive": 56388
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_b:03",
+            "start": 56388,
+            "endExclusive": 57260
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_b:04",
+            "start": 57260,
+            "endExclusive": 57920
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_b:05",
+            "start": 57920,
+            "endExclusive": 58708
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_b:06",
+            "start": 58708,
+            "endExclusive": 59496
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_b:07",
+            "start": 59496,
+            "endExclusive": 60124
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_a:00",
+            "start": 60124,
+            "endExclusive": 60520
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_a:01",
+            "start": 60520,
+            "endExclusive": 60984
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_a:02",
+            "start": 60984,
+            "endExclusive": 61476
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_a:03",
+            "start": 61476,
+            "endExclusive": 61952
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_a:04",
+            "start": 61952,
+            "endExclusive": 62392
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_a:05",
+            "start": 62392,
+            "endExclusive": 62880
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_a:06",
+            "start": 62880,
+            "endExclusive": 63380
+          },
+          {
+            "assetId": "mk2-stage-effect:tomb_flying_a:07",
+            "start": 63380,
+            "endExclusive": 63776
+          },
+          {
+            "assetId": "mk2-floor:tomb:indices",
+            "start": 63776,
+            "endExclusive": 106784
+          }
+        ]
+      },
+      {
+        "name": "PORTAL.GRA",
+        "path": "portal.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 42,
+        "upstreamAuthenticatedSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+        "resourceBytes": 92756,
+        "qualifiedReferences": 14,
+        "referencedBytes": 71752,
+        "coveredBytes": 71752,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 21004,
+        "union": [
+          {
+            "start": 0,
+            "endExclusive": 35912
+          },
+          {
+            "start": 56916,
+            "endExclusive": 92756
+          }
+        ],
+        "gaps": [
+          {
+            "start": 35912,
+            "endExclusive": 56916
+          }
+        ],
+        "intervals": [
+          {
+            "assetId": "mk2-portal-source:0:original-indices",
+            "start": 0,
+            "endExclusive": 1116
+          },
+          {
+            "assetId": "mk2-portal-source:1:original-indices",
+            "start": 1116,
+            "endExclusive": 2244
+          },
+          {
+            "assetId": "mk2-portal-source:2:original-indices",
+            "start": 2244,
+            "endExclusive": 3336
+          },
+          {
+            "assetId": "mk2-portal-source:3:original-indices",
+            "start": 3336,
+            "endExclusive": 3484
+          },
+          {
+            "assetId": "mk2-portal-source:4:original-indices",
+            "start": 3484,
+            "endExclusive": 6672
+          },
+          {
+            "assetId": "mk2-portal-source:5:original-indices",
+            "start": 6672,
+            "endExclusive": 11992
+          },
+          {
+            "assetId": "mk2-portal-source:6:original-indices",
+            "start": 11992,
+            "endExclusive": 15044
+          },
+          {
+            "assetId": "mk2-portal-source:7:original-indices",
+            "start": 15044,
+            "endExclusive": 17336
+          },
+          {
+            "assetId": "mk2-portal-source:8:original-indices",
+            "start": 17336,
+            "endExclusive": 23428
+          },
+          {
+            "assetId": "mk2-portal-source:9:original-indices",
+            "start": 23428,
+            "endExclusive": 25584
+          },
+          {
+            "assetId": "mk2-portal-source:10:original-indices",
+            "start": 25584,
+            "endExclusive": 31340
+          },
+          {
+            "assetId": "mk2-portal-source:11:original-indices",
+            "start": 31340,
+            "endExclusive": 32764
+          },
+          {
+            "assetId": "mk2-portal-source:12:original-indices",
+            "start": 32764,
+            "endExclusive": 35912
+          },
+          {
+            "assetId": "mk2-floor:portal:indices",
+            "start": 56916,
+            "endExclusive": 92756
+          }
+        ]
+      },
+      {
+        "name": "TOWER.GRA",
+        "path": "tower.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 17,
+        "upstreamAuthenticatedSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+        "resourceBytes": 113612,
+        "qualifiedReferences": 7,
+        "referencedBytes": 98120,
+        "coveredBytes": 98120,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 15492,
+        "union": [
+          {
+            "start": 0,
+            "endExclusive": 40776
+          },
+          {
+            "start": 56268,
+            "endExclusive": 113612
+          }
+        ],
+        "gaps": [
+          {
+            "start": 40776,
+            "endExclusive": 56268
+          }
+        ],
+        "intervals": [
+          {
+            "assetId": "mk2-tower-source:0:original-indices",
+            "start": 0,
+            "endExclusive": 6220
+          },
+          {
+            "assetId": "mk2-tower-source:1:original-indices",
+            "start": 6220,
+            "endExclusive": 17080
+          },
+          {
+            "assetId": "mk2-tower-source:2:original-indices",
+            "start": 17080,
+            "endExclusive": 28780
+          },
+          {
+            "assetId": "mk2-tower-source:3:original-indices",
+            "start": 28780,
+            "endExclusive": 34652
+          },
+          {
+            "assetId": "mk2-tower-source:4:original-indices",
+            "start": 34652,
+            "endExclusive": 38288
+          },
+          {
+            "assetId": "mk2-tower-source:5:original-indices",
+            "start": 38288,
+            "endExclusive": 40776
+          },
+          {
+            "assetId": "mk2-floor:tower:indices",
+            "start": 56268,
+            "endExclusive": 113612
+          }
+        ]
+      },
+      {
+        "name": "FOREST.GRA",
+        "path": "forest.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 72,
+        "upstreamAuthenticatedSha256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+        "resourceBytes": 226788,
+        "qualifiedReferences": 59,
+        "referencedBytes": 226788,
+        "coveredBytes": 226788,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 0,
+        "union": [
+          {
+            "start": 0,
+            "endExclusive": 226788
+          }
+        ],
+        "gaps": [],
+        "intervals": [
+          {
+            "assetId": "mk2-forest-source:0:original-indices",
+            "start": 0,
+            "endExclusive": 2300
+          },
+          {
+            "assetId": "mk2-forest-source:1:original-indices",
+            "start": 2300,
+            "endExclusive": 4628
+          },
+          {
+            "assetId": "mk2-forest-source:2:original-indices",
+            "start": 4628,
+            "endExclusive": 6932
+          },
+          {
+            "assetId": "mk2-forest-source:3:original-indices",
+            "start": 6932,
+            "endExclusive": 9264
+          },
+          {
+            "assetId": "mk2-forest-source:4:original-indices",
+            "start": 9264,
+            "endExclusive": 11504
+          },
+          {
+            "assetId": "mk2-forest-source:5:original-indices",
+            "start": 11504,
+            "endExclusive": 13844
+          },
+          {
+            "assetId": "mk2-forest-source:6:original-indices",
+            "start": 13844,
+            "endExclusive": 17924
+          },
+          {
+            "assetId": "mk2-forest-source:7:original-indices",
+            "start": 17924,
+            "endExclusive": 21204
+          },
+          {
+            "assetId": "mk2-forest-source:8:original-indices",
+            "start": 21204,
+            "endExclusive": 24736
+          },
+          {
+            "assetId": "mk2-forest-source:9:original-indices",
+            "start": 24736,
+            "endExclusive": 28556
+          },
+          {
+            "assetId": "mk2-forest-source:10:original-indices",
+            "start": 28556,
+            "endExclusive": 32200
+          },
+          {
+            "assetId": "mk2-forest-source:11:original-indices",
+            "start": 32200,
+            "endExclusive": 36248
+          },
+          {
+            "assetId": "mk2-forest-source:12:original-indices",
+            "start": 36248,
+            "endExclusive": 40232
+          },
+          {
+            "assetId": "mk2-forest-source:13:original-indices",
+            "start": 40232,
+            "endExclusive": 42548
+          },
+          {
+            "assetId": "mk2-forest-source:14:original-indices",
+            "start": 42548,
+            "endExclusive": 47800
+          },
+          {
+            "assetId": "mk2-forest-source:15:original-indices",
+            "start": 47800,
+            "endExclusive": 53960
+          },
+          {
+            "assetId": "mk2-forest-source:16:original-indices",
+            "start": 53960,
+            "endExclusive": 58932
+          },
+          {
+            "assetId": "mk2-forest-source:17:original-indices",
+            "start": 58932,
+            "endExclusive": 65252
+          },
+          {
+            "assetId": "mk2-forest-source:18:original-indices",
+            "start": 65252,
+            "endExclusive": 70332
+          },
+          {
+            "assetId": "mk2-forest-source:19:original-indices",
+            "start": 70332,
+            "endExclusive": 76560
+          },
+          {
+            "assetId": "mk2-forest-source:20:original-indices",
+            "start": 76560,
+            "endExclusive": 80300
+          },
+          {
+            "assetId": "mk2-forest-source:21:original-indices",
+            "start": 80300,
+            "endExclusive": 87032
+          },
+          {
+            "assetId": "mk2-forest-source:22:original-indices",
+            "start": 87032,
+            "endExclusive": 91096
+          },
+          {
+            "assetId": "mk2-forest-source:23:original-indices",
+            "start": 91096,
+            "endExclusive": 92932
+          },
+          {
+            "assetId": "mk2-forest-source:24:original-indices",
+            "start": 92932,
+            "endExclusive": 97912
+          },
+          {
+            "assetId": "mk2-forest-source:25:original-indices",
+            "start": 97912,
+            "endExclusive": 104016
+          },
+          {
+            "assetId": "mk2-forest-source:26:original-indices",
+            "start": 104016,
+            "endExclusive": 106520
+          },
+          {
+            "assetId": "mk2-forest-source:27:original-indices",
+            "start": 106520,
+            "endExclusive": 111236
+          },
+          {
+            "assetId": "mk2-forest-source:28:original-indices",
+            "start": 111236,
+            "endExclusive": 117636
+          },
+          {
+            "assetId": "mk2-forest-source:29:original-indices",
+            "start": 117636,
+            "endExclusive": 123252
+          },
+          {
+            "assetId": "mk2-forest-source:30:original-indices",
+            "start": 123252,
+            "endExclusive": 126008
+          },
+          {
+            "assetId": "mk2-forest-source:31:original-indices",
+            "start": 126008,
+            "endExclusive": 128864
+          },
+          {
+            "assetId": "mk2-forest-source:32:original-indices",
+            "start": 128864,
+            "endExclusive": 131648
+          },
+          {
+            "assetId": "mk2-forest-source:33:original-indices",
+            "start": 131648,
+            "endExclusive": 134148
+          },
+          {
+            "assetId": "mk2-forest-source:34:original-indices",
+            "start": 134148,
+            "endExclusive": 136684
+          },
+          {
+            "assetId": "mk2-forest-source:35:original-indices",
+            "start": 136684,
+            "endExclusive": 139204
+          },
+          {
+            "assetId": "mk2-forest-source:36:original-indices",
+            "start": 139204,
+            "endExclusive": 141320
+          },
+          {
+            "assetId": "mk2-forest-source:37:original-indices",
+            "start": 141320,
+            "endExclusive": 143716
+          },
+          {
+            "assetId": "mk2-forest-source:38:original-indices",
+            "start": 143716,
+            "endExclusive": 145804
+          },
+          {
+            "assetId": "mk2-forest-source:39:original-indices",
+            "start": 145804,
+            "endExclusive": 147288
+          },
+          {
+            "assetId": "mk2-forest-source:40:original-indices",
+            "start": 147288,
+            "endExclusive": 148812
+          },
+          {
+            "assetId": "mk2-forest-source:41:original-indices",
+            "start": 148812,
+            "endExclusive": 150316
+          },
+          {
+            "assetId": "mk2-forest-source:42:original-indices",
+            "start": 150316,
+            "endExclusive": 151824
+          },
+          {
+            "assetId": "mk2-forest-source:43:original-indices",
+            "start": 151824,
+            "endExclusive": 153092
+          },
+          {
+            "assetId": "mk2-forest-source:44:original-indices",
+            "start": 153092,
+            "endExclusive": 154420
+          },
+          {
+            "assetId": "mk2-forest-source:45:original-indices",
+            "start": 154420,
+            "endExclusive": 156268
+          },
+          {
+            "assetId": "mk2-forest-source:46:original-indices",
+            "start": 156268,
+            "endExclusive": 157596
+          },
+          {
+            "assetId": "mk2-forest-source:47:original-indices",
+            "start": 157596,
+            "endExclusive": 159544
+          },
+          {
+            "assetId": "mk2-forest-source:48:original-indices",
+            "start": 159544,
+            "endExclusive": 164752
+          },
+          {
+            "assetId": "mk2-forest-tail-source:0:original-indices",
+            "start": 164752,
+            "endExclusive": 169012
+          },
+          {
+            "assetId": "mk2-forest-tail-source:1:original-indices",
+            "start": 169012,
+            "endExclusive": 173184
+          },
+          {
+            "assetId": "mk2-forest-tail-source:2:original-indices",
+            "start": 173184,
+            "endExclusive": 177328
+          },
+          {
+            "assetId": "mk2-forest-tail-source:3:original-indices",
+            "start": 177328,
+            "endExclusive": 181460
+          },
+          {
+            "assetId": "mk2-forest-tail-source:4:original-indices",
+            "start": 181460,
+            "endExclusive": 185624
+          },
+          {
+            "assetId": "mk2-forest-tail-source:5:original-indices",
+            "start": 185624,
+            "endExclusive": 189776
+          },
+          {
+            "assetId": "mk2-forest-tail-source:6:original-indices",
+            "start": 189776,
+            "endExclusive": 193860
+          },
+          {
+            "assetId": "mk2-forest-tail-source:7:original-indices",
+            "start": 193860,
+            "endExclusive": 195696
+          },
+          {
+            "assetId": "mk2-forest-tail-source:8:original-indices",
+            "start": 195696,
+            "endExclusive": 198116
+          },
+          {
+            "assetId": "mk2-floor:forest:indices",
+            "start": 198116,
+            "endExclusive": 226788
+          }
+        ]
+      },
+      {
+        "name": "PIT.GRA",
+        "path": "pit.gra",
+        "status": "VERIFIED_INTERVAL_ACCOUNTING",
+        "registeredRepresentations": 50,
+        "upstreamAuthenticatedSha256": "af6c10b676011cbbd0b8ef3fe4523cf52b36ebd3be15b2dcb4190b9a34c81d96",
+        "resourceBytes": 69384,
+        "qualifiedReferences": 42,
+        "referencedBytes": 69384,
+        "coveredBytes": 69384,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 0,
+        "union": [
+          {
+            "start": 0,
+            "endExclusive": 69384
+          }
+        ],
+        "gaps": [],
+        "intervals": [
+          {
+            "assetId": "mk2-pit-source:0:original-indices",
+            "start": 0,
+            "endExclusive": 3624
+          },
+          {
+            "assetId": "mk2-pit-source:1:original-indices",
+            "start": 3624,
+            "endExclusive": 7256
+          },
+          {
+            "assetId": "mk2-pit-source:2:original-indices",
+            "start": 7256,
+            "endExclusive": 10480
+          },
+          {
+            "assetId": "mk2-pit-source:3:original-indices",
+            "start": 10480,
+            "endExclusive": 14664
+          },
+          {
+            "assetId": "mk2-pit-source:4:original-indices",
+            "start": 14664,
+            "endExclusive": 19072
+          },
+          {
+            "assetId": "mk2-pit-source:5:original-indices",
+            "start": 19072,
+            "endExclusive": 22328
+          },
+          {
+            "assetId": "mk2-pit-source:6:original-indices",
+            "start": 22328,
+            "endExclusive": 22976
+          },
+          {
+            "assetId": "mk2-pit-source:7:original-indices",
+            "start": 22976,
+            "endExclusive": 23844
+          },
+          {
+            "assetId": "mk2-pit-source:8:original-indices",
+            "start": 23844,
+            "endExclusive": 24388
+          },
+          {
+            "assetId": "mk2-pit-source:9:original-indices",
+            "start": 24388,
+            "endExclusive": 25456
+          },
+          {
+            "assetId": "mk2-pit-source:10:original-indices",
+            "start": 25456,
+            "endExclusive": 26204
+          },
+          {
+            "assetId": "mk2-pit-source:11:original-indices",
+            "start": 26204,
+            "endExclusive": 27152
+          },
+          {
+            "assetId": "mk2-pit-source:12:original-indices",
+            "start": 27152,
+            "endExclusive": 27560
+          },
+          {
+            "assetId": "mk2-pit-source:13:original-indices",
+            "start": 27560,
+            "endExclusive": 31060
+          },
+          {
+            "assetId": "mk2-pit-source:14:original-indices",
+            "start": 31060,
+            "endExclusive": 35240
+          },
+          {
+            "assetId": "mk2-pit-source:15:original-indices",
+            "start": 35240,
+            "endExclusive": 38128
+          },
+          {
+            "assetId": "mk2-pit-source:16:original-indices",
+            "start": 38128,
+            "endExclusive": 39640
+          },
+          {
+            "assetId": "mk2-pit-source:17:original-indices",
+            "start": 39640,
+            "endExclusive": 40268
+          },
+          {
+            "assetId": "mk2-pit-source:18:original-indices",
+            "start": 40268,
+            "endExclusive": 40912
+          },
+          {
+            "assetId": "mk2-pit-source:19:original-indices",
+            "start": 40912,
+            "endExclusive": 41556
+          },
+          {
+            "assetId": "mk2-pit-source:20:original-indices",
+            "start": 41556,
+            "endExclusive": 42256
+          },
+          {
+            "assetId": "mk2-pit-source:21:original-indices",
+            "start": 42256,
+            "endExclusive": 42980
+          },
+          {
+            "assetId": "mk2-pit-source:22:original-indices",
+            "start": 42980,
+            "endExclusive": 45776
+          },
+          {
+            "assetId": "mk2-pit-source:23:original-indices",
+            "start": 45776,
+            "endExclusive": 48288
+          },
+          {
+            "assetId": "mk2-pit-source:24:original-indices",
+            "start": 48288,
+            "endExclusive": 50332
+          },
+          {
+            "assetId": "mk2-pit-source:25:original-indices",
+            "start": 50332,
+            "endExclusive": 54632
+          },
+          {
+            "assetId": "mk2-pit-source:26:original-indices",
+            "start": 54632,
+            "endExclusive": 56728
+          },
+          {
+            "assetId": "mk2-pit-source:27:original-indices",
+            "start": 56728,
+            "endExclusive": 61620
+          },
+          {
+            "assetId": "mk2-pit-bridge:green:0",
+            "start": 61620,
+            "endExclusive": 62096
+          },
+          {
+            "assetId": "mk2-pit-bridge:green:1",
+            "start": 62096,
+            "endExclusive": 62552
+          },
+          {
+            "assetId": "mk2-pit-bridge:green:2",
+            "start": 62552,
+            "endExclusive": 62980
+          },
+          {
+            "assetId": "mk2-pit-bridge:green:3",
+            "start": 62980,
+            "endExclusive": 63408
+          },
+          {
+            "assetId": "mk2-pit-bridge:green:4",
+            "start": 63408,
+            "endExclusive": 63860
+          },
+          {
+            "assetId": "mk2-pit-bridge:green:5",
+            "start": 63860,
+            "endExclusive": 64316
+          },
+          {
+            "assetId": "mk2-pit-bridge:green:6",
+            "start": 64316,
+            "endExclusive": 64796
+          },
+          {
+            "assetId": "mk2-pit-bridge:flame:0",
+            "start": 64796,
+            "endExclusive": 65512
+          },
+          {
+            "assetId": "mk2-pit-bridge:flame:1",
+            "start": 65512,
+            "endExclusive": 66132
+          },
+          {
+            "assetId": "mk2-pit-bridge:flame:2",
+            "start": 66132,
+            "endExclusive": 66776
+          },
+          {
+            "assetId": "mk2-pit-bridge:flame:3",
+            "start": 66776,
+            "endExclusive": 67416
+          },
+          {
+            "assetId": "mk2-pit-bridge:flame:4",
+            "start": 67416,
+            "endExclusive": 68068
+          },
+          {
+            "assetId": "mk2-pit-bridge:flame:5",
+            "start": 68068,
+            "endExclusive": 68720
+          },
+          {
+            "assetId": "mk2-pit-bridge:flame:6",
+            "start": 68720,
+            "endExclusive": 69384
+          }
+        ]
+      },
+      {
+        "name": "VFRAME.GRA",
+        "path": "vframe.gra",
+        "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+        "registeredRepresentations": 0,
+        "upstreamAuthenticatedSha256": null,
+        "resourceBytes": 59056,
+        "qualifiedReferences": 0,
+        "referencedBytes": 0,
+        "coveredBytes": 0,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 59056,
+        "union": [],
+        "gaps": [
+          {
+            "start": 0,
+            "endExclusive": 59056
+          }
+        ],
+        "intervals": []
+      },
+      {
+        "name": "FONTS.GRA",
+        "path": "fonts.gra",
+        "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+        "registeredRepresentations": 0,
+        "upstreamAuthenticatedSha256": null,
+        "resourceBytes": 124328,
+        "qualifiedReferences": 0,
+        "referencedBytes": 0,
+        "coveredBytes": 0,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 124328,
+        "union": [],
+        "gaps": [
+          {
+            "start": 0,
+            "endExclusive": 124328
+          }
+        ],
+        "intervals": []
+      },
+      {
+        "name": "PLAYSTA.GRA",
+        "path": "playsta.gra",
+        "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+        "registeredRepresentations": 0,
+        "upstreamAuthenticatedSha256": null,
+        "resourceBytes": 327360,
+        "qualifiedReferences": 0,
+        "referencedBytes": 0,
+        "coveredBytes": 0,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 327360,
+        "union": [],
+        "gaps": [
+          {
+            "start": 0,
+            "endExclusive": 327360
+          }
+        ],
+        "intervals": []
+      },
+      {
+        "name": "PROBE.GRA",
+        "path": "probe.gra",
+        "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+        "registeredRepresentations": 30,
+        "upstreamAuthenticatedSha256": null,
+        "resourceBytes": 327672,
+        "qualifiedReferences": 0,
+        "referencedBytes": 0,
+        "coveredBytes": 0,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 327672,
+        "union": [],
+        "gaps": [
+          {
+            "start": 0,
+            "endExclusive": 327672
+          }
+        ],
+        "intervals": []
+      },
+      {
+        "name": "ACCLAIM.GRA",
+        "path": "acclaim.gra",
+        "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+        "registeredRepresentations": 1,
+        "upstreamAuthenticatedSha256": null,
+        "resourceBytes": 2036,
+        "qualifiedReferences": 0,
+        "referencedBytes": 0,
+        "coveredBytes": 0,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 2036,
+        "union": [],
+        "gaps": [
+          {
+            "start": 0,
+            "endExclusive": 2036
+          }
+        ],
+        "intervals": []
+      },
+      {
+        "name": "MONKS.GRA",
+        "path": "monks.gra",
+        "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+        "registeredRepresentations": 0,
+        "upstreamAuthenticatedSha256": null,
+        "resourceBytes": 2432,
+        "qualifiedReferences": 0,
+        "referencedBytes": 0,
+        "coveredBytes": 0,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "outsideScopeBytes": 2432,
+        "union": [],
+        "gaps": [
+          {
+            "start": 0,
+            "endExclusive": 2432
+          }
+        ],
+        "intervals": []
+      }
+    ],
+    "tombEffectReconciliation": {
+      "status": "VERIFIED",
+      "existingEffectReferences": 16,
+      "newRepresentations": 0,
+      "priorOutsideScopeBytes": 9448,
+      "remainingOutsideScopeBytes": 0,
+      "sourceImageInterval": {
+        "start": 54328,
+        "endExclusive": 63776,
+        "encodedBytes": 9448
+      },
+      "sourceListObject2": [
+        96276,
+        96236
+      ],
+      "nativePaletteOrTimingClaimsAdded": false
+    }
+  },
+  "regression": {
+    "schema": "mkdos_checkpoint_regression_v2",
+    "through": "p38",
+    "status": "PASS",
+    "startedAt": "2026-11-07T08:39:16.352Z",
+    "suites": [
+      {
+        "name": "MK2 input identity",
+        "pass": "P16",
+        "status": "PASS",
+        "classification": "ORIGINAL_INPUT_IDENTITY_ONLY",
+        "checks": 642,
+        "fileCount": 614,
+        "sourceFileHashesVerified": 13,
+        "archiveSha256": null,
+        "extensionCensus": {
+          "(none)": 1,
+          "awe": 33,
+          "bat": 1,
+          "bin": 6,
+          "drv": 1,
+          "exe": 2,
+          "gra": 124,
+          "gvs": 33,
+          "ini": 1,
+          "lap": 33,
+          "mid": 33,
+          "sbl": 33,
+          "txt": 1,
+          "u8": 312
+        },
+        "gameArtworkStoredInReport": false,
+        "p15FullCumulativeRerun": false,
+        "gameBrowserVerified": false
+      },
+      {
+        "name": "MK2 p35-cumulative",
+        "pass": "P35",
+        "status": "PASS",
+        "checks": 4357,
+        "assets": 5369,
+        "uniqueAssets": 5369,
+        "originalMK2FixtureOnly": true,
+        "fullCurrentSourceRegression": true,
+        "p22AddedImages": 49,
+        "p23AddedImages": 18,
+        "p24AddedImages": 20,
+        "p25AddedImages": 15,
+        "p27StandaloneComponentRepresentations": 16,
+        "p27NewlyDiscoveredSourceImages": 0,
+        "p28StandaloneComponentRepresentations": 13,
+        "p28NewlyDiscoveredSourceImages": 0,
+        "p29StandaloneComponentRepresentations": 6,
+        "p29NewlyDiscoveredSourceImages": 0,
+        "p30StandaloneComponentRepresentations": 49,
+        "p30NewlyDiscoveredSourceImages": 0,
+        "p32StandaloneComponentRepresentations": 9,
+        "p32NewlyDiscoveredSourceImages": 0,
+        "forestNativeBytePartitionVerified": true,
+        "p33StandaloneComponentRepresentations": 28,
+        "p33NewlyDiscoveredSourceImages": 0,
+        "pitNativeBytePartitionVerified": true,
+        "p34StandaloneComponentRepresentations": 12,
+        "p34NewlyDiscoveredSourceImages": 0,
+        "armoryNativeBytePartitionVerified": true,
+        "p35StandaloneComponentRepresentations": 16,
+        "p35NewlyDiscoveredSourceImages": 0,
+        "arenaNativeBytePartitionVerified": true,
+        "p24DescriptorWitnesses": 40,
+        "sourceOrderQueueFrames": 57,
+        "groups": {
+          "u8:": 312,
+          "mk2-stage-effect:": 43,
+          "mk2-stage-setup:": 8,
+          "mk2-floor:": 15,
+          "mk2-forest-setup:": 10,
+          "mk2-pit-fall-source:": 7,
+          "mk2-pit-upper-setup:": 6,
+          "mk2-pit-bridge:": 14,
+          "mk2-intro-lzw:": 31,
+          "mk2-mountain-source:": 15,
+          "mk2-viewport-floor:": 7,
+          "mk2-witnessed-floor:": 2,
+          "mk2-images-setup:": 2,
+          "mk2-source-animation-sheet:": 8,
+          "mk2-cave-source:": 49,
+          "mk2-armory-source:": 18,
+          "mk2-battle-source:": 20,
+          "mk2-arena-source:": 15,
+          "mk2-tomb-source:": 16,
+          "mk2-portal-source:": 13,
+          "mk2-tower-source:": 6,
+          "mk2-forest-source:": 49,
+          "mk2-forest-tail-source:": 9,
+          "mk2-pit-source:": 28,
+          "mk2-armory-tail-source:": 12,
+          "mk2-arena-tail-source:": 16
+        },
+        "originalArchiveParity": {
+          "MK2_P8_PIT_II_SEVEN_ORIGINAL_LOWER_WALL_SOURCES.zip": "7832bae102ab952024f8fa2b48f86379d5a519f2302491757027b4568654bdd5",
+          "MK2_P9_PIT_II_SIX_ORIGINAL_UPPER_SETUP_LAYERS.zip": "25abe08f1471a46c9e205bed3693559499afd7b0893bd277c5c51130769f652d",
+          "MK2_P10_PIT_II_ORIGINAL_BRIDGE_ACTOR_FRAMES.zip": "6aedb63e4b974468c64a2a80afc4270be0815d716fa265cee21278b612ddf79c"
+        },
+        "selectedExportAssets": 8,
+        "browserUIVerified": false,
+        "fullSceneAssemblyVerified": false,
+        "nativeAnimationTimingVerified": false,
+        "copyrightGameFilesIncludedInRepository": false
+      },
+      {
+        "name": "MK2 p38-tomb-coverage",
+        "status": "PASS",
+        "uniqueAssets": 5369,
+        "existingEffects": 16,
+        "newRepresentations": 0,
+        "qualifiedReferences": 288,
+        "coveredResourceBytes": 1028136,
+        "unaffectedResourcesPreserved": 14,
+        "invalidEffectSetsRejected": 10,
+        "cleanReverified": true,
+        "p37PackageByteIdentical": true,
+        "packageSha256": "38326a2096b6c89a68d788805fe6832a92dc48097e34d8190be3a599ea7fcf4a",
+        "privateEffectZipSha256": "bb5d911b8e9e872f8537e467afde8679ce6cda7b052bbd7c8675f538055a24f3"
+      },
+      {
+        "name": "MK2 p37-source-coverage",
+        "status": "PASS",
+        "uniqueAssets": 5369,
+        "resources": 15,
+        "coverageStatus": "VERIFIED_INTERVAL_ACCOUNTING",
+        "packageSha256": "0796e016bd03f7ca8c3a9d518717a67095c7a1602f241b74c551894532d8c536",
+        "resourcesSummary": [
+          {
+            "name": "CAVE.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 49,
+            "qualifiedReferences": 49,
+            "coveredBytes": 57192,
+            "outsideScopeBytes": 120,
+            "gaps": [
+              {
+                "start": 0,
+                "endExclusive": 120
+              }
+            ]
+          },
+          {
+            "name": "ARMORY.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 33,
+            "qualifiedReferences": 31,
+            "coveredBytes": 176512,
+            "outsideScopeBytes": 0,
+            "gaps": []
+          },
+          {
+            "name": "BATTLE.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 23,
+            "qualifiedReferences": 21,
+            "coveredBytes": 95276,
+            "outsideScopeBytes": 0,
+            "gaps": []
+          },
+          {
+            "name": "ARENA.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 34,
+            "qualifiedReferences": 32,
+            "coveredBytes": 126328,
+            "outsideScopeBytes": 0,
+            "gaps": []
+          },
+          {
+            "name": "TOMB.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 44,
+            "qualifiedReferences": 17,
+            "coveredBytes": 97336,
+            "outsideScopeBytes": 9448,
+            "gaps": [
+              {
+                "start": 54328,
+                "endExclusive": 63776
+              }
+            ]
+          },
+          {
+            "name": "PORTAL.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 42,
+            "qualifiedReferences": 14,
+            "coveredBytes": 71752,
+            "outsideScopeBytes": 21004,
+            "gaps": [
+              {
+                "start": 35912,
+                "endExclusive": 56916
+              }
+            ]
+          },
+          {
+            "name": "TOWER.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 17,
+            "qualifiedReferences": 7,
+            "coveredBytes": 98120,
+            "outsideScopeBytes": 15492,
+            "gaps": [
+              {
+                "start": 40776,
+                "endExclusive": 56268
+              }
+            ]
+          },
+          {
+            "name": "FOREST.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 72,
+            "qualifiedReferences": 59,
+            "coveredBytes": 226788,
+            "outsideScopeBytes": 0,
+            "gaps": []
+          },
+          {
+            "name": "PIT.GRA",
+            "status": "VERIFIED_INTERVAL_ACCOUNTING",
+            "registeredRepresentations": 50,
+            "qualifiedReferences": 42,
+            "coveredBytes": 69384,
+            "outsideScopeBytes": 0,
+            "gaps": []
+          },
+          {
+            "name": "VFRAME.GRA",
+            "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+            "registeredRepresentations": 0,
+            "qualifiedReferences": 0,
+            "coveredBytes": 0,
+            "outsideScopeBytes": 59056,
+            "gaps": [
+              {
+                "start": 0,
+                "endExclusive": 59056
+              }
+            ]
+          },
+          {
+            "name": "FONTS.GRA",
+            "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+            "registeredRepresentations": 0,
+            "qualifiedReferences": 0,
+            "coveredBytes": 0,
+            "outsideScopeBytes": 124328,
+            "gaps": [
+              {
+                "start": 0,
+                "endExclusive": 124328
+              }
+            ]
+          },
+          {
+            "name": "PLAYSTA.GRA",
+            "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+            "registeredRepresentations": 0,
+            "qualifiedReferences": 0,
+            "coveredBytes": 0,
+            "outsideScopeBytes": 327360,
+            "gaps": [
+              {
+                "start": 0,
+                "endExclusive": 327360
+              }
+            ]
+          },
+          {
+            "name": "PROBE.GRA",
+            "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+            "registeredRepresentations": 30,
+            "qualifiedReferences": 0,
+            "coveredBytes": 0,
+            "outsideScopeBytes": 327672,
+            "gaps": [
+              {
+                "start": 0,
+                "endExclusive": 327672
+              }
+            ]
+          },
+          {
+            "name": "ACCLAIM.GRA",
+            "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+            "registeredRepresentations": 1,
+            "qualifiedReferences": 0,
+            "coveredBytes": 0,
+            "outsideScopeBytes": 2036,
+            "gaps": [
+              {
+                "start": 0,
+                "endExclusive": 2036
+              }
+            ]
+          },
+          {
+            "name": "MONKS.GRA",
+            "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+            "registeredRepresentations": 0,
+            "qualifiedReferences": 0,
+            "coveredBytes": 0,
+            "outsideScopeBytes": 2432,
+            "gaps": [
+              {
+                "start": 0,
+                "endExclusive": 2432
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MK2 p35-arena-tail",
+        "pass": "P35",
+        "status": "PASS",
+        "checks": 413,
+        "originalArenaTailImages": 16,
+        "indexedPixels": 99721,
+        "setupRelationshipsQualified": false,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "262ed93f0176f4becaf70cd0437f10c522434dc2978d20385cca168224f00833",
+        "sourceOutsideImageFamilyBytes": 72012,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p34-armory-tail",
+        "pass": "P34",
+        "status": "PASS",
+        "checks": 317,
+        "originalArmoryTailImages": 12,
+        "indexedPixels": 7680,
+        "setupRelationshipsQualified": false,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "df7ef23a709774e1f4dc7cdbbde83bb95c4c72ce1dc0877a9e1fb1d687447baa",
+        "sourceOutsideImageFamilyBytes": 166784,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p33-pit",
+        "pass": "P33",
+        "status": "PASS",
+        "checks": 802,
+        "originalPitImages": 28,
+        "indexedPixels": 108352,
+        "existingSetupLayers": 6,
+        "originalSetupPlacements": 126,
+        "reconstructedSetupCells": 1328768,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "2cfc7a6834292b4beb01eb324a0402e4d3b3bb8a5c9788b007c032c967581794",
+        "sourceOutsideImageFamilyBytes": 7764,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p32-forest-tail",
+        "pass": "P32",
+        "status": "PASS",
+        "checks": 227,
+        "originalForestTailImages": 9,
+        "indexedPixels": 33122,
+        "existingP7ControlsIndependentlyChecked": 60,
+        "newP7SetupLinks": 0,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "19635b71abd3de358b2aeff2c70462bf29ffa4ca943866ff6acdd9de319f1c65",
+        "sourceOutsideImageFamilyBytes": 193424,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p30-forest",
+        "pass": "P30",
+        "status": "PASS",
+        "checks": 1094,
+        "originalForestImages": 49,
+        "indexedPixels": 164382,
+        "existingSetupLayers": 5,
+        "originalSetupPlacements": 60,
+        "reconstructedSetupCells": 446912,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "59b02f8bea8684bd4d1721db5ccb27bed914601c15fe82e8309717d4154a3e9c",
+        "sourceOutsideImageFamilyBytes": 62036,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p29-tower",
+        "pass": "P29",
+        "status": "PASS",
+        "checks": 161,
+        "originalTowerImages": 6,
+        "indexedPixels": 43653,
+        "sourceSetupRecords": 2,
+        "originalSetupControls": 22,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "0f30349355a6db84a2220e653301a993921500ddf8083ef6db8a61e0856a132c",
+        "sourceOutsideImageFamilyBytes": 72836,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p28-portal",
+        "pass": "P28",
+        "status": "PASS",
+        "checks": 327,
+        "originalPortalImages": 13,
+        "indexedPixels": 60566,
+        "existingSetupLayers": 2,
+        "originalSetupPlacements": 28,
+        "reconstructedSetupCells": 211456,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "b159383cee493fcb0ce4fba8cd69a7ff1d554e267f5d729492bede12069a6e90",
+        "sourceOutsideImageFamilyBytes": 56844,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p27-tomb",
+        "pass": "P27",
+        "status": "PASS",
+        "checks": 466,
+        "originalTombImages": 16,
+        "indexedPixels": 64971,
+        "existingSetupLayers": 6,
+        "originalSetupPlacements": 87,
+        "reconstructedSetupCells": 523584,
+        "newlyDiscoveredSourceImages": 0,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "a408f7e4000e0bec4d2db717925ac9e4dfd31d05591a641eb02d30e7521faa90",
+        "sourceOutsideImageFamilyBytes": 52456,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p25-arena",
+        "pass": "P25",
+        "status": "PASS",
+        "checks": 284,
+        "originalArenaImages": 15,
+        "indexedPixels": 65736,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "1cad7584431335343cf95a0c6cabda74d88a2a50b6f3c76a669ba03ed3f60dc5",
+        "sourceOutsideImageFamilyBytes": 90156,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p24-battle",
+        "pass": "P24",
+        "status": "PASS",
+        "checks": 432,
+        "originalBattleImages": 20,
+        "indexedPixels": 85188,
+        "sourceDescriptorWitnesses": 40,
+        "duplicateWitnessesPreserved": 20,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "3faed3ece5808182446d64092184300da667719cc95948c3f8a2db1f2c06f5eb",
+        "sourceOutsideImageFamilyBytes": 35840,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p23-armory",
+        "pass": "P23",
+        "status": "PASS",
+        "checks": 335,
+        "originalArmoryImages": 18,
+        "indexedPixels": 156767,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "7e5870cdeebf6c17c36a50024592115a1e3172b4a299f379e234ace86ed410ac",
+        "sourceOutsideImageFamilyBytes": 59904,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p22-cave",
+        "pass": "P22",
+        "status": "PASS",
+        "checks": 862,
+        "originalCaveImages": 49,
+        "indexedPixels": 49765,
+        "negativeFixtures": 8,
+        "evidenceZipSha256": "e7c407cd1727b003387eb95c91a7e5a131c3eed0c5967fb1d7761ee3f81e9745",
+        "sourcePrefixUnqualifiedBytes": 120,
+        "nativePaletteKnown": false,
+        "fullStageScene": false,
+        "browserInteractionVerified": false
+      },
+      {
+        "name": "MK2 p12-intro",
+        "pass": "P12",
+        "status": "PASS",
+        "checks": 524,
+        "originalIntroFrames": 31,
+        "originalSourceIndicesAndConditionalDAC6Parity": "all 31 original frames",
+        "negativeCases": 7,
+        "selectedZipExport": [
+          "indices",
+          "mask",
+          "paletteKnownMask"
+        ],
+        "runtimeAnimationTimingKnown": false,
+        "livePaletteIndex0Known": false,
+        "commercialGameDataInGit": false
+      },
+      {
+        "name": "MK2 p13-mountain",
+        "pass": "P13",
+        "status": "PASS",
+        "checks": 358,
+        "newOriginalIndexedGraphics": 15,
+        "consumerSelected": 14,
+        "adjacentStructurallyQualifiedOnly": 1,
+        "originalSuffixBytes": 23024,
+        "sourceOrders": 6,
+        "diagnosticColorOnly": true,
+        "originalSourceIndicesPreserved": true,
+        "negativeFixtureCases": 5,
+        "commercialAssetsCommitted": false,
+        "packageSha256": "e7eabb5d6444d249b7b08a1197c7cc7767a8e70df668f661d5d0eff762d67c86"
+      },
+      {
+        "name": "MK2 p14-source-viewport",
+        "pass": "P14",
+        "status": "PASS",
+        "checks": 409790,
+        "newNativeViewportPreviews": 7,
+        "canonicalOriginalEXE": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+        "sourceResearch": "O110C",
+        "nativeProjection": "320 x source rows, source-x 288, hypothetical bank base 1",
+        "runtimeColorKnown": false,
+        "runtimeCameraKnown": false,
+        "completeStageScenes": false,
+        "evidencePackageSHA256": "e7b588f7f84807b3dab054e0b8ce99336570f29256056617b6c38bafad2b36ca",
+        "negativeFixtureVariants": 9,
+        "gameMediaCommitted": false
+      },
+      {
+        "name": "MK2 p15-observed-floors",
+        "pass": "P15",
+        "status": "PASS",
+        "checks": 28244,
+        "independentOriginalWitness": "O115 screenshot RGB tables, O117 Tomb control and O115B Portal control",
+        "assets": 2,
+        "sourcePixels": 28160,
+        "nativePaletteKnown": false,
+        "liveCameraKnown": false,
+        "completeStage": false,
+        "sourceArchiveSha256": "1ded7e25adc7043e908cf2268fc208321fed6afa8779526dda1e17739455454b",
+        "negativeFixtureVariants": 10
+      },
+      {
+        "name": "MK2 p17-unassigned-images",
+        "pass": "P17",
+        "status": "PASS",
+        "checks": 77,
+        "originalIndexedMosaics": 2,
+        "originalIndexPixels": 128000,
+        "independentO122SourceHashes": true,
+        "sourceBundleIntegrity": true,
+        "negativeFixtures": 8,
+        "nativePaletteOwnershipKnown": false,
+        "completeStageSceneVerified": false,
+        "cumulativeP16RegressionRerun": false,
+        "gameBrowserVerified": false
+      },
+      {
+        "name": "MK2 p18-ordered-sequences",
+        "pass": "P18",
+        "status": "PASS",
+        "checks": 379422,
+        "tracks": 8,
+        "orderedSourceFrames": 57,
+        "comparedIndexedPixels": 63112,
+        "screenshotRgbClaim": false,
+        "nativeFrameTimingKnown": false,
+        "worldPlacementKnown": false,
+        "currentFullP16P17P18SourceScanned": false,
+        "canonicalOriginalFixtureUsed": true
+      },
+      {
+        "name": "MK2 p19-source-order-queue",
+        "pass": "P19",
+        "status": "PASS",
+        "checks": 280,
+        "sourceTracks": 8,
+        "originalOrderedFrames": 57,
+        "originalFramePixelsReExported": 63112,
+        "presentationMillisecondsTested": 137,
+        "nativeFrameTimeKnown": false,
+        "originalPaletteOwnershipKnown": false,
+        "canonicalOriginalFixture": true,
+        "currentFullP16P17P18ScannerVerified": false
+      }
+    ],
+    "notRun": [
+      "mk1",
+      "mk3"
+    ],
+    "browserInteractionVerified": false,
+    "commercialAssetsIncluded": false,
+    "finishedAt": "2026-11-07T08:39:54.004Z"
+  },
+  "sourceReference": "scripts/fixtures/mk2-p38-tomb-effects-independent.json",
+  "runtimeSourceChanges": [
+    "src/core/assets/collection.ts",
+    "src/core/assets/mk2SourceCoverageP38.ts"
+  ],
+  "localChecks": {
+    "syntaxFiles": 380,
+    "syntaxErrors": 0,
+    "typescript": "PASS",
+    "productionBuild": "PASS",
+    "newCjsSyntax": "PASS"
+  },
+  "newRepresentations": 0,
+  "originalDataBrowserValidation": false,
+  "mainPromotion": false
+}

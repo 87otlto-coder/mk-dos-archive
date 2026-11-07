@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /** P21 repeatable original-fixture regression runner. No network or game writes.
- * node scripts/verify-p21-checkpoint.cjs --mk2 <dir> [--mk1 <dir>] [--mk3 <dir>] [--through p21|p22|p23|p24|p25|p27|p28|p29|p30|p32|p33|p34|p35|p37] --report <json>
- * Defaults to current P37; earlier --through choices require matching historical source.
+ * node scripts/verify-p21-checkpoint.cjs --mk2 <dir> [--mk1 <dir>] [--mk3 <dir>] [--through p21|p22|p23|p24|p25|p27|p28|p29|p30|p32|p33|p34|p35|p37|p38] --report <json>
+ * Defaults to current P38; earlier --through choices require matching historical source.
  * Missing optional games are explicitly NOT_RUN, never inferred as passing.
  */
 const fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:child_process');
@@ -10,8 +10,8 @@ const args={};for(let i=2;i<process.argv.length;i+=2){const key=process.argv[i];
  args[key]=process.argv[i+1];
 }
 if(!args['--mk2']||!args['--report'])throw Error('Require --mk2 <directory> --report <output.json>');
-const through=args['--through']||'p37';
-if(!['p21','p22','p23','p24','p25','p27','p28','p29','p30','p32','p33','p34','p35','p37'].includes(through))throw Error('Unknown source checkpoint '+through);
+const through=args['--through']||'p38';
+if(!['p21','p22','p23','p24','p25','p27','p28','p29','p30','p32','p33','p34','p35','p37','p38'].includes(through))throw Error('Unknown source checkpoint '+through);
 const reportPath=path.resolve(args['--report']);
 for(const key of ['--mk1','--mk2','--mk3'])if(args[key]){
  const fixture=fs.realpathSync(args[key]);
@@ -31,7 +31,8 @@ function run(name,command,argv){
 }
 try{
  run('MK2 input identity',process.env.PYTHON||'python',['scripts/verify-mk2-p16-fixture-identity.py',args['--mk2']]);
- const current=through==='p37'?['p35-cumulative','p37-source-coverage','p35-arena-tail','p34-armory-tail','p33-pit','p32-forest-tail','p30-forest','p29-tower','p28-portal','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
+ const current=through==='p38'?['p35-cumulative','p38-tomb-coverage','p37-source-coverage','p35-arena-tail','p34-armory-tail','p33-pit','p32-forest-tail','p30-forest','p29-tower','p28-portal','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
+  through==='p37'?['p35-cumulative','p37-source-coverage','p35-arena-tail','p34-armory-tail','p33-pit','p32-forest-tail','p30-forest','p29-tower','p28-portal','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
   through==='p35'?['p35-cumulative','p35-arena-tail','p34-armory-tail','p33-pit','p32-forest-tail','p30-forest','p29-tower','p28-portal','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
   through==='p34'?['p34-cumulative','p34-armory-tail','p33-pit','p32-forest-tail','p30-forest','p29-tower','p28-portal','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
   through==='p33'?['p33-cumulative','p33-pit','p32-forest-tail','p30-forest','p29-tower','p28-portal','p27-tomb','p25-arena','p24-battle','p23-armory','p22-cave']:
