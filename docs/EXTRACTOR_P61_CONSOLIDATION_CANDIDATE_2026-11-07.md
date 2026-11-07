@@ -1,5 +1,7 @@
 # P61 — Fifth-pass consolidation candidate, original three-game gate pending
 
+**2026-11-08 update.** The subsequent full original-fixture run passed all nine groups. See the [accepted checkpoint](EXTRACTOR_P61_ACCEPTED_CHECKPOINT_2026-11-08.md) for the tested commit and results. The record below describes the earlier candidate.
+
 Date: 2026-11-07. Branch: `develop`. Last **original-fixture accepted full three-game** checkpoint: P56. P57, P58 and P60 subsequently passed focused user-local original game acceptance, while P59 passed independent original MK2 fixture plus browser ZIP validation. Do not equate these separate focused successes with a *fresh* P61 cumulative three-game PASS. `main` remains P16; no promotion.
 
 ## Scope / design

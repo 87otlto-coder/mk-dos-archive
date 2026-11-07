@@ -1,8 +1,12 @@
 # MK DOS Extractor — project status
 
-**Last status reconciliation:** 2026-11-07
+**Last status reconciliation:** 2026-11-08
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
+
+## P61 accepted original three-game checkpoint — 2026-11-08
+
+The full original MK1/MK2/MK3 run passed all nine groups at `3ff65c5b2a939df21e02a460f53e859a7b467346`. It verified 2,656 / 5,369 / 9,186 assets, all P57–P60 gates including the independent P59 Python oracle, and the complete tracked source tree. The checkpoint applies to `develop`. [Exact source and run evidence](docs/EXTRACTOR_P61_ACCEPTED_CHECKPOINT_2026-11-08.md).
 
 ## P61 fifth-pass consolidated source candidate — CI PASS; original three-game regression pending, 2026-11-07
 
