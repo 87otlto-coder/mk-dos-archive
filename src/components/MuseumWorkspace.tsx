@@ -105,7 +105,9 @@ export function MuseumStages({ inventory, detection, source, goTo, onSelectResou
           <div className="mw-stage-identity"><strong>{stage.name}</strong><span className="mw-subtle-chip">Source present</span></div>
           <p>{stage.note}</p>
           {stage.effectFrames !== null ? <div className="mw-stage-detail"><span>{stage.effectFrames} original effect frames</span><span>{stage.tracks} sequences</span></div> : <div className="mw-stage-detail mw-muted">Independent scene assembly not verified</div>}
-          <div className="mw-stage-actions"><button className="mw-text-button" onClick={() => onSelectResource(stage.file)}>Browse resource <ChevronRight size={15}/></button>
+          <div className="mw-stage-actions">
+            {mk2 ? <button className="mw-text-button" onClick={() => onSelectResource(stage.file)}>Browse resource <ChevronRight size={15}/></button>
+              : <span className="mw-muted mw-xs">Header identified; no verified per-file decoded-asset link</span>}
             {mk2 && (stage.file === 'PORTAL.GRA' || stage.file === 'TOMB.GRA' || stage.file === 'TOWER.GRA') && <button className="mw-text-button" onClick={() => setStagePreview(stage.file.replace('.GRA', '').toLowerCase() as 'portal' | 'tomb' | 'tower')}>Original frames <ChevronRight size={15}/></button>}</div>
         </div>
       </article>)}
