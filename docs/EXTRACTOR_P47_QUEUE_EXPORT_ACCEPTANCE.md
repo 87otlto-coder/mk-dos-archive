@@ -25,3 +25,9 @@ Private output is rejected inside source or original fixtures after resolving ex
 P48 should exercise original-data browser report downloads, one added indexed family and a source-order queue when a controlled local session is available. If unavailable, continue a concrete extractor improvement from existing verified research and retain the browser gate as pending; do not equate shared API tests with UI validation. P51 remains the next consolidation assessment. Main stays P16.
 
 At every stopping update, state the current pass, verified result, material uncertainty and next action, as requested.
+
+## Committed verification
+
+Source candidate **ce4a0c7efe5d65f8061022aca7c01ecc94f9833a**, tree **28dd327dfedbb8908f13a472bfe9a7d2b00f118d**: all **2,254 blobs / 386 src files** match (95 raw / 2,159 checkout-newline-normalized), zero missing/mismatched/unsafe paths. Inventory SHA-256 **1a2a5dfbcc1ac542a313a368eb28c891cf44a3aeeb097f6b7e1ae8ef4e80dbc6**. Reviewed changes are verification/CI/docs only; no runtime source changes or deletions.
+
+[CI run 42369606768](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42369606768) completed SUCCESS on the exact candidate, including new CJS syntax and independent Python verifier load without game data, existing source controls, build/TypeScript and Chrome onboarding startup. This source-only browser boot is separate from original-data interaction and the private-fixture export verification above. Subsequent evidence-only commit changes this handoff, status and validation JSON; source is identical to the audited CI candidate. Main remains P16.

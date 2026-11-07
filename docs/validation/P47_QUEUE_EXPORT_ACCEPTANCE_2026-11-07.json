@@ -49,5 +49,29 @@
   "fullCumulativeRegressionRerun": false,
   "latestFullRegression": "P46",
   "newRepresentations": 0,
-  "mainPromotion": false
+  "mainPromotion": false,
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "ce4a0c7efe5d65f8061022aca7c01ecc94f9833a",
+    "treeSha": "28dd327dfedbb8908f13a472bfe9a7d2b00f118d",
+    "fileBlobs": 2254,
+    "sourceFiles": 386,
+    "rawByteMatches": 95,
+    "checkoutNormalizedMatches": 2159,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "1a2a5dfbcc1ac542a313a368eb28c891cf44a3aeeb097f6b7e1ae8ef4e80dbc6",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "githubTreeAssociationVerified": true,
+  "githubCI": {
+    "id": 42369606768,
+    "sha": "ce4a0c7efe5d65f8061022aca7c01ecc94f9833a",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42369606768"
+  },
+  "verifiedSourceCandidate": "ce4a0c7efe5d65f8061022aca7c01ecc94f9833a",
+  "evidenceFollowupChangesRuntimeSource": false
 }
