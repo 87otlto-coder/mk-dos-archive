@@ -4,6 +4,12 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P41 consolidated source checkpoint - 2026-11-07
+
+**P41 consolidates P37-P40 on develop; main remains P16.** Fresh **25 three-game suites plus P40 fixture gate PASS**: MK1 **2,656**, MK2 **5,369 / 4,357 checks**, MK3 **9,186**. Twelve independent image families **251 representations / 939,903 pixels / 10,712,883 checks**, **54 false exports rejected**. Prior coverage/claim controls pass; no runtime changes.
+
+MK1/MK3 decoded visuals match P21/P26/P31/P36; browser/native behavior remains separately qualified. Local syntax/build/TypeScript and eight preflight/seven source-audit negative controls pass. [P41 checkpoint](docs/EXTRACTOR_P41_SOURCE_CHECKPOINT.md), [evidence](docs/validation/P41_CHECKPOINT_2026-11-07.json). Source audit/CI result will be associated after the committed checks finish. Next P42-P45 bounded TOWER/report/export acceptance work. Main unchanged.
+
 ## P40 PORTAL integration - original-fixture acceptance verified, 2026-11-07
 
 **P40 acceptance PASS on complete committed source dfe700aa698e6b0d4399f1da1813a66f96b29b58.** PORTAL has **34 qualified references / 92,756 covered bytes / zero gaps or overlap**; twenty existing effects added to accounting scope, **no new assets**. MK2 remains **5,369 unique representations**.
