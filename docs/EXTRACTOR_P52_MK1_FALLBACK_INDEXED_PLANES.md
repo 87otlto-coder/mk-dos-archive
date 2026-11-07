@@ -18,6 +18,8 @@ A new original-fixture gate `scripts/verify-mk1-p52-fallback-indexed.cjs` checks
 
 **VERIFIED (committed source):** the two-plane metadata change is on `develop`; source-only GitHub CI passed at commit `81f2d429744b9abf2056d50585bb69ee8b7de947` (run 42386834829).
 
+**VERIFIED (CI):** [run 42387070130](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42387070130) completed SUCCESS at the source/workflow commit `ddaf9428ee9b7867990b66331c47d9cf1d72ff56`, including the new P52 test-script syntax gate, TypeScript, production build, media guard and source-only Chrome startup. This CI carries no original MK1 game files.
+
 **VALIDATION PENDING:** execute the new original-fixture acceptance script on the entire current committed source, verify all 187 real ZIPs and fail-closed negative cases, rerun the existing three-game fixture regressions and actual browser indexed ZIP clicking. Source CI does not contain commercial fixture data. P51's prior census MK1 2,656 / MK2 5,369 / MK3 9,186 remains historical, not freshly rerun here.
 
 **UNKNOWN:** the proper original Kano palette bank, animation scheduling and in-game screen arrangement; none are claimed.
