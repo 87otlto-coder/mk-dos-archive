@@ -188,5 +188,5 @@ export async function runMK1Pipeline(source: DirectorySource, progress: (message
   const audioBundle = await executeBrowserAudioExportBundle(source, audioMusicResourceGraph);
   signal?.throwIfAborted(); progress('audioBundleValidation');
   const audioBundleValidation = await executeBrowserAudioExportBundleValidation(source, audioBundle, audioMusicResourceGraph);
-  return { browserBundle, browserBundleValidation, animationBundle, animationBundleValidation, animationAssetsWorkspace, audioBundle, audioBundleValidation, fighterAnimationComparison, streamControlTiming, animationExportManifest };
+  return { stageBackgroundGraph, browserBundle, browserBundleValidation, animationBundle, animationBundleValidation, animationAssetsWorkspace, audioBundle, audioBundleValidation, fighterAnimationComparison, streamControlTiming, animationExportManifest };
 }
