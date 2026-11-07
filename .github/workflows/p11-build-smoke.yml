@@ -131,6 +131,8 @@ jobs:
         run: node scripts/test-p57-cross-game-thumbnails.cjs
       - name: P58 source-qualified MK2 palette comparison refusals (no game data)
         run: node scripts/test-p58-mk2-palette-evidence.cjs
+      - name: P59 Tomb sample projection and source refusals (no game data)
+        run: node scripts/test-p59-tomb.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |

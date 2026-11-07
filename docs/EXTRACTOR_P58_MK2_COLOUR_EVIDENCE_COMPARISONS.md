@@ -40,3 +40,7 @@ npm.cmd run dev
 ```
 
 In the MK2 Stage Gallery, expand **Compare original palette evidence** under Living Forest, Kombat Tomb or The Portal. This panel is collapsed by default to avoid overwhelming other stage cards. A successful original-fixture test reports `P58`, `PASS`, `5369`, five Forest pairs and two floor witnesses, while preserving all runtime palette and full-scene UNKNOWN flags.
+
+## Original fixture acceptance, recorded during P59
+
+User-local P58 original MK2 PASS, independently rerun during P59. Both results give 5,369 assets, five Forest source-index/candidate-RGB pairs, two screenshot-witnessed floor strips, four source hashes and preserved indexed planes. Live DAC ownership remains unknown. This closes the original-file gate recorded above.

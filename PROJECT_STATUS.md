@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P59 Kombat Tomb screenshot samples — original-file and browser PASS, 2026-11-07
+
+The Asset Library exports the separately registered architecture and sky samples from O123. Chrome downloaded the package after scanning 5,369 original MK2 assets. Independent decoding verified the two PNGs, source indices and masks. All 2,650 architecture and 823 sky samples matched the authenticated screenshot. The O123 auditor rejected 14 incorrect shifts. Runtime camera, DAC ownership, full draw order and timing remain unknown. See the [P59 technical handoff](docs/EXTRACTOR_P59_TOMB_SCREENSHOT_SAMPLES.md) for reproduction and evidence boundaries.
+
+## P58 original MK2 acceptance — PASS, 2026-11-07
+
+The user reported a local original-MK2 P58 regression PASS. A separate run during P59 reproduced 5,369 unique assets, five Forest source-index/candidate-RGB pairs, two screenshot-witnessed floor strips and four original source hashes. The indexed planes were preserved. Runtime DAC ownership remains unknown. This supersedes the pending original-file gate below.
+
 ## P58 MK2 original-index and colour-evidence comparison — interim develop, 2026-11-07
 
 **Source implementation and GitHub CI PASS; original-MK2 fixture and browser acceptance pending.** P58 adds a collapsed, explicitly labelled palette-evidence inspector to the existing MK2 Stage Gallery for Living Forest, Kombat Tomb and The Portal. It displays five pairs of the already-verified Forest O197 exact source-index canvases and EXE-linked **candidate RGB** views; Tomb/Portal show the existing P15 **screenshot-conditioned floor-only RGB** strips (12,222 and 4,420 original screenshot pixel matches). No renderer recolouring or original image/palette modification was introduced. Native VGA DAC bank ownership, full-stage composition, camera, layer order and timing remain UNKNOWN.
