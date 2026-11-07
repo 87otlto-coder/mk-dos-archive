@@ -1,7 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, Archive, BookOpen, CheckCircle2, ChevronRight, FileArchive, FileCode2, FlaskConical, FolderOpen, Image as ImageIcon, Layers3, Library, Microscope, Search, ShieldCheck, Sparkles } from 'lucide-react';
 import { MK2StageEffectsPreview } from './MK2StageEffectsPreview';
-import { discoverStageGallery, verifiedMK1HeaderPreviewLinks } from './stageGalleryModel';
+import { discoverStageGallery, type GalleryStage } from './stageGalleryModel';
+import { buildGalleryVisualsP57 } from './stageGalleryVisualsP57';
+import { StageThumbnailP57 } from './StageThumbnailP57';
+import type { Asset } from '../core/assets/model';
 import { exactAssetSearchP55 } from '../core/assets/assetSearchP55';
 import type { InventoryEntry } from '../core/models/InventoryEntry';
 import type { GameDetectionResult } from '../core/models/GameDetection';
@@ -84,47 +87,125 @@ export function MuseumOverview({ inventory, detection, source, goTo }: {
   </div>;
 }
 
-export function MuseumStages({ inventory, detection, source, goTo, onSelectResource, stageBindings }: {
+
+export function MuseumStages({ inventory, detection, source, goTo, onSelectResource, stageBindings, galleryAssets }: {
   inventory: InventoryEntry[]; detection: GameDetectionResult; source: DirectorySource; goTo: (page: WorkspacePage) => void;
-  onSelectResource: (file: string) => void; stageBindings: unknown;
+  onSelectResource: (file: string) => void; stageBindings: unknown; galleryAssets: Asset[];
 }) {
   const [search, setSearch] = useState('');
+  const [mk3Page, setMk3Page] = useState(0);
   const [stagePreview, setStagePreview] = useState<'portal' | 'tomb' | 'tower' | null>(null);
   const mk2 = detection.game === 'mk2';
-  const cards = useMemo(() => discoverStageGallery(inventory, detection.game, search), [inventory, detection.game, search]);
-  const verifiedLinks = useMemo(() => verifiedMK1HeaderPreviewLinks(stageBindings), [stageBindings]);
+  const visuals = useMemo(() => detection.game === 'unknown'
+    ? null : buildGalleryVisualsP57(detection.game, galleryAssets, stageBindings),
+    [detection.game, galleryAssets, stageBindings]);
+  const originalCards = useMemo(() => discoverStageGallery(inventory, detection.game, search), [inventory, detection.game, search]);
+  const mk3Rows = detection.game === 'mk3' ? (visuals?.mk3UnassignedPictures ?? []).filter(v =>
+    (`${v.title} ${v.asset.id} DATA.MK3 original IFF`).toLowerCase().includes(search.trim().toLowerCase())) : [];
+  useEffect(() => setMk3Page(0), [search, detection.game]);
+  const pageSize = 24;
+  const visibleMK3 = mk3Rows.slice(mk3Page * pageSize, (mk3Page + 1) * pageSize);
+  const cards: GalleryStage[] = detection.game === 'mk3'
+    ? visibleMK3.map(v => ({name:v.title,file:v.asset.id,
+        note:'Original IFF source image with embedded palette; arcade-stage assignment UNKNOWN',
+        effectFrames:null,tracks:null}))
+    : originalCards;
+  const mk3Visuals = new Map(visibleMK3.map(v => [v.asset.id, v]));
+  const count = detection.game === 'mk3' ? mk3Rows.length : cards.length;
   return <div className="mw-page">
-    <div className="mw-intro"><span className="mw-eyebrow mw-accent">MUSEUM / STAGES</span><h1>Stage gallery</h1><p>Browse discovered background resources. Full scene composition is not implied by the presence of a resource file.</p><p className="mw-muted mw-xs">Color panels below are navigation markers, not source-image reconstructions.</p></div>
-    <div className="mw-toolbar"><label className="mw-search"><Search size={17}/><input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search stage names or resources" aria-label="Search stages"/></label><span className="mw-muted">{cards.length} matching resources</span></div>
+    <div className="mw-intro">
+      <span className="mw-eyebrow mw-accent">MUSEUM / STAGES</span>
+      <h1>Stage gallery</h1>
+      <p>Original game artwork and source resources. A decoded layer or picture is not necessarily a reconstructed gameplay scene.</p>
+      <p className="mw-muted mw-xs">Images shown here are decoded locally from the selected installation, never stock artwork. Missing source-qualified previews remain visibly unassigned.</p>
+    </div>
+    <div className="mw-toolbar">
+      <label className="mw-search"><Search size={17}/><input value={search} onChange={e => setSearch(e.target.value)}
+        placeholder="Search original resources or source images" aria-label="Search stages"/></label>
+      <span className="mw-muted">{count} matching {detection.game === 'mk3' ? 'unassigned source images' : 'resources'}</span>
+    </div>
     {detection.game === 'mk1' && <div className="mw-research-banner">
-      <Layers3 size={21}/><div><strong>Decoded MK1 backgrounds</strong><p>After decoding in the Asset Library, verified O27/O54 source-header links will appear on matching cards. These normalized previews are not gameplay screenshots.</p>{verifiedLinks.size === 0 && <p>To enable those links, open the Asset Library and choose Decode &amp; browse.</p>}</div>
+      <Layers3 size={21}/><div><strong>Decoded MK1 background modules</strong>
+        <p>Authenticated O27/O54 headers link to normalized source-module previews, not finished gameplay scenes.</p>
+        {(visuals?.mk1ByHeader.size ?? 0) === 0 && <p>Open Asset Library and choose Decode &amp; browse to populate source-backed thumbnails.</p>}
+      </div>
       <button onClick={() => onSelectResource('normalized_combined_background')}>Browse normalized previews <ChevronRight size={15}/></button>
     </div>}
+    {mk2 && galleryAssets.length === 0 && <div className="mw-research-banner">
+      <Layers3 size={21}/><div><strong>Original MK2 source layers</strong><p>Decode &amp; browse in the Asset Library to populate source-qualified layer thumbnails. Their palettes and compositing may remain unresolved.</p></div>
+      <button onClick={() => goTo('assets')}>Open Asset Library <ChevronRight size={15}/></button>
+    </div>}
+    {detection.game === 'mk3' && <div className="mw-research-banner">
+      <Layers3 size={21}/><div><strong>MK3 original IFF picture archive</strong>
+        <p>DATA.MK3 contains embedded-palette images. Their original arcade-stage membership is not established, so this is an unassigned-picture browser, not a reconstructed stage list.</p>
+        {galleryAssets.length === 0 && <p>Decode &amp; browse in the Asset Library to load original pictures.</p>}
+      </div>
+      <button onClick={() => onSelectResource('DATA.MK3')}>Browse all original pictures <ChevronRight size={15}/></button>
+    </div>}
+    {!!visuals?.errors.length && <div className="mw-source-errors" role="alert">
+      <strong>{visuals.errors.length} source thumbnail validation error(s)</strong>
+      {visuals.errors.slice(0,6).map((error,i)=><p key={i}>{error}</p>)}
+      {visuals.errors.length>6 && <p>Additional invalid image records are withheld from the gallery.</p>}
+    </div>}
     {cards.length ? <div className="mw-stage-grid">
-      {cards.map((stage, index) => <article className="mw-stage-card" key={stage.file}>
-        <div className={`mw-stage-visual mw-stage-color-${index % 5}`} aria-hidden="true"><Layers3 size={38}/><span>{stage.file}</span></div>
-        <div className="mw-stage-body">
-          <div className="mw-stage-identity"><strong>{stage.name}</strong><span className="mw-subtle-chip">Source present</span></div>
-          <p>{stage.note}</p>
-          {stage.effectFrames !== null ? <div className="mw-stage-detail"><span>{stage.effectFrames} original effect frames</span><span>{stage.tracks} sequences</span></div> : <div className="mw-stage-detail mw-muted">Independent scene assembly not verified</div>}
-          <div className="mw-stage-actions">
-            {mk2 ? <button className="mw-text-button" onClick={() => onSelectResource(stage.file)}>Browse resource <ChevronRight size={15}/></button>
-              : detection.game === 'mk1' ? (verifiedLinks.get(stage.file)?.length
-                ? <div className="mw-stage-preview-links">
-                    <span className="mw-muted mw-xs">O27/O54 verified source-module previews (not gameplay scenes)</span>
-                    {verifiedLinks.get(stage.file)!.map(link => <button key={link.assetId} className="mw-text-button"
-                      onClick={() => onSelectResource(exactAssetSearchP55(link.assetId))}>
-                      Browse {link.moduleSymbol} preview <ChevronRight size={15}/></button>)}
+      {cards.map((stage, index) => {
+        const mk1Links = visuals?.mk1ByHeader.get(stage.file) ?? [];
+        const visual = detection.game === 'mk1' ? mk1Links[0]
+          : detection.game === 'mk2' ? visuals?.mk2ByResource.get(stage.file)
+          : mk3Visuals.get(stage.file);
+        return <article className="mw-stage-card" key={stage.file}>
+          {visual ? <div className="mw-stage-visual mw-stage-visual-source">
+            <StageThumbnailP57 visual={visual}/>
+          </div> : <div className={'mw-stage-visual mw-stage-color-' + (index % 5)}>
+            <Layers3 size={38}/><span>{stage.file}</span>
+            <small>No qualified thumbnail</small>
+          </div>}
+          <div className="mw-stage-body">
+            <div className="mw-stage-identity"><strong>{stage.name}</strong>
+              <span className="mw-subtle-chip">{detection.game === 'mk3' ? 'Original IFF' : 'Source present'}</span>
+            </div>
+            <p>{stage.note}</p>
+            {visual && <p className="mw-source-evidence">Preview: {visual.title}. {visual.evidence}</p>}
+            {stage.effectFrames !== null
+              ? <div className="mw-stage-detail"><span>{stage.effectFrames} original effect frames</span><span>{stage.tracks} sequences</span></div>
+              : <div className="mw-stage-detail mw-muted">Full native scene composition not established</div>}
+            <div className="mw-stage-actions">
+              {mk2 ? <>
+                <button className="mw-text-button" onClick={() => onSelectResource(stage.file)}>Browse resource <ChevronRight size={15}/></button>
+                {visual && <button className="mw-text-button"
+                  onClick={() => onSelectResource(exactAssetSearchP55(visual.asset.id))}>Open source layer <ChevronRight size={15}/></button>}
+              </> : detection.game === 'mk1' ? (mk1Links.length
+                  ? <div className="mw-stage-preview-links">
+                    <span className="mw-muted mw-xs">Verified source-module previews (not gameplay scenes)</span>
+                    {mk1Links.map(link => <button key={link.asset.id} className="mw-text-button"
+                      onClick={() => onSelectResource(exactAssetSearchP55(link.asset.id))}>
+                      Browse {link.title} preview <ChevronRight size={15}/></button>)}
                   </div>
-                : <span className="mw-muted mw-xs">Header identified; decoded-asset link not verified or not yet loaded</span>)
-              : <span className="mw-muted mw-xs">Stage candidate; no qualified decoded-asset link</span>}
-            {mk2 && (stage.file === 'PORTAL.GRA' || stage.file === 'TOMB.GRA' || stage.file === 'TOWER.GRA') && <button className="mw-text-button" onClick={() => setStagePreview(stage.file.replace('.GRA', '').toLowerCase() as 'portal' | 'tomb' | 'tower')}>Original frames <ChevronRight size={15}/></button>}</div>
-        </div>
-      </article>)}
-    </div> : <div className="mw-empty"><FileArchive size={25}/><strong>No matching supported stage resources in this installation.</strong><p>Try clearing the filter. MK1 background candidates are listed by their source HDRS.GRA identities; names are not yet mapped to arcade-stage names.</p><button onClick={() => goTo('assets')}>Open asset library</button></div>}
+                  : <span className="mw-muted mw-xs">Header identified; qualified decoded preview not available</span>)
+                : visual ? <button className="mw-text-button"
+                  onClick={() => onSelectResource(exactAssetSearchP55(visual.asset.id))}>Open original IFF picture <ChevronRight size={15}/></button>
+                : <span className="mw-muted mw-xs">No qualified decoded picture link</span>}
+              {mk2 && (stage.file === 'PORTAL.GRA' || stage.file === 'TOMB.GRA' || stage.file === 'TOWER.GRA') &&
+                <button className="mw-text-button" onClick={() => setStagePreview(stage.file.replace('.GRA', '').toLowerCase() as 'portal' | 'tomb' | 'tower')}>Original frames <ChevronRight size={15}/></button>}
+            </div>
+          </div>
+        </article>;
+      })}
+    </div> : <div className="mw-empty"><FileArchive size={25}/>
+      <strong>{detection.game==='mk3' ? 'No qualified unassigned IFF pictures loaded.' : 'No matching supported stage resources in this installation.'}</strong>
+      <p>Check the source scan and search filter. Original arcade-stage names and complete compositions are not inferred from unidentified resources.</p>
+      <button onClick={() => goTo('assets')}>Open asset library</button>
+    </div>}
+    {detection.game === 'mk3' && mk3Rows.length > pageSize && <div className="mw-gallery-pagination">
+      <button disabled={mk3Page===0} onClick={()=>setMk3Page(p=>Math.max(0,p-1))}>Previous pictures</button>
+      <span>{mk3Page*pageSize+1}–{Math.min((mk3Page+1)*pageSize,mk3Rows.length)} of {mk3Rows.length}</span>
+      <button disabled={(mk3Page+1)*pageSize>=mk3Rows.length} onClick={()=>setMk3Page(p=>p+1)}>Next pictures</button>
+    </div>}
     {stagePreview && <MK2StageEffectsPreview key={stagePreview} source={source} stage={stagePreview}/>}
     {mk2 && <div className="mw-research-banner">
-      <Sparkles size={21}/><div><strong>Original source-layer viewer</strong><p>For Portal and Tomb, the existing laboratory can decode original setup-local layers, 896-pixel-wide floor data and original effect sequences. Tower effects are available with a qualified source-linked palette.</p></div>
+      <Sparkles size={21}/><div><strong>Original source-layer viewer</strong>
+        <p>For Portal and Tomb, the laboratory decodes source setup layers, wide floor data and effect sequences. Tower effects have a qualified source-linked palette; final runtime palette selection remains unproven.</p>
+      </div>
       <button onClick={() => goTo('laboratory')}>Open workbench <ArrowRight size={15}/></button>
     </div>}
   </div>;
