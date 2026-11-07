@@ -26,7 +26,7 @@ import { MuseumOverview, MuseumStages, MUSEUM_NAV, LAB_NAV, gameTitle, type Work
 import { ResearchArchive } from './components/ResearchArchive';
 import { O194Workbench } from './components/O194Workbench';
 import type { KnownCompilation, HypothesisReport } from './core/experiments/o194';
-import type { Game } from './core/assets/model';
+import type { Asset, Game } from './core/assets/model';
 import './components/MuseumWorkspace.css';
 
 const names: Record<WorkspacePage, string> = {
@@ -85,6 +85,7 @@ export default function App() {
   const [page, setPage] = useState<WorkspacePage>('overview');
   const [resourceSearch, setResourceSearch] = useState('');
   const [stageBindings, setStageBindings] = useState<unknown>(null);
+  const [galleryAssets, setGalleryAssets] = useState<Asset[]>([]);
   const [assetNavRevision, setAssetNavRevision] = useState(0);
   const [mobileNav, setMobileNav] = useState(false);
   const [known, setKnown] = useState<KnownCompilation | null>(null);
@@ -97,7 +98,7 @@ export default function App() {
   };
 
   const handleSelectDirectory = async (selectedSource: DirectorySource) => {
-    setKnown(null); setExperiment(null); setStageBindings(null); setError(null); setSource(selectedSource); setIsScanning(true);
+    setKnown(null); setExperiment(null); setStageBindings(null); setGalleryAssets([]); setError(null); setSource(selectedSource); setIsScanning(true);
     setInventory(null); setDetection(null); setScanProgress({ scanned: 0, total: 0 });
     try {
       const results = await buildDirectoryInventory(selectedSource, {
@@ -123,7 +124,7 @@ export default function App() {
     a.download = `inventory_${source.directoryName.replace(/[^\w-]/g, '_')}_${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
     a.click(); URL.revokeObjectURL(url);
   };
-  const reset = () => { setSource(null); setInventory(null); setDetection(null); setError(null); setPage('overview'); setResourceSearch(''); setKnown(null); setExperiment(null); setStageBindings(null); };
+  const reset = () => { setSource(null); setInventory(null); setDetection(null); setError(null); setPage('overview'); setResourceSearch(''); setKnown(null); setExperiment(null); setStageBindings(null); setGalleryAssets([]); };
   const ready = !!(source && detection && inventory?.length);
   const zone: WorkspaceZone = isMuseum(page) ? 'museum' : 'laboratory';
 
@@ -164,8 +165,8 @@ export default function App() {
         </div>}
         {!isScanning && ready && <>
           {page === 'overview' && <MuseumOverview source={source!} inventory={inventory!} detection={detection!} goTo={navigate}/>}
-          {page === 'stages' && <MuseumStages inventory={inventory!} detection={detection!} source={source!} goTo={navigate} onSelectResource={file => {navigate('assets');setResourceSearch(file);}} stageBindings={stageBindings}/>}
-          <div hidden={page !== 'assets'}><div className="mw-page mw-assets-page"><div className="mw-intro"><span className="mw-eyebrow mw-accent">MUSEUM / COLLECTIONS</span><h1>Asset library</h1><p>Decode, inspect, compare and export. Original source files are always read locally.</p></div>{detection!.game !== 'unknown' ? <AssetBrowser key={`${source!.directoryName}:${detection!.game}`} source={source!} game={detection!.game} initialSearch={resourceSearch} navigationRevision={assetNavRevision} initialCollection={known?.collection ?? (known?.assets.length ? {game:known.game, assets:known.assets, packages:[],reports:{mode:'O194_PARTIAL_COMPILED'},limitations:['Partial trusted source frames; deep catalogue did not complete.']} : null)} onCollectionLoaded={collection => setStageBindings(collection.game === 'mk1' ? (collection.reports.stageHeaderBindings ?? null) : null)}/> : <div className="mw-empty"><strong>Unrecognized game source</strong><p>Inventory inspection is available, but the MK1/MK2/MK3 asset decoder cannot be applied to an unknown game.</p></div>}</div></div>
+          {page === 'stages' && <MuseumStages inventory={inventory!} detection={detection!} source={source!} goTo={navigate} onSelectResource={file => {navigate('assets');setResourceSearch(file);}} stageBindings={stageBindings} galleryAssets={galleryAssets}/>}
+          <div hidden={page !== 'assets'}><div className="mw-page mw-assets-page"><div className="mw-intro"><span className="mw-eyebrow mw-accent">MUSEUM / COLLECTIONS</span><h1>Asset library</h1><p>Decode, inspect, compare and export. Original source files are always read locally.</p></div>{detection!.game !== 'unknown' ? <AssetBrowser key={`${source!.directoryName}:${detection!.game}`} source={source!} game={detection!.game} initialSearch={resourceSearch} navigationRevision={assetNavRevision} initialCollection={known?.collection ?? (known?.assets.length ? {game:known.game, assets:known.assets, packages:[],reports:{mode:'O194_PARTIAL_COMPILED'},limitations:['Partial trusted source frames; deep catalogue did not complete.']} : null)} onCollectionLoaded={collection => { setStageBindings(collection.game === 'mk1' ? (collection.reports.stageHeaderBindings ?? null) : null); setGalleryAssets(collection.assets); }}/> : <div className="mw-empty"><strong>Unrecognized game source</strong><p>Inventory inspection is available, but the MK1/MK2/MK3 asset decoder cannot be applied to an unknown game.</p></div>}</div></div>
           {page === 'compiler' && detection!.game !== 'unknown' && <O194Workbench source={source!} game={detection!.game as Game} known={known} onKnown={setKnown} experiment={experiment} onExperiment={setExperiment}/>}
           {page === 'laboratory' && <Laboratory key={`${source!.directoryName}:${detection!.game}`} source={source!} detection={detection!} inventory={inventory!}/>}
           {page === 'inventory' && <div className="mw-page"><div className="mw-intro"><span className="mw-eyebrow mw-lab-accent">LABORATORY / INVENTORY</span><h1>File inventory</h1><p>Original directory evidence, detection confidence and complete discovered file listing.</p></div><DetectionSummary directoryName={source!.directoryName} totalFiles={inventory!.length} totalSize={inventory!.reduce((sum, f) => sum + f.size, 0)} detection={detection!} onExportJson={exportInventory} onSelectDifferentDirectory={reset}/><InventoryView inventory={inventory!}/></div>}
