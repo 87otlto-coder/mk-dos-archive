@@ -8,7 +8,7 @@
 
 **Where:** third interim after P46. Fixed a demonstrated registry omission: 416 MK3 IFF images now retain their decoded index/mask/explicit CMAP planes. Indexed/queue ZIPs include the paletteRgb sidecar; unresolved sprite palettes stay unresolved. No new assets or preview changes.
 
-**Verified:** independent original IFF readback **416 images / 6,256,633 pixels / 319,488 CMAP bytes PASS**. MK1 2,656 / MK3 9,186 compatibility and unchanged visual hashes PASS; current MK2 acceptance 5,369 PASS. P48 guards and five invalid-palette refusals PASS; TypeScript/build PASS. [P49 handoff](docs/EXTRACTOR_P49_PALETTE_PRESERVATION.md), [results](docs/validation/P49_PALETTE_PRESERVATION_2026-11-07.json). Source/CI association follows verification.
+**Verified:** independent original IFF readback **416 images / 6,256,633 pixels / 319,488 CMAP bytes PASS**. MK1 2,656 / MK3 9,186 compatibility and unchanged visual hashes PASS; current MK2 acceptance 5,369 PASS. P48 guards and five invalid-palette refusals PASS; TypeScript/build PASS. [P49 handoff](docs/EXTRACTOR_P49_PALETTE_PRESERVATION.md), [results](docs/validation/P49_PALETTE_PRESERVATION_2026-11-07.json). Complete source audit **2,264 blobs / 386 src files PASS**, zero missing/mismatched/unsafe paths; candidate **ba5ac3aa69f1b6a592b2bef33d55c8cbefea0a5d**. [CI 42379265733](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42379265733) **SUCCESS**, including new malformed-palette controls.
 
 **Uncertain:** browser interaction/download and unqualified gameplay palette/timing/stage relationships remain open. **Next:** P50 cross-game indexed/palette acceptance gate, then P51 consolidation. Main unchanged.
 
@@ -448,7 +448,7 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
 | Most recent interim pass | **P49**, after P46 |
-| Latest full MK2 original-fixture cumulative result | **P48: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
+| Latest full MK2 original-fixture cumulative result | **P49: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
 | Next planned pass | **P50 cross-game indexed/palette acceptance** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |

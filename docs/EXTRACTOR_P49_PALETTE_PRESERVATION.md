@@ -17,9 +17,15 @@ python scripts/verify-mk3-p49-palettes-independent.py <original-MK3-dir> <privat
 node scripts/test-p49-palette-export.cjs
 ~~~
 
-Private output remains outside repository/fixtures. No original CMAP bytes, images or ZIPs are committed. Source/CI associations follow committed verification.
+Private output remains outside repository/fixtures. No original CMAP bytes, images or ZIPs are committed. Complete source and CI are verified below.
 
 ## Uncertainty and next
 The inspector button's real browser click/download remains VALIDATION PENDING. Explicit embedded image palette is verified; runtime palette banks, sprite ownership, native timing and full stage composition are not inferred.
 
 Next **P50**: add this palette-aware export path to a repeatable cross-game indexed acceptance gate, retaining legacy archive/preview controls before P51 consolidation. P46 remains consolidated checkpoint; main remains P16. Stop updates state where, verified result, uncertainty and next step.
+
+## Committed source and CI
+
+Source candidate **ba5ac3aa69f1b6a592b2bef33d55c8cbefea0a5d**, tree **52392386e250d2682fb82e2832937d2e4d04eebf**: all **2,264 blobs / 386 src files** match (98 raw / 2,166 checkout-newline-normalized), zero missing/mismatched/unsafe paths. Inventory SHA-256 **051b3bac9a8af3ef2b133466d3847b72fcebda71747b755110a170d3ae10c7da**. Runtime changes are limited to retaining already-decoded MK3 image planes and the shared exporter palette sidecar/validation path. Existing decoders and rendered pixels are unchanged.
+
+[CI run 42379265733](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42379265733) completed SUCCESS on that exact source candidate, including five malformed-palette refusals on dummy data, independent verifier load, existing export/source controls, build/TypeScript and source-only Chrome startup. Original-fixture acceptance is recorded separately. Subsequent evidence-only commit changes this handoff, status and validation JSON; runtime/verification source remains identical to the audited CI candidate. Actual browser interaction remains pending; main stays P16.
