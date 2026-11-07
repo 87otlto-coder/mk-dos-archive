@@ -12,6 +12,8 @@ P36 freshly verifies all **23 standard three-game suites**, including MK1's 49 s
 
 P32-P35's 65 additional standalone representations and prior mosaics, floors, effects and qualified source relationships remain preserved. This is headless collection/export verification; original-data browser interaction and unqualified native runtime behavior remain separate.
 
+P37 freshly reruns all 22 current MK2 suites at 5,369 representations and adds a metadata-only source interval report: 15 resources / 272 qualified references. Independent original-file and byte-set accounting passes, with six false reports rejected. Gaps are outside this selected scope and can already have exported effects; they do not measure missing images. Latest MK1/MK3 fixture evidence remains P36.
+
 Original-input identity is separately qualified: MK2 directory census and 13 critical hashes, MK1 canonical EXE hash, and recorded MK3 EXE hash. No newly authenticated whole-corpus hash claim is made for MK1 or MK3. Historical detection/inventory support is retained; P21 does not rerun detection qualification.
 
 See [P36 source checkpoint](EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [current project status](../PROJECT_STATUS.md), and the individual evidence handoffs for interpretation limits.

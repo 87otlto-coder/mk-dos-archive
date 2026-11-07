@@ -4,6 +4,17 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P37 source-interval coverage report - interim develop pass, 2026-11-07
+
+**MK2 remains 5,369 unique representations.** Coverage & evidence now exports metadata-only **MK2_P37_NATIVE_SOURCE_INTERVAL_COVERAGE.json**: 15 resources, 272 explicitly qualified stream/floor references, union/gaps/overlaps and separate registered representation counts. No new image or completeness percentage is claimed.
+
+- Full current **22 MK2 suites PASS**, retained cumulative **4,357 checks** plus the new coverage gate. Existing representations/packages preserved; no renderer/native decoder changes.
+- Independent reconstruction from twelve original-file decoders and seven EXE floor pointers: **272 exact references / 6,950,259 original-file decoder checks**; independent byte-set union oracle PASS. **Six false reports rejected**, clean report reverified.
+- Source-only **20 checks / ten invalid interval refusals PASS**. Local **379-file syntax**, TypeScript and production build PASS.
+- CAVE's 120-byte prefix stays UNKNOWN: a plausible twelve-byte scan interpretation failed independent decoding and overlaps an eight-byte descriptor. TOMB/PORTAL/TOWER report gaps may already have exported effects; no missing-artwork claim.
+- Latest full MK1/MK3 fixture evidence remains P36; original-data browser actions pending. P36 remains consolidated source checkpoint.
+- [P37 handoff](docs/EXTRACTOR_P37_MK2_SOURCE_INTERVAL_COVERAGE.md), [evidence](docs/validation/P37_SOURCE_INTERVAL_COVERAGE_2026-11-07.json). Next **P38 TOMB gap/existing-effect provenance reconciliation**. Main unchanged; P41 next consolidation assessment.
+
 ## P36 fifth-pass consolidated source checkpoint - develop, 2026-11-07
 
 **P36 is the current consolidated source checkpoint on develop; main remains P16.** P32-P35 add 65 standalone representations; the full workbench is preserved. No runtime source changes in P36.
@@ -13,7 +24,7 @@
 - Local **378-file syntax**, TypeScript and production build PASS; **eight runner preflight refusals / seven source-audit negative controls PASS**. P31/P26 runners remain frozen; new P36 runner pins the current census.
 - MK1 ZIP-byte variance remains observed with metadata volatility INFERRED; decoded visuals are unchanged. Original-data browser interactions and unqualified native behavior remain separate.
 - Complete source checkpoint **754c9abfa62fb7d2e9ed32078ccc11669a17064e**: **2,207 blobs / 382 src files** match; no runtime src changes from P35. [CI 42352615423](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42352615423) **SUCCESS**, including P36 source-only controls and Chrome boot.
-- [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [machine-readable evidence](docs/validation/P36_CHECKPOINT_REGRESSION_2026-11-07.json). Next **P37 bounded MK2 coverage reconciliation and evidence-backed integration**. No main promotion.
+- [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [machine-readable evidence](docs/validation/P36_CHECKPOINT_REGRESSION_2026-11-07.json). Next **P38 TOMB gap/existing-effect provenance reconciliation**. No main promotion.
 
 ## P35 additional ARENA originals and complete native source-byte partition - interim develop pass, 2026-11-07
 
@@ -349,9 +360,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P35**, consolidated in P36 |
-| Latest full MK2 original-fixture cumulative result | **P36: 5,369 representations / 4,357 cumulative checks**, full prior suites and independent component/source parity |
-| Next planned pass | **P37 bounded MK2 coverage reconciliation and evidence-backed integration** |
+| Most recent interim pass | **P37**, after P36 |
+| Latest full MK2 original-fixture cumulative result | **P37: 5,369 representations / 4,357 retained cumulative checks plus coverage gate**, full prior suites and independent component/source parity |
+| Next planned pass | **P38 TOMB gap/existing-effect provenance reconciliation** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -373,10 +384,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P37 from the committed P36 checkpoint on develop; preserve P31/P26/P21 and earlier evidence.
-2. Reconcile MK2 coverage against existing verified descriptor/setup research; select one bounded extraction gap and independently qualify it before integration.
-3. Keep original-data browser actions, native palette/timing/alpha and scene assembly separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
-4. Preserve native data/provenance and the full workbench. Accumulate P37-P40 interim passes, then assess P41 consolidation. Main remains P16.
+1. Begin P38 from committed P37 on develop; preserve P36/P31/P26/P21 and earlier checkpoints.
+2. Reconcile TOMB [54328,63776) with existing exported effect frames and verified source descriptors. Extend qualified interval coverage only after independent source verification; do not count an in-scope gap as missing artwork.
+3. Keep original-data browser actions, native palette/timing/alpha and complete scene assembly separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
+4. Preserve native data/provenance and the workbench. Continue P38-P40 interim passes, then assess P41 consolidation. Main remains P16.
 
 ## Scope discipline
 

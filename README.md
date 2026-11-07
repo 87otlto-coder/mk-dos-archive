@@ -10,9 +10,10 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 - Fresh **23-suite three-game regression PASS**, no skipped games: MK1 **2,656**, MK2 **5,369 / 4,357 cumulative checks**, MK3 **9,186** representations. MK1/MK3 decoded visual hashes match P21, P26 and P31.
 - **Twelve independent MK2 families PASS:** 251 representations / 939,903 indexed pixels / 10,712,883 checks; **54 altered exports rejected**, clean rechecks passed.
 - P32-P35 add 65 standalone representations. FOREST, PIT, ARMORY and ARENA native byte partitions are verified separately from palette, timing, runtime use and full scene composition.
-- Reproduce with matching source: `node scripts/verify-p36-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. All three fixtures are required. P31/P26 remain frozen historical runners; the interim runner defaults to P35.
+- Reproduce with matching source: `node scripts/verify-p36-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. All three fixtures are required. P31/P26 remain frozen historical runners; the interim runner defaults to P37.
 - Build, TypeScript, syntax and source-only refusal controls pass. Original-data browser action checks remain pending. MK1 whole-ZIP variance is observed; metadata volatility remains inferred despite verified unchanged decoded visuals.
-- Next **P37**: bounded MK2 coverage reconciliation and evidence-backed integration. No original game media or private export artwork is committed. Main promotion remains separate.
+- Interim **P37** adds a metadata-only source interval report: 15 resources / 272 qualified references, independent original-file and byte-set checks, six rejected false reports; all 22 current MK2 suites pass. Census unchanged. Scope gaps do not imply missing artwork.
+- Next **P38**: reconcile TOMB report gaps with existing effect exports and source provenance. No original game media or private export artwork is committed. Main promotion remains separate.
 
 Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 

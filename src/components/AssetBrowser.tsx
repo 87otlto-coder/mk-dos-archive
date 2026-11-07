@@ -395,7 +395,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
           <summary>Coverage & evidence · {assets.length.toLocaleString()} assets</summary>
           {collection.limitations.map(x => <p key={x}>{x}</p>)}
           <button onClick={() => download(utf8.encode(JSON.stringify(collection.reports, null, 2)), 'MKDOS_evidence.json', 'application/json')}>Export evidence JSON</button>
-          {collection.packages.map(p => <button key={p.name} onClick={() => download(p.bytes, p.name, 'application/zip')}>{p.name}</button>)}
+          {collection.packages.map(p => <button key={p.name} onClick={() => download(p.bytes, p.name, p.name.toLowerCase().endsWith('.json') ? 'application/json' : 'application/zip')}>{p.name}</button>)}
         </details>
         <div className="asset-filters">
           <input aria-label="Search assets" placeholder="Search assets or resource names" value={search} onChange={e => setSearch(e.target.value)} />
