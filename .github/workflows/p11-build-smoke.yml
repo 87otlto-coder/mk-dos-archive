@@ -76,6 +76,9 @@ jobs:
           node --check scripts/verify-mk2-p58-palette-evidence.cjs
           node --check scripts/test-p60-tomb-components.cjs
           node --check scripts/verify-mk2-p60-tomb.cjs
+          node --check scripts/verify-mk2-p61-tomb-independent.cjs
+          node --check scripts/verify-p61-checkpoint.cjs
+          node --check scripts/test-p61-checkpoint-controls.cjs
           node --check scripts/verify-mk2-p43-tower-coverage.cjs
           node --check scripts/test-p37-source-coverage.cjs
           node --check scripts/verify-p26-visual-baseline.cjs
@@ -137,6 +140,8 @@ jobs:
         run: node scripts/test-p59-tomb.cjs
       - name: P60 independent Tomb component export and provenance refusals (no game data)
         run: node scripts/test-p60-tomb-components.cjs
+      - name: P61 consolidated original-fixture runner preflight refusals (no game data)
+        run: node scripts/test-p61-checkpoint-controls.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |
