@@ -1,0 +1,330 @@
+{
+  "schema": "mkdos_p34_p33_registry_observation_v1",
+  "classification": "OBSERVED_P33_COLLECTION_NOT_INDEPENDENT_SOURCE_GOLDEN",
+  "sourceCensus": 5341,
+  "armoryRepresentations": [
+    {
+      "id": "mk2-floor:armory:indices-preview",
+      "dimensions": [
+        896,
+        56
+      ],
+      "sourceOffset": 126336,
+      "sourceLength": 50176,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "7f8c956a82b7f7b062b05a1f37b90f604a7e7a1c284c6209ba81bd03f7125226",
+      "maskSha256": null,
+      "rgbaSha256": "334c317d28016786b2d902859a6eb0b7f42373e0354e1058c7a94655c4ad0ba7"
+    },
+    {
+      "id": "mk2-floor:armory:indices",
+      "dimensions": [
+        null,
+        null
+      ],
+      "sourceOffset": 126336,
+      "sourceLength": 50176,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": null,
+      "maskSha256": null,
+      "rgbaSha256": null
+    },
+    {
+      "id": "mk2-viewport-floor:armory:x288-bank1",
+      "dimensions": [
+        320,
+        56
+      ],
+      "sourceOffset": 126336,
+      "sourceLength": 50176,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "290cc586432cba230da09d72ef3ed471b1abaedd5fd0f5c76ac2236fafb098c0",
+      "maskSha256": "35e2d4759444247782a06a3f5df1b0566ac9c8e7ceec95b2f1c60a334fd26a50",
+      "rgbaSha256": "f22ae42eb60ad5592114335aefdcfdadc1fe4b47bc119e66f4af5123ec4ce4c0"
+    },
+    {
+      "id": "mk2-armory-source:0:original-indices",
+      "dimensions": [
+        61,
+        199
+      ],
+      "sourceOffset": 0,
+      "sourceLength": 13832,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "4af1198d367063d618de48da981013d03e33f68885080d4781d5fe13bcc279d4",
+      "maskSha256": "6b7e7d8fe11d9a8c1ce5fca678bd39a76d645f3cece0758bd32c3aa9ed5fbbcb",
+      "rgbaSha256": "396e27498de98e3d7dc8fc07fd3709eb88c46f0b9f8b9db4f980fb3275a64b1c"
+    },
+    {
+      "id": "mk2-armory-source:1:original-indices",
+      "dimensions": [
+        61,
+        199
+      ],
+      "sourceOffset": 13832,
+      "sourceLength": 13220,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "defc6800512509af97b552d275d5a751547eb61a59bec99aa7b11b85704fd24f",
+      "maskSha256": "6b7e7d8fe11d9a8c1ce5fca678bd39a76d645f3cece0758bd32c3aa9ed5fbbcb",
+      "rgbaSha256": "61def28b8ef2722cce5d2cdc1b453d868aaea072d40107017738e6be3364087b"
+    },
+    {
+      "id": "mk2-armory-source:2:original-indices",
+      "dimensions": [
+        49,
+        199
+      ],
+      "sourceOffset": 27052,
+      "sourceLength": 10908,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "7b0116970ebd8565603f67c9f1d939c59f85c404c661627cab87ce4a5d4797e3",
+      "maskSha256": "1caccf1bc790247f19cff5491b1e49edec87fbc93a76a9a429a5c473daf03424",
+      "rgbaSha256": "ac1126c6ff0d97dc280b1fa8b70362570b512de5ff8c0344b381a16ba1586819"
+    },
+    {
+      "id": "mk2-armory-source:3:original-indices",
+      "dimensions": [
+        64,
+        200
+      ],
+      "sourceOffset": 37960,
+      "sourceLength": 4764,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "fc98e97c2ac1b742e9b989a17fde92adabc885aadf79162ee77749091dc879c5",
+      "maskSha256": "3064e05e0468af9d755f87c874a165e8bd50dcb62eb457d4730d611a8ed1fca4",
+      "rgbaSha256": "9ef109fbbba98ce46c30f3c1b0e788bab6b71797cb75fd321d1a3d4a9befa39e"
+    },
+    {
+      "id": "mk2-armory-source:4:original-indices",
+      "dimensions": [
+        64,
+        200
+      ],
+      "sourceOffset": 42724,
+      "sourceLength": 8208,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "7d199dbc4febf307a96c9ab0566143ae8220ce6569db641877721195d0d4848f",
+      "maskSha256": "d739579c9acf7c94c8c0f20aa0077dc4bc74a0115be803588a4ba752314fcc1e",
+      "rgbaSha256": "2bcc876e744312295da812edcd8312aab9397b77c94a7cb2392fe0432abeab5f"
+    },
+    {
+      "id": "mk2-armory-source:5:original-indices",
+      "dimensions": [
+        64,
+        200
+      ],
+      "sourceOffset": 50932,
+      "sourceLength": 11488,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "db456efc62e6a430853ccb9b63c16de91590d015fe63285a310f63ec5bd3a8fa",
+      "maskSha256": "9046412908b02aceddc43507dc942c72d7a6f1c9fdc178ac52be75a493d04f44",
+      "rgbaSha256": "688383704f3b373b7ec64b90a5dc4463f3c43ad9c7e9cc49eaf3e6d4c22b417e"
+    },
+    {
+      "id": "mk2-armory-source:6:original-indices",
+      "dimensions": [
+        64,
+        200
+      ],
+      "sourceOffset": 62420,
+      "sourceLength": 4820,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "1718b5989603aff029712ad5ba7a28fe1c627f584dba07a0d550437cf6ab0a0f",
+      "maskSha256": "97e76569034cecac5f69d5fceb358ead541e76b8a34bded4d2fbeb1f4cb91467",
+      "rgbaSha256": "fa9eab3203e64871c1b40c8bec6266fda5b546fc11ba650584fc32f3d05b8239"
+    },
+    {
+      "id": "mk2-armory-source:7:original-indices",
+      "dimensions": [
+        64,
+        184
+      ],
+      "sourceOffset": 67240,
+      "sourceLength": 4200,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "6dab1924b58f883005c627059c310f1bfac4a03af02904bab3b0e2c0636d9095",
+      "maskSha256": "28bffa210edc97721281086b168e28f0bbc8706b8b836eef8b68952e0d5b1021",
+      "rgbaSha256": "69ea90ad3439ff37ae0356470776cd26612b0446db4fc784dd814763858d0137"
+    },
+    {
+      "id": "mk2-armory-source:8:original-indices",
+      "dimensions": [
+        64,
+        184
+      ],
+      "sourceOffset": 71440,
+      "sourceLength": 11068,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "1e443e73c0880b212898016267496165bf1fcbf5d96cf1f19a85071947ce6e37",
+      "maskSha256": "fad274c145ed22f7bfc613f28d74abb3583583bad20fae9fa2ce46136f1e90d4",
+      "rgbaSha256": "064069d4235807cd0ea21b8f103eeab0a2cd43df3b8b5ee5bdf569ab810f0332"
+    },
+    {
+      "id": "mk2-armory-source:9:original-indices",
+      "dimensions": [
+        64,
+        184
+      ],
+      "sourceOffset": 82508,
+      "sourceLength": 9192,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "124a544b86ec8ee9a3c2df15049eddd4b3abd0c5529dbd89d41c10845ac9bd80",
+      "maskSha256": "a626e5ac864d418597c8417521032155450d9f20574f7a743712874fc8afb781",
+      "rgbaSha256": "058e5bf487ced609caa3c15551d5d9d9be186d792135a8d002626c2cb7d460e2"
+    },
+    {
+      "id": "mk2-armory-source:10:original-indices",
+      "dimensions": [
+        24,
+        184
+      ],
+      "sourceOffset": 91700,
+      "sourceLength": 1496,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "8ba359de57b4c002f57aa9cdeadbb99bcb9fee8e5bcbe7332a54f958e4e3b223",
+      "maskSha256": "68549e6583f2e70a11486964914c7f83daca6be8dc0131ea091eb2a3f6b586fb",
+      "rgbaSha256": "bcf314a9210b7a4e7edf281f85e63006b9fddb53bdce74ae020cb00430a2e6e6"
+    },
+    {
+      "id": "mk2-armory-source:11:original-indices",
+      "dimensions": [
+        63,
+        30
+      ],
+      "sourceOffset": 93196,
+      "sourceLength": 1464,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "4a526890ee49fe9ed6735e9685659694d667830b838b76ff4297cd22dca36ff6",
+      "maskSha256": "529ca0757b75bfcf7736a24d092808e28222570cbdc06f977b7660f2c7089881",
+      "rgbaSha256": "7d10903278ca9a535c2edeb18756a09a9abe643ede7be8598f7dd3eb85f57a5f"
+    },
+    {
+      "id": "mk2-armory-source:12:original-indices",
+      "dimensions": [
+        94,
+        106
+      ],
+      "sourceOffset": 94660,
+      "sourceLength": 7224,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "d09933985eb314522ab59828861c0333c452166c0d39f59bbe3ecaf62bd7ed82",
+      "maskSha256": "b341e0bfd7c13393d01c43bc614d5c6c35f0136c076ad36e890c1f6f70580ecc",
+      "rgbaSha256": "2df2fc124d883c88e853e5db55087672a3ef0dce77ecff3d648681b8beddf228"
+    },
+    {
+      "id": "mk2-armory-source:13:original-indices",
+      "dimensions": [
+        174,
+        28
+      ],
+      "sourceOffset": 101884,
+      "sourceLength": 3268,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "175b35a4a6fd331f74a9de51229b91e84944c6942c8f71b5edb77e60b32145ee",
+      "maskSha256": "90db8fa29297eee7ed89bc48e9e20d972ad21203b5a0321404839e6b6856950a",
+      "rgbaSha256": "4aa08ab836501b78da293f447c589e6b75bc5b0e5c83918c7b0538b857b24ef2"
+    },
+    {
+      "id": "mk2-armory-source:14:original-indices",
+      "dimensions": [
+        80,
+        66
+      ],
+      "sourceOffset": 105152,
+      "sourceLength": 5036,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "e8a3db9c04764c985ec7055d35bda9b4560af584ffb19a8ec40014693e2436a3",
+      "maskSha256": "c429014844068623b05ef51f177bef1805e801c3d65c17f0c3ddc05acb8f2952",
+      "rgbaSha256": "99f5f8b0325e981c49431335855a0787b9619211c165487241e203321b5e981b"
+    },
+    {
+      "id": "mk2-armory-source:15:original-indices",
+      "dimensions": [
+        177,
+        28
+      ],
+      "sourceOffset": 110188,
+      "sourceLength": 3332,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "85bbda6de399b4413d13f778042e3f5c3bd725f3c92281c1c4fae20a44efa452",
+      "maskSha256": "c7fcad8d0a23557bb1ecd719dbe7dce1732f7de16cfd6647e0ec52389d9ec74a",
+      "rgbaSha256": "94ada6a01f819f753977910e3d2d92016362634f007b7d79c55fed14e147a944"
+    },
+    {
+      "id": "mk2-armory-source:16:original-indices",
+      "dimensions": [
+        52,
+        66
+      ],
+      "sourceOffset": 113520,
+      "sourceLength": 2248,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "c0e0ad8245ad7350b05c1cf2204512a72f98c1e085d652ad12e6fd32235c5b95",
+      "maskSha256": "c81c16cbf03ef07ef632c5816cd2efc358614cb7ce6a1261d8723efa944bae37",
+      "rgbaSha256": "e076cbf49c2e98aa82564425325fa2810e93ed5d0980ee61543b076a98a02515"
+    },
+    {
+      "id": "mk2-armory-source:17:original-indices",
+      "dimensions": [
+        50,
+        28
+      ],
+      "sourceOffset": 115768,
+      "sourceLength": 840,
+      "sourceSha256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "indicesSha256": "b8d055e16f632d96cc242f501c43569aab06182256f70fdbf66340796bdbc477",
+      "maskSha256": "b21d1ad72a412f0736008ec6378a0e75663a9f9a37e2d7062cb63e7ae7ab1e1c",
+      "rgbaSha256": "3885afc2dac217c27123e3b5accb07b2eb9f9387c2b6433802bafffdd82f472c"
+    }
+  ],
+  "componentCoverage": [
+    {
+      "ordinal": 0,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 1,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 2,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 3,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 4,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 5,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 6,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 7,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 8,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 9,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 10,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 11,
+      "matchingStandaloneIds": []
+    }
+  ]
+}
