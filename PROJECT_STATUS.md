@@ -4,6 +4,16 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P35 additional ARENA originals and complete native source-byte partition - interim develop pass, 2026-11-07
+
+**Fresh MK2 census: 5,369 unique representations**, adding **sixteen additional ARENA originals** in [36172,90488). **Zero newly discovered artwork claims.** Fourth interim after P31; main remains P16.
+
+- Before join: **eighteen earlier ARENA records / zero matching standalone originals**. All eighteen retain geometry, source extents, indexed/mask and RGBA hashes.
+- **31 indexed streams + native 896x40 floor** account for all **126,328 original resource bytes**. Native byte accounting does not establish setup links, roles, palette/timing/alpha or full scene composition.
+- **413 focused / 598,602 independent export checks PASS**, eight rejected source fixtures and six rejected altered exports/claims. Full MK2: **5,369 / 4,357 cumulative checks PASS; 21 suites PASS**.
+- Local **378-file syntax**, TypeScript and production build PASS. Original-data browser actions remain **VALIDATION PENDING**; P31 remains latest full three-game evidence. No previous research renderer/native row decoder changes.
+- [P35 handoff](docs/EXTRACTOR_P35_MK2_ARENA_ADDITIONAL_ORIGINALS.md), [evidence](docs/validation/P35_ARENA_ADDITIONAL_REGRESSION_2026-11-07.json). Next **P36 fifth-pass consolidation assessment** with fresh three-game, twelve independent families/false-export controls and full source audit. No main promotion.
+
 ## P34 additional ARMORY originals and complete native source-byte partition - interim develop pass, 2026-11-07
 
 **Fresh MK2 census: 5,353 unique representations**, adding **twelve additional 10x64 ARMORY originals** in [116608,126336). **Zero newly discovered artwork claims.** Third interim after P31; main remains P16.
@@ -327,9 +337,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P34**, after the P31 source checkpoint |
-| Latest full MK2 original-fixture cumulative result | **P34: 5,353 representations / 3,947 cumulative checks**, full prior suites and independent component/source parity |
-| Next planned pass | **P35 ARENA remaining-source interval audit** |
+| Most recent interim pass | **P35**, after the P31 source checkpoint |
+| Latest full MK2 original-fixture cumulative result | **P35: 5,369 representations / 4,357 cumulative checks**, full prior suites and independent component/source parity |
+| Next planned pass | **P36 fifth-pass consolidation assessment and fresh three-game regression** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -351,9 +361,9 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P35 from committed P34 on develop; verify its handoff and preserve P31/P26/P21 and earlier source checkpoints.
-2. Audit ARENA [36172,90488) against original descriptor evidence, the fifteen current components and native floor. Add independently qualified missing originals only, preserving boundaries, provenance and unknown native behavior.
-3. Use current-source interim gates for feature changes. Current interim runner defaults to P34. P31 pins P30 census 5,304 with all three games/eight independent families; P26 remains frozen to 5,220. Historical fixed-census runners require matching source.
+1. Begin P36 from committed P35 on develop; verify all four interim handoffs and preserve P31/P26/P21 and earlier source checkpoints.
+2. Assess fifth-pass consolidation with fresh three-game collection/export checks, all twelve P22-P35 independent original-file families and false-export controls, and complete committed-source hash/media audit. Preserve qualification boundaries and unknown native behavior.
+3. Create a P36 current-census checkpoint runner if justified. Current interim runner defaults to P35; preserve P31/P26 fixed-census runners and evidence. Historical checkpoint runners require matching source.
 4. Keep original-data browser action checks, native timing, live palette ownership and stage composition separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 5. Preserve all native data/provenance and the full workbench. Accumulate four recoverable interim passes, then assess the fifth-pass checkpoint. Main promotion remains separately authorized; source consolidation is not automatic product acceptance.
 

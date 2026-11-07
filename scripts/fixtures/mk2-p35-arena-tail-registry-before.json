@@ -1,0 +1,307 @@
+{
+  "schema": "mkdos_p35_p34_registry_observation_v1",
+  "classification": "OBSERVED_P34_COLLECTION_NOT_INDEPENDENT_SOURCE_GOLDEN",
+  "sourceCensus": 5353,
+  "arenaRepresentations": [
+    {
+      "id": "mk2-floor:arena:indices-preview",
+      "dimensions": [
+        896,
+        40
+      ],
+      "sourceOffset": 90488,
+      "sourceLength": 35840,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "c0a80a4ae3adec186475fd04dbd597b2f4d79f37a43a6e30cfe359a5da442ac5",
+      "maskSha256": null,
+      "rgbaSha256": "e77625252adad975d92cd8daabbdf718452b047dce9d5a4c73365740f1309195"
+    },
+    {
+      "id": "mk2-floor:arena:indices",
+      "dimensions": [
+        null,
+        null
+      ],
+      "sourceOffset": 90488,
+      "sourceLength": 35840,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": null,
+      "maskSha256": null,
+      "rgbaSha256": null
+    },
+    {
+      "id": "mk2-viewport-floor:arena:x288-bank1",
+      "dimensions": [
+        320,
+        40
+      ],
+      "sourceOffset": 90488,
+      "sourceLength": 35840,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "0bb15c19f63420716f2fc4b36eb6d8112930dcca0d53a10657fe8e4a6e6b9334",
+      "maskSha256": "700225aade81ae4685a1934e62b40a065c61607ceccf93f80855c747e701c92d",
+      "rgbaSha256": "e079191af7c877d774d544a4e6952d52f2b4ceef10ca7225120fe20b8e07ca07"
+    },
+    {
+      "id": "mk2-arena-source:0:original-indices",
+      "dimensions": [
+        64,
+        32
+      ],
+      "sourceOffset": 0,
+      "sourceLength": 1376,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "fd06728d5d7d2245d39c18e012e346f6cc88de6fccf541d110b4a4bc464b521b",
+      "maskSha256": "9e858a09b22a97d3c3bf56139318b0b9a30cdb1378dd5e0458f569ea0a21d48b",
+      "rgbaSha256": "ab961c09f6f1abe3c22ea090948a5d3b71553872af1765b451e3982edc72005f"
+    },
+    {
+      "id": "mk2-arena-source:1:original-indices",
+      "dimensions": [
+        64,
+        56
+      ],
+      "sourceOffset": 1376,
+      "sourceLength": 2076,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "b81f3007cffe369028be0b3ab7ef19e913faadcfd73445416374e705f57a9c2a",
+      "maskSha256": "3a2429cd726b5d08361be941b612c979c1159ae3c1859a6e2cc28a8f156d143c",
+      "rgbaSha256": "c79507668e5ebc93da874c21fc11b6084dd6fb803281ede942b714fbaf1dba37"
+    },
+    {
+      "id": "mk2-arena-source:2:original-indices",
+      "dimensions": [
+        64,
+        32
+      ],
+      "sourceOffset": 3452,
+      "sourceLength": 1592,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "8e381fd47e38bb890c6f25bc60dd616c394ef7b6b71356e2c44e1180684f3cbd",
+      "maskSha256": "b2723f1828c1a08de36b1b18accd4c1d39e552330d771b41f7e91b17d20545ba",
+      "rgbaSha256": "e5ac5d97a7ad7ac83dbfca1d61e697dd5e7eabd70875e85ed94fbd957b64a061"
+    },
+    {
+      "id": "mk2-arena-source:3:original-indices",
+      "dimensions": [
+        64,
+        56
+      ],
+      "sourceOffset": 5044,
+      "sourceLength": 2100,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "23f934377761348f52bd04af637e92e68e3430062766251a40d905a045019060",
+      "maskSha256": "bd1e858ddc86a482770a37ddc4554425ad44f1cd925dd5918e903333768629b9",
+      "rgbaSha256": "0a7e78ffa197df849703d30c29a70e4f8b1802b79847df817821575ce6116abc"
+    },
+    {
+      "id": "mk2-arena-source:4:original-indices",
+      "dimensions": [
+        64,
+        64
+      ],
+      "sourceOffset": 7144,
+      "sourceLength": 2824,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "4cbdc3ea7fa33c023033385cb94dd26320cabc8452f99fa3b63fe16c38775460",
+      "maskSha256": "539f509d56e696896ac76b53128e9b2114ccbe1d63bd00ac00880ca4453a2901",
+      "rgbaSha256": "8c437619528e90612ddee0118dd3cde6bc71f4610d9da4d43d4ac6039c9b4dae"
+    },
+    {
+      "id": "mk2-arena-source:5:original-indices",
+      "dimensions": [
+        64,
+        112
+      ],
+      "sourceOffset": 9968,
+      "sourceLength": 5240,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "ee42b69dcd0f1ba3d9619c41ff72fff62f4ad3afb236c18a21c74580fe4f5f58",
+      "maskSha256": "5f48861b3828c9a56cf312c9425df4a01ded78195a1c0f1777c9026b06e6b36c",
+      "rgbaSha256": "0687905bbd573d1a4d232c71425c1cef97cac808c8e240f81e4cc18075675117"
+    },
+    {
+      "id": "mk2-arena-source:6:original-indices",
+      "dimensions": [
+        58,
+        8
+      ],
+      "sourceOffset": 15208,
+      "sourceLength": 508,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "259f783e2db954f9fe956347a69ed747f8d043f156d40be7ce47a4bc3f46c188",
+      "maskSha256": "ff88ea1448dabdc78a4412e69f062b41268d4aa4bb2268bce4088949ada3d428",
+      "rgbaSha256": "cae04103c159087baad91f2bbb24733f4e2792ffd414fe5fd91226ac6bef57d1"
+    },
+    {
+      "id": "mk2-arena-source:7:original-indices",
+      "dimensions": [
+        79,
+        8
+      ],
+      "sourceOffset": 15716,
+      "sourceLength": 452,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "4dd28427396d34b6b5005458350abcecee3401e295aa45c2ec961579fa3389e8",
+      "maskSha256": "d4e58a8bd49739b7964ef0656df5874aba3d86feee6fd3bc020c2c00b6ff492b",
+      "rgbaSha256": "731398ce4c09440f235b2ff3abf80b94465b4de87d6047e80efad5b059d9f020"
+    },
+    {
+      "id": "mk2-arena-source:8:original-indices",
+      "dimensions": [
+        47,
+        96
+      ],
+      "sourceOffset": 16168,
+      "sourceLength": 3696,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "8f44155a5eb98d6296fb849a668d4ada585a08cd7845ec2ed8874e48d554493c",
+      "maskSha256": "a2f18475a2259f989c3f9fbd9efb61199c2b96d41a759a734189e42c6f71b3a0",
+      "rgbaSha256": "ed79b4f69f4b6f0f4764943af9014dc370440b28ba9a849d3e5c2eabe68b756a"
+    },
+    {
+      "id": "mk2-arena-source:9:original-indices",
+      "dimensions": [
+        45,
+        96
+      ],
+      "sourceOffset": 19864,
+      "sourceLength": 3740,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "9d3e9128d56166b26ef1c59438a0baad054935461fc3b40e4f5ac34a11f129aa",
+      "maskSha256": "10f1c86e8ec10a30c01d53b0de5fbee0a62766c68b3933d1bc6d1485176f3dc1",
+      "rgbaSha256": "ff49ec64338c204d4c7954d4f7450b5483ee701e2dbfa18dea247f89546be03b"
+    },
+    {
+      "id": "mk2-arena-source:10:original-indices",
+      "dimensions": [
+        64,
+        104
+      ],
+      "sourceOffset": 23604,
+      "sourceLength": 2760,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "a997dc5354abe3eaa01ea99b8cd65fbacb2578316a6ad4e6e9b1e75e7703251a",
+      "maskSha256": "a8e1f761f762f8111d870402ff2e22a7d11d3141a7a4d5a78bd88a5d5bbe7ca9",
+      "rgbaSha256": "689887d4eced683e9ea5c709a7b82bf434b22cc5bb1461831ebe39b35b79aca4"
+    },
+    {
+      "id": "mk2-arena-source:11:original-indices",
+      "dimensions": [
+        64,
+        104
+      ],
+      "sourceOffset": 26364,
+      "sourceLength": 3272,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "8f9f15e7fa51152834da9971513cc0d70cc34b9f273e1d8ed2538ffe52e0d119",
+      "maskSha256": "a8e1f761f762f8111d870402ff2e22a7d11d3141a7a4d5a78bd88a5d5bbe7ca9",
+      "rgbaSha256": "adc58aee9a8e233d17a9ccb110effa25fac6a802ce7fd0bd570c3956d88fc342"
+    },
+    {
+      "id": "mk2-arena-source:12:original-indices",
+      "dimensions": [
+        64,
+        104
+      ],
+      "sourceOffset": 29636,
+      "sourceLength": 1876,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "e599cfcf204b0bc54202bba16e1e55cecb5f092fd3459d83ea5c6d4d5d699aba",
+      "maskSha256": "a8e1f761f762f8111d870402ff2e22a7d11d3141a7a4d5a78bd88a5d5bbe7ca9",
+      "rgbaSha256": "1509278c2013bb2f545342620a26b6b8c67a0f042633f5c5b744b97fe62aecbd"
+    },
+    {
+      "id": "mk2-arena-source:13:original-indices",
+      "dimensions": [
+        64,
+        104
+      ],
+      "sourceOffset": 31512,
+      "sourceLength": 2440,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "a783028d7bf5e254bbd190cd76a384279174aa74e4f2230b38d0b90759aa37e6",
+      "maskSha256": "a8e1f761f762f8111d870402ff2e22a7d11d3141a7a4d5a78bd88a5d5bbe7ca9",
+      "rgbaSha256": "720f359e14ddd4a7404784361c80d0a33d22c573846ec2859470dacc24c6b607"
+    },
+    {
+      "id": "mk2-arena-source:14:original-indices",
+      "dimensions": [
+        64,
+        104
+      ],
+      "sourceOffset": 33952,
+      "sourceLength": 2220,
+      "sourceSha256": "37a3e8fa89ae55e7d03d88a8890eb51ea7df2ccbff71ccf5cdea4a2c647b0bfb",
+      "indicesSha256": "4463dbcba92c45bf99eb92e1d2476cf74acd7e546d0f1dc96fd5b28712917f65",
+      "maskSha256": "a8e1f761f762f8111d870402ff2e22a7d11d3141a7a4d5a78bd88a5d5bbe7ca9",
+      "rgbaSha256": "f940daefd402185235455d0e6ca4438072ed110134ffd342ca817e2135109819"
+    }
+  ],
+  "componentCoverage": [
+    {
+      "ordinal": 0,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 1,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 2,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 3,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 4,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 5,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 6,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 7,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 8,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 9,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 10,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 11,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 12,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 13,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 14,
+      "matchingStandaloneIds": []
+    },
+    {
+      "ordinal": 15,
+      "matchingStandaloneIds": []
+    }
+  ]
+}

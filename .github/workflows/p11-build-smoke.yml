@@ -57,6 +57,8 @@ jobs:
           node --check scripts/verify-mk2-p32-forest-tail.cjs
           node --check scripts/verify-mk2-p33-pit.cjs
           node --check scripts/verify-mk2-p34-armory-tail.cjs
+          node --check scripts/verify-mk2-p35-arena-tail.cjs
+          node --check scripts/verify-mk2-p35-cumulative.cjs
           node --check scripts/verify-mk2-p34-cumulative.cjs
           node --check scripts/verify-mk2-p33-cumulative.cjs
           node --check scripts/verify-mk2-p32-cumulative.cjs

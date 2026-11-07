@@ -13,9 +13,10 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 - Interim **P32** adds nine additional FOREST originals: **5,313 current MK2 representations / 2,558 cumulative checks**, all **18 MK2 suites PASS**. FOREST now has a verified 58-stream/native-floor source-byte partition; scene/palette/timing remain separate.
 - Interim **P33** adds 28 PIT originals: **5,341 current MK2 representations / 3,577 cumulative checks**, all **19 MK2 suites PASS**. Six P9 canvases reconstruct exactly; 42 streams account for PIT.GRA while lower-wall FALL.GRA remains separate.
 - Interim **P34** adds twelve ARMORY originals: **5,353 current MK2 representations / 3,947 cumulative checks**, all **20 MK2 suites PASS**. Thirty indexed streams plus the native floor account for ARMORY.GRA; setup links and native behavior remain unqualified.
+- Interim **P35** adds sixteen ARENA originals: **5,369 current MK2 representations / 4,357 cumulative checks**, all **21 MK2 suites PASS**. Thirty-one indexed streams plus the native floor account for ARENA.GRA; source byte coverage is separate from scene/native behavior.
 - All **2,162 P30 committed blobs / 378 src files** matched the local source before consolidation. P31 changes verification/CI/docs only. No original game media or private export artwork is committed.
 - Original-data browser action checks remain pending. Source-only Chrome does not establish original-data interaction, live palette ownership, native timing or full stage composition. MK1 ZIP metadata volatility remains inferred; decoded visuals are verified unchanged.
-- Next **P35 ARENA [36172,90488) source audit** against existing descriptors/components/floor. The standard interim runner defaults to P34; historical checkpoint runners require matching source. Main promotion remains separate.
+- Next **P36 fifth-pass consolidation assessment**: fresh three-game regression, all twelve independent MK2 families/false-export controls and full source audit. The interim runner defaults to P35; historical checkpoint runners require matching source. Main promotion remains separate.
 
 Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P31 checkpoint](docs/EXTRACTOR_P31_SOURCE_CHECKPOINT_2026-11-07.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 
