@@ -23,6 +23,16 @@ These components must not be alpha-composited into a claimed authentic game stag
 
 P59 PNGs/indices/masks are copied **byte-for-byte**, not reprojected or recoloured. The floor PNG is reencoded from the unmodified P15 conditional-RGB array and the floor indices/masks are copied as-is. This is a convenience package of existing evidence—not newly discovered commercial game data or a full gameplay scene.
 
+## User-local original-MK2 acceptance — PASS (2026-11-07)
+
+**VERIFIED BY USER'S LOCAL FIXTURE TEST:** The user ran `node scripts/verify-mk2-p60-tomb.cjs` from their updated source checkout against the original DOS MK2 installation and supplied terminal output. The result explicitly reports `"pass":"P60"`, `"status":"PASS"`, `mk2Assets:5369`, `independentlyPackagedComponents:3`, `p59OpaqueSourceSamples:3473`, `architectureSamples:2650`, `skySamples:823`, and `originalPackedFloorPixels:15360`.
+
+The full reported Boolean outcome was `p59ArchitectureSkyFilesByteIdentical:true`, `p15FloorIndexedMasksByteIdentical:true`, `p15FloorRgbaPixelIdentical:true`, `originalSharedCameraClaimed:false`, `fullStageCompositionClaimed:false`, `nativeDACOwnershipClaimed:false`, and `originalAssetRepresentationsChanged:false`. Source TOMB.GRA SHA-256 matched `be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613`.
+
+**CONFIDENCE:** original-fixture acceptance **PASS (user-local)**; source-only CI **PASS** at run 42412466093; actual P60 browser ZIP download/inspection **VALIDATION PENDING** because `actualBrowserExportVerified:false` is explicitly reported. This original-fixture PASS supersedes older pending-fixture wording below, retained as historical implementation chronology. No independent reexecution of the commercial fixture took place in this chat environment.
+
+This verifies the independently packaged samples and source parity, **not** a combined Tomb scene. Native palettes, camera alignment across captures, draw order and timing remain unknown. P61 is the next complete MK1/MK2/MK3 consolidation checkpoint; no main promotion performed.
+
 ## Controls and acceptance
 
 - Source-only: `scripts/test-p60-tomb-components.cjs` uses synthetic images/planes, verifies the three packaged groups, equality with each P59 input byte, floor RGBA/index/mask preservation, explicit cross-capture refusal flags and 15 deliberately false input cases (missing/duplicate source members, broken sample counts, source identity, corrupted planes, invented palette, camera and screenshot evidence).
