@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P58 MK2 original-index and colour-evidence comparison — interim develop, 2026-11-07
+
+**Source implementation and GitHub CI PASS; original-MK2 fixture and browser acceptance pending.** P58 adds a collapsed, explicitly labelled palette-evidence inspector to the existing MK2 Stage Gallery for Living Forest, Kombat Tomb and The Portal. It displays five pairs of the already-verified Forest O197 exact source-index canvases and EXE-linked **candidate RGB** views; Tomb/Portal show the existing P15 **screenshot-conditioned floor-only RGB** strips (12,222 and 4,420 original screenshot pixel matches). No renderer recolouring or original image/palette modification was introduced. Native VGA DAC bank ownership, full-stage composition, camera, layer order and timing remain UNKNOWN.
+
+- Source-only [CI 42406800793](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42406800793) **SUCCESS** on P58 source/workflow candidate `55769a84f857e43acf6c2806ad6aefc4993be898`. The test runs **15 deliberately falsified source/palette/witness controls** alongside positive pairs, TypeScript/build and headless Chrome startup. A follow-up documentation commit did not change tested source.
+- New original DOS MK2 acceptance `scripts/verify-mk2-p58-palette-evidence.cjs` checks canonical MK2.EXE and FOREST/TOMB/PORTAL.GRA hashes, unchanged 5,369 MK2 assets, five authentic index/candidate pairs and two original screenshot-floor witnesses. It independently reconstructs original 320-column floor index planes and verifies conditioned RGB digests and exact asset links. **Original fixture runner itself has not yet executed in this chat; validation pending.**
+- [P58 technical handoff](docs/EXTRACTOR_P58_MK2_COLOUR_EVIDENCE_COMPARISONS.md). Existing P57 and P56 original-file acceptance remains historical. P59–P60 focused development, P61 next consolidation checkpoint; `main` unchanged, no original game media committed.
+
 ## P57 accepted focused cross-game gallery pass — original-fixture PASS, 2026-11-07
 
 **P57 user-local original three-game thumbnail acceptance PASS.** User supplied terminal output from `scripts/verify-p57-cross-game-gallery.cjs`: `pass:P57`, `status:PASS`, **MK1 2,656 assets / 24 source thumbnails / 15 header resources; MK2 5,369 assets / 10 source thumbnails; MK3 9,186 assets / 416 IFF pictures**. Total **17,211** unchanged assets and **450** qualified original-source image representations. `syntheticArtworkAdded:false`, `originalAssetsModified:false`, `nativePaletteOrSceneClaimsAdded:false`; `actualBrowserClicksVerified:false`. This is **user-local original-fixture evidence**, not a fresh agent-executed original-game regression.
