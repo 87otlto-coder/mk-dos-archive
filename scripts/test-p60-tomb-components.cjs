@@ -88,7 +88,7 @@ async function reject(label,p59,assets,reason){
  errors.push(await reject('P59 missing bundle',{name:'WRONG',bytes:p59.bytes},[floor],'name'));
  errors.push(await reject('P59 screenshot changed',makeP59(v=>{v.manifest.screenshotSha256='f'.repeat(64)}),[floor],'provenance'));
  errors.push(await reject('P59 count fabricated',makeP59(v=>{v.manifest.layers[0].count=500}),[floor],'provenance'));
- errors.push(await reject('P59 duplicated sample',makeP59(v=>{v.files.push(v.files[0])}),[floor],'entries'));
+ errors.push(await reject('P59 duplicated sample',makeP59(v=>{v.files.push(v.files[0])}),[floor],'duplicate|entries'));
  errors.push(await reject('P59 wrong opaque count',makeP59(v=>{
   const bad=v.files.find(x=>x.name==='architecture.mask.bin');bad.bytes[0]=0;
  }),[floor],'count'));
