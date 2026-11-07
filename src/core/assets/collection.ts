@@ -1,4 +1,5 @@
 import { buildTombWitnessPackage } from './mk2TombWitnessP59';
+import { buildTombComponentsP60 } from './mk2TombComponentsP60';
 import {buildMK1StageHeaderBindingsP54} from './mk1StageHeaderBindingsP54';
 import {buildMK2SourceCoverageP43,MK2_P43_COVERAGE_LIMITATION} from './mk2SourceCoverageP43';
 import {buildMK2SourceCoverageP40,MK2_P40_COVERAGE_LIMITATION} from './mk2SourceCoverageP40';
@@ -120,8 +121,10 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   assets.push(...stageVisuals.assets);
   packages.push(...stageVisuals.packages);
   let p59TombWitness;
+  let p59TombPackage: {name:string;bytes:Uint8Array}|null=null;
   try {
-    packages.push(await buildTombWitnessPackage(stageVisuals.assets));
+    p59TombPackage=await buildTombWitnessPackage(stageVisuals.assets);
+    packages.push(p59TombPackage);
     p59TombWitness = {status: 'VERIFIED', architectureSamples: 2650, skySamples: 823};
   } catch (error) {
     p59TombWitness = {status: 'UNAVAILABLE', reason: String(error)};
@@ -159,6 +162,16 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   const p15ObservedFloors=await buildMK2ObservedFloorsP15(source);
   assets.push(...p15ObservedFloors.assets);
   packages.push(...p15ObservedFloors.packages);
+  // P60 is a distinct export only. P59 and P15 archives and all existing
+  // original records remain unchanged; an unavailable input fails closed.
+  let p60TombComponents: {status:string;components?:number;reason?:string};
+  try {
+    if (!p59TombPackage) throw Error('Original P59 architecture/sky registration unavailable');
+    packages.push(await buildTombComponentsP60(p59TombPackage,p15ObservedFloors.assets));
+    p60TombComponents={status:'VERIFIED',components:3};
+  } catch (error) {
+    p60TombComponents={status:'UNAVAILABLE',reason:String(error)};
+  }
   progress('MK2 original source-verified IMAGES.GRA setup-local indexed mosaics (P17)');
   const p17Images=await buildMK2ImagesSetupsP17(source);
   assets.push(...p17Images.assets);
@@ -244,7 +257,7 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   packages.push({name:'MK2_P43_NATIVE_SOURCE_INTERVAL_COVERAGE.json',bytes:new TextEncoder().encode(JSON.stringify(p43SourceCoverage,null,2)+'\n')});
   return {game,assets,packages,reports:{p43SourceCoverage,p40SourceCoverage,p38SourceCoverage,p37SourceCoverage,integration:o90.report,indexed:manifest,music,
     u8Audio:r.u8?.report ?? {status:'NOT_QUALIFIED',reason:r.u8Failure ?? 'O94D pipeline unavailable'},
-    p2p4StageVisuals:stageVisuals.status, p59TombWitness,
+    p2p4StageVisuals:stageVisuals.status, p59TombWitness, p60TombComponents,
     p5SourceFloors:p5Floors.stageResults,
     p7ForestLayers:p7Forest.status,
     p8PitLowerWall:p8Pit.status,
