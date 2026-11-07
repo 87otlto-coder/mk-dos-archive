@@ -1,0 +1,151 @@
+{
+  "schema": "mkdos_p42_tower_effect_original_reference_v1",
+  "exeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "graSha256": "7b5cd966d05df8d228905a139196b85879f19f74cb1e47f1cda9335838b70bb8",
+  "frames": [
+    {
+      "assetId": "mk2-stage-effect:tower_original_effect:00",
+      "sequence": "tower_original_effect",
+      "ordinal": 0,
+      "sourcePointerObject2": 91280,
+      "descriptorObject2": 96704,
+      "descriptorPhysical": 755220,
+      "width": 41,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 40776,
+      "endExclusive": 42976,
+      "indicesSha256": "627eac26600a897f390dfbd689f6fe31496e2bd08181d4bf39b750aa9985ec8d",
+      "maskSha256": "21909ce120ad153097f32f67318b0bef2cdf8a8bcdffd6752d6cf4a9bbd01e6a",
+      "encodedSha256": "cc41b9833b39f47f3d6310d2989a45709e9b701c6b205672812e14c6c46dd1cc"
+    },
+    {
+      "assetId": "mk2-stage-effect:tower_original_effect:01",
+      "sequence": "tower_original_effect",
+      "ordinal": 1,
+      "sourcePointerObject2": 91280,
+      "descriptorObject2": 96720,
+      "descriptorPhysical": 755236,
+      "width": 38,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 42976,
+      "endExclusive": 45160,
+      "indicesSha256": "7a3a7e4cfd03ef119785f222b7ccb6a396409e0f8463b0ab94c8522a9bd93ac2",
+      "maskSha256": "0c4103c8920f85decef15ccbcc28f29d57bc563ba7702ea24f3f30fa4d5189e7",
+      "encodedSha256": "a8cb39406fe3cc5ab83f534c86cf4f5e02da867fbf44be27f27580000a9477f3"
+    },
+    {
+      "assetId": "mk2-stage-effect:tower_original_effect:02",
+      "sequence": "tower_original_effect",
+      "ordinal": 2,
+      "sourcePointerObject2": 91280,
+      "descriptorObject2": 96732,
+      "descriptorPhysical": 755248,
+      "width": 37,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 45160,
+      "endExclusive": 47344,
+      "indicesSha256": "0624accc086086557d1a719e61e72195171588edc2a404bd63a3d931dc3d32c3",
+      "maskSha256": "af58feb63136ff33285d1e0cb693845aefcc0284aec53a0bb5e1aa5e01bc1f99",
+      "encodedSha256": "862296d4e220b02980e9ebe2e68e393c88608a1fc1b650c8c5a7f457433ce342"
+    },
+    {
+      "assetId": "mk2-stage-effect:tower_original_effect:03",
+      "sequence": "tower_original_effect",
+      "ordinal": 3,
+      "sourcePointerObject2": 91280,
+      "descriptorObject2": 96744,
+      "descriptorPhysical": 755260,
+      "width": 38,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 47344,
+      "endExclusive": 49536,
+      "indicesSha256": "e55ae30ff6e9df23621309d3d75ac862cb035d4ab70c1d9e8f9dfa61356a1847",
+      "maskSha256": "41acfa94d882edf039f058b421593ea7d9f9d47ae20b09d622313af6ed759baf",
+      "encodedSha256": "3c8e31187ed151092034841b18bd15f6b0113b22d0fbc7e34b3f4c88251d1df0"
+    },
+    {
+      "assetId": "mk2-stage-effect:tower_original_effect:04",
+      "sequence": "tower_original_effect",
+      "ordinal": 4,
+      "sourcePointerObject2": 91280,
+      "descriptorObject2": 96756,
+      "descriptorPhysical": 755272,
+      "width": 39,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 49536,
+      "endExclusive": 51764,
+      "indicesSha256": "7e220dfd2c670c6fd211dc0bd74472696ba8bd293083ff811cf498321968a22d",
+      "maskSha256": "8aa6c9ab0bd6133937ce205c11b9a164883e437eff9812aab246943dbdddf20f",
+      "encodedSha256": "c30a892960cb43c03d9b93f985ac3588ee37b797407b4c3c4e0265c21d7f7bef"
+    },
+    {
+      "assetId": "mk2-stage-effect:tower_original_effect:05",
+      "sequence": "tower_original_effect",
+      "ordinal": 5,
+      "sourcePointerObject2": 91280,
+      "descriptorObject2": 96768,
+      "descriptorPhysical": 755284,
+      "width": 40,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 51764,
+      "endExclusive": 54020,
+      "indicesSha256": "c3bba940ef55b25bd4151719f2b98ccbefca11a42ff1832cc31c7747365e5447",
+      "maskSha256": "22352de4643f0293da971fae3e39d841bcad2dd0b8cfc51dbdf7e2c6a6b40125",
+      "encodedSha256": "76fa209e468402a7da5e3d3b9fea8e931542ccf37010241b1a037593c59f1227"
+    },
+    {
+      "assetId": "mk2-stage-effect:tower_original_effect:06",
+      "sequence": "tower_original_effect",
+      "ordinal": 6,
+      "sourcePointerObject2": 91280,
+      "descriptorObject2": 96780,
+      "descriptorPhysical": 755296,
+      "width": 42,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 54020,
+      "endExclusive": 56268,
+      "indicesSha256": "63f56a180dedcfe26039ed6337a9f1eab50bb3723b0e6d6ae3c96461ec6c32d4",
+      "maskSha256": "38875163c8b4b7ef3310dd5d6798509e713084762feae4fdc36c6969c6d1efc6",
+      "encodedSha256": "669bf02cacae01cfbc3d36281e807390df66109bc6378c4cc4836bb342044307"
+    }
+  ],
+  "streamStart": 40776,
+  "streamEndExclusive": 56268,
+  "encodedBytes": 15492,
+  "status": "PASS",
+  "originalFileDecoderChecks": 34716,
+  "indexedPixels": 17325,
+  "runtimeChanged": false,
+  "coverageReportIntegrated": false,
+  "newRepresentations": 0,
+  "nativeTimingOrPaletteClaimsAdded": false,
+  "scope": "Targeted original-file source audit only; existing extractor exports and complete regression not rerun"
+}

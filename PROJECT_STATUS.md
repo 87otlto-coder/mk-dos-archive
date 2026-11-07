@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P42 TOWER original-source audit - 2026-11-07
+
+**Seven existing effect streams / 34,716 decoder checks PASS**, covering **[40776,56268), 15,492 encoded bytes / 17,325 pixels**. Writer/list/descriptor/native plane proof preserved; no runtime changes or new images. [P42 audit](docs/EXTRACTOR_P42_TOWER_SOURCE_AUDIT.md), [evidence](docs/validation/P42_TOWER_SOURCE_AUDIT_2026-11-07.json). Next P43 report integration; P41 remains consolidated checkpoint. Main unchanged.
+
 ## P41 consolidated source checkpoint - 2026-11-07
 
 **P41 consolidates P37-P40 on develop; main remains P16.** Fresh **25 three-game suites plus P40 fixture gate PASS**: MK1 **2,656**, MK2 **5,369 / 4,357 checks**, MK3 **9,186**. Twelve independent image families **251 representations / 939,903 pixels / 10,712,883 checks**, **54 false exports rejected**. Prior coverage/claim controls pass; no runtime changes.
