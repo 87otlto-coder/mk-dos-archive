@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P43 TOWER report integration - 2026-11-07
+
+Focused original-fixture gate PASS: **315 qualified references / 1,064,632 source union bytes**, TOWER **14 references / 113,612 bytes / zero gaps or overlap**. Seven existing effects joined; **5,369 representations unchanged**. Ten invalid effect sets rejected; P37/P38/P40 report hashes and fourteen other resources preserved. Local syntax/TypeScript/build pass. [P43 handoff](docs/EXTRACTOR_P43_TOWER_COVERAGE.md), [evidence](docs/validation/P43_TOWER_COVERAGE_2026-11-07.json). Next P44 independent effects/report validation, then P45 full current MK2 acceptance. Main unchanged.
+
 ## P42 TOWER original-source audit - 2026-11-07
 
 **Seven existing effect streams / 34,716 decoder checks PASS**, covering **[40776,56268), 15,492 encoded bytes / 17,325 pixels**. Writer/list/descriptor/native plane proof preserved; no runtime changes or new images. [P42 audit](docs/EXTRACTOR_P42_TOWER_SOURCE_AUDIT.md), [evidence](docs/validation/P42_TOWER_SOURCE_AUDIT_2026-11-07.json). Next P43 report integration; P41 remains consolidated checkpoint. Main unchanged.
