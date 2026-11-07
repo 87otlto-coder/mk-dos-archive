@@ -1551,5 +1551,28 @@
   "commercialAssetsIncluded": false,
   "mainPromotion": false,
   "originalDataBrowserValidation": false,
-  "fixtureProvenance": "Existing extracted fixtures reused; no fresh archive download/re-extraction"
+  "fixtureProvenance": "Existing extracted fixtures reused; no fresh archive download/re-extraction",
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "0f065089b31f0a9ab2e49df188cb6e6232ea4096",
+    "treeSha": "644ac08a0174e7c7f6fec83f9c677624a21e977b",
+    "fileBlobs": 2273,
+    "sourceFiles": 386,
+    "rawByteMatches": 98,
+    "checkoutNormalizedMatches": 2175,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "a23e25f5a4854c8a762984e64d11e4784ad26c16174b68dc0632950e809b3ae8",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "githubTreeAssociationVerified": true,
+  "ci": {
+    "runId": 42383236378,
+    "headSha": "0f065089b31f0a9ab2e49df188cb6e6232ea4096",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42383236378"
+  },
+  "followupScope": "Documentation/evidence association only; candidate source and workflow unchanged"
 }
