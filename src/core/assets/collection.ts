@@ -1,3 +1,4 @@
+import {buildMK1StageHeaderBindingsP54} from './mk1StageHeaderBindingsP54';
 import {buildMK2SourceCoverageP43,MK2_P43_COVERAGE_LIMITATION} from './mk2SourceCoverageP43';
 import {buildMK2SourceCoverageP40,MK2_P40_COVERAGE_LIMITATION} from './mk2SourceCoverageP40';
 import {buildMK2SourceCoverageP38,MK2_P38_COVERAGE_LIMITATION} from './mk2SourceCoverageP38';
@@ -78,7 +79,9 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
         if(path.toLowerCase().endsWith('.wav'))assets.push({id:path,name:path.split('/').at(-1)!,group:'MK1 audio',kind:'audio',format:'WAV',confidence:'Validated PCM export',source:{path,offset:0,length:f.bytes.length},metadata:{provenance:'Generated path; original offsets in audio evidence package'},bytes:f.bytes,mime:'audio/wav',filename:safeName(path)});
       }
     }
-    return {game,assets,packages,reports:{workspace:w.report,stages:result.browserBundleValidation,audio:result.audioBundleValidation,animationGraph:result.fighterAnimationComparison,timing:result.streamControlTiming},limitations:['Animation chaining uses your chosen presentation timing. Gameplay timing and canonical animation names are not inferred.','Stage images represent the qualified snapshots named in their evidence packages.']};
+    const stageHeaderBindings=buildMK1StageHeaderBindingsP54(result.stageBackgroundGraph,assets);
+    packages.push({name:'MK1_P54_VERIFIED_HEADER_MODULE_PREVIEW_JOINS.json',bytes:new TextEncoder().encode(JSON.stringify(stageHeaderBindings,null,2)+'\n')});
+    return {game,assets,packages,reports:{stageHeaderBindings,workspace:w.report,stages:result.browserBundleValidation,audio:result.audioBundleValidation,animationGraph:result.fighterAnimationComparison,timing:result.streamControlTiming},limitations:['Animation chaining uses your chosen presentation timing. Gameplay timing and canonical animation names are not inferred.','Stage images represent the qualified snapshots named in their evidence packages.']};
   }
   const r=await runMK2Pipeline(source,progress,signal),o90=await executeVerifiedIdentityBundleO90(r.w88,r.x89);
   packages.push({name:'MK2_indexed_evidence.zip',bytes:r.d.zipBytes},{name:o90.report.package.downloadFileName,bytes:o90.zipBytes});
