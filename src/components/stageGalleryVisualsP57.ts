@@ -58,12 +58,15 @@ export function buildGalleryVisualsP57(game:Game,assets:readonly Asset[],stageBi
   const grouped=new Map<string,Asset[]>();
   for(const a of assets){
    if(a.kind!=='stage'||!a.source?.path || !/\.GRA$/i.test(a.source.path))continue;
-   if(!imageOK(a)){
-    result.errors.push('P57: invalid original MK2 stage-layer preview '+a.id);
+   // An undecoded or unqualified source candidate is not a broken decoded image.
+   // Retain the visible no-thumbnail state instead of interpreting missing evidence as a fault.
+   if(!digest(a.source.sha256))continue;
+   if(duplicateIDs.has(a.id)){
+    result.errors.push('P57: duplicate qualified MK2 stage-layer identifier '+a.id);
     continue;
    }
-   if(!digest(a.source.sha256)||duplicateIDs.has(a.id)){
-    result.errors.push('P57: MK2 stage-layer source proof missing or duplicate '+a.id);
+   if(!imageOK(a)){
+    result.errors.push('P57: invalid original MK2 stage-layer preview '+a.id);
     continue;
    }
    const name=pathBase(a.source.path);
