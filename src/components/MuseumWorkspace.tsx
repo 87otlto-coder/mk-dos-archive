@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRight, Archive, BookOpen, CheckCircle2, ChevronRight, FileArchive, FileCode2, FlaskConical, FolderOpen, Image as ImageIcon, Layers3, Library, Microscope, Search, ShieldCheck, Sparkles } from 'lucide-react';
 import { MK2StageEffectsPreview } from './MK2StageEffectsPreview';
-import { discoverStageGallery } from './stageGalleryModel';
+import { discoverStageGallery, verifiedMK1HeaderPreviewLinks } from './stageGalleryModel';
+import { exactAssetSearchP55 } from '../core/assets/assetSearchP55';
 import type { InventoryEntry } from '../core/models/InventoryEntry';
 import type { GameDetectionResult } from '../core/models/GameDetection';
 import type { DirectorySource } from '../core/filesystem/DirectorySource';
@@ -83,19 +84,20 @@ export function MuseumOverview({ inventory, detection, source, goTo }: {
   </div>;
 }
 
-export function MuseumStages({ inventory, detection, source, goTo, onSelectResource }: {
+export function MuseumStages({ inventory, detection, source, goTo, onSelectResource, stageBindings }: {
   inventory: InventoryEntry[]; detection: GameDetectionResult; source: DirectorySource; goTo: (page: WorkspacePage) => void;
-  onSelectResource: (file: string) => void;
+  onSelectResource: (file: string) => void; stageBindings: unknown;
 }) {
   const [search, setSearch] = useState('');
   const [stagePreview, setStagePreview] = useState<'portal' | 'tomb' | 'tower' | null>(null);
   const mk2 = detection.game === 'mk2';
   const cards = useMemo(() => discoverStageGallery(inventory, detection.game, search), [inventory, detection.game, search]);
+  const verifiedLinks = useMemo(() => verifiedMK1HeaderPreviewLinks(stageBindings), [stageBindings]);
   return <div className="mw-page">
     <div className="mw-intro"><span className="mw-eyebrow mw-accent">MUSEUM / STAGES</span><h1>Stage gallery</h1><p>Browse discovered background resources. Full scene composition is not implied by the presence of a resource file.</p><p className="mw-muted mw-xs">Color panels below are navigation markers, not source-image reconstructions.</p></div>
     <div className="mw-toolbar"><label className="mw-search"><Search size={17}/><input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search stage names or resources" aria-label="Search stages"/></label><span className="mw-muted">{cards.length} matching resources</span></div>
     {detection.game === 'mk1' && <div className="mw-research-banner">
-      <Layers3 size={21}/><div><strong>Decoded MK1 backgrounds</strong><p>The full MK1 scan groups normalized previews by module. The cards below identify source headers.</p></div>
+      <Layers3 size={21}/><div><strong>Decoded MK1 backgrounds</strong><p>After decoding in the Asset Library, verified O27/O54 source-header links will appear on matching cards. These normalized previews are not gameplay screenshots.</p>{verifiedLinks.size === 0 && <p>To enable those links, open the Asset Library and choose Decode &amp; browse.</p>}</div>
       <button onClick={() => onSelectResource('normalized_combined_background')}>Browse normalized previews <ChevronRight size={15}/></button>
     </div>}
     {cards.length ? <div className="mw-stage-grid">
@@ -107,8 +109,16 @@ export function MuseumStages({ inventory, detection, source, goTo, onSelectResou
           {stage.effectFrames !== null ? <div className="mw-stage-detail"><span>{stage.effectFrames} original effect frames</span><span>{stage.tracks} sequences</span></div> : <div className="mw-stage-detail mw-muted">Independent scene assembly not verified</div>}
           <div className="mw-stage-actions">
             {mk2 ? <button className="mw-text-button" onClick={() => onSelectResource(stage.file)}>Browse resource <ChevronRight size={15}/></button>
-              : <span className="mw-muted mw-xs">Header identified; no verified per-file decoded-asset link</span>}
-            {mk2 && (stage.file === 'PORTAL.GRA' || stage.file === 'TOMB.GRA' || stage.file === 'TOWER.GRA') && <button className="mw-text-button" onClick={() => setStagePreview(stage.file.replace('.GRA', '').toLowerCase() as 'portal' | 'tomb' | 'tower')}>Original frames <ChevronRight size={15}/></button>}</div>
+              : detection.game === 'mk1' ? (verifiedLinks.get(stage.file)?.length
+                ? <div className="mw-stage-preview-links">
+                    <span className="mw-muted mw-xs">O27/O54 verified source-module previews (not gameplay scenes)</span>
+                    {verifiedLinks.get(stage.file)!.map(link => <button key={link.assetId} className="mw-text-button"
+                      onClick={() => onSelectResource(exactAssetSearchP55(link.assetId))}>
+                      Browse {link.moduleSymbol} preview <ChevronRight size={15}/></button>)}
+                  </div>
+                : <span className="mw-muted mw-xs">Header identified; decoded-asset link not verified or not yet loaded</span>)
+              : <span className="mw-muted mw-xs">Stage candidate; no qualified decoded-asset link</span>}
+            {mk2 && (stage.file === 'PORTAL.GRA' || stage.file === 'TOMB.GRA' || stage.file === 'TOWER.GRA') && <button className="mw-text-button" onClick={() => setStagePreview(stage.file.replace('.GRA', '').toLowerCase() as 'portal' | 'tomb' | 'tower')}>Original frames <ChevronRight size={15}/></button></div>
         </div>
       </article>)}
     </div> : <div className="mw-empty"><FileArchive size={25}/><strong>No matching supported stage resources in this installation.</strong><p>Try clearing the filter. MK1 background candidates are listed by their source HDRS.GRA identities; names are not yet mapped to arcade-stage names.</p><button onClick={() => goTo('assets')}>Open asset library</button></div>}
