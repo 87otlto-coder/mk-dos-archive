@@ -11,9 +11,10 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 - **Eight independent MK2 image families PASS:** 186 representations / 691,028 indexed pixels / 6,548,174 checks; **31 altered exports rejected** and clean rechecks passed. P27-P30 add 84 standalone known components, preserving existing mosaics/effects/floors and used/unlinked provenance.
 - Reproduce P31 on its matching historical source with `node scripts/verify-p31-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. All three fixtures are required. P31 pins P30's census; P26 remains frozen to historical source.
 - Interim **P32** adds nine additional FOREST originals: **5,313 current MK2 representations / 2,558 cumulative checks**, all **18 MK2 suites PASS**. FOREST now has a verified 58-stream/native-floor source-byte partition; scene/palette/timing remain separate.
+- Interim **P33** adds 28 PIT originals: **5,341 current MK2 representations / 3,577 cumulative checks**, all **19 MK2 suites PASS**. Six P9 canvases reconstruct exactly; 42 streams account for PIT.GRA while lower-wall FALL.GRA remains separate.
 - All **2,162 P30 committed blobs / 378 src files** matched the local source before consolidation. P31 changes verification/CI/docs only. No original game media or private export artwork is committed.
 - Original-data browser action checks remain pending. Source-only Chrome does not establish original-data interaction, live palette ownership, native timing or full stage composition. MK1 ZIP metadata volatility remains inferred; decoded visuals are verified unchanged.
-- Next **P33 PIT descriptor/component coverage join** against existing lower/upper/bridge assets. The standard interim runner defaults to P32; historical checkpoint runners require matching source. Main promotion remains separate.
+- Next **P34 ARMORY [116608,126336) source audit** against existing descriptor/component/floor evidence. The standard interim runner defaults to P33; historical checkpoint runners require matching source. Main promotion remains separate.
 
 Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P31 checkpoint](docs/EXTRACTOR_P31_SOURCE_CHECKPOINT_2026-11-07.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 

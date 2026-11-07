@@ -4,6 +4,16 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P33 standalone PIT setup components and preserved bridge/FALL provenance - interim develop pass, 2026-11-07
+
+**Fresh MK2 census: 5,341 unique representations**, adding **28 standalone PIT originals** already used in six P9 canvases. **Zero newly discovered artwork claims.** Second interim after P31; main remains P16.
+
+- Before join: **22 earlier PIT + 68 separate FALL records / zero matching standalone components**. All ninety retain original geometry, provenance, indexed/mask and RGBA hashes. Lower-wall FALL.GRA remains a separate resource.
+- New components reproduce all **six P9 canvases / 1,328,768 cells / 126 controls** exactly. The 28 new streams plus fourteen existing bridge sprites partition all **69,384 PIT.GRA bytes**, without asserting runtime alpha, palette/timing or full stage composition.
+- **802 focused / 3,320,868 independent export checks PASS**, eight rejected source fixtures and **six rejected altered exports/claims**. Full MK2: **5,341 / 3,577 cumulative checks PASS; 19 suites PASS**.
+- Strengthened the new Python verifier after a false-animation claim exposed a missing assertion; production metadata already stated false. Command paint masks are explicitly not runtime-alpha claims. Local **376-file syntax**, TypeScript and production build PASS.
+- [P33 handoff](docs/EXTRACTOR_P33_MK2_PIT_STANDALONE_COMPONENTS.md), [evidence](docs/validation/P33_PIT_COMPONENT_REGRESSION_2026-11-07.json). Browser actions remain **VALIDATION PENDING**; P31 remains the latest full three-game checkpoint. Next **P34 ARMORY [116608,126336) source audit**. No main promotion; next fifth-pass consolidation assessment P36.
+
 ## P32 additional FOREST originals and native source-byte partition - interim develop pass, 2026-11-07
 
 **Fresh MK2 census: 5,313 unique representations**, adding **nine additional FOREST originals** in [164752,198116). **Zero newly discovered artwork claims.** First interim after P31; main remains P16.
@@ -305,9 +315,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P32**, after the P31 source checkpoint |
-| Latest full MK2 original-fixture cumulative result | **P32: 5,313 representations / 2,558 cumulative checks**, full prior suites and independent component/source parity |
-| Next planned pass | **P33 PIT descriptor/component coverage join** |
+| Most recent interim pass | **P33**, after the P31 source checkpoint |
+| Latest full MK2 original-fixture cumulative result | **P33: 5,341 representations / 3,577 cumulative checks**, full prior suites and independent component/source parity |
+| Next planned pass | **P34 ARMORY remaining-source interval audit** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -329,9 +339,9 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P33 from committed P32 on develop; verify its handoff and preserve P31/P26/P21 and earlier source checkpoints.
-2. Join original PIT descriptor/component evidence against existing lower-wall, upper-layer and bridge representations. Add only independently qualified missing originals, retaining exact source provenance and unknown relationships.
-3. Use current-source interim gates for feature changes. Current interim runner defaults to P32. P31 pins P30 census 5,304 with all three games/eight independent families; P26 remains frozen to 5,220. Historical fixed-census runners require matching source.
+1. Begin P34 from committed P33 on develop; verify its handoff and preserve P31/P26/P21 and earlier source checkpoints.
+2. Audit ARMORY [116608,126336) against original descriptors and existing component/floor records. Add only independently qualified missing originals, preserving source boundaries, relationships and unknown native behavior.
+3. Use current-source interim gates for feature changes. Current interim runner defaults to P33. P31 pins P30 census 5,304 with all three games/eight independent families; P26 remains frozen to 5,220. Historical fixed-census runners require matching source.
 4. Keep original-data browser action checks, native timing, live palette ownership and stage composition separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
 5. Preserve all native data/provenance and the full workbench. Accumulate four recoverable interim passes, then assess the fifth-pass checkpoint. Main promotion remains separately authorized; source consolidation is not automatic product acceptance.
 
