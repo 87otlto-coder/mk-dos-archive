@@ -13,6 +13,7 @@
 - **Complete P30 source audit PASS:** all **2,162 blobs / 378 src files** match local materialized source (80 raw / 2,082 normal checkout newline matches); zero missing/mismatched/unsafe paths. New P31 runner/source-audit tooling and source-only refusal controls support recovery and repeatable checkpoints.
 - Local 374-file syntax, TypeScript and production build PASS; **eight runner preflight refusals / seven source-audit negative controls PASS**. P26's frozen runner/evidence remain unchanged.
 - MK1 whole ZIP hashes vary; metadata volatility remains **INFERRED**, with decoded visuals verified unchanged. Browser interactions remain **VALIDATION PENDING**; live RGB/timing/world composition and TOWER transforms remain separately qualified.
+- Complete checkpoint source `2ec4914d897aab0056700142e4d81afc4716cb4a` verified: **2,167 committed blobs / 378 src files**, zero mismatches/unsafe paths; all src hashes unchanged from P30. [CI run 42345260854](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42345260854) **SUCCESS**, including new P31 refusal controls and source-only Chrome boot.
 - [P31 results/source audit](docs/validation/P31_CHECKPOINT_REGRESSION_2026-11-07.json). Next **P32 FOREST [164752,198116) source coverage audit** against existing O69/O110A evidence. No main promotion or completed-product claim.
 
 ## P30 standalone FOREST originals with P7 layer provenance - interim develop pass, 2026-11-07

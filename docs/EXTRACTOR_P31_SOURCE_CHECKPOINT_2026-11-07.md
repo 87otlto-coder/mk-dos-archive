@@ -78,3 +78,11 @@ P31 pins P30's 5,304 MK2 census. P26 remains frozen to its historical 5,220 cens
 
 Next **P32**: compare FOREST [164752,198116) against existing O69/O110A descriptors and exposed assets. Add only independently qualified missing originals and preserve unknown relationships. Start from this source checkpoint, keep the workbench intact, use recoverable develop commits and leave main unchanged.
 
+
+## Verified complete checkpoint and CI
+
+Source candidate **`2ec4914d897aab0056700142e4d81afc4716cb4a`**, tree `804030908afb1d33c47a2271c7e94c8d74a204ff`, is the complete P31 checkpoint. The connector-retrieved recursive tree was fully audited: **2,167 committed blobs / 378 src files**, **83 raw byte matches + 2,084 normal checkout newline matches**, zero missing/mismatched/unsafe paths. Every one of the **378 src blob SHAs is unchanged from P30**. Inventory SHA-256: `4d80d05e52445839104fc563f8aef3d0ad6756d5c94270782715921b4b395e85`.
+
+GitHub [source-build run 42345260854](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42345260854) completed **SUCCESS** on that exact source candidate, including strict dependency install, syntax, the new P31 preflight/source-audit controls, media guard, production build, TypeScript and headless Chrome boot **without game data**. This CI gate does not replace the separately recorded original-fixture regression or pending real-data browser actions.
+
+The following evidence-only commit updates this handoff, project status and machine-readable results; application/tooling source is identical to the audited, CI-passing checkpoint. Main remains P16. No source archive containing commercial assets is published.

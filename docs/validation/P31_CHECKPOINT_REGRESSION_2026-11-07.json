@@ -818,5 +818,35 @@
     "start": 164752,
     "endExclusive": 198116,
     "bytes": 33364
+  },
+  "checkpointSourceAudit": {
+    "status": "PASS",
+    "commit": "2ec4914d897aab0056700142e4d81afc4716cb4a",
+    "treeSha": "804030908afb1d33c47a2271c7e94c8d74a204ff",
+    "fileBlobs": 2167,
+    "sourceFiles": 378,
+    "rawByteMatches": 83,
+    "checkoutNormalizedMatches": 2084,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "4d80d05e52445839104fc563f8aef3d0ad6756d5c94270782715921b4b395e85",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "checkpointSourceRemoteAssociationVerifiedViaGitHubConnector": true,
+  "sourceCandidate": {
+    "commit": "2ec4914d897aab0056700142e4d81afc4716cb4a",
+    "tree": "804030908afb1d33c47a2271c7e94c8d74a204ff",
+    "runtimeSourceBlobsUnchangedFromP30": 378,
+    "runtimeSourceBlobMismatches": []
+  },
+  "githubCI": {
+    "runId": 42345260854,
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42345260854",
+    "headSha": "2ec4914d897aab0056700142e4d81afc4716cb4a",
+    "status": "completed",
+    "conclusion": "success",
+    "checkpointRefusalControlsPassed": true,
+    "originalDataBrowserValidation": false
   }
 }
