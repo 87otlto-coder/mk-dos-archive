@@ -8,6 +8,8 @@
 
 The Asset Library exports the separately registered architecture and sky samples from O123. Chrome downloaded the package after scanning 5,369 original MK2 assets. Independent decoding verified the two PNGs, source indices and masks. All 2,650 architecture and 823 sky samples matched the authenticated screenshot. The O123 auditor rejected 14 incorrect shifts. Runtime camera, DAC ownership, full draw order and timing remain unknown. See the [P59 technical handoff](docs/EXTRACTOR_P59_TOMB_SCREENSHOT_SAMPLES.md) for reproduction and evidence boundaries.
 
+[GitHub source-only CI run 42410395408](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42410395408) passed on P59 source commit `ac63b454c9b55fab4153fe69bd85bedcd0087bd3`, including P59 controls, tracked-file audit, TypeScript, production build and Chrome startup.
+
 ## P58 original MK2 acceptance — PASS, 2026-11-07
 
 The user reported a local original-MK2 P58 regression PASS. A separate run during P59 reproduced 5,369 unique assets, five Forest source-index/candidate-RGB pairs, two screenshot-witnessed floor strips and four original source hashes. The indexed planes were preserved. Runtime DAC ownership remains unknown. This supersedes the pending original-file gate below.
