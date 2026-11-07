@@ -52,6 +52,8 @@ jobs:
           node --check scripts/verify-p36-checkpoint.cjs
           node --check scripts/verify-mk2-p37-source-coverage.cjs
           node --check scripts/verify-mk2-p38-tomb-coverage.cjs
+          node --check scripts/verify-mk2-p40-portal-preflight.cjs
+          node --check scripts/verify-mk2-p40-portal-coverage.cjs
           node --check scripts/test-p37-source-coverage.cjs
           node --check scripts/verify-p26-visual-baseline.cjs
           node --check scripts/verify-mk2-p27-tomb.cjs
@@ -76,6 +78,8 @@ jobs:
         run: python3 scripts/test-p36-checkpoint-controls.py
       - name: P37 source interval accounting controls (no game data)
         run: node scripts/test-p37-source-coverage.cjs
+      - name: P40 PORTAL source-gap preflight and false-claim controls (no game data)
+        run: node scripts/verify-mk2-p40-portal-preflight.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |
