@@ -18,7 +18,7 @@ Added source-only control script `scripts/test-p54-mk1-stage-bindings.cjs`: thre
 
 ## Confidence and acceptance boundaries
 
-**VERIFIED:** O27 and O54 source-level report/asset contracts were inspected on GitHub; new source and tests are committed on develop. Source-only CI at [run 42393175579](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42393175579) passed the newly introduced join/refusal test, TypeScript, production build and headless Chrome offline startup. This does not use original DOS fixtures.
+**VERIFIED:** O27 and O54 source-level report/asset contracts were inspected on GitHub; new source and tests are committed on develop. Source-only CI at [run 42393175579](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42393175579) passed the newly introduced join/refusal test, TypeScript, production build and headless Chrome offline startup. This does not use original DOS fixtures. The final source/workflow CI at [run 42393240839](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42393240839) also completed SUCCESS, including the original-fixture runner's syntax check; it did not run that fixture test.
 
 **VALIDATION PENDING:** full original-MK1 execution of `scripts/verify-mk1-p54-stage-joins.cjs`, exact 24 preview joins, export report parity, legacy three-game regression, and manual local browser interaction. The user-provided private MK1 ZIP is present in the current chat runtime, but the complete repository cannot be obtained through this container's direct Git network connection (DNS unavailable), so this new runner has not run here.
 
