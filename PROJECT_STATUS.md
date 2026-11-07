@@ -12,6 +12,7 @@
 - **58 indexed streams + original 896x32 floor** now partition all **226,788 source bytes** without gaps/overlaps. This establishes native byte accounting, not full-stage composition, runtime usage or palette ownership.
 - **227 focused / 198,951 independent export checks PASS**, eight rejected source fixtures and five rejected false exports/claims. Full MK2: **5,313 / 2,558 cumulative checks PASS; 18 suites PASS**.
 - Local **375-file syntax**, TypeScript and production build PASS. Original-data browser actions remain **VALIDATION PENDING**; P31 remains the latest full three-game checkpoint. No previous research/renderer rewrite.
+- Verified source commit `c50dcd37c0e639c48cbe2387335d6cf6c5269d9b`: all **2,176 committed blobs / 379 src files** match; no missing/mismatched/unsafe paths. [CI run 42348440265](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42348440265) **SUCCESS**, including source-only Chrome boot.
 - [P32 handoff](docs/EXTRACTOR_P32_MK2_FOREST_ADDITIONAL_ORIGINALS.md), [evidence](docs/validation/P32_FOREST_ADDITIONAL_REGRESSION_2026-11-07.json). Next **P33 PIT descriptor/component coverage join** against existing lower/upper/bridge assets. No main promotion; next fifth-pass consolidation assessment P36.
 
 ## P31 fifth-pass consolidated source checkpoint - develop, 2026-11-07

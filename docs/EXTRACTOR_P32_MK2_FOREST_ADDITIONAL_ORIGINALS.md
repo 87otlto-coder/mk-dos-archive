@@ -89,3 +89,11 @@ python scripts/test-mk2-p32-forest-tail-negative.py <original-directory> <privat
 
 Next **P33**: audit PIT descriptor/component coverage against existing lower-wall, upper-layer and bridge assets before exposing useful missing originals. Apply existing verified research and preserve relationships; avoid speculative gameplay/scene work. Continue recoverable develop commits. P36 is the next fifth-pass consolidation assessment after four interim passes; main remains unchanged.
 
+
+## Committed source and CI evidence
+
+Verified source candidate: `c50dcd37c0e639c48cbe2387335d6cf6c5269d9b`; tree `77d62aaa069e20f90a46a6546d23237550777c42`. Full connector-retrieved source audit PASS: **2,176 committed blobs / 379 src files**, **85 raw byte matches + 2,091 normal checkout newline matches**, zero missing/mismatched/unsafe paths. Inventory SHA-256: `4e73ca2d0612cc86f2d690d76877b0f4e534778876d4833ba5cdfe3171b1fe42`. Runtime changes are limited to the new adapter and additive collection integration; no research renderer or native row decoder changes.
+
+GitHub [source-build run 42348440265](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42348440265) completed **SUCCESS** on this exact source candidate: dependency install, syntax, P31 source-only refusal controls, media guard, production build, TypeScript and headless Chrome startup **without game data**. This is separate from the original-fixture regression and pending original-data browser actions.
+
+The following evidence-only commit changes project status, this handoff and machine-readable results. Source is identical to the audited, CI-passing candidate. Main remains P16; original binaries and private artwork/ZIPs are not committed.

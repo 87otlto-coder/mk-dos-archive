@@ -1423,5 +1423,37 @@
   "browserInteractionVerified": false,
   "mk1mk3FreshlyRerun": false,
   "mainPromoted": false,
-  "originalGameMediaCommitted": false
+  "originalGameMediaCommitted": false,
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "c50dcd37c0e639c48cbe2387335d6cf6c5269d9b",
+    "treeSha": "77d62aaa069e20f90a46a6546d23237550777c42",
+    "fileBlobs": 2176,
+    "sourceFiles": 379,
+    "rawByteMatches": 85,
+    "checkoutNormalizedMatches": 2091,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "4e73ca2d0612cc86f2d690d76877b0f4e534778876d4833ba5cdfe3171b1fe42",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "sourceAuditRemoteAssociationVerifiedViaGitHubConnector": true,
+  "sourceCandidate": {
+    "commit": "c50dcd37c0e639c48cbe2387335d6cf6c5269d9b",
+    "tree": "77d62aaa069e20f90a46a6546d23237550777c42",
+    "runtimeChanges": [
+      "src/core/assets/mk2ForestTailSourceP32.ts",
+      "src/core/assets/collection.ts"
+    ],
+    "removedPaths": []
+  },
+  "githubCI": {
+    "runId": 42348440265,
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42348440265",
+    "headSha": "c50dcd37c0e639c48cbe2387335d6cf6c5269d9b",
+    "status": "completed",
+    "conclusion": "success",
+    "originalDataBrowserValidation": false
+  }
 }
