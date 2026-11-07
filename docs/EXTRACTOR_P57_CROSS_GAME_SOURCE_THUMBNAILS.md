@@ -22,6 +22,25 @@ User browser evidence showed MK1 stage-header cards as decorative color gradient
 - `scripts/test-p57-cross-game-thumbnails.cjs`: source-only positive/negative fixture examples for all three games, including unknown versus invalid separation, exact MK1 source-module link, MK2 original source layer selection, MK3 embedded-CMAP evidence and rejected fabricated identities.
 - `scripts/verify-p57-cross-game-gallery.cjs`: original private three-game test for unchanged 2,656/5,369/9,186 census, 24 MK1 module images / 15 headers, exact P54 digest, source-hash equality for displayed MK2 and MK3 artwork, original MK2 Tomb/Portal layer eligibility and exactly 416 MK3 unassigned IFF pictures. **The private fixture runner is committed but was NOT executed in this development session.** It must not be confused with CI syntax/load checks.
 
+## User-local original-fixture acceptance — PASS (2026-11-07)
+
+**VERIFIED — user-local run, not independently executed in this chat:** The user ran `node scripts/verify-p57-cross-game-gallery.cjs` against their local original MK1, MK2 and MK3 DOS installations and supplied the full terminal result screenshot. It explicitly reports `"pass": "P57"`, `"status": "PASS"` and:
+
+| Game | Original asset census | Qualified source-backed image representations |
+|---|---:|---:|
+| MK1 | 2,656 | 24, spanning 15 original headers |
+| MK2 | 5,369 | 10 |
+| MK3 | 9,186 | 416 unassigned original IFF pictures |
+| Total | 17,211 | 450 |
+
+The terminal also reports `syntheticArtworkAdded:false`, `originalAssetsModified:false`, `nativePaletteOrSceneClaimsAdded:false`, and `actualBrowserClicksVerified:false`. These flags describe test findings and boundaries. **MK3 original IFF images do not become verified stage backgrounds**, and MK2 original source layers do not become gameplay composites just because they are displayed as thumbnails.
+
+**USER-OBSERVED BROWSER EVIDENCE — PARTIAL:** screenshots supplied immediately before the test show newly decoded source-backed cards in MK1 and MK2, and an MK3 original IFF image gallery populated with recognizable character and title artwork. This establishes visually rendered previews for the examples shown, not comprehensive browser-click/download parity or stage-scene authenticity. Earlier P55 screenshots also demonstrated two exact-ID MK1 preview links.
+
+**VERIFIED — source-only:** GitHub CI [run 42405044233](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42405044233) completed SUCCESS at code/workflow candidate `69b9c47b0bbcb60a29959b727e6d98454cc3365c`. Subsequent P57 commits before this acceptance update were documentation-only.
+
+**P57 STATUS:** Focused original-fixture acceptance and source-only CI **PASS**. Remain explicit that actual browser clicks for all assets, stage reconstruction/palette correctness, and fresh full P56 three-game regression after P57 were **not** separately performed. P56 remains the most recent accepted comprehensive cumulative regression; P57 is an accepted focused interim pass. Continue P58–P60; P61 is consolidation. `main` remains unchanged.
+
 ## Verified versus outstanding
 
 **VERIFIED SOURCE ONLY:** P57 source-only model controls passed within GitHub CI on the feature candidate, including the synthetic image-provenance refusals, TypeScript/build and Chrome boot when latest CI completes. Refer to `p11-build-smoke.yml` runs and associate a complete success SHA before claiming final source build PASS.
