@@ -33,6 +33,18 @@ The full reported Boolean outcome was `p59ArchitectureSkyFilesByteIdentical:true
 
 This verifies the independently packaged samples and source parity, **not** a combined Tomb scene. Native palettes, camera alignment across captures, draw order and timing remain unknown. P61 is the next complete MK1/MK2/MK3 consolidation checkpoint; no main promotion performed.
 
+## Uploaded P60 ZIP artifact inspection — PASS (2026-11-07)
+
+**VERIFIED IN THIS CHAT:** The user uploaded the actual `MK2_P60_TOMB_INDEPENDENT_COMPONENTS.zip` following the requested export step. The ZIP was inspected from its uploaded bytes, not inferred from CI or a manifest alone. Whole-file SHA-256: `088de6c45bcf4b3a019b3f1497ccc909769593b7fa8ac07f0653400035b4d936`.
+
+- **Container integrity:** all 11 expected ZIP entries present, no duplicates, all STORE entries, ZIP CRC check PASS. Manifest schema `mk2_p60_tomb_independent_components_v1`, `componentCount:3`, exact component member paths and FALSE native DAC/shared-camera/complete-composition/draw-order/timing flags verified.
+- **Architecture:** `sampled.png` decoded as 319×199 RGBA; `indices.bin` and `sample-mask.bin` each contain 63,481 bytes, exact manifest SHA-256 for each PNG/plane; mask is binary with 2,650 set pixels, alpha matches the mask, and unsampled RGBA/index cells remain zero.
+- **Sky:** same 319×199 geometry and 63,481-byte planes, matching manifest SHA-256; exactly 823 set mask pixels; alpha/mask and unsampled-cell checks pass.
+- **Floor:** 320×48 RGBA PNG; 15,360-byte indices, paint mask and palette-known mask; original indices SHA `4c4efa6ece27329f1193091fe8853148e45f8b7cc0b7964cf055ba7847a8b1f9`, decoded conditional RGBA SHA `178f4081315010234f4f6471d60326e0ef1eaac9986ca42ceb399b30ce1e1965`, and PNG SHA `a9a09bf7c6f846c2ce216d76abdff529587cb65aa4adc33a9393fbca37ac3fbc` all match the included manifest. Paint mask is all 1 and native-palette-known mask all 0. **Independent original-source parity:** the source `mk2/tomb.gra` from the user's privately attached original `mk2.zip` hashes to `be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613`. Re-reading 48 source rows at offset 63,776, stride 896, column 291 reproduced the full 15,360 exported index bytes exactly.
+- **EVIDENCE BOUNDARY:** The uploaded ZIP is a valid, independently inspected artifact consistent with the original MK2 source and P60 producer. The exact UI click/download sequence was **not independently witnessed by the agent**, and separate original P59/P15 archives were not supplied for a second cross-package byte comparison (the earlier user's original-MK2 P60 test reported this parity PASS). The manifest explicitly marks architecture/sky O123 and floor P15/O117 **not co-registered**. Do not promote sampled data into a full scene or claim runtime palette/camera/layer ordering.
+
+**Status:** original-MK2 focused fixture **PASS** (user-local); source-only CI **PASS**; uploaded P60 exported ZIP contents **PASS** (independent chat inspection). Interactive click-path replay and complete three-game cumulative regression remain outside this focused P60 proof. Original copyrighted ZIP/artwork remain only in user conversation/local runtime and are **not** added to GitHub. P61 is the scheduled fifth-pass full three-game consolidation.
+
 ## Controls and acceptance
 
 - Source-only: `scripts/test-p60-tomb-components.cjs` uses synthetic images/planes, verifies the three packaged groups, equality with each P59 input byte, floor RGBA/index/mask preservation, explicit cross-capture refusal flags and 15 deliberately false input cases (missing/duplicate source members, broken sample counts, source identity, corrupted planes, invented palette, camera and screenshot evidence).
