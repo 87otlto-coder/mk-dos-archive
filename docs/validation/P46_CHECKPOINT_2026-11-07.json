@@ -1,0 +1,1453 @@
+{
+  "schema": "mkdos_p46_checkpoint_evidence_v1",
+  "status": "PASS",
+  "date": "2026-11-07",
+  "regression": {
+    "schema": "mkdos_p46_checkpoint_regression_v1",
+    "status": "PASS",
+    "startedAt": "2026-11-07T11:32:18.727Z",
+    "standardSuite": {
+      "schema": "mkdos_checkpoint_regression_v2",
+      "through": "p38",
+      "status": "PASS",
+      "startedAt": "2026-11-07T11:32:18.769Z",
+      "suites": [
+        {
+          "name": "MK2 input identity",
+          "pass": "P16",
+          "status": "PASS",
+          "classification": "ORIGINAL_INPUT_IDENTITY_ONLY",
+          "checks": 642,
+          "fileCount": 614,
+          "sourceFileHashesVerified": 13,
+          "archiveSha256": null,
+          "extensionCensus": {
+            "(none)": 1,
+            "awe": 33,
+            "bat": 1,
+            "bin": 6,
+            "drv": 1,
+            "exe": 2,
+            "gra": 124,
+            "gvs": 33,
+            "ini": 1,
+            "lap": 33,
+            "mid": 33,
+            "sbl": 33,
+            "txt": 1,
+            "u8": 312
+          },
+          "gameArtworkStoredInReport": false,
+          "p15FullCumulativeRerun": false,
+          "gameBrowserVerified": false
+        },
+        {
+          "name": "MK2 p35-cumulative",
+          "pass": "P35",
+          "status": "PASS",
+          "checks": 4357,
+          "assets": 5369,
+          "uniqueAssets": 5369,
+          "originalMK2FixtureOnly": true,
+          "fullCurrentSourceRegression": true,
+          "p22AddedImages": 49,
+          "p23AddedImages": 18,
+          "p24AddedImages": 20,
+          "p25AddedImages": 15,
+          "p27StandaloneComponentRepresentations": 16,
+          "p27NewlyDiscoveredSourceImages": 0,
+          "p28StandaloneComponentRepresentations": 13,
+          "p28NewlyDiscoveredSourceImages": 0,
+          "p29StandaloneComponentRepresentations": 6,
+          "p29NewlyDiscoveredSourceImages": 0,
+          "p30StandaloneComponentRepresentations": 49,
+          "p30NewlyDiscoveredSourceImages": 0,
+          "p32StandaloneComponentRepresentations": 9,
+          "p32NewlyDiscoveredSourceImages": 0,
+          "forestNativeBytePartitionVerified": true,
+          "p33StandaloneComponentRepresentations": 28,
+          "p33NewlyDiscoveredSourceImages": 0,
+          "pitNativeBytePartitionVerified": true,
+          "p34StandaloneComponentRepresentations": 12,
+          "p34NewlyDiscoveredSourceImages": 0,
+          "armoryNativeBytePartitionVerified": true,
+          "p35StandaloneComponentRepresentations": 16,
+          "p35NewlyDiscoveredSourceImages": 0,
+          "arenaNativeBytePartitionVerified": true,
+          "p24DescriptorWitnesses": 40,
+          "sourceOrderQueueFrames": 57,
+          "groups": {
+            "u8:": 312,
+            "mk2-stage-effect:": 43,
+            "mk2-stage-setup:": 8,
+            "mk2-floor:": 15,
+            "mk2-forest-setup:": 10,
+            "mk2-pit-fall-source:": 7,
+            "mk2-pit-upper-setup:": 6,
+            "mk2-pit-bridge:": 14,
+            "mk2-intro-lzw:": 31,
+            "mk2-mountain-source:": 15,
+            "mk2-viewport-floor:": 7,
+            "mk2-witnessed-floor:": 2,
+            "mk2-images-setup:": 2,
+            "mk2-source-animation-sheet:": 8,
+            "mk2-cave-source:": 49,
+            "mk2-armory-source:": 18,
+            "mk2-battle-source:": 20,
+            "mk2-arena-source:": 15,
+            "mk2-tomb-source:": 16,
+            "mk2-portal-source:": 13,
+            "mk2-tower-source:": 6,
+            "mk2-forest-source:": 49,
+            "mk2-forest-tail-source:": 9,
+            "mk2-pit-source:": 28,
+            "mk2-armory-tail-source:": 12,
+            "mk2-arena-tail-source:": 16
+          },
+          "originalArchiveParity": {
+            "MK2_P8_PIT_II_SEVEN_ORIGINAL_LOWER_WALL_SOURCES.zip": "7832bae102ab952024f8fa2b48f86379d5a519f2302491757027b4568654bdd5",
+            "MK2_P9_PIT_II_SIX_ORIGINAL_UPPER_SETUP_LAYERS.zip": "25abe08f1471a46c9e205bed3693559499afd7b0893bd277c5c51130769f652d",
+            "MK2_P10_PIT_II_ORIGINAL_BRIDGE_ACTOR_FRAMES.zip": "6aedb63e4b974468c64a2a80afc4270be0815d716fa265cee21278b612ddf79c"
+          },
+          "selectedExportAssets": 8,
+          "browserUIVerified": false,
+          "fullSceneAssemblyVerified": false,
+          "nativeAnimationTimingVerified": false,
+          "copyrightGameFilesIncludedInRepository": false
+        },
+        {
+          "name": "MK2 p38-tomb-coverage",
+          "status": "PASS",
+          "uniqueAssets": 5369,
+          "existingEffects": 16,
+          "newRepresentations": 0,
+          "qualifiedReferences": 288,
+          "coveredResourceBytes": 1028136,
+          "unaffectedResourcesPreserved": 14,
+          "invalidEffectSetsRejected": 10,
+          "cleanReverified": true,
+          "p37PackageByteIdentical": true,
+          "packageSha256": "38326a2096b6c89a68d788805fe6832a92dc48097e34d8190be3a599ea7fcf4a",
+          "privateEffectZipSha256": "bb5d911b8e9e872f8537e467afde8679ce6cda7b052bbd7c8675f538055a24f3"
+        },
+        {
+          "name": "MK2 p37-source-coverage",
+          "status": "PASS",
+          "uniqueAssets": 5369,
+          "resources": 15,
+          "coverageStatus": "VERIFIED_INTERVAL_ACCOUNTING",
+          "packageSha256": "0796e016bd03f7ca8c3a9d518717a67095c7a1602f241b74c551894532d8c536",
+          "resourcesSummary": [
+            {
+              "name": "CAVE.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 49,
+              "qualifiedReferences": 49,
+              "coveredBytes": 57192,
+              "outsideScopeBytes": 120,
+              "gaps": [
+                {
+                  "start": 0,
+                  "endExclusive": 120
+                }
+              ]
+            },
+            {
+              "name": "ARMORY.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 33,
+              "qualifiedReferences": 31,
+              "coveredBytes": 176512,
+              "outsideScopeBytes": 0,
+              "gaps": []
+            },
+            {
+              "name": "BATTLE.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 23,
+              "qualifiedReferences": 21,
+              "coveredBytes": 95276,
+              "outsideScopeBytes": 0,
+              "gaps": []
+            },
+            {
+              "name": "ARENA.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 34,
+              "qualifiedReferences": 32,
+              "coveredBytes": 126328,
+              "outsideScopeBytes": 0,
+              "gaps": []
+            },
+            {
+              "name": "TOMB.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 44,
+              "qualifiedReferences": 17,
+              "coveredBytes": 97336,
+              "outsideScopeBytes": 9448,
+              "gaps": [
+                {
+                  "start": 54328,
+                  "endExclusive": 63776
+                }
+              ]
+            },
+            {
+              "name": "PORTAL.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 42,
+              "qualifiedReferences": 14,
+              "coveredBytes": 71752,
+              "outsideScopeBytes": 21004,
+              "gaps": [
+                {
+                  "start": 35912,
+                  "endExclusive": 56916
+                }
+              ]
+            },
+            {
+              "name": "TOWER.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 17,
+              "qualifiedReferences": 7,
+              "coveredBytes": 98120,
+              "outsideScopeBytes": 15492,
+              "gaps": [
+                {
+                  "start": 40776,
+                  "endExclusive": 56268
+                }
+              ]
+            },
+            {
+              "name": "FOREST.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 72,
+              "qualifiedReferences": 59,
+              "coveredBytes": 226788,
+              "outsideScopeBytes": 0,
+              "gaps": []
+            },
+            {
+              "name": "PIT.GRA",
+              "status": "VERIFIED_INTERVAL_ACCOUNTING",
+              "registeredRepresentations": 50,
+              "qualifiedReferences": 42,
+              "coveredBytes": 69384,
+              "outsideScopeBytes": 0,
+              "gaps": []
+            },
+            {
+              "name": "VFRAME.GRA",
+              "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+              "registeredRepresentations": 0,
+              "qualifiedReferences": 0,
+              "coveredBytes": 0,
+              "outsideScopeBytes": 59056,
+              "gaps": [
+                {
+                  "start": 0,
+                  "endExclusive": 59056
+                }
+              ]
+            },
+            {
+              "name": "FONTS.GRA",
+              "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+              "registeredRepresentations": 0,
+              "qualifiedReferences": 0,
+              "coveredBytes": 0,
+              "outsideScopeBytes": 124328,
+              "gaps": [
+                {
+                  "start": 0,
+                  "endExclusive": 124328
+                }
+              ]
+            },
+            {
+              "name": "PLAYSTA.GRA",
+              "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+              "registeredRepresentations": 0,
+              "qualifiedReferences": 0,
+              "coveredBytes": 0,
+              "outsideScopeBytes": 327360,
+              "gaps": [
+                {
+                  "start": 0,
+                  "endExclusive": 327360
+                }
+              ]
+            },
+            {
+              "name": "PROBE.GRA",
+              "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+              "registeredRepresentations": 30,
+              "qualifiedReferences": 0,
+              "coveredBytes": 0,
+              "outsideScopeBytes": 327672,
+              "gaps": [
+                {
+                  "start": 0,
+                  "endExclusive": 327672
+                }
+              ]
+            },
+            {
+              "name": "ACCLAIM.GRA",
+              "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+              "registeredRepresentations": 1,
+              "qualifiedReferences": 0,
+              "coveredBytes": 0,
+              "outsideScopeBytes": 2036,
+              "gaps": [
+                {
+                  "start": 0,
+                  "endExclusive": 2036
+                }
+              ]
+            },
+            {
+              "name": "MONKS.GRA",
+              "status": "NO_QUALIFIED_INTERVALS_IN_SCOPE",
+              "registeredRepresentations": 0,
+              "qualifiedReferences": 0,
+              "coveredBytes": 0,
+              "outsideScopeBytes": 2432,
+              "gaps": [
+                {
+                  "start": 0,
+                  "endExclusive": 2432
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "MK2 p35-arena-tail",
+          "pass": "P35",
+          "status": "PASS",
+          "checks": 413,
+          "originalArenaTailImages": 16,
+          "indexedPixels": 99721,
+          "setupRelationshipsQualified": false,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "262ed93f0176f4becaf70cd0437f10c522434dc2978d20385cca168224f00833",
+          "sourceOutsideImageFamilyBytes": 72012,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p34-armory-tail",
+          "pass": "P34",
+          "status": "PASS",
+          "checks": 317,
+          "originalArmoryTailImages": 12,
+          "indexedPixels": 7680,
+          "setupRelationshipsQualified": false,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "df7ef23a709774e1f4dc7cdbbde83bb95c4c72ce1dc0877a9e1fb1d687447baa",
+          "sourceOutsideImageFamilyBytes": 166784,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p33-pit",
+          "pass": "P33",
+          "status": "PASS",
+          "checks": 802,
+          "originalPitImages": 28,
+          "indexedPixels": 108352,
+          "existingSetupLayers": 6,
+          "originalSetupPlacements": 126,
+          "reconstructedSetupCells": 1328768,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "2cfc7a6834292b4beb01eb324a0402e4d3b3bb8a5c9788b007c032c967581794",
+          "sourceOutsideImageFamilyBytes": 7764,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p32-forest-tail",
+          "pass": "P32",
+          "status": "PASS",
+          "checks": 227,
+          "originalForestTailImages": 9,
+          "indexedPixels": 33122,
+          "existingP7ControlsIndependentlyChecked": 60,
+          "newP7SetupLinks": 0,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "19635b71abd3de358b2aeff2c70462bf29ffa4ca943866ff6acdd9de319f1c65",
+          "sourceOutsideImageFamilyBytes": 193424,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p30-forest",
+          "pass": "P30",
+          "status": "PASS",
+          "checks": 1094,
+          "originalForestImages": 49,
+          "indexedPixels": 164382,
+          "existingSetupLayers": 5,
+          "originalSetupPlacements": 60,
+          "reconstructedSetupCells": 446912,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "59b02f8bea8684bd4d1721db5ccb27bed914601c15fe82e8309717d4154a3e9c",
+          "sourceOutsideImageFamilyBytes": 62036,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p29-tower",
+          "pass": "P29",
+          "status": "PASS",
+          "checks": 161,
+          "originalTowerImages": 6,
+          "indexedPixels": 43653,
+          "sourceSetupRecords": 2,
+          "originalSetupControls": 22,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "0f30349355a6db84a2220e653301a993921500ddf8083ef6db8a61e0856a132c",
+          "sourceOutsideImageFamilyBytes": 72836,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p28-portal",
+          "pass": "P28",
+          "status": "PASS",
+          "checks": 327,
+          "originalPortalImages": 13,
+          "indexedPixels": 60566,
+          "existingSetupLayers": 2,
+          "originalSetupPlacements": 28,
+          "reconstructedSetupCells": 211456,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "b159383cee493fcb0ce4fba8cd69a7ff1d554e267f5d729492bede12069a6e90",
+          "sourceOutsideImageFamilyBytes": 56844,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p27-tomb",
+          "pass": "P27",
+          "status": "PASS",
+          "checks": 466,
+          "originalTombImages": 16,
+          "indexedPixels": 64971,
+          "existingSetupLayers": 6,
+          "originalSetupPlacements": 87,
+          "reconstructedSetupCells": 523584,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "a408f7e4000e0bec4d2db717925ac9e4dfd31d05591a641eb02d30e7521faa90",
+          "sourceOutsideImageFamilyBytes": 52456,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p25-arena",
+          "pass": "P25",
+          "status": "PASS",
+          "checks": 284,
+          "originalArenaImages": 15,
+          "indexedPixels": 65736,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "1cad7584431335343cf95a0c6cabda74d88a2a50b6f3c76a669ba03ed3f60dc5",
+          "sourceOutsideImageFamilyBytes": 90156,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p24-battle",
+          "pass": "P24",
+          "status": "PASS",
+          "checks": 432,
+          "originalBattleImages": 20,
+          "indexedPixels": 85188,
+          "sourceDescriptorWitnesses": 40,
+          "duplicateWitnessesPreserved": 20,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "3faed3ece5808182446d64092184300da667719cc95948c3f8a2db1f2c06f5eb",
+          "sourceOutsideImageFamilyBytes": 35840,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p23-armory",
+          "pass": "P23",
+          "status": "PASS",
+          "checks": 335,
+          "originalArmoryImages": 18,
+          "indexedPixels": 156767,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "7e5870cdeebf6c17c36a50024592115a1e3172b4a299f379e234ace86ed410ac",
+          "sourceOutsideImageFamilyBytes": 59904,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p22-cave",
+          "pass": "P22",
+          "status": "PASS",
+          "checks": 862,
+          "originalCaveImages": 49,
+          "indexedPixels": 49765,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "e7c407cd1727b003387eb95c91a7e5a131c3eed0c5967fb1d7761ee3f81e9745",
+          "sourcePrefixUnqualifiedBytes": 120,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        {
+          "name": "MK2 p12-intro",
+          "pass": "P12",
+          "status": "PASS",
+          "checks": 524,
+          "originalIntroFrames": 31,
+          "originalSourceIndicesAndConditionalDAC6Parity": "all 31 original frames",
+          "negativeCases": 7,
+          "selectedZipExport": [
+            "indices",
+            "mask",
+            "paletteKnownMask"
+          ],
+          "runtimeAnimationTimingKnown": false,
+          "livePaletteIndex0Known": false,
+          "commercialGameDataInGit": false
+        },
+        {
+          "name": "MK2 p13-mountain",
+          "pass": "P13",
+          "status": "PASS",
+          "checks": 358,
+          "newOriginalIndexedGraphics": 15,
+          "consumerSelected": 14,
+          "adjacentStructurallyQualifiedOnly": 1,
+          "originalSuffixBytes": 23024,
+          "sourceOrders": 6,
+          "diagnosticColorOnly": true,
+          "originalSourceIndicesPreserved": true,
+          "negativeFixtureCases": 5,
+          "commercialAssetsCommitted": false,
+          "packageSha256": "e7eabb5d6444d249b7b08a1197c7cc7767a8e70df668f661d5d0eff762d67c86"
+        },
+        {
+          "name": "MK2 p14-source-viewport",
+          "pass": "P14",
+          "status": "PASS",
+          "checks": 409790,
+          "newNativeViewportPreviews": 7,
+          "canonicalOriginalEXE": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+          "sourceResearch": "O110C",
+          "nativeProjection": "320 x source rows, source-x 288, hypothetical bank base 1",
+          "runtimeColorKnown": false,
+          "runtimeCameraKnown": false,
+          "completeStageScenes": false,
+          "evidencePackageSHA256": "e7b588f7f84807b3dab054e0b8ce99336570f29256056617b6c38bafad2b36ca",
+          "negativeFixtureVariants": 9,
+          "gameMediaCommitted": false
+        },
+        {
+          "name": "MK2 p15-observed-floors",
+          "pass": "P15",
+          "status": "PASS",
+          "checks": 28244,
+          "independentOriginalWitness": "O115 screenshot RGB tables, O117 Tomb control and O115B Portal control",
+          "assets": 2,
+          "sourcePixels": 28160,
+          "nativePaletteKnown": false,
+          "liveCameraKnown": false,
+          "completeStage": false,
+          "sourceArchiveSha256": "1ded7e25adc7043e908cf2268fc208321fed6afa8779526dda1e17739455454b",
+          "negativeFixtureVariants": 10
+        },
+        {
+          "name": "MK2 p17-unassigned-images",
+          "pass": "P17",
+          "status": "PASS",
+          "checks": 77,
+          "originalIndexedMosaics": 2,
+          "originalIndexPixels": 128000,
+          "independentO122SourceHashes": true,
+          "sourceBundleIntegrity": true,
+          "negativeFixtures": 8,
+          "nativePaletteOwnershipKnown": false,
+          "completeStageSceneVerified": false,
+          "cumulativeP16RegressionRerun": false,
+          "gameBrowserVerified": false
+        },
+        {
+          "name": "MK2 p18-ordered-sequences",
+          "pass": "P18",
+          "status": "PASS",
+          "checks": 379422,
+          "tracks": 8,
+          "orderedSourceFrames": 57,
+          "comparedIndexedPixels": 63112,
+          "screenshotRgbClaim": false,
+          "nativeFrameTimingKnown": false,
+          "worldPlacementKnown": false,
+          "currentFullP16P17P18SourceScanned": false,
+          "canonicalOriginalFixtureUsed": true
+        },
+        {
+          "name": "MK2 p19-source-order-queue",
+          "pass": "P19",
+          "status": "PASS",
+          "checks": 280,
+          "sourceTracks": 8,
+          "originalOrderedFrames": 57,
+          "originalFramePixelsReExported": 63112,
+          "presentationMillisecondsTested": 137,
+          "nativeFrameTimeKnown": false,
+          "originalPaletteOwnershipKnown": false,
+          "canonicalOriginalFixture": true,
+          "currentFullP16P17P18ScannerVerified": false
+        },
+        {
+          "name": "mk1 compatibility",
+          "pass": "P21",
+          "game": "mk1",
+          "status": "PASS",
+          "checks": 2615,
+          "inputFiles": 326,
+          "exeSha256": "750792337f71b2f7991450fa92d2240073b089c917e3c6f1f373404544941b14",
+          "assets": 2656,
+          "counts": {
+            "sprite": 2363,
+            "stage": 49,
+            "audio": 244
+          },
+          "selectedAssetsExportVerified": 49,
+          "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+          "packageHashes": [
+            {
+              "name": "MK1_stages_evidence.zip",
+              "sha256": "538eb39114887638729e59ff3c73a1535d7b76699ac3e1894bcdde29d1dcd271"
+            },
+            {
+              "name": "MK1_animations_evidence.zip",
+              "sha256": "fedff67578b0e9f5fe14b3f5949386ac1d243b776d5cbeaa1fc8eea3536b39c1"
+            },
+            {
+              "name": "MK1_audio_evidence.zip",
+              "sha256": "e384deac1782aa4a77a81dfbf82fd19b491b5ed1ea95ef3529b3ad2255269057"
+            }
+          ],
+          "browserInteractionVerified": false,
+          "completeCorpusIdentityVerified": false,
+          "stageOwnershipExpanded": false
+        },
+        {
+          "name": "mk3 compatibility",
+          "pass": "P21",
+          "game": "mk3",
+          "status": "PASS",
+          "checks": 7110,
+          "inputFiles": 87,
+          "exeSha256": "8aa7f3d45a086e7373afc120dc88378bda3d7766d5b69badbc707bb4570bdef0",
+          "assets": 9186,
+          "counts": {
+            "sprite": 6654,
+            "raw": 1046,
+            "audio": 1024,
+            "image": 416,
+            "music": 46
+          },
+          "selectedAssetsExportVerified": 10,
+          "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+          "packageHashes": [],
+          "browserInteractionVerified": false,
+          "completeCorpusIdentityVerified": false,
+          "stageOwnershipExpanded": false
+        }
+      ],
+      "notRun": [],
+      "browserInteractionVerified": false,
+      "commercialAssetsIncluded": false,
+      "finishedAt": "2026-11-07T11:33:35.785Z"
+    },
+    "p21VisualBaseline": {
+      "status": "PASS",
+      "baselineCheckpoint": "P21",
+      "games": [
+        {
+          "game": "mk1",
+          "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+          "unchangedFromP21": true,
+          "wholeEvidenceArchiveHashesEqual": false,
+          "wholeEvidenceArchiveCount": 3
+        },
+        {
+          "game": "mk3",
+          "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+          "unchangedFromP21": true,
+          "wholeEvidenceArchiveHashesEqual": true,
+          "wholeEvidenceArchiveCount": 0
+        }
+      ],
+      "archiveByteIdentityRequired": false
+    },
+    "p26VisualBaseline": [
+      {
+        "game": "mk1",
+        "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+        "unchangedFromP26": true,
+        "wholeEvidenceArchiveHashesEqual": false
+      },
+      {
+        "game": "mk3",
+        "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+        "unchangedFromP26": true,
+        "wholeEvidenceArchiveHashesEqual": true
+      }
+    ],
+    "p31VisualBaseline": [
+      {
+        "game": "mk1",
+        "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+        "unchangedFromP31": true,
+        "wholeEvidenceArchiveHashesEqual": false
+      },
+      {
+        "game": "mk3",
+        "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+        "unchangedFromP31": true,
+        "wholeEvidenceArchiveHashesEqual": true
+      }
+    ],
+    "imageFamilies": [
+      {
+        "pass": "p22",
+        "family": "cave",
+        "images": 49,
+        "adapter": {
+          "pass": "P22",
+          "status": "PASS",
+          "checks": 862,
+          "originalCaveImages": 49,
+          "indexedPixels": 49765,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "e7c407cd1727b003387eb95c91a7e5a131c3eed0c5967fb1d7761ee3f81e9745",
+          "sourcePrefixUnqualifiedBytes": 120,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P22",
+          "status": "PASS",
+          "checks": 299427,
+          "originalCaveImages": 49,
+          "indexedPixels": 49765,
+          "sourceSuffixBytes": 57192,
+          "unqualifiedPrefixBytes": 120,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P22",
+          "status": "PASS",
+          "falsifiedExportsRejected": 3,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p23",
+        "family": "armory",
+        "images": 18,
+        "adapter": {
+          "pass": "P23",
+          "status": "PASS",
+          "checks": 335,
+          "originalArmoryImages": 18,
+          "indexedPixels": 156767,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "7e5870cdeebf6c17c36a50024592115a1e3172b4a299f379e234ace86ed410ac",
+          "sourceOutsideImageFamilyBytes": 59904,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P23",
+          "status": "PASS",
+          "checks": 940912,
+          "originalArmoryImages": 18,
+          "indexedPixels": 156767,
+          "sourceImagePrefixBytes": 116608,
+          "outsideImageFamilyBytes": 59904,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P23",
+          "status": "PASS",
+          "falsifiedExportsRejected": 3,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p24",
+        "family": "battle",
+        "images": 20,
+        "adapter": {
+          "pass": "P24",
+          "status": "PASS",
+          "checks": 432,
+          "originalBattleImages": 20,
+          "indexedPixels": 85188,
+          "sourceDescriptorWitnesses": 40,
+          "duplicateWitnessesPreserved": 20,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "3faed3ece5808182446d64092184300da667719cc95948c3f8a2db1f2c06f5eb",
+          "sourceOutsideImageFamilyBytes": 35840,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P24",
+          "status": "PASS",
+          "checks": 511492,
+          "originalBattleImages": 20,
+          "originalDescriptorWitnesses": 40,
+          "duplicateWitnessesPreserved": 20,
+          "indexedPixels": 85188,
+          "sourceImagePrefixBytes": 59436,
+          "outsideImageFamilyBytes": 35840,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P24",
+          "status": "PASS",
+          "falsifiedExportsRejected": 4,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p25",
+        "family": "arena",
+        "images": 15,
+        "adapter": {
+          "pass": "P25",
+          "status": "PASS",
+          "checks": 284,
+          "originalArenaImages": 15,
+          "indexedPixels": 65736,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "1cad7584431335343cf95a0c6cabda74d88a2a50b6f3c76a669ba03ed3f60dc5",
+          "sourceOutsideImageFamilyBytes": 90156,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P25",
+          "status": "PASS",
+          "checks": 394675,
+          "originalArenaImages": 15,
+          "indexedPixels": 65736,
+          "sourceImagePrefixBytes": 36172,
+          "outsideImageFamilyBytes": 90156,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P25",
+          "status": "PASS",
+          "falsifiedExportsRejected": 3,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p27",
+        "family": "tomb",
+        "images": 16,
+        "adapter": {
+          "pass": "P27",
+          "status": "PASS",
+          "checks": 466,
+          "originalTombImages": 16,
+          "indexedPixels": 64971,
+          "existingSetupLayers": 6,
+          "originalSetupPlacements": 87,
+          "reconstructedSetupCells": 523584,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "a408f7e4000e0bec4d2db717925ac9e4dfd31d05591a641eb02d30e7521faa90",
+          "sourceOutsideImageFamilyBytes": 52456,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P27",
+          "status": "PASS",
+          "checks": 1437357,
+          "originalTombImages": 16,
+          "existingSetupLayers": 6,
+          "originalSetupPlacements": 87,
+          "newlyDiscoveredSourceImages": 0,
+          "indexedPixels": 64971,
+          "sourceImagePrefixBytes": 54328,
+          "outsideImageFamilyBytes": 52456,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P27",
+          "status": "PASS",
+          "falsifiedExportsRejected": 4,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p28",
+        "family": "portal",
+        "images": 13,
+        "adapter": {
+          "pass": "P28",
+          "status": "PASS",
+          "checks": 327,
+          "originalPortalImages": 13,
+          "indexedPixels": 60566,
+          "existingSetupLayers": 2,
+          "originalSetupPlacements": 28,
+          "reconstructedSetupCells": 211456,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "b159383cee493fcb0ce4fba8cd69a7ff1d554e267f5d729492bede12069a6e90",
+          "sourceOutsideImageFamilyBytes": 56844,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P28",
+          "status": "PASS",
+          "checks": 786561,
+          "originalPortalImages": 13,
+          "existingSetupLayers": 2,
+          "originalSetupPlacements": 28,
+          "newlyDiscoveredSourceImages": 0,
+          "indexedPixels": 60566,
+          "sourceImagePrefixBytes": 35912,
+          "outsideImageFamilyBytes": 56844,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P28",
+          "status": "PASS",
+          "falsifiedExportsRejected": 4,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p29",
+        "family": "tower",
+        "images": 6,
+        "adapter": {
+          "pass": "P29",
+          "status": "PASS",
+          "checks": 161,
+          "originalTowerImages": 6,
+          "indexedPixels": 43653,
+          "sourceSetupRecords": 2,
+          "originalSetupControls": 22,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "0f30349355a6db84a2220e653301a993921500ddf8083ef6db8a61e0856a132c",
+          "sourceOutsideImageFamilyBytes": 72836,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P29",
+          "status": "PASS",
+          "checks": 296737,
+          "originalTowerImages": 6,
+          "sourceSetupRecords": 2,
+          "existingEffectFramesIndependentlyDecoded": 7,
+          "originalSetupControls": 22,
+          "newlyDiscoveredSourceImages": 0,
+          "indexedPixels": 43653,
+          "sourceImagePrefixBytes": 40776,
+          "outsideImageFamilyBytes": 72836,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P29",
+          "status": "PASS",
+          "falsifiedExportsRejected": 5,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p30",
+        "family": "forest",
+        "images": 49,
+        "adapter": {
+          "pass": "P30",
+          "status": "PASS",
+          "checks": 1094,
+          "originalForestImages": 49,
+          "indexedPixels": 164382,
+          "existingSetupLayers": 5,
+          "originalSetupPlacements": 60,
+          "reconstructedSetupCells": 446912,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "59b02f8bea8684bd4d1721db5ccb27bed914601c15fe82e8309717d4154a3e9c",
+          "sourceOutsideImageFamilyBytes": 62036,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P30",
+          "status": "PASS",
+          "checks": 1881013,
+          "originalForestImages": 49,
+          "existingSetupLayers": 5,
+          "originalSetupPlacements": 60,
+          "newlyDiscoveredSourceImages": 0,
+          "indexedPixels": 164382,
+          "sourceImagePrefixBytes": 164752,
+          "outsideImageFamilyBytes": 62036,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P30",
+          "status": "PASS",
+          "falsifiedExportsRejected": 5,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p32",
+        "family": "forest-tail",
+        "images": 9,
+        "adapter": {
+          "pass": "P32",
+          "status": "PASS",
+          "checks": 227,
+          "originalForestTailImages": 9,
+          "indexedPixels": 33122,
+          "existingP7ControlsIndependentlyChecked": 60,
+          "newP7SetupLinks": 0,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "19635b71abd3de358b2aeff2c70462bf29ffa4ca943866ff6acdd9de319f1c65",
+          "sourceOutsideImageFamilyBytes": 193424,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P32",
+          "status": "PASS",
+          "checks": 198951,
+          "originalForestTailImages": 9,
+          "existingP7ControlsChecked": 60,
+          "newP7SetupLinks": 0,
+          "newlyDiscoveredSourceImages": 0,
+          "indexedPixels": 33122,
+          "sourceImageInterval": {
+            "start": 164752,
+            "endExclusive": 198116,
+            "encodedBytes": 33364
+          },
+          "outsideImageFamilyBytes": 193424,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P32",
+          "status": "PASS",
+          "falsifiedExportsRejected": 5,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p33",
+        "family": "pit",
+        "images": 28,
+        "adapter": {
+          "pass": "P33",
+          "status": "PASS",
+          "checks": 802,
+          "originalPitImages": 28,
+          "indexedPixels": 108352,
+          "existingSetupLayers": 6,
+          "originalSetupPlacements": 126,
+          "reconstructedSetupCells": 1328768,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "2cfc7a6834292b4beb01eb324a0402e4d3b3bb8a5c9788b007c032c967581794",
+          "sourceOutsideImageFamilyBytes": 7764,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P33",
+          "status": "PASS",
+          "checks": 3320868,
+          "originalPitImages": 28,
+          "existingSetupLayers": 6,
+          "originalSetupPlacements": 126,
+          "newlyDiscoveredSourceImages": 0,
+          "indexedPixels": 108352,
+          "sourceImagePrefixBytes": 61620,
+          "outsideImageFamilyBytes": 7764,
+          "paintedIndexZeroPixels": 0,
+          "existingBridgeFramesIndependentlyDecoded": 14,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P33",
+          "status": "PASS",
+          "falsifiedExportsRejected": 6,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p34",
+        "family": "armory-tail",
+        "images": 12,
+        "adapter": {
+          "pass": "P34",
+          "status": "PASS",
+          "checks": 317,
+          "originalArmoryTailImages": 12,
+          "indexedPixels": 7680,
+          "setupRelationshipsQualified": false,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "df7ef23a709774e1f4dc7cdbbde83bb95c4c72ce1dc0877a9e1fb1d687447baa",
+          "sourceOutsideImageFamilyBytes": 166784,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P34",
+          "status": "PASS",
+          "checks": 46288,
+          "originalArmoryTailImages": 12,
+          "setupRelationshipsQualified": false,
+          "newlyDiscoveredSourceImages": 0,
+          "indexedPixels": 7680,
+          "sourceImageInterval": {
+            "start": 116608,
+            "endExclusive": 126336,
+            "encodedBytes": 9728
+          },
+          "outsideImageFamilyBytes": 166784,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P34",
+          "status": "PASS",
+          "falsifiedExportsRejected": 6,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      },
+      {
+        "pass": "p35",
+        "family": "arena-tail",
+        "images": 16,
+        "adapter": {
+          "pass": "P35",
+          "status": "PASS",
+          "checks": 413,
+          "originalArenaTailImages": 16,
+          "indexedPixels": 99721,
+          "setupRelationshipsQualified": false,
+          "newlyDiscoveredSourceImages": 0,
+          "negativeFixtures": 8,
+          "evidenceZipSha256": "262ed93f0176f4becaf70cd0437f10c522434dc2978d20385cca168224f00833",
+          "sourceOutsideImageFamilyBytes": 72012,
+          "nativePaletteKnown": false,
+          "fullStageScene": false,
+          "browserInteractionVerified": false
+        },
+        "independent": {
+          "pass": "P35",
+          "status": "PASS",
+          "checks": 598602,
+          "originalArenaTailImages": 16,
+          "setupRelationshipsQualified": false,
+          "newlyDiscoveredSourceImages": 0,
+          "indexedPixels": 99721,
+          "sourceImageInterval": {
+            "start": 36172,
+            "endExclusive": 90488,
+            "encodedBytes": 54316
+          },
+          "outsideImageFamilyBytes": 72012,
+          "exportPngAndSidecarParity": true,
+          "nativePaletteKnown": false,
+          "fullStageScene": false
+        },
+        "negatives": {
+          "pass": "P35",
+          "status": "PASS",
+          "falsifiedExportsRejected": 6,
+          "zipAndPngCrcRecomputed": true,
+          "cleanExportReverified": true
+        }
+      }
+    ],
+    "census": {
+      "mk1": 2656,
+      "mk2": 5369,
+      "mk3": 9186
+    },
+    "browserInteractionVerified": false,
+    "nativePlaybackVerified": false,
+    "commercialAssetsIncluded": false,
+    "totals": {
+      "originalImageRepresentations": 251,
+      "indexedPixels": 939903,
+      "independentChecks": 10712883,
+      "falsifiedExportsRejected": 54
+    },
+    "coverageControls": {
+      "p40": {
+        "pass": "P40",
+        "status": "PASS",
+        "uniqueAssets": 5369,
+        "newRepresentations": 0,
+        "originalPortalEffects": 20,
+        "qualifiedReferences": 308,
+        "portalBytes": 92756,
+        "portalOutsideScopeBytes": 0,
+        "negativeFixturesRejected": 10,
+        "priorP38ReportPreserved": true,
+        "unaffectedResourcesPreserved": 14,
+        "originalDataBrowserVerified": false,
+        "originalFixture": true,
+        "reportSha256": "d7ce0a5e34b655bfe68cae6a8d450f4511d6efda2bed94a0e2dd7e837eda984c"
+      },
+      "p37SourceOnly": {
+        "status": "PASS",
+        "checks": 20,
+        "invalidIntervalRefusals": 10,
+        "dummyMetadataOnly": true
+      },
+      "p40Preflight": {
+        "pass": "P40_SOURCE_PREFLIGHT",
+        "status": "PASS",
+        "qualifiedReferences": 34,
+        "coveredBytes": 92756,
+        "outsideScopeBytes": 0,
+        "duplicateOrOverlappingReferenceBytes": 0,
+        "newRepresentations": 0,
+        "negativeControlsRejected": 10,
+        "scope": "committed evidence only; original binary export/integration and full regression not run"
+      },
+      "p37Independent": {
+        "status": "PASS",
+        "resources": 15,
+        "independentNativeReferences": 272,
+        "originalFileDecoderChecks": 6950259,
+        "falseReportsRejected": 6,
+        "cleanReportReverified": true,
+        "byteSetOracle": true,
+        "sceneCompletenessClaimed": false
+      },
+      "p38Independent": {
+        "status": "PASS",
+        "existingTombEffectFrames": 16,
+        "originalFileDecoderChecks": 6986406,
+        "independentNativeReferences": 288,
+        "falseReportsRejected": 8,
+        "cleanReportReverified": true,
+        "exportChecks": 54192,
+        "exportNativeIndicesMasksGeometryAndDiagnosticAlphaVerified": true,
+        "exportRuntimeRgbClaimed": false,
+        "sourceImageInterval": {
+          "start": 54328,
+          "endExclusive": 63776,
+          "encodedBytes": 9448
+        }
+      },
+      "p39Independent": {
+        "status": "PASS",
+        "originalFileDecoderChecks": 43213,
+        "indexedPixels": 21515,
+        "streamStart": 35912,
+        "streamEndExclusive": 56916,
+        "encodedBytes": 21004
+      },
+      "p43": {
+        "status": "PASS",
+        "pass": "P43",
+        "uniqueAssets": 5369,
+        "newRepresentations": 0,
+        "towerEffects": 7,
+        "qualifiedReferences": 315,
+        "coveredResourceBytes": 1064632,
+        "towerBytes": 113612,
+        "invalidEffectSetsRejected": 10,
+        "legacyP37P38P40PackagesByteIdentical": true,
+        "unaffectedResourcesPreserved": 14,
+        "cleanReverified": true,
+        "reportSha256": "36976adf5bdb88cc3bcbe39e14052ec485ed3bb72da627b3cdd99398f5722ee7",
+        "existingEffectExportFrames": 43,
+        "existingEffectPreviewRgbaSha256": {
+          "mk2-stage-effect:tomb_flying_a:00": "c7420844885d284fdefe0f7d88de9568d5edf4bf6f8c945f5a127d9301e697d0",
+          "mk2-stage-effect:tomb_flying_a:01": "2713d627aa798fc67e843cfb5b76b9cce940921496008eb1c2e4716b214673a4",
+          "mk2-stage-effect:tomb_flying_a:02": "127bb539e5ac606bb98708f8200547fc57ead3c1e6a0da2299682e8506ff3c97",
+          "mk2-stage-effect:tomb_flying_a:03": "015b049ee571ae055b7fc6e808712585c0b3dffb34e7dcb312980ab2c9537272",
+          "mk2-stage-effect:tomb_flying_a:04": "58281bd9f3e222e5e9aa0298594db743a3cb3838a76a5a0ba0f12fc5316603bc",
+          "mk2-stage-effect:tomb_flying_a:05": "590280e89eae954e2d833daf01f43555e434e946958f40e2969f615bc6100e42",
+          "mk2-stage-effect:tomb_flying_a:06": "bdba0641626d738f760113b032120d52b682d647fd0ffc8eb351c7fdbf87e1a4",
+          "mk2-stage-effect:tomb_flying_a:07": "50b1fed42d529f8197b1051fb0f9b63e6f7a2f6a34e0aa57968862ad34eff783",
+          "mk2-stage-effect:tomb_flying_b:00": "2651147e5d75b418787495415c055cb0a8c7e2a5a21e48bfc60236873094ea77",
+          "mk2-stage-effect:tomb_flying_b:01": "f9d895c925b462060bc4db5860cd0988ff0f1a82bae353750fee71f0659ea79f",
+          "mk2-stage-effect:tomb_flying_b:02": "f3c1c9f0394a1e894b38170b3ea71ac7aea7c2555d82e9c3a50e5d6db67d9da4",
+          "mk2-stage-effect:tomb_flying_b:03": "368281e2914e883ddb174f84b33a9bf021d9c0ca3aaa3d88870f711de8cea0b7",
+          "mk2-stage-effect:tomb_flying_b:04": "148a9ea517342ee41e80b8951b014ebe2c75951969104b01993244077b442bc9",
+          "mk2-stage-effect:tomb_flying_b:05": "60cc0540a787cdb989301a2e235fda10cc38f164d8ae65ba198366759bd49095",
+          "mk2-stage-effect:tomb_flying_b:06": "5133849a42fb1cf3ea8f86f4c08d665a9aa05086343854fb9e5229f7eeaf8418",
+          "mk2-stage-effect:tomb_flying_b:07": "e0d17c7e4b03b895d86f62c59696bfa87816eea27cdf1c90fc58a437bd146ab7",
+          "mk2-stage-effect:portal_swaying:00": "0314e9641ac21c0243cf787f233ab7666572a0550635b70a27d7672a32378071",
+          "mk2-stage-effect:portal_swaying:01": "4ab90f9920d949e8df9c06f0d7039d4c8c08476609d14fdfbc1aeadb81f3a879",
+          "mk2-stage-effect:portal_swaying:02": "2d9c14db7f3d241e1052f33ae18ae2bf8c67fa37b91519ad11bd1c37531d55d5",
+          "mk2-stage-effect:portal_swaying:03": "407f1e300401b3a411f42d114136d873de87400b7ec163c0eae9f0c64f21b622",
+          "mk2-stage-effect:portal_swaying:04": "257c4e6e561c799df172f3b8f7a98b42cd720ccac6a791362e3bc41c83ca5b34",
+          "mk2-stage-effect:portal_swaying:05": "fd7d9fdcc1541dfc8bc3293514fd93d7d2898c08af150fab4c28e3b77909770e",
+          "mk2-stage-effect:portal_swaying:06": "a47b34494a28e309814db550993c6066171452deed1127bd50bcd39c978f289e",
+          "mk2-stage-effect:portal_hanging:00": "4d80ae6601e27efd95a5b52ab9d89d1908f83b15e1a5f9c2c9309a41f1a55753",
+          "mk2-stage-effect:portal_hanging:01": "41f1c5c3d859c3b86017d8bf35490e67461a50511c631d62982e2ab5e2d7101e",
+          "mk2-stage-effect:portal_hanging:02": "68591ff6205e56ab95a338ebbc43db798a1aba6f2134f268c8ae7c9b66501d6f",
+          "mk2-stage-effect:portal_hanging:03": "e71289ebad7039d119d7ea3affb79a2924898d3d47f8fbeb2f4e07f762ec7346",
+          "mk2-stage-effect:portal_hanging:04": "3cd1dfbefddcfc3841fa4b21c751a58b9e9d8f2064b61ef52dd1921e8322727d",
+          "mk2-stage-effect:portal_hanging:05": "b22dafffa9ea12e78e9186643c289523a573a8fc496501f262e2ba7a47e9a9fa",
+          "mk2-stage-effect:portal_hanging:06": "bd110d6e2d2ab43fc8bd5c4cee024fc171fdc65fe480d22397a30a171a36ab1e",
+          "mk2-stage-effect:portal_electric:00": "18391c9cebd020634bd64e67eba532748577350e26c3f626922d9f6aefdc197c",
+          "mk2-stage-effect:portal_electric:01": "b0a1e97bd995ac7dee7500c4988b4532ec7d4470a2af52aded5d2af07b008d06",
+          "mk2-stage-effect:portal_electric:02": "4966116b3203d832b13e27cc2333e449b781bee54a63269fa05bbd14b43d4d84",
+          "mk2-stage-effect:portal_electric:03": "7aacd714a01ea7aadd2cba2d0bbe3728af63bcf96d1231e4ebc35c3376b305a4",
+          "mk2-stage-effect:portal_electric:04": "142f48236a4687f7ca7c255ef6fbcd0da80aff2ce019e414b19feadf8fdffc3a",
+          "mk2-stage-effect:portal_electric:05": "3ffcc1640692a9faad6b918d9b945248e49a905614182f2b4bc7e3fd42571732",
+          "mk2-stage-effect:tower_original_effect:00": "0314e9641ac21c0243cf787f233ab7666572a0550635b70a27d7672a32378071",
+          "mk2-stage-effect:tower_original_effect:01": "4ab90f9920d949e8df9c06f0d7039d4c8c08476609d14fdfbc1aeadb81f3a879",
+          "mk2-stage-effect:tower_original_effect:02": "2d9c14db7f3d241e1052f33ae18ae2bf8c67fa37b91519ad11bd1c37531d55d5",
+          "mk2-stage-effect:tower_original_effect:03": "407f1e300401b3a411f42d114136d873de87400b7ec163c0eae9f0c64f21b622",
+          "mk2-stage-effect:tower_original_effect:04": "257c4e6e561c799df172f3b8f7a98b42cd720ccac6a791362e3bc41c83ca5b34",
+          "mk2-stage-effect:tower_original_effect:05": "23dd9047fc7d100fc438d8ae37472d970cc14f113b8c0899bfcce27a5bb008e3",
+          "mk2-stage-effect:tower_original_effect:06": "a47b34494a28e309814db550993c6066171452deed1127bd50bcd39c978f289e"
+        }
+      },
+      "p44Independent": {
+        "status": "PASS",
+        "independentNativeReferences": 315,
+        "existingEffectFrames": 43,
+        "originalFileDecoderChecks": 7064335,
+        "exportChecks": 171036,
+        "falseReportsRejected": 8,
+        "falseExportsRejected": 6,
+        "cleanReverified": true,
+        "nativeRuntimePaletteClaimed": false,
+        "previewRgbaRoundtripOnly": true
+      }
+    },
+    "p36VisualBaseline": [
+      {
+        "game": "mk1",
+        "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+        "unchangedFromP36": true
+      },
+      {
+        "game": "mk3",
+        "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+        "unchangedFromP36": true
+      }
+    ],
+    "p41VisualBaseline": [
+      {
+        "game": "mk1",
+        "visualPlaneSha256": "d780cf4efcaf2f4eb20e0e08871c84d8cf918f40596e5c7180e528b39d95e785",
+        "unchangedFromP41": true
+      },
+      {
+        "game": "mk3",
+        "visualPlaneSha256": "17ed4abe9a5349c68675753ccaf9f7a5f62e20b6e666fed6bbc47a9f5c30fee4",
+        "unchangedFromP41": true
+      }
+    ],
+    "completeCurrentGameGates": 27,
+    "finishedAt": "2026-11-07T11:34:38.664Z"
+  },
+  "localChecks": {
+    "syntaxFiles": 382,
+    "syntaxErrors": 0,
+    "typescript": "PASS",
+    "productionBuild": "PASS",
+    "runnerPreflightRefusals": 8,
+    "sourceAuditNegativeControls": 7,
+    "cleanAuditReverified": true
+  },
+  "runtimeSourceChanges": [],
+  "commercialAssetsIncluded": false,
+  "mainPromotion": false,
+  "originalDataBrowserValidation": false,
+  "fixtureProvenance": "Existing extracted original fixtures reused; no new archive download or re-extraction",
+  "issue5Qualification": "Historical P19 cumulative pending notes are superseded by fresh current-source headless evidence; original-data browser checks remain open"
+}
