@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P60 uploaded ZIP export independently verified — PASS, 2026-11-07
+
+**P60 source, original-MK2 regression and uploaded export artifact checks PASS.** The user uploaded `MK2_P60_TOMB_INDEPENDENT_COMPONENTS.zip` after the requested export. The attached ZIP was inspected directly in this conversation: **11/11 expected entries, ZIP CRC PASS, schema and individual PNG/index/mask SHA-256 PASS**, 319×199 architecture and sky PNGs with exactly **2,650** and **823** masked pixels, 320×48 floor with **15,360** original indexed pixels, all-one paint mask and all-zero native-palette-known mask. Independently reconstructed floor indices from the private original `mk2.zip` `TOMB.GRA` (SHA-256 `be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613`) matched the exported index bytes **exactly**. Uploaded archive SHA-256: `088de6c45bcf4b3a019b3f1497ccc909769593b7fa8ac07f0653400035b4d936`.
+
+- **Separate evidence:** P60 original-MK2 fixture PASS was previously supplied from the user's Windows command; GitHub source-only [CI 42412466093](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42412466093) PASS. This latest test independently verifies the **uploaded artifact contents**, not the unobserved precise browser click/download sequence.
+- **No unsupported assembly:** original architecture/sky screenshot sample registration does not establish a common camera/coordinate frame with separately witnessed floor RGB; native palette ownership, full scene, draw order and runtime timing remain UNKNOWN. No commercial asset uploaded to GitHub.
+- [P60 handoff with ZIP manifest, CRC, hashes and original TOMB.GRA parity evidence](docs/EXTRACTOR_P60_TOMB_INDEPENDENT_COMPONENTS.md). P60 focused validation now complete for the uploaded archive; optional interactive click-path replay is not required to establish its contents. P61 next complete MK1/MK2/MK3 regression/checkpoint; `main` unchanged.
+
 ## P60 accepted focused original-MK2 component regression — PASS, 2026-11-07
 
 **P60 USER-LOCAL ORIGINAL MK2 FIXTURE PASS; P60 browser ZIP download still pending.** The user executed `scripts/verify-mk2-p60-tomb.cjs` after updating the checkout and supplied the terminal PASS output. It confirms **5,369 unchanged MK2 assets**, **three independently packaged Tomb source components**, **2,650 architecture + 823 sky source samples** (3,473 total), **15,360 original packed-floor index pixels**, byte-identical P59 architecture/sky source exports, byte-identical P15 floor indices and masks, and pixel-identical conditional floor RGB. Original TOMB.GRA SHA-256 `be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613` matched the canonical resource. This is *user-local original-fixture evidence*, not an independent fixture run in the chat environment.
