@@ -96,3 +96,11 @@ The interim runner defaults to P34. P31/P26 and earlier checkpoint runners remai
 
 Next **P35**: audit ARENA **[36172,90488)** against existing descriptor evidence, current fifteen components and native floor, adding independently qualified missing originals only. Preserve workbench/provenance and recoverable develop commits. P36 remains the fifth-pass consolidation assessment; main unchanged.
 
+
+## Committed source and CI evidence
+
+Verified source candidate: `f4eb713ba934f7729b8bab0be64a69514f066e62`; tree `949032cc0a6d204a93907d9b01f654aa7e87aa88`. Complete connector-retrieved source audit PASS: **2,194 committed blobs / 381 src files**, **87 raw byte matches + 2,107 normal checkout newline matches**, zero missing/mismatched/unsafe paths. Inventory SHA-256: `5b8875455a7faaeaec73e774a0142dcae421d5016f14ccee6f40335314605c97`. Runtime changes are limited to the new adapter and additive collection registration; the existing research renderers and native row decoder are unchanged.
+
+GitHub [source-build run 42350703020](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42350703020) completed **SUCCESS** on the exact source candidate: dependency installation, syntax, P31 source-only refusal controls, media guard, production build, TypeScript and headless Chrome startup **without game data**. Original-fixture regression is separately recorded; original-data browser actions remain pending.
+
+The following evidence-only commit changes this handoff, project status and machine-readable results. Application/tooling source is identical to the audited, CI-passing candidate. Main remains P16. Original binaries and private artwork/ZIPs are excluded.

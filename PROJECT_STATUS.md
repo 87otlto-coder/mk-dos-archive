@@ -12,6 +12,7 @@
 - **30 indexed streams + native 896x56 floor** now account for all **176,512 original resource bytes**. This is native byte partition, not proof of setup links, activation, native palette/timing or full stage composition.
 - **317 focused / 46,288 independent export checks PASS**, eight rejected source fixtures and six rejected altered exports/claims. Full MK2: **5,353 / 3,947 cumulative checks PASS; 20 suites PASS**.
 - Local **377-file syntax**, TypeScript and production build PASS. Original-data browser actions remain **VALIDATION PENDING**; P31 remains latest full three-game evidence. No existing research renderer/native row decoder changes.
+- Verified source commit `f4eb713ba934f7729b8bab0be64a69514f066e62`: all **2,194 committed blobs / 381 src files** match; no missing/mismatched/unsafe paths. [CI run 42350703020](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42350703020) **SUCCESS**, including source-only Chrome boot.
 - [P34 handoff](docs/EXTRACTOR_P34_MK2_ARMORY_ADDITIONAL_ORIGINALS.md), [evidence](docs/validation/P34_ARMORY_ADDITIONAL_REGRESSION_2026-11-07.json). Next **P35 ARENA [36172,90488) source audit**. No main promotion; P36 remains fifth-pass consolidation assessment.
 
 ## P33 standalone PIT setup components and preserved bridge/FALL provenance - interim develop pass, 2026-11-07

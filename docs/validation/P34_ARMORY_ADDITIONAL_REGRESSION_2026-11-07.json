@@ -966,5 +966,37 @@
   "browserInteractionVerified": false,
   "mk1mk3FreshlyRerun": false,
   "mainPromoted": false,
-  "originalGameMediaCommitted": false
+  "originalGameMediaCommitted": false,
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "f4eb713ba934f7729b8bab0be64a69514f066e62",
+    "treeSha": "949032cc0a6d204a93907d9b01f654aa7e87aa88",
+    "fileBlobs": 2194,
+    "sourceFiles": 381,
+    "rawByteMatches": 87,
+    "checkoutNormalizedMatches": 2107,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "5b8875455a7faaeaec73e774a0142dcae421d5016f14ccee6f40335314605c97",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "sourceAuditRemoteAssociationVerifiedViaGitHubConnector": true,
+  "sourceCandidate": {
+    "commit": "f4eb713ba934f7729b8bab0be64a69514f066e62",
+    "tree": "949032cc0a6d204a93907d9b01f654aa7e87aa88",
+    "runtimeChanges": [
+      "src/core/assets/mk2ArmoryTailSourceP34.ts",
+      "src/core/assets/collection.ts"
+    ],
+    "removedPaths": []
+  },
+  "githubCI": {
+    "runId": 42350703020,
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42350703020",
+    "headSha": "f4eb713ba934f7729b8bab0be64a69514f066e62",
+    "status": "completed",
+    "conclusion": "success",
+    "originalDataBrowserValidation": false
+  }
 }
