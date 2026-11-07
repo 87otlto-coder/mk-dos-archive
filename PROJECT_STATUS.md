@@ -4,14 +4,15 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
-## P40 PORTAL coverage report integration — develop, fixture acceptance pending, 2026-11-07
+## P40 PORTAL integration - original-fixture acceptance verified, 2026-11-07
 
-**Runtime integration committed; P40 original-fixture gate remains VALIDATION PENDING.** New `MK2_P40_NATIVE_SOURCE_INTERVAL_COVERAGE.json` validates twenty existing PORTAL effect records against independent P39 original-source geometry, pointer, interval and index/mask SHA-256 evidence, then joins the P38 interval report. Expected accounting is **34 qualified PORTAL references / 92,756 covered source bytes / zero gaps and overlaps**, with **no new assets**; the previous 5,369 MK2 census remains the unrerun acceptance target. The P37 and P38 exports remain registered.
+**P40 acceptance PASS on complete committed source dfe700aa698e6b0d4399f1da1813a66f96b29b58.** PORTAL has **34 qualified references / 92,756 covered bytes / zero gaps or overlap**; twenty existing effects added to accounting scope, **no new assets**. MK2 remains **5,369 unique representations**.
 
-- Committed `src/core/assets/mk2SourceCoverageP40.ts`, collection registration, focused original-fixture runner and source-only P38/P39 preflight with ten negative cases; original decoders and stage interpretation unchanged. Independent evidence-only positive/negative joins passed.
-- Initial TypeScript CI failure corrected; corrected source [CI 42359189693](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42359189693) **PASS**. Enhanced source-only CI preflight and test syntax [run 42359285316](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42359285316) **PASS**. This verifies source/build controls, **not** new original-fixture export parity.
-- **Pending:** run `scripts/verify-mk2-p40-portal-coverage.cjs` against the full current committed source and original MK2 installation, rerun full cumulative MK2 suites, verify P37/P38 report byte preservation, then assess P40 completion. Latest fully recorded MK2 fixture remains P38 **5,369 / 23 suites**; MK1/MK3 remain P36. Browser native-game interactions still pending.
-- [P40 integration handoff](docs/EXTRACTOR_P40_PORTAL_SOURCE_COVERAGE_INTEGRATION.md). P41 fifth-pass consolidation not started; `main` unchanged; no commercial game data added to Git.
+- Fresh **23 cumulative MK2 suites PASS**, retained **4,357 cumulative checks**, plus the separate P40 original-fixture gate PASS. P37/P38 metadata packages are byte-identical; fourteen other resource records and source assets are preserved.
+- **Ten altered-effect sets rejected**, clean retry PASS. Independent P39 source recheck **20 frames / 43,213 checks PASS**; source-only preflight and ten false-report controls PASS.
+- Complete source audit **2,227 blobs / 385 src files PASS**, zero missing/mismatched/unsafe paths. Local TypeScript/build PASS. [CI 42359285316](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42359285316) SUCCESS; only documentation changed between that CI revision and the tested source.
+- This continuation adds acceptance evidence only. Latest MK1/MK3 fixture evidence remains P36; browser/native-runtime uncertainties remain open.
+- [P40 handoff](docs/EXTRACTOR_P40_PORTAL_SOURCE_COVERAGE_INTEGRATION.md), [acceptance evidence](docs/validation/P40_ORIGINAL_FIXTURE_ACCEPTANCE_2026-11-07.json). Next **P41 consolidation assessment**, not started. TOWER reconciliation deferred. Main unchanged.
 
 ## P39 bounded PORTAL source audit - 2026-11-07
 
@@ -388,9 +389,9 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P38**, after P36 |
-| Latest full MK2 original-fixture cumulative result | **P38: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
-| Next planned pass | **P39 PORTAL gap/existing-effect provenance reconciliation** |
+| Most recent interim pass | **P40**, after P36 |
+| Latest full MK2 original-fixture cumulative result | **P40: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
+| Next planned pass | **P41 fifth-pass consolidation assessment** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -412,10 +413,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P39 from committed P38 on develop; preserve P36/P31/P26/P21 and all prior pass source/evidence.
-2. Reconcile PORTAL [35912,56916) with existing swaying/hanging/electric effect exports and original list/descriptor/native-row evidence. Extend scope only after independent qualification; do not count a report gap as missing artwork.
-3. Keep original-data browser actions, native palette/timing/alpha and complete scene assembly separately qualified. UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
-4. Preserve data/provenance and the workbench. Continue P39-P40 interim passes, then assess P41 consolidation. Main remains P16.
+1. Assess P41 from verified P40 on develop; preserve P36/P31/P26/P21 and earlier source/evidence.
+2. Use a current-source three-game runner including the P40 original-fixture gate, twelve independent image families, coverage/falsification controls and complete committed-source audit. Preserve frozen runners.
+3. Keep original-data browser actions, native palette/timing/alpha and full scene composition separately qualified. TOWER accounting reconciliation remains deferred.
+4. Consolidation does not authorize main promotion. Preserve all source, native data provenance and the research workbench.
 
 ## Scope discipline
 

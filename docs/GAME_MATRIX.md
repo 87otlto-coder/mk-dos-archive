@@ -16,6 +16,8 @@ P37 freshly reruns all 22 current MK2 suites at 5,369 representations and adds a
 
 P38 freshly reruns all 23 current MK2 suites, with unchanged 5,369 representations, and joins sixteen already-exported TOMB effect streams into complete native byte coverage. The new metadata report has 288 qualified references; P37 report and fourteen other resource records are preserved. Native byte accounting does not qualify a complete scene or live runtime behavior.
 
+P40 original-fixture acceptance freshly verifies all 23 cumulative MK2 suites plus its separate integration gate at 5,369 representations. PORTAL has 34 qualified references covering all 92,756 native resource bytes; twenty already-exported effect streams fill the former report gap. P37/P38 package hashes are unchanged. This is native byte accounting, not complete scene/runtime qualification.
+
 Original-input identity is separately qualified: MK2 directory census and 13 critical hashes, MK1 canonical EXE hash, and recorded MK3 EXE hash. No newly authenticated whole-corpus hash claim is made for MK1 or MK3. Historical detection/inventory support is retained; P21 does not rerun detection qualification.
 
 See [P36 source checkpoint](EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [current project status](../PROJECT_STATUS.md), and the individual evidence handoffs for interpretation limits.

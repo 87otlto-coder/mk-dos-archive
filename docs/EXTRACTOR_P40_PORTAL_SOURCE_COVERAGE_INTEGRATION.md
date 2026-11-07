@@ -1,22 +1,32 @@
-# P40 — PORTAL existing-effect coverage integration (fixture acceptance pending)
+# P40 PORTAL coverage integration - original-fixture acceptance verified
 
-Date: 2026-11-07. Branch: `develop`. Baseline: P39 and P38 committed evidence. `main` remains P16.
+2026-11-07; develop only. P41 consolidation has not started; main remains P16.
 
-## Objective and implemented source
+P40's previously committed integration is now verified against the original MK2 fixture on complete source commit **dfe700aa698e6b0d4399f1da1813a66f96b29b58**. This acceptance pass changes documentation/evidence only; no runtime source or decoder changes.
 
-P39 independently qualified twenty existing PORTAL effects (seven swaying, seven hanging, six electric) in **[35912,56916)**: 21,004 encoded bytes and 21,515 indexed pixels. P38's coverage report had precisely that 21,004-byte outside-scope gap. P40 adds a separate metadata-only report `MK2_P40_NATIVE_SOURCE_INTERVAL_COVERAGE.json`, leaving P37/P38 packages in place.
+- **Focused P40 original-fixture gate PASS**: unchanged 5,369 unique representations; twenty existing PORTAL effects; 34 PORTAL references / all 92,756 resource bytes / zero gaps or overlaps. The full P40 report has 308 qualified references; fourteen other resource records match P38.
+- **All 23 cumulative MK2 suites PASS**, including input identity and retained 4,357 cumulative checks, P37/P38 accounting, prior original images, indexed/PNG exports, effect groups and packages. The separate P40 fixture gate also passes; it is not counted as one of those 23 suites.
+- P37 and P38 metadata package SHA-256 values match their accepted hashes exactly. Existing source assets/metadata/RGBA are unchanged after ten rejected altered-effect sets and a clean retry.
+- Fresh independent P39 original-source recheck: twenty frames / 43,213 decoder checks; descriptors, geometry, intervals and native index/mask hashes equal committed evidence.
+- Source-only preflight and ten false-report controls PASS. Local TypeScript and production build PASS; existing large bundle warning retained.
+- Complete GitHub-associated source audit PASS: **2,227 committed blobs / 385 src files**, 99 raw and 2,128 normal checkout newline matches; zero missing/mismatched/unsafe paths. Inventory SHA-256: **d8fb3fc0a820136de76f970a3e882e4ece39d710f0d5af64f5993ef242935f90**.
+- [CI run 42359285316](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42359285316) is verified SUCCESS at 454361df0553a92b7b0d3f4222a1874a4419086d. GitHub comparison to the tested commit contains only two documentation changes, establishing unchanged source/workflow. This is source-only CI, separate from the fresh private-fixture checks above.
 
-`src/core/assets/mk2SourceCoverageP40.ts` joins these already-exported assets by authenticated resource identity, exact ID, original intervals, dimensions, source-list pointers, descriptors, anchors, index/mask SHA-256 values and explicit unknown native behavior flags. It rejects unavailable/mismatched evidence rather than silently issuing a verified PORTAL record. The intended PORTAL accounting is **34 references / 92,756 union bytes / zero gaps/overlap**, with no new asset representations. No image decoder, rendering, palette attribution, native timing or game composition changes.
+The metadata-only MK2_P40_NATIVE_SOURCE_INTERVAL_COVERAGE.json joins P39's twenty already-exported effects in [35912,56916): 21,004 encoded bytes / 21,515 indexed pixels. Runtime qualification checks exact IDs, authenticated source reference, descriptor/list pointers, geometry/anchors, extents, native index/mask hashes and unchanged claim flags. No new artwork or asset representations are added.
 
-`src/core/assets/collection.ts` adds the separate P40 package/report without removing P37 or P38. A focused original-fixture runner, `scripts/verify-mk2-p40-portal-coverage.cjs`, checks the 5,369 census, PORTAL join, 14 other resource records, P38 report identity, all 20 existing index/mask outputs, ten altered-asset rejection controls and clean retry. It is committed but **has not been executed against the complete current-source original MK2 fixture in this chat**.
+Reproduce:
+~~~sh
+node scripts/verify-mk2-p40-portal-coverage.cjs <original-dir> <private-report.json>
+node scripts/verify-p21-checkpoint.cjs --mk2 <original-dir> --through p38 --report <private-cumulative.json>
+python scripts/verify-mk2-p39-portal-source-audit.py <original-dir> --report <private-source-proof.json>
+~~~
 
-`scripts/verify-mk2-p40-portal-preflight.cjs` is a source-only P38/P39 evidence join with ten falsification controls. GitHub CI workflow was extended to check both P40 test-script syntax and run this preflight without copyrighted game files.
+The existing cumulative runner uses explicit through p38, plus the separate P40 gate. No historical checkpoint runner was rewritten. Existing extracted fixtures were reused; no fresh archive download/re-extraction is claimed. No original binaries or artwork are committed. [Machine-readable acceptance](validation/P40_ORIGINAL_FIXTURE_ACCEPTANCE_2026-11-07.json).
 
-## Verified and outstanding
+**VERIFIED:** fixture-driven integration, independent native-plane provenance, exact PORTAL byte accounting, legacy package preservation and recorded source/build checks.
 
-- **VERIFIED:** independent P38/P39 evidence join, positive case and ten intentionally modified cases; original P39 `PORTAL.GRA` SHA-256 and length available from the supplied private ZIP; committed source changes and verification scripts read back from GitHub.
-- **VERIFIED:** corrected integration source passed strict GitHub source-build/TypeScript/Chrome CI at `32ef6a5`.
-- **VALIDATION PENDING:** CI for workflow update `454361d`; original-fixture P40 runner; full cumulative 5,369-asset / 23-suite regression; byte identity of legacy P37/P38 exports on current source; interactive original-game browser preview/export.
-- **UNKNOWN:** native runtime palette bank, source loop cadence, activation, alpha, world placement and complete PORTAL scene. Encoded byte-accounting is not graphical scene completeness.
+**UNKNOWN / unchanged:** live DAC/palette ownership, native alpha, playback clock/activation, world placement and complete PORTAL scene. Command paint coverage and list structure do not establish those properties.
 
-No commercial original binaries or extracted artwork are in the new Git commits. P41 consolidation is deferred until P40 fixture acceptance. Preserve P36 stable source checkpoint and `main`; TOWER reconciliation remains a separate prospective pass.
+**VALIDATION PENDING:** original-data browser downloads and interactions. MK1/MK3 were explicitly NOT_RUN here; their latest full fixture evidence remains P36.
+
+Next **P41 consolidation assessment**: a current-source three-game runner that includes the P40 fixture gate, all twelve independent image families and existing coverage/falsification controls, plus complete source audit. Keep the P36/P31/P26 checkpoints intact. TOWER report reconciliation stays deferred; main promotion remains separately authorized.

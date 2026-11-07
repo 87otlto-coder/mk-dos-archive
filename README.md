@@ -14,7 +14,8 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 - Build, TypeScript, syntax and source-only refusal controls pass. Original-data browser action checks remain pending. MK1 whole-ZIP variance is observed; metadata volatility remains inferred despite verified unchanged decoded visuals.
 - Interim **P37** adds a metadata-only source interval report: 15 resources / 272 qualified references, independent original-file and byte-set checks, six rejected false reports; all 22 current MK2 suites pass. Census unchanged. Scope gaps do not imply missing artwork.
 - Interim **P38** independently joins sixteen existing TOMB effects into complete native byte accounting; no new asset representations. All 23 current MK2 suites pass; P37 report byte-identical. P38 reports 288 qualified references; report scope is separate from complete scene/runtime qualification.
-- Next **P39**: reconcile PORTAL report gaps with existing effect exports and source provenance. No original game media or private export artwork is committed. Main promotion remains separate.
+- **P39/P40 PORTAL acceptance PASS:** twenty existing effects close native byte accounting with no new assets; 23 cumulative MK2 suites plus the separate P40 original-fixture gate pass at 5,369 representations. P37/P38 report hashes preserved.
+- Next **P41 consolidation assessment**; current full MK1/MK3 evidence remains P36. No original game media or private export artwork is committed. Main promotion remains separate.
 
 Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 
