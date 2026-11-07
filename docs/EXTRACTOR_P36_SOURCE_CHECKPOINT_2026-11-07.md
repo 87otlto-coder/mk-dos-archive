@@ -55,3 +55,9 @@ The pre-change source comparison found all 382 runtime source files unchanged fr
 **VALIDATION PENDING:** original-data browser preview/export interactions. Source-only Chrome CI is separate. Original-input identity retains the existing MK2 census/critical hashes and MK1/MK3 executable checks; no whole-corpus completeness or newly authenticated archive claim.
 
 Next **P37 interim**: reconcile current MK2 extraction coverage against existing verified descriptor/setup research, select a bounded useful gap, and integrate only independently qualified originals or provenance. Prefer verified mechanisms; do not invent palette, timing or scene links. Preserve all checkpoints and recoverable develop commits. Next fifth-pass consolidation assessment is P41 after four interim passes. Main promotion remains separately authorized.
+
+## Complete committed source and CI
+
+Source checkpoint candidate **754c9abfa62fb7d2e9ed32078ccc11669a17064e**, tree **08fff373967415d0bf1329771048ee00a1dea780**: complete GitHub-associated tree audit PASS, **2,207 blobs / 382 runtime source files**, 87 raw matches and 2,120 normal checkout newline matches; zero missing, mismatched or unsafe paths. Inventory SHA-256: **7ffa61ad1b680e227dcdeb18aa736a75b4e4ab5daf3c7116d1e012dc57a1fdcd**. All src blob hashes are unchanged from the P35 parent.
+
+[CI run 42352615423](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42352615423) completed SUCCESS on the exact candidate: strict dependency install, syntax, P31 and P36 source-only refusal controls, media guard, build, TypeScript and Chrome boot without game data. Original-data browser validation remains pending. The final evidence-only commit changes this handoff, PROJECT_STATUS.md and validation JSON; application and verification source are identical to the audited CI candidate. Main remains P16.

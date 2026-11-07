@@ -12,6 +12,7 @@
 - **Twelve independent families PASS: 251 representations / 939,903 pixels / 10,712,883 checks**; **54 altered exports rejected**, all clean exports reverified.
 - Local **378-file syntax**, TypeScript and production build PASS; **eight runner preflight refusals / seven source-audit negative controls PASS**. P31/P26 runners remain frozen; new P36 runner pins the current census.
 - MK1 ZIP-byte variance remains observed with metadata volatility INFERRED; decoded visuals are unchanged. Original-data browser interactions and unqualified native behavior remain separate.
+- Complete source checkpoint **754c9abfa62fb7d2e9ed32078ccc11669a17064e**: **2,207 blobs / 382 src files** match; no runtime src changes from P35. [CI 42352615423](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42352615423) **SUCCESS**, including P36 source-only controls and Chrome boot.
 - [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [machine-readable evidence](docs/validation/P36_CHECKPOINT_REGRESSION_2026-11-07.json). Next **P37 bounded MK2 coverage reconciliation and evidence-backed integration**. No main promotion.
 
 ## P35 additional ARENA originals and complete native source-byte partition - interim develop pass, 2026-11-07
