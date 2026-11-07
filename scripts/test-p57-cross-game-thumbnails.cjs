@@ -42,7 +42,7 @@ const mk2=buildGalleryVisualsP57('mk2',[floor,setup,wrong,sprite,other],null);
 assert.equal(mk2.mk2ByResource.get('TOMB.GRA').asset.id,setup.id,'full setup layer preferred over narrow floor');
 assert.equal(mk2.mk2ByResource.get('FOREST.GRA').asset.id,other.id);
 assert.equal(mk2.mk2ByResource.has('PORTAL.GRA'),false,'unqualified source cannot acquire a stage thumbnail');
-assert.equal(mk2.errors.length,1,'failed MK2 binding must be reported');
+assert.equal(mk2.errors.length,0,'unqualified MK2 source must remain visibly unavailable, not be misclassified as corruption');
 assert.equal(buildGalleryVisualsP57('mk2',[{...setup,rgba:new Uint8Array(3)}],null).errors.length,1);
 assert.equal(buildGalleryVisualsP57('mk2',[setup,setup],null).mk2ByResource.size,0);
 
