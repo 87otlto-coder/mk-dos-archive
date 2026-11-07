@@ -54,6 +54,8 @@ jobs:
           node --check scripts/verify-mk2-p28-portal.cjs
           node --check scripts/verify-mk2-p29-tower.cjs
           node --check scripts/verify-mk2-p30-forest.cjs
+          node --check scripts/verify-mk2-p32-forest-tail.cjs
+          node --check scripts/verify-mk2-p32-cumulative.cjs
           node --check scripts/verify-mk2-p30-cumulative.cjs
           node --check scripts/verify-mk2-p29-cumulative.cjs
           node --check scripts/verify-mk2-p28-cumulative.cjs

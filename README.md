@@ -9,10 +9,11 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 - **P31 is the consolidated source checkpoint on develop; main remains accepted P16.** P26, P21, P11 and earlier source/evidence remain in Git history.
 - Fresh **19-suite three-game regression PASS**, no skipped games: MK1 **2,656**, MK2 **5,304 / 1,940 cumulative checks**, MK3 **9,186** representations. MK1/MK3 decoded visuals match P21 and P26.
 - **Eight independent MK2 image families PASS:** 186 representations / 691,028 indexed pixels / 6,548,174 checks; **31 altered exports rejected** and clean rechecks passed. P27-P30 add 84 standalone known components, preserving existing mosaics/effects/floors and used/unlinked provenance.
-- Reproduce with `node scripts/verify-p31-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. All three fixtures are required. P31 pins P30's census; P26 remains frozen to historical source.
+- Reproduce P31 on its matching historical source with `node scripts/verify-p31-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. All three fixtures are required. P31 pins P30's census; P26 remains frozen to historical source.
+- Interim **P32** adds nine additional FOREST originals: **5,313 current MK2 representations / 2,558 cumulative checks**, all **18 MK2 suites PASS**. FOREST now has a verified 58-stream/native-floor source-byte partition; scene/palette/timing remain separate.
 - All **2,162 P30 committed blobs / 378 src files** matched the local source before consolidation. P31 changes verification/CI/docs only. No original game media or private export artwork is committed.
 - Original-data browser action checks remain pending. Source-only Chrome does not establish original-data interaction, live palette ownership, native timing or full stage composition. MK1 ZIP metadata volatility remains inferred; decoded visuals are verified unchanged.
-- Next **P32 FOREST remaining-source audit [164752,198116)** against existing descriptor evidence. The standard interim runner defaults to P30 until a qualified feature pass updates its census. Main promotion remains separate.
+- Next **P33 PIT descriptor/component coverage join** against existing lower/upper/bridge assets. The standard interim runner defaults to P32; historical checkpoint runners require matching source. Main promotion remains separate.
 
 Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P31 checkpoint](docs/EXTRACTOR_P31_SOURCE_CHECKPOINT_2026-11-07.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 
