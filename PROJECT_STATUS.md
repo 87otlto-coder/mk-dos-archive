@@ -4,9 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
-## P40 PORTAL source-coverage preflight — partial develop pass, 2026-11-07
+## P40 PORTAL coverage report integration — develop, fixture acceptance pending, 2026-11-07
 
-**P40 is NOT finished.** Committed a source-only P38/P39 PORTAL coverage-join preflight with ten falsification controls; the equivalent evidence reconciliation was run independently and the positive case/ten negatives passed. Expected join: 34 authenticated references, 92,756 / 92,756 PORTAL.GRA source bytes, zero overlaps/gaps, **zero new asset representations**. The new repository script itself, P40 runtime report integration and full original-fixture regression remain **VALIDATION PENDING**. Last full MK2 fixture regression remains P38 (5,369 / 23 suites); MK1/MK3 remain P36. Read [P40 partial handoff](docs/EXTRACTOR_P40_PORTAL_PREFLIGHT_PARTIAL.md). Main unchanged; P41 consolidation not started.
+**Runtime integration committed; P40 original-fixture gate remains VALIDATION PENDING.** New `MK2_P40_NATIVE_SOURCE_INTERVAL_COVERAGE.json` validates twenty existing PORTAL effect records against independent P39 original-source geometry, pointer, interval and index/mask SHA-256 evidence, then joins the P38 interval report. Expected accounting is **34 qualified PORTAL references / 92,756 covered source bytes / zero gaps and overlaps**, with **no new assets**; the previous 5,369 MK2 census remains the unrerun acceptance target. The P37 and P38 exports remain registered.
+
+- Committed `src/core/assets/mk2SourceCoverageP40.ts`, collection registration, focused original-fixture runner and source-only P38/P39 preflight with ten negative cases; original decoders and stage interpretation unchanged. Independent evidence-only positive/negative joins passed.
+- Initial TypeScript CI failure corrected; corrected source [CI 42359189693](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42359189693) **PASS**. Enhanced source-only CI preflight and test syntax [run 42359285316](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42359285316) **PASS**. This verifies source/build controls, **not** new original-fixture export parity.
+- **Pending:** run `scripts/verify-mk2-p40-portal-coverage.cjs` against the full current committed source and original MK2 installation, rerun full cumulative MK2 suites, verify P37/P38 report byte preservation, then assess P40 completion. Latest fully recorded MK2 fixture remains P38 **5,369 / 23 suites**; MK1/MK3 remain P36. Browser native-game interactions still pending.
+- [P40 integration handoff](docs/EXTRACTOR_P40_PORTAL_SOURCE_COVERAGE_INTEGRATION.md). P41 fifth-pass consolidation not started; `main` unchanged; no commercial game data added to Git.
 
 ## P39 bounded PORTAL source audit - 2026-11-07
 
