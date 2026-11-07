@@ -118,7 +118,7 @@ export function MuseumStages({ inventory, detection, source, goTo, onSelectResou
                   </div>
                 : <span className="mw-muted mw-xs">Header identified; decoded-asset link not verified or not yet loaded</span>)
               : <span className="mw-muted mw-xs">Stage candidate; no qualified decoded-asset link</span>}
-            {mk2 && (stage.file === 'PORTAL.GRA' || stage.file === 'TOMB.GRA' || stage.file === 'TOWER.GRA') && <button className="mw-text-button" onClick={() => setStagePreview(stage.file.replace('.GRA', '').toLowerCase() as 'portal' | 'tomb' | 'tower')}>Original frames <ChevronRight size={15}/></button></div>
+            {mk2 && (stage.file === 'PORTAL.GRA' || stage.file === 'TOMB.GRA' || stage.file === 'TOWER.GRA') && <button className="mw-text-button" onClick={() => setStagePreview(stage.file.replace('.GRA', '').toLowerCase() as 'portal' | 'tomb' | 'tower')}>Original frames <ChevronRight size={15}/></button>}</div>
         </div>
       </article>)}
     </div> : <div className="mw-empty"><FileArchive size={25}/><strong>No matching supported stage resources in this installation.</strong><p>Try clearing the filter. MK1 background candidates are listed by their source HDRS.GRA identities; names are not yet mapped to arcade-stage names.</p><button onClick={() => goTo('assets')}>Open asset library</button></div>}
