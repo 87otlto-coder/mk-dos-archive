@@ -1,3 +1,4 @@
+import { mk1AudioAsset } from './mk1AudioAsset';
 import { buildTombWitnessPackage } from './mk2TombWitnessP59';
 import { buildTombComponentsP60 } from './mk2TombComponentsP60';
 import {buildMK1StageHeaderBindingsP54} from './mk1StageHeaderBindingsP54';
@@ -61,7 +62,7 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
       return scanMK1ReadOnlyFallback(source, progress, signal,
         `Selected MK1.EXE SHA-256 ${actualSha} differs from the qualified research fixture ${canonicalSha}`);
     }
-    let result;
+    let result: Awaited<ReturnType<typeof runMK1Pipeline>>;
     try {
       result = await runMK1Pipeline(source,progress,signal);
     } catch (error) {
@@ -73,12 +74,13 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
     for(const a of w.characterAssets)addPng(a.path,a.pngBytes,`${a.identityLabel} · ${a.mode} · ${a.paletteSymbols.join('+')}`,'sprite','Explicit character palette context',a as unknown as Record<string,unknown>);
     for(const a of w.effectAssets)addPng(a.path,a.pngBytes,'Verified effects','sprite',a.tier);
     for(const a of w.unresolvedAssets)assets.push({id:`unresolved:${a.tableSymbol}:${a.descriptorWatcomOffset}`,name:a.symbol,group:'Unresolved palette',kind:'sprite',format:'PNG index preview',confidence:'Grayscale indices; palette unknown',source:{path:a.resourcePath,offset:0,length:0},metadata:{descriptorWatcomOffset:a.descriptorWatcomOffset,tableSymbol:a.tableSymbol,indices:a.indices,mask:a.mask,palette:'UNRESOLVED',visualizationPolicy:a.visualizationPolicy,sourceExtent:'Encoded GRA extent not qualified in this record; consult O60 descriptor evidence',nativePlaneEvidence:'MK1_animations_evidence.zip: indexed/descriptor_manifest.json and indexed/descriptor_pixels.bin'},width:a.width,height:a.height,rgba:a.indexVisualizationRgba,filename:safeName(a.symbol)+'_index-preview.png'});
+    const wavEvidence = new Map(result.audioBundle.assetManifest.assets.map(row => [row.packagePath, row]));
     for(const [name,bundle] of [['stages',result.browserBundle],['animations',result.animationBundle],['audio',result.audioBundle]] as const){
       packages.push({name:`MK1_${name}_evidence.zip`,bytes:bundle.zipBytes});
       if(name==='animations')continue;
       for(const [path,f] of parseAnimationStoreZip(bundle.zipBytes)){
         if(path.endsWith('.png'))addPng(path,f.bytes,path.split('/').slice(0,-1).join('/'),'stage','Qualified bounded stage composition; see evidence');
-        if(path.toLowerCase().endsWith('.wav'))assets.push({id:path,name:path.split('/').at(-1)!,group:'MK1 audio',kind:'audio',format:'WAV',confidence:'Validated PCM export',source:{path,offset:0,length:f.bytes.length},metadata:{provenance:'Generated path; original offsets in audio evidence package'},bytes:f.bytes,mime:'audio/wav',filename:safeName(path)});
+        if(name==='audio' && path.toLowerCase().endsWith('.wav'))assets.push(mk1AudioAsset(path,f.bytes,wavEvidence.get(path)));
       }
     }
     const stageHeaderBindings=buildMK1StageHeaderBindingsP54(result.stageBackgroundGraph,assets);
