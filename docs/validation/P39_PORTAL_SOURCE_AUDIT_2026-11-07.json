@@ -1,0 +1,398 @@
+{
+  "schema": "mkdos_p39_portal_effect_original_reference_v1",
+  "exeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "graSha256": "cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82",
+  "frames": [
+    {
+      "assetId": "mk2-stage-effect:portal_swaying:00",
+      "sequence": "portal_swaying",
+      "ordinal": 0,
+      "sourcePointerObject2": 91316,
+      "descriptorObject2": 91588,
+      "descriptorPhysical": 750104,
+      "width": 41,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 35912,
+      "endExclusive": 38112,
+      "indicesSha256": "9a9e3693d918d66fbccce3aca86dc5fe5eb99d5c020f557b77ffc868353b37b1",
+      "maskSha256": "21909ce120ad153097f32f67318b0bef2cdf8a8bcdffd6752d6cf4a9bbd01e6a",
+      "encodedSha256": "539e0d5decf32977024da39a44a3d1deccf60faaea01c1671d4c875f68fa0f5a"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_swaying:01",
+      "sequence": "portal_swaying",
+      "ordinal": 1,
+      "sourcePointerObject2": 91316,
+      "descriptorObject2": 91604,
+      "descriptorPhysical": 750120,
+      "width": 38,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 38112,
+      "endExclusive": 40296,
+      "indicesSha256": "c5e9f9e4644f628939f66c4c19bb3d383fc175523bedd6196730275ed39262f3",
+      "maskSha256": "0c4103c8920f85decef15ccbcc28f29d57bc563ba7702ea24f3f30fa4d5189e7",
+      "encodedSha256": "43f3cffe118fbfc303f6bd6df76114ed0ca47f5141015cb321776adc24c434de"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_swaying:02",
+      "sequence": "portal_swaying",
+      "ordinal": 2,
+      "sourcePointerObject2": 91316,
+      "descriptorObject2": 91616,
+      "descriptorPhysical": 750132,
+      "width": 37,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 40296,
+      "endExclusive": 42480,
+      "indicesSha256": "b1e399992495ca1c88d23a9c92f5f3717581e4f1983b9af12dff702d86b349fd",
+      "maskSha256": "af58feb63136ff33285d1e0cb693845aefcc0284aec53a0bb5e1aa5e01bc1f99",
+      "encodedSha256": "642836f45126b0c2af34e8ba770d709802d83b91e5962d246189c56a24487168"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_swaying:03",
+      "sequence": "portal_swaying",
+      "ordinal": 3,
+      "sourcePointerObject2": 91316,
+      "descriptorObject2": 91628,
+      "descriptorPhysical": 750144,
+      "width": 38,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 42480,
+      "endExclusive": 44672,
+      "indicesSha256": "b065d9e932cbd39794afdd9f54b48d92bf88b41501e5862bce7e156eddc3e6f0",
+      "maskSha256": "41acfa94d882edf039f058b421593ea7d9f9d47ae20b09d622313af6ed759baf",
+      "encodedSha256": "8b53cfdca69cc05f815fe5156db63668c3b617d203a9cf988feb51e96142aaff"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_swaying:04",
+      "sequence": "portal_swaying",
+      "ordinal": 4,
+      "sourcePointerObject2": 91316,
+      "descriptorObject2": 91640,
+      "descriptorPhysical": 750156,
+      "width": 39,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 44672,
+      "endExclusive": 46900,
+      "indicesSha256": "f306e30d4384caf0e40fad55cdf4742c7892640452cbf59b1f0fb75826be280d",
+      "maskSha256": "8aa6c9ab0bd6133937ce205c11b9a164883e437eff9812aab246943dbdddf20f",
+      "encodedSha256": "e8c1029d3180fe845c46a1234698bff66ad609af6f7f0918e1a1b2002e512e78"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_swaying:05",
+      "sequence": "portal_swaying",
+      "ordinal": 5,
+      "sourcePointerObject2": 91316,
+      "descriptorObject2": 91652,
+      "descriptorPhysical": 750168,
+      "width": 41,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 46900,
+      "endExclusive": 49160,
+      "indicesSha256": "5ab085ec93455458292a0d5c118573e30ccd528637426bb2497ce48e7b51c1d2",
+      "maskSha256": "8f236cc985300568993a65185937fe86a3f0ab68c2f2bfb9edc8c50cb2acd342",
+      "encodedSha256": "757f92e9aabcce1ae8b21bbabcbbad024a3b2eb6b1d69236ccb09a3a7eb9b88f"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_swaying:06",
+      "sequence": "portal_swaying",
+      "ordinal": 6,
+      "sourcePointerObject2": 91316,
+      "descriptorObject2": 91664,
+      "descriptorPhysical": 750180,
+      "width": 42,
+      "height": 63,
+      "anchor": {
+        "x": 22,
+        "y": 40
+      },
+      "start": 49160,
+      "endExclusive": 51408,
+      "indicesSha256": "7f282049382917a8007801dd20d9d88cc04c3713edfa00f4c438fb7f6346c9b3",
+      "maskSha256": "38875163c8b4b7ef3310dd5d6798509e713084762feae4fdc36c6969c6d1efc6",
+      "encodedSha256": "5ebe37a4b825c40649eb187644c6c7c6e292fb1c4441f988e447583e55fd2785"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_hanging:00",
+      "sequence": "portal_hanging",
+      "ordinal": 0,
+      "sourcePointerObject2": 91352,
+      "descriptorObject2": 91676,
+      "descriptorPhysical": 750192,
+      "width": 14,
+      "height": 24,
+      "anchor": {
+        "x": -10,
+        "y": -13
+      },
+      "start": 51408,
+      "endExclusive": 52040,
+      "indicesSha256": "88c084025c537684b39b46ec76059bae511490ada9986f50f414c1ae2cdf0eb2",
+      "maskSha256": "4cbd85d8565b71a2f30d877d6063189bf1a4eed7b754302d1405e826f038e8d7",
+      "encodedSha256": "e790e852ac7465b60b16e158f93ed030ab2c751ad891777c9c95c99694c05c87"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_hanging:01",
+      "sequence": "portal_hanging",
+      "ordinal": 1,
+      "sourcePointerObject2": 91352,
+      "descriptorObject2": 91692,
+      "descriptorPhysical": 750208,
+      "width": 14,
+      "height": 24,
+      "anchor": {
+        "x": -10,
+        "y": -13
+      },
+      "start": 52040,
+      "endExclusive": 52668,
+      "indicesSha256": "4cbf6dc1108c729444ab827aa64a4b7dcbac20fffc36bc0970445710912c6587",
+      "maskSha256": "f03780945d7c280b73dd340ad0cf48f492274a957c842b076d0c82b881f2e619",
+      "encodedSha256": "563ce88067741c2cc33e079dd8c2387c2ad594ac9540de69ccd11cbdd9152a20"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_hanging:02",
+      "sequence": "portal_hanging",
+      "ordinal": 2,
+      "sourcePointerObject2": 91352,
+      "descriptorObject2": 91704,
+      "descriptorPhysical": 750220,
+      "width": 14,
+      "height": 24,
+      "anchor": {
+        "x": -10,
+        "y": -13
+      },
+      "start": 52668,
+      "endExclusive": 53304,
+      "indicesSha256": "2881883f6422869244f69ee026d81023f877cdbfae4b8a54f267c440200a3baf",
+      "maskSha256": "154be675c848b9b53382b24c2faad7a1f5a772387ed1cba2e93e89b9856e5ab2",
+      "encodedSha256": "9c88ade9404fb13bdff2c0437975b639581b0b40fdd6a66ea1017cba8be4ee22"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_hanging:03",
+      "sequence": "portal_hanging",
+      "ordinal": 3,
+      "sourcePointerObject2": 91352,
+      "descriptorObject2": 91716,
+      "descriptorPhysical": 750232,
+      "width": 13,
+      "height": 23,
+      "anchor": {
+        "x": -10,
+        "y": -13
+      },
+      "start": 53304,
+      "endExclusive": 53900,
+      "indicesSha256": "9787a8e61bc116dbf4b22e7fb4d90e7f93bc7b4e0617c0a062fe7aa7d70dfb47",
+      "maskSha256": "26f8c173e5fe262508f040241e7adc8c10c3f9db8cf40e406f9b8f7b7a145058",
+      "encodedSha256": "1030173527b2bace6609200c21326e266fe31efc67398bb6e2d353223b376c13"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_hanging:04",
+      "sequence": "portal_hanging",
+      "ordinal": 4,
+      "sourcePointerObject2": 91352,
+      "descriptorObject2": 91728,
+      "descriptorPhysical": 750244,
+      "width": 14,
+      "height": 24,
+      "anchor": {
+        "x": -10,
+        "y": -13
+      },
+      "start": 53900,
+      "endExclusive": 54520,
+      "indicesSha256": "f558f0e09fd16c6b0810ee0e0db4f485c6c03034b06fb3ebd712c3816f65df26",
+      "maskSha256": "013a1a9685b4eb7bfe61440cf72aac3d979c06199db8c03b40f29dbd115154b4",
+      "encodedSha256": "5c619a9b6cc9e826301df60acddf32ee4b65bd9df6c9e745f13a36a379240693"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_hanging:05",
+      "sequence": "portal_hanging",
+      "ordinal": 5,
+      "sourcePointerObject2": 91352,
+      "descriptorObject2": 91740,
+      "descriptorPhysical": 750256,
+      "width": 15,
+      "height": 24,
+      "anchor": {
+        "x": -10,
+        "y": -13
+      },
+      "start": 54520,
+      "endExclusive": 55152,
+      "indicesSha256": "61fa4a68ffcdd4a9d054ece81a4a88ad3bd3fa2acf1d2bacbd34823ec1765c3e",
+      "maskSha256": "813423984e174d29490aaf1b40c7f4e9c639795ad5f2a0a26cf004f397ecea23",
+      "encodedSha256": "821f89099b7ff0a4fa67b82df49d31fed31c940de3b29d130f5fb2307fa6d819"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_hanging:06",
+      "sequence": "portal_hanging",
+      "ordinal": 6,
+      "sourcePointerObject2": 91352,
+      "descriptorObject2": 91752,
+      "descriptorPhysical": 750268,
+      "width": 15,
+      "height": 24,
+      "anchor": {
+        "x": -10,
+        "y": -13
+      },
+      "start": 55152,
+      "endExclusive": 55780,
+      "indicesSha256": "2b8c0f1f3d352e5cae0dea51de4880f864f0f4839ed82295320d7ddedadbb344",
+      "maskSha256": "efece5f7af317b49fc8e5ea95716c54ba51948c95e3cc24f968065ae922d1d69",
+      "encodedSha256": "386ed0d8dcd05b9841c897f8ff5a4027dec124f4478ac13e6c50b66f5bc065be"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_electric:00",
+      "sequence": "portal_electric",
+      "ordinal": 0,
+      "sourcePointerObject2": 91384,
+      "descriptorObject2": 91764,
+      "descriptorPhysical": 750280,
+      "width": 21,
+      "height": 14,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "start": 55780,
+      "endExclusive": 55936,
+      "indicesSha256": "0f806d899a31e5eb2426ba09e03718a07fd256a2c5248551b5628067b79f858c",
+      "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5",
+      "encodedSha256": "fb2fa672af27d37dbc41912a313f176abf4fe2e1ab102fcddd02167fb23cbf8a"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_electric:01",
+      "sequence": "portal_electric",
+      "ordinal": 1,
+      "sourcePointerObject2": 91384,
+      "descriptorObject2": 91780,
+      "descriptorPhysical": 750296,
+      "width": 21,
+      "height": 14,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "start": 55936,
+      "endExclusive": 56124,
+      "indicesSha256": "9791f1e1a7c3ad6f68f948171081a5ab7a523768c492778fc14eb115216d75e1",
+      "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5",
+      "encodedSha256": "9c7d9e4edafce45a8cd2fa6cb1cc4b9cb3a352cce67a221877269526fd7f52c9"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_electric:02",
+      "sequence": "portal_electric",
+      "ordinal": 2,
+      "sourcePointerObject2": 91384,
+      "descriptorObject2": 91792,
+      "descriptorPhysical": 750308,
+      "width": 21,
+      "height": 14,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "start": 56124,
+      "endExclusive": 56316,
+      "indicesSha256": "cb5943ad2de14bbfeaa4ceec553c0dc78e46845a68b809cca7f196b2dac0ae21",
+      "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5",
+      "encodedSha256": "a09efe6ec79e4909a8ee12f81199270c84cb677a1cdef2ae59e8f0ce8b285e16"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_electric:03",
+      "sequence": "portal_electric",
+      "ordinal": 3,
+      "sourcePointerObject2": 91384,
+      "descriptorObject2": 91804,
+      "descriptorPhysical": 750320,
+      "width": 21,
+      "height": 14,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "start": 56316,
+      "endExclusive": 56544,
+      "indicesSha256": "0d24fac502ac6279928ce6b030d126172ab68f41d11781604e4e1c954c0e7be1",
+      "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5",
+      "encodedSha256": "919f8d7ea4880d8a763745fa3efbb582777141a29ef46299ae36c5fa7d97eaff"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_electric:04",
+      "sequence": "portal_electric",
+      "ordinal": 4,
+      "sourcePointerObject2": 91384,
+      "descriptorObject2": 91816,
+      "descriptorPhysical": 750332,
+      "width": 21,
+      "height": 14,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "start": 56544,
+      "endExclusive": 56736,
+      "indicesSha256": "718e39a84fbe24934dc0721a6276363c7e5ef4fb377a5a78b8e7d2ecab7c308d",
+      "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5",
+      "encodedSha256": "1cec6abb95ef975cd2ce210b80436a55ea0b40aa546b46a75c0c595bb2a0f9f0"
+    },
+    {
+      "assetId": "mk2-stage-effect:portal_electric:05",
+      "sequence": "portal_electric",
+      "ordinal": 5,
+      "sourcePointerObject2": 91384,
+      "descriptorObject2": 91828,
+      "descriptorPhysical": 750344,
+      "width": 21,
+      "height": 14,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "start": 56736,
+      "endExclusive": 56916,
+      "indicesSha256": "0ddaecddb70ef78e3358ebc3f49e9dfd36a6cf96764d0197950179577d73c406",
+      "maskSha256": "98df7ad86eb96679d0013365f037702ab8e9bf974caf49ea6f08779b551efcb5",
+      "encodedSha256": "f322035d46560d901d2a01006a66917cc4661a34a839299d5d9416bf8ecbbce7"
+    }
+  ],
+  "streamStart": 35912,
+  "streamEndExclusive": 56916,
+  "encodedBytes": 21004,
+  "status": "PASS",
+  "originalFileDecoderChecks": 43213,
+  "indexedPixels": 21515,
+  "runtimeChanged": false,
+  "coverageReportIntegrated": false,
+  "newRepresentations": 0,
+  "nativeTimingOrPaletteClaimsAdded": false,
+  "scope": "Targeted original-file source audit only; existing extractor exports and complete regression not rerun"
+}

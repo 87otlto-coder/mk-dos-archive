@@ -4,6 +4,12 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P39 bounded PORTAL source audit - 2026-11-07
+
+Small evidence pass requested to conserve usage; runtime source and report integration unchanged. **Twenty existing PORTAL effect streams** independently partition **[35912,56916), 21,004 encoded bytes / 21,515 pixels**, with **43,213 original-file decoder checks PASS**. No new artwork or representations.
+
+Full regression and existing export readback were not rerun: latest full MK2 evidence remains P38 (5,369 / 23 suites); MK1/MK3 remain P36. Browser/native-runtime uncertainties remain open. [P39 audit](docs/EXTRACTOR_P39_PORTAL_SOURCE_AUDIT.md), [evidence](docs/validation/P39_PORTAL_SOURCE_AUDIT_2026-11-07.json). Next **P40 PORTAL report integration and controls**; TOWER reconciliation deferred if needed. P41 remains consolidation assessment; main unchanged.
+
 ## P38 TOMB existing-effect coverage reconciliation - interim develop pass, 2026-11-07
 
 **MK2 remains 5,369 unique representations.** New metadata-only **MK2_P38_NATIVE_SOURCE_INTERVAL_COVERAGE.json** adds sixteen already-exported TOMB effects to the accounting scope, without new artwork or asset inflation.
