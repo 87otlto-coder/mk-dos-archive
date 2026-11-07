@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P57 source-backed stage gallery for MK1, MK2, MK3 — interim develop, 2026-11-07
+
+**P57 source implementation and CI PASS; current original three-game P57 test and browser acceptance pending.** The gallery now draws *decoded original local* RGBA thumbnails rather than decorative gradients where source-qualified pixels are available. MK1 uses strict P54 source-header→module→normalized-preview joins (24 images/15 headers previously user-tested). MK2 uses original SHA-bound source stage layers, preserving unresolved runtime palette/assembly labels; images without qualified source binding stay visibly unassigned. MK3 shows paginated `DATA.MK3` embedded-CMAP IFF pictures explicitly labelled **UNASSIGNED to arcade stages**, not invented scenes. All original assets and research code remain unchanged; `main` stays at P16.
+
+- New image eligibility, original-resource identity and corruption/error-display controls. CI [42405044233](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42405044233) **SUCCESS** on exact P57 source/workflow candidate `69b9c47b0bbcb60a29959b727e6d98454cc3365c`, including cross-game synthetic false-image controls, TypeScript, Vite build and headless Chrome boot. Later documentation commit did not change tested source.
+- [P57 research/implementation handoff](docs/EXTRACTOR_P57_CROSS_GAME_SOURCE_THUMBNAILS.md). Focused original game gate `scripts/verify-p57-cross-game-gallery.cjs` is committed and syntax-checked; **not executed against commercial MK1/MK2/MK3** during this development session. Require original-source SHA/image parity and unchanged **2,656 / 5,369 / 9,186** before fixture acceptance.
+- Browser inspection of new pixel-backed MK1/MK2/MK3 cards and MK3 pagination is **VALIDATION PENDING**. P56 remains last accepted full original-fixture checkpoint. Next P58–P60 interim improvements; P61 fifth-pass consolidation, no main promotion.
+
 ## P56 accepted development checkpoint — user-local original three-game PASS, 2026-11-07
 
 **P56 source and original-fixture acceptance complete.** User pulled `develop` at documentation tip `457d6dc` and executed `scripts/verify-p56-checkpoint.cjs` locally against original MK1/MK2/MK3 directories. Screenshots show all **six steps completed**, final **`status: PASS`**, and unchanged censuses **MK1 2,656 / MK2 5,369 / MK3 9,186 (17,211 total)**. This is **user-local original-fixture evidence**; the chat agent did not run the full private fixture regression independently. P56 internally gates P52 187 Kano indexed ZIP checks, P54 24 joins/15 headers, P55 exact-ID navigation checks and the frozen P51 full three-game suites.
