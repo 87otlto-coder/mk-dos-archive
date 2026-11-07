@@ -109,7 +109,8 @@ export async function scanMK1ReadOnlyFallback(
         confidence: 'Bounded source descriptor/uGRA decode; original color palette unassigned',
         source: { path: entry.path, offset: graOffset, length: decoded.encodedBytesConsumed, sha256 },
         metadata: { mode: 'READ_ONLY_FALLBACK', descriptorPhysical: offset, width, height, x, y,
-          graOffset, checksum: decoded.checksum, palette: 'UNRESOLVED', indexedPreviewOnly: true },
+          graOffset, checksum: decoded.checksum, palette: 'UNRESOLVED', indexedPreviewOnly: true,
+          indices: decoded.indices, mask: decoded.opaqueMask },
         width, height, rgba: indexedRgba(decoded.indices, decoded.opaqueMask),
         filename: `KANO_${offset.toString(16)}_index-preview.png`,
       });
