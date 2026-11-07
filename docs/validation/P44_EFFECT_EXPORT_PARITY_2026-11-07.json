@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "independentNativeReferences": 315,
+  "existingEffectFrames": 43,
+  "originalFileDecoderChecks": 7064335,
+  "exportChecks": 171036,
+  "falseReportsRejected": 8,
+  "falseExportsRejected": 6,
+  "cleanReverified": true,
+  "nativeRuntimePaletteClaimed": false,
+  "previewRgbaRoundtripOnly": true
+}

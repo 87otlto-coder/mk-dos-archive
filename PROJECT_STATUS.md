@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P44 independent effects/export verification - 2026-11-07
+
+**315 original references / 43 existing effects PASS**: 7,064,335 original-file decoder checks and 171,036 PNG/native-plane export checks. **Eight false reports / six altered exports rejected**, clean reverified. Preview RGB roundtrip is not native palette ownership. No runtime changes. [P44 proof](docs/EXTRACTOR_P44_EFFECT_EXPORT_PARITY.md), [results](docs/validation/P44_EFFECT_EXPORT_PARITY_2026-11-07.json). Next P45 current MK2 acceptance runner. Main unchanged.
+
 ## P43 TOWER report integration - 2026-11-07
 
 Focused original-fixture gate PASS: **315 qualified references / 1,064,632 source union bytes**, TOWER **14 references / 113,612 bytes / zero gaps or overlap**. Seven existing effects joined; **5,369 representations unchanged**. Ten invalid effect sets rejected; P37/P38/P40 report hashes and fourteen other resources preserved. Local syntax/TypeScript/build pass. [P43 handoff](docs/EXTRACTOR_P43_TOWER_COVERAGE.md), [evidence](docs/validation/P43_TOWER_COVERAGE_2026-11-07.json). Next P44 independent effects/report validation, then P45 full current MK2 acceptance. Main unchanged.
