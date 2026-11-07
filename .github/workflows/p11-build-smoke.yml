@@ -49,6 +49,7 @@ jobs:
           node --check scripts/verify-mk2-p25-cumulative.cjs
           node --check scripts/verify-p26-checkpoint.cjs
           node --check scripts/verify-p31-checkpoint.cjs
+          node --check scripts/verify-p36-checkpoint.cjs
           node --check scripts/verify-p26-visual-baseline.cjs
           node --check scripts/verify-mk2-p27-tomb.cjs
           node --check scripts/verify-mk2-p28-portal.cjs
@@ -68,6 +69,8 @@ jobs:
           node --check scripts/verify-mk2-p27-cumulative.cjs
       - name: P31 checkpoint preflight and source-audit refusal controls (no game data)
         run: python3 scripts/test-p31-checkpoint-controls.py
+      - name: P36 checkpoint preflight and source-audit refusal controls (no game data)
+        run: python3 scripts/test-p36-checkpoint-controls.py
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |

@@ -4,6 +4,16 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P36 fifth-pass consolidated source checkpoint - develop, 2026-11-07
+
+**P36 is the current consolidated source checkpoint on develop; main remains P16.** P32-P35 add 65 standalone representations; the full workbench is preserved. No runtime source changes in P36.
+
+- **Fresh 23-suite three-game regression PASS**, no skipped games: MK1 **2,656**, MK2 **5,369 / 4,357 cumulative checks**, MK3 **9,186** representations. MK1/MK3 decoded visual hashes match P21, P26 and P31.
+- **Twelve independent families PASS: 251 representations / 939,903 pixels / 10,712,883 checks**; **54 altered exports rejected**, all clean exports reverified.
+- Local **378-file syntax**, TypeScript and production build PASS; **eight runner preflight refusals / seven source-audit negative controls PASS**. P31/P26 runners remain frozen; new P36 runner pins the current census.
+- MK1 ZIP-byte variance remains observed with metadata volatility INFERRED; decoded visuals are unchanged. Original-data browser interactions and unqualified native behavior remain separate.
+- [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [machine-readable evidence](docs/validation/P36_CHECKPOINT_REGRESSION_2026-11-07.json). Next **P37 bounded MK2 coverage reconciliation and evidence-backed integration**. No main promotion.
+
 ## P35 additional ARENA originals and complete native source-byte partition - interim develop pass, 2026-11-07
 
 **Fresh MK2 census: 5,369 unique representations**, adding **sixteen additional ARENA originals** in [36172,90488). **Zero newly discovered artwork claims.** Fourth interim after P31; main remains P16.
@@ -334,13 +344,13 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P31 consolidated on develop; P16 accepted on main** (2026-11-07; prior checkpoints preserved) |
+| Last *full source* checkpoint | **P36 consolidated on develop; P16 accepted on main** (2026-11-07; prior checkpoints preserved) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P35**, after the P31 source checkpoint |
-| Latest full MK2 original-fixture cumulative result | **P35: 5,369 representations / 4,357 cumulative checks**, full prior suites and independent component/source parity |
-| Next planned pass | **P36 fifth-pass consolidation assessment and fresh three-game regression** |
+| Most recent interim pass | **P35**, consolidated in P36 |
+| Latest full MK2 original-fixture cumulative result | **P36: 5,369 representations / 4,357 cumulative checks**, full prior suites and independent component/source parity |
+| Next planned pass | **P37 bounded MK2 coverage reconciliation and evidence-backed integration** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -362,11 +372,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Begin P36 from committed P35 on develop; verify all four interim handoffs and preserve P31/P26/P21 and earlier source checkpoints.
-2. Assess fifth-pass consolidation with fresh three-game collection/export checks, all twelve P22-P35 independent original-file families and false-export controls, and complete committed-source hash/media audit. Preserve qualification boundaries and unknown native behavior.
-3. Create a P36 current-census checkpoint runner if justified. Current interim runner defaults to P35; preserve P31/P26 fixed-census runners and evidence. Historical checkpoint runners require matching source.
-4. Keep original-data browser action checks, native timing, live palette ownership and stage composition separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
-5. Preserve all native data/provenance and the full workbench. Accumulate four recoverable interim passes, then assess the fifth-pass checkpoint. Main promotion remains separately authorized; source consolidation is not automatic product acceptance.
+1. Begin P37 from the committed P36 checkpoint on develop; preserve P31/P26/P21 and earlier evidence.
+2. Reconcile MK2 coverage against existing verified descriptor/setup research; select one bounded extraction gap and independently qualify it before integration.
+3. Keep original-data browser actions, native palette/timing/alpha and scene assembly separately qualified. Existing UI follow-up remains [Issue #5](https://github.com/87otlto-coder/mk-dos-archive/issues/5).
+4. Preserve native data/provenance and the full workbench. Accumulate P37-P40 interim passes, then assess P41 consolidation. Main remains P16.
 
 ## Scope discipline
 
