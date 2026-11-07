@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P40 PORTAL source-coverage preflight — partial develop pass, 2026-11-07
+
+**P40 is NOT finished.** Committed a source-only P38/P39 PORTAL coverage-join preflight with ten falsification controls; the equivalent evidence reconciliation was run independently and the positive case/ten negatives passed. Expected join: 34 authenticated references, 92,756 / 92,756 PORTAL.GRA source bytes, zero overlaps/gaps, **zero new asset representations**. The new repository script itself, P40 runtime report integration and full original-fixture regression remain **VALIDATION PENDING**. Last full MK2 fixture regression remains P38 (5,369 / 23 suites); MK1/MK3 remain P36. Read [P40 partial handoff](docs/EXTRACTOR_P40_PORTAL_PREFLIGHT_PARTIAL.md). Main unchanged; P41 consolidation not started.
+
 ## P39 bounded PORTAL source audit - 2026-11-07
 
 Small evidence pass requested to conserve usage; runtime source and report integration unchanged. **Twenty existing PORTAL effect streams** independently partition **[35912,56916), 21,004 encoded bytes / 21,515 pixels**, with **43,213 original-file decoder checks PASS**. No new artwork or representations.
