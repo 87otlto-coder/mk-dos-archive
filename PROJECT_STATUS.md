@@ -4,6 +4,15 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P55 MK1 stage gallery verified module preview links — interim develop, 2026-11-07
+
+**P55 source integration and CI PASS; original-fixture and browser acceptance pending.** The Stage Gallery now consumes the already-authenticated P54 O27/O54 header/module/normalized-preview report after the MK1 Asset Library completes a full decode. It conditionally provides one exact-ID preview action per verified module, including headers with multiple modules; unverified/unscanned headers remain unlinked. The original MK1 and MK2 extractors, decoded visuals, asset counts, source palettes, queue and research workbench are unchanged.
+
+- New fail-closed report reader and dedicated `asset-id:` exact lookup; normal text searching unchanged. Source-only test **three positive module links / two headers, eleven false-report refusals, missing-preview case and exact-ID sibling exclusion PASS** in [CI 42399301672](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42399301672).
+- Final [CI 42399497627](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42399497627) **SUCCESS** on `1f807cc82454ece639674b68aa3267172d54cfea`, including original-fixture runner syntax, TypeScript, build and source-only browser boot.
+- The user supplied a local **P54 PASS: 2,656 assets, 24/24 exact module previews, 15 original HDRS resources**, with report SHA-256 `bb180450381a7f43ecca1f3bc6282bb1c6b0bc1d48cc77e8f9ad5e27092269db`. This is original-fixture evidence supplied by the user, **not** P55 browser acceptance.
+- **VALIDATION PENDING:** `scripts/verify-mk1-p55-stage-navigation.cjs` on current complete source plus original MK1 fixture; local Stage Gallery to exact preview click; current full three-game fixture regression. [P55 handoff](docs/EXTRACTOR_P55_MK1_STAGE_GALLERY_PREVIEW_LINKS.md). P56 next consolidation assessment; `main` stays P16.
+
 ## P54 MK1 original header-to-normalized-preview source join — interim develop pass, 2026-11-07
 
 **Implementation committed, original-fixture acceptance pending.** Existing O27 authentic MK1 `BGND.ASM` module-to-HDRS.GRA roots are now joined to O54's module-keyed normalized preview records by exact identifiers. New metadata-only `MK1_P54_VERIFIED_HEADER_MODULE_PREVIEW_JOINS.json` preserves original module names, header resource paths, BMOD references, exact matching preview IDs and explicitly unavailable joins. No stage identity/palette/playable-scene claim, no decoded artwork or census change. Existing MK1 header gallery remains unlinked until this join is original-fixture verified.
