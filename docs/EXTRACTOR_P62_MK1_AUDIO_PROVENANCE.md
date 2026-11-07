@@ -28,3 +28,7 @@ The highest-value bounded change identified here is MK1 WAV accuracy. A verified
 **Verified** for the canonical MK1 pipeline: original source identity and extent, byte-exact WAV exports, PCM metadata, sound-code binding state and the O63 playback policy. The existing evidence package and forensic research code remain intact. No new decoded media or semantic names were added.
 
 For P63, audit MK3 embedded WAV source intervals and selected exports against the original containers. For P64, inspect MK2 raw-score/MIDI event and loop evidence against the existing driver-derived decoder. For P65, inventory verified source-ordered animation relationships outside the MK2 groups already exported. Each is a candidate requiring its own bounded evidence before implementation. At P66 rerun the complete P61 three-game baseline plus each accepted P62–P65 fixture proof and refusal set on the exact candidate tree, with exports kept private.
+
+## Published verification
+
+[GitHub Actions run 42419996485](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42419996485) passed on source commit `e15865b491767440a20cc538fc7d68e6b5fcedac`, including P62 refusal controls, the tracked-file guard, production build, TypeScript and offline Chrome startup. A second focused original MK1 run on the committed source also passed all 244 selected exports and executable binding checks.

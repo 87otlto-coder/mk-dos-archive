@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P62 MK1 WAV source and sound-code provenance — 2026-11-08
+
+The MK1 library and selected exports now carry the original source extent, digest, PCM metadata and O63/O64 playback evidence for all 244 WAVs. The focused original-fixture test verified 243 record bindings, one path-pool-only WAV and byte-exact selected exports across all 244. The collection contains 2,656 assets. [P62 assessment, reproduction and cycle direction](docs/EXTRACTOR_P62_MK1_AUDIO_PROVENANCE.md).
+
 ## P61 accepted original three-game checkpoint — 2026-11-08
 
 The full original MK1/MK2/MK3 run passed all nine groups at `3ff65c5b2a939df21e02a460f53e859a7b467346`. It verified 2,656 / 5,369 / 9,186 assets, all P57–P60 gates including the independent P59 Python oracle, and the complete tracked source tree. The checkpoint applies to `develop`. [Exact source and run evidence](docs/EXTRACTOR_P61_ACCEPTED_CHECKPOINT_2026-11-08.md).
