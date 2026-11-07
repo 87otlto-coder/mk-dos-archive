@@ -63,6 +63,7 @@ jobs:
           node --check scripts/verify-mk2-p38-tomb-coverage.cjs
           node --check scripts/verify-mk2-p40-portal-preflight.cjs
           node --check scripts/verify-mk2-p40-portal-coverage.cjs
+          node --check scripts/verify-mk1-p52-fallback-indexed.cjs
           node --check scripts/verify-mk2-p43-tower-coverage.cjs
           node --check scripts/test-p37-source-coverage.cjs
           node --check scripts/verify-p26-visual-baseline.cjs
