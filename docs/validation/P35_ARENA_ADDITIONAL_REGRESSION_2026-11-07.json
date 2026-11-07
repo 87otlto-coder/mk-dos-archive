@@ -1011,5 +1011,37 @@
   "browserInteractionVerified": false,
   "mk1mk3FreshlyRerun": false,
   "mainPromoted": false,
-  "originalGameMediaCommitted": false
+  "originalGameMediaCommitted": false,
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "d96abd9f13cbb765b1f054d0bd22f647682d56e1",
+    "treeSha": "c39c7f77465f4c28c78488bcd779ab45e0d4326b",
+    "fileBlobs": 2203,
+    "sourceFiles": 382,
+    "rawByteMatches": 88,
+    "checkoutNormalizedMatches": 2115,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "43b406d9fdbcb7afd6ce015365ee0f37701f2378a3f22146b7a724672052bc05",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "sourceAuditRemoteAssociationVerifiedViaGitHubConnector": true,
+  "sourceCandidate": {
+    "commit": "d96abd9f13cbb765b1f054d0bd22f647682d56e1",
+    "tree": "c39c7f77465f4c28c78488bcd779ab45e0d4326b",
+    "runtimeChanges": [
+      "src/core/assets/collection.ts",
+      "src/core/assets/mk2ArenaTailSourceP35.ts"
+    ],
+    "removedPaths": []
+  },
+  "githubCI": {
+    "runId": 42351941554,
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42351941554",
+    "headSha": "d96abd9f13cbb765b1f054d0bd22f647682d56e1",
+    "status": "completed",
+    "conclusion": "success",
+    "originalDataBrowserValidation": false
+  }
 }

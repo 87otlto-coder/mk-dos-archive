@@ -100,3 +100,9 @@ The interim runner defaults to P35. P31/P26 and earlier checkpoint runners remai
 
 P32-P35 now form four recoverable interim passes adding **65 standalone representations** beyond P31: FOREST 9, PIT 28, ARMORY 12, ARENA 16. Next **P36**: assess fifth-pass consolidation with fresh three-game collection/export regression, independent rechecks of all **twelve P22-P35 families**, false-export controls, and complete committed-source audit. Use a current-census runner; preserve P31/P26 frozen records, the workbench and original-data/runtime uncertainties. Main promotion is not authorized by consolidation; keep main unchanged.
 
+
+## Committed source and CI evidence
+
+Source candidate: d96abd9f13cbb765b1f054d0bd22f647682d56e1; tree c39c7f77465f4c28c78488bcd779ab45e0d4326b. The complete GitHub tree was associated with that commit and independently compared with the tested checkout: **2,203 file blobs / 382 source files**, 88 raw matches and 2,115 checkout-newline-normalized matches; no missing, mismatched or unsafe paths. Inventory SHA-256: 43b406d9fdbcb7afd6ce015365ee0f37701f2378a3f22146b7a724672052bc05.
+
+[GitHub CI run 42351941554](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42351941554) completed successfully on that exact source candidate. This provides source/build and source-only browser evidence; original-data browser validation remains pending. The subsequent evidence commit changes only this handoff, PROJECT_STATUS.md and the validation JSON; runtime source is identical to the audited CI candidate.

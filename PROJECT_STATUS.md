@@ -12,6 +12,7 @@
 - **31 indexed streams + native 896x40 floor** account for all **126,328 original resource bytes**. Native byte accounting does not establish setup links, roles, palette/timing/alpha or full scene composition.
 - **413 focused / 598,602 independent export checks PASS**, eight rejected source fixtures and six rejected altered exports/claims. Full MK2: **5,369 / 4,357 cumulative checks PASS; 21 suites PASS**.
 - Local **378-file syntax**, TypeScript and production build PASS. Original-data browser actions remain **VALIDATION PENDING**; P31 remains latest full three-game evidence. No previous research renderer/native row decoder changes.
+- P35 committed-source verification: **2,203 blobs / 382 source files**, complete parity; [CI 42351941554](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42351941554) **PASS** on source candidate d96abd9f13cbb765b1f054d0bd22f647682d56e1.
 - [P35 handoff](docs/EXTRACTOR_P35_MK2_ARENA_ADDITIONAL_ORIGINALS.md), [evidence](docs/validation/P35_ARENA_ADDITIONAL_REGRESSION_2026-11-07.json). Next **P36 fifth-pass consolidation assessment** with fresh three-game, twelve independent families/false-export controls and full source audit. No main promotion.
 
 ## P34 additional ARMORY originals and complete native source-byte partition - interim develop pass, 2026-11-07
