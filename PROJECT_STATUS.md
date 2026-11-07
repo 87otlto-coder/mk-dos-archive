@@ -4,6 +4,15 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P60 accepted focused original-MK2 component regression — PASS, 2026-11-07
+
+**P60 USER-LOCAL ORIGINAL MK2 FIXTURE PASS; P60 browser ZIP download still pending.** The user executed `scripts/verify-mk2-p60-tomb.cjs` after updating the checkout and supplied the terminal PASS output. It confirms **5,369 unchanged MK2 assets**, **three independently packaged Tomb source components**, **2,650 architecture + 823 sky source samples** (3,473 total), **15,360 original packed-floor index pixels**, byte-identical P59 architecture/sky source exports, byte-identical P15 floor indices and masks, and pixel-identical conditional floor RGB. Original TOMB.GRA SHA-256 `be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613` matched the canonical resource. This is *user-local original-fixture evidence*, not an independent fixture run in the chat environment.
+
+- Source-only [CI 42412466093](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42412466093) **SUCCESS** at tested P60 code/workflow SHA `556712f8fc541e173ea949014300ef80abd9bfb2`. Later commits only add documentation.
+- **No false relationships claimed**: `originalSharedCameraClaimed:false`, `fullStageCompositionClaimed:false`, `nativeDACOwnershipClaimed:false`, `originalAssetRepresentationsChanged:false`. Architecture/sky O123 screenshot samples are **not** co-registered with the separate P15/O117 floor capture.
+- The P60 console explicitly reports `actualBrowserExportVerified:false`: actual download and inspection of `MK2_P60_TOMB_INDEPENDENT_COMPONENTS.zip` remains **VALIDATION PENDING**. The preceding P60 interim entry below is preserved as historical pre-acceptance context; its original-fixture pending status is superseded here. [P60 handoff/acceptance evidence](docs/EXTRACTOR_P60_TOMB_INDEPENDENT_COMPONENTS.md).
+- Next **P61**: fifth-pass consolidation, fresh original-MK1/MK2/MK3 cumulative regression, source audit and checkpoint. `main` remains P16; no commercial original binaries or artwork committed.
+
 ## P60 Kombat Tomb independent source-component ZIP — interim develop, 2026-11-07
 
 **P60 source implementation/CI PASS; original-MK2 fixture and browser ZIP acceptance pending.** `MK2_P60_TOMB_INDEPENDENT_COMPONENTS.zip` now combines three *separate, provenance-qualified* exports without inventing an authentic composite: the existing P59/O123 architecture (2,650 held-out samples) and sky (823 held-out samples), and the separately witnessed P15/O117 Tomb packed-floor strip (320×48 = 15,360 original index pixels). Architecture/sky P59 PNG, original indices and binary sample masks are retained byte-for-byte; floor indices and paint/native-palette-known masks are preserved, and its screenshot-conditioned RGB is exported independently. The manifest explicitly declares **O123 capture coordinates are not registered to the P15/O117 floor**. Original camera, common placement, draw order, runtime DAC owner, full stage composition and cadence remain unknown.
