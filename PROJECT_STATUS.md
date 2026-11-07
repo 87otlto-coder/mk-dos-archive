@@ -4,6 +4,15 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P56 consolidation candidate — source CI verified, original three-game regression pending, 2026-11-07
+
+**P56 is NOT yet a fully accepted checkpoint.** The source-only consolidated runner `scripts/verify-p56-checkpoint.cjs` is committed and wired to GitHub CI. It rechecks P52 (187 original Kano indexed ZIPs), P54 (24 source-header joins), P55 (15 headers / 24 exact preview IDs), both source-only negative-control suites and then the frozen P51 complete original **MK1/MK2/MK3** regression. The runner refuses unsafe inputs/output paths and preserves private stepwise RUNNING/PASS/FAIL JSON outside source/game directories.
+
+- **VERIFIED:** [CI 42400950450](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42400950450) **SUCCESS** on candidate `efa68318d42ca67051ae37595142dae994002966`: P56 ten preflight refusals, fake-fixture failure rejection, P54/P55 source-only controls, TypeScript/build and offline Chrome boot. Remote GitHub tree audit: 2,286 blobs / 388 source files, nontruncated, no tracked commercial file extensions or unusual blob modes. **Not a fresh original-fixture regression.**
+- **User-local evidence:** P52 original MK1 regression **PASS** (187 indexed ZIP checks), P54 original MK1 **PASS** (2,656 assets, 24/24 joins, 15 headers, report digest `bb180450381a7f43ecca1f3bc6282bb1c6b0bc1d48cc77e8f9ad5e27092269db`); P55 browser screenshots show module links and 1-of-1 exact-ID results for STATUE_MOD and STRIPPED_MOD, with source preview PNGs. Only observed actions are supported; not all 24 browser clicks have been independently verified.
+- **VALIDATION PENDING:** execute P56 complete runner against the current full committed checkout with all three original game installations, confirm all 27 core game gates and MK1/MK2/MK3 **2,656 / 5,369 / 9,186** censuses. The previous P51 full three-game PASS is historical. Do not promote `main` or start P57 features before resolving this gate. [P56 technical handoff](docs/EXTRACTOR_P56_CONSOLIDATION_CANDIDATE_2026-11-07.md).
+- Unqualified runtime palettes, native animation timing and full game-scene composition remain unknown. Decorative MK1 stage-gallery header panels are still placeholders, to be addressed after source consolidation.
+
 ## P55 MK1 stage gallery verified module preview links — interim develop, 2026-11-07
 
 **P55 source integration and CI PASS; original-fixture and browser acceptance pending.** The Stage Gallery now consumes the already-authenticated P54 O27/O54 header/module/normalized-preview report after the MK1 Asset Library completes a full decode. It conditionally provides one exact-ID preview action per verified module, including headers with multiple modules; unverified/unscanned headers remain unlinked. The original MK1 and MK2 extractors, decoded visuals, asset counts, source palettes, queue and research workbench are unchanged.
