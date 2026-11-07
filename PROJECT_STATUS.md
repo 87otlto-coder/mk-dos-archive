@@ -13,6 +13,7 @@
 - Full **23 MK2 suites PASS**, **4,357 retained cumulative checks** plus coverage gates. Independent **288 references / 6,986,406 original-file decoder checks / 54,192 existing-export checks PASS**.
 - **Ten invalid effect sets / eight falsified reports rejected**, clean rechecks PASS; source assets preserved. Local **380-file syntax**, TypeScript and production build PASS.
 - Latest MK1/MK3 fixture evidence remains P36; original-data browser and unqualified native behavior remain separate. P36 remains consolidated checkpoint.
+- Complete committed-source audit: **2,219 blobs / 384 src files**, zero missing/mismatched/unsafe paths; candidate **bf60c5a0a892b52bb33b78de95d7086d62911c0d**. [CI 42356624433](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42356624433) **SUCCESS**, including source-only controls and Chrome boot.
 - [P38 handoff](docs/EXTRACTOR_P38_MK2_TOMB_EFFECT_COVERAGE.md), [evidence](docs/validation/P38_TOMB_EFFECT_COVERAGE_2026-11-07.json). Next **P39 PORTAL gap/existing-effect provenance reconciliation**. Main unchanged; P41 next consolidation assessment.
 
 ## P37 source-interval coverage report - interim develop pass, 2026-11-07

@@ -2490,5 +2490,33 @@
   },
   "newRepresentations": 0,
   "originalDataBrowserValidation": false,
-  "mainPromotion": false
+  "mainPromotion": false,
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "bf60c5a0a892b52bb33b78de95d7086d62911c0d",
+    "treeSha": "0aa96e2d7511a89218153a53b1a8587b9561f310",
+    "fileBlobs": 2219,
+    "sourceFiles": 384,
+    "rawByteMatches": 90,
+    "checkoutNormalizedMatches": 2129,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "c5b4af00f4007932e4247da7f69805be125492400ec80043762f04d336490db6",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "sourceAuditRemoteAssociationVerifiedViaGitHubConnector": true,
+  "sourceCandidate": {
+    "commit": "bf60c5a0a892b52bb33b78de95d7086d62911c0d",
+    "tree": "0aa96e2d7511a89218153a53b1a8587b9561f310",
+    "removedPaths": []
+  },
+  "githubCI": {
+    "runId": 42356624433,
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42356624433",
+    "headSha": "bf60c5a0a892b52bb33b78de95d7086d62911c0d",
+    "status": "completed",
+    "conclusion": "success",
+    "originalDataBrowserValidation": false
+  }
 }

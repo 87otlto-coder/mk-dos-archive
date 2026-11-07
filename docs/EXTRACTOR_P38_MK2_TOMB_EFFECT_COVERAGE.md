@@ -71,3 +71,9 @@ The interim runner defaults to P38; P36/P31/P26 runners and all prior pass sourc
 **VALIDATION PENDING:** original-data browser report download and new-family interactions. Source-only Chrome CI is separate from fixture-driven headless verification.
 
 Next **P39**: reconcile PORTAL's **[35912,56916)** accounting gap with its already-exported swaying, hanging and electric effect tracks, using independent original-list/row proof before extending the report scope. No additional artwork should be claimed merely because it was excluded from a prior union. Preserve the workbench and recoverable develop commits. P41 remains the next fifth-pass consolidation assessment; main unchanged.
+
+## Committed source and CI evidence
+
+Source candidate **bf60c5a0a892b52bb33b78de95d7086d62911c0d**, tree **0aa96e2d7511a89218153a53b1a8587b9561f310**: complete GitHub-associated source audit PASS, **2,219 blobs / 384 src files**, 90 raw matches and 2,129 normal checkout newline matches; zero missing, mismatched or unsafe paths. Inventory SHA-256: **c5b4af00f4007932e4247da7f69805be125492400ec80043762f04d336490db6**. Reviewed comparison: twelve changed/added paths, zero removals. Runtime changes are only the additive P38 report module and collection integration; existing renderers/decoders and P37 report implementation are unchanged.
+
+[CI run 42356624433](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42356624433) completed **SUCCESS** on that exact candidate: strict locked dependency install, syntax including the P38 gate, source-only refusal/accounting controls, media guard, production build, TypeScript and Chrome boot without game data. Original-fixture verification is recorded separately; original-data browser actions remain pending. The subsequent evidence-only commit changes this handoff, PROJECT_STATUS.md and validation JSON; application and verification source match the audited CI candidate. Main remains P16.
