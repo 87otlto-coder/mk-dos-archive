@@ -1,6 +1,6 @@
 # Extractor coverage matrix
 
-Current consolidated source checkpoint: P36 on develop, incorporating P32-P35 standalone-component additions, 2026-11-07. Main remains P16. Counts are extracted asset representations, not original file counts or completeness percentages.
+Current consolidated source checkpoint: P41 on develop, incorporating P32-P35 standalone-component additions, 2026-11-07. Main remains P16. Counts are extracted asset representations, not original file counts or completeness percentages.
 
 | Game | Latest verified collection | Graphics and backgrounds | Palette and animation qualification | Audio and unresolved scope |
 |---|---:|---|---|---|
@@ -18,6 +18,8 @@ P38 freshly reruns all 23 current MK2 suites, with unchanged 5,369 representatio
 
 P40 original-fixture acceptance freshly verifies all 23 cumulative MK2 suites plus its separate integration gate at 5,369 representations. PORTAL has 34 qualified references covering all 92,756 native resource bytes; twenty already-exported effect streams fill the former report gap. P37/P38 package hashes are unchanged. This is native byte accounting, not complete scene/runtime qualification.
 
+P41 freshly verifies all three games and twelve original-image families. P45 freshly verifies all current MK2 gates at 5,369 representations; 315 native references and all 43 effect PNG/index/mask exports pass independent checks with eight false-report and six altered-export rejections. TOWER byte accounting is complete within scope; native palette/timing/alpha/world and full scenes remain separate. Original-data browser actions remain pending.
+
 Original-input identity is separately qualified: MK2 directory census and 13 critical hashes, MK1 canonical EXE hash, and recorded MK3 EXE hash. No newly authenticated whole-corpus hash claim is made for MK1 or MK3. Historical detection/inventory support is retained; P21 does not rerun detection qualification.
 
-See [P36 source checkpoint](EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md), [current project status](../PROJECT_STATUS.md), and the individual evidence handoffs for interpretation limits.
+See [P41 source checkpoint](EXTRACTOR_P41_SOURCE_CHECKPOINT.md), [current project status](../PROJECT_STATUS.md), and the individual evidence handoffs for interpretation limits.

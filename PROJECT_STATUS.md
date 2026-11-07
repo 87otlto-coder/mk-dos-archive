@@ -4,6 +4,15 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P45 current MK2 acceptance - 2026-11-07
+
+**P41-P45 implemented and locally verified on develop.** P41 is the consolidated source checkpoint; P42 audited TOWER, P43 integrated its seven existing effect streams, P44 independently verified all 43 effect exports and native coverage, and P45 adds the repeatable acceptance runner. No new artwork or asset-count inflation.
+
+- **P45 PASS: 23 cumulative MK2 suites plus PORTAL/TOWER gates**, 5,369 representations / 4,357 cumulative checks; independent **315 source references / 7,064,335 decoder checks / 171,036 export checks**. Eight false reports and six altered exports rejected; clean reverified.
+- **315 qualified references / 1,064,632 union bytes**; P37/P38/P40 report hashes preserved. TOWER has 14 references accounting for all 113,612 native resource bytes. Native byte accounting remains separate from complete scenes/runtime behavior.
+- P45 runner **six preflight refusals / seven source-audit negative controls PASS**. P41 full three-game result remains MK1 2,656 / MK2 5,369 / MK3 9,186 with twelve independent image families and 54 falsified-export controls.
+- [P45 handoff](docs/EXTRACTOR_P45_CURRENT_MK2_ACCEPTANCE.md), [results](docs/validation/P45_MK2_ACCEPTANCE_2026-11-07.json). Complete source/CI associations follow committed verification. Next **P46 consolidation assessment**, not begun. Main unchanged.
+
 ## P44 independent effects/export verification - 2026-11-07
 
 **315 original references / 43 existing effects PASS**: 7,064,335 original-file decoder checks and 171,036 PNG/native-plane export checks. **Eight false reports / six altered exports rejected**, clean reverified. Preview RGB roundtrip is not native palette ownership. No runtime changes. [P44 proof](docs/EXTRACTOR_P44_EFFECT_EXPORT_PARITY.md), [results](docs/validation/P44_EFFECT_EXPORT_PARITY_2026-11-07.json). Next P45 current MK2 acceptance runner. Main unchanged.
@@ -403,13 +412,13 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P36 consolidated on develop; P16 accepted on main** (2026-11-07; prior checkpoints preserved) |
+| Last *full source* checkpoint | **P41 consolidated on develop; P16 accepted on main** (2026-11-07; prior checkpoints preserved) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P40**, after P36 |
-| Latest full MK2 original-fixture cumulative result | **P40: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
-| Next planned pass | **P41 fifth-pass consolidation assessment** |
+| Most recent interim pass | **P45**, after P41 |
+| Latest full MK2 original-fixture cumulative result | **P45: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
+| Next planned pass | **P46 fifth-pass consolidation assessment** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -431,10 +440,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Assess P41 from verified P40 on develop; preserve P36/P31/P26/P21 and earlier source/evidence.
-2. Use a current-source three-game runner including the P40 original-fixture gate, twelve independent image families, coverage/falsification controls and complete committed-source audit. Preserve frozen runners.
-3. Keep original-data browser actions, native palette/timing/alpha and full scene composition separately qualified. TOWER accounting reconciliation remains deferred.
-4. Consolidation does not authorize main promotion. Preserve all source, native data provenance and the research workbench.
+1. Assess P46 from verified P45 on develop; preserve P41/P36/P31/P26 and earlier checkpoints.
+2. Consolidate P42-P45 with fresh three-game collection/export, twelve independent image families, current 315-reference accounting and all 43 effect export/claim controls; audit the complete committed source.
+3. Keep original-data browser actions and native palette/timing/alpha/activation/world composition separately qualified. CAVE's 120-byte prefix remains unknown; out-of-scope bytes do not prove missing artwork.
+4. Preserve the research workbench and source provenance. Main promotion remains separately authorized.
 
 ## Scope discipline
 

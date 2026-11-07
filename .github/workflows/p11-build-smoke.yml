@@ -51,6 +51,7 @@ jobs:
           node --check scripts/verify-p31-checkpoint.cjs
           node --check scripts/verify-p36-checkpoint.cjs
           node --check scripts/verify-p41-checkpoint.cjs
+          node --check scripts/verify-p45-mk2-acceptance.cjs
           node --check scripts/verify-mk2-p37-source-coverage.cjs
           node --check scripts/verify-mk2-p38-tomb-coverage.cjs
           node --check scripts/verify-mk2-p40-portal-preflight.cjs
@@ -84,6 +85,8 @@ jobs:
         run: node scripts/verify-mk2-p40-portal-preflight.cjs
       - name: P41 checkpoint refusal controls (no game data)
         run: python3 scripts/test-p41-checkpoint-controls.py
+      - name: P45 acceptance runner refusal controls (no game data)
+        run: python3 scripts/test-p45-checkpoint-controls.py
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |

@@ -6,7 +6,7 @@
 
 P37/P38 byte-set oracles and rejection controls, P39 original-source recheck, P40 fixture/preflight controls all pass. MK1/MK3 visual planes match P21/P26/P31/P36. MK1 archive-byte variance remains observed; its metadata cause remains inferred.
 
-Local 381-file syntax, TypeScript, production build and eight runner preflight refusals / seven source-audit negative controls pass. Existing bundle-size warning retained. Committed-tree audit and CI association are recorded in the subsequent progress evidence after those checks finish; no unobserved CI success is claimed here.
+Local 381-file syntax, TypeScript, production build and eight runner preflight refusals / seven source-audit negative controls pass. Existing bundle-size warning retained. Committed checkpoint e0ff15af4c5bc213f7a2fc9b4a165f69b7eb7aa2: all 2,232 blobs / 385 src files match the tested checkout; zero missing/mismatched/unsafe paths. [CI 42367512688](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42367512688) SUCCESS on that exact checkpoint.
 
 Reproduce with matching checkpoint source:
 ~~~sh

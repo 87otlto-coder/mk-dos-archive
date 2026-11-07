@@ -1358,5 +1358,26 @@
     "sourceAuditNegativeControls": 7
   },
   "runtimeChanges": [],
-  "mainPromotion": false
+  "mainPromotion": false,
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "e0ff15af4c5bc213f7a2fc9b4a165f69b7eb7aa2",
+    "treeSha": "6c212a05f2c201dbb366706731301d4366149740",
+    "fileBlobs": 2232,
+    "sourceFiles": 385,
+    "rawByteMatches": 96,
+    "checkoutNormalizedMatches": 2136,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "79a87ba75ce54ea5bbd30bc01b33410ce7c96fdff0d04f271c75daec97589d3e",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "githubTreeAssociationVerified": true,
+  "githubCI": {
+    "runId": 42367512688,
+    "headSha": "e0ff15af4c5bc213f7a2fc9b4a165f69b7eb7aa2",
+    "conclusion": "success",
+    "status": "completed"
+  }
 }

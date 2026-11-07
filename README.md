@@ -6,18 +6,19 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 
 ## Current checkpoint
 
-- **P36 is the consolidated source checkpoint on develop; main remains accepted P16.** All prior source and evidence remain in Git history; no runtime source changes in P36.
-- Fresh **23-suite three-game regression PASS**, no skipped games: MK1 **2,656**, MK2 **5,369 / 4,357 cumulative checks**, MK3 **9,186** representations. MK1/MK3 decoded visual hashes match P21, P26 and P31.
+- **P41 is the consolidated source checkpoint on develop; main remains accepted P16.** All prior source and evidence remain in Git history; no runtime source changes in P41.
+- P41 fresh **25 standard three-game suites plus P40 fixture gate PASS**, no skipped games: MK1 **2,656**, MK2 **5,369 / 4,357 cumulative checks**, MK3 **9,186** representations. MK1/MK3 decoded visual hashes match P21, P26, P31 and P36.
 - **Twelve independent MK2 families PASS:** 251 representations / 939,903 indexed pixels / 10,712,883 checks; **54 altered exports rejected**, clean rechecks passed.
 - P32-P35 add 65 standalone representations. FOREST, PIT, ARMORY and ARENA native byte partitions are verified separately from palette, timing, runtime use and full scene composition.
-- Reproduce with matching source: `node scripts/verify-p36-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. All three fixtures are required. P31/P26 remain frozen historical runners; the interim runner defaults to P38.
+- Reproduce with matching source: `node scripts/verify-p41-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. All three fixtures are required. P36/P31/P26 remain frozen historical runners; the interim runner defaults to P38.
 - Build, TypeScript, syntax and source-only refusal controls pass. Original-data browser action checks remain pending. MK1 whole-ZIP variance is observed; metadata volatility remains inferred despite verified unchanged decoded visuals.
 - Interim **P37** adds a metadata-only source interval report: 15 resources / 272 qualified references, independent original-file and byte-set checks, six rejected false reports; all 22 current MK2 suites pass. Census unchanged. Scope gaps do not imply missing artwork.
 - Interim **P38** independently joins sixteen existing TOMB effects into complete native byte accounting; no new asset representations. All 23 current MK2 suites pass; P37 report byte-identical. P38 reports 288 qualified references; report scope is separate from complete scene/runtime qualification.
 - **P39/P40 PORTAL acceptance PASS:** twenty existing effects close native byte accounting with no new assets; 23 cumulative MK2 suites plus the separate P40 original-fixture gate pass at 5,369 representations. P37/P38 report hashes preserved.
-- Next **P41 consolidation assessment**; current full MK1/MK3 evidence remains P36. No original game media or private export artwork is committed. Main promotion remains separate.
+- **P42-P45 complete:** seven existing TOWER effects joined; 315 source references and all 43 stage-effect exports independently verified. P45 current MK2 acceptance passes at 5,369 representations. Use scripts/verify-p45-mk2-acceptance.cjs with explicit --mk2, --report and --work paths.
+- Next **P46 consolidation assessment**; latest full three-game evidence is P41. No original game media or private export artwork is committed. Main promotion remains separate.
 
-Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P36 checkpoint](docs/EXTRACTOR_P36_SOURCE_CHECKPOINT_2026-11-07.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
+Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P41 checkpoint](docs/EXTRACTOR_P41_SOURCE_CHECKPOINT.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 
 ## In scope
 
