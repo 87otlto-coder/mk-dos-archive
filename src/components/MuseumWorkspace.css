@@ -98,3 +98,17 @@ body { margin: 0; background: #0b0d11; }
 .mw-effects-controls label { font-size: 11px; color: #c8ced5; }.mw-effects-controls select, .mw-effects-controls input { margin-top: 7px; display: block; padding: 10px; border: 1px solid #4b5461; border-radius: 7px; background: #10151b; color: #f4e9d9; font-size: 12px; }.mw-effects-controls input { width: 105px; }.mw-effects-controls button { display: inline-flex; align-items: center; gap: 7px; padding: 10px 12px; border-radius: 7px; color: #f5e6ce; background: #3b3022; border: 1px solid #745636; font-size: 12px; }
 .mw-effects-canvas { display: flex; justify-content: center; align-items: center; min-height: 210px; padding: 24px; border: 1px solid #353d45; border-radius: 10px; background: repeating-conic-gradient(#181e26 0% 25%, #202834 0% 50%) 0 / 20px 20px; }
 .mw-effects-step { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 0; font-size: 11px; }.mw-effects-step button { font-size: 12px; color: #dfbd89; }.mw-effects-preview > p:last-child { display: flex; align-items: flex-start; gap: 6px; line-height: 1.7; }
+
+
+/* P57: original decoded pixels, not decorative or externally retrieved artwork. */
+.mw-stage-visual-source { padding: 0; display: block; background: #10151b; }
+.mw-source-thumbnail { width: 100%; height: 100%; min-height: 0; position: relative; display: flex; align-items: center; justify-content: center; }
+.mw-source-thumbnail-canvas { display: block; width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
+.mw-source-thumbnail-error { position: absolute; left: 8px; right: 8px; bottom: 8px; z-index: 1; padding: 6px; background: #452525; color: #ffe3e3; border: 1px solid #bf7777; font-size: 11px; }
+.mw-source-evidence { color: #9db8c0 !important; font-size: 10px !important; overflow-wrap: anywhere; margin: 0; }
+.mw-stage-visual small { font-size: 10px; color: inherit; opacity: .75; }
+.mw-source-errors { border: 1px solid #b87878; background: #342324; color: #ffe0e0; border-radius: 8px; padding: 12px; }
+.mw-source-errors p { margin: 4px 0; font-size: 12px; overflow-wrap: anywhere; }
+.mw-gallery-pagination { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 20px 0; color: #aab6c3; font-size: 12px; }
+.mw-gallery-pagination button { padding: 8px 12px; border: 1px solid #505a64; border-radius: 7px; color: #e4c99c; }
+.mw-gallery-pagination button:disabled { opacity: .4; cursor: not-allowed; }
