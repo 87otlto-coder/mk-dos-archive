@@ -4,6 +4,8 @@ import { MK2StageEffectsPreview } from './MK2StageEffectsPreview';
 import { discoverStageGallery, type GalleryStage } from './stageGalleryModel';
 import { buildGalleryVisualsP57 } from './stageGalleryVisualsP57';
 import { StageThumbnailP57 } from './StageThumbnailP57';
+import { buildMK2PaletteEvidenceP58 } from './mk2PaletteEvidenceP58';
+import { MK2PaletteEvidencePanelP58 } from './MK2PaletteEvidencePanelP58';
 import type { Asset } from '../core/assets/model';
 import { exactAssetSearchP55 } from '../core/assets/assetSearchP55';
 import type { InventoryEntry } from '../core/models/InventoryEntry';
@@ -96,6 +98,7 @@ export function MuseumStages({ inventory, detection, source, goTo, onSelectResou
   const [mk3Page, setMk3Page] = useState(0);
   const [stagePreview, setStagePreview] = useState<'portal' | 'tomb' | 'tower' | null>(null);
   const mk2 = detection.game === 'mk2';
+  const mk2Evidence = useMemo(() => mk2 ? buildMK2PaletteEvidenceP58(galleryAssets) : null, [mk2,galleryAssets]);
   const visuals = useMemo(() => detection.game === 'unknown'
     ? null : buildGalleryVisualsP57(detection.game, galleryAssets, stageBindings),
     [detection.game, galleryAssets, stageBindings]);
@@ -142,6 +145,10 @@ export function MuseumStages({ inventory, detection, source, goTo, onSelectResou
       </div>
       <button onClick={() => onSelectResource('DATA.MK3')}>Browse all original pictures <ChevronRight size={15}/></button>
     </div>}
+    {!!mk2Evidence?.errors.length && <div className="mw-source-errors" role="alert">
+      <strong>MK2 original palette evidence validation: {mk2Evidence.errors.length} issue(s)</strong>
+      {mk2Evidence.errors.map((error,i)=><p key={i}>{error}</p>)}
+    </div>}
     {!!visuals?.errors.length && <div className="mw-source-errors" role="alert">
       <strong>{visuals.errors.length} source thumbnail validation error(s)</strong>
       {visuals.errors.slice(0,6).map((error,i)=><p key={i}>{error}</p>)}
@@ -166,6 +173,8 @@ export function MuseumStages({ inventory, detection, source, goTo, onSelectResou
             </div>
             <p>{stage.note}</p>
             {visual && <p className="mw-source-evidence">Preview: {visual.title}. {visual.evidence}</p>}
+            {mk2Evidence && <MK2PaletteEvidencePanelP58 stage={stage.file} evidence={mk2Evidence}
+              onOpen={id => onSelectResource(exactAssetSearchP55(id))}/> }
             {stage.effectFrames !== null
               ? <div className="mw-stage-detail"><span>{stage.effectFrames} original effect frames</span><span>{stage.tracks} sequences</span></div>
               : <div className="mw-stage-detail mw-muted">Full native scene composition not established</div>}
