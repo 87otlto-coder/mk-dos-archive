@@ -52,6 +52,7 @@ jobs:
           node --check scripts/verify-p36-checkpoint.cjs
           node --check scripts/verify-p41-checkpoint.cjs
           node --check scripts/verify-p46-checkpoint.cjs
+          node --check scripts/verify-p51-checkpoint.cjs
           node --check scripts/verify-p50-indexed-acceptance.cjs
           node --check scripts/verify-mk1-p50-indexed-export.cjs
           node --check scripts/verify-mk2-p47-queue-exports.cjs
@@ -107,6 +108,8 @@ jobs:
         run: python3 scripts/verify-mk3-p49-palettes-independent.py --help
       - name: P50 cross-game runner refusal controls (no game data)
         run: python3 scripts/test-p50-checkpoint-controls.py
+      - name: P51 checkpoint refusal controls (no game data)
+        run: python3 scripts/test-p51-checkpoint-controls.py
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |

@@ -6,18 +6,14 @@ A forensic, evidence-led asset extractor for the original DOS editions of **Mort
 
 ## Current checkpoint
 
-- **P46 is the consolidated source checkpoint on develop; main remains accepted P16.** All earlier source/evidence and the workbench are preserved. No runtime source changes in P46.
-- Fresh **27 game gates PASS**: 25 standard three-game suites plus PORTAL/TOWER gates, no skipped games. MK1 **2,656**, MK2 **5,369 / 4,357 cumulative checks**, MK3 **9,186** representations.
-- Twelve independent image families: **251 representations / 939,903 pixels / 10,712,883 checks**; 54 altered exports rejected. Current accounting and all 43 existing effect exports: **315 source references / 7,064,335 decoder checks / 171,036 export checks**; eight false reports and six altered exports rejected.
-- Legacy package hashes and decoded MK1/MK3 visuals match their prior checkpoints. Source-byte coverage is separate from complete scenes, native palette/alpha/timing and original-data browser acceptance.
-- Reproduce: `node scripts/verify-p46-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. P45 remains the MK2-only acceptance runner. P41/P36/P31/P26 stay frozen.
-- **P47 targeted queue/export acceptance PASS:** 32 APNG cases / 236 decoded frames, four altered exports rejected, P19 compatibility preserved. Shared API proof; original-data browser interaction remains pending.
-- **P48 adds direct indexed ZIP export** in the inspector, preserving native planes/provenance without changing the queue; eight original-data cases and current MK2 acceptance pass. Browser click/download remains pending.
-- **P49 fixes MK3 embedded-palette preservation:** 416 IFF images retain original indexed/mask/CMAP planes in indexed ZIPs; visual hashes/counts unchanged. Browser downloads remain pending.
-- **P50 cross-game indexed acceptance PASS:** retains original index/mask planes for 79 unresolved MK1 records; existing colors/counts unchanged. All twelve acceptance steps pass; browser interaction remains pending.
-- Next **P51 consolidation assessment**; P51 is the next scheduled consolidation assessment. Main promotion remains separate; original game data/artwork is excluded from Git.
+- **P51 is the consolidated source checkpoint on develop; main remains accepted P16.** All earlier source/evidence and the research workbench remain preserved. No runtime source changes in P51.
+- Fresh **27 core game gates PASS**, no skipped games: MK1 **2,656**, MK2 **5,369 / 4,357 cumulative checks**, MK3 **9,186**.
+- Twelve independent image families: 251 representations / 939,903 pixels / 10,712,883 checks; 54 altered exports rejected. Current accounting/effect proof: 315 references / 43 effects; eight false reports and six altered exports rejected.
+- Indexed preservation verified for all 79 MK1 unresolved records and all 416 MK3 embedded-palette images, plus eight original MK2 export cases. APNG acceptance: 32 cases / 236 frames. Existing rendered visuals/counts unchanged.
+- Reproduce: `node scripts/verify-p51-checkpoint.cjs --mk1 <dir> --mk2 <dir> --mk3 <dir> --report <private-json> --work <private-dir>`. P50 is the indexed-only acceptance gate; historical checkpoints stay frozen.
+- Actual browser actions and unqualified native palette/timing/alpha/world composition remain separate. Next **P52 MK1 read-only fallback native-plane review**; P56 next consolidation assessment. Main promotion remains separate; original game data/artwork stays outside Git.
 
-Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P46 checkpoint](docs/EXTRACTOR_P46_SOURCE_CHECKPOINT.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
+Read [PROJECT_STATUS.md](PROJECT_STATUS.md), [P51 checkpoint](docs/EXTRACTOR_P51_SOURCE_CHECKPOINT.md) and [repository preservation rules](docs/REPOSITORY_POLICY.md) before continuing development.
 
 ## In scope
 

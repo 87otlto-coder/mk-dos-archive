@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P51 consolidated source checkpoint - 2026-11-07
+
+**Where:** P51 consolidates P47-P50 on develop; main remains P16. No runtime changes or new assets in P51.
+
+**Verified:** 27 core game gates PASS, no skipped games: MK1 **2,656**, MK2 **5,369 / 4,357 checks**, MK3 **9,186**. Twelve independent image families **251 representations / 939,903 pixels / 10,712,883 checks**, 54 altered exports rejected. Current source/effect proof **315 references / 43 effects**, eight false reports and six altered exports rejected. Native indexed export preservation: **79 MK1 records / 740,670 bytes**, **416 MK3 IFF images / 319,488 CMAP bytes**, eight independent MK2 cases, **32 APNG cases / 236 frames**, clean rechecks PASS. MK1/MK3 visual hashes match P46. Local syntax/TypeScript/build and eight runner refusals/seven source-audit controls PASS. [P51 checkpoint](docs/EXTRACTOR_P51_SOURCE_CHECKPOINT.md), [results](docs/validation/P51_CHECKPOINT_2026-11-07.json). Source/CI association follows verification.
+
+**Uncertain:** actual browser interaction and unqualified native palettes/timing/alpha/stage relationships remain open. **Next:** P52 audit of MK1 read-only fallback native-plane export coverage; retain strict canonical gates. P56 next consolidation assessment. Main unchanged.
+
 ## P50 cross-game indexed/palette acceptance - 2026-11-07
 
 **Where:** fourth interim after P46. Twelve-step runner PASS. It exposed and fixed an MK1 registry omission: **79 unresolved-palette records** now retain existing O60 index/mask data; no new decoding, colors, assets or preview changes.
@@ -451,13 +459,13 @@ The first major milestone is a sophisticated extractor for original DOS **MK1, M
 | Item | Status |
 |---|---|
 | Original frozen application source | O270 (2026-10-31) |
-| Last *full source* checkpoint | **P46 consolidated on develop; P16 accepted on main** (2026-11-07; prior checkpoints preserved) |
+| Last *full source* checkpoint | **P51 consolidated on develop; P16 accepted on main** (2026-11-07; prior checkpoints preserved) |
 | P6 ZIP SHA-256 | `49cf14b72475189bcb8be53fe6ad1d11e4b145205b9e4012c4c2320235a7735e` |
 | MK2 original EXE SHA-256 | `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65` |
 | P6 canonical MK2 headless scanner | **5,016 unique assets** |
-| Most recent interim pass | **P50**, after P46 |
-| Latest full MK2 original-fixture cumulative result | **P50: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
-| Next planned pass | **P51 fifth-pass consolidation assessment** |
+| Most recent interim pass | **P50**, consolidated in P51 |
+| Latest full MK2 original-fixture cumulative result | **P51: 5,369 representations / 4,357 retained cumulative checks plus coverage gates**, full prior suites and independent component/source parity |
+| Next planned pass | **P52 MK1 read-only fallback native-plane review** |
 | Browser / full React + Vite verification | **Build, onboarding, and user-tested core 3-game previews/exports passed; stage coverage incomplete** |
 | Full Git-safe source tracked on GitHub | **Yes — current main P16; P6 and P11 retained in history** |
 
@@ -479,10 +487,10 @@ Keep confidence boundaries: source-local layers are **not** completed full stage
 
 ## Near-term next steps
 
-1. Assess P51 from verified P50 on develop; preserve P46 and earlier checkpoints.
-2. Consolidate P47-P50 with fresh current-source three-game, independent image/effect/indexed/CMAP/APNG acceptance and complete committed-source audit. Preserve frozen runners and original data provenance.
-3. Keep actual browser actions and unqualified native palettes/timing/alpha/stage composition separate from shared API proof.
-4. State pass, verified result, uncertainty and next action at every stop. Main promotion remains separately authorized.
+1. Begin P52 from verified P51; preserve P46 and earlier checkpoints.
+2. Review native-plane retention in the existing MK1 read-only fallback. Qualify any fix using original and controlled noncanonical fixtures; retain strict identity gates and unassigned palette confidence.
+3. Browser click/download validation remains separate and pending when no controlled local session is exposed. Do not claim complete native scenes/timing/ownership from export roundtrip evidence.
+4. At every stop state pass, verified result, uncertainties and next action. P52-P55 are interim; P56 next consolidation assessment. Main promotion remains separately authorized.
 
 ## Scope discipline
 
