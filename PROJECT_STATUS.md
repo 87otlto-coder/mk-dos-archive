@@ -12,6 +12,7 @@
 - New components reproduce all **six P9 canvases / 1,328,768 cells / 126 controls** exactly. The 28 new streams plus fourteen existing bridge sprites partition all **69,384 PIT.GRA bytes**, without asserting runtime alpha, palette/timing or full stage composition.
 - **802 focused / 3,320,868 independent export checks PASS**, eight rejected source fixtures and **six rejected altered exports/claims**. Full MK2: **5,341 / 3,577 cumulative checks PASS; 19 suites PASS**.
 - Strengthened the new Python verifier after a false-animation claim exposed a missing assertion; production metadata already stated false. Command paint masks are explicitly not runtime-alpha claims. Local **376-file syntax**, TypeScript and production build PASS.
+- Verified source commit `caad71faf317fa1d6fd200c2c6fb70129c2729e6`: all **2,185 committed blobs / 380 src files** match; no missing/mismatched/unsafe paths. [CI run 42349503704](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42349503704) **SUCCESS**, including source-only Chrome boot.
 - [P33 handoff](docs/EXTRACTOR_P33_MK2_PIT_STANDALONE_COMPONENTS.md), [evidence](docs/validation/P33_PIT_COMPONENT_REGRESSION_2026-11-07.json). Browser actions remain **VALIDATION PENDING**; P31 remains the latest full three-game checkpoint. Next **P34 ARMORY [116608,126336) source audit**. No main promotion; next fifth-pass consolidation assessment P36.
 
 ## P32 additional FOREST originals and native source-byte partition - interim develop pass, 2026-11-07

@@ -88,3 +88,11 @@ The interim runner defaults to P33. P31/P26 and earlier fixed-census checkpoint 
 
 Next **P34**: audit ARMORY's **[116608,126336)** interval against existing descriptor evidence and current floor/component records, exposing independently qualified missing originals only. Keep the workbench intact and commits recoverable on develop. P36 remains the next fifth-pass consolidation assessment; main unchanged.
 
+
+## Committed source and CI evidence
+
+Verified source candidate: `caad71faf317fa1d6fd200c2c6fb70129c2729e6`; tree `b73e25e20be05fb7eed6a446e1bd8cdd2c942792`. Complete connector-retrieved source audit PASS: **2,185 committed blobs / 380 src files**, **86 raw byte matches + 2,099 normal checkout newline matches**, zero missing/mismatched/unsafe paths. Inventory SHA-256: `4935d6a1583a66bbb084276be24321355c06080b2a6d45c885d4870ed84f097b`. Runtime changes are limited to the new adapter and additive collection integration; existing research renderers and native row decoder are unchanged.
+
+GitHub [source-build run 42349503704](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42349503704) completed **SUCCESS** on the exact source candidate: dependency installation, syntax, P31 source-only refusal controls, media guard, production build, TypeScript and headless Chrome startup **without game data**. This is separate from the original-fixture regression and pending original-data browser actions.
+
+The following evidence-only commit changes this handoff, project status and machine-readable results. Application/tooling source is identical to the audited, CI-passing candidate. Main remains P16; original binaries and private artwork/ZIPs are excluded.

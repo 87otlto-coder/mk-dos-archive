@@ -1851,5 +1851,37 @@
   "browserInteractionVerified": false,
   "mk1mk3FreshlyRerun": false,
   "mainPromoted": false,
-  "originalGameMediaCommitted": false
+  "originalGameMediaCommitted": false,
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "caad71faf317fa1d6fd200c2c6fb70129c2729e6",
+    "treeSha": "b73e25e20be05fb7eed6a446e1bd8cdd2c942792",
+    "fileBlobs": 2185,
+    "sourceFiles": 380,
+    "rawByteMatches": 86,
+    "checkoutNormalizedMatches": 2099,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "4935d6a1583a66bbb084276be24321355c06080b2a6d45c885d4870ed84f097b",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "sourceAuditRemoteAssociationVerifiedViaGitHubConnector": true,
+  "sourceCandidate": {
+    "commit": "caad71faf317fa1d6fd200c2c6fb70129c2729e6",
+    "tree": "b73e25e20be05fb7eed6a446e1bd8cdd2c942792",
+    "runtimeChanges": [
+      "src/core/assets/mk2PitSourceP33.ts",
+      "src/core/assets/collection.ts"
+    ],
+    "removedPaths": []
+  },
+  "githubCI": {
+    "runId": 42349503704,
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42349503704",
+    "headSha": "caad71faf317fa1d6fd200c2c6fb70129c2729e6",
+    "status": "completed",
+    "conclusion": "success",
+    "originalDataBrowserValidation": false
+  }
 }
