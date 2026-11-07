@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { DirectorySource } from '../core/filesystem/DirectorySource';
 import { Asset, AssetCollection, Game, utf8 } from '../core/assets/model';
 import { scanAssets } from '../core/assets/collection';
+import { matchesAssetSearchP55 } from '../core/assets/assetSearchP55';
 import { resolveMK2OriginalSourceOrder } from '../core/assets/mk2SourceOrderQueueP19';
 import {
   animatedPng,
@@ -60,7 +61,7 @@ function errorMessage(error: unknown) {
   return error instanceof Error ? error.message : String(error);
 }
 
-export function AssetBrowser({ source, game, initialSearch = '', navigationRevision = 0, initialCollection = null }: { source: DirectorySource; game: Game; initialSearch?: string; navigationRevision?: number; initialCollection?: AssetCollection | null }) {
+export function AssetBrowser({ source, game, initialSearch = '', navigationRevision = 0, initialCollection = null, onCollectionLoaded }: { source: DirectorySource; game: Game; initialSearch?: string; navigationRevision?: number; initialCollection?: AssetCollection | null; onCollectionLoaded?: (collection:AssetCollection)=>void }) {
   const [collection, setCollection] = useState<AssetCollection | null>(null);
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState('');
@@ -129,7 +130,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
         a =>
           (!kind || a.kind === kind) &&
           (!group || a.group === group) &&
-          `${a.name} ${a.group} ${a.confidence} ${a.source.path}`.toLowerCase().includes(search.toLowerCase()),
+          matchesAssetSearchP55(a,search),
       ),
     [assets, kind, group, search],
   );
@@ -203,6 +204,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
       );
       if (scanRun.current !== run || controller.signal.aborted) return;
       setCollection(c);
+      onCollectionLoaded?.(c);
       setQueue([]);
       setLayers([]);
       setFocus(null);
