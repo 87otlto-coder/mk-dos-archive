@@ -2576,5 +2576,33 @@
     "src/components/AssetBrowser.tsx"
   ],
   "originalDataBrowserValidation": false,
-  "mainPromotion": false
+  "mainPromotion": false,
+  "sourceAudit": {
+    "status": "PASS",
+    "commit": "28eedd6d6f23bc78cb005ddb9c515d84983e889b",
+    "treeSha": "d372f0700e59725b7eaf45fdb3aa462a84dc0026",
+    "fileBlobs": 2213,
+    "sourceFiles": 383,
+    "rawByteMatches": 90,
+    "checkoutNormalizedMatches": 2123,
+    "missing": [],
+    "mismatches": [],
+    "unsafePaths": [],
+    "inventorySha256": "c8e7732687a001d50577c79d5d7a08c967d8479cf1eb6a79d128ec6a581c12f1",
+    "remoteAssociationVerifiedByThisScript": false
+  },
+  "sourceAuditRemoteAssociationVerifiedViaGitHubConnector": true,
+  "sourceCandidate": {
+    "commit": "28eedd6d6f23bc78cb005ddb9c515d84983e889b",
+    "tree": "d372f0700e59725b7eaf45fdb3aa462a84dc0026",
+    "removedPaths": []
+  },
+  "githubCI": {
+    "runId": 42355754778,
+    "url": "https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42355754778",
+    "headSha": "28eedd6d6f23bc78cb005ddb9c515d84983e889b",
+    "status": "completed",
+    "conclusion": "success",
+    "originalDataBrowserValidation": false
+  }
 }

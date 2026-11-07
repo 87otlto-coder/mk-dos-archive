@@ -13,6 +13,7 @@
 - Source-only **20 checks / ten invalid interval refusals PASS**. Local **379-file syntax**, TypeScript and production build PASS.
 - CAVE's 120-byte prefix stays UNKNOWN: a plausible twelve-byte scan interpretation failed independent decoding and overlaps an eight-byte descriptor. TOMB/PORTAL/TOWER report gaps may already have exported effects; no missing-artwork claim.
 - Latest full MK1/MK3 fixture evidence remains P36; original-data browser actions pending. P36 remains consolidated source checkpoint.
+- Complete committed source audit: **2,213 blobs / 383 src files**, zero missing/mismatched/unsafe paths; candidate **28eedd6d6f23bc78cb005ddb9c515d84983e889b**. [CI 42355754778](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42355754778) **SUCCESS**, including new source-only P37 controls and Chrome boot.
 - [P37 handoff](docs/EXTRACTOR_P37_MK2_SOURCE_INTERVAL_COVERAGE.md), [evidence](docs/validation/P37_SOURCE_INTERVAL_COVERAGE_2026-11-07.json). Next **P38 TOMB gap/existing-effect provenance reconciliation**. Main unchanged; P41 next consolidation assessment.
 
 ## P36 fifth-pass consolidated source checkpoint - develop, 2026-11-07

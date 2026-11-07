@@ -70,3 +70,9 @@ The interim runner defaults to P37. P36/P31/P26 checkpoint runners and records r
 **VALIDATION PENDING:** original-data browser clicks/downloads of the new report and other new families. Source-only Chrome CI is separate.
 
 Next **P38**: reconcile TOMB's [54328,63776) report gap with already exported effect frames and existing descriptor research before proposing additional originals. Extend the report only with independently qualified source extents; a scope gap is not a new-image claim. Preserve the workbench and recoverable develop commits. P41 remains the next fifth-pass consolidation assessment; main unchanged.
+
+## Committed source and CI evidence
+
+Source candidate **28eedd6d6f23bc78cb005ddb9c515d84983e889b**, tree **d372f0700e59725b7eaf45fdb3aa462a84dc0026**: complete GitHub-associated audit PASS, **2,213 blobs / 383 src files**, 90 raw matches and 2,123 normal checkout newline matches; zero missing, mismatched or unsafe paths. Inventory SHA-256: **c8e7732687a001d50577c79d5d7a08c967d8479cf1eb6a79d128ec6a581c12f1**. The reviewed comparison has thirteen changed/added paths and zero removals; runtime changes are the additive report module/collection integration and the JSON MIME branch in the existing download button.
+
+[CI run 42355754778](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42355754778) completed **SUCCESS** on that exact candidate: locked dependency install, syntax, P31/P36 source-only refusal controls, new P37 interval controls, media guard, build, TypeScript and Chrome boot without original game data. Original-data browser validation remains pending. The following evidence-only commit changes this handoff, PROJECT_STATUS.md and validation JSON; application and verification source are identical to the audited CI candidate. Main remains P16.
