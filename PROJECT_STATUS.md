@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P56 accepted development checkpoint — user-local original three-game PASS, 2026-11-07
+
+**P56 source and original-fixture acceptance complete.** User pulled `develop` at documentation tip `457d6dc` and executed `scripts/verify-p56-checkpoint.cjs` locally against original MK1/MK2/MK3 directories. Screenshots show all **six steps completed**, final **`status: PASS`**, and unchanged censuses **MK1 2,656 / MK2 5,369 / MK3 9,186 (17,211 total)**. This is **user-local original-fixture evidence**; the chat agent did not run the full private fixture regression independently. P56 internally gates P52 187 Kano indexed ZIP checks, P54 24 joins/15 headers, P55 exact-ID navigation checks and the frozen P51 full three-game suites.
+
+- Exact P56 source/workflow candidate `efa68318d42ca67051ae37595142dae994002966` had [GitHub source-only CI 42400950450](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42400950450) **SUCCESS**: P54/P55 negative controls, P56 input/output safeguards, TypeScript, build and Chrome boot. Later P56 commits before acceptance were documentation only.
+- P55 MK1 browser screenshots verify sampled module links (STATUE_MOD, STRIPPED_MOD), 1-of-1 exact asset results and 320×200 normalized previews. **Not** all 24 browser interactions, native original scene composition or palette ownership.
+- [P56 accepted checkpoint and explicit confidence boundary](docs/EXTRACTOR_P56_ACCEPTED_CHECKPOINT_2026-11-07.md). The immediately following *candidate* entry is retained as historical pre-acceptance context; its pending original-fixture statement is superseded by this accepted entry. Next **P57**: source-backed gallery thumbnail usability, with O27/O54 identity checks and no invented stage mapping. `main` remains P16; no automatic merge.
+
 ## P56 consolidation candidate — source CI verified, original three-game regression pending, 2026-11-07
 
 **P56 is NOT yet a fully accepted checkpoint.** The source-only consolidated runner `scripts/verify-p56-checkpoint.cjs` is committed and wired to GitHub CI. It rechecks P52 (187 original Kano indexed ZIPs), P54 (24 source-header joins), P55 (15 headers / 24 exact preview IDs), both source-only negative-control suites and then the frozen P51 complete original **MK1/MK2/MK3** regression. The runner refuses unsafe inputs/output paths and preserves private stepwise RUNNING/PASS/FAIL JSON outside source/game directories.
