@@ -15,7 +15,7 @@ export function selectedZip(assets:Asset[]) {
   if(!assets.length)throw new Error('Select at least one asset');
   if(assets.length>10000)throw new Error('Export at most 10,000 assets at a time');
   const files=assets.map((a,i)=>({name:`assets/${String(i).padStart(5,'0')}_${safeName(a.filename)}`,bytes:assetBytes(a)}));
-  for(let i=0;i<assets.length;i++)for(const field of ['indices','mask','paletteKnownMask','paletteRgb']){const b=assets[i].metadata[field];if(b instanceof Uint8Array)files.push({name:`indexed/${String(i).padStart(5,'0')}_${field}.bin`,bytes:b});}
+  for(let i=0;i<assets.length;i++)for(const field of ['indices','mask','paletteKnownMask','paletteRgb','firstStream','rowXTable','rowPointerTable','sourceAdjacentRgb8Candidate']){const b=assets[i].metadata[field];if(b instanceof Uint8Array)files.push({name:`indexed/${String(i).padStart(5,'0')}_${field}.bin`,bytes:b});}
   files.push({name:'manifest.json',bytes:utf8.encode(JSON.stringify({format:'mkdos_selected_assets_v1',selectionOrder:assets.map(metadata)},null,2))});
   if(files.reduce((n,f)=>n+f.bytes.length,0)>512*1024*1024)throw new Error('Export exceeds 512 MiB; select a smaller batch');
   return buildStoredZip(files);
