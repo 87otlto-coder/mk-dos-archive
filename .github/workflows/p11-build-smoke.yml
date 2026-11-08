@@ -220,6 +220,10 @@ jobs:
           python3 -m py_compile scripts/verify_mk3_p75_noniff_independent.py
           python3 scripts/test_mk3_p75_noniff_row_tables.py
           python3 scripts/verify_mk3_p75_noniff_independent.py --help > /dev/null
+      - name: P76 original MK3 opt-in indexed row assets, ZIP provenance, and malformed-source refusals
+        run: |
+          node --check scripts/test-p76-mk3-row-assets.cjs
+          node scripts/test-p76-mk3-row-assets.cjs
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
