@@ -186,6 +186,10 @@ jobs:
           python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/check-p69-browser-ftr.py').read_text(encoding='utf-8'))"
           python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p69-ftr-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p69-mk3-ftr-indexed.cjs
+      - name: P70 MK3 original GOG CUE-linked OGG tracks and 15 source/mismatch refusals
+        run: |
+          node --check scripts/test-p70-mk3-cue-music.cjs
+          node scripts/test-p70-mk3-cue-music.cjs
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
