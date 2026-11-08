@@ -2,7 +2,30 @@
 
 Date: 2026-11-08. Fourth interim pass of P67–P71. `develop` only; `main` stays at the P16 source checkpoint. P66 remains the last accepted **complete original MK1/MK2/MK3 17,211-asset regression**. P67–P69 have separately accepted focused original-browser/fixture evidence.
 
-**P70 source-only CI: PASS. P70 independently verified original GOG CUE+OGG source evidence: PASS. P70 complete current-extractor ZIP and live-browser export acceptance: VALIDATION PENDING.**
+**P70 source-only CI: PASS. Independent original-source input verification: PASS. Actual original MK3 Chrome ZIP download: PASS (user-local screenshot). Separate full-collection original P70 fixture runner: VALIDATION PENDING.**
+
+## ORIGINAL MK3 CHROME DOWNLOAD — ACCEPTED (user-local evidence, 2026-11-08)
+
+**VERIFIED FROM USER-LOCAL ORIGINAL-GOG BROWSER EXECUTION:** The user ran `node scripts/verify-p70-browser-cue.cjs` against `E:\\GOG\\Games\\Mortal Kombat 3\\mk3` after a successful Vite production build and supplied a complete PowerShell screenshot reporting `"pass":"P70_BROWSER"` and `"status":"PASS"`. The committed browser verifier opens the application in Chrome, uploads the actual MK3 directory, selects `Track02.ogg`, clicks the CUE-linked 46-track download control, and runs the independent original-file ZIP reader on the downloaded archive. The screenshot proves the test completed; its stdout does **not** identify an exact Git source SHA or original-fixture runner execution.
+
+| Observed browser verifier field | Reported value |
+| --- | --- |
+| `game` | `mk3` |
+| `mk3Assets` | **9,186**, unchanged |
+| `oneClickOriginalCueMusicDownload` | **true** |
+| `independentOriginalOggTracks` | **46** |
+| `originalCueBytesPreserved` | **true** |
+| `originalOggSourceBytesVerified` | **43,367,491** |
+| `cueMp3VsActualOggMismatchPreserved` | **true** |
+| `completeOriginalDiscImageClaimed` | **false** |
+| `nativeRuntimeMusicAssociationsClaimed` | **false** |
+| `audiblePlaybackVerified` | **false** |
+
+The production Vite build passed; its warning about JavaScript chunks larger than 500 kB is nonfatal and unrelated to source audio parity. GitHub source-only CI [42478986383](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42478986383) separately passed at source/workflow SHA `80d64f336b2ffb6bcb3b8d68e997cd5f596ccc43`. No commercial CUE, OGG, game executable, original disc image or exported ZIP was committed.
+
+**Precise limit:** the browser ZIP download and independent original-file track readback are **accepted**. The separately supplied full-collection fixture command `scripts/verify-mk3-p70-cue.cjs` has **not been shown as executed** and remains **VALIDATION PENDING**. Thus the browser result should not be counted as a separate P70 integrated fixture-run PASS. Native playback, stage assignments, timing, looping and complete disc-image fidelity remain UNKNOWN or expressly unclaimed. **P71 full three-game consolidation must not be declared complete on the strength of this focused P70 browser pass.**
+
+Development-stage text below saying the browser acceptance is pending is retained as historical implementation context and is superseded by this acceptance section.
 
 ## OBSERVE — original music exists, but GOG CUE link is unused in extraction
 
