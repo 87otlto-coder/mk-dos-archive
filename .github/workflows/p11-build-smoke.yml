@@ -169,6 +169,10 @@ jobs:
           echo 'PASS: no tracked original game/media extensions; P16 original-input checker is loadable.'
       - name: P66 cumulative acceptance refusals (no game data)
         run: python3 scripts/test-p66-checkpoint.py
+      - name: P67 downloaded selection readback controls (synthetic)
+        run: |
+          node --check scripts/verify-p67-browser.cjs
+          python3 scripts/test-p67-download.py
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks

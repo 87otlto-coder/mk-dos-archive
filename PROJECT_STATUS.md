@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P67 original-directory browser acceptance — 2026-11-08
+
+Chrome loaded all three original GOG directories through the directory-upload input. Five downloads passed readback covering MK1 and MK3 WAV selections, an original MK2 score and its derived MIDI, and the MK1 P65 package alongside its O60 reference. [Exact coverage, limits, reproduction and P68 priority](docs/EXTRACTOR_P67_BROWSER_ACCEPTANCE.md).
+
 ## P66 accepted original DOS three-game checkpoint — 2026-11-08
 
 The fresh local original-fixture run passed all nine P61 groups and every P62–P65 focused verifier on develop commit `2f911b7961a706022927bd0db187f9cf2cba555c`. The census was 17,211 assets (MK1 2,656 / MK2 5,369 / MK3 9,186). It verified 244 MK1 WAVs, 1,024 MK3 WAV intervals, 33 MK2 scores with 37,481 MIDI events, and 514 MK1 indexed ANITAB streams. GitHub source-only CI, TypeScript, production build and offline headless Chrome boot passed. Interactive browser export remains unverified for this checkpoint. [Exact tested tree, fixture hashes, results and reproduction](docs/EXTRACTOR_P66_ACCEPTED_CHECKPOINT.md).
