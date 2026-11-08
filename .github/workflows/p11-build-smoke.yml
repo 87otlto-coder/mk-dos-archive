@@ -167,6 +167,8 @@ jobs:
           test -f scripts/verify-mk2-p16-fixture-identity.py
           python3 scripts/verify-mk2-p16-fixture-identity.py --help > /dev/null
           echo 'PASS: no tracked original game/media extensions; P16 original-input checker is loadable.'
+      - name: P66 cumulative acceptance refusals (no game data)
+        run: python3 scripts/test-p66-checkpoint.py
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
