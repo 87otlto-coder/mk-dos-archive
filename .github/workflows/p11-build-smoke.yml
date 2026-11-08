@@ -200,6 +200,9 @@ jobs:
       - name: P72 original MK3 indexed-to-IFF CMAP comparison source and false ownership controls
         run: |
           node --check scripts/test-p72-mk3-cmap-comparison.cjs
+          node --check scripts/verify-mk3-p72-cmap.cjs
+          node --check scripts/verify-p72-browser-cmap.cjs
+          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p72-iff-cmap-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p72-mk3-cmap-comparison.cjs
       - name: Production Vite build
         run: npm run build
