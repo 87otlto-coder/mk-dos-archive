@@ -5,6 +5,7 @@ import { scanAssets } from '../core/assets/collection';
 import { matchesAssetSearchP55 } from '../core/assets/assetSearchP55';
 import { buildMK3FighterIndexedBundleP69 } from '../core/assets/mk3FighterIndexedBundleP69';
 import { buildMK3CueMusicBundleP70 } from '../core/assets/mk3CueAudioBundleP70';
+import { recoverMK3P76RowMappedAssets } from '../core/assets/mk3NonIffRowMappedP76';
 import {
   compareMK3FighterWithIffCmapP72,
   exportMK3PaletteComparisonP72,
@@ -95,6 +96,9 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   const [selectedComparisonIffId, setSelectedComparisonIffId] = useState('');
   const [comparisonBusy, setComparisonBusy] = useState(false);
   const comparisonRun = useRef(0);
+  const [rowMapsBusy, setRowMapsBusy] = useState(false);
+  const rowMapsRun = useRef(0);
+  const rowMapsAbort = useRef<AbortController | null>(null);
 
   const abort = useRef<AbortController | null>(null);
   const scanRun = useRef(0);
@@ -112,6 +116,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     indexedFtrRun.current += 1;
     cueAudioRun.current += 1;
     comparisonRun.current += 1;
+    rowMapsRun.current += 1;
+    rowMapsAbort.current?.abort();
+    rowMapsAbort.current = null;
+    setRowMapsBusy(false);
     setSelectedComparisonIffId('');
     setComparisonBusy(false);
     setIndexedFtrBusy(false);
@@ -130,7 +138,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     setProgress('');
     setError('');
     setBusy(false);
-    return () => { abort.current?.abort(); indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
+    return () => { abort.current?.abort(); rowMapsAbort.current?.abort(); rowMapsRun.current += 1; indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
   }, [source, game]);
 
   // O194: Compilation results arrive independently of this view. Preserve local browsing state.
@@ -274,6 +282,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   }
 
   async function scan() {
+    rowMapsRun.current += 1;
+    rowMapsAbort.current?.abort();
+    rowMapsAbort.current = null;
+    setRowMapsBusy(false);
     const run = ++scanRun.current;
     abort.current?.abort();
     const controller = new AbortController();
@@ -307,6 +319,40 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
       if (scanRun.current === run) {
         setBusy(false);
         abort.current = null;
+      }
+    }
+  }
+
+  async function revealMK3P76SourceImages() {
+    if (game !== 'mk3' || !collection || collection.assets.length !== 9186 || busy || rowMapsBusy) return;
+    const run=++rowMapsRun.current, baseline=collection;
+    const sourceRun=scanRun.current, controller=new AbortController();
+    rowMapsAbort.current=controller;
+    setRowMapsBusy(true);
+    setError('');
+    try {
+      const result=await recoverMK3P76RowMappedAssets(source,baseline.assets,controller.signal);
+      if (controller.signal.aborted || run!==rowMapsRun.current || sourceRun!==scanRun.current) return;
+      setCollection(current => {
+        if (current !== baseline) return current;
+        return {...current,
+          assets:[...current.assets,...result.assets],
+          reports:{...current.reports, p76RecoveredNonIffSourceRows:result.report},
+          limitations:[...current.limitations,
+            'P76: 19 original source-row-mapped indexed interpretations added by explicit user action; native RGB palette, renderer, stage membership and animation timing remain UNKNOWN. All 20 original raw non-IFF source regions remain preserved.']};
+      });
+      setSearch('');
+      setKind('image');
+      setGroup('DATA.MK3 · recovered indexed (P76)');
+      setPage(0);
+      setFocus(null);
+      setAnchor(null);
+    } catch (e) {
+      if (!controller.signal.aborted && run===rowMapsRun.current) setError(errorMessage(e));
+    } finally {
+      if (run===rowMapsRun.current) {
+        setRowMapsBusy(false);
+        rowMapsAbort.current=null;
       }
     }
   }
@@ -482,6 +528,22 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
             <p>The full MK1 research scan was unavailable for this installation. You can inspect and export original GRA resources and any independently checked indexed previews.</p>
             <p>See Coverage &amp; evidence for the precise identity/validation reason.</p>
           </div>
+        )}
+        {game === 'mk3' && collection.assets.length === 9186 && (
+          <section className="asset-fallback-notice" aria-label="Original MK3 source-row graphics">
+            <strong>P76 recovered indexed graphics (source-row interpretation)</strong>
+            <p>19 additional original DATA.MK3 row-mapped source graphics can be opened on demand.
+              Their indexed pixels and masks have reproducible original source provenance.
+              Colors, native renderer positioning, stage membership and animation timing are not verified.
+              The existing 9,186-item baseline and all raw source intervals stay intact until you choose to add them.</p>
+            <button type="button" disabled={rowMapsBusy || busy} onClick={() => void revealMK3P76SourceImages()}>
+              {rowMapsBusy ? 'Checking original source and mapping rows…' : 'Show 19 recovered indexed graphics'}
+            </button>
+          </section>
+        )}
+        {game === 'mk3' && collection.reports.p76RecoveredNonIffSourceRows && (
+          <p role="status">P76 source-row graphics added: 19 separate indexed images.
+            Preview is grayscale index-map only; native palettes and renderer positions remain UNKNOWN.</p>
         )}
         <details className="asset-evidence">
           <summary>Coverage & evidence · {assets.length.toLocaleString()} assets</summary>
