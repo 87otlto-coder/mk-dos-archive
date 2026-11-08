@@ -92,7 +92,10 @@ function original(){
  await refuse('RGB already assigned',q=>q.fighter.metadata.paletteRgb=new Uint8Array(768),/fighter already has a different palette/);
  await refuse('IFF CMAP ownership false',q=>q.iff.metadata.paletteRuntimeOwnershipKnown=true,/not an explicit/);
  await refuse('IFF CMAP wrong length',q=>q.iff.metadata.paletteRgb=new Uint8Array(765),/not an explicit/);
- await refuse('different original installation',q=>q.iff.source.path='other/DATA.MK3',/different installation roots/);
+ await refuse('different original installation',q=>{
+   q.iff.source.path='other/DATA.MK3';
+   q.iff.id='other/DATA.MK3@50';
+ },/different installation roots/);
  await refuse('invalid IFF FORM asset identity',q=>q.iff.id='unrelated',/IFF FORM source extent/);
  assert.equal(rejected,16);
  console.log(JSON.stringify({pass:'P72_SOURCE',status:'PASS',
