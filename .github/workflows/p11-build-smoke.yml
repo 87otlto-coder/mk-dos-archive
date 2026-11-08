@@ -239,6 +239,13 @@ jobs:
             echo "P76 compiled original runner incorrectly accepted missing private inputs"
             exit 1
           fi
+      - name: P77 source-only chained MK3 indexed records, independent verifier and false-source controls
+        run: |
+          python3 -m py_compile scripts/mk3_p77_chained_source_export.py
+          python3 -m py_compile scripts/verify_mk3_p77_chained_source_independent.py
+          python3 scripts/test_mk3_p77_chained_source_export.py
+          python3 scripts/mk3_p77_chained_source_export.py --help > /dev/null
+          python3 scripts/verify_mk3_p77_chained_source_independent.py --help > /dev/null
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
