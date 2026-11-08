@@ -2,7 +2,31 @@
 
 Date: 2026-11-08. Fourth interim pass of P67–P71. `develop` only; `main` stays at the P16 source checkpoint. P66 remains the last accepted **complete original MK1/MK2/MK3 17,211-asset regression**. P67–P69 have separately accepted focused original-browser/fixture evidence.
 
-**P70 source-only CI: PASS. Independent original-source input verification: PASS. Actual original MK3 Chrome ZIP download: PASS (user-local screenshot). Separate full-collection original P70 fixture runner: VALIDATION PENDING.**
+**P70 ACCEPTED: source-only CI PASS; complete original MK3 asset-collection and CUE/46-Ogg ZIP independent fixture PASS (user-local screenshot); actual Chrome CUE/46-Ogg download PASS (user-local screenshot).** The two original-fixture/browser acceptance records below supersede historical pending statements.
+
+## ORIGINAL MK3 COMPLETE-COLLECTION CUE/OGG ZIP — ACCEPTED (user-local evidence, 2026-11-08)
+
+**VERIFIED FROM USER-LOCAL ORIGINAL-GOG FIXTURE EXECUTION:** After the successful original-browser download, the user separately ran `node scripts/verify-mk3-p70-cue.cjs` using the original DOS MK3 installation and private output folder `C:\\Temp\\mkdos-p70-cue-results`. The supplied PowerShell screenshot shows completed `"pass":"P70"`, `"status":"PASS"` output and a return to the shell prompt. The fixture uses the actual game catalogue and independent Python CUE/OGG archive reader. These are separate original-fixture acceptance results, **not** a second inference from the earlier browser test.
+
+| Fixture field (verbatim name) | Observed value |
+| --- | --- |
+| `pass` / `status` | `P70` / **PASS** |
+| `mk3Assets` | **9,186** |
+| `originalCueBytes` | **3,014** |
+| `originalOggTracks` | **46** |
+| `originalOggByteTotal` | **43,367,491** |
+| `allOriginalSourceBytesAndHashesMatched` | **true** |
+| `literalMp3CueVsActualOggPreserved` | **true** |
+| `nativeGameplayAssociationsClaimed` | **false** |
+| `completeCdImageClaimed` | **false** |
+| `browserDownloadVerified` | **false** (this fixture runner does not automate Chrome) |
+| `privateWorkDirectory` | `C:\\Temp\\mkdos-p70-cue-results` |
+
+The separately accepted `P70_BROWSER` test below explicitly reports its own Chrome download PASS. Neither screenshot prints the tested source Git SHA/tree; exact source identity is based on the committed P70 development history and [source-only CI 42478986383](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42478986383), **not** a SHA in the screenshots. The acceptance record commits Markdown only and preserves the commercial original CUE, Ogg files, disc data and generated 49-member ZIP outside Git.
+
+**Classification:** focused P70 original-fixture **PASS**, focused Chrome browser download **PASS**, source-only CI **PASS**. Native hardware playback, stage association, CD image completeness and original runtime loop durations remain unverified. P66 remains the latest accepted **full** three-game cumulative 17,211-asset regression until P71 is completed.
+
+The original implementation-stage “VALIDATION PENDING” sections farther below are retained as history and superseded by these accepted records.
 
 ## ORIGINAL MK3 CHROME DOWNLOAD — ACCEPTED (user-local evidence, 2026-11-08)
 
