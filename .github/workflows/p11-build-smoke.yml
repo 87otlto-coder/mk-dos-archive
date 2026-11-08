@@ -178,6 +178,10 @@ jobs:
           node scripts/test-p68-directory-switch.cjs
           node --check scripts/verify-p68-browser-switch.cjs
           python3 scripts/test-p68-switch-readback.py
+      - name: P69 on-demand MK3 fighter indexed sprite bundle and source refusal controls
+        run: |
+          node --check scripts/test-p69-mk3-ftr-indexed.cjs
+          node scripts/test-p69-mk3-ftr-indexed.cjs
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
