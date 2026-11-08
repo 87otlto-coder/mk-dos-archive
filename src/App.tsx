@@ -136,6 +136,12 @@ export default function App() {
       });
       if (!switchGate.isCurrent(revision)) return;
       if (results.length === 0) throw new Error(`Directory "${selectedSource.directoryName}" is empty or contains no readable files.`);
+      // The inventory deliberately records header read errors instead of
+      // throwing. A replacement must not silently promote such a partially
+      // inaccessible directory and discard a known-good selection.
+      const unreadable = results.filter(entry => entry.error);
+      if (source && unreadable.length)
+        throw new Error(`${unreadable.length} replacement file(s) could not be read, including ${unreadable[0].path}: ${unreadable[0].error}`);
       const raw = detectGameFromInventory(results);
       const enriched = enrichInventoryWithGameContext(results, raw.game);
       const nextDetection = detectGameFromInventory(enriched);
