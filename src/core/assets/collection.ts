@@ -14,7 +14,7 @@ import { runMK2Pipeline } from './mk2Pipeline';
 import { indexedRgba, scanMK3 } from './mk3Collection';
 import { parseAnimationStoreZip, decodeAnimationBundlePng } from '../../games/mk1/research/browserAnimationExportBundleValidation';
 import { executeVerifiedIdentityBundleO90 } from '../../games/mk2/research/verifiedIdentityBundleO90';
-import { decodeMK2Music,writeMidi } from './mk2Music';
+import { buildMK2MusicAssetsP64 } from './mk2MusicProvenanceP64';
 import { hash } from './model';
 import { buildMK2P5SourceFloorAssets, P5_MK2_SOURCE_FLOOR_LIMITATION } from './mk2P5SourceFloors';
 import { buildMK2StageVisualAssetsP2P4, MK2_STAGE_P2P4_LIMITATIONS } from './mk2StageVisualIntegrationP2P4';
@@ -244,9 +244,10 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
   packages.push(...p35ArenaTail.packages);
   const music=[];
   for(const e of await source.listRecursive())if(e.extension.toUpperCase()==='MID'){
-    const bytes=await source.readSlice(e.path,0,e.size);
-    assets.push({id:`raw:${e.path}`,name:e.name+' (original)',group:'Original music sequences',kind:'raw',format:'Sound Images Gen2',confidence:'Original bytes',source:{path:e.path,offset:0,length:bytes.length},metadata:{},bytes,filename:e.name+'.soundimages.bin'});
-    try{const sequence=decodeMK2Music(bytes);music.push({path:e.path,...sequence});assets.push({id:`midi:${e.path}`,name:e.name,group:'MK2 MIDI music',kind:'sequence',format:'MIDI',confidence:'Driver-derived MIDI events; one traversal, loops in metadata',source:{path:e.path,offset:0,length:bytes.length},metadata:sequence,bytes:writeMidi(sequence),filename:e.name,mime:'audio/midi'});}catch(error){music.push({path:e.path,error:String(error)});}
+    signal?.throwIfAborted();
+    const score=await buildMK2MusicAssetsP64(e.path,e.name,await source.readSlice(e.path,0,e.size));
+    assets.push(...score.assets);
+    music.push(score.report);
   }
   signal?.throwIfAborted();
   const p37SourceCoverage=buildMK2SourceCoverageP37(await source.listRecursive(),assets);
