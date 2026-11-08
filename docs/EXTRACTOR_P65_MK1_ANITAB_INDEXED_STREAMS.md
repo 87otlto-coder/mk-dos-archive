@@ -2,7 +2,7 @@
 
 Date: 2026-11-08. Branch: `develop` only; `main` stays P16. P61 is the last fresh full original MK1/MK2/MK3 consolidation (17,211 asset representations). P62 original MK1 WAV, P63 original MK3 WAV and P64 original MK2 score provenance each have separately accepted focused original-fixture evidence.
 
-**Status: P65 SOURCE-ONLY CI PASS; P65 integrated original-MK1 ZIP/source-pointer fixture acceptance PENDING.** No runtime clip durations, colour assignments or playback claims.
+**Status: P65 SOURCE-ONLY CI PASS; P65 focused user-local original-MK1 ZIP/source-pointer fixture PASS.** No runtime clip durations, colour assignments or playback claims.
 
 ## Observe — extraction gap and existing trusted evidence
 
@@ -29,7 +29,28 @@ Date: 2026-11-08. Branch: `develop` only; `main` stays P16. P61 is the last fres
 
 **Original input identity — separately verified:** the user's privately attached `mk1.zip` contains `mk1/MK1.EXE` of 1,157,222 bytes with canonical SHA-256 `750792337f71b2f7991450fa92d2240073b089c917e3c6f1f373404544941b14`. This authentic input check is not a fresh run of the complete updated extractor.
 
-## Original-MK1 integrated acceptance — VALIDATION PENDING
+## Original-MK1 integrated acceptance — focused fixture PASS
+
+The user supplied a terminal screenshot showing `scripts/verify-mk1-p65-anitab-streams.cjs` returning `status: "PASS"` against their local original MK1 fixture. The reported results are transcribed below.
+
+| Verifier field | User-local result |
+| --- | ---: |
+| `mk1Assets` | 2656 |
+| `originalTables` | 8 |
+| `verifiedAnitabCells` | 739 |
+| `uniqueOriginalSourceStreams` | 514 |
+| `sourceInstructionFrameOccurrences` | 1824 |
+| `sourceInstructionControlOccurrences` | 786 |
+| `indexedDescriptorRecords` | 1102 |
+| `indexedSourceFramePartsVerified` | 1853 |
+| `distinctLinkedDescriptorKeys` | 1102 |
+| `originalExecutableOpcodesAndPointersMatched` | true |
+| `originalO60IndexedBytesByteIdentical` | true |
+| `noOriginalPaletteOrTimingAssigned` | true |
+| `fullThreeGameRegressionPerformed` | false |
+| `browserPackageDownloadVerified` | false |
+
+### Local reproduction
 
 Use the complete updated `develop` checkout and original DOS installation (not the commercial ZIP inside Git):
 
@@ -42,15 +63,13 @@ node scripts/verify-mk1-p65-anitab-streams.cjs `
   "C:\Temp\mkdos-p65-results.json"
 ```
 
-Expected: `pass:"P65"`, `status:"PASS"`, `mk1Assets:2656`, `originalTables:8`, `verifiedAnitabCells:739`, `uniqueOriginalSourceStreams:514`, `indexedDescriptorRecords:1102`, byte-identical original O60 indexed payloads and all readbacks of original MK1.EXE command/descriptor byte offsets. The actual original frame/control and multipart reference occurrence counts will be recorded from the fixture output; **do not invent them here**.
-
 The user can additionally browse **Asset Library → Coverage & evidence** for `MK1_P65_INDEXED_ANITAB_SOURCE_STREAMS.zip`. Actual original-browser download and inspection remain separate from the headless original-fixture gate.
 
 ## Confidence limits and P66 handoff
 
-**VERIFIED:** existing authentic O17/O18/O60 source mechanisms; synthetic P65 adapter joining and all fifteen refusals; source-only CI, type check/build; canonical user-provided MK1.EXE fingerprint.
+**VERIFIED:** existing authentic O17/O18/O60 source mechanisms; synthetic P65 adapter joining and all fifteen refusals; source-only CI, type check/build; canonical user-provided MK1.EXE fingerprint; user-local P65 package and original-executable readback (screenshot-reported PASS).
 
-**VALIDATION PENDING:** fresh integrated current-source MK1 2,656-asset P65 package + independent original-executable readback; actual local browser package download, UI animation playback; new full three-game cumulative regression.
+**VALIDATION PENDING:** actual local browser package download, UI animation playback; new full three-game cumulative regression.
 
 **UNKNOWN / not asserted:** frame milliseconds/FPS or per-animation MFRAMEW dwell, whether every table stream is selected in original gameplay, gameplay event names, arbitrary `*_ANITAB` stream traversal order after jumps, native runtime palette selection, cross-resource actor Z order, sprite spatial placement and full stage composition.
 
