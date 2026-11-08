@@ -102,7 +102,9 @@ async function main(){
     await dialog.getByRole('button',{name:'Open Game Directory'}).click();
     assert.equal(await dialog.getByText('Source Access Error').count(),0,'AbortError is not fatal');
     assert.equal(await page.locator('.asset-inspector strong').innerText(),oldPreview);
-    assert(await button(page,'Export selection ZIP (1)').isEnabled());
+    // aria-modal makes background unavailable to role queries; query the
+    // still-mounted DOM directly without trying to click through the dialog.
+    assert(await page.locator('.asset-toolbar button').filter({hasText:'Export selection ZIP (1)'}).isEnabled());
 
     await page.evaluate(()=>{
       Object.defineProperty(window,'showDirectoryPicker',{configurable:true,
@@ -121,7 +123,7 @@ async function main(){
     await dialog.locator('input[webkitdirectory]').setInputFiles(mixed);
     await dialog.getByRole('alert').waitFor({timeout:30000});
     assert.match(await dialog.getByRole('alert').innerText(),/not a recognized single/i);
-    assert(await button(page,'Export selection ZIP (1)').isEnabled());
+    assert(await page.locator('.asset-toolbar button').filter({hasText:'Export selection ZIP (1)'}).isEnabled());
     assert.equal(await page.locator('.asset-inspector strong').innerText(),oldPreview);
 
     // Accept MK2 in the SAME tab. Previous queue and preview must disappear.
