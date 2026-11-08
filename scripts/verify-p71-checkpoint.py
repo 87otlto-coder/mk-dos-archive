@@ -386,8 +386,7 @@ def checkpoint(args):
     summary={
         "pass":"P71","status":"PASS","sourceCommit":opening["commit"],
         "sourceTree":opening["treeSha"],
-        "sourceFilesAudited":opening["trackedFiles"] if "trackedFiles" in opening
-            else len(opening.get("files",[])),
+        "sourceFilesAudited":opening["fileBlobs"],
         "stepsPassed":len(report["steps"]),
         "census":CENSUS,"totalOriginalAssetRepresentations":17211,
         "originalP66BaselineReproduced":True,
