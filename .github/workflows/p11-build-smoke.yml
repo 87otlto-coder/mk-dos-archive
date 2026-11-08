@@ -214,6 +214,12 @@ jobs:
           python3 -m py_compile scripts/verify_mk3_p74_noniff_independent.py
           python3 scripts/test_mk3_p74_noniff_indexed_graphics.py
           python3 scripts/verify_mk3_p74_noniff_independent.py --help > /dev/null
+      - name: P75 original MK3 source-row mapping and independent PNG source-only controls
+        run: |
+          python3 -m py_compile scripts/mk3_p75_noniff_row_tables.py
+          python3 -m py_compile scripts/verify_mk3_p75_noniff_independent.py
+          python3 scripts/test_mk3_p75_noniff_row_tables.py
+          python3 scripts/verify_mk3_p75_noniff_independent.py --help > /dev/null
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
