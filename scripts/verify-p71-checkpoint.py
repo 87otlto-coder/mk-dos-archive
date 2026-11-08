@@ -92,6 +92,26 @@ def read_json_stdout(stdout, label):
     require(isinstance(obj, dict), label + " non-object JSON")
     return obj
 
+def check_p68_browser_stdout(output):
+    """P68 emits three independently checked original ZIP readbacks before JSON.
+
+    P67 is also a human-readable browser report; unlike a generic relaxed
+    JSON parser, this explicitly verifies the P68 readback prefix in its
+    canonical MK1/MK2/MK3 order, and requires *only* one final JSON object.
+    Unexpected warnings, duplicated lines or forged/missing readbacks refuse.
+    """
+    lines = output.splitlines()
+    expected = [
+        f"{game} P68 same-tab download matches original source and selection"
+        for game in ("mk1", "mk2", "mk3")
+    ]
+    require(lines[:3] == expected,
+            "P68 independent MK1/MK2/MK3 original ZIP readback missing, "
+            "out of order or contaminated by unexpected output")
+    summary = read_json_stdout("\n".join(lines[3:]), "P68 browser final result")
+    return check_p68(summary)
+
+
 def p66_summary(report, source):
     exact(report, {"status":"PASS"}, "P66 checkpoint")
     require(report.get("source") == source, "P66 source audit mismatches P71 opening audit")
@@ -309,7 +329,7 @@ def checkpoint(args):
             check_p67,json_output=False)
         run("p68_original_browser_switch",
             ["node","scripts/verify-p68-browser-switch.cjs",mk1,mk2,mk3],
-            check_p68)
+            check_p68_browser_stdout,json_output=False)
         run("p69_original_browser_ftr",
             ["node","scripts/verify-p69-browser-ftr.cjs",mk3],
             check_p69_browser)
