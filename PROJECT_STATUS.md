@@ -4,6 +4,14 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P69 MK3 original indexed FTR bundle and Chrome download — focused acceptance PASS, 2026-11-08
+
+**ORIGINAL DOS MK3 FIXTURE + ACTUAL BROWSER ZIP DOWNLOAD BOTH PASS (user-local screenshots).** The user ran `scripts/verify-mk3-p69-ftr-indexed.cjs` on the original GOG MK3 installation and supplied completed `pass:"P69"`, `status:"PASS"` output: **9,186 unchanged MK3 assets**, **17 original fighter FTR containers**, **6,654** source-indexed sprite frames independently decoded, **6,654** compressed source intervals, **32,675,690** native indexed pixels, **11,689,513** opaque mask pixels, **17** ZIP packages, and source-hash parity. A separate actual Chrome run `scripts/verify-p69-browser-ftr.cjs` returned `pass:"P69_BROWSER"`, `status:"PASS"`, with original BLADE.FTR **363 frames**, original interval readback and indexed pixel/mask byte parity in downloaded ZIP.
+
+- **Source-only CI:** [42477148423](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42477148423) **SUCCESS** at P69 production code SHA `5c64ea3e83262f49b28d8f2f75a16b39f43d0bd1`. Source-only synthetic bundles/15 refused invalid inputs, TypeScript, production build, source guards and offline boot PASS. Screenshots do not print original-test Git SHA; link to the tested source commit is contextual, **not SHA-confirmed from the screenshot**.
+- **Limits:** No native VGA fighter palette or gameplay animation timing/order is claimed. P69 is focused original-MK3 extraction/export acceptance, **not a new complete three-game regression**; P66 remains the accepted 17,211-asset baseline. [P69 acceptance and handoff](docs/EXTRACTOR_P69_MK3_FTR_INDEXED_BUNDLES.md).
+- `main` remains P16; no original commercial files or generated sprite archives committed. **P70 next interim**, **P71** consolidated original three-game checkpoint.
+
 ## P69 MK3 original FTR fighter indexed sprite bundle — source CI PASS, original ZIP acceptance pending, 2026-11-08
 
 **Third interim pass of P67–P71, focused on working extractor output.** Existing 6,654 MK3 original fighter sprites have verified decoded *indexed pixels* and binary paint masks but native VGA palette/animation membership UNKNOWN; users previously had to queue hundreds individually to export a source container. P69 adds an **on-demand one-click per-original-FTR source-indexed bundle** to the MK3 Asset Library inspector, combining all sprites from the selected FTR with original compressed source byte intervals, FHDS descriptor geometry/order, original FTR SHA-256 and separately hashed original index/opacity planes. It does **not** infer native RGB, runtime animation sequence, frame timing or stage relationships. No new catalogue assets, renumbering or research workbench changes.
