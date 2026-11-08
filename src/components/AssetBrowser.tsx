@@ -7,6 +7,10 @@ import { buildMK3FighterIndexedBundleP69 } from '../core/assets/mk3FighterIndexe
 import { buildMK3CueMusicBundleP70 } from '../core/assets/mk3CueAudioBundleP70';
 import { recoverMK3P76RowMappedAssets } from '../core/assets/mk3NonIffRowMappedP76';
 import {
+  recoverMK3P78AdditionalChainedAssets,
+  MK3_P78_ADDITIONAL_GROUP,
+} from '../core/assets/mk3ChainedSourceImagesP78';
+import {
   compareMK3FighterWithIffCmapP72,
   exportMK3PaletteComparisonP72,
   listMK3IffPaletteComparisonsP72,
@@ -99,6 +103,9 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   const [rowMapsBusy, setRowMapsBusy] = useState(false);
   const rowMapsRun = useRef(0);
   const rowMapsAbort = useRef<AbortController | null>(null);
+  const [chainedBusy, setChainedBusy] = useState(false);
+  const chainedRun = useRef(0);
+  const chainedAbort = useRef<AbortController | null>(null);
 
   const abort = useRef<AbortController | null>(null);
   const scanRun = useRef(0);
@@ -117,6 +124,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     cueAudioRun.current += 1;
     comparisonRun.current += 1;
     rowMapsRun.current += 1;
+    chainedRun.current += 1;
+    chainedAbort.current?.abort();
+    chainedAbort.current = null;
+    setChainedBusy(false);
     rowMapsAbort.current?.abort();
     rowMapsAbort.current = null;
     setRowMapsBusy(false);
@@ -138,7 +149,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     setProgress('');
     setError('');
     setBusy(false);
-    return () => { abort.current?.abort(); rowMapsAbort.current?.abort(); rowMapsRun.current += 1; indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
+    return () => { abort.current?.abort(); chainedAbort.current?.abort(); chainedRun.current += 1; rowMapsAbort.current?.abort(); rowMapsRun.current += 1; indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
   }, [source, game]);
 
   // O194: Compilation results arrive independently of this view. Preserve local browsing state.
@@ -282,6 +293,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   }
 
   async function scan() {
+    chainedRun.current += 1;
+    chainedAbort.current?.abort();
+    chainedAbort.current = null;
+    setChainedBusy(false);
     rowMapsRun.current += 1;
     rowMapsAbort.current?.abort();
     rowMapsAbort.current = null;
@@ -353,6 +368,43 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
       if (run===rowMapsRun.current) {
         setRowMapsBusy(false);
         rowMapsAbort.current=null;
+      }
+    }
+  }
+
+  async function revealMK3P78AdditionalImages() {
+    if (game !== 'mk3' || !collection || collection.assets.length !== 9205 ||
+        !collection.reports.p76RecoveredNonIffSourceRows || busy || chainedBusy) return;
+    const run=++chainedRun.current, baseline=collection;
+    const sourceRun=scanRun.current, controller=new AbortController();
+    chainedAbort.current=controller;
+    setChainedBusy(true);
+    setError('');
+    try {
+      const result=await recoverMK3P78AdditionalChainedAssets(
+        source,baseline.assets,controller.signal);
+      if(controller.signal.aborted || run!==chainedRun.current ||
+          sourceRun!==scanRun.current) return;
+      setCollection(current=>{
+        if(current!==baseline) return current;
+        return {...current,
+          assets:[...current.assets,...result.assets],
+          reports:{...current.reports,p78AdditionalChainedIndexedSource:result.report},
+          limitations:[...current.limitations,
+            'P78: 197 additional original DATA.MK3 chained source records were explicitly added as indexed/mask images. Source record encounter order does NOT establish native animation order/timing, character or stage assembly. The adjacent source RGB8 candidate is NOT a verified native palette. All original raw intervals are still preserved.']};
+      });
+      setSearch('');
+      setKind('image');
+      setGroup(MK3_P78_ADDITIONAL_GROUP);
+      setPage(0);
+      setFocus(null);
+      setAnchor(null);
+    } catch(e) {
+      if(!controller.signal.aborted && run===chainedRun.current) setError(errorMessage(e));
+    } finally {
+      if(run===chainedRun.current){
+        setChainedBusy(false);
+        chainedAbort.current=null;
       }
     }
   }
@@ -544,6 +596,25 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
         {game === 'mk3' && collection.reports.p76RecoveredNonIffSourceRows && (
           <p role="status">P76 source-row graphics added: 19 separate indexed images.
             Preview is grayscale index-map only; native palettes and renderer positions remain UNKNOWN.</p>
+        )}
+        {game === 'mk3' && collection.assets.length === 9205 &&
+          collection.reports.p76RecoveredNonIffSourceRows && (
+          <section className="asset-fallback-notice" aria-label="Additional original MK3 chained indexed graphics">
+            <strong>P78 additional source-chained indexed graphics</strong>
+            <p>The original DATA.MK3 source contains 197 further source-indexed image records
+              after the 19 P76 first images. Open them separately without changing the
+              original 9,186 assets or the accepted P76 entries. Original palette
+              ownership, stage relationships and native animation order/timing remain UNKNOWN.</p>
+            <button type="button" disabled={chainedBusy || busy}
+              onClick={() => void revealMK3P78AdditionalImages()}>
+              {chainedBusy ? 'Checking original 216-record source chains…' :
+                'Show 197 additional indexed graphics'}
+            </button>
+          </section>
+        )}
+        {game === 'mk3' && collection.reports.p78AdditionalChainedIndexedSource && (
+          <p role="status">P78 original chained indexed images added: 197 separate source records.
+            Grayscale index previews only; native palette, stage membership and animation timing remain UNKNOWN.</p>
         )}
         <details className="asset-evidence">
           <summary>Coverage & evidence · {assets.length.toLocaleString()} assets</summary>
