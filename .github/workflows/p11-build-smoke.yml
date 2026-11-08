@@ -173,6 +173,11 @@ jobs:
         run: |
           node --check scripts/verify-p67-browser.cjs
           python3 scripts/test-p67-download.py
+      - name: P68 transactional same-tab source replacement refusals (no game data)
+        run: |
+          node scripts/test-p68-directory-switch.cjs
+          node --check scripts/verify-p68-browser-switch.cjs
+          python3 scripts/test-p68-switch-readback.py
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
