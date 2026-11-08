@@ -3,6 +3,7 @@ import { DirectorySource } from '../core/filesystem/DirectorySource';
 import { Asset, AssetCollection, Game, utf8 } from '../core/assets/model';
 import { scanAssets } from '../core/assets/collection';
 import { matchesAssetSearchP55 } from '../core/assets/assetSearchP55';
+import { buildMK3FighterIndexedBundleP69 } from '../core/assets/mk3FighterIndexedBundleP69';
 import { resolveMK2OriginalSourceOrder } from '../core/assets/mk2SourceOrderQueueP19';
 import {
   animatedPng,
@@ -81,6 +82,8 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   const [playing, setPlaying] = useState(false);
   const [frame, setFrame] = useState(0);
   const [loadedSourceOrder, setLoadedSourceOrder] = useState<{ sheetId: string; frameIds: string[]; originalControl: string } | null>(null);
+  const [indexedFtrBusy, setIndexedFtrBusy] = useState(false);
+  const indexedFtrRun = useRef(0);
 
   const abort = useRef<AbortController | null>(null);
   const scanRun = useRef(0);
@@ -95,6 +98,8 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
 
   useEffect(() => {
     scanRun.current += 1;
+    indexedFtrRun.current += 1;
+    setIndexedFtrBusy(false);
     abort.current?.abort();
     abort.current = null;
     setCollection(null);
@@ -108,7 +113,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     setProgress('');
     setError('');
     setBusy(false);
-    return () => abort.current?.abort();
+    return () => { abort.current?.abort(); indexedFtrRun.current += 1; };
   }, [source, game]);
 
   // O194: Compilation results arrive independently of this view. Preserve local browsing state.
@@ -180,6 +185,21 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
       setError(errorMessage(e));
     }
   };
+
+  async function exportFighterIndexedBundle(asset: Asset) {
+    const run = ++indexedFtrRun.current;
+    setIndexedFtrBusy(true);
+    setError('');
+    try {
+      const bundle = await buildMK3FighterIndexedBundleP69(assets, asset.source.path);
+      if (indexedFtrRun.current !== run) return;
+      download(bundle.bytes, bundle.name, 'application/zip');
+    } catch (error) {
+      if (indexedFtrRun.current === run) setError(errorMessage(error));
+    } finally {
+      if (indexedFtrRun.current === run) setIndexedFtrBusy(false);
+    }
+  }
 
   function exportSelectionZip() {
     attempt(() => download(selectedZip(selected), 'MKDOS_selection.zip', 'application/zip'));
@@ -453,6 +473,11 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
               <p>{focus.source.path} · offset {focus.source.offset}</p>
               {['audio', 'music'].includes(focus.kind) && <AudioPreview asset={focus} />}
               <button onClick={() => attempt(() => download(assetBytes(focus), focus.filename, focus.mime))}>Export this asset</button>
+              {game === 'mk3' && focus.kind === 'sprite' && /\.FTR$/i.test(focus.source.path) && (
+                <button disabled={indexedFtrBusy} onClick={() => void exportFighterIndexedBundle(focus)}>
+                  {indexedFtrBusy ? 'Preparing original indexed FTR sprites…' : 'Export all original indexed sprites from this FTR'}
+                </button>
+              )}
               {focus.metadata.indices instanceof Uint8Array && (
                 <button onClick={() => attempt(() => {
                   const archive = indexedAssetZip(focus);
