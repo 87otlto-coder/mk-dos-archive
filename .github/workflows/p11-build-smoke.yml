@@ -204,6 +204,8 @@ jobs:
           node --check scripts/verify-p72-browser-cmap.cjs
           python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p72-iff-cmap-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p72-mk3-cmap-comparison.cjs
+          node --check scripts/test-p72-browser-panel-guard.cjs
+          node scripts/test-p72-browser-panel-guard.cjs
       - name: P73 source-only MK3 non-IFF palette candidate provenance controls
         run: |
           python3 -m py_compile scripts/mk3_p73_noniff_palette_candidates.py
