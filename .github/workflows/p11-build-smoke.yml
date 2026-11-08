@@ -78,6 +78,7 @@ jobs:
           node --check scripts/verify-mk2-p60-tomb.cjs
           node --check scripts/verify-mk2-p61-tomb-independent.cjs
           node --check scripts/test-p64-mk2-score.cjs
+          node --check scripts/verify-mk2-p64-scores.cjs
           node --check scripts/verify-p61-checkpoint.cjs
           node --check scripts/test-p61-checkpoint-controls.cjs
           node --check scripts/verify-mk2-p43-tower-coverage.cjs
