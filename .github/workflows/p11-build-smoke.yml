@@ -197,6 +197,10 @@ jobs:
         run: |
           python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-p71-checkpoint.py').read_text(encoding='utf-8'))"
           python3 scripts/test-p71-checkpoint.py
+      - name: P72 original MK3 indexed-to-IFF CMAP comparison source and false ownership controls
+        run: |
+          node --check scripts/test-p72-mk3-cmap-comparison.cjs
+          node scripts/test-p72-mk3-cmap-comparison.cjs
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
