@@ -1,6 +1,30 @@
 # P68 — Transactional game-source replacement (second interim pass)
 
-**Date:** 2026-11-08. **Branch:** `develop` only. **Last complete original three-game accepted baseline:** P66, source commit `2f911b7961a706022927bd0db187f9cf2cba555c`, 17,211 assets (MK1 2,656 / MK2 5,369 / MK3 9,186). **P67 original-directory browser acceptance:** PASS on fresh browser contexts, as documented in [P67](EXTRACTOR_P67_BROWSER_ACCEPTANCE.md). **P68 same-tab original-fixture browser acceptance:** VALIDATION PENDING until the committed runner is executed on original DOS installations.
+**Date:** 2026-11-08. **Branch:** `develop` only. **Last complete original three-game accepted baseline:** P66, source commit `2f911b7961a706022927bd0db187f9cf2cba555c`, 17,211 assets (MK1 2,656 / MK2 5,369 / MK3 9,186). **P67 original-directory browser acceptance:** PASS on fresh browser contexts, as documented in [P67](EXTRACTOR_P67_BROWSER_ACCEPTANCE.md). **P68 same-tab original-fixture browser acceptance:** **PASS**, demonstrated by user-local Chrome/PowerShell screenshot of `scripts/verify-p68-browser-switch.cjs` against the original GOG installations (see acceptance record below).
+
+## Original-installation same-tab Chrome acceptance — PASS (2026-11-08)
+
+**VERIFIED BY USER-LOCAL RUN OUTPUT:** The user pulled the P68 source and ran `node scripts/verify-p68-browser-switch.cjs` with the original DOS MK1, MK2 and MK3 installations, supplying an image of its completed PowerShell JSON and the preceding independent readback messages. The screenshot reports `"pass":"P68_BROWSER"`, `"status":"PASS"`; the original-file download checker printed **"mk1 P68 same-tab download matches original source and selection"**, with corresponding successful messages for MK2 and MK3.
+
+The reported JSON fields are:
+
+| Field | Result |
+| --- | --- |
+| `oneBrowserTab` | **true** |
+| `originalGamesSwitchedInOrder` | **["mk1", "mk2", "mk3", "mk1"]** |
+| `nativePickerCancelPreservedQueue` | **true** |
+| `nativePermissionDeniedPreservedQueue` | **true** |
+| `mixedCandidateRejectedWithoutLosingQueue` | **true** |
+| `staleInspectorAudioAndEvidenceResetOnAcceptedSwitch` | **true** |
+| `privateDownloadsVerifiedAgainstOriginals` | **3** |
+| `gameCensus` | **[2656, 5369, 9186]** |
+| `audiblePlaybackVerified` | **false** |
+
+**Evidence classification:** original DOS installation + same-tab Chrome browser **PASS (user-local screenshot)**, with the three private downloaded selection ZIPs independently read back against original-source identities and bytes by the committed Python checker. The screenshot does not print a source Git SHA; the implementation and browser harness are part of the source-only validated P68 source/workflow commit `ca38adb68fd5a5b2490ad7ae8aa092b85aba35a8` (CI [42473501388](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42473501388) **SUCCESS**), with subsequent documentation-only updates. Do not claim that Git SHA was independently printed by the user-local browser test.
+
+**Test boundary:** actual OS-native picker dialog permissions were **not** exercised; the automation intentionally stubs `showDirectoryPicker` to produce cancellation (`AbortError`) and denial (`NotAllowedError`). Real folder-upload input, in-tab game replacement, decoding, previews, selections and downloads ran against the original GOG installations. WAV duration metadata loads, but audible output and quality were **not** verified. The 17,211-asset **P66** original three-game cumulative fixture suite remains the last complete consolidation; P68 verifies browser switching and selected downloads, not a new cumulative fixture checkpoint.
+
+**P68 focused acceptance CLOSED**; earlier passages below calling the browser run “pending” are preserved as chronology and superseded by this section. Next P69 is an interim extractor coverage/usability pass, with P71 scheduled for the next five-pass full original three-game consolidation.
 
 ## OBSERVE
 
@@ -54,12 +78,12 @@ Requires the updated `develop` checkout, original GOG MK1/MK2/MK3 DOS installati
 cd "C:\Users\87otl\mk-dos-extractor"
 git switch develop
 git pull --ff-only origin develop
-npm ci --no-audit --no-fund
-npm run lint
-npm run build
+npm.cmd ci --no-audit --no-fund
+npm.cmd run lint
+npm.cmd run build
 
 $driverDir = Join-Path $env:TEMP 'mkdos-p68-driver'
-npm install --prefix $driverDir --no-audit --no-fund playwright-core@1.62.1
+npm.cmd install --prefix $driverDir --no-audit --no-fund playwright-core@1.62.1
 $env:NODE_PATH = Join-Path $driverDir 'node_modules'
 
 node scripts/verify-p68-browser-switch.cjs `
