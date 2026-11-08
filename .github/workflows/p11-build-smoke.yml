@@ -78,6 +78,7 @@ jobs:
           node --check scripts/verify-mk2-p60-tomb.cjs
           node --check scripts/verify-mk2-p61-tomb-independent.cjs
           node --check scripts/test-p64-mk2-score.cjs
+          node --check scripts/test-p65-mk1-anitab-streams.cjs
           node --check scripts/verify-mk2-p64-scores.cjs
           node --check scripts/verify-p61-checkpoint.cjs
           node --check scripts/test-p61-checkpoint-controls.cjs
@@ -150,6 +151,8 @@ jobs:
         run: node scripts/test-p62-mk1-audio.cjs
       - name: P64 original MK2 score provenance and source-boundary refusals (synthetic)
         run: node scripts/test-p64-mk2-score.cjs
+      - name: P65 MK1 ANITAB indexed original-stream provenance and false-source controls
+        run: node scripts/test-p65-mk1-anitab-streams.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |
