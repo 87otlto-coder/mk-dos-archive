@@ -273,6 +273,22 @@ jobs:
             echo 'Expected source-offline onboarding did not render'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
           fi
           echo 'PASS: React application mounted, brand and source-offline onboarding visible in headless Chrome.'
+      - name: Upload P77 original-source Python verification kit (scripts only; no commercial assets)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-dos-p77-source-verification-kit
+          path: |
+            scripts/mk3_p73_noniff_palette_candidates.py
+            scripts/mk3_p74_noniff_indexed_graphics.py
+            scripts/verify_mk3_p74_noniff_independent.py
+            scripts/mk3_p75_noniff_row_tables.py
+            scripts/verify_mk3_p75_noniff_independent.py
+            scripts/mk3_p77_chained_source_export.py
+            scripts/verify_mk3_p77_chained_source_independent.py
+            scripts/test_mk3_p77_chained_source_export.py
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload verified static build (no original game assets)
         if: success()
         uses: actions/upload-artifact@v4
