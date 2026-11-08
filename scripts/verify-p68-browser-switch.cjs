@@ -137,7 +137,7 @@ async function main(){
     assert(await button(page,'Export selection ZIP (0)').isDisabled());
     assert.equal(await page.locator('.asset-inspector strong').count(),0);
     assert.equal(await page.locator('.asset-inspector audio').count(),0);
-    assert.equal(await button(page,'MK1_P65_INDEXED_ANITAB_SOURCE_STREAMS.zip').count(),0);
+    assert.equal(await page.locator('.asset-evidence button').filter({hasText:'MK1_P65_INDEXED_ANITAB_SOURCE_STREAMS.zip'}).count(),0,'old MK1 evidence must not remain in MK2 DOM');
     assert.equal(await page.getByLabel('Search assets').inputValue(),'');
     const mk2Names=await queueMK2(page);
     assert(await button(page,'Export selection ZIP (2)').isEnabled());
