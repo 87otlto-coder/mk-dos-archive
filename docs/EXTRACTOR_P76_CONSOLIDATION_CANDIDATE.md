@@ -1,5 +1,7 @@
 # P76 — three-game original-source consolidation candidate and MK3 opt-in row-graphic integration
 
+**ACCEPTED FOLLOW-UP — 2026-11-08:** The *candidate/pending* language below is retained as the original pre-acceptance implementation record. The user's complete Windows original-DOS P76 checkpoint subsequently returned **PASS, all 6/6 groups**, including P71 three-game original/browser baseline, P72 original/Chrome comparison, and P76 original/Chrome image/export verification, against exact code commit `a5192ce0f1dca2ad765571cb6c1dae68ac30411f` and Git tree `2eac170cc3d7f79e135d71d639ed47ed3552f137`. [Read the authoritative accepted P76 original/Chrome checkpoint handoff](EXTRACTOR_P76_ACCEPTED_ORIGINAL_CHECKPOINT.md). The historical pending notes that follow have been superseded; `main` remains P16 and source assets stay private.
+
 **Date:** 2026-11-08. **Cycle:** P72–P76, **fifth/consolidation pass**. **Branch:** `develop`. **Status:** application integration and source-only CI **VERIFIED**; new original integrated source/real Chrome and full cumulative P76 checkpoint **VALIDATION PENDING**. **Do not promote `main` or claim a fully accepted P76 release until the final original-fixture gate passes.**
 
 ## Starting baseline and problem addressed
