@@ -1,5 +1,10 @@
 # P78 — MK3 197 additional chained source images integrated as a second opt-in collection
 
+**ACTUAL ORIGINAL WINDOWS CHROME FOLLOW-UP — PASS (user-supplied stdout, 2026-11-08).** The user ran the committed `scripts/verify-p78-browser-chained.cjs` original MK3 Chrome workflow and supplied `pass:"P78_BROWSER",status:"PASS"`. Actual test output reports **9,186** default original MK3 assets; **19** preserved P76 first indexed graphics; **197** additional P78 source-indexed graphics; **9,402** after both explicit opt-ins; **7,950** original indexed positions checked on the first new record; `originalSourceStreamRowTablesAndPngPixelParity:true`; `sourceRecordOrderNotClaimedAsNativeAnimation:true`; and `nativePaletteOrStageMembershipClaimed:false`. The existing test script requires actual Chrome directory load, P76 filtered first-19 survival, P78 197 filtered/paginated resources, actual indexed ZIP download, and separate original-source row-table/index/opacity/PNG oracle PASS before printing this status.
+
+**This supersedes only the historical Chrome PENDING labels below.** The independent full original *application* scanner and all-197 ZIP parity runner `scripts/verify-mk3-p78-original.cjs` has **no separately supplied stdout yet** and remains **VALIDATION PENDING**. The previously verified isolated original TypeScript/P77 source evidence does not substitute for that full 197-record integration gate. The browser result does not include a Git commit/tree identifier; it is recorded as user-reported original Windows verification of the committed browser-test interface, without claiming an independently audited private log. No main promotion.
+
+
 **Date:** 2026-11-08. **Cycle:** P77–P81, second interim pass. **Branch:** `develop`. **Status:** integrated source/UI and synthetic refusal CI **PASS**; actual original DOS source *isolated exact committed TypeScript* and indexed plane parity **PASS**; complete original-data scanner plus *real Chrome browser* **VALIDATION PENDING**. This is not a new three-game checkpoint or a release.
 
 ## Accepted baseline retained
