@@ -31,7 +31,7 @@ These are concrete session-integrity risks, not speculation about DOS game data.
 
 - `scripts/test-p68-directory-switch.cjs` exercises cancellation, overwritten async inventory scan revisions, stale results, new session queue/preview reset and refusal of invalid tokens using synthetic data.
 - `scripts/test-p68-switch-readback.py` uses three private synthetic source roots and ZIPs, reuses the independent P67 original-interval reader, accepts the exact ordered MK1/MK2/MK3 path and **rejects five** wrong-game/order/selection/payload cases. This does not inspect any original commercial files.
-- GitHub CI runs both controls, syntax-checks `scripts/verify-p68-browser-switch.cjs`, reruns preexisting guards, TypeScript, Vite build and offline Chrome startup. **No original DOS game files are present in CI.**
+- **[GitHub Actions run 42473501388](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42473501388) — SUCCESS** at exact P68 source/test/workflow commit `ca38adb68fd5a5b2490ad7ae8aa092b85aba35a8`. CI reran both P68 source-only control suites, syntax-checked the original-browser acceptance runner, and passed all existing refusal controls, the Git-tracked commercial-file guard, TypeScript, production Vite build and headless Chrome startup. **No original DOS game files are present in CI.**
 
 ### ORIGINAL-BROWSER VALIDATION PENDING
 
