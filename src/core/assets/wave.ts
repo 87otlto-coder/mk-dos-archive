@@ -6,7 +6,8 @@ export function parseWave(bytes: Uint8Array) {
   for (let p = 12; p < bytes.length;) {
     if (p + 8 > bytes.length) throw new Error('Truncated WAVE chunk');
     const n = v.getUint32(p + 4, true), tag = textAt(bytes, p, 4), end = p + 8 + n;
-    if (end > bytes.length) throw new Error('WAVE chunk outside RIFF');
+    if (end + (n & 1) > bytes.length) throw new Error('WAVE chunk outside RIFF');
+    if ((tag === 'fmt ' && fmt) || (tag === 'data' && data)) throw new Error('Ambiguous WAVE fmt/data');
     if (tag === 'fmt ') fmt = bytes.subarray(p + 8, end);
     if (tag === 'data') data = bytes.subarray(p + 8, end);
     p = end + (n & 1);

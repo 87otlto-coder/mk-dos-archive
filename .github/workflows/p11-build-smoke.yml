@@ -142,6 +142,8 @@ jobs:
         run: node scripts/test-p60-tomb-components.cjs
       - name: P61 consolidated original-fixture runner preflight refusals (no game data)
         run: node scripts/test-p61-checkpoint-controls.cjs
+      - name: P63 MK3 audio interval controls
+        run: node scripts/test-p63-mk3-audio.cjs
       - name: P62 MK1 audio source and evidence join controls
         run: node scripts/test-p62-mk1-audio.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard

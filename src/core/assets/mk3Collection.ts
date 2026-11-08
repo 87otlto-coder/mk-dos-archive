@@ -12,12 +12,36 @@ export function indexedRgba(indices:Uint8Array,mask:Uint8Array) {
 export async function scanMK3(source:DirectorySource,progress:(s:string)=>void,signal?:AbortSignal):Promise<AssetCollection> {
   const assets:Asset[]=[], reports:Record<string,unknown>={}, limitations=['Fighter sprite palettes, gameplay animation names/timing and full stage placement are unresolved. Sprite previews show index values in grayscale.', 'IFF pictures retain their explicit embedded palettes; they are individual source images, not a claim of assembled gameplay stages.'];
   const entries=await source.listRecursive(),containers=[],pictures=[],failures:unknown[]=[];
-  const addWave=(path:string,bytes:Uint8Array,offset:number,name:string,group:string)=>{
-    const info=parseWave(bytes);assets.push({id:`${path}@${offset}`,name,group,kind:'audio',format:'WAV',confidence:'Validated RIFF/PCM resource',source:{path,offset,length:bytes.length},metadata:info,bytes:bytes.slice(),mime:'audio/wav',filename:`${safeName(path)}_${offset.toString(16)}.wav`});
-  };
   for(const e of entries) {
     signal?.throwIfAborted(); if(!['FTR','ASG','MK3','OGG','CUE'].includes(e.extension))continue;
     progress(`Reading ${e.path}`); const bytes=await source.readSlice(e.path,0,e.size),sha256=await hash(bytes);
+    async function addWaves(start: number, length: number, chunk?: {tag: string; name: string; offset: number}) {
+      const end = start + length;
+      let offset = start, index = 0;
+      while (offset < end) {
+        if (end - offset < 12) throw new Error('Truncated MK3 sound record');
+        const size = view(bytes).getUint32(offset + 4, true) + 8;
+        const next = offset + size + (size & 1);
+        if (next > end) throw new Error('MK3 sound record exceeds its source region');
+        const wav = bytes.slice(offset, offset + size);
+        const info = parseWave(wav);
+        assets.push({
+          id: `${e.path}@${offset}`,
+          name: chunk ? `${e.name} / ${chunk.name} / ${index}` : `${e.name} / sample ${index}`,
+          group: chunk ? `${e.name} � sound` : 'Global sound',
+          kind: 'audio', format: 'WAV', mime: 'audio/wav',
+          confidence: info.encoding === 1 ? 'Validated RIFF/PCM resource' : 'RIFF/WAVE format header verified',
+          source: {path: e.path, offset, length: size, sha256},
+          metadata: {...info, wavSha256: await hash(wav), regionTag: chunk?.tag ?? 'ASG',
+            chunkName: chunk?.name ?? null, chunkHeaderOffset: chunk?.offset ?? null,
+            regionOffset: start, regionLength: length, recordIndex: index},
+          bytes: wav, filename: `${safeName(e.path)}_${offset.toString(16)}.wav`
+        });
+        offset = next;
+        index++;
+      }
+      return index;
+    }
     if(e.extension==='OGG') {
       if(textAt(bytes,0,4)!=='OggS')throw new Error(`Invalid Ogg stream: ${e.path}`);
       assets.push({id:e.path,name:e.name,group:'CD music',kind:'music',format:'OGG',confidence:'Original installation music track',source:{path:e.path,offset:0,length:e.size,sha256},metadata:{cueAssociation:'See original CUE resource; track names are not gameplay event names'},bytes,mime:'audio/ogg',filename:e.name});
@@ -28,20 +52,14 @@ export async function scanMK3(source:DirectorySource,progress:(s:string)=>void,s
       for(const f of sprites.frames)assets.push({id:`${e.path}:${f.header}:${f.index}`,name:`${e.name} / ${f.header} / ${f.index}`,group:`${e.name} · ${f.header}`,kind:'sprite',format:'Indexed sprite',confidence:'Decoded; palette unresolved',source:{path:e.path,offset:f.offset,length:f.length,sha256},metadata:{headerOffset:f.headerOffset,descriptorIndex:f.index,descriptorX:f.x,descriptorY:f.y,mode:f.mode,group:f.group,model:f.model,expandedSize:f.expandedSize,bitDepth:f.bitDepth,indices:f.indices,mask:f.mask,palette:'UNKNOWN',visualization:'GRAYSCALE_INDEX_MAP'},width:f.width,height:f.height,rgba:indexedRgba(f.indices,f.mask),filename:`${safeName(e.name)}_${f.header}_${f.index}_index-preview.png`});
       for(const c of chunks) {
         if(['SPEC','CLAS'].includes(c.tag)) {
-          let p=0,index=0;
-          while(p<c.bytes.length) {
-            if(p+12>c.bytes.length)throw new Error('Truncated MK3 sample container');
-            const n=view(c.bytes).getUint32(p+4,true)+8;
-            if(n>c.bytes.length-p)throw new Error('MK3 sample exceeds container');
-            addWave(e.path,c.bytes.subarray(p,p+n),c.payloadOffset+p,`${e.name} / ${c.name} / ${index++}`,`${e.name} · sound`);p+=n+(n&1);
-          }
+          await addWaves(c.payloadOffset, c.size, c);
         }
         // Every chunk remains available for lossless export, including unknown fields.
         assets.push({id:`${e.path}:chunk:${c.offset}`,name:`${e.name} / ${c.name}`,group:`${e.name} · source chunks`,kind:'raw',format:c.tag,confidence:'Checksum and directory verified',source:{path:e.path,offset:c.offset,length:c.size+32,sha256},metadata:{payloadOffset:c.payloadOffset,checksum:c.checksum},bytes:bytes.slice(c.offset,c.offset+c.size+32),filename:`${safeName(e.name)}_${c.name}.${c.tag.toLowerCase()}`});
       }
     }else if(e.extension==='ASG') {
-      let p=0,i=0;while(p<bytes.length){if(p+12>bytes.length)throw new Error('Truncated ASG');const n=view(bytes).getUint32(p+4,true)+8;if(n>bytes.length-p)throw new Error('ASG WAV exceeds file');addWave(e.path,bytes.subarray(p,p+n),p,`${e.name} / sample ${i++}`,'Global sound');p+=n+(n&1);}
-      reports.asg={sha256,sampleCount:i,exactTiling:p===bytes.length};
+      const sampleCount = await addWaves(0, bytes.length);
+      reports.asg = {sha256, sampleCount, exactTiling: true};
     }else if(e.name.toUpperCase()==='DATA.MK3') {
       const ranges:Array<[number,number]>=[];let p=0;
       while(p+12<=bytes.length) {
