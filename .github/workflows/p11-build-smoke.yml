@@ -229,6 +229,14 @@ jobs:
           python3 -m py_compile scripts/verify-mk3-p76-browser-independent.py
           python3 -m py_compile scripts/verify-p76-checkpoint.py
           python3 scripts/test-p76-checkpoint.py
+      - name: P76 production bundle original-source acceptance runner syntax and fail-closed source controls
+        run: |
+          node --check scripts/verify-mk3-p76-compiled-original.cjs
+          python3 -m py_compile scripts/verify-mk3-p76-compiled-independent.py
+          if node scripts/verify-mk3-p76-compiled-original.cjs > /dev/null 2>&1; then
+            echo "P76 compiled original runner incorrectly accepted missing private inputs"
+            exit 1
+          fi
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
