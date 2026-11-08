@@ -296,6 +296,17 @@ jobs:
             scripts/test_mk3_p77_chained_source_export.py
           if-no-files-found: error
           retention-days: 14
+      - name: Upload P78 bounded TypeScript source units for private original-asset byte acceptance
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-dos-p78-source-units
+          path: |
+            src/core/assets/mk3ChainedSourceImagesP78.ts
+            src/core/assets/mk3NonIffRowMappedP76.ts
+            src/core/assets/model.ts
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload verified static build (no original game assets)
         if: success()
         uses: actions/upload-artifact@v4
