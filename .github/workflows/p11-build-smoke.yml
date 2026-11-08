@@ -250,6 +250,9 @@ jobs:
         run: |
           node --check scripts/test-p78-mk3-chained-indexed.cjs
           node scripts/test-p78-mk3-chained-indexed.cjs
+          node --check scripts/verify-mk3-p78-original.cjs
+          node --check scripts/verify-p78-browser-chained.cjs
+          python3 -m py_compile scripts/verify-mk3-p78-browser-independent.py
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
