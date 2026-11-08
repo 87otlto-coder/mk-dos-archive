@@ -224,6 +224,9 @@ jobs:
         run: |
           node --check scripts/test-p76-mk3-row-assets.cjs
           node scripts/test-p76-mk3-row-assets.cjs
+          node --check scripts/verify-mk3-p76-original.cjs
+          node --check scripts/verify-p76-browser-row-assets.cjs
+          python3 -m py_compile scripts/verify-mk3-p76-browser-independent.py
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
