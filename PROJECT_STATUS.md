@@ -4,6 +4,15 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P64 MK2 original Sound Images score provenance — source CI PASS; integrated MK2 fixture pending, 2026-11-08
+
+**Third interim pass of the P62–P66 cycle.** The MK2 music library and selected-export manifest now preserve original `SOUND/*.MID` score source hashes/byte intervals separately from generated one-traversal MIDI SHA-256 and export size. Explicit native `0x91` stop, `0x98` repeat, original track byte offset/cursor and one-pass tick metadata retain source provenance; **runtime repeat period, exact tempo scheduling and original hardware timbre remain UNKNOWN**. No sound files, MIDI event decoder, filenames, stable asset IDs, research workbench or graphic/audio extractors were replaced. Malformed scores retain the original source as raw with an explicit `UNAVAILABLE` music report rather than invented MIDI.
+
+- **VERIFIED original input (private attachment):** canonical `MK2.EXE` SHA matched. Independent source-file inspection found exactly **33** original `SOUND/*.MID` files containing **102,971 bytes**, **212** native track streams, **82** `0x98` repeat boundaries and **130** `0x91` stop boundaries. This does **not** mean the complete updated collection or selected-export ZIP ran on originals.
+- **VERIFIED source-only:** GitHub CI [42462511221](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42462511221) **SUCCESS** on P64 source/workflow SHA `4155ffb8ee911b1ae5717e0ce6156036e88dddcc`: eight synthetic false-evidence source/refusal controls, syntax check of original-file verifier, tracked file guard, TypeScript, production build, headless offline Chrome.
+- **VALIDATION PENDING:** Run `scripts/verify-mk2-p64-scores.cjs` against the canonical original MK2 installation with an updated complete checkout. It independently rebuilds native MIDI events and timing from original source and compares the 33 qualified score pairs, 66 selected ZIP entries, original hashes/track boundaries and unchanged **5,369** MK2 asset count; no claim of this full fixture test yet. P61 stays the last complete 17,211 original three-game baseline.
+- [P64 technical handoff and reproduction](docs/EXTRACTOR_P64_MK2_SCORE_PROVENANCE.md). `main` remains P16; original commercial media remains private. P65 next source-qualified animation coverage; P66 full consolidation with focused P62–P65 acceptance.
+
 ## P63 MK3 embedded WAV provenance
 
 Original MK3 focused validation passed. All 1,024 WAV intervals exported byte for byte and represent 673 distinct whole-WAV byte strings. The catalogue and selected manifests now identify the container and WAV hashes, region and record ordinal. The MK3 census is 9,186. [P63 evidence and reproduction](docs/EXTRACTOR_P63_MK3_AUDIO_PROVENANCE.md).
