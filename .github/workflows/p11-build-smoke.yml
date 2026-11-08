@@ -77,6 +77,7 @@ jobs:
           node --check scripts/test-p60-tomb-components.cjs
           node --check scripts/verify-mk2-p60-tomb.cjs
           node --check scripts/verify-mk2-p61-tomb-independent.cjs
+          node --check scripts/test-p64-mk2-score.cjs
           node --check scripts/verify-p61-checkpoint.cjs
           node --check scripts/test-p61-checkpoint-controls.cjs
           node --check scripts/verify-mk2-p43-tower-coverage.cjs
@@ -146,6 +147,8 @@ jobs:
         run: node scripts/test-p63-mk3-audio.cjs
       - name: P62 MK1 audio source and evidence join controls
         run: node scripts/test-p62-mk1-audio.cjs
+      - name: P64 original MK2 score provenance and source-boundary refusals (synthetic)
+        run: node scripts/test-p64-mk2-score.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
         shell: bash
         run: |
