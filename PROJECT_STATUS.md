@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P66 accepted original DOS three-game checkpoint — 2026-11-08
+
+The fresh local original-fixture run passed all nine P61 groups and every P62–P65 focused verifier on develop commit `2f911b7961a706022927bd0db187f9cf2cba555c`. The census was 17,211 assets (MK1 2,656 / MK2 5,369 / MK3 9,186). It verified 244 MK1 WAVs, 1,024 MK3 WAV intervals, 33 MK2 scores with 37,481 MIDI events, and 514 MK1 indexed ANITAB streams. GitHub source-only CI, TypeScript, production build and offline headless Chrome boot passed. Interactive browser export remains unverified for this checkpoint. [Exact tested tree, fixture hashes, results and reproduction](docs/EXTRACTOR_P66_ACCEPTED_CHECKPOINT.md).
+
 ## P65 MK1 indexed ANITAB source-stream export — source CI and focused original-MK1 fixture PASS, 2026-11-08
 
 **Fourth interim development pass of P62–P66.** Existing original MK1 O17 animation table and O18 descriptor decoding evidence is joined to the O60 original sprite-index/opacity binary in one new `MK1_P65_INDEXED_ANITAB_SOURCE_STREAMS.zip`. The export has machine-readable mappings for **eight ANITAB tables, 739 original table cells, 514 unique executable source stream starts and 1,102 original indexed descriptors**, preserving original stream instructions, frame-target vectors and control/loop markers. O60 original indexed planes and manifest are copied **byte-for-byte**. This is an **extractor completeness improvement** without newly inferred palette, animation frame clock, world composition or actual runtime traversal. No additional asset representations are registered; the user-local fixture confirmed the MK1 census of **2,656**.
