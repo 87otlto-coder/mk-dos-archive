@@ -4,6 +4,15 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P64 original MK2 score and selected MIDI ZIP — focused acceptance PASS, 2026-11-08
+
+**USER-LOCAL ORIGINAL MK2 FIXTURE ACCEPTED.** The user pulled the P64 `develop` source and ran `scripts/verify-mk2-p64-scores.cjs` against their original DOS MK2 installation, supplying terminal PASS output. The full pipeline returned `pass:"P64"`, `status:"PASS"`, **5,369 unchanged MK2 assets**, **33 original Sound Images scores**, **212 native track streams**, **82 original `0x98` repeat boundaries**, **130 original `0x91` stops**, **37,481 independently compared source-derived Standard MIDI events/ticks**, and **66 original-score + one-traversal-MIDI selected ZIP entries**. All original source hashes/offsets, ZIP source provenance and exported MIDI event bytes/ticks matched.
+
+- **Independent original-source precheck:** canonical MK2 EXE SHA, 33 original `SOUND/*.MID` sources / 102,971 bytes, 212 tracks, 82 repeat and 130 stop boundaries previously confirmed in private input archive.
+- **Source-only GitHub CI:** [42462511221](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42462511221) **SUCCESS** on P64 source/workflow commit `4155ffb8ee911b1ae5717e0ce6156036e88dddcc`, eight synthetic negative controls plus TypeScript, production build and offline Chrome boot. Subsequent changes were acceptance documentation only. Fixture screenshot establishes PASS but does not print the exact Git SHA.
+- **LIMITS:** `runtimeLoopDurationsClaimed:false`, `nativeTimbreOrOriginalPlaybackClaimed:false`, `interactiveBrowserExportVerified:false`. Native repeats do **not** prove duration, looping count, hardware timbre or exact driver scheduling; one-traversal MIDI is not a recording of the DOS synthesizer.
+- [P64 detailed handoff and accepted original-fixture output](docs/EXTRACTOR_P64_MK2_SCORE_PROVENANCE.md). The earlier P64 interim record directly below is historical pre-acceptance context; its fixture-pending statement is superseded. **P61 remains the latest fresh full three-game baseline (17,211 assets).** P65 next source-qualified animation extraction, P66 complete original three-game consolidation. `main` remains P16; no commercial audio or extracted music committed.
+
 ## P64 MK2 original Sound Images score provenance — source CI PASS; integrated MK2 fixture pending, 2026-11-08
 
 **Third interim pass of the P62–P66 cycle.** The MK2 music library and selected-export manifest now preserve original `SOUND/*.MID` score source hashes/byte intervals separately from generated one-traversal MIDI SHA-256 and export size. Explicit native `0x91` stop, `0x98` repeat, original track byte offset/cursor and one-pass tick metadata retain source provenance; **runtime repeat period, exact tempo scheduling and original hardware timbre remain UNKNOWN**. No sound files, MIDI event decoder, filenames, stable asset IDs, research workbench or graphic/audio extractors were replaced. Malformed scores retain the original source as raw with an explicit `UNAVAILABLE` music report rather than invented MIDI.
