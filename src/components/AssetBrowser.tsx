@@ -614,7 +614,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
                   {indexedFtrBusy ? 'Preparing original indexed FTR sprites…' : 'Export all original indexed sprites from this FTR'}
                 </button>
               )}
-              {game === 'mk3' && focus.kind === 'sprite' && /\\.FTR$/i.test(focus.source.path) && (
+              {game === 'mk3' && focus.kind === 'sprite' && /\.FTR$/i.test(focus.source.path) && (
                 <section className="asset-palette-comparison">
                   <h4>Original IFF CMAP comparison — not fighter palette ownership</h4>
                   <p>Choose an original DATA.MK3 image palette to compare visually.
