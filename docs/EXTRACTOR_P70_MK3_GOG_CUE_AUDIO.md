@@ -22,7 +22,7 @@ The independently inspected original CUE has **47 file/track/index triples**: `F
 
 ## SOURCE-ONLY CI — VERIFIED
 
-[GitHub Actions source-only CI 42478986383](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42478986383) **PASS** at P70 code/test/workflow commit `80d64f336b2ffb6bcb3b8d68e997cd5f596ccc43` once final run succeeds. The prior first P70 source test CI run failed on **a negative-control fixture with the wrong spoofed payload byte length**, which caused a valid source-length refusal before the test's intended Ogg signature refusal. The test fixture was corrected (same original byte length, falsified signature) in `e53bdd45506add3763c65161bfec0745ae548580`; later successful CI includes **15** synthetic negative controls, source guard, TypeScript, Vite production build and offline Chrome boot. Both original fixture and browser runners are syntax checked, **not executed against commercial game binaries in GitHub CI**.
+[GitHub Actions source-only CI 42478986383](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42478986383) **PASS, final confirmed** at P70 code/test/workflow commit `80d64f336b2ffb6bcb3b8d68e997cd5f596ccc43`. The prior first P70 source test CI run failed on **a negative-control fixture with the wrong spoofed payload byte length**, which caused a valid source-length refusal before the test's intended Ogg signature refusal. The test fixture was corrected (same original byte length, falsified signature) in `e53bdd45506add3763c65161bfec0745ae548580`; later successful CI includes **15** synthetic negative controls, source guard, TypeScript, Vite production build and offline Chrome boot. Both original fixture and browser runners are syntax checked, **not executed against commercial game binaries in GitHub CI**.
 
 ## ORIGINAL FIXTURE — VALIDATION PENDING
 
@@ -57,7 +57,7 @@ Requires installed Chrome and `playwright-core` (the P68 driver). Expected `pass
 
 ## CLASSIFY / P71 HANDOFF
 
-**VERIFIED:** original `MK3.cue` byte identity and 46 literal source file statements, 43,367,491 original `OggS` bytes (private original upload); source-only synthetic CUE/OGG byte-parity and all 15 false-source refusals; TypeScript/build/CI once the stated final run is confirmed.
+**VERIFIED:** original `MK3.cue` byte identity and 46 literal source file statements, 43,367,491 original `OggS` bytes (private original upload); source-only synthetic CUE/OGG byte-parity and all 15 false-source refusals; TypeScript, production build and offline Chrome boot **PASS** on exact source-only GitHub CI.
 
 **VALIDATION PENDING:** full current-source original MK3 pipeline + generated audio ZIP/independent readback; real MK3 Chrome downloaded archive; next current-source complete MK1/MK2/MK3 regression.
 
