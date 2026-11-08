@@ -99,7 +99,7 @@ async function reject(label,fn,pattern){
  await fail('duplicate source OGG',a=>a.push({...a[1]}),/missing\/duplicate source IMAGE\/Track02.ogg/);
  await fail('wrong OGG source length',a=>a[1].source.length++,/incomplete original source asset/);
  await fail('wrong OGG digest',a=>a[1].source.sha256='0'.repeat(64),/original CUE-referenced Ogg SHA-256 mismatch/);
- await fail('false MP3 audio',a=>a[1].bytes=enc.encode('ID3!02'),/original referenced file is not an Ogg stream/);
+ await fail('false MP3 audio',a=>a[1].bytes=enc.encode('ID3!2'),/original referenced file is not an Ogg stream/);
  await fail('forged OGG format',a=>a[1].format='MP3',/unqualified referenced Ogg source/);
  assert.equal(refusals,15);
  console.log(JSON.stringify({pass:'P70_SOURCE',status:'PASS',
