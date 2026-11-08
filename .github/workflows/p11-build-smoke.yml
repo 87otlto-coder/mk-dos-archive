@@ -208,6 +208,12 @@ jobs:
         run: |
           python3 -m py_compile scripts/mk3_p73_noniff_palette_candidates.py
           python3 scripts/test_mk3_p73_noniff_palette_candidates.py
+      - name: P74 MK3 first-stream indexed graphics source-only RLE and PNG refusals
+        run: |
+          python3 -m py_compile scripts/mk3_p74_noniff_indexed_graphics.py
+          python3 -m py_compile scripts/verify_mk3_p74_noniff_independent.py
+          python3 scripts/test_mk3_p74_noniff_indexed_graphics.py
+          python3 scripts/verify_mk3_p74_noniff_independent.py --help > /dev/null
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
