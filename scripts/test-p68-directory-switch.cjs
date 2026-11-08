@@ -35,12 +35,20 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  const repeated=gate.begin();assert.equal(commit(repeated,'MK2'),true);
  assert.equal(source,'MK2');assert.deepEqual(queue,[]);
  assert.equal(packageName,'MK2_indexed_evidence.zip');
- gate.cancel();assert.equal(commit(repeated,'MK1'),false);
+ // Selecting another directory with the *same* game/name must still be a new
+ // accepted session, rather than carrying the previous MK2 export queue.
+ queue=['raw:SOUND/ANIMB.MID'];preview='animb.mid';
+ const sameGameDifferentSession=gate.begin();
+ assert.notEqual(sameGameDifferentSession,repeated);
+ assert.equal(commit(sameGameDifferentSession,'MK2'),true);
+ assert.equal(source,'MK2');assert.deepEqual(queue,[]);assert.equal(preview,null);
+ gate.cancel();assert.equal(commit(sameGameDifferentSession,'MK1'),false);
  assert.equal(source,'MK2');
- assert.deepEqual(trace,['stale refused','accepted MK3','stale refused','accepted MK2','stale refused']);
+ assert.deepEqual(trace,['stale refused','accepted MK3','stale refused',
+  'accepted MK2','accepted MK2','stale refused']);
 
  console.log(JSON.stringify({pass:'P68_SOURCE',status:'PASS',
   cancelledPickerRetainsActiveAssets:true,lateScanCannotOverwriteLaterAcceptedGame:true,
-  staleAssetPreviewAndEvidenceNotPromoted:true,reusedDirectoryNameMustReceiveNewSessionId:true,
+  staleAssetPreviewAndEvidenceNotPromoted:true,reacceptedSameNamedGameClearsQueue:true,
   invalidTokenRejected:4,syntheticOnly:true},null,2));
 })().catch(error=>{console.error(error.stack||error);process.exitCode=1;});
