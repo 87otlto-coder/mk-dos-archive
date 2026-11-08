@@ -1,6 +1,36 @@
 # P64 — MK2 score provenance, native termination evidence and MIDI export checks
 
-Date: 2026-11-08. Third interim pass of the P62–P66 cycle. `develop` only; `main` stays at P16. Last complete original-MK1/MK2/MK3 acceptance remains P61 (17,211 asset representations), while P62 and P63 are accepted focused audio passes. This handoff records P64 **source-only CI PASS and independent original MK2 score-input inspection PASS; current full-collection MK2 P64 fixture runner VALIDATION PENDING**.
+Date: 2026-11-08. Third interim pass of the P62–P66 cycle. `develop` only; `main` stays at P16. Last complete original-MK1/MK2/MK3 acceptance remains P61 (17,211 asset representations), while P62 and P63 are accepted focused audio passes. This handoff records P64 **source-only CI PASS, independent original MK2 score-input inspection PASS, and user-local original-MK2 full-collection and selected-ZIP acceptance PASS**. Earlier descriptions of the full fixture test as pending below are preserved as implementation chronology and are superseded by the acceptance record that follows.
+
+## ORIGINAL-FIXTURE ACCEPTANCE — PASS (2026-11-08)
+
+**VERIFIED — USER-LOCAL ORIGINAL MK2 EXECUTION.** After fetching the updated `develop` source, the user executed `node scripts/verify-mk2-p64-scores.cjs` against the original GOG DOS MK2 directory and supplied a full PowerShell terminal screenshot of the emitted JSON `"pass":"P64", "status":"PASS"`. The acceptance script independently parses the original Sound Images streams and reconstructed one-traversal Standard MIDI events, checks file-level source SHA-256 and exact byte boundaries, and verifies original and generated assets through the actual MK2 collection and selected ZIP.
+
+The screenshot explicitly reports:
+
+| Test field | Observed result |
+| --- | ---: |
+| `mk2Assets` | **5,369** |
+| `originalScores` | **33** |
+| `originalStreams` | **212** |
+| `repeatBoundaries` | **82** |
+| `stopBoundaries` | **130** |
+| `independentlyComparedMidiEvents` | **37,481** |
+| `selectedZipScoreEntries` | **66** |
+| `allOriginalSourceHashesAndOffsetsMatched` | **true** |
+| `selectedZipPreservedSource` | **true** |
+| `allMidiBytesAndEventTicksMatched` | **true** |
+| `runtimeLoopDurationsClaimed` | **false** |
+| `nativeTimbreOrOriginalPlaybackClaimed` | **false** |
+| `interactiveBrowserExportVerified` | **false** |
+
+The screenshot is user-supplied fixture evidence; the accompanying private `C:\Temp\mkdos-p64-score-results.json` was not ingested into GitHub. The tested source is the P64 implementation at or before the pre-acceptance documentation-only commit `1ab6e424c5fc3fb30c67d03376ee3c5cf6e1a07a`. The test output does not itself print a Git SHA; the visible preceding `git pull` created the committed P64 test and adapter files and GitHub confirms `1ab6e42` contains only the added documentation relative to tested P64 source/workflow SHA `4155ffb8ee911b1ae5717e0ce6156036e88dddcc`. **Do not describe a printed source SHA as fixture-observed.**
+
+**Separate source-only CI:** [GitHub Actions 42462511221](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42462511221) **SUCCESS**, including P64 eight source-only refusals, type checking, production build and offline Chrome boot. No original DOS fixtures ran in CI.
+
+**Acceptance classification:** focused P64 original-MK2 collection and selected-ZIP gate **PASS**; unchanged 5,369 MK2 asset census; 33 original scores and 66 selected source/MIDI outputs verified; 37,481 driver-derived MIDI events/ticks independently matched. Original runtime loop duration/count, exact hardware scheduler, native synthesis/timbre, browser preview and live audio remain **UNKNOWN / NOT TESTED**. The complete three-game 17,211-asset original regression remains last accepted at **P61**; P65 precedes scheduled P66 consolidation. `main` remains P16. No original commercial audio or extracted MIDI committed.
+
+The initial P64 implementation-stage "VALIDATION PENDING" paragraphs below document the period *before* the user-local acceptance and are superseded by this section.
 
 ## OBSERVE
 
