@@ -189,6 +189,9 @@ jobs:
       - name: P70 MK3 original GOG CUE-linked OGG tracks and 15 source/mismatch refusals
         run: |
           node --check scripts/test-p70-mk3-cue-music.cjs
+          node --check scripts/verify-mk3-p70-cue.cjs
+          node --check scripts/verify-p70-browser-cue.cjs
+          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p70-cue-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p70-mk3-cue-music.cjs
       - name: Production Vite build
         run: npm run build
