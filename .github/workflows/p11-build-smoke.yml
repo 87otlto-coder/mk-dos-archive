@@ -182,6 +182,8 @@ jobs:
         run: |
           node --check scripts/test-p69-mk3-ftr-indexed.cjs
           node --check scripts/verify-mk3-p69-ftr-indexed.cjs
+          node --check scripts/verify-p69-browser-ftr.cjs
+          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/check-p69-browser-ftr.py').read_text(encoding='utf-8'))"
           python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p69-ftr-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p69-mk3-ftr-indexed.cjs
       - name: Production Vite build
