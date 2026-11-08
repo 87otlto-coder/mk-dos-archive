@@ -6,6 +6,7 @@ falsifies accepted evidence fields, source identity, browser provenance, and
 private input/output paths. Full fixture validation is a separate acceptance.
 """
 import copy
+import json
 from pathlib import Path
 import runpy
 import tempfile
@@ -99,6 +100,37 @@ class P71SourceOnlyRefusals(unittest.TestCase):
         self.assertEqual(G["check_p69_browser"](p69_browser())["originalBLADEFtrDownloadedFrames"],363)
         self.assertEqual(G["check_p70_browser"](p70_browser())["originalDownloadedOggTracks"],46)
         self.assertEqual(len(G["EXPECTED_STEPS"]),10)
+
+    def test_p68_real_browser_readbacks_precede_final_json(self):
+        # The actual original-fixture P68 runner uses Python stdio:inherit
+        # and prints authenticated MK1/MK2/MK3 selection-ZIP readbacks
+        # BEFORE its pretty-printed final JSON. P71 must parse that exact
+        # existing producer contract, not downgrade to "last JSON wins".
+        lines = [
+            f"{game} P68 same-tab download matches original source and selection"
+            for game in ("mk1", "mk2", "mk3")
+        ]
+        body = json.dumps(p68(), indent=2)
+        accepted = "\n".join([*lines, body]) + "\n"
+        verified = G["check_p68_browser_stdout"](accepted)
+        self.assertTrue(verified["oneBrowserTab"])
+        self.assertEqual(verified["originalSourceDownloadsChecked"], 3)
+
+        corruptions = [
+            body,  # Original provenance readback lines cannot be omitted.
+            "\n".join(lines[:2] + [body]),
+            "\n".join(lines[::-1] + [body]),
+            "\n".join([lines[0],lines[0],lines[2],body]),
+            "\n".join(["warning",*lines,body]),
+            "\n".join([*lines,"not JSON"]),
+            "\n".join([*lines,body,"unexpected trailing output"]),
+            "\n".join([*lines,json.dumps({**p68(),"status":"FAIL"})]),
+            "\n".join([*lines,json.dumps({**p68(),"privateDownloadsVerifiedAgainstOriginals":2})]),
+            "\n".join([*lines,"{}",body]),  # No discarded leading JSON.
+        ]
+        for ordinal, bad in enumerate(corruptions):
+            with self.subTest(corruption=ordinal),self.assertRaises(ValueError):
+                G["check_p68_browser_stdout"](bad)
 
     def test_missing_or_modified_p66_group_refused(self):
         actual=fake_p66()
