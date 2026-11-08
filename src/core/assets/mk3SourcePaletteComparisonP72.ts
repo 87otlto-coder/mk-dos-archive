@@ -90,6 +90,14 @@ export function compareMK3FighterWithIffCmapP72(
     indices.length===fighter.width*fighter.height&&
     mask.length===indices.length,'original indexed pixels and paint mask missing');
   requireEvidence(mask.every(x=>x===0||x===1),'original mask is not binary');
+  requireEvidence(nonnegative(fighter.metadata.headerOffset)&&
+    nonnegative(fighter.metadata.descriptorIndex)&&
+    Number.isSafeInteger(fighter.metadata.descriptorX)&&
+    Number.isSafeInteger(fighter.metadata.descriptorY)&&
+    nonnegative(fighter.metadata.mode)&&
+    nonnegative(fighter.metadata.group)&&
+    nonnegative(fighter.metadata.model),
+    'original FHDS descriptor provenance missing');
   requireEvidence(fighter.metadata.palette==='UNKNOWN'&&
     fighter.metadata.visualization==='GRAYSCALE_INDEX_MAP'&&
     fighter.metadata.paletteRgb===undefined,
@@ -137,6 +145,13 @@ export async function exportMK3PaletteComparisonP72(
       sourceWholeFileSha256:fighter.source.sha256,
       sourceCompressedOffset:fighter.source.offset,
       sourceCompressedLength:fighter.source.length,width,height,
+      originalDescriptorHeaderOffset:fighter.metadata.headerOffset,
+      originalDescriptorIndex:fighter.metadata.descriptorIndex,
+      originalDescriptorX:fighter.metadata.descriptorX,
+      originalDescriptorY:fighter.metadata.descriptorY,
+      originalMode:fighter.metadata.mode,
+      originalGroup:fighter.metadata.group,
+      originalModel:fighter.metadata.model,
       indicesSha256:indicesSha,opacityMaskSha256:maskSha,
     },
     originalIffPalette:{
