@@ -1,6 +1,6 @@
 # P71 — Fifth-pass original three-game and browser consolidation candidate
 
-**Date:** 2026-11-08. **Branch:** `develop` only; `main` remains P16. **Status:** P71 source-only checkpoint/refusal testing PASS (pending final CI completion at authoring); **complete P71 original-fixture plus all four Chrome browser gates VALIDATION PENDING**. P66 is the last **accepted full original three-game checkpoint** until a fresh P71 run succeeds on exactly identified source.
+**Date:** 2026-11-08. **Branch:** `develop` only; `main` remains P16. **Status:** P71 source-only checkpoint/refusal CI **PASS** on exact source/workflow SHA `a1e6a2bb058bd67c908763f1a648154539870518`; **complete P71 original-fixture plus all four Chrome browser gates VALIDATION PENDING**. [Source-only GitHub Actions 42482028581](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42482028581) completed successfully, including P71 synthetic source refusal controls, tracked commercial-file guard, TypeScript, production build and offline Chrome startup. GitHub CI does **not** contain the original DOS game fixtures. P66 is the last **accepted full original three-game checkpoint** until a fresh P71 run succeeds on exactly identified source.
 
 ## Goal and scope
 
