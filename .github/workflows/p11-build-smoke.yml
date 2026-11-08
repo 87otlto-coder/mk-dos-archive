@@ -193,6 +193,10 @@ jobs:
           node --check scripts/verify-p70-browser-cue.cjs
           python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p70-cue-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p70-mk3-cue-music.cjs
+      - name: P71 cumulative original fixture and browser checkpoint refusal controls (no game data)
+        run: |
+          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-p71-checkpoint.py').read_text(encoding='utf-8'))"
+          python3 scripts/test-p71-checkpoint.py
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
