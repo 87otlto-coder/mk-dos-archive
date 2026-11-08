@@ -1,4 +1,5 @@
 import { mk1AudioAsset } from './mk1AudioAsset';
+import { buildMK1IndexedAnimationStreamsP65 } from './mk1AnitabIndexedStreamsP65';
 import { buildTombWitnessPackage } from './mk2TombWitnessP59';
 import { buildTombComponentsP60 } from './mk2TombComponentsP60';
 import {buildMK1StageHeaderBindingsP54} from './mk1StageHeaderBindingsP54';
@@ -83,9 +84,25 @@ export async function scanAssets(source:DirectorySource,game:Game,progress:(s:st
         if(name==='audio' && path.toLowerCase().endsWith('.wav'))assets.push(mk1AudioAsset(path,f.bytes,wavEvidence.get(path)));
       }
     }
+    // P65 packages the independently qualified O17 source stream grammar and
+    // O18/O60 original indexed descriptor bytes. No new source sprites or
+    // assumed native animation cadence are created.
+    let p65IndexedAnitabStreams: Record<string,unknown>;
+    try {
+      signal?.throwIfAborted();
+      const joined=await buildMK1IndexedAnimationStreamsP65(
+        result.fighterAnimationComparison,result.animationResourceDecode,result.animationBundle.zipBytes);
+      packages.push({name:joined.name,bytes:joined.bytes});
+      p65IndexedAnitabStreams=joined.report;
+    } catch(error) {
+      if(signal?.aborted)throw error;
+      const reason=error instanceof Error?error.message:String(error);
+      p65IndexedAnitabStreams={status:'UNAVAILABLE',reason};
+      progress('MK1 indexed source animation stream package unavailable: '+reason);
+    }
     const stageHeaderBindings=buildMK1StageHeaderBindingsP54(result.stageBackgroundGraph,assets);
     packages.push({name:'MK1_P54_VERIFIED_HEADER_MODULE_PREVIEW_JOINS.json',bytes:new TextEncoder().encode(JSON.stringify(stageHeaderBindings,null,2)+'\n')});
-    return {game,assets,packages,reports:{stageHeaderBindings,workspace:w.report,stages:result.browserBundleValidation,audio:result.audioBundleValidation,animationGraph:result.fighterAnimationComparison,timing:result.streamControlTiming},limitations:['Animation chaining uses your chosen presentation timing. Gameplay timing and canonical animation names are not inferred.','Stage images represent the qualified snapshots named in their evidence packages.']};
+    return {game,assets,packages,reports:{stageHeaderBindings,workspace:w.report,stages:result.browserBundleValidation,audio:result.audioBundleValidation,animationGraph:result.fighterAnimationComparison,timing:result.streamControlTiming,p65IndexedAnitabStreams},limitations:['Animation chaining uses your chosen presentation timing. Gameplay timing and canonical animation names are not inferred.','P65 ANITAB indexed source streams preserve original executable instruction encounter order, not verified native gameplay playback order, palette, timing or multipart Z order.','Stage images represent the qualified snapshots named in their evidence packages.']};
   }
   const r=await runMK2Pipeline(source,progress,signal),o90=await executeVerifiedIdentityBundleO90(r.w88,r.x89);
   packages.push({name:'MK2_indexed_evidence.zip',bytes:r.d.zipBytes},{name:o90.report.package.downloadFileName,bytes:o90.zipBytes});
