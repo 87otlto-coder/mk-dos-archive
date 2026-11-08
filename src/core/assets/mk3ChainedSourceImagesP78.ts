@@ -230,7 +230,7 @@ export async function recoverMK3P78AdditionalChainedAssets(
     additionalDeclaredRows:rows,
     originalP75PostTableBytesConsumed:chainedBytes,
     originalFirstNonIffBytesStillUnresolved:1840634,
-    visibleAfterExplicitOptIn:existing.length+assets.length,
+    visibleAfterExplicitOptIn:9402,
     sourceBytePartitionVerified:true,
     originalP76CatalogUnchanged:true,
     nativePaletteOwnershipVerified:false,
