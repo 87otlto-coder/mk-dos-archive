@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P63 MK3 embedded WAV provenance
+
+Original MK3 focused validation passed. All 1,024 WAV intervals exported byte for byte and represent 673 distinct whole-WAV byte strings. The catalogue and selected manifests now identify the container and WAV hashes, region and record ordinal. The MK3 census is 9,186. [P63 evidence and reproduction](docs/EXTRACTOR_P63_MK3_AUDIO_PROVENANCE.md).
+
 ## P62 MK1 WAV source and sound-code provenance — 2026-11-08
 
 The MK1 library and selected exports now carry the original source extent, digest, PCM metadata and O63/O64 playback evidence for all 244 WAVs. The focused original-fixture test verified 243 record bindings, one path-pool-only WAV and byte-exact selected exports across all 244. The collection contains 2,656 assets. [P62 assessment, reproduction and cycle direction](docs/EXTRACTOR_P62_MK1_AUDIO_PROVENANCE.md).

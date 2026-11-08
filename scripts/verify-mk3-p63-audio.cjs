@@ -92,6 +92,9 @@ async function verify(root) {
   for (const [i,row] of rows.entries()) {
     const e = expected.get(row.id);
     assert(e && expected.delete(row.id));
+    const {chunkName,recordIndex} = e.metadata, name = e.source.path;
+    assert.equal(row.group, chunkName === null ? 'Global sound' : name + ' \u00b7 sound');
+    assert.equal(row.name, chunkName === null ? name + ' / sample ' + recordIndex : name + ' / ' + chunkName + ' / ' + recordIndex);
     assert.deepEqual(row.source,e.source); assert.deepEqual(row.metadata,e.metadata); assert.equal(row.filename,e.filename);
     assert.deepEqual(Buffer.from(zip.get('assets/'+String(i).padStart(5,'0')+'_'+e.filename).bytes),e.wav);
   }

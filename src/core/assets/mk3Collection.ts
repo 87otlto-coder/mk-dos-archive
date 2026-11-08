@@ -28,7 +28,7 @@ export async function scanMK3(source:DirectorySource,progress:(s:string)=>void,s
         assets.push({
           id: `${e.path}@${offset}`,
           name: chunk ? `${e.name} / ${chunk.name} / ${index}` : `${e.name} / sample ${index}`,
-          group: chunk ? `${e.name} · sound` : 'Global sound',
+          group: chunk ? `${e.name} Â· sound` : 'Global sound',
           kind: 'audio', format: 'WAV', mime: 'audio/wav',
           confidence: info.encoding === 1 ? 'Validated RIFF/PCM resource' : 'RIFF/WAVE format header verified',
           source: {path: e.path, offset, length: size, sha256},
