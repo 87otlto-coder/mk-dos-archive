@@ -5,6 +5,11 @@ import { scanAssets } from '../core/assets/collection';
 import { matchesAssetSearchP55 } from '../core/assets/assetSearchP55';
 import { buildMK3FighterIndexedBundleP69 } from '../core/assets/mk3FighterIndexedBundleP69';
 import { buildMK3CueMusicBundleP70 } from '../core/assets/mk3CueAudioBundleP70';
+import {
+  compareMK3FighterWithIffCmapP72,
+  exportMK3PaletteComparisonP72,
+  listMK3IffPaletteComparisonsP72,
+} from '../core/assets/mk3SourcePaletteComparisonP72';
 import { resolveMK2OriginalSourceOrder } from '../core/assets/mk2SourceOrderQueueP19';
 import {
   animatedPng,
@@ -87,6 +92,9 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   const indexedFtrRun = useRef(0);
   const [cueAudioBusy, setCueAudioBusy] = useState(false);
   const cueAudioRun = useRef(0);
+  const [selectedComparisonIffId, setSelectedComparisonIffId] = useState('');
+  const [comparisonBusy, setComparisonBusy] = useState(false);
+  const comparisonRun = useRef(0);
 
   const abort = useRef<AbortController | null>(null);
   const scanRun = useRef(0);
@@ -103,6 +111,9 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     scanRun.current += 1;
     indexedFtrRun.current += 1;
     cueAudioRun.current += 1;
+    comparisonRun.current += 1;
+    setSelectedComparisonIffId('');
+    setComparisonBusy(false);
     setIndexedFtrBusy(false);
     setCueAudioBusy(false);
     abort.current?.abort();
@@ -115,16 +126,32 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     setPlaying(false);
     setFrame(0);
     setLoadedSourceOrder(null);
+    setSelectedComparisonIffId('');
     setProgress('');
     setError('');
     setBusy(false);
-    return () => { abort.current?.abort(); indexedFtrRun.current += 1; cueAudioRun.current += 1; };
+    return () => { abort.current?.abort(); indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
   }, [source, game]);
 
   // O194: Compilation results arrive independently of this view. Preserve local browsing state.
   useEffect(() => { if (initialCollection) setCollection(current => current ?? initialCollection); }, [initialCollection]);
   const assets = collection?.assets ?? [];
   const lookup = useMemo(() => new Map(assets.map(a => [a.id, a])), [assets]);
+  const originalIffCmaps = useMemo(
+    () => game === 'mk3' ? listMK3IffPaletteComparisonsP72(assets) : [],
+    [assets, game],
+  );
+  const selectedIffCmap = originalIffCmaps.find(
+    choice => choice.sourceIffAsset.id === selectedComparisonIffId,
+  )?.sourceIffAsset;
+  const comparison = useMemo(() => {
+    if (!focus || !selectedIffCmap || focus.kind !== 'sprite' || game !== 'mk3') return null;
+    try {
+      return { value: compareMK3FighterWithIffCmapP72(focus, selectedIffCmap) };
+    } catch (error) {
+      return { error: errorMessage(error) };
+    }
+  }, [focus, selectedIffCmap, game]);
   const selectedRows = useMemo(
     () => queue.flatMap(item => {
       const asset = lookup.get(item.assetId);
@@ -221,6 +248,27 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     }
   }
 
+  async function exportPaletteComparison() {
+    const current = focus;
+    const palette = selectedIffCmap;
+    if (!current || !palette) {
+      setError('Select an original IFF CMAP for this comparison.');
+      return;
+    }
+    const run = ++comparisonRun.current;
+    setComparisonBusy(true);
+    setError('');
+    try {
+      const bundle = await exportMK3PaletteComparisonP72(current, palette);
+      if (comparisonRun.current !== run) return;
+      download(bundle.bytes, bundle.name, 'application/zip');
+    } catch(error) {
+      if (comparisonRun.current === run) setError(errorMessage(error));
+    } finally {
+      if (comparisonRun.current === run) setComparisonBusy(false);
+    }
+  }
+
   function exportSelectionZip() {
     attempt(() => download(selectedZip(selected), 'MKDOS_selection.zip', 'application/zip'));
   }
@@ -252,6 +300,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
       setPlaying(false);
       setFrame(0);
       setLoadedSourceOrder(null);
+      setSelectedComparisonIffId('');
     } catch (e) {
       if (!controller.signal.aborted && scanRun.current === run) setError(errorMessage(e));
     } finally {
@@ -502,6 +551,34 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
                 <button disabled={indexedFtrBusy} onClick={() => void exportFighterIndexedBundle(focus)}>
                   {indexedFtrBusy ? 'Preparing original indexed FTR sprites…' : 'Export all original indexed sprites from this FTR'}
                 </button>
+              )}
+              {game === 'mk3' && focus.kind === 'sprite' && /\\.FTR$/i.test(focus.source.path) && (
+                <section className="asset-palette-comparison">
+                  <h4>Original IFF CMAP comparison — not fighter palette ownership</h4>
+                  <p>Choose an original DATA.MK3 image palette to compare visually.
+                    These CMAPs belong to their source IFF pictures; no original fighter
+                    palette assignment or gameplay color is verified.</p>
+                  <label>Source IFF CMAP (experimental)
+                    <select aria-label="Experimental source IFF CMAP" value={selectedComparisonIffId}
+                      onChange={e => setSelectedComparisonIffId(e.target.value)}>
+                      <option value="">No comparison — original indexed grayscale only</option>
+                      {originalIffCmaps.map(choice => <option
+                        key={choice.sourceIffAsset.id} value={choice.sourceIffAsset.id}>
+                        {choice.sourceIffAsset.source.path} FORM @ {choice.sourceIffAsset.source.offset}
+                        {choice.identicalSourceCmaps > 1 ? ` · ${choice.identicalSourceCmaps} identical source CMAPs` : ''}
+                      </option>)}
+                    </select>
+                  </label>
+                  {comparison && 'error' in comparison && <p role="alert">{comparison.error}</p>}
+                  {comparison && 'value' in comparison && comparison.value && <>
+                    <p role="status">Comparison only. Native MK3 fighter palette: UNKNOWN.</p>
+                    <Picture asset={{...focus,rgba:comparison.value.rgba,
+                      confidence:'USER-SELECTED IFF CMAP COMPARISON ONLY'}} />
+                    <button disabled={comparisonBusy} onClick={() => void exportPaletteComparison()}>
+                      {comparisonBusy ? 'Preparing comparison ZIP…' : 'Export experimental comparison PNG + original indexed evidence'}
+                    </button>
+                  </>}
+                </section>
               )}
               {focus.metadata.indices instanceof Uint8Array && (
                 <button onClick={() => attempt(() => {
