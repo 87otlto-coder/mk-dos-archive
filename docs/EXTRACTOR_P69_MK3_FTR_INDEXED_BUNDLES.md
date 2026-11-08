@@ -2,7 +2,51 @@
 
 Date: 2026-11-08. Development branch: `develop`; stable `main` remains at P16. This is the **third interim pass** of the P67–P71 cycle. P66 is the last accepted full original DOS three-game fixture checkpoint (**17,211** assets, MK1 **2,656**, MK2 **5,369**, MK3 **9,186**). P67 and P68 passed focused real Chrome directory/upload, download and same-tab switching acceptance on original game installations.
 
-**Status: P69 source-only CI PASS and independent original MK3 sprite-source decode PASS. P69 integrated extractor ZIP/original-fixture and live browser download VALIDATION PENDING.**
+**Status: P69 source-only CI PASS, original MK3 complete indexed FTR ZIP acceptance PASS, and original MK3 Chrome downloaded BLADE.FTR indexed ZIP acceptance PASS.** Detailed results and limits immediately below supersede original interim pending language.
+
+## ORIGINAL-FIXTURE AND BROWSER ACCEPTANCE — PASS, 2026-11-08
+
+**VERIFIED by user-local original DOS test screenshots:** After fetching P69 source, the user executed the integrated `scripts/verify-mk3-p69-ftr-indexed.cjs` and browser `scripts/verify-p69-browser-ftr.cjs`. The screenshots show both tests reporting `"status":"PASS"` and returning to the PowerShell prompt. This acceptance was independently reported by the user; original-fixture execution was not repeated in GitHub CI. The accepted P69 code/source-only CI SHA is `5c64ea3e83262f49b28d8f2f75a16b39f43d0bd1`; screenshots did not print a tested Git commit or tree SHA, so that exact source association is source history/context rather than a SHA observed from the local fixture.
+
+### Integrated original MK3 fixture
+
+| Reported field | Original-MK3 result |
+| --- | ---: |
+| `pass` / `status` | `P69` / **PASS** |
+| `mk3Assets` | **9,186**, unchanged |
+| `originalFtrContainers` | **17** |
+| `originalIndexedSprites` | **6,654** |
+| `independentlyDecodedPlanes` | **6,654** |
+| `originalSourceIntervalsVerified` | **6,654** |
+| `indexedPixelBytesVerified` | **32,675,690** |
+| `opaqueMaskPixelsVerified` | **11,689,513** |
+| `outputPackages` | **17** |
+| `allOriginalSourceHashesMatched` | **true** |
+| `noNativePaletteOrRuntimeSequenceClaimed` | **true** |
+| `browserPackageDownloadVerified` | **false** (this separate fixture runner does not click Chrome) |
+
+This test reconstructed all frame planes from the original MK3 DOS MFIL/FHDS/FDAT records using the **independent Python decoder**, verified the exporter ZIPs' original byte intervals and index/mask bytes, and wrote the 17 generated packages outside Git, in the private `C:\Temp\mkdos-p69-original-ftr-results` folder.
+
+### Actual MK3 Chrome download
+
+| Reported field | Original-browser result |
+| --- | --- |
+| `pass` / `status` | `P69_BROWSER` / **PASS** |
+| `game` | `mk3` |
+| `mk3Assets` | **9,186** |
+| `originalFtr` | **BLADE.FTR** |
+| `independentlyCheckedFrames` | **363** |
+| `originalCompressedIntervalsChecked` | **true** |
+| `downloadIndexedPixelsAndMasksVerified` | **true** |
+| `nativePaletteOrAnimationOrderClaimed` | **false** |
+
+The browser gate loaded the authentic MK3 directory, invoked the new one-click MK3 fighter-indexed bundle export and checked the downloaded `BLADE.FTR` ZIP with the independent original-source parser. P69 has **focused original-file and browser export acceptance**, not a fresh full MK1/MK2/MK3 fixture run. P66 remains the latest accepted 17,211-asset three-game consolidation.
+
+### Remaining boundaries
+
+Native fighter palette assignment, real gameplay animation grouping, frame times, actor Z-order and scene placement are UNKNOWN. Export order is the original **FHDS descriptor encounter order**, not a verified gameplay sequence. No original DOS media, extracted sprites or generated FTR packages are committed to GitHub.
+
+**P69 ACCEPTANCE CLOSED.** Historical statements below that refer to integrated or browser validation as pending describe the development stage before the user-local tests and are superseded by this record. Next P70 is the fourth interim pass, followed by P71 consolidation.
 
 ## OBSERVE — export completeness gap
 
