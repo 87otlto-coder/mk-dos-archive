@@ -316,6 +316,18 @@ jobs:
             src/core/assets/model.ts
           if-no-files-found: error
           retention-days: 14
+      - name: Upload P80 original TypeScript source units for private original-byte check
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-dos-p80-source-units
+          path: |
+            src/core/assets/mk3LeadingSpanP80.ts
+            src/core/assets/mk3NonIffRowMappedP76.ts
+            src/core/assets/mk3ChainedSourceImagesP78.ts
+            src/core/assets/model.ts
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload verified static build (no original game assets)
         if: success()
         uses: actions/upload-artifact@v4
