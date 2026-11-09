@@ -4,6 +4,10 @@
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+## P79 interim — MK3 leading non-IFF source export, 2026-11-09
+
+Windows original `P79_EXPORT` and independent `P79_ORIGINAL` passed. The standalone extractor recovers one 320 × 200 base index plane and separates all 216 following stored records from the previously unresolved 1,840,634-byte span. Independent readback checked 220 contiguous source parts, 223 ZIP members and 128,000 rendered preview pixels. Native palette assignment and continuation rendering remain unknown. The accepted P78 browser catalogue stays at 9,402 opt-in MK3 assets. [P79 evidence and private reproduction](docs/EXTRACTOR_P79_MK3_LEADING_SPAN.md).
+
 ## P78 accepted on original Windows MK3 and Chrome
 
 Windows original MK3 acceptance, reconciled 2026-11-09. The user confirmed two `P78_ORIGINAL PASS` runs and a separate `P78_BROWSER PASS`. The full scanner loaded 66 original files. MK3 had 9,186 default assets, 9,205 with the 19 P76 images, and 9,402 with the additional 197 P78 images. P76 asset IDs were preserved. The original runner checked 6,616,595 additional indexed positions per plane, 1,167,687 painted pixels, 8,475 source-absent rows and 1,182 sidecar hash/ZIP checks. Its independent original-source and 432-PNG oracle passed. DATA.MK3 SHA-256 was `72905bc96b752bceb0055296e26b904402909f73a1401541c0dd175135a55517`.
