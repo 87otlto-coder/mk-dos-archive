@@ -1,14 +1,14 @@
 # MK DOS Extractor — project status
 
-**Last status reconciliation:** 2026-11-08
+**Last status reconciliation:** 2026-11-09
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
-## P78 ORIGINAL WINDOWS REAL CHROME PASS — 9,186 → 9,205 → 9,402; full 197-asset source integration runner still PENDING, 2026-11-08
+## P78 accepted on original Windows MK3 and Chrome
 
-**USER-REPORTED REAL-GAME CHROME OUTPUT:** Running the committed `scripts/verify-p78-browser-chained.cjs` on the original DOS MK3 installation returned `pass:"P78_BROWSER",status:"PASS"`. Reported actual original asset catalogue **9,186**, accepted first-19 P76 retained, **197** additional source-indexed MK3 images exposed through a second explicit opt-in, **9,402** MK3 resources visible afterward, and **7,950** first-new-record indexed pixels independently read back. `originalSourceStreamRowTablesAndPngPixelParity:true`, `sourceRecordOrderNotClaimedAsNativeAnimation:true`, `nativePaletteOrStageMembershipClaimed:false`. The actual browser script requires original folder import, P76 19-image filter retention, P78 197-image filter/pagination and an actual indexed ZIP download independently compared against original `DATA.MK3` index/mask/stream/tables/PNG before emitting PASS. **This real Chrome gate is now VERIFIED by user-supplied test output**, unlike the historical pre-run status below.
+Windows original MK3 acceptance, reconciled 2026-11-09. The user confirmed two `P78_ORIGINAL PASS` runs and a separate `P78_BROWSER PASS`. The full scanner loaded 66 original files. MK3 had 9,186 default assets, 9,205 with the 19 P76 images, and 9,402 with the additional 197 P78 images. P76 asset IDs were preserved. The original runner checked 6,616,595 additional indexed positions per plane, 1,167,687 painted pixels, 8,475 source-absent rows and 1,182 sidecar hash/ZIP checks. Its independent original-source and 432-PNG oracle passed. DATA.MK3 SHA-256 was `72905bc96b752bceb0055296e26b904402909f73a1401541c0dd175135a55517`.
 
-**SEPARATE P78 ORIGINAL INTEGRATED TS GATE STILL PENDING:** No `P78_ORIGINAL` stdout from `scripts/verify-mk3-p78-original.cjs` was supplied in this turn. This test validates the full original 9,186-item scanner plus **all 197** recovered source planes and **1,182** exported original ZIP sidecars; successful real Chrome first-record readback and separately accepted isolated 197-record original-byte decoder checks are valuable but **not a replacement**. Do not yet mark every P78 gate accepted or change `main`. No native palette/stage/animation assertion. [Updated P78 handoff](docs/EXTRACTOR_P78_MK3_CHAINED_APP_INTEGRATION.md). Prior P78 Chrome PENDING text below is a historical pre-test state superseded only in that dimension.
+Chrome independently checked 7,950 indexed positions on the first new record, including source stream, row tables and downloaded PNG pixel parity. The original runner's `originalChromeBrowserVerified:false` describes that runner alone. Neither stdout identifies a tested Git tree. Native palette ownership, stage membership, renderer placement, animation order and timing remain unknown. Both P78 gates are accepted on user-supplied evidence. Earlier pending labels below describe pre-acceptance history.
 
 ## P78 MK3 in-app 197 additional source-chained indexed graphics — real original TypeScript byte parity PASS, source CI PASS, full original Chrome PENDING, 2026-11-08
 
