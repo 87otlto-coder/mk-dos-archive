@@ -682,7 +682,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
         )}
         {game === 'mk3' && collection.reports.p80OriginalLeadingSource && (
           <p role="status">P80 source recovered: 1 original indexed base image and 216 raw continuation records.
-            Select Resource group to inspect {MK3_P80_RAW_GROUP}. No decoded animation frames claimed.</p>
+            Choose Asset type Raw and Resource group {MK3_P80_RAW_GROUP} to inspect the stored records. No decoded animation frames claimed.</p>
         )}
         <details className="asset-evidence">
           <summary>Coverage & evidence · {assets.length.toLocaleString()} assets</summary>
