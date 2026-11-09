@@ -262,6 +262,14 @@ jobs:
           node --check scripts/verify-mk3-p80-original.cjs
           node --check scripts/verify-p80-browser-leading.cjs
           python3 -m py_compile scripts/verify-mk3-p80-browser-independent.py
+      - name: P81 five-pass original-source and Chrome consolidation acceptance source guards
+        run: |
+          python3 -m py_compile scripts/verify-p81-checkpoint.py
+          python3 scripts/test-p81-checkpoint.py
+          if python3 scripts/verify-p81-checkpoint.py --mk1 /nonexistent/mk1 --mk2 /nonexistent/mk2 --mk3 /nonexistent/mk3 --work /tmp/mkdos-p81-false-original > /dev/null 2>&1; then
+            echo 'P81 checkpoint incorrectly accepted missing original game fixtures'
+            exit 1
+          fi
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
