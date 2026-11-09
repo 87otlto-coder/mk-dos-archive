@@ -6,7 +6,7 @@ name: MK DOS extractor source build smoke
 # historical P11 lockfile remains separately preserved and is NOT byte-identical.
 on:
   push:
-    branches: [develop, main]
+    branches: [develop, main, 'interim/p79-original-extraction']
     paths:
       - 'src/**'
       - 'scripts/**'
