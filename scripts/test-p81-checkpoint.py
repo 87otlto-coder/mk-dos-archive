@@ -178,6 +178,10 @@ class P81OriginalCheckpointGuards(unittest.TestCase):
             self.assertIn("interim/p79-original-extraction",content)
             self.assertIn("develop",content)
         self.assertIn("opening == closing", (ROOT/"scripts/verify-p81-checkpoint.py").read_text())
+        self.assertIn('private_temp = work / "private-temporary"',
+                      (ROOT/"scripts/verify-p81-checkpoint.py").read_text())
+        self.assertIn('"TMPDIR": str(private_temp)',
+                      (ROOT/"scripts/verify-p81-checkpoint.py").read_text())
         self.assertIn("P71[\"preflight\"]", (ROOT/"scripts/verify-p81-checkpoint.py").read_text())
         self.assertIn("len(nested_report[\"steps\"]) == 6",
                       (ROOT/"scripts/verify-p81-checkpoint.py").read_text())
