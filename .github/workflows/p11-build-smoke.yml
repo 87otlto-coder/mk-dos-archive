@@ -255,6 +255,10 @@ jobs:
           node --check scripts/verify-mk3-p78-original.cjs
           node --check scripts/verify-p78-browser-chained.cjs
           python3 -m py_compile scripts/verify-mk3-p78-browser-independent.py
+      - name: P80 original MK3 leading indexed base and raw continuation source-only guards
+        run: |
+          node --check scripts/test-p80-leading-source.cjs
+          node scripts/test-p80-leading-source.cjs
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
