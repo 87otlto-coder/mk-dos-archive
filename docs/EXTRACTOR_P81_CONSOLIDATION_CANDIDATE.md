@@ -40,6 +40,8 @@ Local repository root: F:\Dev\MKEXT\SOURCE\mkdosext. External browser test depen
     $work = Join-Path $validation ("P81-" + [guid]::NewGuid().ToString("N"))
     python .\scripts\verify-p81-checkpoint.py --mk1 "$mk1" --mk2 "$mk2" --mk3 "$mk3" --work "$work"
 
+The P81 runner also overrides TEMP, TMP and TMPDIR for every nested original-data and browser child process to a new private-temporary subdirectory inside the P81 $work folder. This keeps ephemeral original-derived archive, image, browser-download and independent verification files within FIXTURES, rather than Windows' default AppData Temp. Do not move or clean this private work directory until the result has been checked.
+
 The last command automatically performs source lint/build/Playwright/Pillow prerequisite verification through P76/P71. Do not create $work beforehand: the runner requires a unique NEW private output directory. On success:
 
     Get-Content (Join-Path $work "summary.json") -Raw
