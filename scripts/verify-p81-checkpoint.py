@@ -226,11 +226,16 @@ def checkpoint(args: argparse.Namespace) -> dict:
             "source checkout must be audited develop or approved P81 interim")
     require("sourceTree" not in opening, "unexpected source audit schema")
     work.mkdir(parents=True, exist_ok=False)
+    # Keep all temporary original-derived source, PNG/ZIP and browser downloads
+    # inside the private fixture workspace rather than the OS default temp.
+    private_temp = work / "private-temporary"
+    private_temp.mkdir()
     started = datetime.now(timezone.utc).isoformat()
     report = {
         "pass": "P81", "status": "RUNNING", "startedUtc": started,
         "sourceBranch": branch, "sourceAuditAtStart": opening,
         "originalExecutableSha256": identities,
+        "privateTemporaryDirectory": str(private_temp),
         "originalThreeGameExpectedBaseline": CENSUS,
         "expectedOriginalMk3OptIn": [9186, 9205, 9402, 9619],
         "commercialGameFilesCommitted": False,
@@ -251,7 +256,10 @@ def checkpoint(args: argparse.Namespace) -> dict:
         run = subprocess.run([str(x) for x in argv], cwd=ROOT,
                              capture_output=True, timeout=timeout, check=False,
                              env={**os.environ, "PYTHON": sys.executable,
-                                  "PYTHONDONTWRITEBYTECODE": "1"})
+                                  "PYTHONDONTWRITEBYTECODE": "1",
+                                  "TEMP": str(private_temp),
+                                  "TMP": str(private_temp),
+                                  "TMPDIR": str(private_temp)})
         (work / (label + ".stdout.txt")).write_bytes(run.stdout)
         (work / (label + ".stderr.txt")).write_bytes(run.stderr)
         require(run.returncode == 0,
