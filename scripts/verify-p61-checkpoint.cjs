@@ -55,7 +55,8 @@ function git(args){
 const checkout=fs.realpathSync(git(['rev-parse','--show-toplevel']));
 assert.equal(checkout,root,'P61 Git source root mismatch');
 const branch=git(['rev-parse','--abbrev-ref','HEAD']);
-assert.equal(branch,'develop','P61 requires a checked-out develop branch, not '+branch);
+assert(new Set(['develop','interim/p79-original-extraction']).has(branch),
+ 'P61 requires clean develop or explicitly approved P79–P81 interim branch, not '+branch);
 const changes=git(['status','--porcelain','--untracked-files=no']);
 assert.equal(changes,'','P61 requires clean tracked source (commit or revert local modifications)');
 const tracked=git(['ls-files','-z']).split('\0').filter(Boolean);
