@@ -153,9 +153,13 @@ def write_zip_new(out: Path, files: dict[str, bytes]) -> int:
     require(not beneath(out.resolve(), ROOT.resolve()),
             "private output must be outside source repository")
     total = 0
+    created = False
     try:
         # 'xb' guarantees an existing file cannot be truncated or replaced.
-        with out.open("xb") as fh, zipfile.ZipFile(fh, mode="w",
+        # Do not delete anything unless this invocation created that file.
+        fh = out.open("xb")
+        created = True
+        with fh, zipfile.ZipFile(fh, mode="w",
                                 compression=zipfile.ZIP_STORED, allowZip64=True) as archive:
             for name, payload in sorted(files.items()):
                 require(name and not name.startswith("/") and "\\" not in name
@@ -166,8 +170,8 @@ def write_zip_new(out: Path, files: dict[str, bytes]) -> int:
                 archive.writestr(info, payload)
                 total += len(payload)
     except BaseException:
-        # Only clean up a newly-created partial archive, never an existing file.
-        if out.exists():
+        # Only clean up an archive actually created by this invocation.
+        if created and out.exists():
             out.unlink()
         raise
     return total
