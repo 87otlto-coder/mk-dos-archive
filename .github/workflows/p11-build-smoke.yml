@@ -283,6 +283,10 @@ jobs:
               ast.parse(Path(path).read_text(encoding='utf-8'), filename=path)
           print('P82 exporter and independent original-source verifier syntax PASS')
           PY
+      - name: P83 original MK2 source-layer ZIP import and false-native source guards
+        run: |
+          node --check scripts/test-p83-mk2-stage-layer-archive.cjs
+          node scripts/test-p83-mk2-stage-layer-archive.cjs
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
