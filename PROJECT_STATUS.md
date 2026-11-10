@@ -5,6 +5,10 @@
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
 
+## P82 original independent MK2 native-width layer archive PASS — 2026-11-10
+
+**ORIGINAL-FIXTURE ARCHIVE VERIFIER USER OUTPUT:** `P82_INDEPENDENT:PASS` on the original DOS MK2 and a privately produced two-stage ZIP. It independently rechecked **2 original 896-column floors, 29 uncut sprite streams, 8 setup-local source layers, 115 PNGs, 939,425 source-index positions and all 4 canonical original file SHA fingerprints**. It confirmed no commercial source files in the ZIP and made no verified native scene/camera/animation/parallax claims. **The separate `P82_EXPORT` process result, ZIP SHA and exact user-tested Git commit/tree were not supplied**, so these are not claimed. The original-independent accepted archive is the validated input contract for the next **P83 opt-in Asset Library integration**; original real-Chrome P83 remains pending. [P82 evidence handoff](docs/EXTRACTOR_P82_MK2_NATIVE_STAGE_PACK.md). Existing P82 earlier PENDING text below is historical.
+
 ## P82 interim — MK2 native-width Tomb/Portal source layer one-ZIP extractor, 2026-11-10
 
 **P82 STARTED ON A SEPARATE BRANCH, SOURCE-ONLY CI PASS; NEW ORIGINAL-FIXTURE ACCEPTANCE PENDING.** Following the accepted full P81 nine-group original MK1/MK2/MK3+Chrome checkpoint (tested source commit 78fde5e/tree 92974d3), [PR #6](https://github.com/87otlto-coder/mk-dos-archive/pull/6) merged all P77–P81 recoverable source/history into **develop** as commit **d6e9c1f7702be600dfdd39d66743a1a71500de55** with **identical Git tree** to the final interim branch; [develop post-merge CI 42888164222](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42888164222) **SUCCESS**. Stable **main stays unchanged**. Develop promotion did not claim a second original DOS test under the merge commit.
