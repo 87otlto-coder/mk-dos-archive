@@ -6,7 +6,7 @@ name: MK DOS extractor source build smoke
 # historical P11 lockfile remains separately preserved and is NOT byte-identical.
 on:
   push:
-    branches: [develop, main, 'interim/p79-original-extraction']
+    branches: [develop, main, 'interim/p79-original-extraction', 'interim/p82-mk2-native-stage-pack']
     paths:
       - 'src/**'
       - 'scripts/**'
@@ -270,6 +270,19 @@ jobs:
             echo 'P81 checkpoint incorrectly accepted missing original game fixtures'
             exit 1
           fi
+      - name: P82 original MK2 uncropped native stage layer export source-only refusal controls
+        run: |
+          python3 scripts/test-p82-mk2-native-stage-pack.py
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+          for path in (
+              'scripts/export-mk2-p82-native-stage-pack.py',
+              'scripts/verify-mk2-p82-native-stage-independent.py',
+          ):
+              ast.parse(Path(path).read_text(encoding='utf-8'), filename=path)
+          print('P82 exporter and independent original-source verifier syntax PASS')
+          PY
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
