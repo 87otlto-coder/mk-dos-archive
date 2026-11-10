@@ -70,9 +70,6 @@ function Picture({ asset }: { asset: Asset }) {
       {asset.kind === 'audio' ? '♫' : asset.kind === 'music' ? '♪' : '▤'}
     </span>
   );
-      {asset.kind === 'audio' ? '♫' : asset.kind === 'music' ? '♪' : '▤'}
-    </span>
-  );
 }
 
 function AudioPreview({ asset }: { asset: Asset }) {
