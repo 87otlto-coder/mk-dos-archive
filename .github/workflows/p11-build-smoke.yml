@@ -287,6 +287,13 @@ jobs:
         run: |
           node --check scripts/test-p83-mk2-stage-layer-archive.cjs
           node scripts/test-p83-mk2-stage-layer-archive.cjs
+          node --check scripts/verify-p83-browser-stage-layers.cjs
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+          ast.parse(Path('scripts/verify-mk2-p83-browser-independent.py').read_text(encoding='utf-8'))
+          print('P83 real-browser independent Python source syntax PASS')
+          PY
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
