@@ -1,4 +1,12 @@
 # P81 consolidation candidate — original three-game and real Chrome fifth-pass checkpoint
+## Windows first-replay blocker corrected — 2026-11-10
+
+The first user-run nine-group P81 replay made it through `p76_inherited_three_game_original_and_chrome` (the P76 subprocess exited successfully), then the P81 wrapper raised `invalid or contaminated JSON stdout` at its initial inherited-group parser. **Actual cause:** P76 writes six `P76: <step>` progress lines before its final machine-readable JSON; the original P81 wrapper incorrectly applied `json.loads` to the entire P76 stdout. The earlier nested P76 subprocess result is not itself a full P81 checkpoint PASS, and its original source tree is not the same as the corrected P81 source tree.
+
+**FIXED on the interim branch:** `scripts/verify-p81-checkpoint.py` now strictly requires all six canonical P76 progress markers in order, parses only the final JSON object, and compares it to P76's separately written `summary.json`. It additionally checks the original P76 nested `report.json`'s exact ordered six PASS groups, opening/closing Git source audit equality to the parent P81 checkpoint, matching all three original EXE fingerprints, and exact private report path. No relaxation of original/source/Chrome acceptance or any binary decoder occurred. `scripts/test-p81-checkpoint.py` now tests LF/CRLF progress-prefixed output, reordered/missing/extra lines, forged or duplicated final JSON, missing/mismatched private summary, wrong commit/tree and typed count boundaries.
+
+**FINAL FIX REGRESSION VERIFIED:** [GitHub Actions 42882842029](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42882842029) **SUCCESS** on source+test commit `5696bc3ad922ee5ede930efad063df9d5ca985a1`, including P81 source guards, inherited source tests, production build, TypeScript and offline Chrome boot. The earlier CI attempt on the parser-only fix failed because an old source test still expected the superseded literal code expression; the corrected test commit resolved this. The acceptance remains **P81 Windows original+real Chrome VALIDATION PENDING** and requires a new full run on a clean checked-out source/tree. Preserve previous private diagnostic folders under FIXTURES; use a **new** P81 private work folder for the next run.
+
 
 Date: 2026-11-09. Development branch: interim/p79-original-extraction. State: P81 source-only CI PASS, but the **single-source-tree Windows original-game and real Chrome acceptance remains VALIDATION PENDING**. Stable develop and main remain unchanged.
 
