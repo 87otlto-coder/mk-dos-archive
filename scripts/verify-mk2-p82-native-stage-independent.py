@@ -87,8 +87,8 @@ def original_indexed_sprite(resource: bytes, offset: int,
                     mask[y * width + x + t] = 255
             else:
                 run = op >> 2
-                check(0 < run <= 64 and p + run <= len(resource),
-                      "invalid source literal word extent")
+                check(0 < run <= 64 and p + ((run + 3) // 4) * 4 <= len(resource),
+                      "invalid source literal word extent or padding")
                 for t in range(run):
                     idx[y * width + x + t] = resource[p + t]
                     mask[y * width + x + t] = 255
