@@ -1,5 +1,15 @@
 # P83 — MK2 native-width Tomb and Portal layers in Asset Library
 
+## P83 canonical original-file fingerprint correction — 2026-11-10
+
+**SOURCE CORRECTION VERIFIED; ORIGINAL WINDOWS CHROME STILL PENDING.** A fresh read of the original privately supplied `mk2.zip` confirmed **614 original files** and independent SHA-256 matches for the canonical `MK2.EXE`, `TOMB.GRA`, `PORTAL.GRA` and `IMAGES.GRA`. The P83 TypeScript importer had inadvertently pinned `IMAGES.GRA` as a **51-character truncated digest** instead of the source-confirmed 64-character SHA-256. As written, P83 would reject the canonical original installation before examining the P82 stage ZIP. The P82 producer and independent Python verifier already contained the correct complete value.
+
+- Corrected P83 fingerprint at source commit [`0c0edac`](https://github.com/87otlto-coder/mk-dos-archive/commit/0c0edacdf3baab7ea9647ce148a3f6135fd97bbe); added a source regression test ensuring all four digests are full-length and pinning the independent original `IMAGES.GRA` value at [`6160fe4`](https://github.com/87otlto-coder/mk-dos-archive/commit/6160fe466884d543040c2710ad358fcd6ed70264).
+- Source-only [GitHub CI 42904870734](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/42904870734) **SUCCESS** on the exact source/test commit `6160fe4`, including production build and P83 tests. This is not original DOS Chrome acceptance.
+- Independently bounded raw original floor source spans: `TOMB.GRA` offset 63,776 through EOF contains 43,008 bytes (896 × 48), SHA-256 `c8b68c1b14f8c031ec55882438aff366ddcc2a254a01744febf04d19b3fc37a7`; `PORTAL.GRA` offset 56,916 through EOF contains 35,840 bytes (896 × 40), SHA-256 `eb99434188317a0adac30f378c2362b857efcba7690180bd60dc80b9432158ff`. These are **native source index bytes, not confirmed full stage renders**.
+- No copyrighted extracted pixels or original files were committed. **NEXT:** run the existing P83 Windows/real Chrome fixture verifier using the privately independently verified P82 ZIP; keep the original `5,369 → 5,484` import and three PNG download acceptance explicitly **VALIDATION PENDING** until that result is observed.
+
+
 Date: 2026-11-10. Branch: interim/p83-mk2-stage-library. Second interim pass in P82–P86 cycle. Source-only implementation/tests and production build verified in CI when final run completes; **actual original Windows MK2 Chrome import and ZIP download validation pending**. Stable develop retains accepted P81 and main remains unchanged. No commercial game files or extracted copyrighted PNG/ZIP outputs have been pushed.
 
 ## Objective and previously accepted evidence
