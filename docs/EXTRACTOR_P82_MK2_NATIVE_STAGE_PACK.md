@@ -1,4 +1,10 @@
 # P82 MK2 native-width stage source layer ZIP — interim implementation
+## Original DOS MK2 independent archive acceptance — reported PASS on 2026-11-10
+
+The user supplied the exact console result of running `scripts/verify-mk2-p82-native-stage-independent.py` on their original MK2 installation and privately generated ZIP: `pass:"P82_INDEPENDENT",status:"PASS"`. The verifier reported **two** stages (Tomb and Portal), **two** full-width original floor source planes, **29** independently re-decoded native source sprite streams, **eight** source setup-local layer mosaics, **115** pixel-exact exported PNGs, **939,425** original index positions independently checked, **four** authenticated original game-file fingerprints, and `originalSourcesIncludedInZip:false`. `nativeCameraOrStageCompositeClaimed:false` and `nativeAnimationOrParallaxTimingClaimed:false` remained explicit. Since the user supplied no `P82_EXPORT` stdout nor original ZIP file SHA, the independent archive result establishes verified source-pixel agreement of **the tested archive**, not a separately observed exact producer status or tested Git commit/tree.
+
+**Classification:** P82's independent original MK2 archive verifier **PASS on user-provided output**. Source-only CI was separately successful. The new P82 exporter generated/identified an archive for the verifier to read, but its distinct stdout was not provided; never invent it. The previous candidate/PENDING note below is historical. This verifies the reusable source archive contract for P83 **without** asserting native moving background, live stage composition, palette assignment over time, or browser integration.
+
 
 **Date:** 2026-11-10. **Branch:** interim/p82-mk2-native-stage-pack, forked from the P81-consolidated develop merge d6e9c1f. **Status:** source implementation and synthetic refusal tests complete; exact original DOS MK2 installation export + independent PNG/byte replay VALIDATION PENDING. No original commercial binaries or extracted art have been pushed. P82 is the first interim pass toward P86 consolidation.
 
