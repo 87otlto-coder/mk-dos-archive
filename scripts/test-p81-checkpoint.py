@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """P81 source-only fail-closed checkpoint controls; no original game files."""
 from pathlib import Path
+import json
 import runpy
 import unittest
 
@@ -26,6 +27,59 @@ class P81OriginalCheckpointGuards(unittest.TestCase):
                        b'["PASS"]', b'\xff'):
             with self.subTest(source=source), self.assertRaises(ValueError):
                 p(source, "synthetic invalid")
+
+    def test_p76_expected_progress_prefix_and_private_summary(self):
+        summary = {
+            "pass": "P76", "status": "PASS",
+            "sourceCommit": "a" * 40, "sourceTree": "b" * 40,
+            "requiredGroupsPassed": 6,
+        }
+        steps = P["P76"]["STEPS"]
+        self.assertEqual(len(steps), 6)
+        for newline in ("\n", "\r\n"):
+            with self.subTest(newline=repr(newline)):
+                prefix = newline.join("P76: " + step for step in steps) + newline
+                stdout = (prefix + json.dumps(summary) + newline).encode("utf-8")
+                parsed = P["p76_progress_summary"](
+                    stdout, summary, "inherited original P76")
+                self.assertEqual(parsed, summary)
+
+    def test_p76_refuses_progress_contamination_and_forged_saved_json(self):
+        summary = {
+            "pass": "P76", "status": "PASS",
+            "sourceCommit": "a" * 40, "sourceTree": "b" * 40,
+            "requiredGroupsPassed": 6,
+        }
+        steps = P["P76"]["STEPS"]
+        prefix = "".join("P76: " + step + "\n" for step in steps)
+        payload = json.dumps(summary)
+        valid = (prefix + payload + "\n").encode("utf-8")
+        bad_outputs = (
+            b"random stdout\n" + valid,
+            ("".join("P76: " + step + "\n" for step in reversed(steps)) +
+             payload).encode("utf-8"),
+            ("".join("P76: " + step + "\n" for step in steps[:-1]) +
+             payload).encode("utf-8"),
+            (prefix + "P76: unexpected verification\n" + payload).encode("utf-8"),
+            (prefix + payload + "\n" + payload).encode("utf-8"),
+            (prefix + payload + "\nPASS\n").encode("utf-8"),
+            b"\xff",
+        )
+        for output in bad_outputs:
+            with self.subTest(output=output[:85]), self.assertRaises(ValueError):
+                P["p76_progress_summary"](
+                    output, summary, "P76 contamination test")
+        for invalid_summary in (
+            None,
+            [],
+            {**summary, "sourceCommit": "f" * 40},
+            {**summary, "sourceTree": "f" * 40},
+            {**summary, "status": "FAIL"},
+            {**summary, "requiredGroupsPassed": 5},
+        ):
+            with self.subTest(summary=invalid_summary), self.assertRaises(ValueError):
+                P["p76_progress_summary"](
+                    valid, invalid_summary, "P76 summary mismatch")
 
     def test_exact_bool_and_int_type_boundaries(self):
         e = P["exact"]
@@ -183,7 +237,7 @@ class P81OriginalCheckpointGuards(unittest.TestCase):
         self.assertIn('"TMPDIR": str(private_temp)',
                       (ROOT/"scripts/verify-p81-checkpoint.py").read_text())
         self.assertIn("P71[\"preflight\"]", (ROOT/"scripts/verify-p81-checkpoint.py").read_text())
-        self.assertIn("len(nested_report[\"steps\"]) == 6",
+        self.assertIn('tuple(nested_report["steps"]) == P76["STEPS"]',
                       (ROOT/"scripts/verify-p81-checkpoint.py").read_text())
 
     def test_no_unsupported_bypass_or_change_of_record_counts(self):
