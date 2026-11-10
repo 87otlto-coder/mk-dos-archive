@@ -26,6 +26,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 P71 = runpy.run_path(str(ROOT / "scripts/verify-p71-checkpoint.py"))
+P76 = runpy.run_path(str(ROOT / "scripts/verify-p76-checkpoint.py"))
 STEPS = (
     "p76_inherited_three_game_original_and_chrome",
     "p77_chained_original_source_refusals",
@@ -60,6 +61,30 @@ def json_stdout(out: bytes, label: str) -> dict:
         raise ValueError("P81: " + label + " invalid or contaminated JSON stdout") from exc
     require(isinstance(obj, dict), label + " result must be an object")
     return obj
+
+
+def p76_progress_summary(stdout: bytes, nested_summary: dict, label: str) -> dict:
+    """Read only the canonical six P76 progress lines plus final JSON.
+
+    P76 emits a human-readable progress line before each original/browser
+    group. Earlier P81 incorrectly passed the whole output to json.loads.
+    Accept no extra lines, missing/reordered progress, duplicate trailing
+    JSON, or disagreement with the independently saved private summary.
+    """
+    require(isinstance(nested_summary, dict),
+            "inherited P76 saved summary must be a JSON object")
+    try:
+        text = stdout.decode("utf-8")
+    except UnicodeError as exc:
+        raise ValueError("P81: " + label + " invalid UTF-8 stdout") from exc
+    normalized = text.replace("\r\n", "\n")
+    progress = "".join("P76: " + step + "\n" for step in P76["STEPS"])
+    require(normalized.startswith(progress),
+            "inherited P76 missing, altered or reordered progress markers")
+    result = json_stdout(normalized[len(progress):].encode("utf-8"), label)
+    require(result == nested_summary,
+            "inherited P76 final JSON does not match saved private summary")
+    return result
 
 
 def original_compatibility(p76: dict, commit: str, tree: str) -> dict:
@@ -285,15 +310,25 @@ def checkpoint(args: argparse.Namespace) -> dict:
             sys.executable, "scripts/verify-p76-checkpoint.py",
             "--mk1", mk1, "--mk2", mk2, "--mk3", mk3,
             "--work", p76_dir], timeout=10800)
-        p76 = json_stdout(out, label)
+        nested = json.loads((p76_dir / "summary.json").read_text(encoding="utf-8"))
+        p76 = p76_progress_summary(out, nested, label)
         checked = original_compatibility(
             p76, opening["commit"], opening["treeSha"])
-        nested = json.loads((p76_dir / "summary.json").read_text(encoding="utf-8"))
-        require(nested == p76, "P76 nested summary disagrees with process output")
         nested_report = json.loads((p76_dir / "report.json").read_text(encoding="utf-8"))
-        require(nested_report["status"] == "PASS" and
-                len(nested_report["steps"]) == 6,
+        require(nested_report.get("pass") == "P76" and
+                nested_report.get("status") == "PASS" and
+                isinstance(nested_report.get("steps"), dict) and
+                tuple(nested_report["steps"]) == P76["STEPS"] and
+                all(step.get("status") == "PASS"
+                    for step in nested_report["steps"].values()),
                 "P76 inherited original Chrome groups incomplete")
+        require(nested_report.get("originalSourceAudit") == opening and
+                nested_report.get("closingSourceAudit") == opening,
+                "P76 nested source audit disagrees with P81 opening commit/tree")
+        require(nested_report.get("originalExecutableIdentitySha256") == identities,
+                "P76 original game EXE fingerprints changed inside checkpoint")
+        require(p76.get("privateReport") == str(p76_dir / "report.json"),
+                "P76 reported private path disagrees with nested report")
         record(label, out, err, checked)
 
         for label, script, n in [
