@@ -17,6 +17,7 @@ import {
   listMK3IffPaletteComparisonsP72,
 } from '../core/assets/mk3SourcePaletteComparisonP72';
 import { resolveMK2OriginalSourceOrder } from '../core/assets/mk2SourceOrderQueueP19';
+import { importMK2P83StageZip } from '../core/assets/mk2NativeStageZipP83';
 import {
   animatedPng,
   assetBytes,
@@ -39,6 +40,7 @@ interface QueueItem {
 
 function Picture({ asset }: { asset: Asset }) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const [pngUrl,setPngUrl] = useState('');
   useEffect(() => {
     if (!asset.rgba || !asset.width || !asset.height || !ref.current) return;
     const c = ref.current;
@@ -50,10 +52,24 @@ function Picture({ asset }: { asset: Asset }) {
       0,
     );
   }, [asset]);
+  useEffect(() => {
+    if(asset.rgba || asset.mime!=='image/png' || !asset.bytes) {
+      setPngUrl('');
+      return;
+    }
+    const url=URL.createObjectURL(new Blob([asset.bytes.slice().buffer],{type:'image/png'}));
+    setPngUrl(url);
+    return ()=>URL.revokeObjectURL(url);
+  }, [asset]);
   return asset.rgba ? (
     <canvas ref={ref} />
+  ) : asset.mime==='image/png' && asset.bytes && pngUrl ? (
+    <img src={pngUrl} alt={asset.name} loading="lazy" />
   ) : (
     <span className="asset-symbol">
+      {asset.kind === 'audio' ? '♫' : asset.kind === 'music' ? '♪' : '▤'}
+    </span>
+  );
       {asset.kind === 'audio' ? '♫' : asset.kind === 'music' ? '♪' : '▤'}
     </span>
   );
@@ -110,6 +126,9 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   const [leadingBusy, setLeadingBusy] = useState(false);
   const leadingRun = useRef(0);
   const leadingAbort = useRef<AbortController | null>(null);
+  const [p83Busy,setP83Busy] = useState(false);
+  const p83Run = useRef(0);
+  const p83Abort = useRef<AbortController | null>(null);
 
   const abort = useRef<AbortController | null>(null);
   const scanRun = useRef(0);
@@ -130,6 +149,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     rowMapsRun.current += 1;
     chainedRun.current += 1;
     leadingRun.current += 1;
+    p83Run.current += 1;
+    p83Abort.current?.abort();
+    p83Abort.current = null;
+    setP83Busy(false);
     leadingAbort.current?.abort();
     leadingAbort.current = null;
     setLeadingBusy(false);
@@ -157,7 +180,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     setProgress('');
     setError('');
     setBusy(false);
-    return () => { abort.current?.abort(); leadingAbort.current?.abort(); leadingRun.current += 1; chainedAbort.current?.abort(); chainedRun.current += 1; rowMapsAbort.current?.abort(); rowMapsRun.current += 1; indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
+    return () => { abort.current?.abort(); p83Abort.current?.abort(); p83Run.current += 1; leadingAbort.current?.abort(); leadingRun.current += 1; chainedAbort.current?.abort(); chainedRun.current += 1; rowMapsAbort.current?.abort(); rowMapsRun.current += 1; indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
   }, [source, game]);
 
   // O194: Compilation results arrive independently of this view. Preserve local browsing state.
@@ -302,6 +325,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
 
   async function scan() {
     leadingRun.current += 1;
+    p83Run.current += 1;
+    p83Abort.current?.abort();
+    p83Abort.current = null;
+    setP83Busy(false);
     leadingAbort.current?.abort();
     leadingAbort.current = null;
     setLeadingBusy(false);
@@ -454,6 +481,46 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
       if(run===leadingRun.current){
         setLeadingBusy(false);
         leadingAbort.current=null;
+      }
+    }
+  }
+
+  async function importP83SourceZip(file:File) {
+    if(game!=='mk2' || !collection || collection.assets.length!==5369 ||
+      busy || p83Busy || file.size>128*1024*1024) {
+      if(file.size>128*1024*1024)setError('P83 stage ZIP exceeds 128 MiB');
+      return;
+    }
+    const run=++p83Run.current,baseline=collection,sourceRun=scanRun.current;
+    const controller=new AbortController();
+    p83Abort.current=controller;
+    setP83Busy(true);
+    setError('');
+    try {
+      const bytes=new Uint8Array(await file.arrayBuffer());
+      controller.signal.throwIfAborted();
+      const result=await importMK2P83StageZip(source,baseline.assets,bytes,controller.signal);
+      if(controller.signal.aborted || run!==p83Run.current ||
+         sourceRun!==scanRun.current) return;
+      setCollection(current=>current===baseline?{
+        ...current,
+        assets:[...current.assets,...result.assets],
+        reports:{...current.reports,p83NativeSourceLayerZip:result.report},
+        limitations:[...current.limitations,
+          'P83: selected original MK2 P82 archive provides 115 separate native source PNGs, including 896-column floors. Index and opacity files are preserved byte-exact. This is not a final native stage composite, verified live palette, parallax or animation. The default MK2 5,369-item catalogue remains unchanged.'],
+      }:current);
+      setSearch('');
+      setKind('image');
+      setGroup('P83 Kombat Tomb · native-width floor');
+      setPage(0);
+      setFocus(null);
+      setAnchor(null);
+    } catch(e) {
+      if(!controller.signal.aborted && run===p83Run.current)setError(errorMessage(e));
+    } finally {
+      if(run===p83Run.current){
+        setP83Busy(false);
+        p83Abort.current=null;
       }
     }
   }
@@ -629,6 +696,29 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
             <p>The full MK1 research scan was unavailable for this installation. You can inspect and export original GRA resources and any independently checked indexed previews.</p>
             <p>See Coverage &amp; evidence for the precise identity/validation reason.</p>
           </div>
+        )}
+        {game === 'mk2' && collection.assets.length === 5369 && (
+          <section className="asset-fallback-notice" aria-label="Import original MK2 native-width stage layer archive">
+            <strong>P83 MK2 Tomb and Portal native-width source layers</strong>
+            <p>Import the independently verified P82 ZIP from FIXTURES/VALIDATION to browse
+              115 original indexed/opacity/RGB source PNGs, including both uncropped
+              896-column floors. The accepted 5,369 original MK2 resources remain unchanged.
+              Native compositing, live palette assignment, animation and parallax are UNKNOWN.</p>
+            <label>
+              Import verified P82 stage-layer ZIP
+              <input aria-label="Import P82 stage-layer ZIP" type="file"
+                accept=".zip,application/zip" disabled={busy || p83Busy}
+                onChange={e=>{const file=e.currentTarget.files?.[0];
+                  e.currentTarget.value='';
+                  if(file)void importP83SourceZip(file);}} />
+            </label>
+            {p83Busy && <p role="status">Validating the original MK2 sources and 115 source PNGs…</p>}
+          </section>
+        )}
+        {game === 'mk2' && collection.reports.p83NativeSourceLayerZip && (
+          <p role="status">P83 imported: 115 original Tomb/Portal source PNGs,
+            two uncropped native-width floors, 29 separate sprites and eight setup-local layers.
+            Native animation, parallax and stage composition remain UNKNOWN.</p>
         )}
         {game === 'mk3' && collection.assets.length === 9186 && (
           <section className="asset-fallback-notice" aria-label="Original MK3 source-row graphics">
