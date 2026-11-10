@@ -6,7 +6,7 @@ name: MK DOS extractor source build smoke
 # historical P11 lockfile remains separately preserved and is NOT byte-identical.
 on:
   push:
-    branches: [develop, main]
+    branches: [develop, main, 'interim/p79-original-extraction']
     paths:
       - 'src/**'
       - 'scripts/**'
@@ -244,6 +244,8 @@ jobs:
           python3 -m py_compile scripts/mk3_p77_chained_source_export.py
           python3 -m py_compile scripts/verify_mk3_p77_chained_source_independent.py
           python3 scripts/test_mk3_p77_chained_source_export.py
+          python3 scripts/test_mk3_p79_leading_span.py
+          python3 -m py_compile scripts/verify_mk3_p79_leading_span.py
           python3 scripts/mk3_p77_chained_source_export.py --help > /dev/null
           python3 scripts/verify_mk3_p77_chained_source_independent.py --help > /dev/null
       - name: P78 new opt-in original MK3 chained indexed sources, source ZIP and refusal controls
@@ -253,6 +255,21 @@ jobs:
           node --check scripts/verify-mk3-p78-original.cjs
           node --check scripts/verify-p78-browser-chained.cjs
           python3 -m py_compile scripts/verify-mk3-p78-browser-independent.py
+      - name: P80 original MK3 leading indexed base and raw continuation source-only guards
+        run: |
+          node --check scripts/test-p80-leading-source.cjs
+          node scripts/test-p80-leading-source.cjs
+          node --check scripts/verify-mk3-p80-original.cjs
+          node --check scripts/verify-p80-browser-leading.cjs
+          python3 -m py_compile scripts/verify-mk3-p80-browser-independent.py
+      - name: P81 five-pass original-source and Chrome consolidation acceptance source guards
+        run: |
+          python3 -m py_compile scripts/verify-p81-checkpoint.py
+          python3 scripts/test-p81-checkpoint.py
+          if python3 scripts/verify-p81-checkpoint.py --mk1 /nonexistent/mk1 --mk2 /nonexistent/mk2 --mk3 /nonexistent/mk3 --work /tmp/mkdos-p81-false-original > /dev/null 2>&1; then
+            echo 'P81 checkpoint incorrectly accepted missing original game fixtures'
+            exit 1
+          fi
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
@@ -304,6 +321,18 @@ jobs:
           path: |
             src/core/assets/mk3ChainedSourceImagesP78.ts
             src/core/assets/mk3NonIffRowMappedP76.ts
+            src/core/assets/model.ts
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload P80 original TypeScript source units for private original-byte check
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-dos-p80-source-units
+          path: |
+            src/core/assets/mk3LeadingSpanP80.ts
+            src/core/assets/mk3NonIffRowMappedP76.ts
+            src/core/assets/mk3ChainedSourceImagesP78.ts
             src/core/assets/model.ts
           if-no-files-found: error
           retention-days: 14

@@ -6,6 +6,7 @@ import { matchesAssetSearchP55 } from '../core/assets/assetSearchP55';
 import { buildMK3FighterIndexedBundleP69 } from '../core/assets/mk3FighterIndexedBundleP69';
 import { buildMK3CueMusicBundleP70 } from '../core/assets/mk3CueAudioBundleP70';
 import { recoverMK3P76RowMappedAssets } from '../core/assets/mk3NonIffRowMappedP76';
+import { recoverMK3P80LeadingAssets, MK3_P80_BASE_GROUP, MK3_P80_RAW_GROUP } from '../core/assets/mk3LeadingSpanP80';
 import {
   recoverMK3P78AdditionalChainedAssets,
   MK3_P78_ADDITIONAL_GROUP,
@@ -106,6 +107,9 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   const [chainedBusy, setChainedBusy] = useState(false);
   const chainedRun = useRef(0);
   const chainedAbort = useRef<AbortController | null>(null);
+  const [leadingBusy, setLeadingBusy] = useState(false);
+  const leadingRun = useRef(0);
+  const leadingAbort = useRef<AbortController | null>(null);
 
   const abort = useRef<AbortController | null>(null);
   const scanRun = useRef(0);
@@ -125,6 +129,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     comparisonRun.current += 1;
     rowMapsRun.current += 1;
     chainedRun.current += 1;
+    leadingRun.current += 1;
+    leadingAbort.current?.abort();
+    leadingAbort.current = null;
+    setLeadingBusy(false);
     chainedAbort.current?.abort();
     chainedAbort.current = null;
     setChainedBusy(false);
@@ -149,7 +157,7 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
     setProgress('');
     setError('');
     setBusy(false);
-    return () => { abort.current?.abort(); chainedAbort.current?.abort(); chainedRun.current += 1; rowMapsAbort.current?.abort(); rowMapsRun.current += 1; indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
+    return () => { abort.current?.abort(); leadingAbort.current?.abort(); leadingRun.current += 1; chainedAbort.current?.abort(); chainedRun.current += 1; rowMapsAbort.current?.abort(); rowMapsRun.current += 1; indexedFtrRun.current += 1; cueAudioRun.current += 1; comparisonRun.current += 1; };
   }, [source, game]);
 
   // O194: Compilation results arrive independently of this view. Preserve local browsing state.
@@ -293,6 +301,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
   }
 
   async function scan() {
+    leadingRun.current += 1;
+    leadingAbort.current?.abort();
+    leadingAbort.current = null;
+    setLeadingBusy(false);
     chainedRun.current += 1;
     chainedAbort.current?.abort();
     chainedAbort.current = null;
@@ -405,6 +417,43 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
       if(run===chainedRun.current){
         setChainedBusy(false);
         chainedAbort.current=null;
+      }
+    }
+  }
+
+  async function revealMK3P80LeadingSource() {
+    if (game !== 'mk3' || !collection || collection.assets.length !== 9402 ||
+        !collection.reports.p78AdditionalChainedIndexedSource || busy || leadingBusy) return;
+    const run=++leadingRun.current, baseline=collection;
+    const sourceRun=scanRun.current, controller=new AbortController();
+    leadingAbort.current=controller;
+    setLeadingBusy(true);
+    setError('');
+    try {
+      const result=await recoverMK3P80LeadingAssets(source,baseline.assets,controller.signal);
+      if (controller.signal.aborted || run!==leadingRun.current ||
+          sourceRun!==scanRun.current) return;
+      setCollection(current=>{
+        if (current!==baseline) return current;
+        return {...current,
+          assets:[...current.assets,...result.assets],
+          reports:{...current.reports,p80OriginalLeadingSource:result.report},
+          limitations:[...current.limitations,
+            'P80: 320×200 original source indices shown with grayscale/opaque preview ONLY. Original alpha, native palette, stage/animation associations and all 216 continuation payload renderings are UNKNOWN. Each continuation remains a separately exportable original raw record; the original unresolved raw span remains preserved.']};
+      });
+      setSearch('');
+      setKind('image');
+      setGroup(MK3_P80_BASE_GROUP);
+      setPage(0);
+      setFocus(null);
+      setAnchor(null);
+    }catch(e){
+      if(!controller.signal.aborted && run===leadingRun.current)
+        setError(errorMessage(e));
+    }finally{
+      if(run===leadingRun.current){
+        setLeadingBusy(false);
+        leadingAbort.current=null;
       }
     }
   }
@@ -615,6 +664,25 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
         {game === 'mk3' && collection.reports.p78AdditionalChainedIndexedSource && (
           <p role="status">P78 original chained indexed images added: 197 separate source records.
             Grayscale index previews only; native palette, stage membership and animation timing remain UNKNOWN.</p>
+        )}
+        {game === 'mk3' && collection.assets.length === 9402 &&
+          collection.reports.p78AdditionalChainedIndexedSource && (
+          <section className="asset-fallback-notice" aria-label="Original MK3 leading indexed base and raw records">
+            <strong>P80 original base index and raw continuation records</strong>
+            <p>One original 320 × 200 indexed base plane can be previewed in grayscale.
+              Original alpha, native palette, stage and animation use are UNKNOWN.
+              All 216 original stored continuation records can be exported separately;
+              they are NOT decoded frames. Accepted P76/P78 assets remain unchanged.</p>
+            <button type="button" disabled={busy || leadingBusy}
+              onClick={() => void revealMK3P80LeadingSource()}>
+              {leadingBusy ? 'Checking original leading source and raw records…' :
+                'Show leading base image + 216 raw records'}
+            </button>
+          </section>
+        )}
+        {game === 'mk3' && collection.reports.p80OriginalLeadingSource && (
+          <p role="status">P80 source recovered: 1 original indexed base image and 216 raw continuation records.
+            Choose Asset type Raw and Resource group {MK3_P80_RAW_GROUP} to inspect the stored records. No decoded animation frames claimed.</p>
         )}
         <details className="asset-evidence">
           <summary>Coverage & evidence · {assets.length.toLocaleString()} assets</summary>

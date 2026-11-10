@@ -1,4 +1,4 @@
-"""Run the accepted DOS fixture verifiers on a clean develop checkout."""
+"""Run the accepted DOS fixture gates on a clean audited develop or P81 interim source checkout."""
 import argparse
 import hashlib
 import json
@@ -50,7 +50,9 @@ def run(*args):
 
 
 def audit_source():
-    require(run("git", "branch", "--show-current") == "develop", "Expected develop")
+    branch = run("git", "branch", "--show-current")
+    require(branch in ("develop", "interim/p79-original-extraction"),
+            "Expected clean develop or explicitly approved P79–P81 interim branch")
     require(not run("git", "status", "--porcelain", "--untracked-files=all"), "Dirty source checkout")
     commit = run("git", "rev-parse", "HEAD")
     tree = run("git", "rev-parse", "HEAD^{tree}")
