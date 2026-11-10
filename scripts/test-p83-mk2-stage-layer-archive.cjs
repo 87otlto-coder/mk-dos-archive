@@ -86,6 +86,12 @@ function fixture(){
  return {originals,files,entries,report,wrapper,bytes};
 }
 async function test(){
+ // Independently pinned from the canonical original DOS fixture and P82 source checker.
+ // Synthetic ZIP tests alone cannot detect a truncated SHA-256 gate in the importer.
+ for(const [name,digest] of Object.entries(MK2_P83_CANONICAL_SHA))
+   assert.match(digest,/^[a-f0-9]{64}$/,name+' requires a full SHA-256');
+ assert.equal(MK2_P83_CANONICAL_SHA['IMAGES.GRA'],
+   '2b26796a64c2aebfee75832696aeae9bbcf9df56d82cb9a39df58a557d3ad8cf');
  const f=fixture(),zip=f.bytes();
  const result=await validateMK2P83StageZip(zip,f.originals);
  assert.equal(result.assets.length,115);
