@@ -20,8 +20,8 @@ async function main(){
  assert(fs.statSync(original).isDirectory(),'original DOS MK2 directory required');
  assert(fs.statSync(archive).isFile(),'private original-source P82 ZIP required');
  const workspace=path.resolve('F:\\Dev\\MKEXT\\FIXTURES\\VALIDATION');
- // The fixture rule is path-based, and tolerates alternate original paths
- // while always refusing original-derived browser output under SOURCE.
+ assert(work.toLowerCase().startsWith(workspace.toLowerCase()+path.sep),
+  'private Chrome downloaded source evidence must remain in FIXTURES/VALIDATION');
  const root=path.resolve(__dirname,'..');
  assert(!work.toLowerCase().startsWith(root.toLowerCase()+path.sep),
   'private browser outputs cannot be written inside SOURCE');
