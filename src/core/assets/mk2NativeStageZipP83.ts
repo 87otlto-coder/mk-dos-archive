@@ -16,7 +16,7 @@ export const MK2_P83_CANONICAL_SHA:Record<string,string>={
   'MK2.EXE':'fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65',
   'TOMB.GRA':'be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613',
   'PORTAL.GRA':'cf16116e96a21fcc17dbfd841e0fb3b5b73c972b1addb5177bfc09b8d1745b82',
-  'IMAGES.GRA':'2b26796a64c2aebfee75832696aeae9bbcf9df58a557d3ad8cf',
+  'IMAGES.GRA':'2b26796a64c2aebfee75832696aeae9bbcf9df56d82cb9a39df58a557d3ad8cf',
 };
 type Stage='tomb'|'portal';
 type Json=Record<string,unknown>;
