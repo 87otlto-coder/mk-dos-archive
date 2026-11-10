@@ -238,7 +238,7 @@ export async function validateMK2P83StageZip(
       source:{path:config.gra,offset:originalOffset,length:originalLength,
         sha256:originalSignatures[config.gra]},
       width:header.width,height:header.height,
-      bytes:entryBytes,mime:'image/png',filename:row.path.split('/').at(-1)!,
+      bytes:entryBytes,mime:'image/png',filename:'MK2_P83_'+row.path.replaceAll('/','_'),
       metadata:{
         sourceFormat:'MK2_P83_QUALIFIED_O132_SOURCE_LAYER_ZIP_V1',
         archiveMember:row.path,originalP82ArchiveFileSha256:row.sha256,
