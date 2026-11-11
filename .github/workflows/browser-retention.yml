@@ -1,0 +1,52 @@
+name: Retain newest successful browser builds
+on:
+  workflow_run:
+    workflows: [MK DOS extractor source build smoke]
+    types: [completed]
+
+permissions: {}
+
+jobs:
+  verify:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      (github.event.workflow_run.event == 'workflow_dispatch' || github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      artifact_id: ${{ steps.upload.outputs.artifact_id }}
+    steps:
+      # workflow_run's github.sha is the default-branch revision.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: .github/scripts
+      - id: upload
+        run: python3 .github/scripts/browser_retention.py verify
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  prune:
+    needs: verify
+    if: needs.verify.outputs.artifact_id != ''
+    concurrency:
+      group: mk-browser-artifact-prune
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: .github/scripts
+      - run: python3 .github/scripts/browser_retention.py prune
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPLOADED_ID: ${{ needs.verify.outputs.artifact_id }}
