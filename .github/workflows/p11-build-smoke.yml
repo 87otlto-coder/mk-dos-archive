@@ -17,8 +17,19 @@ on:
       - 'tsconfig*.json'
       - '.github/workflows/p11-build-smoke.yml'
   workflow_dispatch:
+    inputs:
+      upload_browser:
+        description: Store a verified browser build for download
+        type: boolean
+        default: false
+
+# Serialize requested browser uploads across branches for the repository-wide cap.
+concurrency:
+  group: ${{ inputs.upload_browser && 'mk-browser-artifact-upload' || format('mk-smoke-{0}-{1}', github.run_id, github.run_attempt) }}
+  cancel-in-progress: false
 
 permissions:
+  actions: read
   contents: read
 
 jobs:
@@ -76,11 +87,28 @@ jobs:
             echo 'Expected source-offline onboarding did not render'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
           fi
           echo 'PASS: React application mounted, brand and source-offline onboarding visible in headless Chrome.'
+      - name: Check browser artifact capacity
+        if: success() && inputs.upload_browser
+        id: capacity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          inventory=$(gh api --paginate --slurp \
+            "repos/$GITHUB_REPOSITORY/actions/artifacts?name=mk-dos-p11-browser-build&per_page=100")
+          active=$(jq '[.[].artifacts[] | select(.expired == false)]' <<< "$inventory")
+          if jq -e --arg sha "$GITHUB_SHA" \
+            'length < 5 and all(.[]; .workflow_run.head_sha != $sha)' <<< "$active" > /dev/null; then
+            echo "upload=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Skipping browser upload. Five builds are retained or this commit already has a build." >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: Upload verified static build (no original game assets)
-        if: success()
+        if: success() && steps.capacity.outputs.upload == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: mk-dos-p11-browser-build
           path: dist/
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 3
