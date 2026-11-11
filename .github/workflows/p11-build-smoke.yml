@@ -16,6 +16,19 @@ on:
       - 'vite.config.*'
       - 'tsconfig*.json'
       - '.github/workflows/p11-build-smoke.yml'
+      - '.github/scripts/windows_ci.py'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'tools/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.*'
+      - 'tsconfig*.json'
+      - '.github/workflows/p11-build-smoke.yml'
+      - '.github/scripts/windows_ci.py'
   workflow_dispatch:
     inputs:
       upload_browser:
@@ -34,13 +47,16 @@ permissions:
 
 jobs:
   source-build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
       - name: Use npm 11 peer-dependency resolver for lockfile generation
         run: npm install --global npm@11.19.1
       - name: Strict install from committed dependency lock
@@ -48,62 +64,19 @@ jobs:
       - name: Source syntax validation
         run: npm run test:syntax
       - name: Git-safe tracked-file and P16 input-audit-script guard
-        shell: bash
-        run: |
-          set -euo pipefail
-          if git ls-files | grep -Ei '\.(exe|gra|ftr|u8|mid|wav|ogg|mp3|flac|png|gif|bmp|jpg|jpeg|webp|zip|bin|7z|rar)$' > /tmp/mk-forbidden-tracked.txt; then
-            echo 'Commercial game/media archive extension detected in Git-tracked source:'
-            cat /tmp/mk-forbidden-tracked.txt
-            exit 1
-          fi
-          test -f scripts/verify-mk2-p15-cumulative.cjs
-          test -f scripts/verify-mk2-p16-fixture-identity.py
-          python3 scripts/verify-mk2-p16-fixture-identity.py --help > /dev/null
-          echo 'PASS: no tracked original game/media extensions; P16 original-input checker is loadable.'
+        run: python .github/scripts/windows_ci.py guard
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
         run: npm run lint
       - name: Headless Chrome application boot smoke (no game data)
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run preview -- --host 127.0.0.1 --port 4173 --strictPort > /tmp/mk-preview.log 2>&1 &
-          preview_pid=$!
-          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
-          ready=0
-          for attempt in $(seq 1 30); do
-            if curl --silent --fail http://127.0.0.1:4173/ > /dev/null; then ready=1; break; fi
-            sleep 1
-          done
-          if [ "$ready" != 1 ]; then cat /tmp/mk-preview.log; exit 1; fi
-          browser=$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)
-          if [ -z "$browser" ]; then echo 'No Chrome/Chromium browser available on runner'; exit 1; fi
-          timeout 50s "$browser" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --virtual-time-budget=4000 --dump-dom http://127.0.0.1:4173/ > /tmp/mk-rendered-dom.html 2>/tmp/mk-chrome.log || { cat /tmp/mk-chrome.log; exit 1; }
-          if ! grep -Fq 'MK DOS ARCHIVE' /tmp/mk-rendered-dom.html; then
-            echo 'React root or brand text not present in rendered DOM'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
-          fi
-          if ! grep -Fq 'NO SOURCE LINKED' /tmp/mk-rendered-dom.html; then
-            echo 'Expected source-offline onboarding did not render'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
-          fi
-          echo 'PASS: React application mounted, brand and source-offline onboarding visible in headless Chrome.'
+        run: python .github/scripts/windows_ci.py browser
       - name: Check for an existing browser build of this commit
         if: success() && inputs.upload_browser
         id: duplicate
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          inventory=$(gh api --paginate --slurp \
-            "repos/$GITHUB_REPOSITORY/actions/artifacts?name=mk-dos-p11-browser-build&per_page=100")
-          active=$(jq '[.[].artifacts[] | select(.expired == false)]' <<< "$inventory")
-          if jq -e --arg sha "$GITHUB_SHA" \
-            'all(.[]; .workflow_run.head_sha != $sha)' <<< "$active" > /dev/null; then
-            echo "upload=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "Skipping browser upload. This commit already has an active build." >> "$GITHUB_STEP_SUMMARY"
-          fi
+        run: python .github/scripts/windows_ci.py duplicate
       - name: Upload verified static build (no original game assets)
         if: success() && steps.duplicate.outputs.upload == 'true'
         uses: actions/upload-artifact@v4
