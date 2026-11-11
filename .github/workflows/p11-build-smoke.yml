@@ -360,9 +360,9 @@ jobs:
             src/core/assets/model.ts
           if-no-files-found: error
           retention-days: 14
-      - name: Check browser artifact capacity
+      - name: Check for an existing browser build of this commit
         if: success() && inputs.upload_browser
-        id: capacity
+        id: duplicate
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -372,13 +372,13 @@ jobs:
             "repos/$GITHUB_REPOSITORY/actions/artifacts?name=mk-dos-p11-browser-build&per_page=100")
           active=$(jq '[.[].artifacts[] | select(.expired == false)]' <<< "$inventory")
           if jq -e --arg sha "$GITHUB_SHA" \
-            'length < 5 and all(.[]; .workflow_run.head_sha != $sha)' <<< "$active" > /dev/null; then
+            'all(.[]; .workflow_run.head_sha != $sha)' <<< "$active" > /dev/null; then
             echo "upload=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Skipping browser upload. Five builds are retained or this commit already has a build." >> "$GITHUB_STEP_SUMMARY"
+            echo "Skipping browser upload. This commit already has an active build." >> "$GITHUB_STEP_SUMMARY"
           fi
       - name: Upload verified static build (no original game assets)
-        if: success() && steps.capacity.outputs.upload == 'true'
+        if: success() && steps.duplicate.outputs.upload == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: mk-dos-p11-browser-build
