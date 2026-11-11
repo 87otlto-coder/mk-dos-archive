@@ -16,6 +16,19 @@ on:
       - 'vite.config.*'
       - 'tsconfig*.json'
       - '.github/workflows/p11-build-smoke.yml'
+      - '.github/scripts/windows_ci.py'
+  pull_request:
+    branches: ['interim/p82-mk2-native-stage-pack']
+    paths:
+      - 'src/**'
+      - 'scripts/**'
+      - 'tools/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.*'
+      - 'tsconfig*.json'
+      - '.github/workflows/p11-build-smoke.yml'
+      - '.github/scripts/windows_ci.py'
   workflow_dispatch:
     inputs:
       upload_browser:
@@ -34,13 +47,21 @@ permissions:
 
 jobs:
   source-build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     timeout-minutes: 20
+    # Git for Windows provides Bash; preserve fail-fast semantics of existing
+    # research regression command blocks while all jobs run on Windows.
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
       - name: Use npm 11 peer-dependency resolver for lockfile generation
         run: npm install --global npm@11.19.1
       - name: Strict install from committed dependency lock
@@ -114,33 +135,33 @@ jobs:
           node --check scripts/verify-mk2-p28-cumulative.cjs
           node --check scripts/verify-mk2-p27-cumulative.cjs
       - name: P31 checkpoint preflight and source-audit refusal controls (no game data)
-        run: python3 scripts/test-p31-checkpoint-controls.py
+        run: python scripts/test-p31-checkpoint-controls.py
       - name: P36 checkpoint preflight and source-audit refusal controls (no game data)
-        run: python3 scripts/test-p36-checkpoint-controls.py
+        run: python scripts/test-p36-checkpoint-controls.py
       - name: P37 source interval accounting controls (no game data)
         run: node scripts/test-p37-source-coverage.cjs
       - name: P40 PORTAL source-gap preflight and false-claim controls (no game data)
         run: node scripts/verify-mk2-p40-portal-preflight.cjs
       - name: P41 checkpoint refusal controls (no game data)
-        run: python3 scripts/test-p41-checkpoint-controls.py
+        run: python scripts/test-p41-checkpoint-controls.py
       - name: P45 acceptance runner refusal controls (no game data)
-        run: python3 scripts/test-p45-checkpoint-controls.py
+        run: python scripts/test-p45-checkpoint-controls.py
       - name: P46 checkpoint refusal controls (no game data)
-        run: python3 scripts/test-p46-checkpoint-controls.py
+        run: python scripts/test-p46-checkpoint-controls.py
       - name: P47 independent APNG verifier load (no game data)
-        run: python3 scripts/verify-mk2-p47-apng-independent.py --help
+        run: python scripts/verify-mk2-p47-apng-independent.py --help
       - name: P48 indexed export guards (dummy data only)
         run: node scripts/test-p48-indexed-export.cjs
       - name: P48 independent indexed verifier load (no game data)
-        run: python3 scripts/verify-mk2-p48-indexed-independent.py --help
+        run: python scripts/verify-mk2-p48-indexed-independent.py --help
       - name: P49 embedded palette export guards (dummy data only)
         run: node scripts/test-p49-palette-export.cjs
       - name: P49 original IFF checker load (no game data)
-        run: python3 scripts/verify-mk3-p49-palettes-independent.py --help
+        run: python scripts/verify-mk3-p49-palettes-independent.py --help
       - name: P50 cross-game runner refusal controls (no game data)
-        run: python3 scripts/test-p50-checkpoint-controls.py
+        run: python scripts/test-p50-checkpoint-controls.py
       - name: P51 checkpoint refusal controls (no game data)
-        run: python3 scripts/test-p51-checkpoint-controls.py
+        run: python scripts/test-p51-checkpoint-controls.py
       - name: P54 MK1 source-header provenance join controls (no game data)
         run: node scripts/test-p54-mk1-stage-bindings.cjs
       - name: P55 evidence-gated MK1 gallery navigation controls (no game data)
@@ -166,125 +187,114 @@ jobs:
       - name: P65 MK1 ANITAB indexed original-stream provenance and false-source controls
         run: node scripts/test-p65-mk1-anitab-streams.cjs
       - name: Git-safe tracked-file and P16 input-audit-script guard
-        shell: bash
-        run: |
-          set -euo pipefail
-          if git ls-files | grep -Ei '\.(exe|gra|ftr|u8|mid|wav|ogg|mp3|flac|png|gif|bmp|jpg|jpeg|webp|zip|bin|7z|rar)$' > /tmp/mk-forbidden-tracked.txt; then
-            echo 'Commercial game/media archive extension detected in Git-tracked source:'
-            cat /tmp/mk-forbidden-tracked.txt
-            exit 1
-          fi
-          test -f scripts/verify-mk2-p15-cumulative.cjs
-          test -f scripts/verify-mk2-p16-fixture-identity.py
-          python3 scripts/verify-mk2-p16-fixture-identity.py --help > /dev/null
-          echo 'PASS: no tracked original game/media extensions; P16 original-input checker is loadable.'
+        run: python .github/scripts/windows_ci.py guard
       - name: P66 cumulative acceptance refusals (no game data)
-        run: python3 scripts/test-p66-checkpoint.py
+        run: python scripts/test-p66-checkpoint.py
       - name: P67 downloaded selection readback controls (synthetic)
         run: |
           node --check scripts/verify-p67-browser.cjs
-          python3 scripts/test-p67-download.py
+          python scripts/test-p67-download.py
       - name: P68 transactional same-tab source replacement refusals (no game data)
         run: |
           node scripts/test-p68-directory-switch.cjs
           node --check scripts/verify-p68-browser-switch.cjs
-          python3 scripts/test-p68-switch-readback.py
+          python scripts/test-p68-switch-readback.py
       - name: P69 on-demand MK3 fighter indexed sprite bundle and source refusal controls
         run: |
           node --check scripts/test-p69-mk3-ftr-indexed.cjs
           node --check scripts/verify-mk3-p69-ftr-indexed.cjs
           node --check scripts/verify-p69-browser-ftr.cjs
-          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/check-p69-browser-ftr.py').read_text(encoding='utf-8'))"
-          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p69-ftr-independent.py').read_text(encoding='utf-8'))"
+          python -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/check-p69-browser-ftr.py').read_text(encoding='utf-8'))"
+          python -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p69-ftr-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p69-mk3-ftr-indexed.cjs
       - name: P70 MK3 original GOG CUE-linked OGG tracks and 15 source/mismatch refusals
         run: |
           node --check scripts/test-p70-mk3-cue-music.cjs
           node --check scripts/verify-mk3-p70-cue.cjs
           node --check scripts/verify-p70-browser-cue.cjs
-          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p70-cue-independent.py').read_text(encoding='utf-8'))"
+          python -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p70-cue-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p70-mk3-cue-music.cjs
       - name: P71 cumulative original fixture and browser checkpoint refusal controls (no game data)
         run: |
-          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-p71-checkpoint.py').read_text(encoding='utf-8'))"
-          python3 scripts/test-p71-checkpoint.py
+          python -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-p71-checkpoint.py').read_text(encoding='utf-8'))"
+          python scripts/test-p71-checkpoint.py
       - name: P72 original MK3 indexed-to-IFF CMAP comparison source and false ownership controls
         run: |
           node --check scripts/test-p72-mk3-cmap-comparison.cjs
           node --check scripts/verify-mk3-p72-cmap.cjs
           node --check scripts/verify-p72-browser-cmap.cjs
-          python3 -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p72-iff-cmap-independent.py').read_text(encoding='utf-8'))"
+          python -c "import ast,pathlib;ast.parse(pathlib.Path('scripts/verify-mk3-p72-iff-cmap-independent.py').read_text(encoding='utf-8'))"
           node scripts/test-p72-mk3-cmap-comparison.cjs
           node --check scripts/test-p72-browser-panel-guard.cjs
           node scripts/test-p72-browser-panel-guard.cjs
       - name: P73 source-only MK3 non-IFF palette candidate provenance controls
         run: |
-          python3 -m py_compile scripts/mk3_p73_noniff_palette_candidates.py
-          python3 scripts/test_mk3_p73_noniff_palette_candidates.py
+          python -m py_compile scripts/mk3_p73_noniff_palette_candidates.py
+          python scripts/test_mk3_p73_noniff_palette_candidates.py
       - name: P74 MK3 first-stream indexed graphics source-only RLE and PNG refusals
         run: |
-          python3 -m py_compile scripts/mk3_p74_noniff_indexed_graphics.py
-          python3 -m py_compile scripts/verify_mk3_p74_noniff_independent.py
-          python3 scripts/test_mk3_p74_noniff_indexed_graphics.py
-          python3 scripts/verify_mk3_p74_noniff_independent.py --help > /dev/null
+          python -m py_compile scripts/mk3_p74_noniff_indexed_graphics.py
+          python -m py_compile scripts/verify_mk3_p74_noniff_independent.py
+          python scripts/test_mk3_p74_noniff_indexed_graphics.py
+          python scripts/verify_mk3_p74_noniff_independent.py --help > /dev/null
       - name: P75 original MK3 source-row mapping and independent PNG source-only controls
         run: |
-          python3 -m py_compile scripts/mk3_p75_noniff_row_tables.py
-          python3 -m py_compile scripts/verify_mk3_p75_noniff_independent.py
-          python3 scripts/test_mk3_p75_noniff_row_tables.py
-          python3 scripts/verify_mk3_p75_noniff_independent.py --help > /dev/null
+          python -m py_compile scripts/mk3_p75_noniff_row_tables.py
+          python -m py_compile scripts/verify_mk3_p75_noniff_independent.py
+          python scripts/test_mk3_p75_noniff_row_tables.py
+          python scripts/verify_mk3_p75_noniff_independent.py --help > /dev/null
       - name: P76 original MK3 opt-in indexed row assets, ZIP provenance, and malformed-source refusals
         run: |
           node --check scripts/test-p76-mk3-row-assets.cjs
           node scripts/test-p76-mk3-row-assets.cjs
           node --check scripts/verify-mk3-p76-original.cjs
           node --check scripts/verify-p76-browser-row-assets.cjs
-          python3 -m py_compile scripts/verify-mk3-p76-browser-independent.py
-          python3 -m py_compile scripts/verify-p76-checkpoint.py
-          python3 scripts/test-p76-checkpoint.py
+          python -m py_compile scripts/verify-mk3-p76-browser-independent.py
+          python -m py_compile scripts/verify-p76-checkpoint.py
+          python scripts/test-p76-checkpoint.py
       - name: P76 production bundle original-source acceptance runner syntax and fail-closed source controls
         run: |
           node --check scripts/verify-mk3-p76-compiled-original.cjs
-          python3 -m py_compile scripts/verify-mk3-p76-compiled-independent.py
+          python -m py_compile scripts/verify-mk3-p76-compiled-independent.py
           if node scripts/verify-mk3-p76-compiled-original.cjs > /dev/null 2>&1; then
             echo "P76 compiled original runner incorrectly accepted missing private inputs"
             exit 1
           fi
       - name: P77 source-only chained MK3 indexed records, independent verifier and false-source controls
         run: |
-          python3 -m py_compile scripts/mk3_p77_chained_source_export.py
-          python3 -m py_compile scripts/verify_mk3_p77_chained_source_independent.py
-          python3 scripts/test_mk3_p77_chained_source_export.py
-          python3 scripts/test_mk3_p79_leading_span.py
-          python3 -m py_compile scripts/verify_mk3_p79_leading_span.py
-          python3 scripts/mk3_p77_chained_source_export.py --help > /dev/null
-          python3 scripts/verify_mk3_p77_chained_source_independent.py --help > /dev/null
+          python -m py_compile scripts/mk3_p77_chained_source_export.py
+          python -m py_compile scripts/verify_mk3_p77_chained_source_independent.py
+          python scripts/test_mk3_p77_chained_source_export.py
+          python scripts/test_mk3_p79_leading_span.py
+          python -m py_compile scripts/verify_mk3_p79_leading_span.py
+          python scripts/mk3_p77_chained_source_export.py --help > /dev/null
+          python scripts/verify_mk3_p77_chained_source_independent.py --help > /dev/null
       - name: P78 new opt-in original MK3 chained indexed sources, source ZIP and refusal controls
         run: |
           node --check scripts/test-p78-mk3-chained-indexed.cjs
           node scripts/test-p78-mk3-chained-indexed.cjs
           node --check scripts/verify-mk3-p78-original.cjs
           node --check scripts/verify-p78-browser-chained.cjs
-          python3 -m py_compile scripts/verify-mk3-p78-browser-independent.py
+          python -m py_compile scripts/verify-mk3-p78-browser-independent.py
       - name: P80 original MK3 leading indexed base and raw continuation source-only guards
         run: |
           node --check scripts/test-p80-leading-source.cjs
           node scripts/test-p80-leading-source.cjs
           node --check scripts/verify-mk3-p80-original.cjs
           node --check scripts/verify-p80-browser-leading.cjs
-          python3 -m py_compile scripts/verify-mk3-p80-browser-independent.py
+          python -m py_compile scripts/verify-mk3-p80-browser-independent.py
       - name: P81 five-pass original-source and Chrome consolidation acceptance source guards
         run: |
-          python3 -m py_compile scripts/verify-p81-checkpoint.py
-          python3 scripts/test-p81-checkpoint.py
-          if python3 scripts/verify-p81-checkpoint.py --mk1 /nonexistent/mk1 --mk2 /nonexistent/mk2 --mk3 /nonexistent/mk3 --work /tmp/mkdos-p81-false-original > /dev/null 2>&1; then
+          python -m py_compile scripts/verify-p81-checkpoint.py
+          python scripts/test-p81-checkpoint.py
+          if python scripts/verify-p81-checkpoint.py --mk1 /nonexistent/mk1 --mk2 /nonexistent/mk2 --mk3 /nonexistent/mk3 --work /tmp/mkdos-p81-false-original > /dev/null 2>&1; then
             echo 'P81 checkpoint incorrectly accepted missing original game fixtures'
             exit 1
           fi
       - name: P82 original MK2 uncropped native stage layer export source-only refusal controls
         run: |
-          python3 scripts/test-p82-mk2-native-stage-pack.py
-          python3 - <<'PY'
+          python scripts/test-p82-mk2-native-stage-pack.py
+          python - <<'PY'
           import ast
           from pathlib import Path
           for path in (
@@ -299,30 +309,9 @@ jobs:
       - name: TypeScript checks
         run: npm run lint
       - name: Headless Chrome application boot smoke (no game data)
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run preview -- --host 127.0.0.1 --port 4173 --strictPort > /tmp/mk-preview.log 2>&1 &
-          preview_pid=$!
-          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
-          ready=0
-          for attempt in $(seq 1 30); do
-            if curl --silent --fail http://127.0.0.1:4173/ > /dev/null; then ready=1; break; fi
-            sleep 1
-          done
-          if [ "$ready" != 1 ]; then cat /tmp/mk-preview.log; exit 1; fi
-          browser=$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)
-          if [ -z "$browser" ]; then echo 'No Chrome/Chromium browser available on runner'; exit 1; fi
-          timeout 50s "$browser" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --virtual-time-budget=4000 --dump-dom http://127.0.0.1:4173/ > /tmp/mk-rendered-dom.html 2>/tmp/mk-chrome.log || { cat /tmp/mk-chrome.log; exit 1; }
-          if ! grep -Fq 'MK DOS ARCHIVE' /tmp/mk-rendered-dom.html; then
-            echo 'React root or brand text not present in rendered DOM'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
-          fi
-          if ! grep -Fq 'NO SOURCE LINKED' /tmp/mk-rendered-dom.html; then
-            echo 'Expected source-offline onboarding did not render'; cat /tmp/mk-rendered-dom.html; cat /tmp/mk-chrome.log; exit 1
-          fi
-          echo 'PASS: React application mounted, brand and source-offline onboarding visible in headless Chrome.'
+        run: python .github/scripts/windows_ci.py browser
       - name: Upload P77 original-source Python verification kit (scripts only; no commercial assets)
-        if: success()
+        if: success() && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: mk-dos-p77-source-verification-kit
@@ -338,7 +327,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
       - name: Upload P78 bounded TypeScript source units for private original-asset byte acceptance
-        if: success()
+        if: success() && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: mk-dos-p78-source-units
@@ -349,7 +338,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
       - name: Upload P80 original TypeScript source units for private original-byte check
-        if: success()
+        if: success() && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: mk-dos-p80-source-units
@@ -365,18 +354,7 @@ jobs:
         id: duplicate
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          inventory=$(gh api --paginate --slurp \
-            "repos/$GITHUB_REPOSITORY/actions/artifacts?name=mk-dos-p11-browser-build&per_page=100")
-          active=$(jq '[.[].artifacts[] | select(.expired == false)]' <<< "$inventory")
-          if jq -e --arg sha "$GITHUB_SHA" \
-            'all(.[]; .workflow_run.head_sha != $sha)' <<< "$active" > /dev/null; then
-            echo "upload=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "Skipping browser upload. This commit already has an active build." >> "$GITHUB_STEP_SUMMARY"
-          fi
+        run: python .github/scripts/windows_ci.py duplicate
       - name: Upload verified static build (no original game assets)
         if: success() && steps.duplicate.outputs.upload == 'true'
         uses: actions/upload-artifact@v4
