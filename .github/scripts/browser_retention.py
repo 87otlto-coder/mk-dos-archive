@@ -4,6 +4,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 
 NAME = "mk-dos-p11-browser-build"
 WORKFLOW = ".github/workflows/p11-build-smoke.yml"
@@ -80,10 +81,33 @@ def prune(run, uploaded_id):
             raise ValueError("Deletion candidate changed since inventory")
         print("Deleting older successful browser build", current["id"], current["digest"], flush=True)
         api(f"artifacts/{current['id']}", delete=True)
-    remaining = {a["id"] for page in browser_pages() for a in page["artifacts"] if active(a)}
-    if any(a["id"] in remaining for a in ordered[3:]) or any(a["id"] not in remaining for a in ordered[:3]):
-        raise ValueError("Retained and deleted IDs did not reconcile")
-    print("Verified retained IDs and deletions against fresh inventory")
+    reconcile(ordered)
+
+
+def reconcile(ordered, *, attempts=10, pause_seconds=2):
+    """Wait for GitHub's post-delete artifact list to reflect accepted DELETEs.
+
+    Never issue a second deletion during a retry. Require the original retained
+    IDs to stay visible and every exact deleted ID to disappear. A permanently
+    inconsistent inventory must still fail the job.
+    """
+    kept = {a["id"] for a in ordered[:3]}
+    deleted = {a["id"] for a in ordered[3:]}
+    if attempts < 1:
+        raise ValueError("At least one inventory reconciliation attempt is required")
+    for attempt in range(1, attempts + 1):
+        remaining = {a["id"] for page in browser_pages() for a in page["artifacts"] if active(a)}
+        stale_deleted = deleted & remaining
+        missing_kept = kept - remaining
+        if not stale_deleted and not missing_kept:
+            print("Verified retained IDs and deletions against fresh inventory", flush=True)
+            return
+        print(f"Artifact inventory not reconciled (attempt {attempt}/{attempts}): "
+              f"deleted still listed={sorted(stale_deleted)}; "
+              f"retained missing={sorted(missing_kept)}", flush=True)
+        if attempt < attempts:
+            time.sleep(pause_seconds)
+    raise ValueError("Retained and deleted IDs did not reconcile after bounded retries")
 
 
 if __name__ == "__main__":
