@@ -17,6 +17,8 @@ on:
       - 'tsconfig*.json'
       - '.github/workflows/p11-build-smoke.yml'
       - '.github/scripts/windows_ci.py'
+      - '.github/scripts/browser_retention.py'
+      - '.github/scripts/test_browser_retention.py'
   pull_request:
     branches: [main]
     paths:
@@ -29,6 +31,8 @@ on:
       - 'tsconfig*.json'
       - '.github/workflows/p11-build-smoke.yml'
       - '.github/scripts/windows_ci.py'
+      - '.github/scripts/browser_retention.py'
+      - '.github/scripts/test_browser_retention.py'
   workflow_dispatch:
     inputs:
       upload_browser:
@@ -65,6 +69,8 @@ jobs:
         run: npm run test:syntax
       - name: Git-safe tracked-file and P16 input-audit-script guard
         run: python .github/scripts/windows_ci.py guard
+      - name: Browser retention reconciliation regression (synthetic artifact listings only)
+        run: python .github/scripts/test_browser_retention.py
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
