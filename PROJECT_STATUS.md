@@ -5,6 +5,14 @@
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
 
+## P83 ACCEPTED — original DOS MK2 real Chrome stage-source Asset Library import (2026-11-12)
+
+**ORIGINAL MK2 + ACTUAL WINDOWS CHROME: P83_BROWSER / PASS**, from the user's full PowerShell stdout on checkout `f4377c912e097ca89f559e14e55f9337b72fa4b6` (Git tree independently confirmed `8816568bfe8ba1b51b52349db3f17be7ba3fe214`). The production Vite build passed. The actual P83 runner confirmed the canonical **5,369** MK2 default resources, imported **115** original native source PNGs for an opt-in **5,484** resources, previewed both stage floors at native width **896** (Tomb 48 rows, Portal 40 rows), retained **29** source sprite streams and **eight** setup-local mosaics, independently reopened all **115** P82 source PNGs and rechecked **939,425** indexed source positions, and verified **three** downloaded Chrome PNGs byte-for-byte using its separate Python oracle. Its output explicitly rejected native palette/camera/stage compositing/animation ownership claims and excluded original commercial sources from the export. [Full P83 evidence and scope](docs/EXTRACTOR_P83_MK2_STAGE_LIBRARY_CANDIDATE.md).
+
+The earlier Portal **48 !== 40** preview failure remains documented below as historical. The source-level stale list/preview race guards and real Windows rerun resolved the observed acceptance failure, but neither individual race mechanism was separately proven to be the sole trigger. The user's private source directory, ZIP and downloaded PNGs were **not** directly read through this GitHub session; classification is VERIFIED from the user's complete original-fixture result and source runner logic. **P83 original browser acceptance closed.**
+
+**Separate next gate:** The presence of the verified P82/P83 private ZIP does not by itself prove the new P84 `scripts/mkext.py` entry-point completed `scan`, `extract`, and `verify` on the original installation. Those specific original Windows CLI results have not been supplied and remain **VALIDATION PENDING**. Keep `main`/`develop` stable and avoid new decoder claims until they are established.
+
 ## P83 original Chrome Portal preview regression — 2026-11-12
 
 **ACTUAL PRIVATE ORIGINAL MK2 CHROME ATTEMPT: FAILED, NOT ACCEPTED.** The user completed a Vite production build and ran `scripts/verify-p83-browser-stage-layers.cjs` against original MK2 and a private stage-layer ZIP. The runner reached the Portal preview and returned `AssertionError: The Portal native floor native rows changed; 48 !== 40`. Earlier 5,369→5,484 import assertions had passed, but the runner did not reach its three source-PNG downloads or independent original file/ZIP pixel oracle. No P83 original Chrome PASS or altered Portal source bytes are established.
