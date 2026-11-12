@@ -323,6 +323,11 @@ jobs:
         run: |
           python scripts/test-p84-mkext-cli.py
           python scripts/mkext.py --help
+      - name: P85 MK3 leading indexed-source headless CLI original-free controls
+        run: |
+          python scripts/test_mk3_p79_leading_span.py
+          python scripts/test-p85-mk3-cli.py
+          python scripts/mkext.py --help
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
