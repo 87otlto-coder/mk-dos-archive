@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-12  
 **Branch:** `interim/p84-headless-mk2-stage-cli` (from P83).  
-**Classification:** Source-only implementation and synthetic tests are candidate until hosted Windows CI returns; P84 original MK2 CLI acceptance is **VALIDATION PENDING**. P83 original MK2 real-Chrome import remains separately **VALIDATION PENDING**.
+**Classification:** Source-only Windows CI **VERIFIED**, [Actions run #43294475172](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43294475172) **SUCCESS** on exact executable source/test/workflow commit `a7a5084407c31b5264b0e5cfdbdde3bbde60c5a1`; P84 original MK2 CLI acceptance is **VALIDATION PENDING**. P83 original MK2 real-Chrome import remains separately **VALIDATION PENDING**.
 
 ## Why P84 exists
 
@@ -50,7 +50,7 @@ if ($LASTEXITCODE -ne 0) { throw "P84 independent ZIP replay failed" }
 ## Research confidence
 
 - **VERIFIED inherited original P82:** user-reported independent original-source archive check, pixel parity across both native floors, sprite streams and setup-local mosaics; precise source/pack identities limited to evidence actually supplied.
-- **VERIFIED only after hosted CI:** P84 source syntax, synthetic refusal and CLI-contract tests, production build and existing regressions.
+- **VERIFIED source-only in hosted Windows CI:** P84 CLI syntax, synthetic refusal and CLI-contract tests, production build, inherited P81/P82/P83 regression and offline Chrome boot all passed on the exact P84 executable source SHA; no copyrighted original fixtures were present.
 - **VALIDATION PENDING:** P84 actual Windows original-source scan/extract/verify on the new CLI and P83 real Windows Chrome import. Do not conflate them.
 - **UNKNOWN:** original live stage palette ownership, final compositing, animated frame ordering, timing, camera and parallax.
 
