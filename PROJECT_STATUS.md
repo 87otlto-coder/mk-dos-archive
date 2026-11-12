@@ -1,9 +1,17 @@
 # MK DOS Extractor — project status
 
-**Last status reconciliation:** 2026-11-10
+**Last status reconciliation:** 2026-11-12
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+
+## P84 headless MK2 CLI — Windows source-only CI PASS; ORIGINAL acceptance PENDING (2026-11-12)
+
+**THIRD INTERIM PASS P82–P86; NOT PROMOTED.** [P84 PR #25](https://github.com/87otlto-coder/mk-dos-archive/pull/25) on `interim/p84-headless-mk2-stage-cli` implements `scripts/mkext.py`, a standalone **headless Python 3.11+ CLI** with `scan`, `extract`, and `verify` for the *canonical original MK2 Tomb/Portal source-layer subset only*. It reuses the independently qualified original P82/O132 producer and P82 original EXE/GRA/PNG verifier; the CLI does not contain a new native sprite codec, scan all 5,369 MK2 browser assets, support MK1/MK3 yet, or reconstruct final stage compositions/animation timing. `extract` refuses any claim of PASS unless the P82 producer and independent original source oracle both pass; a new private ZIP is never overwritten or placed under SOURCE or the original game directory.
+
+**SOURCE-ONLY CI VERIFIED:** [Hosted Windows Actions #43294475172](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43294475172) **SUCCESS** for exact executable source/test/workflow commit `a7a5084407c31b5264b0e5cfdbdde3bbde60c5a1`. P84 synthetic refusals, original-file-hash safety controls, inherited P81/P82/P83 research regression, Vite build, TypeScript checks and offline Chrome boot passed. **No commercial game file was supplied to hosted CI**. [P84 detailed handoff](docs/EXTRACTOR_P84_HEADLESS_MK2_CLI_CANDIDATE.md) records private Windows PowerShell `scan → extract → verify` acceptance commands.
+
+**ORIGINAL WINDOWS STILL PENDING:** The P84 CLI must be run on the user's original private MK2 installation and its new ZIP independently checked. Earlier P82 original archive evidence does not substitute for exercising P84. P83's original Windows Chrome 5,369→5,484 stage archive import and three byte-identical PNG downloads are separately **PENDING**. Leave `main` and `develop` source baselines unchanged; no unverified frame order, native palette ownership, camera, stage world placement or parallax claims. Private game installations and exported ZIPs remain under `F:\Dev\MKEXT\FIXTURES`, not GitHub.
 
 ## P83 original-fixture fingerprint blocker fixed — 2026-11-10
 
