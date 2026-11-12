@@ -1,5 +1,18 @@
 # P83 — MK2 native-width Tomb and Portal layers in Asset Library
 
+## P83 original DOS MK2 and real Windows Chrome ACCEPTED — 2026-11-12
+
+**ACCEPTED from the user's full original Windows PowerShell output: `P83_BROWSER` / `status: PASS`.** The user fast-forwarded local `interim/p84-headless-mk2-stage-cli` from `2d4a553` to tested Git commit `f4377c912e097ca89f559e14e55f9337b72fa4b6` (independently checked Git tree `8816568bfe8ba1b51b52349db3f17be7ba3fe214`), built the Vite application, and ran `node scripts/verify-p83-browser-stage-layers.cjs "$mk2" "$archive" "$work"` using the original private MK2 installation and existing P84-generated private ZIP. The script returned successfully and the following full acceptance JSON values were supplied directly by the user:
+
+- `acceptedDefaultMk2Assets: 5369`, `explicitAdditionalStageSourcePngs: 115`, `visibleAfterExplicitImport: 5484`
+- `originalNativeFloorColumns: 896`, stages `["tomb","portal"]`, original native sprite representations `29`, setup-local source layers `8`
+- `originalP82SourcePngsIndependentlyRechecked: 115`; `sourceIndexedPositionsIndependent: 939425`; `originalChromePngDownloadsByteExact: 3`
+- `sourceStageImageFilesRemainByteExact: true`; `originalNativePaletteCameraStageCompositionOrAnimationClaimed: false`; `originalCommercialGameSourcesIncludedInExport: false`
+
+The committed runner requires two strict native floor previews (Tomb 896×48, Portal 896×40), the original MK2 5,369-resource baseline, 115-source-image import, 29 native sprite streams and eight setup-local groups, plus a separate Python independent source/pixel oracle and byte-identical replay of three real Chrome PNG downloads before printing `P83_BROWSER PASS`. **These checks are VERIFIED as executed by the user-supplied final script result**, not by a direct read of the private original files or PNGs in the user's `FIXTURES` directory. The reproduced 48-vs-40 Portal failure described below is historical and was resolved by the targeted preview/selection fix; its exact race cause remains INFERRED rather than independently isolated.
+
+**P83 acceptance is now COMPLETE.** Do not conflate this with `P84_CLI_SCAN`, `P84_CLI_EXTRACT`, or `P84_CLI_VERIFY` acceptance: those distinct CLI statuses were not included in this reported run. P84 original Windows CLI acceptance remains **VALIDATION PENDING**, even though P83 independently verified the same private ZIP's P82 source bytes and all 115 PNGs. Do not upload the ZIP, extracted assets, source commercial files or private downloaded PNGs to GitHub.
+
 ## P83 original Windows Chrome attempt — source-stage preview race, 2026-11-12
 
 **ACTUAL ORIGINAL-CHROME ACCEPTANCE ATTEMPTED; FAIL AT PORTAL PREVIEW (NOT PASS).** User ran `node scripts/verify-p83-browser-stage-layers.cjs "$mk2" "$archive" "$work"` against the private original MK2 installation and ZIP after `npm run build` passed. The browser runner reached the native Portal floor preview check, then failed with `AssertionError: The Portal native floor native rows changed; 48 !== 40`. The test did **not** reach the independent three-PNG download/source oracle; no P83 browser PASS or source export corruption is established by this error.
