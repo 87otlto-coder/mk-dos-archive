@@ -70,13 +70,24 @@ async function main(){
     const group=page.getByLabel('Resource group');
     const results=page.getByRole('listbox',{name:'Assets'}).getByRole('option');
     const inspector=page.locator('.asset-inspector');
+    async function selectResourceGroup(target) {
+      await group.selectOption(target);
+      // count() is not an auto-wait: Tomb and Portal both have two floors.
+      // Wait for a row from the new group, not just the number of old rows.
+      await results.first().getByText(target,{exact:true}).waitFor({timeout:30000});
+    }
     const downloads=[];
     for(const [stage,name,height] of [
       ['Kombat Tomb','tomb',48],['The Portal','portal',40]]){
-      await group.selectOption('P83 '+stage+' · native-width floor');
+      await selectResourceGroup('P83 '+stage+' · native-width floor');
       assert.equal(await results.count(),2,'both original full-source floor images required');
       const floor=results.filter({hasText:'floor_indices.png'}).first();
       await floor.click();
+      // Both stages use floor_indices.png; verify the selected source
+      // actually changed before inspecting the image or downloading bytes.
+      await inspector.locator('p').filter({
+        hasText:name==='tomb'?'TOMB.GRA':'PORTAL.GRA'
+      }).waitFor({timeout:30000});
       const preview=inspector.locator('img').first();
       await preview.waitFor({timeout:30000});
       await preview.evaluate(img=>img.decode());
@@ -86,7 +97,7 @@ async function main(){
         stage+' native floor native rows changed');
       downloads.push(await downloadAsset('MK2_P83_'+name+'_floor_indices.png'));
     }
-    await group.selectOption('P83 Kombat Tomb · uncropped source sprites');
+    await selectResourceGroup('P83 Kombat Tomb · uncropped source sprites');
     assert.equal(await results.count(),48,'16 original native sprites require three PNG planes each');
     const opacity=results.filter({hasText:'_opacity.png'}).first();
     await opacity.click();
@@ -97,11 +108,11 @@ async function main(){
     assert.match(opaqueName,/_opacity\.png$/);
     const opacityDownload=await downloadAsset('MK2_P83_tomb_native_sprites_'+opaqueName);
     downloads.push(opacityDownload);
-    await group.selectOption('P83 The Portal · uncropped source sprites');
+    await selectResourceGroup('P83 The Portal · uncropped source sprites');
     assert.equal(await results.count(),39,'13 original Portal sprites require three PNG planes each');
-    await group.selectOption('P83 Kombat Tomb · setup-local layers');
+    await selectResourceGroup('P83 Kombat Tomb · setup-local layers');
     assert.equal(await results.count(),18,'6 Tomb setup-local source layers require three PNG planes each');
-    await group.selectOption('P83 The Portal · setup-local layers');
+    await selectResourceGroup('P83 The Portal · setup-local layers');
     assert.equal(await results.count(),6,'2 Portal setup-local source layers require three PNG planes each');
     assert.deepEqual(errors,[],'original MK2 real Chrome application errors');
     const pyArgs=[
