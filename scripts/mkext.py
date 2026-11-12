@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""P84 experimental headless Windows entry point for source-qualified MK2 stages.
+"""P84/P85 headless Windows entry point for independently qualified sources.
 
-This is intentionally a thin CLI over the existing P82 exporter and its
-independent original-byte verifier. It does not implement a new sprite decoder,
-browser catalogue, native scene compositor, animation timeline or palette owner.
-Only the canonical original MK2 installation supported by P82 is accepted.
+Original MK2 Tomb/Portal stage layers reuse P82; original MK3 leading indexed
+source + raw continuation records reuse P79. The CLI does not implement new
+sprite codecs, native palette ownership, scene assembly, or animation timing.
 
 Private commercial inputs and exported media must remain outside the Git repo.
 """
@@ -54,8 +53,13 @@ def run_command(
     verifier: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Execute a command. Optional injected backends are for synthetic tests."""
+    if args.game == "mk3":
+        # Branch before importing the MK2 producer. Preserve the independently
+        # original-accepted P84 MK2 path exactly as it was tested.
+        from mk3_p85_cli import run_mk3
+        return run_mk3(args)
     if args.game != "mk2":
-        raise ValueError("P84 supports canonical original DOS MK2 stage sources only")
+        raise ValueError("Only original DOS MK2 and MK3 source subsets are supported")
     producer = producer if producer is not None else exporter()
     folder = Path(args.source)
 
@@ -133,24 +137,24 @@ def run_command(
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        description="Headless original-DOS MK2 source-layer extraction (P84)",
+        description="Headless original DOS MK2 stage sources / MK3 leading indexed sources (P85)",
         allow_abbrev=False,
     )
     sub = p.add_subparsers(dest="action", required=True)
     for name in ("scan", "extract", "verify"):
         cmd = sub.add_parser(name, allow_abbrev=False)
-        cmd.add_argument("--game", choices=("mk2",), required=True,
-                         help="Only original DOS MK2 stage-source export is supported in P84")
+        cmd.add_argument("--game", choices=("mk2", "mk3"), required=True,
+                         help="MK2 Tomb/Portal layers or MK3 P79 leading source records")
         cmd.add_argument("--source", type=Path, required=True,
-                         help="Original DOS MK2 installation folder, outside the repository")
+                         help="Original game installation, MK3 DATA.MK3, or private MK3 ZIP outside SOURCE")
         if name == "extract":
             cmd.add_argument("--out", type=Path, required=True,
                              help="New, never-existing ZIP path outside SOURCE and original game folder")
             cmd.add_argument("--stage", choices=("both", "tomb", "portal"),
-                             default="both")
+                             default="both", help="MK2 only; MK3 uses its qualified P79 leading source")
         if name == "verify":
             cmd.add_argument("--archive", type=Path, required=True,
-                             help="Existing private P82-compatible source-layer ZIP")
+                             help="Existing private P82 MK2 or P79 MK3 original-source ZIP")
     return p
 
 
@@ -161,7 +165,7 @@ def main() -> int:
     except (ValueError, OSError, ImportError) as exc:
         # Fail visibly, do not mislabel a partial ZIP or unsupported original
         # fixture as a successful export. Preserve unmodified private outputs.
-        print("P84_CLI ERROR: " + str(exc), file=sys.stderr)
+        print("MKEXT_CLI ERROR: " + str(exc), file=sys.stderr)
         return 2
     print(json.dumps(result, sort_keys=True, indent=2))
     return 0
