@@ -315,6 +315,10 @@ jobs:
           ast.parse(Path('scripts/verify-mk2-p83-browser-independent.py').read_text(encoding='utf-8'))
           print('P83 real-browser independent Python source syntax PASS')
           PY
+      - name: P84 headless MK2 CLI synthetic source/refusal and independent-oracle controls (no game data)
+        run: |
+          python scripts/test-p84-mkext-cli.py
+          python scripts/mkext.py --help
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
