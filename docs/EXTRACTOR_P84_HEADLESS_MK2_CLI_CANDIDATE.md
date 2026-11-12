@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-12  
 **Branch:** `interim/p84-headless-mk2-stage-cli` (from P83).  
-**Classification:** Source-only Windows CI **VERIFIED**, [Actions run #43294475172](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43294475172) **SUCCESS** on exact executable source/test/workflow commit `a7a5084407c31b5264b0e5cfdbdde3bbde60c5a1`; P84 original MK2 CLI acceptance is **VALIDATION PENDING**. P83 original MK2 real-Chrome import remains separately **VALIDATION PENDING**.
+**Classification:** Source-only Windows CI **VERIFIED**, [Actions run #43294475172](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43294475172) **SUCCESS** on exact executable source/test/workflow commit `a7a5084407c31b5264b0e5cfdbdde3bbde60c5a1`; P84 original MK2 CLI acceptance is **VALIDATION PENDING**. P83 original MK2 real-Chrome import is **ACCEPTED** from the user's full original Windows result on commit `f4377c912e097ca89f559e14e55f9337b72fa4b6` (5,369 → 5,484 assets; 115 source PNGs rechecked; 939,425 original indices; three byte-exact Chrome PNG downloads).
 
 ## Why P84 exists
 
@@ -45,7 +45,7 @@ if ($LASTEXITCODE -ne 0) { throw "P84 independent ZIP replay failed" }
 
 **Required original acceptance:** same original MK2 source identities, `P84_CLI_SCAN PASS`, `P84_CLI_EXTRACT PASS` backed by `P82_EXPORT PASS` and `P82_INDEPENDENT PASS`, `P84_CLI_VERIFY PASS`, exactly **two full-width floor planes**, **29** native uncropped sprite streams, **eight** setup-local mosaic groups, **115** original-index/opacity/qualified-preview PNGs (**117** ZIP members), **939,425** independently checked original index positions; original EXE/GRA files excluded. Preserve exact terminal JSON and tested source commit/tree if claiming same-tree original acceptance. Do not upload the generated ZIP, PNGs, original files or local screenshot captures to GitHub.
 
-**P83 separate browser gate:** `scripts/verify-p83-browser-stage-layers.cjs` against a private source-qualified P82 ZIP is still required for the P83 5,369→5,484 Asset Library and three Chrome PNG download checks. P84 headless CLI does not satisfy that gate.
+**P83 separate browser gate ACCEPTED (2026-11-12):** User's complete original DOS MK2 Windows output confirmed `P83_BROWSER / PASS`, original 5,369 → 5,484 optional Asset Library representations, 115 original P82 source PNGs independently rechecked, 939,425 original source index positions and three Chrome-download PNGs byte exact on the tested P83 fix. This proves the browser importer and original P82 ZIP/source verifier, **not** the independent `P84_CLI_SCAN`, `P84_CLI_EXTRACT` or `P84_CLI_VERIFY` command runs. The separate P84 original Windows CLI acceptance remains pending until those actual command outputs are observed.
 
 ## Research confidence
 
