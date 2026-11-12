@@ -824,7 +824,10 @@ export function AssetBrowser({ source, game, initialSearch = '', navigationRevis
             <h3>Inspect</h3>
             {focus && <button type="button" onClick={() => { setFocus(null); setAnchor(null); }}>← All assets (keep filters)</button>}
             {focus ? <>
-              <Picture asset={focus} />
+              {/* Force a fresh PNG object URL when inspecting a different source asset.
+                  Otherwise Picture can briefly display its prior focus URL (e.g. Tomb
+                  896×48 while the Portal 896×40 source image is loading). */}
+              <Picture key={focus.id} asset={focus} />
               <strong>{focus.name}</strong>
               <p>{focus.confidence}</p>
               <p>{focus.source.path} · offset {focus.source.offset}</p>
