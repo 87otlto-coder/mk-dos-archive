@@ -1,9 +1,20 @@
 # MK DOS Extractor — project status
 
-**Last status reconciliation:** 2026-11-12
+**Last status reconciliation:** 2026-11-13
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
+
+## P85 ACCEPTED — original DOS MK3 headless indexed-base/raw record CLI (2026-11-13)
+
+**FOURTH INTERIM PASS IN P82–P86 CYCLE — ORIGINAL WINDOWS ACCEPTANCE COMPLETE.** The user's four private original-fixture acceptance files, `source_identity.txt`, `scan.json`, `extract.json` and `verify.json`, show `P85_CLI_MK3_SCAN / PASS`, `P85_CLI_MK3_EXTRACT / PASS` and `P85_CLI_MK3_VERIFY / PASS`. The user tested precise Git commit `146c16817849aefea133afe7ef4a2b9e9e714f71` / tree `40f98e35b6f07633f2141d8ce9d35f91e6c48083`. GitHub API independently confirmed this commit/tree relationship, and the tested `mkext.py`, `mk3_p85_cli.py`, original P79 producer, independent P79 verifier, source-only tests and Windows CI workflow matched the pre-documentation candidate Git blobs. [Detailed P85 original acceptance and private repetition instructions](docs/EXTRACTOR_P85_HEADLESS_MK3_LEADING_INDEX_CANDIDATE.md).
+
+- **Original scan VERIFIED:** `DATA.MK3` SHA-256 `72905bc96b752bceb0055296e26b904402909f73a1401541c0dd175135a55517`; canonical leading-index source, **320×200** index base, 64,000 original index positions, **216** preserved raw continuation records, 220 source parts, two expressly nonnative preview PNGs and a 223-member private source ZIP.
+- **Original extract VERIFIED:** headless CLI exporter PASS **and** nested independent `P79_ORIGINAL / PASS`; the original **1,840,634-byte** source interval, 220 source parts, all 216 original raw record headers/payloads, 64,000 index positions and **128,000** preview PNG pixel positions were independently checked; 223 ZIP members, including the two previews. The 216 raw records contain 1,772,828 payload bytes + 3,024 header bytes = 1,775,852 source bytes.
+- **Original verify VERIFIED:** separate CLI `verify` command ran independent `P79_ORIGINAL / PASS` again over the private ZIP and original source and returned identical totals. Both commands report `continuationFramesDecoded:0`, `nativePaletteOrOpacityVerified:false`, and `nativeStageMembershipOrAnimationTimingClaimed:false`. This is *not* general 9,186-item MK3 CLI extraction, animation decoding, or MK1 CLI support.
+- **Hosted Windows CI VERIFIED:** [PR #26 source-only run #43311764581](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43311764581) SUCCESS on the exact original-tested commit. No commercial original files in CI. Private extracted media stays under `F:\Dev\MKEXT\FIXTURES\VALIDATION`, excluded from GitHub.
+
+**Confidence boundary:** These original-source results were read from the user's complete JSON reports; the assistant has *not* independently opened the commercial `DATA.MK3` or its resulting original-derived ZIP. Source/tree and committed verifier logic were independently inspected through GitHub. Keep this distinction, the historical P79/P81 evidence and preserved research workbench. **P85 accepted for its documented scope. P86 fifth-pass consolidation is next**, with full Windows regression and a deliberate source checkpoint rather than premature release.
 
 ## P84 ACCEPTED — headless original DOS MK2 CLI scan/extract/independent verify (2026-11-12)
 
