@@ -189,6 +189,12 @@ def check_p85_result(data: dict, action: str) -> None:
 
 def checkpoint(args: argparse.Namespace) -> dict:
     require(sys.platform == "win32", "original checkpoint must run on Windows")
+    branch_result = subprocess.run(
+        ["git", "branch", "--show-current"], cwd=ROOT,
+        capture_output=True, text=True, check=True,
+    )
+    require(branch_result.stdout.strip() == "interim/p86-consolidation",
+            "P86 must run from its explicitly approved consolidation branch")
     require(__debug__ and not os.environ.get("PYTHONOPTIMIZE"),
             "optimized Python cannot run an original checkpoint")
     work = Path(args.work).resolve()
