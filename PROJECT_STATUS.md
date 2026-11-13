@@ -5,6 +5,10 @@
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
 
+## P86 branch-guard fix — source-only Windows CI PASS, original rerun pending (2026-11-13)
+
+**[Windows Actions #43498047520](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43498047520) SUCCESS** on P61 exact approved-branch fix plus source-only tests, commit `a44e2dfc1fdb788cc017fd3f55d3a1e1248fb1b6`. Historical P83–P85 source guards, P86 controls, Vite/TypeScript and Chrome boot smoke also passed. No original DOS media or original derived graphics were used by hosted CI. Subsequent commits to the P86 candidate are documentation-only; P61 and extractor source remain unchanged. **Original P86 full four-group original-Windows/real-Chrome acceptance remains VALIDATION PENDING.** Preserve first failure at `P86-ae85b2e9c2ff48c9a53ee4420b82f642`; next run must use a fresh private output directory and exact commit/tree. Do not merge P86 on source CI alone.
+
 ## P86 original Windows first attempt — verified P61 branch-guard refusal, narrow fix committed (2026-11-13)
 
 The user's first fresh P86 `verify-p86-checkpoint.py` original-DOS/Chrome run on commit `b76b383ed21c31b7e593bfba1ab4ccf3ee46c955` / tree `ca5eae3e7d4dd1fb94f5670d3a33e09f30f8c83a` **FAILED** in its first nested group; no `summary.json` was produced, and no P86 original acceptance is claimed. Original private evidence remains at `F:\Dev\MKEXT\FIXTURES\VALIDATION\P86-ae85b2e9c2ff48c9a53ee4420b82f642`. Successively inspected `P81`, `P76`, `P71` and `P66` error logs establish that inherited `P61` rejected the exact `interim/p86-consolidation` Git branch at `scripts/verify-p61-checkpoint.cjs:58`. **VERIFIED root cause of this attempt: missing P86 branch in P61's separate hard-coded allowlist**, not demonstrated corruption of original game files. Nonfatal Python `SyntaxWarning` from the P86 docstring is separate.
