@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import inspect
 from pathlib import Path
 import runpy
 import unittest
@@ -108,6 +109,13 @@ def mk3_result(action):
 
 
 class P86SyntheticCheckpoint(unittest.TestCase):
+    def test_p86_requires_exact_approved_branch_before_loading_original_files(self):
+        implementation = inspect.getsource(P["checkpoint"])
+        branch_guard = implementation.index('"interim/p86-consolidation"')
+        source_read = implementation.index('Path(args.work)')
+        self.assertLess(branch_guard, source_read)
+        self.assertIn("P86 must run from its explicitly approved consolidation branch", implementation)
+
     def test_four_required_groups_without_invented_native_claims(self):
         self.assertEqual(P["STEPS"], (
             "p81_original_three_game_and_chrome",
