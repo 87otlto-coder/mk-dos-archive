@@ -29,7 +29,7 @@ class SourceAuditBranchTests(unittest.TestCase):
         original = (ROOT / "scripts" / "verify-p61-checkpoint.cjs").read_text(
             encoding="utf-8")
         match = re.search(
-            r"assert\\(new Set\\(\\[([^\\]]+)\\]\\)\\.has\\(branch\\),",
+            r"assert\(new Set\(\[([^\]]+)\]\)\.has\(branch\),",
             original,
         )
         self.assertIsNotNone(match, "P61 must fail closed on its Git branch")
