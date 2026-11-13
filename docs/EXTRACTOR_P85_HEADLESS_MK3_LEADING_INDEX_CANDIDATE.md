@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-12  
 **Interim pass:** fourth pass in P82–P86 cycle. **Branch:** `interim/p85-headless-mk3-leading-index`, from accepted P84 merge `0ad3eff58fc0c8be1d44db4993efc87b61d4a886`.  
-**Classification:** implementation candidate; P85 hosted Windows source-only and actual original-MK3 CLI outcomes remain **VALIDATION PENDING** until checked.
+**Classification:** P85 limited original DOS MK3 CLI source extraction **ACCEPTED** on the user's original Windows installation, with exact source/tree and independent original-byte/PNG oracle verification. Hosted Windows source-only regression also **PASS**. No MK1 implementation or unverified native animation/palette claims.
 
 ## Objective / no new reverse engineering
 
@@ -21,7 +21,20 @@ Expand `scripts/mkext.py` beyond the accepted original MK2 Tomb/Portal subset by
 
 P79's existing original export uses a same-filesystem exclusive hard link from a privately built ZIP and refuses existing destinations. The CLI requires a NEW `.zip` path, existing private parent directory and a source path outside GitHub's SOURCE checkout. The separate verifier is mandatory before emitting an extract PASS; a diagnostic archive remains private if verification fails. The source ZIP intentionally contains original-derived raw bytes and **must remain in FIXTURES, never GitHub**.
 
-## Windows original-fixture acceptance — not yet run as P85
+## P85 original DOS MK3 acceptance — PASS, 2026-11-13
+
+**OBSERVE:** The user supplied four private Windows-run acceptance reports: `source_identity.txt`, `scan.json`, `extract.json`, and `verify.json`. All files were successfully parsed; JSON results are positive. The original locally tested source commit was `146c16817849aefea133afe7ef4a2b9e9e714f71`, Git tree `40f98e35b6f07633f2141d8ce9d35f91e6c48083`. GitHub Git API independently confirmed the exact commit/tree pair, and the P85 CLI entry point, MK3 adapter, P79 source exporter, independent P79 verifier, original-free regression suites and Windows workflow are **identical Git blobs** at the tested commit and prior-to-documentation P85 candidate HEAD.
+
+**TESTS:**
+- `P85_CLI_MK3_SCAN / PASS`: canonical `DATA.MK3` SHA256 `72905bc96b752bceb0055296e26b904402909f73a1401541c0dd175135a55517`; source `CANONICAL_P79_DATA_MK3`. The leading source consists of a 320×200 indexed base, **64,000 original index positions**, **216 raw continuation records**, 220 source parts, two preview PNGs, and 223 ZIP members if extracted. `fullGameAssetCatalogScanned: false`, `nativePaletteOrOpacityVerified: false`, `continuationFramesDecoded: 0`, and no original stage/animation-timing ownership assertion.
+- `P85_CLI_MK3_EXTRACT / PASS`: created a new private ZIP in `F:\Dev\MKEXT\FIXTURES\VALIDATION\P85-b7319b5c841740269fb4854e4d014be9`. Nested **independent `P79_ORIGINAL / PASS`** checked the 1,840,634-byte leading interval, 64,000 original index positions, **128,000** total RGBA PNG preview positions, all 216 raw continuation records, **220** source parts and **223** ZIP members. Raw record payload bytes total **1,772,828**, plus 216 × 14-byte headers = **1,775,852** original stored header-and-payload bytes; six header-only records remain raw. No native opacity, palette, stage or animation claim.
+- `P85_CLI_MK3_VERIFY / PASS`: a separate CLI invocation repeated the independent `P79_ORIGINAL / PASS` against the same private ZIP with all counts unchanged, without the browser. This is independent source/preview verification on the CLI path—not just a preexisting P79 acceptance result.
+
+**RECORD / CONFIDENCE:** P85's *implemented narrow MK3 original indexed-base plus raw source-record commands* are **VERIFIED** from complete user-supplied original-Windows execution results, independent verifier assertions, independently matched source identity, and source-only hosted Windows CI [#43311764581](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43311764581). The assistant did **not** directly read the user's commercial game or private ZIP, so direct file-content inspection beyond the reports is not claimed. All copyrighted raw exports stay under FIXTURES and are **never added to GitHub**.
+
+**LIMITS:** This does not mean 216 decoded animation frames, native palette ownership, native opacity, timing, stage membership, complete MK3 9,186-asset catalog extraction or any MK1 CLI support. P85 is the fourth interim pass; retain a recoverable Git commit/PR and defer full source packaging and broader consolidated original-fixture regression to P86.
+
+## Windows original-fixture acceptance — ACCEPTED; command retained for reproduction
 
 Follow the required Windows layout. Use original MK3 installation `F:\Dev\MKEXT\FIXTURES\mk3\mk3` if present, otherwise the correct existing private MK3 source folder under FIXTURES (do not invent an installation). No game assets are uploaded.
 
@@ -55,7 +68,7 @@ if ($LASTEXITCODE -ne 0) { throw "P85 MK3 independent replay failed" }
 ## Confidence and next step
 
 - **VERIFIED inherited P79:** original Windows P79 producer and independent complete original source/Png readback (see `docs/EXTRACTOR_P79_MK3_LEADING_SPAN.md` and P81 checkpoint).
-- **P85 source-only:** pending hosted Windows CI against the committed P85 code; CI cannot prove original DOS acceptance.
-- **P85 original Windows:** **VALIDATION PENDING**; do not infer its success from P79's prior direct tool result.
+- **P85 source-only VERIFIED:** Hosted [Windows Actions #43311764581](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43311764581) completed SUCCESS on exact tested commit `146c16817849aefea133afe7ef4a2b9e9e714f71` (no commercial game inputs). Source-only tests, inherited P84/P83 regression, production build, TypeScript and offline Chrome passed.
+- **P85 original Windows VERIFIED from user-supplied private acceptance files:** P85 CLI scan, extract, verify all independently returned PASS against the GitHub-matched original commit/tree, and the nested original-byte/PNG oracle passed twice. The assistant reviewed the four result files, but did not directly open the commercial original DATA.MK3 or private exported ZIP. Evidence records are local/private.
 - **P84:** accepted original DOS MK2 CLI and P83 browser, unchanged.
 - **P86:** fifth-pass consolidation should run accepted original MK1/MK2/MK3 regression suites, preserve recoverable source checkpoints and review a small stand-alone CLI distribution. No speculative renderer or unrelated UI redesign.
