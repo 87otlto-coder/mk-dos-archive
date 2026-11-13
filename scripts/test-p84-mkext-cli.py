@@ -66,7 +66,7 @@ class P84CliSourceOnly(unittest.TestCase):
         self.assertIn("extract", help_result.stdout)
         self.assertIn("verify", help_result.stdout)
         unsupported = subprocess.run(
-            base + ["scan", "--game", "mk1", "--source", "nonexistent"],
+            base + ["scan", "--game", "mk4", "--source", "nonexistent"],
             capture_output=True, text=True)
         self.assertNotEqual(unsupported.returncode, 0)
         self.assertIn("invalid choice", unsupported.stderr)
