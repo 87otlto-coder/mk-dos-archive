@@ -328,6 +328,11 @@ jobs:
           python scripts/test_mk3_p79_leading_span.py
           python scripts/test-p85-mk3-cli.py
           python scripts/mkext.py --help
+      - name: P86 consolidation branch audit and original-free fail-closed checkpoints (Windows)
+        run: |
+          python scripts/test-p86-source-audit-allowlist.py
+          python scripts/test-p86-checkpoint.py
+          python scripts/verify-p86-checkpoint.py --help
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks

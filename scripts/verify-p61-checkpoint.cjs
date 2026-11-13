@@ -55,8 +55,10 @@ function git(args){
 const checkout=fs.realpathSync(git(['rev-parse','--show-toplevel']));
 assert.equal(checkout,root,'P61 Git source root mismatch');
 const branch=git(['rev-parse','--abbrev-ref','HEAD']);
-assert(new Set(['develop','interim/p79-original-extraction']).has(branch),
- 'P61 requires clean develop or explicitly approved P79–P81 interim branch, not '+branch);
+// P86 replays this unchanged P61 original-fixture gate in a new, audited
+// consolidation checkout. Permit only that exact additional branch.
+assert(new Set(['develop','interim/p79-original-extraction','interim/p86-consolidation']).has(branch),
+ 'P61 requires clean develop, historical P79–P81 or explicit P86 consolidation branch, not '+branch);
 const changes=git(['status','--porcelain','--untracked-files=no']);
 assert.equal(changes,'','P61 requires clean tracked source (commit or revert local modifications)');
 const tracked=git(['ls-files','-z']).split('\0').filter(Boolean);
