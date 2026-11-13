@@ -1,4 +1,4 @@
-"""Run the accepted DOS fixture gates on a clean audited develop or P81 interim source checkout."""
+"""Run accepted original DOS fixture gates on an explicitly approved clean source checkout."""
 import argparse
 import hashlib
 import json
@@ -10,6 +10,13 @@ import sys
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
+# Preserve historical verified branch acceptance while allowing only the
+# explicit P86 fifth-pass consolidation branch; reject all other checkouts.
+APPROVED_CHECKPOINT_BRANCHES = (
+    "develop",
+    "interim/p79-original-extraction",
+    "interim/p86-consolidation",
+)
 CENSUS = {"mk1": 2656, "mk2": 5369, "mk3": 9186}
 EXE_HASHES = (
     "750792337f71b2f7991450fa92d2240073b089c917e3c6f1f373404544941b14",
@@ -51,8 +58,8 @@ def run(*args):
 
 def audit_source():
     branch = run("git", "branch", "--show-current")
-    require(branch in ("develop", "interim/p79-original-extraction"),
-            "Expected clean develop or explicitly approved P79–P81 interim branch")
+    require(branch in APPROVED_CHECKPOINT_BRANCHES,
+            "Expected clean develop, historical P79–P81, or explicit P86 consolidation branch")
     require(not run("git", "status", "--porcelain", "--untracked-files=all"), "Dirty source checkout")
     commit = run("git", "rev-parse", "HEAD")
     tree = run("git", "rev-parse", "HEAD^{tree}")
