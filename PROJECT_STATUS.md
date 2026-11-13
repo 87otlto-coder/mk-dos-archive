@@ -5,6 +5,12 @@
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
 
+## P86 original Windows first attempt — verified P61 branch-guard refusal, narrow fix committed (2026-11-13)
+
+The user's first fresh P86 `verify-p86-checkpoint.py` original-DOS/Chrome run on commit `b76b383ed21c31b7e593bfba1ab4ccf3ee46c955` / tree `ca5eae3e7d4dd1fb94f5670d3a33e09f30f8c83a` **FAILED** in its first nested group; no `summary.json` was produced, and no P86 original acceptance is claimed. Original private evidence remains at `F:\Dev\MKEXT\FIXTURES\VALIDATION\P86-ae85b2e9c2ff48c9a53ee4420b82f642`. Successively inspected `P81`, `P76`, `P71` and `P66` error logs establish that inherited `P61` rejected the exact `interim/p86-consolidation` Git branch at `scripts/verify-p61-checkpoint.cjs:58`. **VERIFIED root cause of this attempt: missing P86 branch in P61's separate hard-coded allowlist**, not demonstrated corruption of original game files. Nonfatal Python `SyntaxWarning` from the P86 docstring is separate.
+
+A **targeted source correction** to P61 adds exact `interim/p86-consolidation` while retaining its `develop` and historical `interim/p79-original-extraction` branches, clean tracked source, banned commercial-media tracking and original/private-directory separation. The existing P66/P81 approved-branch list is untouched. A synthetic regression test now examines the *actual P61 JavaScript guard* and verifies no broader branch authorization. Other P61 original verification logic and all extractor codecs remain unchanged. Source-only Windows CI must be checked for the final corrected code commit; **fresh P86 original-fixture runtime remains VALIDATION PENDING**. See [P86 session packet](docs/EXTRACTOR_P86_CONSOLIDATION_WORK_SESSION_PACKET.md). Do not merge P86 as accepted before all four groups pass.
+
 ## P86 candidate — fifth-pass original MK1/MK2/MK3 Windows consolidation (2026-11-13)
 
 **SOURCE IMPLEMENTATION PREPARED, ORIGINAL P86 ACCEPTANCE PENDING.** P85 original DOS MK3 headless CLI has been accepted and merged to the P83/P84 interim baseline at `9ad7f9bde06ce4d1b2562197202bf4e2bca13318`. The post-merge [Windows source regression #43379809775](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43379809775) passed. P86 `interim/p86-consolidation` now prepares a single fail-closed original-fixture/real-Chrome checkpoint that reuses the accepted P81 nine original three-game/Chrome groups, P84 MK2 CLI scan/extract/verify, P83 MK2 browser import and three byte-exact downloads, and P85 MK3 CLI scan/extract/verify.
