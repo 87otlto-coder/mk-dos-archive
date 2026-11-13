@@ -77,11 +77,11 @@ class P85Mk3Cli(unittest.TestCase):
             stage=stage,
         )
 
-    def test_help_and_mk1_explicitly_unsupported(self):
+    def test_help_and_unrecognized_game_explicitly_unsupported(self):
         result = subprocess.run(BASE + ["--help"], text=True, capture_output=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         bad = subprocess.run(
-            BASE + ["scan", "--game", "mk1", "--source", str(self.original)],
+            BASE + ["scan", "--game", "mk4", "--source", str(self.original)],
             text=True, capture_output=True)
         self.assertNotEqual(bad.returncode, 0)
         self.assertIn("invalid choice", bad.stderr)
