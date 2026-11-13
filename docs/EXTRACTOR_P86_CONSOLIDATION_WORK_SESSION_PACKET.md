@@ -1,7 +1,25 @@
 # P86 — fifth-pass original DOS and Windows consolidation candidate
 
 **Created:** 2026-11-13. **Branch:** interim/p86-consolidation, based on accepted P85 merge 9ad7f9bde06ce4d1b2562197202bf4e2bca13318. **Main/develop unchanged.**
-**Status:** Source-only hosted Windows CI **VERIFIED PASS** on executable candidate commit `1878cd54cda5874b882c28054c1e07bc296f54b8` / tree `d4572ba8911278d6428778ef7e308db6782c5325`; [GitHub Actions #43381002723](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43381002723). Full original DOS/real Chrome P86 acceptance separately **VALIDATION PENDING**.
+**Status:** Source-only hosted Windows CI **VERIFIED PASS** on executable candidate commit `1878cd54cda5874b882c28054c1e07bc296f54b8` / tree `d4572ba8911278d6428778ef7e308db6782c5325`; [GitHub Actions #43381002723](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43381002723). Full original DOS/real Chrome P86 **subsequently ACCEPTED** from the user's complete original-machine report, see the newer acceptance section.
+
+## P86 ORIGINAL WINDOWS ACCEPTANCE — PASS (2026-11-13)
+
+**FIFTH-PASS CONSOLIDATION ACCEPTED.** The user's new Windows original-fixture/real-Chrome checkpoint returned `pass:P86`, `status:PASS`, with **4/4 ordered P86 groups PASS** on branch `interim/p86-consolidation`. Exact tested Git commit `1864bc2412bd3b39b5820a56b5d5c2bf2c4990bd` and tree `34416a05966fce9d0b470a6f58d8b86eb6f9c900` independently matched the GitHub Git commit API. GitHub [Windows Actions #43498534235](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43498534235) independently returned **SUCCESS on that exact commit** with no commercial game inputs. P61, P66/P81, P86 runner, P86 negative tests, headless extractor, and Windows workflow are unchanged Git blobs at the accepted commit.
+
+**OBSERVE/RECORD:** The user provided the runner's `summary.json` final JSON and uploaded full `report.json`, inspected directly. The full report records:
+- `p81_original_three_game_and_chrome: PASS`: original three DOS games and real Chrome P81 checkpoint, with all **nine** nested original acceptance groups passed; original three-game default catalogue **17,211** (MK1 2,656; MK2 5,369; MK3 9,186). It reports `sourceThreeGameOriginalAndChrome:true`.
+- `p84_original_mk2_cli_source: PASS`: original source-backed Tomb/Portal **115** independently verified source PNGs and **939,425** indexed positions; two stage source sets.
+- `p83_original_mk2_real_chrome: PASS`: optional MK2 stage-source Asset Library catalog **5,484** and **three byte-exact original Chrome PNG downloads**.
+- `p85_original_mk3_cli_source: PASS`: original MK3 leading source **64,000** indexed base positions, **216 RAW** continuation stored records (explicitly **NOT** decoded animation frames), and **128,000** independently checked preview PNG positions.
+
+**Exact unchanged source audit:** `originalSourceAuditAtStart == originalSourceAuditAtEnd`, both `status:PASS`, commit/tree as above, **2,435 file blobs**, 405 source files, 2,435 checkout-normalized matches, zero missing, zero mismatches, zero unsafe paths. Source inventory SHA256 `5257d65240e75c331c95b5aa729c31ae5a5ac06fff835253a9d2351c10570ef7`. `remoteAssociationVerifiedByThisScript:false` is an explicit limitation of the local runner, **not** a failure: GitHub Git API separately confirmed the commit/tree and source blob equality.
+
+**Time/evidence:** `startedUtc:2026-11-13T20:33:58.604361+00:00`; `finishedUtc:2026-11-13T20:45:16.023758+00:00`. Full `report.json` and nested original/Chrome logs and private source ZIPs remain under `F:\Dev\MKEXT\FIXTURES\VALIDATION\P86-57f7c081e54a4f1dbf2eb3476667e20a`, excluded from GitHub. The assistant inspected the supplied report, **not** the commercial original files nor the nested private ZIP contents. The previous failed P86 directory `P86-ae85b2e9c2ff48c9a53ee4420b82f642` is retained independently as historical failure evidence; the P61 allowlist issue is resolved and its source-only Windows regression accepted.
+
+**CLASSIFY:** **VERIFIED from user-run original DOS/real Chrome results and source-oracle gates**: the already qualified extractor scopes and consolidated runtime gates. **SOURCE-ONLY VERIFIED:** hosted Windows CI on exact commit. **UNKNOWN/not claimed:** full game headless extraction catalogues, native palette/opacity ownership, stage composite/camera alignment, animation timing/frame order, decoded MK3 continuation images, complete sound export. `originalGameExecutablesUploaded:false`, `privateSourceExportsUploaded:false`, `nativePaletteCameraStageOrAnimationOwnershipClaimed:false`. No promotion of commercial media to Git; do not present the research workbench as a finished standalone extractor.
+
+**Checkpoint decision:** Fifth pass may be consolidated by merging PR #27 into the accepted **interim** P83/P84/P85 development branch after recording acceptance and passing source-only regression. **Do not promote `main` or `develop` or publish full source/release ZIP without a separate planned promotion review.** Keep tested P86 branch/commit recoverable because historical acceptance runners intentionally branch-gate P86 original replay.
 
 ## P61 targeted correction — hosted Windows source-only PASS (2026-11-13)
 
