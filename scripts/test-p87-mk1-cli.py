@@ -182,6 +182,18 @@ class P87OriginalFreeCLI(unittest.TestCase):
             P["run_mk1"](self.args("scan"), runner=Mock(
                 return_value=subprocess.CompletedProcess([], 0, "debug log\n{}", "")))
 
+    def test_bridge_original_slices_match_p65_copy_contract(self):
+        # Original P65 DirectorySource returns fresh Uint8Array slices;
+        # Buffer.subarray would share mutable memory with cached originals.
+        source = (ROOT / "scripts" / "mk1_p87_source_bridge.cjs").read_text(
+            encoding="utf-8")
+        self.assertIn(
+            "return Uint8Array.from(bytes.subarray(start, start + count));",
+            source)
+        self.assertNotIn(
+            "return bytes.subarray(start, start + count);",
+            source)
+
     def test_actual_node_bridge_rejects_noncanonical_exe_without_export(self):
         self.original.joinpath("MK1.EXE").write_bytes(b"fake non-original MK1 EXE")
         child = subprocess.run(["node", "scripts/mk1_p87_source_bridge.cjs",
