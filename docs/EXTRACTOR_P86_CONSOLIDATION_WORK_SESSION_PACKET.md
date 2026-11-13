@@ -1,7 +1,7 @@
 # P86 — fifth-pass original DOS and Windows consolidation candidate
 
 **Created:** 2026-11-13. **Branch:** interim/p86-consolidation, based on accepted P85 merge 9ad7f9bde06ce4d1b2562197202bf4e2bca13318. **Main/develop unchanged.**
-**Status:** Candidate. Source-only Windows CI and full original DOS/real Chrome P86 acceptance must be verified separately.
+**Status:** Source-only hosted Windows CI **VERIFIED PASS** on executable candidate commit `1878cd54cda5874b882c28054c1e07bc296f54b8` / tree `d4572ba8911278d6428778ef7e308db6782c5325`; [GitHub Actions #43381002723](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43381002723). Full original DOS/real Chrome P86 acceptance separately **VALIDATION PENDING**.
 
 ## Objective
 
@@ -27,6 +27,12 @@ Four ORIGINAL-DOS/CHROME acceptance groups must all pass:
 4. **P85**: original MK3 CLI scan/extract/verify, 320×200 original indexed base, 64,000 index positions, 216 **RAW** continuation records, 220 source parts, two source comparison previews, 223 ZIP members, complete 1,840,634-byte original interval and 128,000 independent preview pixel checks.
 
 The runner requires unchanged source audit after all groups and writes a private P86 summary only after all four groups complete. Failure preserves logs/diagnostics. No commercial originals or original-derived ZIP/PNG/media enter GitHub.
+
+## Hosted Windows source-only acceptance — PASS
+
+**VERIFIED:** [Actions run #43381002723](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43381002723) completed SUCCESS on `windows-latest` for exact P86 source/test/workflow commit `1878cd54cda5874b882c28054c1e07bc296f54b8` (Git tree `d4572ba8911278d6428778ef7e308db6782c5325`, GitHub-confirmed). The new P86 exact-branch and dirty-source refusal tests, counterfeit P81/P83/P84/P85 group evidence refusals, full inherited source-control suite, Vite production build, TypeScript checks and offline Chrome smoke all passed. No original DOS binaries, original-derived PNGs or private ZIPs were supplied to CI. Artifact uploads were skipped for the PR.
+
+This verifies the committed P86 orchestration **source**, not original-fixture/real-Chrome runtime acceptance. The complete original Windows P86 checker has **not** yet run, and its four groups remain PENDING.
 
 ## Windows original acceptance procedure
 
