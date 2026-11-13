@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-13. **First interim pass after accepted P86 fifth-pass checkpoint.** Branch: interim/p87-mk1-indexed-anitab-cli, from accepted interim merge 20460f2e59ce526ec1d6cd8997a3ef72f7a196bc. Do not promote main/develop, package full source, or release this pass.
 
-**Classification:** P87 source implementation candidate; hosted Windows CI and new original MK1 runtime acceptance are separate gates. The inherited P65 original-fixture indexed-source package was already independently accepted, not automatically a P87 CLI pass.
+**Classification:** P87 source implementation candidate, **hosted Windows SOURCE-ONLY CI PASS**; new original MK1 runtime acceptance is a separate pending gate. The inherited P65 original-fixture indexed-source package was already independently accepted, not automatically a P87 CLI pass.
 
 ## Objective and bounded coverage
 
@@ -27,6 +27,12 @@ The CLI scans the existing 2,656-resource MK1 collection to produce that *subset
 - scripts/mkext.py: Dispatches --game mk1 to the new adapter while preserving previously accepted MK2 P84 and MK3 P85 implementations. MK2-only --stage tomb|portal is refused for MK1.
 - scripts/test-p87-mk1-cli.py: Original-free synthetic tests, fake source fingerprint refusal through actual Node bridge, counterfeit source/summary/oracle/native timing assertions, and non-overwrite/path separation controls.
 - Existing P84/P85 unsupported-game tests updated to reject mk4 rather than newly supported mk1. Windows-only source CI now includes P87 tests and JS syntax checks, retaining opt-in browser artifacts and no commercial game files.
+
+## Source-only Windows CI — VERIFIED PASS (2026-11-13)
+
+GitHub Actions [run #43508016253](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43508016253) completed **SUCCESS** on candidate executable source/test/workflow commit `1c9e7515da52febe2478c3e896b5adf5462f3d2d` / Git tree `f3641fc02f9fafa1250a92a5336b41232350f1a9`, independently confirmed by GitHub commit API. Windows-only P87 original-free tests, direct fake-MK1.EXE Node refusal, ZIP hash/independent-P65-oracle counterfeit refusals, inherited P84/P85/P86 source regressions, Vite production build, TypeScript and headless Chrome startup all passed. Commercial original DOS source files and original-derived indexed source ZIPs were NOT used in this hosted run; PR artifact uploads skipped. The earlier source-only CI [run #43507335138](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43507335138) also passed; the later run adds an explicit fresh-Uint8Array-slice guard to match accepted P65 original DirectorySource behavior.
+
+**Classify:** P87 **SOURCE-ONLY VERIFIED**; P87 new original MK1 scan/extract/verify CLI **VALIDATION PENDING**. Do not infer original run PASS from source-only CI. No library/codec, original-file fingerprints or output family counts changed after the accepted P86 checkpoint; this pass only exposes and independently rechecks the existing P65 package through headless CLI.
 
 ## Original Windows acceptance — pending
 
