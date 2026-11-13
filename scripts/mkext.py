@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""P84/P85 headless Windows entry point for independently qualified sources.
+"""P84/P85/P87 headless Windows entry point for qualified original sources.
 
-Original MK2 Tomb/Portal stage layers reuse P82; original MK3 leading indexed
-source + raw continuation records reuse P79. The CLI does not implement new
-sprite codecs, native palette ownership, scene assembly, or animation timing.
+MK1 ANITAB/O60 original indexed sprite planes reuse the accepted P65 producer;
+MK2 Tomb/Portal stage layers reuse P82, and MK3 leading indexed source plus
+raw continuation records reuse P79. No new sprite codec, native palette
+ownership, scene composition, or animation timing is inferred.
 
 Private commercial inputs and exported media must remain outside the Git repo.
 """
@@ -53,13 +54,18 @@ def run_command(
     verifier: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Execute a command. Optional injected backends are for synthetic tests."""
+    if args.game == "mk1":
+        # Reuse P65 original indexed ANITAB source package and the independent
+        # original-EXE readback; preserve accepted MK2/MK3 code paths.
+        from mk1_p87_cli import run_mk1
+        return run_mk1(args)
     if args.game == "mk3":
         # Branch before importing the MK2 producer. Preserve the independently
         # original-accepted P84 MK2 path exactly as it was tested.
         from mk3_p85_cli import run_mk3
         return run_mk3(args)
     if args.game != "mk2":
-        raise ValueError("Only original DOS MK2 and MK3 source subsets are supported")
+        raise ValueError("Only original DOS MK1, MK2 and MK3 qualified source subsets are supported")
     producer = producer if producer is not None else exporter()
     folder = Path(args.source)
 
@@ -137,24 +143,24 @@ def run_command(
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        description="Headless original DOS MK2 stage sources / MK3 leading indexed sources (P85)",
+        description="Headless original DOS MK1 P65 indexed sources, MK2 P82 stages, MK3 P79 sources (P87)",
         allow_abbrev=False,
     )
     sub = p.add_subparsers(dest="action", required=True)
     for name in ("scan", "extract", "verify"):
         cmd = sub.add_parser(name, allow_abbrev=False)
-        cmd.add_argument("--game", choices=("mk2", "mk3"), required=True,
-                         help="MK2 Tomb/Portal layers or MK3 P79 leading source records")
+        cmd.add_argument("--game", choices=("mk1", "mk2", "mk3"), required=True,
+                         help="MK1 indexed ANITAB/O60 source, MK2 Tomb/Portal layers, or MK3 P79 leading source")
         cmd.add_argument("--source", type=Path, required=True,
                          help="Original game installation, MK3 DATA.MK3, or private MK3 ZIP outside SOURCE")
         if name == "extract":
             cmd.add_argument("--out", type=Path, required=True,
                              help="New, never-existing ZIP path outside SOURCE and original game folder")
             cmd.add_argument("--stage", choices=("both", "tomb", "portal"),
-                             default="both", help="MK2 only; MK3 uses its qualified P79 leading source")
+                             default="both", help="MK2 only; MK1/MK3 use their qualified bounded source")
         if name == "verify":
             cmd.add_argument("--archive", type=Path, required=True,
-                             help="Existing private P82 MK2 or P79 MK3 original-source ZIP")
+                             help="Existing private P65 MK1, P82 MK2, or P79 MK3 ZIP")
     return p
 
 
