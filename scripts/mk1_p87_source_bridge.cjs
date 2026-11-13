@@ -85,7 +85,9 @@ function inventory(folder) {
       assert(bytes, 'P87 original source file is missing: ' + p);
       assert(Number.isSafeInteger(start) && start >= 0 &&
         Number.isSafeInteger(count) && count >= 0, 'P87 invalid source byte slice');
-      return bytes.subarray(start, start + count);
+      // Match the accepted P65 DirectorySource: return a fresh Uint8Array,
+      // never a mutable Buffer view into the cached original commercial file.
+      return Uint8Array.from(bytes.subarray(start, start + count));
     },
   };
   return source;
