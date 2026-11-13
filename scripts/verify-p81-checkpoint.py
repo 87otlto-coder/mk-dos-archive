@@ -247,8 +247,8 @@ def checkpoint(args: argparse.Namespace) -> dict:
     result = subprocess.run(["git", "branch", "--show-current"], cwd=ROOT,
                             capture_output=True, text=True, check=True)
     branch = result.stdout.strip()
-    require(branch in ("develop", "interim/p79-original-extraction"),
-            "source checkout must be audited develop or approved P81 interim")
+    require(branch in P71["P66"]["APPROVED_CHECKPOINT_BRANCHES"],
+            "source checkout must be audited develop, historical P81 or approved P86 interim")
     require("sourceTree" not in opening, "unexpected source audit schema")
     work.mkdir(parents=True, exist_ok=False)
     # Keep all temporary original-derived source, PNG/ZIP and browser downloads
