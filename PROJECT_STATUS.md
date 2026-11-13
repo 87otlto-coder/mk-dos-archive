@@ -5,6 +5,14 @@
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
 
 
+## P86 candidate — fifth-pass original MK1/MK2/MK3 Windows consolidation (2026-11-13)
+
+**SOURCE IMPLEMENTATION PREPARED, ORIGINAL P86 ACCEPTANCE PENDING.** P85 original DOS MK3 headless CLI has been accepted and merged to the P83/P84 interim baseline at `9ad7f9bde06ce4d1b2562197202bf4e2bca13318`. The post-merge [Windows source regression #43379809775](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43379809775) passed. P86 `interim/p86-consolidation` now prepares a single fail-closed original-fixture/real-Chrome checkpoint that reuses the accepted P81 nine original three-game/Chrome groups, P84 MK2 CLI scan/extract/verify, P83 MK2 browser import and three byte-exact downloads, and P85 MK3 CLI scan/extract/verify.
+
+The historical P66/P81 preflight accepted only `develop` and `interim/p79-original-extraction`; P86 narrowly permits the explicitly named new consolidation branch while preserving the clean-Git checkout and original-binary identity checks. Added synthetic source/false-provenance controls and Windows CI; **do not claim their pass until hosted source CI completes**. The full new P86 original DOS/Chrome pass remains **VALIDATION PENDING** until user executes the local runner with original private fixtures. See [P86 work session packet](docs/EXTRACTOR_P86_CONSOLIDATION_WORK_SESSION_PACKET.md) and `scripts/verify-p86-checkpoint.py`.
+
+**No promotion/release:** `main`/`develop` unchanged. Keep original commercial inputs and original-derived exports inside `F:\Dev\MKEXT\FIXTURES`, never GitHub. Avoid full source packaging or unrelated UI work until the fifth-pass original checkpoint and source audit pass on one exact Git commit/tree. MK1 CLI and general catalog/animation/palette/audio extraction remain independent future capability gates.
+
 ## P85 ACCEPTED — original DOS MK3 headless indexed-base/raw record CLI (2026-11-13)
 
 **FOURTH INTERIM PASS IN P82–P86 CYCLE — ORIGINAL WINDOWS ACCEPTANCE COMPLETE.** The user's four private original-fixture acceptance files, `source_identity.txt`, `scan.json`, `extract.json` and `verify.json`, show `P85_CLI_MK3_SCAN / PASS`, `P85_CLI_MK3_EXTRACT / PASS` and `P85_CLI_MK3_VERIFY / PASS`. The user tested precise Git commit `146c16817849aefea133afe7ef4a2b9e9e714f71` / tree `40f98e35b6f07633f2141d8ce9d35f91e6c48083`. GitHub API independently confirmed this commit/tree relationship, and the tested `mkext.py`, `mk3_p85_cli.py`, original P79 producer, independent P79 verifier, source-only tests and Windows CI workflow matched the pre-documentation candidate Git blobs. [Detailed P85 original acceptance and private repetition instructions](docs/EXTRACTOR_P85_HEADLESS_MK3_LEADING_INDEX_CANDIDATE.md).
