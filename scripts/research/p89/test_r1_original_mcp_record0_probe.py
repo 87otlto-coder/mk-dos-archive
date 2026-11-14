@@ -99,8 +99,79 @@ class OriginalProbeTests(unittest.TestCase):
                         "*** Debugger command not recognized"
                     )
                 return super().request(cmd)
-        with self.assertRaisesRegex(ValueError, "does not support remote STEPIN"):
+        with self.assertRaisesRegex(ValueError, "initial debugger not stopped or STEPIN unsupported"):
             subject.await_stopped(OldDosboxStep(reg()), time.monotonic()+2)
+
+    def test_supported_stepin_generic_running_error_retries_after_bootstrap(self):
+        class NotYetAtBreakpoint(MockStoppedChannel):
+            def __init__(self, values):
+                super().__init__(values)
+                self.steps = 0
+
+            def request(self, cmd):
+                if cmd == "EXEC STEPIN":
+                    self.steps += 1
+                    if self.steps < 3:
+                        raise ValueError(
+                            "P89 MCP preflight: debugger rejected request: "
+                            "*** Debugger command not recognized"
+                        )
+                return super().request(cmd)
+
+        mock = NotYetAtBreakpoint(reg())
+        result = subject.await_stopped(
+            mock, time.monotonic() + 2,
+            stepin_confirmed_for_session=True
+        )
+        self.assertEqual(result["EAX"], 0x4200)
+        self.assertEqual(mock.steps, 3)
+
+    def test_generic_running_error_never_retries_before_startup_stop(self):
+        class RunningAtStartup(MockStoppedChannel):
+            def __init__(self, values):
+                super().__init__(values)
+                self.attempts = 0
+
+            def request(self, cmd):
+                if cmd == "EXEC STEPIN":
+                    self.attempts += 1
+                    raise ValueError(
+                        "P89 MCP preflight: debugger rejected request: "
+                        "*** Debugger command not recognized"
+                    )
+                return super().request(cmd)
+
+        mock = RunningAtStartup(reg())
+        with self.assertRaisesRegex(ValueError, "original-game session must"):
+            subject.await_stopped(mock, time.monotonic() + 2)
+        self.assertEqual(mock.attempts, 1)
+
+    def test_supported_stepin_running_past_deadline_fails_closed(self):
+        class NeverStops(MockStoppedChannel):
+            def request(self, cmd):
+                if cmd == "EXEC STEPIN":
+                    raise ValueError(
+                        "P89 MCP preflight: debugger rejected request: "
+                        "*** Debugger command not recognized"
+                    )
+                return super().request(cmd)
+        with self.assertRaisesRegex(ValueError, "no verified breakpoint stop"):
+            subject.await_stopped(
+                NeverStops(reg()), time.monotonic() + 0.02,
+                stepin_confirmed_for_session=True
+            )
+
+    def test_supported_stepin_other_command_error_never_retried(self):
+        class UnrelatedFailure(MockStoppedChannel):
+            def request(self, cmd):
+                if cmd == "EXEC STEPIN":
+                    raise ValueError("network protocol mismatch")
+                return super().request(cmd)
+        with self.assertRaisesRegex(ValueError, "network protocol mismatch"):
+            subject.await_stopped(
+                UnrelatedFailure(reg()), time.monotonic() + 2,
+                stepin_confirmed_for_session=True
+            )
 
     def test_nonrunning_step_error_refused(self):
         class UnexpectedStepError(MockStoppedChannel):
