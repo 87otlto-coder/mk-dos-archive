@@ -84,35 +84,47 @@ def require_original_debug_copy(game: Path, evidence: Path, private_root: Path) 
     return {"originalExeSha256": MK3_EXE_SHA256, "originalDataSha256": DATA_SHA}
 
 
-def await_stopped(channel: Control, deadline: float) -> dict[str, int]:
-    """A successful STEPIN confirms stopped state, AFTER taking one instruction.
+def await_stopped(channel: Control, deadline: float, *,
+                  stepin_confirmed_for_session: bool = False) -> dict[str, int]:
+    """Capture pre-step registers only if STEPIN confirms an actual stopped CPU.
 
-    Record registers beforehand. STEPIN is rejected while guest is running.
-    Because a real instruction is taken, the report is a request witness,
-    not an immutable pre-call register/call stack.
+    A plain EV query also succeeds while DOSBox-X is RUNNING and is not a
+    stopped-state witness. With the original October 20 MCP implementation,
+    a failed EXEC STEPIN can return the generic "*** Debugger command not
+    recognized" both for a truly unsupported command and for a supported
+    command issued while RUNNING. The latter may be retried only AFTER
+    STEPIN actually succeeded once in this exact emulator process.
     """
+    retries = 0
     while time.monotonic() < deadline:
+        candidate = registers(channel)
         try:
-            candidate = registers(channel)
             stepped = channel.request("EXEC STEPIN")
-            require(any("STEPIN CS:IP=" in line for line in stepped),
-                    "unexpected successful STEPIN response")
-            return candidate
         except ValueError as error:
-            # Release DOSBox-X 2026.10.01 (b6abbd5) does NOT implement STEPIN.
-            # Fail with the exact missing dependency instead of retrying or
-            # mistaking it for any original MK3 decoder behaviour.
-            if "command not recognized" in str(error).lower():
+            msg = str(error).lower()
+            running_or_unknown = (
+                "requires the debugger to be stopped" in msg or
+                "*** debugger command not recognized" in msg
+            )
+            if running_or_unknown and stepin_confirmed_for_session:
+                retries += 1
+                time.sleep(0.05)
+                continue
+            if running_or_unknown:
                 raise ValueError(
-                    "P89 R1 original MCP: installed DOSBox-X does not support "
-                    "remote STEPIN; first pass a no-game "
-                    "r1_mcp_preflight.py --exercise-step-commands capability test"
+                    "P89 R1 original MCP: initial debugger not stopped or "
+                    "STEPIN unsupported. The original-game session must "
+                    "launch with -break-start and prove STEPIN before RUN. "
+                    "Raw failure: " + str(error)
                 ) from error
-            # Only known running-state errors are retried; all others fail closed.
-            if "requires the debugger to be stopped" not in str(error).lower():
-                raise
-        time.sleep(0.05)
-    raise ValueError("P89 R1 original MCP: breakpoint wait expired without verified stopped STEPIN")
+            raise
+        require(any("STEPIN CS:IP=" in line for line in stepped),
+                "unexpected successful STEPIN response")
+        return candidate
+    raise ValueError(
+        "P89 R1 original MCP: no verified breakpoint stop within runtime "
+        "budget after " + str(retries) + " running-state retries"
+    )
 
 
 def run(executable: Path, game: Path, validation: Path, private_root: Path,
@@ -150,7 +162,7 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
             with stderr.open("x", encoding="utf-8") as errors:
                 process = subprocess.Popen([
                     str(exe), "-conf", str(cfg), "-nopromptfolder",
-                    "-console", "-log-fileio", "-log-int21",
+                    "-console", "-break-start", "-log-fileio", "-log-int21",
                 ], cwd=str(output), stdout=subprocess.DEVNULL, stderr=errors)
                 peer, address = listener.accept()
                 require(address[0] == "127.0.0.1", "nonlocal debugger connection")
@@ -158,7 +170,11 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
                     channel = Control(peer)
                     require(any(x.strip() == "PONG" for x in channel.request("PING")),
                             "debugger TCP handshake failed")
-                    # Wait for DEBUGBOX game-entry stop, stepping one instruction.
+                    # -break-start guarantees a paused emulator BEFORE the
+                    # autoexec/game startup. This first accepted STEPIN is an
+                    # in-process capability witness, unlike a separate preflight.
+                    # Do not misclassify the early real-mode BIOS address as
+                    # DEBUGBOX's later protected-mode MK3 entry point.
                     initial = await_stopped(channel, deadline)
                     channel.request("EXEC BPDEL *")
                     channel.request("EXEC BPINT 21 42")
@@ -166,7 +182,9 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
                     seek_count = 0
                     while seek_count < MAX_SEEK_STOPS:
                         channel.request("EXEC RUN")
-                        stop = await_stopped(channel, deadline)
+                        stop = await_stopped(
+                            channel, deadline, stepin_confirmed_for_session=True
+                        )
                         seek_count += 1
                         if is_p79_seek(stop):
                             observed_seek = stop
@@ -180,7 +198,9 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
                     read_count = 0
                     while read_count < MAX_READ_STOPS:
                         channel.request("EXEC RUN")
-                        stop = await_stopped(channel, deadline)
+                        stop = await_stopped(
+                            channel, deadline, stepin_confirmed_for_session=True
+                        )
                         read_count += 1
                         if is_record0_read(stop, handle):
                             observed_read = stop
@@ -199,7 +219,9 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
                         "readFileHandleCandidate": handle,
                         "seekRequestRegistersBeforeStep": observed_seek,
                         "readRequestRegistersBeforeStep": observed_read,
-                        "gameEntryRegistersBeforeStep": initial,
+                        "startupBiosRegistersBeforeStep": initial,
+                        "startupStoppedByBreakStart": True,
+                        "stepinConfirmedInOriginalProcessBeforeRun": True,
                         "runBudgetSeconds": budget,
                         "sourceReadCompletionWitnessed": False,
                         "sourceBufferBytesDumped": 0,
