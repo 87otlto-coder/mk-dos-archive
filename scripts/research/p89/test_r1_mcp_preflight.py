@@ -39,6 +39,52 @@ class MCPTests(unittest.TestCase):
         self.assertFalse(result["originalDataReadOrDecoded"])
         self.assertEqual(requests, ["REQ 1 PING", "REQ 2 EXEC EV EAX"])
 
+    def test_remote_run_break_return_to_stopped_state(self):
+        peer, worker, requests = simulate([
+            ("REQ 1 PING", "BEGIN 1 OK\nPONG\nEND 1\n"),
+            ("REQ 2 EXEC EV EAX", "BEGIN 2 OK\nEV of 'EAX' is:\n0\nEND 2\n"),
+            ("REQ 3 EXEC RUN", "BEGIN 3 OK\nEND 3\n"),
+            ("REQ 4 BREAK", "BEGIN 4 OK\nEND 4\n"),
+            ("REQ 5 EXEC EV EAX", "BEGIN 5 OK\nEV of 'EAX' is:\n5\nEND 5\n"),
+        ])
+        with peer:
+            result = subject.probe_protocol(
+                subject.Control(peer), exercise_resume=True
+            )
+        worker.join(timeout=1)
+        self.assertTrue(result["runAcknowledged"])
+        self.assertTrue(result["remoteBreakAcknowledged"])
+        self.assertTrue(result["registerAfterBreakVerified"])
+        self.assertFalse(result["originalGameMounted"])
+        self.assertEqual(requests[-3:], [
+            "REQ 3 EXEC RUN", "REQ 4 BREAK", "REQ 5 EXEC EV EAX",
+        ])
+
+    def test_remote_break_failure_is_fail_closed(self):
+        peer, worker, requests = simulate([
+            ("REQ 1 PING", "BEGIN 1 OK\nPONG\nEND 1\n"),
+            ("REQ 2 EXEC EV EAX", "BEGIN 2 OK\nEV of 'EAX' is:\n0\nEND 2\n"),
+            ("REQ 3 EXEC RUN", "BEGIN 3 OK\nEND 3\n"),
+            ("REQ 4 BREAK", "BEGIN 4 ERR\nnot supported\nEND 4\n"),
+        ])
+        with peer, self.assertRaises(ValueError):
+            subject.probe_protocol(subject.Control(peer), exercise_resume=True)
+        worker.join(timeout=1)
+        self.assertEqual(requests[-1], "REQ 4 BREAK")
+
+    def test_postbreak_missing_register_refused(self):
+        peer, worker, requests = simulate([
+            ("REQ 1 PING", "BEGIN 1 OK\nPONG\nEND 1\n"),
+            ("REQ 2 EXEC EV EAX", "BEGIN 2 OK\nEV of 'EAX' is:\n0\nEND 2\n"),
+            ("REQ 3 EXEC RUN", "BEGIN 3 OK\nEND 3\n"),
+            ("REQ 4 BREAK", "BEGIN 4 OK\nEND 4\n"),
+            ("REQ 5 EXEC EV EAX", "BEGIN 5 OK\nnot stopped\nEND 5\n"),
+        ])
+        with peer, self.assertRaises(ValueError):
+            subject.probe_protocol(subject.Control(peer), exercise_resume=True)
+        worker.join(timeout=1)
+        self.assertEqual(requests[-1], "REQ 5 EXEC EV EAX")
+
     def test_missing_pong_rejected(self):
         peer, worker, _ = simulate([
             ("REQ 1 PING", "BEGIN 1 OK\nNOT_PONG\nEND 1\n"),
