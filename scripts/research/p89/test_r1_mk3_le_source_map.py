@@ -135,6 +135,55 @@ class SourceMapTests(unittest.TestCase):
         r = subject.parse_source_map(bytes(b), canonical=False)
         self.assertEqual(r["entryPoint"]["originalFileOffset"], 0x400+0x234)
 
+    def synthetic_io_witnesses(self):
+        data = synthetic_exe()
+        first = bytes(range(1, 17))
+        second = bytes(range(17, 33))
+        data[0x420:0x430] = first
+        data[0x1500:0x1510] = second
+        code = subject.parse_source_map(bytes(data), canonical=False)["objects"][0]
+        slide = 0x210000
+        witnesses = (
+            ("seek", 0x420, 0x10020+slide, subject.sha(first)),
+            ("read", 0x1500, 0x11100+slide, subject.sha(second)),
+        )
+        return data, code, witnesses, slide
+
+    def test_two_unique_runtime_wrapper_correlations(self):
+        data, code, witnesses, slide = self.synthetic_io_witnesses()
+        r = subject.corroborate_dos_io_runtime(bytes(data), code, witnesses=witnesses)
+        self.assertEqual(r["wrapperCount"], 2)
+        self.assertEqual(r["runtimeRelocationDifference"], slide)
+        self.assertEqual([w["originalObjectOffset"] for w in r["witnesses"]],
+                         [0x20, 0x1100])
+        self.assertFalse(r["p79DecompressionRoutineClaimed"])
+        self.assertFalse(r["indexedOutputPixelsClaimed"])
+
+    def test_original_wrapper_byte_fingerprint_guard(self):
+        data, code, witnesses, slide = self.synthetic_io_witnesses()
+        data[0x425] ^= 0xff
+        with self.assertRaises(ValueError):
+            subject.corroborate_dos_io_runtime(bytes(data), code, witnesses=witnesses)
+
+    def test_runtime_mismatched_slide_refused(self):
+        data, code, witnesses, slide = self.synthetic_io_witnesses()
+        changed = list(witnesses)
+        role, offset, runtime, digest = changed[1]
+        changed[1] = (role, offset, runtime+1, digest)
+        with self.assertRaises(ValueError):
+            subject.corroborate_dos_io_runtime(bytes(data), code, witnesses=changed)
+
+    def test_single_runtime_witness_cannot_establish_slide(self):
+        data, code, witnesses, slide = self.synthetic_io_witnesses()
+        with self.assertRaises(ValueError):
+            subject.corroborate_dos_io_runtime(bytes(data), code, witnesses=witnesses[:1])
+
+    def test_duplicate_source_window_refused(self):
+        data, code, witnesses, slide = self.synthetic_io_witnesses()
+        data[0x1600:0x1610] = bytes(range(1, 17))
+        with self.assertRaises(ValueError):
+            subject.corroborate_dos_io_runtime(bytes(data), code, witnesses=witnesses)
+
     def test_unmapped_extra_file_bytes_do_not_change_page_map(self):
         b = synthetic_exe()
         b.extend(b"nonoriginalsynthetictrailingtest")
