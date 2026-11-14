@@ -90,6 +90,18 @@ class OriginalProbeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             subject.await_stopped(MalformedStep(reg()), time.monotonic()+2)
 
+    def test_missing_release_stepin_is_precisely_reported(self):
+        class OldDosboxStep(MockStoppedChannel):
+            def request(self, cmd):
+                if cmd == "EXEC STEPIN":
+                    raise ValueError(
+                        "P89 MCP preflight: debugger rejected request: "
+                        "*** Debugger command not recognized"
+                    )
+                return super().request(cmd)
+        with self.assertRaisesRegex(ValueError, "does not support remote STEPIN"):
+            subject.await_stopped(OldDosboxStep(reg()), time.monotonic()+2)
+
     def test_nonrunning_step_error_refused(self):
         class UnexpectedStepError(MockStoppedChannel):
             def request(self, cmd):
