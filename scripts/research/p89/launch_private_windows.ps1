@@ -52,6 +52,10 @@ python scripts/research/p89/structures.py r1 --archive "$p79" --original "$mk3" 
 if ($LASTEXITCODE -ne 0) { throw 'P89 R1 structural/original independent verification failed' }
 Write-Host 'P89 R1 MK3 P79 raw continuation structural inventory: PASS (not decoded frames)'
 
+python scripts/research/p89/r1_payload_discriminators.py --original (Join-Path $mk3 'DATA.MK3') --report (Join-Path $work 'r1-mk3-payload-discriminators.json') | Out-Null
+if ($LASTEXITCODE -ne 0) { throw 'P89 R1 original compressed-record marker/naive-grammar discriminator failed' }
+Write-Host 'P89 R1 original marker and bounded negative-codec inventory: PASS (no new decoded frames)'
+
 python scripts/research/p89/structures.py r2 --archive "$p87" --original "$mk1" --report (Join-Path $work 'r2-mk1-source-graph.json') | Out-Null
 if ($LASTEXITCODE -ne 0) { throw 'P89 R2 structural/original independent verification failed' }
 Write-Host 'P89 R2 MK1 P65 ANITAB source-graph inventory: PASS (not native playback)'
