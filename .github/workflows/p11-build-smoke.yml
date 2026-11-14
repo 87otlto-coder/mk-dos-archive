@@ -356,6 +356,9 @@ jobs:
           python -m py_compile scripts/research/p89/r1_mk3_le_source_map.py scripts/research/p89/test_r1_mk3_le_source_map.py
           python scripts/research/p89/test_r1_mk3_le_source_map.py
           python scripts/research/p89/r1_mk3_le_source_map.py --help
+          python -m py_compile scripts/research/p89/r1_runtime_source_witness.py scripts/research/p89/test_r1_runtime_source_witness.py
+          python scripts/research/p89/test_r1_runtime_source_witness.py
+          python scripts/research/p89/r1_runtime_source_witness.py --help
           pwsh -NoProfile -Command "[ScriptBlock]::Create((Get-Content -LiteralPath 'scripts/research/p89/launch_private_windows.ps1' -Raw)) | Out-Null"
       - name: Production Vite build
         run: npm run build
