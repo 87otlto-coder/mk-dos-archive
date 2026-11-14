@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-13. **First interim pass after accepted P86 fifth-pass checkpoint.** Branch: interim/p87-mk1-indexed-anitab-cli, from accepted interim merge 20460f2e59ce526ec1d6cd8997a3ef72f7a196bc. Do not promote main/develop, package full source, or release this pass.
 
-**Classification:** P87 source implementation candidate, **hosted Windows SOURCE-ONLY CI PASS**; new original MK1 runtime acceptance is a separate pending gate. The inherited P65 original-fixture indexed-source package was already independently accepted, not automatically a P87 CLI pass.
+**Classification:** P87 source implementation candidate, **hosted Windows SOURCE-ONLY CI PASS**; new original MK1 runtime accepted from user-run evidence on 2026-11-14 (exact local Git identity file remains unread). The inherited P65 original-fixture indexed-source package was already independently accepted, not automatically a P87 CLI pass.
 
 ## Objective and bounded coverage
 
@@ -27,6 +27,20 @@ The CLI scans the existing 2,656-resource MK1 collection to produce that *subset
 - scripts/mkext.py: Dispatches --game mk1 to the new adapter while preserving previously accepted MK2 P84 and MK3 P85 implementations. MK2-only --stage tomb|portal is refused for MK1.
 - scripts/test-p87-mk1-cli.py: Original-free synthetic tests, fake source fingerprint refusal through actual Node bridge, counterfeit source/summary/oracle/native timing assertions, and non-overwrite/path separation controls.
 - Existing P84/P85 unsupported-game tests updated to reject mk4 rather than newly supported mk1. Windows-only source CI now includes P87 tests and JS syntax checks, retaining opt-in browser artifacts and no commercial game files.
+
+## Original MK1 Windows P87 acceptance — PASS (2026-11-14)
+
+**ORIGINAL MK1 CLI SCAN / EXTRACT / VERIFY: ALL PASS.** The user pasted the full PowerShell transcript from `F:\Dev\MKEXT\SOURCE\mkdosext`, including clean source check, `git fetch origin`, `git switch interim/p87-mk1-indexed-anitab-cli` ("Already on", "up to date") and `git pull --ff-only origin interim/p87-mk1-indexed-anitab-cli` ("Already up to date"). All **11 P87 original-free synthetic tests** passed locally on that checkout, then the new original MK1 CLI ran against `F:\Dev\MKEXT\FIXTURES\mk1\mk1`:
+
+- **`P87_CLI_MK1_SCAN / PASS`:** canonical `MK1.EXE` SHA256 `750792337f71b2f7991450fa92d2240073b089c917e3c6f1f373404544941b14`; original MK1 library census 2,656; eight ANITAB tables, 739 entries, 514 original executable stream starts, 1,102 original source indexed descriptors; **11,230,148 indexed source binary bytes**, four P65 ZIP members; no preview PNGs.
+- **`P87_CLI_MK1_EXTRACT / PASS`:** new private ZIP `F:\Dev\MKEXT\FIXTURES\VALIDATION\P87-d779725fb21a4a31af69f0cc624d03ca\mk1-indexed-anitab-source.zip`; `sourcePackageByteIdentical: true`, `recomputedPackageSha256: d7a94c1473e1ab409eea62d7899f8d548eb9143f4d1c5add83c5430ba22e51e8`. Nested **`P65 / PASS`** source oracle independently checked 8 tables, 739 original cells, 514 streams, 1,824 source frame instructions, 786 control instructions, 1,102 descriptors and 1,853 source part occurrences; original EXE opcode/pointer and O60 original indexed payload byte-match flags true.
+- **`P87_CLI_MK1_VERIFY / PASS`:** separate original game/ZIP verification reran the same independent `P65 / PASS` oracle, compared recomputed package bytes and returned **the identical SHA256** and `sourcePackageByteIdentical: true`.
+
+**Preserved uncertainty:** Both reported results set `nativePaletteOrTimingClaimed:false`, `nativeRuntimeTraversalVerified:false`, `finalActorPlacementOrStageCompositeClaimed:false`, `completeMk1CatalogExportClaimed:false`, `previewPngsCreated:0`, `browserRequired:false`; independent P65 also records `browserPackageDownloadVerified:false` and `fullThreeGameRegressionPerformed:false` for **that focused subtest**. These are the intended limits, not failures. The separate P86 nine-group three-game+Chrome checkpoint remains historically accepted, not rerun here.
+
+**Exact checkout provenance classification:** The user created a private `source_identity.txt` with `git rev-parse HEAD` and `git rev-parse 'HEAD^{tree}'`, but **did not paste those two values**. GitHub independently confirms P87 candidate head `84cafbe279235c43273da860a16ee8e47b434b94` / tree `a01dccc50964598f342ead0593d1d307db6aa44f`, and the user's successful fast-forward pull reports up to date. Associating the original run with that precise head/tree is therefore **INFERRED from branch synchronization, not independently verified from the missing local identity file**. The exact executable P87 bridge, Python CLI, original-free tests, inherited MK2/MK3 adapters and Windows workflow are Git-blob identical to successfully source-only Windows-tested `1c9e7515da52febe2478c3e896b5adf5462f3d2d` (tree `f3641fc02f9fafa1250a92a5336b41232350f1a9`). Also [Windows Actions #43508603507](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43508603507) completed **SUCCESS** on candidate head `84cafbe`, independently hosted without original game files.
+
+**Classification:** P87 bounded MK1 CLI original-fixture functionality **VERIFIED FROM USER-RUN ORIGINAL WINDOWS PROCESS OUTPUT**, source-only Windows CI **VERIFIED**. Exact local tested commit/tree **VALIDATION PENDING direct readback from private source_identity.txt**; no false assertion of original-file bytes being uploaded, of a second machine independently opening the original commercial source, or of native palette/timing. Original ZIP and JSON evidence remain private under FIXTURES and have not been submitted to GitHub. P87 first interim pass may be merged to the already-accepted interim baseline only; no `main`/`develop` promotion, no full-source checkpoint or release.
 
 ## Source-only Windows CI — VERIFIED PASS (2026-11-13)
 
