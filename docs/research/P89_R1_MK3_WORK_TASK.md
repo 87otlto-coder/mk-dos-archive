@@ -1,5 +1,14 @@
 # P89 R1 — Work mode bounded MK3 P79 continuation decoding research
 
+## RECONCILIATION AFTER ORIGINAL R1 SOURCE TEST (2026-11-14)
+
+**The first R1 hypothesis pass has already been executed directly against canonical `DATA.MK3`. Do not redo it.** Read [P89_R1_SOURCE_OBSERVATIONS_20261114.md](P89_R1_SOURCE_OBSERVATIONS_20261114.md) first, then `scripts/research/p89/r1_payload_discriminators.py`. The new report verifies 210 distinct nonempty source record hashes, 209 shared three-byte prefixes (exception ordinal 66), 209 common two-zero suffixes (exception ordinal 68), and record 0's exceptional `(47679,51839)` fields. Two *precisely specified* naïve byte RLE + assumed output-bound hypotheses were tested and rejected against all 210 nonempty records. **ZERO verified additional images; native codec, palette, timing and record field meanings still UNKNOWN.**
+
+[Hosted Windows source-only #43576433860](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43576433860) PASS on the newly committed executable/test/workflow source `816e1716b6ecfd828e7fca5a053d993fbda37af3`. The original-user Windows R1 baseline was on older source `5821bf3`; new discriminator source was original-tested in the private research runtime using the supplied exact original ZIP, *not yet rerun on the user's Windows machine*.
+
+**Next discriminating effort:** no further generic codec guesses. Trace an original-DOS P79 record decompression entry point or observe its memory output at the boundary of a representative payload; qualify command semantics against actual source-verified output indexed positions. Use record 0, 23, 66, 68 and a holdout, with one candidate codec plus independent verifier if evidence supports it. If runtime/trace evidence is unavailable, record the source blocker explicitly; do not equate structure with decoded frames. The remainder of this original task is retained as historical testing contract, not an instruction to re-run the completed first pass.
+
+
 **Status:** READY FOR RESEARCH EXECUTION, **NOT a decoded-frame result**. **2026-11-14.** Authored following user-local P89 original Windows inventory PASS at source `5821bf32fd24084ec471561fa8a2c84dcc8b3a2e`, tree `405b11e23bd2a20f60933482d31004e7bc7d9613`. The R1 per-record private report has not been inspected by this author. Do not invent values from it.
 
 ## Context / required reading (no rediscovery)
