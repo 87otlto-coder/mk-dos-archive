@@ -92,8 +92,7 @@ def parse_source_map(data: bytes, *, canonical: bool = True) -> dict:
             "<IIIIII", data, head + object_table + i*24
         )
         require(reserved == 0 and size > 0 and pages > 0 and
-                first_page >= 1 and first_page + pages - 1 <= page_count and
-                size <= pages * page_size,
+                first_page >= 1 and first_page + pages - 1 <= page_count,
                 "invalid LE object mapping")
         maps = []
         for index in range(first_page, first_page + pages):
@@ -111,13 +110,17 @@ def parse_source_map(data: bytes, *, canonical: bool = True) -> dict:
             "index": i+1, "declaredImageBytes": size, "virtualBase": base,
             "flags": flags, "sourceFirstPage": first_page,
             "mappedPageCount": pages, "sourcePageFileOffsets": maps,
+            "initializedFileBackedBytes": min(size, pages*page_size),
+            "virtualZeroFillBytes": max(0, size-pages*page_size),
             "containsExecutableInstructions": bool(flags & 4),
         })
     require(len(mapped_page_numbers) == page_count,
             "missing/unaccounted mapped LE physical pages")
     require(1 <= entry_object <= len(objects), "invalid entry-point object")
     obj = objects[entry_object - 1]
-    require(entry_offset < obj["declaredImageBytes"], "LE entry point outside declared object")
+    require(entry_offset < obj["declaredImageBytes"] and
+            entry_offset < obj["initializedFileBackedBytes"],
+            "LE entry point outside initialized object pages")
     source_offset = obj["sourcePageFileOffsets"][entry_offset//page_size] + entry_offset%page_size
     require(source_offset < len(data), "LE entry source outside original file")
     result = {
