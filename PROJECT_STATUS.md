@@ -1,5 +1,12 @@
 # MK DOS Extractor — project status
 
+## P88 MK1 indexed source previews — interim candidate (2026-11-14)
+
+**P88 source-only Windows CI PASS, original DOS run VALIDATION PENDING.** On branch `interim/p88-mk1-indexed-previews`, draft [PR #29](https://github.com/87otlto-coder/mk-dos-archive/pull/29) adds a lossless headless P65 descriptor preview exporter, independent indexed-mask/PNG verifier and 20 synthetic/source-refusal tests without changing existing MK1/MK2/MK3 decoders or UI. [Windows Actions #43570821991](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43570821991) completed SUCCESS on source commit `b501c4b00730189896bb44d516778137c04d72c6`; P88 synthetic checks, inherited regressions, production build, TypeScript and offline Chrome boot passed. Hosted CI includes no original game data. Private original Windows export of all 1,102 diagnostic grayscale-index RGBA PNGs and exact original index/mask sidecars, followed by independent source/PNG readback, **has not yet been executed/observed** and is required before merge.
+
+[Private original Windows acceptance commands and evidence boundary](docs/EXTRACTOR_P88_MK1_INDEXED_PREVIEW_CANDIDATE.md). P88 source outputs deliberately do not claim native palette ownership, animation timing/traversal or stage placement. The reviewed P89 deep-research hypothesis/test design is separately documented in [P89 WORK SESSION PACKET DRAFT](docs/research/P89_WORK_SESSION_PACKET_DRAFT.md); no P89 original test or new decoder is accepted. Keep `main` and `develop` unchanged; accepted P87 first interim pass remains the active branch base at `87694e9`. Next fifth pass planned P91.
+
+
 **Last status reconciliation:** 2026-11-13
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
