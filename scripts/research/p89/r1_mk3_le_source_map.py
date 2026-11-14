@@ -31,6 +31,63 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+# Each code-window hash identifies exactly one 16-byte interval in original
+# MK3.EXE. Runtime EIPs came from the user's DOSBox-X debugger screenshots.
+# These are DOS I/O wrappers, NOT the P79 decompressor.
+ORIGINAL_DOS_IO_WITNESSES = (
+    ("seek_int21", 0xCC4E4, 0x26B090,
+     "752f3f7c8d3f21763e93c1a4b89031ae9bfb202efc9c96f457630533731512d6"),
+    ("read_int21", 0xCC556, 0x26B102,
+     "1bb25fd49d0bbee565ffea82090007d3096b70123bea25e29f9247c4d1ab4d32"),
+)
+
+
+def corroborate_dos_io_runtime(data: bytes, code_object: dict, *,
+                              witnesses=ORIGINAL_DOS_IO_WITNESSES) -> dict:
+    """Correlate original LE code pages with two screenshot-observed DOS INT21 EIPs.
+
+    A constant runtime displacement across independent source instructions
+    supports a mapped-code address relationship, NOT a decoder or call graph.
+    """
+    require(len(witnesses) >= 2, "at least two independent I/O witnesses required")
+    page_size = 4096
+    pages = code_object["sourcePageFileOffsets"]
+    pairs = []
+    for role, original_offset, runtime_eip, source_hash in witnesses:
+        require(original_offset >= 0 and original_offset + 16 <= len(data),
+                "source instruction witness outside executable")
+        token = data[original_offset:original_offset + 16]
+        require(sha(token) == source_hash and data.count(token) == 1,
+                "original code instruction fingerprint changed or ambiguous")
+        mappings = [
+            i * page_size + original_offset - source_page
+            for i, source_page in enumerate(pages)
+            if source_page <= original_offset and original_offset + 16 <= source_page + page_size
+        ]
+        require(len(mappings) == 1 and
+                mappings[0] + 16 <= code_object["initializedFileBackedBytes"],
+                "DOS wrapper has no unique initialized LE code mapping")
+        le_va = code_object["virtualBase"] + mappings[0]
+        pairs.append({
+            "role": role, "originalFileOffset": original_offset,
+            "originalObjectOffset": mappings[0], "originalLEVirtualAddress": le_va,
+            "runtimeSelectorObserved": "0180", "runtimeEipObserved": runtime_eip,
+            "sourceWindowSha256": source_hash,
+            "runtimeMinusLEVirtual": runtime_eip - le_va,
+        })
+    require(len(set(x["runtimeMinusLEVirtual"] for x in pairs)) == 1,
+            "screenshot source/runtime displacement mismatch")
+    return {
+        "evidence": "TWO_UNIQUE_ORIGINAL_INSTRUCTION_WINDOWS_PLUS_RUNTIME_SCREENSHOTS",
+        "classification": "VERIFIED_DOS_IO_WRAPPER_SOURCE_ADDRESS_CORRELATION",
+        "wrapperCount": len(pairs),
+        "runtimeRelocationDifference": pairs[0]["runtimeMinusLEVirtual"],
+        "witnesses": pairs,
+        "p79DecompressionRoutineClaimed": False,
+        "indexedOutputPixelsClaimed": False,
+    }
+
+
 def input_exe(folder_or_file: Path) -> bytes:
     path = folder_or_file.resolve(strict=True)
     require(not path.is_relative_to(ROOT.resolve()), "original input inside Git source")
@@ -153,6 +210,7 @@ def parse_source_map(data: bytes, *, canonical: bool = True) -> dict:
                 [(634878, 0x10000, 0x2045, 1, 155),
                  (521520, 0xb0000, 0x2043, 156, 67)] and
                 sha(data) == MK3_EXE_SHA256, "not canonical original DOS MK3 LE layout")
+        result["dosIoRuntimeWrapperBridge"] = corroborate_dos_io_runtime(data, objects[0])
     return result
 
 
@@ -186,6 +244,8 @@ def main() -> int:
             "pageDataFileOffset": result["pageDataFileOffset"],
             "objectPageCounts": [x["mappedPageCount"] for x in result["objects"]],
             "originalEntryFileOffset": result["entryPoint"]["originalFileOffset"],
+            "verifiedDosIoWrappers": result["dosIoRuntimeWrapperBridge"]["wrapperCount"],
+            "runtimeMinusLEVirtual": result["dosIoRuntimeWrapperBridge"]["runtimeRelocationDifference"],
             "qualifiedP79DecompressionRoutine": False,
             "newDecodedP79Records": 0,
         }, indent=2))
