@@ -344,6 +344,12 @@ jobs:
           python scripts/test_mk1_p88_previews.py
           python scripts/mk1_p88_previews.py --help
           python scripts/verify_mk1_p88_previews.py --help
+      - name: P89 research preflight and R1-R3 source structure refusals (synthetic only)
+        run: |
+          python -m py_compile scripts/research/p89/preflight.py scripts/research/p89/structures.py scripts/research/p89/test_structures.py
+          python scripts/research/p89/test_structures.py
+          python scripts/research/p89/preflight.py --help
+          python scripts/research/p89/structures.py --help
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
