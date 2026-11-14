@@ -1,6 +1,7 @@
 # P89 private original-DOS research evidence collection.
-# READ-ONLY for original game files and checked-out source. All generated ZIPs
-# and JSON evidence are stored under a fresh private FIXTURES\VALIDATION folder.
+# Read-only for original game files. The launcher safely switches and fast-
+# forwards the Git checkout; it never edits original binaries or rewrites source.
+# New ZIPs and JSON evidence go under a fresh FIXTURES\VALIDATION directory.
 # This does not decode MK3 continuation images or claim native MK1/MK2 runtime.
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
