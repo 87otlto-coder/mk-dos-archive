@@ -82,6 +82,16 @@ The **minimum safe experiment**, once a real debugger is available under `F:\Dev
 
 **Next bounded experiment (planned, not executed):** restart a new private DOSBox-X session with `-log-fileio`, a private `[log] logfile=` path under `FIXTURES\VALIDATION`, and the same private C and image-mounted D drives. Record whether that particular build logs open/read/seek file offsets and handles. Do not claim that a log exists or contains P79 offsets until inspected. Do not infer a decoded image from seeing a source read. The first runtime `DATA.MK3` file access does not yet prove the 210 P79 raw records were accessed.
 
+## Corrected DOSBox-X file-I/O logging gate (2026-11-14)
+
+The user ran a fresh session on DOSBox-X 2026.10.01 SDL2 using the existing GOG-CD mounted private copy and uploaded both exact \`dosbox-x-trace.conf\` and \`fileio.log\`. The startup log was successfully opened and ended normally after CD audio/MK3 startup, but it contained **no \`DATA.MK3\` open/read/seek records or any detailed INT 21h file-I/O entries**. This is NOT evidence that no file reads occurred: earlier live debugger screenshots independently established those operations.
+
+**Why the automated logging attempt is inconclusive:** the session supplied \`[log] fileio = debug\` plus \`-log-fileio\`. DOSBox-X's \`src/debug/debug_gui.cpp\` reads \`fileio\` via \`Get_bool("fileio")\` and enables log groups independently. \`src/dos/dos_files.cpp\` emits \`DOS_ReadFile\` events at \`LOG(LOG_FILES, LOG_DEBUG)\`; the prior config left the \`files\` severity filter at its non-debug default. Therefore even an enabled file-I/O flag need not produce visible debug-level read events. **The omission of \`files = debug\` was an instrumentation setup mistake**, not a game/extractor failure. Public source references: [logging init](https://dosbox-x.com/doxygen/html/debug__gui_8cpp_source.html) and [DOS file operations](https://dosbox-x.com/doxygen/html/dos__files_8cpp_source.html).
+
+**Corrected next gate, not yet run:** generate a **new** private conf/log pair under a fresh validation GUID with \`[log] logfile=<private path>\`, \`fileio=true\`, \`files=debug\`, \`int21=true\`; launch with \`-log-fileio -log-int21\`. Keep original private GOG disc mount and same debug copy. Run to menu and quit; check that the new log contains actual \`Reading N bytes from ...\` before interpreting anything about the P79 source offset. The source \`DOS_SeekFile\` implementation itself does not directly log absolute seek positions, so filename and read-count output alone will not prove crossing into [667866,2508500). A genuine P79 address relationship still needs handle/seek provenance or source-byte memory witness.
+
+**Outcome of first automated logging attempt: VALIDATION PENDING**, no captured decode trace and zero newly decoded P79 continuation images. The uploaded old configuration/log must not be altered or reclassified as PASS.
+
 ## Confidence / disposition
 
 - **VERIFIED:** original P79 raw header/offset partition, 216 record count (210 nonempty), unique source-fingerprint windows for the six chosen ordinals, exact original DOS LE object source mapping.
