@@ -1,5 +1,23 @@
 # P88 — MK1 source-indexed descriptor previews (interim candidate)
 
+## P88 ORIGINAL DOS WINDOWS ACCEPTANCE — PASS (2026-11-14)
+
+**Accepted bounded P88 original-source extraction and independent readback, pending merge/post-merge source CI.** The user supplied the complete PowerShell transcript from `F:\Dev\MKEXT\SOURCE\mkdosext`, showing a successful `git fetch`, checkout and fast-forward pull of `interim/p88-mk1-indexed-previews`. The original tested local Git HEAD **`7308e073f3a1d9c1b68e9871e60dda115440510e`** and tree **`d7094fae94c0c704983dfbd3236f44167a71dde6`** were printed. The GitHub Git-commit API independently confirmed that exact commit/tree pair and the PR head. Source-only Actions [#43570821991](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43570821991) returned SUCCESS on executable code/test/workflow commit `b501c4b00730189896bb44d516778137c04d72c6`; P88 executable, independent verifier, synthetic tests and Windows workflow blobs were subsequently compared with the current accepted candidate and are **identical**. Later changes before the Windows run were documentation-only.
+
+**Observed private original Windows output:**
+
+- `python scripts/test_mk1_p88_previews.py`: **20/20 PASS** in 0.015 seconds.
+- `P88_MK1_EXPORT / PASS`: canonical prior P87/P65 ZIP input SHA-256 `d7a94c1473e1ab409eea62d7899f8d548eb9143f4d1c5add83c5430ba22e51e8`; exported **1,102** descriptor selections to a fresh private ZIP, SHA-256 **`65f070b3a5b6072b67c06698c8163cc9e095aecd4937a4feeb613546fb47b991`**.
+- `P88_INDEPENDENT / PASS`: the independent original index/mask/PNG checker reopened that ZIP, checked **5,615,074 original indexed source pixel positions**, exact source index and paint-mask planes and preview RGBA pixels, with `originalIndexAndMaskAndPreviewPixelParity:true`. Both report identical input/output SHA-256 values and `nativePaletteOrTimingClaimed:false`. No shell `throw` occurred.
+- Private output retained at `F:\Dev\MKEXT\FIXTURES\VALIDATION\P88-672616b0834547d991188e3430333da1\mk1-descriptor-previews.zip`. The private input P87 ZIP remains at its previous P87 validation path. Neither private derived ZIP nor commercial source was uploaded to GitHub.
+
+**Source-authentication boundary:** Both P88 public entrypoints first invoke the original P87 `mkext.py verify --game mk1` and require its PASS, with the nested P65 original executable/O60 oracle enforced by the already accepted P87 code. The P88 printed summaries do **not** print the nested P87 oracle values; their success establishes the asserted source check by inspecting the committed fail-closed call chain, not by an independently supplied nested trace. The user-supplied transcript is process-produced original-machine evidence; the original commercial source and private output archive were not independently downloaded into this GitHub review.
+
+**Confidence:** P88 original-DOS preview/export **VERIFIED FROM USER-EXECUTED ORIGINAL WINDOWS PROCESS RESULTS**, source-only Windows CI **VERIFIED**, Git tested commit/tree directly confirmed. The independent P88 verifier checks exact index/mask/RGBA parity, **not** native colour selection, original gameplay animation traversal/duration, actor Z-order or stage composition. Current broader three-game asset totals and original Chrome click/download remain inherited checkpoint evidence, not rerun by focused P88.
+
+**Decision:** Original Windows acceptance **PASS** for the bounded, headless preview/export scope. P88 may be merged only to accepted interim development branch `interim/p83-mk2-stage-library`. Preserve the P88 branch and all private original tests recoverably. Keep `main` and `develop` unchanged; no full source checkpoint/release. The historical pending-acceptance instructions below document the pre-test gate and are superseded by this PASS record.
+
+
 **2026-11-14.** First graphics-usability follow-up after accepted P87. Review branch `interim/p88-mk1-indexed-previews` forked from accepted P87 merge `87694e90548307792ab5e349220ed443542f13d0`. Keep `main` and `develop` untouched and do not package a full source ZIP. P91 remains the proposed fifth-pass consolidation.
 
 ## Extraction objective
