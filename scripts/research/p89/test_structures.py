@@ -260,9 +260,11 @@ class P89Synthetic(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory) / "SOURCE"
             root.mkdir()
-            fixture = Path(directory) / "FIXTURES"
+            fixture_root = Path(directory) / "FIXTURES"
+            fixture_root.mkdir()
+            fixture = fixture_root / "mk1"
             fixture.mkdir()
-            private = fixture / "VALIDATION"
+            private = fixture_root / "VALIDATION"
             private.mkdir()
             allowed = preflight.private_report_path(private / "new.json",
                 {"mk1": fixture}, root=root)
