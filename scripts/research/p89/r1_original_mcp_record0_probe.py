@@ -57,9 +57,9 @@ def is_p79_seek(reg: dict[str, int]) -> bool:
 
 
 def is_record0_read(reg: dict[str, int], handle: int) -> bool:
-    return ((reg["EAX"] >> 8) & 0xFF) == 0x3F and
-            (reg["EBX"] & 0xFFFF) == handle and
-            (reg["ECX"] & 0xFFFF) == P79_FIRST_PAYLOAD_LENGTH)
+    return (((reg["EAX"] >> 8) & 0xFF) == 0x3F
+            and (reg["EBX"] & 0xFFFF) == handle
+            and (reg["ECX"] & 0xFFFF) == P79_FIRST_PAYLOAD_LENGTH))
 
 
 def require_original_debug_copy(game: Path, evidence: Path, private_root: Path) -> dict:
