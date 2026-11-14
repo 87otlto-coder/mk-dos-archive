@@ -48,13 +48,13 @@ class Control:
         raise ValueError("P89 MCP preflight: debugger output limit exceeded")
 
 
-def probe_protocol(channel: Control) -> dict:
+def probe_protocol(channel: Control, *, exercise_resume: bool = False) -> dict:
     pong = channel.request("PING")
     require(any(x.strip() == "PONG" for x in pong), "PING reply contained no PONG")
     # EV returns register/expression text. CPU and D only draw a debugger window.
     registers = channel.request("EXEC EV EAX")
     require(bool(registers), "no debugger register output; debugger may not be stopped")
-    return {
+    result = {
         "status": "PASS",
         "protocol": "DOSBOX_X_MCP_LOCALHOST_V1",
         "pingVerified": True,
@@ -63,9 +63,25 @@ def probe_protocol(channel: Control) -> dict:
         "originalDataReadOrDecoded": False,
         "registerOutputLines": registers[:3],
     }
+    if exercise_resume:
+        # RUN acknowledges acceptance BEFORE guest execution resumes.
+        # A successful acknowledgement alone never establishes a later stop.
+        channel.request("EXEC RUN")
+        # Explicit BREAK must re-enter the debugger before we read registers.
+        # Neither command mounts any original game or writes guest memory.
+        channel.request("BREAK")
+        after = channel.request("EXEC EV EAX")
+        require(bool(after) and any("EV of" in x for x in after),
+                "no register expression after remote BREAK")
+        result["runAcknowledged"] = True
+        result["remoteBreakAcknowledged"] = True
+        result["registerAfterBreakVerified"] = True
+        result["postBreakRegisterOutputLines"] = after[:3]
+    return result
 
 
-def run(executable: Path, validation: Path, timeout: float = 20.0) -> dict:
+def run(executable: Path, validation: Path, timeout: float = 20.0,
+        *, exercise_resume: bool = False) -> dict:
     exe = executable.resolve(strict=True)
     require(exe.is_file() and exe.name.lower() == "dosbox-x.exe",
             "DOSBox-X executable not found")
@@ -92,7 +108,7 @@ def run(executable: Path, validation: Path, timeout: float = 20.0) -> dict:
                 peer, address = listener.accept()
                 try:
                     require(address[0] == "127.0.0.1", "non-local debugger connection refused")
-                    result = probe_protocol(Control(peer))
+                    result = probe_protocol(Control(peer), exercise_resume=exercise_resume)
                 finally:
                     peer.close()
                 result["dosboxProcessId"] = process.pid
@@ -115,9 +131,12 @@ def main() -> int:
                         help="Existing debugger-enabled DOSBox-X SDL2 exe")
     parser.add_argument("--validation", type=Path, required=True,
                         help="NEW private validation directory, already created")
+    parser.add_argument("--exercise-run-break", action="store_true",
+                        help="Extra no-game test: remote RUN, BREAK, then EV EAX")
     args = parser.parse_args()
     try:
-        print(json.dumps(run(args.exe, args.validation), indent=2))
+        print(json.dumps(run(args.exe, args.validation,
+                             exercise_resume=args.exercise_run_break), indent=2))
         return 0
     except (ValueError, OSError, EOFError, UnicodeError,
             subprocess.SubprocessError, socket.timeout) as error:
