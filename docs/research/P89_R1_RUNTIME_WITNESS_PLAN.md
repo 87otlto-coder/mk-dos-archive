@@ -69,6 +69,19 @@ The **minimum safe experiment**, once a real debugger is available under `F:\Dev
 
 **Stop rule:** If original runtime source-to-output capture is inaccessible, return `RUNTIME_WITNESS_UNAVAILABLE`, preserve the source-only anchor tests and verified original P79 ZIP, and pivot P90 engineering effort to the already verified MK1 P65/P88 descriptor-preview mechanisms rather than continue speculative MK3 decompression.
 
+## User-observed original Windows DOSBox-X trace (2026-11-14)
+
+**Evidence: user-supplied screenshots of live debugger and game window, not automatic logs.** Runtime access is now VERIFIED as functional for file operations; the precise graphics decoder/input→output link is **still UNKNOWN**. No original game bytes or copyrighted source payloads were committed.
+
+- **Environment:** existing DOSBox-X 2026.10.01 SDL2 debug build at `F:\Dev\MKEXT\TOOLS\MK2_PitII_O258_Debugger_Starter\DOSBOX_X_PORTABLE\mingw-build\mingw-sdl2\dosbox-x.exe`. A separate disposable original-GOG game copy was placed under `F:\Dev\MKEXT\FIXTURES\VALIDATION\P89-R1-MK3-DEBUG-COPY`, and both its `DATA.MK3` SHA256 and the untouched canonical original matched `72905bc96b752bceb0055296e26b904402909f73a1401541c0dd175135a55517`.
+- **CD setup:** the original GOG game required a `D:` CD mount. User mounted its original `C:\IMAGE\MK3.CUE` from the private debugging copy. Subsequently `DEBUGBOX MK3.EXE` reached the original startup/loader and the game successfully reached its menu after removing breakpoints.
+- **Original file-open trace:** `BPINT 21 3D` caught `MK3.EXE` loader reopens and source-name requests including `mk3name.dat`, `mk3taunt.dat`, `mk3.dat`. At protected-mode `CS:EIP=0180:0026B226`, `DS:EDX=0188:002CBB08`, the memory view showed the null-terminated DOS filename `\data.mk3` in a real `INT 21h AH=3Dh` open request. This proves runtime attempted to open the archive, not success of a particular later read or its handle identity in isolation.
+- **Original read trace:** `BPINT 21 3F` stopped at code `0180:0026B102` with `EAX=00003F41`, `EBX=00000005`, `ECX=0000000C` (12 requested bytes). A subsequent real-mode DOS handler inspection after the read showed `EAX=0000000C`, carry clear and a memory buffer beginning ASCII `FORM` and `PBM `. The original IFF header is a real observed read, but the handle-to-`DATA.MK3` relationship had not been independently re-established through a returned open-handle mapping.
+- **Original seek trace:** `BPINT 21 42` observed original `AH=42h, AL=1` (current-relative seek), `BX=0005`, `CX=0000`, `DX=006E` (+110). The completed real-mode DOS seek returned `DX:AX=0001:C81A` = **116,762** with carry clear. Another observed relative seek on the same handle requested +8 and returned `DX:AX=0001:C82A` = **116,778**, consistent with an intervening 8-byte read. These positions are **before** the P79 region at original `DATA.MK3` offset 667,866.
+- **Playback readiness:** after deleting the file-open/read/seek and temporary step breakpoints, the original GOG MK3 reached the DOSBox-X game/options menu with graphics rendered. This verifies practical debugger access, not P79 continuation reconstruction.
+
+**Next bounded experiment (planned, not executed):** restart a new private DOSBox-X session with `-log-fileio`, a private `[log] logfile=` path under `FIXTURES\VALIDATION`, and the same private C and image-mounted D drives. Record whether that particular build logs open/read/seek file offsets and handles. Do not claim that a log exists or contains P79 offsets until inspected. Do not infer a decoded image from seeing a source read. The first runtime `DATA.MK3` file access does not yet prove the 210 P79 raw records were accessed.
+
 ## Confidence / disposition
 
 - **VERIFIED:** original P79 raw header/offset partition, 216 record count (210 nonempty), unique source-fingerprint windows for the six chosen ordinals, exact original DOS LE object source mapping.
