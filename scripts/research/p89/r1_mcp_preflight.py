@@ -95,7 +95,7 @@ def probe_protocol(channel: Control, *, exercise_resume: bool = False,
         operations = (
             ("EXEC BPDEL *", "Breakpoints deleted"),
             ("EXEC BPINT 21 42", "breakpoint"),
-            ("EXEC BPLIST", "BPINT"),
+            ("EXEC BPLIST", "Breakpoint list:"),
             ("EXEC BPDEL *", "Breakpoints deleted"),
         )
         checked = ["STEPIN"]
