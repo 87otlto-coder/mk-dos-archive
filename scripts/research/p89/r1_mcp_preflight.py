@@ -48,7 +48,8 @@ class Control:
         raise ValueError("P89 MCP preflight: debugger output limit exceeded")
 
 
-def probe_protocol(channel: Control, *, exercise_resume: bool = False) -> dict:
+def probe_protocol(channel: Control, *, exercise_resume: bool = False,
+                   exercise_step_commands: bool = False) -> dict:
     pong = channel.request("PING")
     require(any(x.strip() == "PONG" for x in pong), "PING reply contained no PONG")
     # EV returns register/expression text. CPU and D only draw a debugger window.
@@ -77,11 +78,46 @@ def probe_protocol(channel: Control, *, exercise_resume: bool = False) -> dict:
         result["remoteBreakAcknowledged"] = True
         result["registerAfterBreakVerified"] = True
         result["postBreakRegisterOutputLines"] = after[:3]
+    if exercise_step_commands:
+        # Native command set is different in the user's 2026.10.01 release:
+        # source commit b6abbd5 does not contain the STEPIN command.
+        # 2026-10-20 development commit 029bd65 does.
+        # Exercise only while stopped, with NO game mounted.
+        try:
+            step = channel.request("EXEC STEPIN")
+        except ValueError as error:
+            raise ValueError(
+                "P89 MCP command support: EXEC STEPIN unavailable; "
+                "do not launch the original-game record probe: " + str(error)
+            ) from error
+        require(any("STEPIN CS:IP=" in x for x in step),
+                "STEPIN succeeded without a verified post-step instruction position")
+        operations = (
+            ("EXEC BPDEL *", "Breakpoints deleted"),
+            ("EXEC BPINT 21 42", "breakpoint"),
+            ("EXEC BPLIST", "BPINT"),
+            ("EXEC BPDEL *", "Breakpoints deleted"),
+        )
+        checked = ["STEPIN"]
+        for command, expected in operations:
+            try:
+                output = channel.request(command)
+            except ValueError as error:
+                raise ValueError("P89 MCP command support: " + command +
+                                 " rejected: " + str(error)) from error
+            require(any(expected.lower() in line.lower() for line in output),
+                    "unexpected or empty " + command + " reply: " + repr(output[:3]))
+            checked.append(command[5:])
+        result["originalProbeCommandSetVerified"] = True
+        result["originalProbeCommandsChecked"] = checked
+        result["originalGameMounted"] = False
+        result["originalDataReadOrDecoded"] = False
     return result
 
 
 def run(executable: Path, validation: Path, timeout: float = 20.0,
-        *, exercise_resume: bool = False) -> dict:
+        *, exercise_resume: bool = False,
+        exercise_step_commands: bool = False) -> dict:
     exe = executable.resolve(strict=True)
     require(exe.is_file() and exe.name.lower() == "dosbox-x.exe",
             "DOSBox-X executable not found")
@@ -108,7 +144,9 @@ def run(executable: Path, validation: Path, timeout: float = 20.0,
                 peer, address = listener.accept()
                 try:
                     require(address[0] == "127.0.0.1", "non-local debugger connection refused")
-                    result = probe_protocol(Control(peer), exercise_resume=exercise_resume)
+                    result = probe_protocol(Control(peer),
+                                            exercise_resume=exercise_resume,
+                                            exercise_step_commands=exercise_step_commands)
                 finally:
                     peer.close()
                 result["dosboxProcessId"] = process.pid
@@ -133,10 +171,13 @@ def main() -> int:
                         help="NEW private validation directory, already created")
     parser.add_argument("--exercise-run-break", action="store_true",
                         help="Extra no-game test: remote RUN, BREAK, then EV EAX")
+    parser.add_argument("--exercise-step-commands", action="store_true",
+                        help="No-game test: STEPIN and exact BPINT/BPLIST/BPDEL commands required by original MK3 probe")
     args = parser.parse_args()
     try:
         print(json.dumps(run(args.exe, args.validation,
-                             exercise_resume=args.exercise_run_break), indent=2))
+                             exercise_resume=args.exercise_run_break,
+                             exercise_step_commands=args.exercise_step_commands), indent=2))
         return 0
     except (ValueError, OSError, EOFError, UnicodeError,
             subprocess.SubprocessError, socket.timeout) as error:
