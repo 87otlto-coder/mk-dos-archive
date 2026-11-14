@@ -163,7 +163,10 @@ def main() -> int:
             path = args.report.resolve(strict=False)
             require(path.suffix.lower() == ".json" and path.parent.is_dir()
                     and not path.exists() and not path.is_relative_to(ROOT.resolve())
-                    and (not path.is_relative_to(source) if source.is_dir() else path != source),
+                    and not path.is_relative_to(
+                        source if source.is_dir()
+                        else source.parent if source.name.upper() == "DATA.MK3"
+                        else source),
                     "refusing unsafe report path or overwrite")
             with path.open("x", encoding="utf-8") as output:
                 json.dump(result, output, sort_keys=True, indent=2)
