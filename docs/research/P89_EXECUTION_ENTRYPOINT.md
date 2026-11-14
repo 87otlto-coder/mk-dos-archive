@@ -27,7 +27,7 @@ All source is under `F:\Dev\MKEXT\SOURCE\mkdosext`; private originals and output
 
 ```powershell
 Set-Location 'F:\Dev\MKEXT\SOURCE\mkdosext'
-pwsh -NoProfile -File '.\scripts\research\p89\launch_private_windows.ps1'
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File '.\scripts\research\p89\launch_private_windows.ps1'
 ```
 
 The launcher safely fetches and fast-forward-switches to the **P89 research branch**, prints Git HEAD/tree, runs the 20 synthetic tests, verifies exact original file hashes and existing source archive identities, creates *new* P79/P82 private ZIPs, then runs R1–R3 structural probes against them with the existing independently qualified original-source verifiers. It never edits the original game files or overwrites previous validation output.
