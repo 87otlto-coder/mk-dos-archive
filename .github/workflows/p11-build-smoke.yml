@@ -338,6 +338,12 @@ jobs:
           node --check scripts/mk1_p87_source_bridge.cjs
           python scripts/test-p87-mk1-cli.py
           python scripts/mkext.py --help
+      - name: P88 MK1 original indexed descriptor preview and independent PNG controls (synthetic only)
+        run: |
+          python -m py_compile scripts/mk1_p88_previews.py scripts/verify_mk1_p88_previews.py scripts/test_mk1_p88_previews.py
+          python scripts/test_mk1_p88_previews.py
+          python scripts/mk1_p88_previews.py --help
+          python scripts/verify_mk1_p88_previews.py --help
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks

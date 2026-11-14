@@ -1,5 +1,24 @@
 # MK DOS Extractor — project status
 
+## P88 ACCEPTED original indexed MK1 descriptor preview/export — 2026-11-14
+
+**USER-LOCAL ORIGINAL WINDOWS P88 EXPORT + INDEPENDENT VERIFICATION: BOTH PASS**, plus **20/20** local synthetic cases PASS. Exact printed original-tested Git commit `7308e073f3a1d9c1b68e9871e60dda115440510e` and tree `d7094fae94c0c704983dfbd3236f44167a71dde6` were independently matched through GitHub Git API. P88 produced **1,102** diagnostic original numeric-index grayscale RGBA PNGs with exact original index/paint-mask sidecars (three files per source descriptor), manifest and README in a new private ZIP. The independent verifier reopened the private ZIP and original P87/P65 source package, checked **5,615,074 source index positions** and all index/mask/PNG pixel identities and returned `originalIndexAndMaskAndPreviewPixelParity:true`.
+
+- **P88 export `PASS` / independent verify `PASS`:** input original indexed P87 ZIP SHA256 `d7a94c1473e1ab409eea62d7899f8d548eb9143f4d1c5add83c5430ba22e51e8`; newly generated private preview ZIP SHA256 `65f070b3a5b6072b67c06698c8163cc9e095aecd4937a4feeb613546fb47b991`.
+- **Private P88 export:** `F:\Dev\MKEXT\FIXTURES\VALIDATION\P88-672616b0834547d991188e3430333da1\mk1-descriptor-previews.zip`; source ZIP and original DOS binaries remain private, not committed/uploaded. P88 public exporter and independent verifier both enforce accepted P87 original DOS `mkext.py verify` before claiming PASS.
+- **Hosted original-free Windows CI:** [#43570821991](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43570821991) SUCCESS on tested executable code/tests/workflow commit `b501c4b00730189896bb44d516778137c04d72c6`, byte-identical at the original-Windows tested HEAD. Inherited checks, Vite, TypeScript and no-game Chrome startup passed.
+- **Classification:** P88 bounded headless original-MK1 previews/export VERIFIED from complete user-provided original Windows stdout, with exact Git identity independently confirmed. The original DOS input ZIP and exported images were not directly accessed by the GitHub reviewer. No runtime palette, native animation order/timing, stage composition or interactive original-Chrome download is qualified. Baseline three-game census remains historical P86 acceptance, not freshly rerun in P88.
+- **Decision:** P88 second interim pass after P86 may be merged through [PR #29](https://github.com/87otlto-coder/mk-dos-archive/pull/29) into accepted `interim/p83-mk2-stage-library` only; `main` and `develop` remain unchanged. No full source ZIP/release. P89 research preparation packet remains a draft until source-only harnesses are separately committed and tested. P91 is the next scheduled consolidation.
+
+[Focused original acceptance handoff](docs/EXTRACTOR_P88_MK1_INDEXED_PREVIEW_CANDIDATE.md).
+
+## P88 MK1 indexed source previews — interim candidate (2026-11-14)
+
+**P88 source-only Windows CI PASS, original DOS run VALIDATION PENDING.** On branch `interim/p88-mk1-indexed-previews`, draft [PR #29](https://github.com/87otlto-coder/mk-dos-archive/pull/29) adds a lossless headless P65 descriptor preview exporter, independent indexed-mask/PNG verifier and 20 synthetic/source-refusal tests without changing existing MK1/MK2/MK3 decoders or UI. [Windows Actions #43570821991](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43570821991) completed SUCCESS on source commit `b501c4b00730189896bb44d516778137c04d72c6`; P88 synthetic checks, inherited regressions, production build, TypeScript and offline Chrome boot passed. Hosted CI includes no original game data. Private original Windows export of all 1,102 diagnostic grayscale-index RGBA PNGs and exact original index/mask sidecars, followed by independent source/PNG readback, **has not yet been executed/observed** and is required before merge.
+
+[Private original Windows acceptance commands and evidence boundary](docs/EXTRACTOR_P88_MK1_INDEXED_PREVIEW_CANDIDATE.md). P88 source outputs deliberately do not claim native palette ownership, animation timing/traversal or stage placement. The reviewed P89 deep-research hypothesis/test design is separately documented in [P89 WORK SESSION PACKET DRAFT](docs/research/P89_WORK_SESSION_PACKET_DRAFT.md); no P89 original test or new decoder is accepted. Keep `main` and `develop` unchanged; accepted P87 first interim pass remains the active branch base at `87694e9`. Next fifth pass planned P91.
+
+
 **Last status reconciliation:** 2026-11-13
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
