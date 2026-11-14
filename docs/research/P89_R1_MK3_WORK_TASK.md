@@ -1,5 +1,11 @@
 # P89 R1 — Work mode bounded MK3 P79 continuation decoding research
 
+## R1 executable-source address map completed (2026-11-14)
+
+Original `MK3.EXE` DOS/4GW LE source metadata has now been mapped and original-fingerprinted. Read [P89_R1_MK3_LE_ADDRESS_MAP.md](P89_R1_MK3_LE_ADDRESS_MAP.md) and reuse `scripts/research/p89/r1_mk3_le_source_map.py` rather than reconstructing the LE page table again. Two LE objects, source-file code entry `0xA42F0` and the 247,088-byte data zero-fill distinction were independently checked. [Windows source-only CI #43584079204](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43584079204) passed on the new executable/testing code. **The LE map is NOT a P79 decompressor trace.** Do not promote a hypothetical function address to VERIFIED without exact original source byte input→output witnesses.
+
+The remaining meaningful R1 task is a constrained original-source decoder call-boundary trace, not more unanchored code scanning or generic codec trials. If actual runtime memory/output evidence cannot be obtained, keep `newVerifiedImageRecords=0`, report blocked original runtime correlation, and preserve the verified original indexed base + raw records untouched.
+
 ## RECONCILIATION AFTER ORIGINAL R1 SOURCE TEST (2026-11-14)
 
 **The first R1 hypothesis pass has already been executed directly against canonical `DATA.MK3`. Do not redo it.** Read [P89_R1_SOURCE_OBSERVATIONS_20261114.md](P89_R1_SOURCE_OBSERVATIONS_20261114.md) first, then `scripts/research/p89/r1_payload_discriminators.py`. The new report verifies 210 distinct nonempty source record hashes, 209 shared three-byte prefixes (exception ordinal 66), 209 common two-zero suffixes (exception ordinal 68), and record 0's exceptional `(47679,51839)` fields. Two *precisely specified* naïve byte RLE + assumed output-bound hypotheses were tested and rejected against all 210 nonempty records. **ZERO verified additional images; native codec, palette, timing and record field meanings still UNKNOWN.**
