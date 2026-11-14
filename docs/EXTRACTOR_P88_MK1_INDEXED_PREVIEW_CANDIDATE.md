@@ -29,7 +29,7 @@ New files:
 - `scripts/test_mk1_p88_previews.py`: 20 original-free synthetic positive, selected-export, original-index-zero/transparent nonzero, malformed-source and false-native regression cases.
 - A Windows-only source smoke step added to `.github/workflows/p11-build-smoke.yml`; original commercial data absent.
 
-**CI PENDING until a full successful Actions result is inspected on the exact implementation commit.** No source-only tests prove real-DOS P88 acceptance.
+**SOURCE-ONLY WINDOWS CI VERIFIED PASS:** [Actions #43570821991](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43570821991) completed SUCCESS on exact tested candidate source commit `b501c4b00730189896bb44d516778137c04d72c6`. The P88 synthetic 20-case suite, P87 and inherited regressions, TypeScript, Vite production build and source-offline headless Chrome startup passed on Windows. Later P88 documentation-only commits do not alter executable source, the tests or workflow; check exact Git blobs at original acceptance. **Original P88 DOS fixture verification is still VALIDATION PENDING**; no commercial game files were used in hosted CI.
 
 ## Private Windows original DOS acceptance — PENDING
 
