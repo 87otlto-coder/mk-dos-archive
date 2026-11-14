@@ -161,9 +161,9 @@ def main() -> int:
         result = analyze(data, capture, tuple(args.ordinal) if args.ordinal else DEFAULT_ORDINALS)
         if args.report:
             path = args.report.resolve(strict=False)
-            require(path.suffix.lower() == ".json" and path.parent.is_dir() and
-                    not path.exists() and not path.is_relative_to(ROOT.resolve()) and
-                    not path.is_relative_to(source if source.is_dir() else source.parent),
+            require(path.suffix.lower() == ".json" and path.parent.is_dir()
+                    and not path.exists() and not path.is_relative_to(ROOT.resolve())
+                    and (not path.is_relative_to(source) if source.is_dir() else path != source),
                     "refusing unsafe report path or overwrite")
             with path.open("x", encoding="utf-8") as output:
                 json.dump(result, output, sort_keys=True, indent=2)
