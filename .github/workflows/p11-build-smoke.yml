@@ -350,6 +350,7 @@ jobs:
           python scripts/research/p89/test_structures.py
           python scripts/research/p89/preflight.py --help
           python scripts/research/p89/structures.py --help
+          pwsh -NoProfile -Command "[ScriptBlock]::Create((Get-Content -LiteralPath 'scripts/research/p89/launch_private_windows.ps1' -Raw)) | Out-Null"
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
