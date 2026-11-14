@@ -25,6 +25,19 @@ New **read-only memory match** code:
 
 Six default source records are **0,23,66,68,126,215**, spanning first/subsequent records and the observed prefix/tail exceptions. Original direct-file inspection confirmed all six have a deterministic source-unique 48-byte fingerprint. Their **bytes themselves must not be pasted into source control or public tickets**. Only offset, length and SHA-256 appear in the metadata. Test exactly one source record first; then another independent record and holdout.
 
+**Direct-original source-unique anchor evidence** (48 bytes per anchor; no payload bytes published):
+
+| Record ordinal | Original DATA.MK3 byte offset | Relative payload offset | SHA256 of the 48-byte window |
+| ---: | ---: | ---: | --- |
+| 0 | 733766 | 1104 | `bb457c3b46529b4177cf4fa8140e76758aa743ef4267073472f9bd68e7e881e5` |
+| 23 | 865178 | 48 | `1c7b0f7d5cdfc264ba2d970fe16e326ab52dd66f7d59e9fcb2e5eabe4e8af524` |
+| 66 | 1412955 | 0 | `fd6f2529c7f2b935bf8d7bc57a8cac1813b4083d4a02fe68c3a4f9457e76af10` |
+| 68 | 1440571 | 40 | `5043561fc575f6d09b8c23d8a1b463d6c9a84f1eb90a77b50f4b7f8dd1baa443` |
+| 126 | 1898756 | 272 | `bf787b6f6a37895fb211f41d9ea37b995e47f5a8dfc3115aaebac26c2c1f3f53` |
+| 215 | 2501733 | 856 | `4e99f341c34949e0b8765a549c0c463c358c07410298677f1e21055873df0cd0` |
+
+These SHA fingerprints and offsets were independently computed against the attached canonical original `DATA.MK3`; each byte window occurs exactly once in that original file. They are **not runtime observations**.
+
 **A positive input signature ONLY means a raw source payload is present in the sampled emulator memory.** This is not an authenticated decompressor address, a decompressed pixel, an output-destination buffer, the runtime draw sequence or native timing. Its purpose is to identify the correct input buffer before doing a targeted input→output trace.
 
 ### Windows original-source anchor inventory (no debugger required)
