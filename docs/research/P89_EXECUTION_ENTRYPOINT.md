@@ -1,12 +1,27 @@
 # P89 — Work mode execution entry point and test inventory
 
-**Status: preparation candidate; source-only Windows acceptance and original-private research execution must be checked independently.** No new MK3 image decoder, MK1 native playback reconstruction, MK2 full stage scene, runtime palette or audio event association is claimed here.
+**Status: PREPARATION ACCEPTED from user-executed original Windows verification, 2026-11-14.** The test harness and three original-source structural inventories passed; the P89 research hypotheses are still open. No new MK3 image decoder, MK1 native playback reconstruction, MK2 full stage scene, runtime palette or audio event association is claimed here.
 
 Repository: `87otlto-coder/mk-dos-archive`  
 Review branch: `research/p89-extraction-unknowns`  
 Accepted base: P88 interim merge `97d67a14b2bd6c854d3e749247226ab1d5023f1a`  
 Foundational plan: [P89 Work Session Packet Draft](P89_WORK_SESSION_PACKET_DRAFT.md)  
 No `main` or `develop` changes. P91 remains the fifth-pass consolidation target.
+
+## Verified original-Windows execution (2026-11-14)
+
+**Evidence type:** Complete user-supplied PowerShell stdout from the canonical Windows checkout. This is reproducible, process-produced evidence; the private original game files and generated reports were **not** separately opened by this GitHub review. Do not conflate a run's PASS with a newly solved asset relationship.
+
+- **Source identity printed locally:** Git commit `5821bf32fd24084ec471561fa8a2c84dcc8b3a2e`; Git tree `405b11e23bd2a20f60933482d31004e7bc7d9613`. Both matched the GitHub Git Commit API exactly.
+- **Private fixture:** `F:\Dev\MKEXT\FIXTURES\VALIDATION\P89-8a231588f5fb4663875532744c50163c` (the launcher generated a new folder; it did not reuse or overwrite old P87/P88 evidence).
+- **Synthetic source/refusal tests:** `Ran 20 tests in 0.169s / OK`. The Python 3.14 `zipfile` duplicate-member warning is emitted while constructing an intentionally invalid negative fixture; the check completed `ok`, not a test failure.
+- **Original input identity:** `P89 original fixture hashes + clean source preflight: PASS`, using original MK1, MK2 and MK3 installation paths and canonical source fingerprints already pinned by the prepared preflight.
+- **R1 original P79 raw continuation structure:** `PASS`, including invocation of original-independent P79 verifier. **216 raw records have NOT been decoded as native frames.**
+- **R2 original P65 MK1 ANITAB graph structure:** `PASS`, including existing P87/P65 original DOS oracle. **No native frame timing, branching runtime order or Z-order inferred.**
+- **R3 original P82 MK2 stage layer structure:** `PASS`, including existing independent native-source pixel verifier. **No camera/world placement, parallax or final draw order recovered.**
+- **Hosted Windows CI source gate:** [GitHub Actions #43573311141](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43573311141) SUCCESS on source code/test/workflow commit `a11e2f6944277cc6343a2b77b8097158faf9fdba`. Code, tests, launcher, and workflow blobs were independently verified identical on the printed original Windows HEAD; the only later change was documentation.
+
+**Outcome:** source-only harness PREPARED and original DOS *structural inventory* ACCEPTED. Work mode can begin **R1 bounded original P79 continuation grammar testing** without rerunning R1–R3 inventory or rebuilding the harness. The R1 JSON report is expected to exist privately, but its individual entries and statistics have **not** been reviewed in this conversation; they must be opened before making record-level claims. The two original-derived source ZIPs remain private and are never committed/uploaded to GitHub.
 
 ## Prepared tests (read-only evidence, no speculative decoding)
 
