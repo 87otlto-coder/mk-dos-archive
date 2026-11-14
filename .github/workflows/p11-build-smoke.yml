@@ -350,6 +350,9 @@ jobs:
           python scripts/research/p89/test_structures.py
           python scripts/research/p89/preflight.py --help
           python scripts/research/p89/structures.py --help
+          python -m py_compile scripts/research/p89/r1_payload_discriminators.py scripts/research/p89/test_r1_payload_discriminators.py
+          python scripts/research/p89/test_r1_payload_discriminators.py
+          python scripts/research/p89/r1_payload_discriminators.py --help
           pwsh -NoProfile -Command "[ScriptBlock]::Create((Get-Content -LiteralPath 'scripts/research/p89/launch_private_windows.ps1' -Raw)) | Out-Null"
       - name: Production Vite build
         run: npm run build
