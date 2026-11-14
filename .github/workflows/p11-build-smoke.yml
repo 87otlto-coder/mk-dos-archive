@@ -333,6 +333,11 @@ jobs:
           python scripts/test-p86-source-audit-allowlist.py
           python scripts/test-p86-checkpoint.py
           python scripts/verify-p86-checkpoint.py --help
+      - name: P87 headless MK1 P65 ANITAB original-indexed source CLI controls (no game files)
+        run: |
+          node --check scripts/mk1_p87_source_bridge.cjs
+          python scripts/test-p87-mk1-cli.py
+          python scripts/mkext.py --help
       - name: Production Vite build
         run: npm run build
       - name: TypeScript checks
