@@ -99,6 +99,15 @@ def await_stopped(channel: Control, deadline: float) -> dict[str, int]:
                     "unexpected successful STEPIN response")
             return candidate
         except ValueError as error:
+            # Release DOSBox-X 2026.10.01 (b6abbd5) does NOT implement STEPIN.
+            # Fail with the exact missing dependency instead of retrying or
+            # mistaking it for any original MK3 decoder behaviour.
+            if "command not recognized" in str(error).lower():
+                raise ValueError(
+                    "P89 R1 original MCP: installed DOSBox-X does not support "
+                    "remote STEPIN; first pass a no-game "
+                    "r1_mcp_preflight.py --exercise-step-commands capability test"
+                ) from error
             # Only known running-state errors are retried; all others fail closed.
             if "requires the debugger to be stopped" not in str(error).lower():
                 raise
