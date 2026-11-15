@@ -3,6 +3,7 @@
 #include <cassert>
 #include <cstdio>
 #include <functional>
+#include <memory>
 using namespace mkext_p91;
 
 Event sample(uint64_t serial) {
@@ -38,23 +39,27 @@ Event sample(uint64_t serial) {
 
 bool sequence(const std::function<void(Event&,Event&,Event&,Event&)>& mutate,
               bool gateOff = false) {
-    Event a=sample(1), b=sample(2), c=sample(5), d=sample(7);
-    d.drawBuffer += 0xfa00u; // post-present selected next buffer
-    d.returnWitnessSerial=6;
-    d.returnWitnessLinear=c.csBase+c.observedReturnOffset;
-    mutate(a,b,c,d);
+    std::unique_ptr<Event> a(new Event(sample(1)));
+    std::unique_ptr<Event> b(new Event(sample(2)));
+    std::unique_ptr<Event> c(new Event(sample(5)));
+    std::unique_ptr<Event> d(new Event(sample(7)));
+    d->drawBuffer += 0xfa00u; // post-present selected next buffer
+    d->returnWitnessSerial=6;
+    d->returnWitnessLinear=c->csBase+c->observedReturnOffset;
+    mutate(*a,*b,*c,*d);
     Guard g;
-    if (!g.observe(Phase::DrawEntry,a)) return false;
-    if (!g.observe(Phase::DrawComplete,b)) return false;
+    if (!g.observe(Phase::DrawEntry,*a)) return false;
+    if (!g.observe(Phase::DrawComplete,*b)) return false;
     if (gateOff) {
-        Event off=sample(3), offRet=sample(4);
-        off.renderGate=0; offRet.renderGate=0;
-        off.buffer.fill(99); offRet.buffer.fill(99);
-        if (!g.observe(Phase::DrawEntry,off)) return false;
-        if (!g.observe(Phase::DrawComplete,offRet)) return false;
+        std::unique_ptr<Event> off(new Event(sample(3)));
+        std::unique_ptr<Event> offRet(new Event(sample(4)));
+        off->renderGate=0; offRet->renderGate=0;
+        off->buffer.fill(99); offRet->buffer.fill(99);
+        if (!g.observe(Phase::DrawEntry,*off)) return false;
+        if (!g.observe(Phase::DrawComplete,*offRet)) return false;
     }
-    if (!g.observe(Phase::PresentEntry,c)) return false;
-    if (!g.observe(Phase::PostPresent,d)) return false;
+    if (!g.observe(Phase::PresentEntry,*c)) return false;
+    if (!g.observe(Phase::PostPresent,*d)) return false;
     return g.status()==Status::Accepted;
 }
 
