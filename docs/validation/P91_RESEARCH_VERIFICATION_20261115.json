@@ -1,0 +1,69 @@
+{
+  "schema": "mk2_p91_research_verification_v1",
+  "date": "2026-11-15",
+  "baseCommit": "74b10e4eb7e7ff0e862773bfa5c01e3555958a10",
+  "branch": "research/p91-mk2-runtime-snapshot",
+  "researchStatus": "PARTIAL_CAPTURE_MECHANISM_NARROWED",
+  "collectorImplementation": "VERIFIED_SYNTHETIC_REFERENCE",
+  "nativeAdapterImplementation": "SPECIFICATION_ONLY",
+  "nativeRuntimeSnapshotCaptured": false,
+  "p90ValidationRerun": false,
+  "p90ProjectionRegenerated": false,
+  "verified": [
+    {
+      "claim": "Default render-gate branch may reach scheduler wait without presentation; position advancement precedes pixel draw gate",
+      "classification": "VERIFIED_STATIC_SOURCE",
+      "sourcePhysical": [
+        "0x67050",
+        "0x670BD",
+        "0x670C7",
+        "0x670DD",
+        "0x93202",
+        "0x9320E"
+      ]
+    },
+    {
+      "claim": "Mode-2 presentation stores displayed source in Object2 0x7662E and can switch 0x7662A to the other buffer",
+      "classification": "VERIFIED_STATIC_SOURCE",
+      "sourcePhysical": [
+        "0x65499",
+        "0x654C5",
+        "0x654EE"
+      ]
+    },
+    {
+      "claim": "Five canonical code windows and 12 relocated operands recover synthetic loaded bases with separate nonzero CS/DS bases",
+      "classification": "VERIFIED_MODEL_NOT_RUNTIME",
+      "windows": 5,
+      "relocations": 12
+    },
+    {
+      "claim": "Collector/source and synthetic on-disk packet controls",
+      "classification": "VERIFIED_SYNTHETIC",
+      "testMethodsPassed": 13,
+      "testMethodsFailed": 0
+    }
+  ],
+  "unknown": [
+    "actual original loaded bases",
+    "actual Tomb frame/list/channel/buffer/DAC values",
+    "native observer compilation and execution",
+    "CPU aperture to host scanout relationship"
+  ],
+  "remainingBlocker": "Native normal-core RAM/DAC observer is specified but not implemented/built/accepted; no capture-ready binary or validated native launch exists.",
+  "preservation": {
+    "commercialCapturesCommitted": false,
+    "originalsModified": false,
+    "acceptedBranchesModified": false,
+    "largeRegressionRun": false,
+    "paidCreditsUsed": false
+  },
+  "implementationCommit": "07f7a86880265379796e217487a1e40d8e9b3b66",
+  "implementationTree": "a3d65d6e961da753d44b9f3abd1d9f16631c9388",
+  "windowsSourceCI": {
+    "runId": 43742132203,
+    "conclusion": "SUCCESS",
+    "originalFreeTestMethods": 13,
+    "nativeOriginalGameExecuted": false
+  }
+}
