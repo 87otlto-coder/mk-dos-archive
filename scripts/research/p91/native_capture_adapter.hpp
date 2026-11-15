@@ -351,6 +351,56 @@ private:
 #endif
     }
 
+
+    void observe_presentation_return(uint32_t ip,uint32_t offset) {
+        if (guard_.status()!=Status::Ready || !snapshots_[2]) return;
+        const PhaseData &present=*snapshots_[2];
+        const uint32_t expectedNear=present.event->observedReturnOffset;
+        const uint64_t expectedLinear=uint64_t(mapping_.csBase)+expectedNear;
+        if (returnCandidateSerial_!=0) {
+            // The previous instruction must have been an original near RET.
+            // A scheduler branch that skipped presentation has no such proof.
+            if (serial_==returnCandidateSerial_+1 &&
+                ip==expectedLinear &&
+                uint32_t(reg_esp)==returnEspBefore_+4u &&
+                uint32_t(SegPhys(ss))==returnSsBaseBefore_ &&
+                returnStackBefore_==expectedNear) {
+                witnessLinear_=ip;witnessSerial_=serial_;
+                returnOpcodeLinear_=returnCandidateIp_;
+                returnOpcodeSerial_=returnCandidateSerial_;
+                returnEspAfter_=uint32_t(reg_esp);
+            }
+            returnCandidateSerial_=0;
+        }
+        if (witnessSerial_!=0) return;
+        // Five original near-RET instruction sites, confirmed directly
+        // against canonical MK2.EXE, are source relative, not runtime PCs.
+        static const uint32_t RET_OFFSETS[5]={
+            0x65464u-0x61c54u,0x65488u-0x61c54u,
+            0x65498u-0x61c54u,0x654d9u-0x61c54u,
+            0x65502u-0x61c54u
+        };
+        bool atReturn=false;
+        for (uint32_t rel:RET_OFFSETS)
+            if (offset==rel) {atReturn=true;break;}
+        if (!atReturn) return;
+        uint8_t op=0;
+        if (!native_ram_read(ip,1,&op) || op!=0xc3u) return;
+        const uint32_t ssBase=uint32_t(SegPhys(ss));
+        const uint32_t esp=uint32_t(reg_esp);
+        uint32_t stackNear=0;
+        if (!read_dword(uint64_t(ssBase)+esp,stackNear) ||
+            stackNear!=expectedNear ||
+            ssBase!=present.cpuRegisters[14] ||
+            esp!=present.cpuRegisters[7])
+            return;
+        returnCandidateSerial_=serial_;
+        returnCandidateIp_=ip;
+        returnEspBefore_=esp;
+        returnStackBefore_=stackNear;
+        returnSsBaseBefore_=ssBase;
+    }
+
     bool sample(uint32_t ip,Phase phase,PhaseData &d) {
         const uint64_t limit=uint64_t(MEM_TotalPages())*4096ull;
         if (!within_ram(mapping_.object1Base,OBJ1_SIZE,limit) ||
