@@ -1,0 +1,342 @@
+name: P91 portable native Tomb capture kit (Windows, no games)
+
+# Builds pinned source and exercises the real no-game observer. Does not upload
+# original binaries, memory packets, source archives or executable artifacts.
+on:
+  push:
+    branches: ['research/p91-native-observer-smoke']
+    paths:
+      - 'scripts/research/p91/native_capture_adapter.hpp'
+      - 'scripts/research/p91/native_capture_core.hpp'
+      - 'scripts/research/p91/native_capture_overlay.py'
+      - 'scripts/research/p91/test_native_capture_overlay.py'
+      - 'scripts/research/p91/native_generation_guard.hpp'
+      - '.github/workflows/p91-portable-capture-windows.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p91-portable-capture-package
+  cancel-in-progress: true
+jobs:
+  pinned-native-adapter:
+    runs-on: windows-latest
+    timeout-minutes: 48
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Original-free adapter source and placement controls
+        shell: pwsh
+        run: |
+          python -B scripts/research/p91/test_native_capture_overlay.py
+          if ($LASTEXITCODE -ne 0) { throw 'Native overlay source controls failed' }
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            git make mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-libtool mingw-w64-x86_64-nasm
+            autoconf automake
+      - name: Exact upstream DOSBox-X checkout
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = Join-Path $env:RUNNER_TEMP 'P91_DOSBOX_029bd65_FOUR_PHASE'
+          if (Test-Path -LiteralPath $source) { throw 'Refusing existing source checkout' }
+          git clone --filter=blob:none --no-checkout https://github.com/joncampbell123/dosbox-x.git $source
+          if ($LASTEXITCODE -ne 0) { throw 'Upstream clone failed' }
+          git -C $source checkout --detach '029bd65c5dcc7cdc7f2e14e35278620d9707d969'
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned upstream checkout failed' }
+          if ((git -C $source rev-parse HEAD).Trim() -ne '029bd65c5dcc7cdc7f2e14e35278620d9707d969') {
+            throw 'Pinned upstream mismatch'
+          }
+          "P91_ADAPTER_UPSTREAM=$source" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Generate and apply isolated normal-core patch and source-safe headers
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $private = Join-Path $env:RUNNER_TEMP 'FIXTURES\VALIDATION\P91-NATIVE-ADAPTER-BUILD'
+          New-Item -ItemType Directory -Path $private -ErrorAction Stop | Out-Null
+          $patch = Join-Path $private 'p91-native-four-phase.patch'
+          python -B scripts/research/p91/native_capture_overlay.py --upstream $env:P91_ADAPTER_UPSTREAM --output $patch
+          if ($LASTEXITCODE -ne 0) { throw 'Adapter source patch generator failed' }
+          git -C $env:P91_ADAPTER_UPSTREAM apply --check $patch
+          if ($LASTEXITCODE -ne 0) { throw 'Source patch cannot apply' }
+          git -C $env:P91_ADAPTER_UPSTREAM apply $patch
+          if ($LASTEXITCODE -ne 0) { throw 'Source patch application failed' }
+          git -C $env:P91_ADAPTER_UPSTREAM diff --check
+          if ($LASTEXITCODE -ne 0) { throw 'Upstream diff has formatting errors' }
+          $actual = @(git -C $env:P91_ADAPTER_UPSTREAM diff --name-only)
+          if ($actual.Count -ne 1 -or $actual[0] -ne 'src/cpu/core_normal.cpp') {
+            throw "Unexpected tracked source changes: $actual"
+          }
+          $headers = @('native_capture_adapter.hpp','native_capture_core.hpp','native_generation_guard.hpp')
+          foreach ($name in $headers) {
+            $sourceFile = Join-Path 'scripts\research\p91' $name
+            $targetFile = Join-Path $env:P91_ADAPTER_UPSTREAM "src\cpu\$name"
+            if (-not (Test-Path -LiteralPath $sourceFile) -or (Test-Path -LiteralPath $targetFile)) {
+              throw "Missing source or unexpected existing upstream header: $name"
+            }
+            Copy-Item -LiteralPath $sourceFile -Destination $targetFile -ErrorAction Stop
+            if ((Get-FileHash -LiteralPath $sourceFile -Algorithm SHA256).Hash -ne
+                (Get-FileHash -LiteralPath $targetFile -Algorithm SHA256).Hash) {
+              throw "Copied header differs: $name"
+            }
+          }
+          "P91_CAPTURE_PATCH_SHA256=$((Get-FileHash -LiteralPath $patch -Algorithm SHA256).Hash.ToLower())" |
+            Out-File $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Supply pinned upstream MinGW libslirp dependency
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          if ! pkg-config --exists slirp; then
+            git clone --depth 1 https://github.com/msys2/MINGW-packages.git /tmp/p91-native-adapter-mingw-packages
+            cd /tmp/p91-native-adapter-mingw-packages/mingw-w64-libslirp
+            sed -i -e "s/^mingw_arch=\(.*\)/mingw_arch=('mingw64')/" PKGBUILD
+            MINGW_ARCH=MINGW64 makepkg-mingw -sCLf --noconfirm
+            pacman --noconfirm -U mingw-w64-*-any.pkg.tar.zst
+          fi
+      - name: Compile DOSBox-X with native four-phase observer
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cd "$(cygpath -u "$P91_ADAPTER_UPSTREAM")"
+          ./build-mingw-sdl2
+          test -s src/dosbox-x.exe
+          strip -s src/dosbox-x.exe
+      - name: No-game CPU hook, RAM/DAC and negative path acceptance
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = Join-Path $env:P91_ADAPTER_UPSTREAM 'src\dosbox-x.exe'
+          if (-not (Test-Path -LiteralPath $exe)) { throw 'Adapter executable missing' }
+          $size = (Get-Item -LiteralPath $exe).Length
+          if ($size -le 100000 -or $size -ge 80000000) { throw "Unexpected adapter build size $size" }
+          $private = Join-Path $env:RUNNER_TEMP 'FIXTURES\VALIDATION\P91-ADAPTER-NOGAME'
+          New-Item -ItemType Directory -Path $private -ErrorAction Stop | Out-Null
+          $config = Join-Path $private 'no-game.conf'
+          @'
+          [sdl]
+          fullscreen=false
+          output=surface
+          [dosbox]
+          machine=svga_s3
+          [cpu]
+          core=normal
+          cycles=fixed 3000
+          [autoexec]
+          exit
+          '@ | Set-Content -LiteralPath $config -Encoding ascii
+          function Run-NoGame([bool]$armed) {
+            $start = New-Object System.Diagnostics.ProcessStartInfo
+            $start.FileName = $exe
+            $start.WorkingDirectory = Split-Path -Parent $exe
+            $start.Arguments = '-noconsole -conf "' + $config + '" -exit'
+            $start.UseShellExecute = $false
+            $start.RedirectStandardOutput = $true
+            $start.RedirectStandardError = $true
+            $start.CreateNoWindow = $true
+            $start.EnvironmentVariables['SDL_VIDEODRIVER'] = 'dummy'
+            if ($armed) {
+              $start.EnvironmentVariables['MKEXT_P91_ADAPTER_SELFTEST_DIR'] = $private
+            } else {
+              $start.EnvironmentVariables.Remove('MKEXT_P91_ADAPTER_SELFTEST_DIR')
+            }
+            $p = [System.Diagnostics.Process]::Start($start)
+            $stdout = $p.StandardOutput.ReadToEndAsync()
+            $stderr = $p.StandardError.ReadToEndAsync()
+            if (-not $p.WaitForExit(60000)) {
+              try { $p.Kill() } catch {}
+              throw 'DOSBox no-game execution timed out'
+            }
+            $out = $stdout.GetAwaiter().GetResult()
+            $err = $stderr.GetAwaiter().GetResult()
+            if ($p.ExitCode -ne 0) {
+              Write-Host $out
+              Write-Host $err
+              throw "DOSBox no-game exit $($p.ExitCode)"
+            }
+          }
+          $report = Join-Path $private 'p91-adapter-selftest.json'
+          Run-NoGame $false
+          if (Test-Path -LiteralPath $report) { throw 'Unarmed adapter wrote evidence' }
+          Run-NoGame $true
+          if (-not (Test-Path -LiteralPath $report)) { throw 'Native adapter hook did not fire' }
+          $e = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
+          if ($e.schema -ne 'mkext_p91_native_adapter_selftest_v1' -or
+              $e.result -ne 'PASS' -or
+              $e.normalCoreHookReached -ne $true -or
+              $e.boundedRamParity -ne $true -or
+              $e.dacReadNonMutating -ne $true -or
+              $e.sha256Verified -ne $true -or
+              $e.originalGameExecuted -ne $false -or
+              $e.nativeTombPacketCaptured -ne $false) {
+            throw 'Native adapter no-game acceptance failed'
+          }
+          $before = (Get-FileHash -LiteralPath $report -Algorithm SHA256).Hash
+          Run-NoGame $true
+          if ((Get-FileHash -LiteralPath $report -Algorithm SHA256).Hash -ne $before) {
+            throw 'Native selftest overwrote existing evidence'
+          }
+          if (Test-Path -LiteralPath (Join-Path $private 'p91-native-raw.bin')) {
+            throw 'Raw packet unexpectedly produced without original game'
+          }
+          Write-Host 'P91_NATIVE_CAPTURE_ADAPTER_NO_GAME=PASS'
+          Write-Host 'P91_UPSTREAM=029bd65c5dcc7cdc7f2e14e35278620d9707d969'
+          Write-Host "P91_PATCH_SHA256=$env:P91_CAPTURE_PATCH_SHA256"
+          Write-Host "P91_EXE_SHA256=$((Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLower())"
+          Write-Host 'P91_ORIGINAL_GAME_EXECUTED=false'
+          Write-Host 'P91_NATIVE_TOMB_PACKET_CAPTURED=false'
+          # Zero private/executable artifacts uploaded.
+
+      - name: Stage pinned Windows binary and source-safe private capture scripts
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $pkg = Join-Path $env:RUNNER_TEMP 'P91_PORTABLE\PACKAGE\P91Capture'
+          $exe = Join-Path $env:P91_ADAPTER_UPSTREAM 'src\dosbox-x.exe'
+          $patch = Join-Path $env:RUNNER_TEMP 'FIXTURES\VALIDATION\P91-NATIVE-ADAPTER-BUILD\p91-native-four-phase.patch'
+          python -B scripts/research/p91/package_native_capture.py --repo . --compiled-exe $exe --patch $patch --output $pkg
+          if ($LASTEXITCODE -ne 0) { throw 'P91 package source staging failed' }
+          "P91_PORTABLE_PACKAGE=$pkg" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+          $license = Join-Path $env:P91_ADAPTER_UPSTREAM 'COPYING'
+          if (Test-Path -LiteralPath $license) {
+            Copy-Item -LiteralPath $license -Destination (Join-Path $pkg 'DOSBOX-X-COPYING.txt') -ErrorAction Stop
+          }
+      - name: Recursively bundle actual non-Windows DLL dependencies
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          pkg="$(cygpath -u "$P91_PORTABLE_PACKAGE")"
+          upstream="$(cygpath -u "$P91_ADAPTER_UPSTREAM")"
+          for iteration in $(seq 1 12); do
+            changed=0
+            for candidate in "$pkg"/*.exe "$pkg"/*.dll "$pkg"/*.DLL; do
+              [ -f "$candidate" ] || continue
+              deps="$(ldd "$candidate")"
+              if printf '%s\n' "$deps" | grep -q '=> not found'; then
+                echo "Unresolved external library: $candidate"
+                printf '%s\n' "$deps"
+                exit 3
+              fi
+              while IFS= read -r dep; do
+                [ -n "$dep" ] || continue
+                case "$dep" in
+                  /c/Windows/*|/c/WINDOWS/*) continue ;;
+                  /mingw64/bin/*|/usr/bin/*) ;;
+                  "$upstream"/*) ;;
+                  *) echo "Untrusted runtime DLL source: $dep"; exit 4 ;;
+                esac
+                name="$(basename "$dep")"
+                if [ ! -f "$pkg/$name" ]; then
+                  cp -- "$dep" "$pkg/$name"
+                  changed=1
+                fi
+              done < <(printf '%s\n' "$deps" | awk '$2=="=>" && $3 ~ /^\// { print $3 }')
+            done
+            if [ "$changed" -eq 0 ]; then break; fi
+            if [ "$iteration" -eq 12 ]; then echo 'DLL closure too deep'; exit 5; fi
+          done
+          count="$(find "$pkg" -maxdepth 1 -iname '*.dll' | wc -l)"
+          echo "P91_PORTABLE_DLLS=$count"
+          [ "$count" -le 100 ]
+      - name: Verify separated portable folder with restricted DLL PATH, no game
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $pkg = $env:P91_PORTABLE_PACKAGE
+          $exe = Join-Path $pkg 'dosbox-x.exe'
+          $id = Get-Content -LiteralPath (Join-Path $pkg 'P91_CAPTURE_BUILD_ID.json') -Raw | ConvertFrom-Json
+          if ($id.upstreamCommit -ne '029bd65c5dcc7cdc7f2e14e35278620d9707d969' -or
+              $id.patchSha256 -ne $env:P91_CAPTURE_PATCH_SHA256.ToLower() -or
+              $id.executableSha256 -ne (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLower()) {
+            throw 'Portable build identity mismatch'
+          }
+          $private = Join-Path $env:RUNNER_TEMP 'FIXTURES\VALIDATION\P91-PORTABLE-NO-GAME'
+          New-Item -ItemType Directory -Path $private -ErrorAction Stop | Out-Null
+          $config = Join-Path $private 'no-game.conf'
+          @'
+          [sdl]
+          fullscreen=false
+          output=surface
+          [dosbox]
+          machine=svga_s3
+          [cpu]
+          core=normal
+          cycles=fixed 3000
+          [autoexec]
+          exit
+          '@ | Set-Content -LiteralPath $config -Encoding ascii
+          function Run-Portable([bool]$armed) {
+            $info = New-Object System.Diagnostics.ProcessStartInfo
+            $info.FileName = $exe
+            $info.WorkingDirectory = $pkg
+            $info.Arguments = '-noconsole -conf "' + $config + '" -exit'
+            $info.UseShellExecute = $false
+            $info.RedirectStandardOutput = $true
+            $info.RedirectStandardError = $true
+            $info.CreateNoWindow = $true
+            $info.EnvironmentVariables['SDL_VIDEODRIVER'] = 'dummy'
+            $info.EnvironmentVariables['PATH'] = "$pkg;$env:SystemRoot\System32;$env:SystemRoot"
+            if ($armed) {
+              $info.EnvironmentVariables['MKEXT_P91_ADAPTER_SELFTEST_DIR'] = $private
+            } else {
+              $info.EnvironmentVariables.Remove('MKEXT_P91_ADAPTER_SELFTEST_DIR')
+            }
+            $p = [System.Diagnostics.Process]::Start($info)
+            $outTask = $p.StandardOutput.ReadToEndAsync()
+            $errTask = $p.StandardError.ReadToEndAsync()
+            if (-not $p.WaitForExit(60000)) {
+              try { $p.Kill() } catch {}
+              throw 'Packaged no-game emulator timed out'
+            }
+            $out = $outTask.GetAwaiter().GetResult()
+            $err = $errTask.GetAwaiter().GetResult()
+            if ($p.ExitCode -ne 0) {
+              Write-Host $out
+              Write-Host $err
+              throw "Portable DOSBox exit $($p.ExitCode)"
+            }
+          }
+          $report = Join-Path $private 'p91-adapter-selftest.json'
+          Run-Portable $false
+          if (Test-Path -LiteralPath $report) { throw 'Unarmed package wrote evidence' }
+          Run-Portable $true
+          if (-not (Test-Path -LiteralPath $report)) { throw 'Packaged native CPU hook missing' }
+          $s = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
+          if ($s.schema -ne 'mkext_p91_native_adapter_selftest_v1' -or
+              $s.result -ne 'PASS' -or
+              $s.normalCoreHookReached -ne $true -or
+              $s.boundedRamParity -ne $true -or
+              $s.dacReadNonMutating -ne $true -or
+              $s.sha256Verified -ne $true -or
+              $s.nativeTombPacketCaptured -ne $false) {
+            throw 'Packaged no-game hook/RAM/DAC verification failed'
+          }
+          $before = (Get-FileHash -LiteralPath $report -Algorithm SHA256).Hash
+          Run-Portable $true
+          if ((Get-FileHash -LiteralPath $report -Algorithm SHA256).Hash -ne $before) {
+            throw 'Portable test evidence overwritten'
+          }
+          $commercial = @(Get-ChildItem -LiteralPath $pkg -File | Where-Object {
+            $_.Name -match '^(MK2\.EXE|TOMB\.GRA|PORTAL\.GRA|IMAGES\.GRA)$'
+          })
+          if ($commercial.Count -ne 0) { throw 'Commercial file in uploadable package' }
+          $total = (Get-ChildItem -LiteralPath $pkg -File | Measure-Object Length -Sum).Sum
+          if ($total -gt 100MB) { throw 'Portable package size exceeded 100 MB' }
+          Write-Host 'P91_PORTABLE_NO_GAME=PASS'
+          Write-Host "P91_PORTABLE_EXE_SHA256=$($id.executableSha256)"
+          Write-Host "P91_PORTABLE_PATCH_SHA256=$($id.patchSha256)"
+          Write-Host 'P91_ORIGINAL_GAME_EXECUTED=false'
+          Write-Host 'P91_NATIVE_TOMB_PACKET_CAPTURED=false'
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: P91-Private-Windows-Capture-Kit
+          path: ${{ runner.temp }}/P91_PORTABLE/PACKAGE/P91Capture/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 6
