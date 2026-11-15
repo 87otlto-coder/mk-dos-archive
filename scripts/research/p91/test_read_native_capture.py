@@ -13,7 +13,7 @@ from read_native_capture import (
     MAGIC,MARKER,RAW,CPU_KEYS,VGA_KEYS,PHASE_NAMES,parse_native,verify_raw
 )
 
-def encode_raw(phases):
+def encode_raw(phases,trace_override=None):
     out=bytearray(MAGIC+struct.pack("<II",2,4))
     def u32(v):out.extend(struct.pack("<I",v))
     def u64(v):out.extend(struct.pack("<Q",v))
@@ -37,13 +37,18 @@ def encode_raw(phases):
         u32(phase["dacBits"]);u32(phase["pelMask"])
         u32(phase["returnStackLinear"] if i==2 else 0)
         if i==3:
-            u32(phase["mapping"]["object1LinearBase"]+(0x65464-0x61c54))
-            u64(6)
-            u32(0xC3)
-            u32(phases[2]["cpuRegisters"]["esp"])
-            u32(phases[2]["cpuRegisters"]["esp"]+4)
-            u32(struct.unpack("<I",phases[2]["presentReturnStack"])[0])
-            u32(phases[2]["cpuRegisters"]["ssBase"])
+            trace={
+                "opcodeLinear":phase["mapping"]["object1LinearBase"]+(0x65464-0x61c54),
+                "opcodeSerial":6,"opcode":0xC3,
+                "espBefore":phases[2]["cpuRegisters"]["esp"],
+                "espAfter":phases[2]["cpuRegisters"]["esp"]+4,
+                "stackBefore":struct.unpack("<I",phases[2]["presentReturnStack"])[0],
+                "ssBaseBefore":phases[2]["cpuRegisters"]["ssBase"]
+            }
+            trace.update(trace_override or {})
+            u32(trace["opcodeLinear"]);u64(trace["opcodeSerial"])
+            for key in ("opcode","espBefore","espAfter","stackBefore","ssBaseBefore"):
+                u32(trace[key])
         else:
             u32(0);u64(0)
             for _ in range(5):u32(0)
@@ -126,6 +131,27 @@ class NativeRaw(unittest.TestCase):
             (root/RAW).write_bytes(self.raw[:-1]+b"!")
             with self.assertRaisesRegex(ValueError,"SHA256 mismatch"):
                 verify_raw(root,self.plan)
+
+
+    def test_return_opcode_refusal(self):
+        with self.assertRaisesRegex(ValueError,"original near RET opcode"):
+            parse_native(encode_raw(self.events,{"opcode":0x90}),self.plan)
+
+    def test_return_stack_pop_refusal(self):
+        with self.assertRaisesRegex(ValueError,"return stack transition"):
+            parse_native(encode_raw(self.events,{"espAfter":0x10008}),self.plan)
+
+    def test_return_stack_value_refusal(self):
+        with self.assertRaisesRegex(ValueError,"return stack word differs"):
+            parse_native(encode_raw(self.events,{"stackBefore":0x12345678}),self.plan)
+
+    def test_return_serial_refusal(self):
+        with self.assertRaisesRegex(ValueError,"return instruction/event serials"):
+            parse_native(encode_raw(self.events,{"opcodeSerial":7}),self.plan)
+
+    def test_nonwhitelisted_return_refusal(self):
+        with self.assertRaisesRegex(ValueError,"outside source-verified"):
+            parse_native(encode_raw(self.events,{"opcodeLinear":0x200100}),self.plan)
 
     def test_missing_completion_marker_refused(self):
         with tempfile.TemporaryDirectory() as tmp:
