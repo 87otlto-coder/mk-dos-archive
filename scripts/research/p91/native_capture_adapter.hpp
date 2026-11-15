@@ -244,9 +244,7 @@ public:
         }
         if (ip<mapping_.object1Base) return;
         const uint32_t offset=ip-mapping_.object1Base;
-        if (offset==(0x670b1u-0x61c54u) && guard_.status()==Status::Ready) {
-            witnessLinear_=ip;witnessSerial_=serial_;
-        }
+        observe_presentation_return(ip,offset);
         Phase phase;
         unsigned slot=0;
         if (offset==windows[1].object1Offset) {
@@ -259,7 +257,8 @@ public:
             if (guard_.status()!=Status::Ready) return;
             phase=Phase::PostPresent;slot=3;
             if (witnessSerial_==0) {
-                witnessLinear_=ip;witnessSerial_=serial_;
+                refuse("scheduler reached without observed near-RET proof");
+                return;
             }
         } else return;
         if (uint32_t(SegPhys(cs))!=mapping_.csBase ||
@@ -293,10 +292,21 @@ public:
         if (!guard_.observe(phase,e)) {
             refuse(guard_.reason().c_str());return;
         }
+        if (phase==Phase::PostPresent) {
+            snapshot->returnOpcodeLinear=returnOpcodeLinear_;
+            snapshot->returnOpcodeSerial=returnOpcodeSerial_;
+            snapshot->returnOpcode=0xc3u;
+            snapshot->returnEspBefore=returnEspBefore_;
+            snapshot->returnEspAfter=returnEspAfter_;
+            snapshot->returnStackBefore=returnStackBefore_;
+            snapshot->returnSsBaseBefore=returnSsBaseBefore_;
+        }
         snapshots_[slot]=std::move(snapshot);
         if (phase==Phase::DrawEntry) {
             snapshots_[1].reset();snapshots_[2].reset();snapshots_[3].reset();
             witnessSerial_=0;witnessLinear_=0;
+            returnCandidateSerial_=0;returnOpcodeSerial_=0;
+            returnOpcodeLinear_=0;
         }
         if (phase==Phase::PostPresent && guard_.status()==Status::Accepted) {
             const bool written=CaptureOutput(captureDir_).write(snapshots_);
@@ -316,6 +326,9 @@ private:
     uint64_t serial_=0,boundSerial_=0,witnessSerial_=0,targetSerial_=0;
     bool targetSeen_=false;
     uint32_t witnessLinear_=0;
+    uint64_t returnCandidateSerial_=0,returnOpcodeSerial_=0;
+    uint32_t returnCandidateIp_=0,returnEspBefore_=0,returnEspAfter_=0;
+    uint32_t returnStackBefore_=0,returnSsBaseBefore_=0,returnOpcodeLinear_=0;
     std::string captureDir_,selftestDir_;
     Binding mapping_;
     Guard guard_;
