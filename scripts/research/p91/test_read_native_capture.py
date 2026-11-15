@@ -84,10 +84,11 @@ class NativeRaw(unittest.TestCase):
         v=bytearray(self.raw)
         # Locate the first serialized Object1 blob and mutate a code byte.
         source=self.events[0]["object1"]
-        location=self.raw.find(source[:200])
-        self.assertGreater(location,0)
+        # Fixed initial raw header, phase-0 scalar evidence and first blob size.
+        location=8+8+4+8+16*4+8+3*4+17*4+8*4+4
+        self.assertEqual(self.raw[location:location+200],source[:200])
         v[location+0x100+6]^=1
-        with self.assertRaisesRegex(ValueError,"code fingerprint"):
+        with self.assertRaisesRegex(ValueError,"code fingerprint frame_entry"):
             parse_native(bytes(v),self.plan)
 
     def test_private_hash_and_completion_marker(self):
