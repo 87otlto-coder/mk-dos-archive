@@ -26,9 +26,23 @@ Windows `CREATE_NEW` inside an explicitly armed validation path.
 
 - Seven original-free source-controls passed on the Windows runner.
 - Upstream pinned checkout and patch application passed on the Windows runner.
-- Real DOSBox-X SDL2 compilation, no-game run, and negative-path execution
-  are **VALIDATION PENDING** until the workflow's actual final result is
-  inspected; do not infer success from source tests.
+- **VERIFIED native Windows integration:** workflow
+  [#43744091555](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43744091555)
+  completed successfully on source commit
+  `e7f7fa70a265fad7cc2345eb5e9885d178fe325b`.
+  The pinned SDL2 DOSBox-X executable compiled, launched without commercial
+  games, and exercised the actual normal CPU instruction hook, bounded RAM
+  memory read/parity, direct DAC read/non-mutation, and unarmed + exclusive
+  no-overwrite refusal paths. The job emitted
+  `P91_NATIVE_NO_GAME_API_SMOKE=PASS`.
+- Verified Windows build identities (source-safe metadata):
+  overlay patch SHA-256
+  `d57fe98119aaaa4e2e894c1d4b8a17b641ff0a2a36127df66a51ad69ef99b85c`;
+  compiled executable SHA-256
+  `2c3ec221e755eb3a700e28a133bf960859398b093c58919ae7930423f326702b`.
+  The disposable CI executable was deliberately not uploaded.
+- This establishes no-game API execution, **not** the four-phase Tomb observer
+  or an original runtime snapshot.
 - No MK2 runtime address bases, indexed frame, VGA DAC state, objects, or
   four-phase generation capture are verified by this gate.
 - Source-only, minimal-artifact workflow:
