@@ -19,7 +19,7 @@ import sys
 
 from snapshot import Collector, need, resolve_mapping, save_private, sha
 
-MAGIC=b"P91NAT01"
+MAGIC=b"P91NAT02"
 MARKER="p91-native-raw-complete.json"
 RAW="p91-native-raw.bin"
 CPU_KEYS=("eax","ebx","ecx","edx","esi","edi","ebp","esp","eip","eflags",
@@ -53,7 +53,7 @@ def parse_native(data:bytes,plan:dict)->dict:
     need(len(data)<=5_000_000,"native packet exceeds bounded four-phase budget")
     r=Reader(data)
     need(r.take(8)==MAGIC,"native packet magic")
-    need(r.u32()==1 and r.u32()==4,"native packet version/phase count")
+    need(r.u32()==2 and r.u32()==4,"native packet version/phase count")
     sizes={"object1":plan["objects"][0]["virtualSize"],
            "object2":plan["objects"][1]["virtualSize"],
            "buffer":64000,"aperture":64000,"dac":768,"presentReturnStack":4}
@@ -73,6 +73,12 @@ def parse_native(data:bytes,plan:dict)->dict:
         fields["dacBits"]=r.u32()
         fields["pelMask"]=r.u32()
         fields["returnStackLinear"]=r.u32()
+        return_trace={
+            "opcodeLinear":r.u32(),"opcodeSerial":r.u64(),
+            "opcode":r.u32(),"espBefore":r.u32(),
+            "espAfter":r.u32(),"stackBefore":r.u32(),
+            "ssBaseBefore":r.u32()
+        }
         regs=dict(zip(CPU_KEYS,(r.u32() for _ in CPU_KEYS)))
         vga=dict(zip(VGA_KEYS,(r.u32() for _ in VGA_KEYS)))
         blobs={k:r.blob(sizes[k]) for k in BLOBS}
@@ -121,6 +127,34 @@ def parse_native(data:bytes,plan:dict)->dict:
             native["presentationReturnWitness"]={
                 "instructionLinear":fields["returnWitnessLinear"],
                 "instructionSerial":fields["returnWitnessSerial"]}
+            # Never accept a scheduler IP alone as evidence of presentation.
+            previous=out["presentEntry"]
+            return_site=return_trace["opcodeLinear"]-fields["object1LinearBase"]
+            allowed={
+                physical-0x61c54 for physical in
+                (0x65464,0x65488,0x65498,0x654d9,0x65502)
+            }
+            need(return_site in allowed and 0<=return_site<len(code),
+                 "return opcode outside source-verified presentation epilogues")
+            need(code[return_site]==0xC3 and return_trace["opcode"]==0xC3,
+                 "original near RET opcode not witnessed")
+            need(previous["instructionSerial"]<return_trace["opcodeSerial"]<
+                 fields["returnWitnessSerial"]<=serial,
+                 "return instruction/event serials inconsistent")
+            need(return_trace["espBefore"]==previous["cpuRegisters"]["esp"] and
+                 return_trace["espAfter"]==return_trace["espBefore"]+4 and
+                 return_trace["ssBaseBefore"]==previous["cpuRegisters"]["ssBase"],
+                 "return stack transition not observed")
+            need(return_trace["stackBefore"]==
+                 struct.unpack("<I",previous["presentReturnStack"])[0],
+                 "return stack word differs from captured presentation caller")
+            need(fields["returnWitnessLinear"]==
+                 fields["csBase"]+return_trace["stackBefore"],
+                 "return witness target differs from actual near RET")
+            native["returnTrace"]=return_trace
+        else:
+            need(all(v==0 for v in return_trace.values()),
+                 "return witness unexpectedly present before post-presentation")
         for index,window in enumerate(plan["windows"]):
             at=window["object1Offset"]
             native["codeWindow"+str(index)]=code[at:at+window["length"]]
@@ -137,7 +171,7 @@ def verify_raw(folder:Path,plan:dict)->dict:
     """Refuse any missing, overwritten or inconsistent private raw evidence."""
     need(folder.is_dir(),"private raw capture directory missing")
     marker=json.loads((folder/MARKER).read_text(encoding="utf-8"))
-    need(marker["schema"]=="mkext_p91_native_raw_complete_v1" and
+    need(marker["schema"]=="mkext_p91_native_raw_complete_v2" and
          marker["raw"]==RAW and marker["phases"]==4,
          "native completion marker mismatch")
     need(marker["nativeGameVerified"] is False and
