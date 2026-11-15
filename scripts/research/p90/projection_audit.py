@@ -3,7 +3,8 @@
 Uses accepted P82 source index/opacity planes and verified P90 root bindings.
 Two explicit test vectors exercise translation and clipping. The second is a
 synthetic accumulator perturbation, NOT an observed original camera position.
-No packed floor, effect objects or live palette allocation is synthesized.
+Packed floor sampling preserves source-local indices; runtime palette
+translation and effect objects are not synthesized.
 """
 import argparse,hashlib,io,json,zipfile
 from pathlib import Path
@@ -72,16 +73,52 @@ def audit(exe,layout,archive):
               'sourceIndexSha256':sha(indices),'sourceOpacitySha256':sha(alpha),'translation':[dx,dy],
               'visiblePixelCount':opacity.count(255),'indexSha256':sha(out),'opacitySha256':sha(opacity),
               'independentIndexMismatches':0,'independentOpacityMismatches':0})
+          # Independent O131/O152 source semantics: a 320-byte row sample
+          # through the native 896-byte plane; 16.16 shear and unsigned Y clip.
+          # Palette relocation is deliberately omitted, keeping LOCAL indices.
+          command=next(op for op in record['drawCommands'] if op['opcode']=='minus_one_draw')
+          channel=next(c for c in record['centerOverrides'] if c['channelObject2']+2==command['sourcePointerObject2'])
+          camera=channel['initialInteger']+delta
+          start_y=command['rawParameter2']-record['headerSignedWords'][2]
+          rows=0 if not 0<=start_y<200 else min(command['rawParameter3'],200-start_y)
+          plane=Image.open(io.BytesIO(z.read(stage+'/floor_indices.png')))
+          need(plane.mode=='L' and plane.width==896,'floor source plane')
+          raw=plane.tobytes();need(sha(raw)==original['packedFloor']['sourceIndexSHA256'],'floor hash')
+          numerator=(288-camera)*65536;step=(1 if numerator>=0 else -1)*(abs(numerator)//112)
+          floor=bytearray(64000);floor_alpha=bytearray(64000);acc=0
+          for y in range(rows):
+            shift=(acc if acc<0x80000000 else acc-0x100000000)>>16
+            source_at=y*896+camera-shift
+            need(0<=source_at<=len(raw)-320,'floor sample outside original plane')
+            floor[(start_y+y)*320:(start_y+y+1)*320]=raw[source_at:source_at+320]
+            floor_alpha[(start_y+y)*320:(start_y+y+1)*320]=b'\xff'*320
+            acc=(acc+step)&0xffffffff
+          # Destination-first formula; no shared running accumulator/row copy.
+          for y in range(200):
+            for x in range(320):
+              at=y*320+x;row=y-start_y;visible=0<=row<rows
+              expected=raw[row*896+camera-((row*step)>>16)+x] if visible else 0
+              need(floor[at]==expected and floor_alpha[at]==(255 if visible else 0),'floor independent source sampling')
+          for n,v in enumerate(floor_alpha):
+            if v:
+              if union[n]:overlap+=1
+              union[n]=255
+          outputs[f'{stage}/{state}/packed-floor']=(bytes(floor),bytes(floor_alpha))
+          layers.append({'kind':'packed_floor_local_indices','sourceIndexPng':stage+'/floor_indices.png',
+            'sourceIndexSha256':sha(raw),'explicitCameraInput':camera,'explicitVerticalInput':record['headerSignedWords'][2],
+            'drawStartY':start_y,'drawRows':rows,'rowStepSigned16_16':step,'visiblePixelCount':floor_alpha.count(255),
+            'indexSha256':sha(floor),'opacitySha256':sha(floor_alpha),'nativePaletteTranslationApplied':False,
+            'independentIndexMismatches':0,'independentOpacityMismatches':0})
           cases.append({'stage':stage,'state':state,'classification':'VALIDATION PENDING',
             'stateOrigin':'SOURCE_INPUT_TEST_VECTOR' if delta==0 else 'SYNTHETIC_TRANSFORM_TEST_VECTOR',
-            'layers':layers,'sourceSetupCoveragePixels':union.count(255),
-            'notCoveredBySetupLayers':union.count(0),'additionalLayerOverdrawPixelEvents':overlap,
+            'layers':layers,'sourceContributionCoveragePixels':union.count(255),
+            'notCoveredBySourceContributions':union.count(0),'additionalLayerOverdrawPixelEvents':overlap,
             'unexplainedOriginalFramebufferPixels':None,'originalFramebufferAvailable':False})
     report={'schema':'mk2_p90_partial_projection_audit_v1','status':'PASS_CONDITIONAL_LAYER_PIXEL_PARITY',
       'archiveSha256':sha(Path(archive).read_bytes()),'layoutIndependentVerification':acceptance,'cases':cases,
       'completeStageReconstruction':False,'observedOriginalCameraPositions':0,
-      'scope':'SETUP_LAYER_TRANSLATION_ONLY; NOT_PACKED_FLOOR_OR_EFFECT_OR_NATIVE_PALETTE_OR_COMPLETE_SCENE',
-      'warning':'Uncovered setup pixels are not original framebuffer mismatches; there is no original capture oracle.'}
+      'scope':'CONDITIONAL_SETUP_AND_FLOOR_LOCAL_INDEX_CONTRIBUTIONS; NOT_EFFECT_OR_NATIVE_PALETTE_OR_COMPLETE_SCENE',
+      'warning':'Uncovered contribution pixels are not original framebuffer mismatches; there is no original capture oracle.'}
     return report,outputs
 
 if __name__=='__main__':
@@ -101,4 +138,3 @@ if __name__=='__main__':
     if a.out:
       with a.out.open('x',encoding='utf-8') as f:f.write(text)
     else:print(text,end='')
-
