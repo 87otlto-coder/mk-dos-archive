@@ -36,6 +36,17 @@ def encode_raw(phases):
         u64(phase["presentationReturnWitness"]["instructionSerial"] if i==3 else 0)
         u32(phase["dacBits"]);u32(phase["pelMask"])
         u32(phase["returnStackLinear"] if i==2 else 0)
+        if i==3:
+            u32(phase["mapping"]["object1LinearBase"]+(0x65464-0x61c54))
+            u64(6)
+            u32(0xC3)
+            u32(phases[2]["cpuRegisters"]["esp"])
+            u32(phases[2]["cpuRegisters"]["esp"]+4)
+            u32(struct.unpack("<I",phases[2]["presentReturnStack"])[0])
+            u32(phases[2]["cpuRegisters"]["ssBase"])
+        else:
+            u32(0);u64(0)
+            for _ in range(5):u32(0)
         for k in CPU_KEYS:u32(phase["cpuRegisters"][k])
         for _ in VGA_KEYS:u32(0)
         for value in (
@@ -53,8 +64,15 @@ class NativeRaw(unittest.TestCase):
             event(cls.plan,cls.mapping,"draw_entry",1),
             event(cls.plan,cls.mapping,"draw_ret",2),
             event(cls.plan,cls.mapping,"present_entry",5,gate=0),
-            event(cls.plan,cls.mapping,"scheduler_entry",6,gate=0,post=True)
+            event(cls.plan,cls.mapping,"scheduler_entry",8,gate=0,post=True)
         )
+        # Raw Object1 includes a source-whitelisted presentation RET opcode.
+        # These are synthetic bytes; only the near-RET control is simulated.
+        for phase in cls.events:
+            b=bytearray(phase["object1"])
+            b[0x65464-0x61c54]=0xC3
+            phase["object1"]=bytes(b)
+        cls.events[3]["presentationReturnWitness"]["instructionSerial"]=7
         cls.raw=encode_raw(cls.events)
 
     def test_synthetic_four_phase_parity(self):
@@ -85,7 +103,7 @@ class NativeRaw(unittest.TestCase):
         # Locate the first serialized Object1 blob and mutate a code byte.
         source=self.events[0]["object1"]
         # Fixed initial raw header, phase-0 scalar evidence and first blob size.
-        location=8+8+4+8+16*4+8+3*4+17*4+8*4+4
+        location=8+8+4+8+16*4+8+3*4+4+8+5*4+17*4+8*4+4
         self.assertEqual(self.raw[location:location+200],source[:200])
         v[location+0x100+6]^=1
         with self.assertRaisesRegex(ValueError,"code fingerprint frame_entry"):
@@ -96,7 +114,7 @@ class NativeRaw(unittest.TestCase):
             root=Path(tmp)
             (root/RAW).write_bytes(self.raw)
             marker={
-                "schema":"mkext_p91_native_raw_complete_v1",
+                "schema":"mkext_p91_native_raw_complete_v2",
                 "raw":RAW,"bytes":len(self.raw),
                 "sha256":hashlib.sha256(self.raw).hexdigest(),
                 "phases":4,"nativeGameVerified":False,
