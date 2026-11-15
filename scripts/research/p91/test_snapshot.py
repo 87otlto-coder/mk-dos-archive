@@ -36,10 +36,16 @@ def event(plan,mapping,boundary,serial,*,gate=1,post=False):
       'object2':bytes(data),'bufferPointerRaw':bias+(0x65f24 if post else 0x56524),
       'buffer':b'\x11'*64000,'dac':bytes([j%64 for j in range(768)]),'dacBits':6,'pelMask':255,
       'aperture':b'\x11'*64000}
-    result['presentReturnStack']=struct.pack('<I',mapping['object1OperandBias']+0x670dd-0x61c54)
+    result['presentReturnStack']=struct.pack('<I',mapping['nearCodeOffsetBias']+0x670dd-0x61c54)
     result['presentationReturnWitness']={'instructionLinear':mapping['object1LinearBase']+0x670dd-0x61c54,'instructionSerial':serial}
+    result['cpuRegisters']={name:0 for name in ('eax','ebx','ecx','edx','esi','edi','ebp','esp','eip','eflags','cs','ds','es','ss','ssBase','cr0','cr3')}
+    result['cpuRegisters'].update(eip=result['instructionLinear']-mapping['csBase'],cr0=1,esp=0x10000)
+    result['returnStackLinear']=0x10000
+    code=bytearray(plan['objects'][0]['virtualSize'])
     for i,w in enumerate(plan['windows']):
       raw=bytearray(bytes([0x83,0x35])+b'\0'*4+bytes([1,i]));put(raw,2,bias+0x562d4);result['codeWindow'+str(i)]=bytes(raw)
+      code[w['object1Offset']:w['object1Offset']+len(raw)]=raw
+    result['object1']=bytes(code)
     return result
 
 class Mechanism(unittest.TestCase):

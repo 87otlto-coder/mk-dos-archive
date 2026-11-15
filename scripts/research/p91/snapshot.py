@@ -18,13 +18,14 @@ def resolve_mapping(plan, instruction_linear, cs_base, ds_base, read):
     bias=operand-plan['mapping']['dataOperandTargetObject2']
     need(code>=cs_base>=0 and bias>=0 and ds_base>=0,'mapping underflow')
     mapping={'object1LinearBase':code,'object2LinearBase':ds_base+bias,
-      'object1OperandBias':code-cs_base,'object2OperandBias':bias,'csBase':cs_base,'dsBase':ds_base}
+      'nearCodeOffsetBias':code-cs_base,'object2OperandBias':bias,'csBase':cs_base,'dsBase':ds_base}
     evidence=[]
     for w in plan['windows']:
       raw=read(code+w['object1Offset'],w['length']);need(len(raw)==w['length'],'short code read')
       masked=bytearray(raw)
       for r in w['relocations']:
-        p=r['byteOffset'];expected=mapping['object%dOperandBias'%r['targetObject']]+r['targetOffset']
+        need(r['targetObject']==2,'unsupported Object1 relocation domain; do not guess data-pointer semantics')
+        p=r['byteOffset'];expected=bias+r['targetOffset']
         need(u32(raw,p)==expected,'inconsistent relocated operand '+w['name'])
         masked[p:p+4]=b'\0'*4
       need(sha(masked)==w['maskedSha256'],'code fingerprint '+w['name'])
@@ -83,12 +84,18 @@ class Collector:
       need(s['memoryReadPolicy']=='NO_PAGING_BOUNDED_RAM' and s['protected32'] is True,'unsupported memory access context')
       m=s['mapping'];w=next(w for w in self.plan['windows'] if w['name']==boundary)
       need(s['instructionLinear']==m['object1LinearBase']+w['object1Offset'],'boundary address translation')
+      regs=s['cpuRegisters']
+      required={'eax','ebx','ecx','edx','esi','edi','ebp','esp','eip','eflags','cs','ds','es','ss','ssBase','cr0','cr3'}
+      need(set(regs)>=required and all(type(regs[k]) is int and 0<=regs[k]<=0xffffffff for k in required),'incomplete CPU context')
+      need(regs['eip']+m['csBase']==s['instructionLinear'] and regs['cr0']&1 and not regs['cr0']&0x80000000,'CPU/mapping/paging disagreement')
+      need(len(s['object1'])==self.plan['objects'][0]['virtualSize'],'complete Object1 image required')
       need(len(m.get('codeEvidence',[]))==len(self.plan['windows']),'missing mapping evidence')
       # Rebind from private raw code reads at every retained phase. A previous
       # mapping assertion or a textual "verified" flag is not enough.
       def read_code(a,n):
         for i,window in enumerate(self.plan['windows']):
           base=m['object1LinearBase']+window['object1Offset'];raw=s['codeWindow'+str(i)]
+          need(raw==s['object1'][window['object1Offset']:window['object1Offset']+len(raw)],'Object1/window disagreement')
           if base<=a and a+n<=base+len(raw):return raw[a-base:a-base+n]
         raise ValueError('P91 snapshot: code-window read not captured')
       start=m['object1LinearBase']+next(w['object1Offset'] for w in self.plan['windows'] if w['name']=='frame_entry')
@@ -118,8 +125,9 @@ class Collector:
       need(s['buffer']==r['buffer'],'buffer changed between draw completion and presentation')
       need(u32(s['object2'],0x75cee)==0,'alternate fixed-buffer presentation unsupported')
       need(len(s['presentReturnStack'])==4,'missing observed presentation return stack')
+      need(s['returnStackLinear']==s['cpuRegisters']['ssBase']+s['cpuRegisters']['esp'],'return stack address disagreement')
       return_physical=0x670b1 if u32(s['object2'],0x563e0) else 0x670dd
-      need(u32(s['presentReturnStack'],0)==s['mapping']['object1OperandBias']+return_physical-0x61c54,'presentation called outside supported frame path')
+      need(u32(s['presentReturnStack'],0)==s['mapping']['nearCodeOffsetBias']+return_physical-0x61c54,'presentation called outside supported frame path')
       bias=s['mapping']['object2OperandBias']
       need(s['bufferPointerRaw'] in (bias+0x56524,bias+0x65f24),'unexpected native drawing buffer')
       need(len(s['dac'])==768 and s['dacBits'] in (6,8),'DAC state')

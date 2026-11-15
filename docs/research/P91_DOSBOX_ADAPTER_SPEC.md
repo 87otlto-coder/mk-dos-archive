@@ -32,9 +32,12 @@ At a candidate instruction with the frame-entry XOR form, derive:
 - Object2 linear base = DS cached base + Object2 operand bias.
 
 Require the five plan windows' masked SHA256 values and all 12 relocated
-operands to agree. For a target Object2 relocation, expected inline value is
-operand bias + target offset. Object1 relocation bias is derived separately
-from code base and CS base. `snapshot.resolve_mapping` is the reference
+operands to agree. All 12 current inline relocations target Object2; expected
+inline value is operand bias + target offset. Near return addresses use the
+separate code-offset bias (Object1 linear base minus CS base). Do not treat
+that near-code bias as a general Object1 data-pointer relocation rule.
+Object1 palette-data pointers must be translated using their actual access
+segment and observed value. `snapshot.resolve_mapping` is the reference
 implementation and executable oracle for these domains. It deliberately
 does not assume CS.base=DS.base=0 or use the LE preferred bases.
 
@@ -50,8 +53,10 @@ instruction executes; never collect fields through asynchronous requests.
 
 1. **DRAW_ENTRY:** source physical `0x933C2`. Require mode=2, stage=1,
    `0x75CF6 == Object2 operand bias + 0x17300`, render gate bit0=1 and populated
-   lists. Save complete Object2 virtual image (550,496 bytes), selected buffer
-   pointer and 64,000-byte buffer seed, raw code windows, mapping and CPU context.
+   lists. Save complete Object1 (257,688 bytes) and Object2 (550,496 bytes)
+   virtual images, selected buffer pointer and 64,000-byte buffer seed, raw
+   code windows, mapping and CPU context (general registers, EIP/EFLAGS,
+   selectors/cached bases, CR0/CR3). Retain actual SS:ESP return-stack bytes.
 2. **DRAW_COMPLETE:** source `0x935E5`, before the frame-renderer RET. Save the
    same state and completed 64,000-byte source buffer. Tie it to DRAW_ENTRY's
    buffer and generation; reject mapping/source changes. Gate-off render calls
