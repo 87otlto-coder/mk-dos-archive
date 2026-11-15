@@ -6,6 +6,7 @@
 
 #include <array>
 #include <cstdint>
+#include <memory>
 #include <string>
 
 namespace mkext_p91 {
@@ -81,26 +82,26 @@ public:
                 return true;
             }
             if (!event.hasObjects) return refuse("empty draw lists");
-            draw_ = event;
+            draw_.reset(new Event(event));
             status_ = Status::Drawing;
             return true;
         case Phase::DrawComplete:
             if (status_ != Status::Drawing) return true; // gate-off draw
-            if (!sameMapping(draw_, event) ||
-                draw_.drawBuffer != event.drawBuffer ||
+            if (!sameMapping(*draw_, event) ||
+                draw_->drawBuffer != event.drawBuffer ||
                 !(event.renderGate & 1u))
                 return refuse("draw mapping, buffer or gate changed");
-            complete_ = event;
+            complete_.reset(new Event(event));
             status_ = Status::Drawn;
             return true;
         case Phase::PresentEntry: {
             if (status_ != Status::Drawn)
                 return refuse("presentation without completed draw generation");
-            if (!sameMapping(complete_, event) ||
-                complete_.drawBuffer != event.drawBuffer ||
-                complete_.buffer != event.buffer)
+            if (!sameMapping(*complete_, event) ||
+                complete_->drawBuffer != event.drawBuffer ||
+                complete_->buffer != event.buffer)
                 return refuse("presentation source differs from completed draw");
-            if (draw_.paletteSlots != event.paletteSlots)
+            if (draw_->paletteSlots != event.paletteSlots)
                 return refuse("palette allocation changed since drawing");
             if (event.alternatePresentation != 0)
                 return refuse("unsupported fixed-buffer presentation");
@@ -122,27 +123,27 @@ public:
                 return refuse("presentation call return stack not verified");
             if (!event.hasDac || (event.dacBits != 6 && event.dacBits != 8))
                 return refuse("missing or unsupported DAC evidence");
-            present_ = event;
+            present_.reset(new Event(event));
             status_ = Status::Ready;
             return true;
         }
         case Phase::PostPresent:
             if (status_ != Status::Ready)
                 return refuse("scheduler is not presentation proof");
-            if (!sameMapping(present_, event))
+            if (!sameMapping(*present_, event))
                 return refuse("mapping changed before post-present");
             if (event.returnWitnessLinear !=
-                present_.csBase + present_.observedReturnOffset ||
-                event.returnWitnessSerial <= present_.serial ||
+                present_->csBase + present_->observedReturnOffset ||
+                event.returnWitnessSerial <= present_->serial ||
                 event.returnWitnessSerial > event.serial)
                 return refuse("missing matching presentation return event");
-            if (event.lastPresentedBuffer != present_.drawBuffer)
+            if (event.lastPresentedBuffer != present_->drawBuffer)
                 return refuse("last-presented source differs");
-            if (!event.hasAperture || event.aperture != complete_.buffer)
+            if (!event.hasAperture || event.aperture != complete_->buffer)
                 return refuse("VGA aperture differs from completed draw");
-            if (!event.hasDac || event.dac != present_.dac ||
-                event.dacBits != present_.dacBits ||
-                event.pelMask != present_.pelMask)
+            if (!event.hasDac || event.dac != present_->dac ||
+                event.dacBits != present_->dacBits ||
+                event.pelMask != present_->pelMask)
                 return refuse("DAC differs after presentation");
             status_ = Status::Accepted;
             return true;
@@ -154,9 +155,9 @@ private:
     Status status_ = Status::Idle;
     std::string reason_;
     uint64_t lastSerial_ = 0;
-    Event draw_;
-    Event complete_;
-    Event present_;
+    std::unique_ptr<Event> draw_;
+    std::unique_ptr<Event> complete_;
+    std::unique_ptr<Event> present_;
 
     bool refuse(const char *why) {
         status_ = Status::Refused;
