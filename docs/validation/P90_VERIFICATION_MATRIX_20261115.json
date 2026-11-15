@@ -1,0 +1,125 @@
+{
+  "schema": "mk2_p90_verification_matrix_v1",
+  "date": "2026-11-15",
+  "baseCommit": "46332e89c3ce0ea4f13d38f05ec1274383324863",
+  "implementationCommit": "17a616dfe784cb4fc04e1c877935aa590689f915",
+  "fullStageReconstruction": "INCOMPLETE",
+  "gates": [
+    {
+      "gate": 1,
+      "name": "Source fidelity",
+      "status": "PARTIAL",
+      "complete": false,
+      "evidenceClassification": "VERIFIED subset; complete runtime element inventory unavailable"
+    },
+    {
+      "gate": 2,
+      "name": "Scene geometry",
+      "status": "PARTIAL",
+      "complete": false,
+      "evidenceClassification": "VERIFIED static initializer geometry; runtime population pending"
+    },
+    {
+      "gate": 3,
+      "name": "Palette fidelity",
+      "status": "INCOMPLETE",
+      "complete": false,
+      "evidenceClassification": "UNKNOWN native allocated handles/DAC"
+    },
+    {
+      "gate": 4,
+      "name": "Viewport accuracy",
+      "status": "INCOMPLETE",
+      "complete": false,
+      "evidenceClassification": "VALIDATION PENDING original framebuffer"
+    },
+    {
+      "gate": 5,
+      "name": "Camera and depth",
+      "status": "INCOMPLETE",
+      "complete": false,
+      "evidenceClassification": "VALIDATION PENDING measured positions/occlusion"
+    },
+    {
+      "gate": 6,
+      "name": "Animation",
+      "status": "INCOMPLETE",
+      "complete": false,
+      "evidenceClassification": "VALIDATION PENDING execution and duration"
+    },
+    {
+      "gate": 7,
+      "name": "Generalisation",
+      "status": "PARTIAL",
+      "complete": false,
+      "evidenceClassification": "VERIFIED static parser on two stages and Tower holdout"
+    },
+    {
+      "gate": 8,
+      "name": "Portable reproducibility",
+      "status": "PARTIAL",
+      "complete": false,
+      "evidenceClassification": "VERIFIED second metadata/projection execution; private export pending"
+    }
+  ],
+  "actualExecuted": {
+    "p82Independent": {
+      "status": "PASS",
+      "pngs": 115,
+      "indexedPositions": 939425,
+      "filesFingerprinted": 4
+    },
+    "p90IndependentInitializer": {
+      "status": "PASS",
+      "assertions": 729,
+      "stageModeCases": 9
+    },
+    "p90IndependentCamera": {
+      "status": "PASS",
+      "assertions": 47,
+      "tables": 2
+    },
+    "unittestMethods": {
+      "passed": 11,
+      "failed": 0,
+      "reportMutationSubcases": 18
+    },
+    "partialContributions": {
+      "planes": 18,
+      "indexPositionsCompared": 1152000,
+      "opacityPositionsCompared": 1152000,
+      "mismatches": 0
+    },
+    "secondExecution": {
+      "metadataSame": true,
+      "projectionReportSame": true
+    },
+    "powershellLauncher": {
+      "parser": "PASS",
+      "fullPrivateExecution": "VALIDATION PENDING"
+    }
+  },
+  "notExecuted": [
+    "original MK2 DOS runtime",
+    "native framebuffer comparison",
+    "two reached camera positions per stage",
+    "actor foreground occlusion",
+    "native animation timing",
+    "new private projection PNG export",
+    "P90 hosted CI"
+  ],
+  "blockers": [
+    {
+      "id": "B1",
+      "classification": "VERIFIED",
+      "failure": "Access denied creating a new F:/Dev/MKEXT/FIXTURES/VALIDATION/P90-20261115-ROOT-LAYOUT-7c820f61 directory",
+      "effect": "No new copyrighted graphics written outside authorised private area; in-memory diagnostics only"
+    },
+    {
+      "id": "B2",
+      "classification": "UNKNOWN",
+      "missing": "Paused original runtime snapshot linking loaded LE bases, object lists, nine channels, vertical state, native buffer and DAC",
+      "effect": "No exact original viewport or camera/depth/timing claim"
+    }
+  ]
+}
