@@ -14,7 +14,7 @@ from read_native_capture import (
 )
 
 def encode_raw(phases):
-    out=bytearray(MAGIC+struct.pack("<II",1,4))
+    out=bytearray(MAGIC+struct.pack("<II",2,4))
     def u32(v):out.extend(struct.pack("<I",v))
     def u64(v):out.extend(struct.pack("<Q",v))
     def blob(b):u32(len(b));out.extend(b)
