@@ -199,19 +199,33 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
                     # Require an actual accepted STEPIN in the SAME emulator
                     # before setting any original MK3 breakpoints or RUN.
                     # This first captured state may be BIOS, not game entry.
-                    initial = await_stopped(
-                        channel, min(deadline, time.monotonic() + 15),
-                        remote_break_acknowledged=True
-                    )
+                    try:
+                        initial = await_stopped(
+                            channel, min(deadline, time.monotonic() + 15),
+                            remote_break_acknowledged=True
+                        )
+                    except socket.timeout as error:
+                        raise ValueError(
+                            "MCP BREAK was acknowledged, but initial EV/STEPIN "
+                            "stopped-state verification timed out"
+                        ) from error
                     channel.request("EXEC BPDEL *")
                     channel.request("EXEC BPINT 21 42")
                     observed_seek = None
                     seek_count = 0
                     while seek_count < MAX_SEEK_STOPS:
                         channel.request("EXEC RUN")
-                        stop = await_stopped(
-                            channel, deadline, stepin_confirmed_for_session=True
-                        )
+                        try:
+                            stop = await_stopped(
+                                channel, deadline,
+                                stepin_confirmed_for_session=True
+                            )
+                        except socket.timeout as error:
+                            raise ValueError(
+                                "MCP response timeout while waiting for P79 "
+                                "seek, after " + str(seek_count) +
+                                " completed seek stops"
+                            ) from error
                         seek_count += 1
                         if is_p79_seek(stop):
                             observed_seek = stop
@@ -225,9 +239,17 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
                     read_count = 0
                     while read_count < MAX_READ_STOPS:
                         channel.request("EXEC RUN")
-                        stop = await_stopped(
-                            channel, deadline, stepin_confirmed_for_session=True
-                        )
+                        try:
+                            stop = await_stopped(
+                                channel, deadline,
+                                stepin_confirmed_for_session=True
+                            )
+                        except socket.timeout as error:
+                            raise ValueError(
+                                "MCP response timeout while waiting for "
+                                "record-0 read, after " + str(read_count) +
+                                " completed read stops"
+                            ) from error
                         read_count += 1
                         if is_record0_read(stop, handle):
                             observed_read = stop
