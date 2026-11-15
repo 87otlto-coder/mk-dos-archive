@@ -173,6 +173,59 @@ class OriginalProbeTests(unittest.TestCase):
                 stepin_confirmed_for_session=True
             )
 
+    def test_break_ack_allows_early_running_state_only(self):
+        class BootStarting(MockStoppedChannel):
+            def __init__(self, values):
+                super().__init__(values)
+                self.step_attempts = 0
+
+            def request(self, cmd):
+                if cmd == "EXEC STEPIN":
+                    self.step_attempts += 1
+                    if self.step_attempts <= 2:
+                        raise ValueError(
+                            "P89 MCP preflight: debugger rejected request: "
+                            "*** Debugger command not recognized"
+                        )
+                return super().request(cmd)
+
+        mock = BootStarting(reg())
+        candidate = subject.await_stopped(
+            mock, time.monotonic() + 2,
+            remote_break_acknowledged=True
+        )
+        self.assertEqual(candidate["CS"], 0x180)
+        self.assertEqual(mock.step_attempts, 3)
+
+    def test_break_ack_does_not_bypass_required_accepted_step(self):
+        class NeverAccepted(MockStoppedChannel):
+            def request(self, cmd):
+                if cmd == "EXEC STEPIN":
+                    raise ValueError(
+                        "P89 MCP preflight: debugger rejected request: "
+                        "*** Debugger command not recognized"
+                    )
+                return super().request(cmd)
+
+        with self.assertRaisesRegex(ValueError, "no verified breakpoint stop"):
+            subject.await_stopped(
+                NeverAccepted(reg()), time.monotonic() + 0.02,
+                remote_break_acknowledged=True
+            )
+
+    def test_remote_break_ack_does_not_allow_unrelated_errors(self):
+        class UnknownFailure(MockStoppedChannel):
+            def request(self, cmd):
+                if cmd == "EXEC STEPIN":
+                    raise ValueError("unexpected MCP transport state")
+                return super().request(cmd)
+
+        with self.assertRaisesRegex(ValueError, "unexpected MCP transport state"):
+            subject.await_stopped(
+                UnknownFailure(reg()), time.monotonic() + 2,
+                remote_break_acknowledged=True
+            )
+
     def test_nonrunning_step_error_refused(self):
         class UnexpectedStepError(MockStoppedChannel):
             def request(self, cmd):
