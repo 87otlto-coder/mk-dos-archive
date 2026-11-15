@@ -140,6 +140,16 @@ No new private stage-image package or original runtime capture was saved.
 
 ## Acceptance matrix
 
+**Executed validation:** 11 local test methods passed, including 18 hostile
+report-mutation subcases; 729 original initializer and 47 original camera
+independent checks passed. Second execution reproduced metadata/projection
+results exactly. Windows-only source CI
+[#43718944754](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43718944754)
+passed seven original-free controls and PowerShell syntax on source commit
+`17a616dfe784cb4fc04e1c877935aa590689f915`, tree
+`f6ad3689707143cffdf82a0ce0b80fdf497b5ea4`; zero workflow artifacts.
+Hosted CI did not contain originals or execute original-source/runtime tests.
+
 | Gate | Result | Evidence / exact remaining requirement |
 |---|---|---|
 | 1 Source fidelity | PARTIAL / VERIFIED subset | P82 source parity; source-linked P90 setup metadata. Complete element inventory not runtime confirmed. |
@@ -175,3 +185,26 @@ No new private stage-image package or original runtime capture was saved.
 
 No unavailable test is called passed. No original-game launch, actor occlusion,
 native animation, camera endpoint, full scene or paid-credit expenditure is claimed.
+
+## Bounded Windows reproduction
+
+The launcher was parsed locally and in Windows CI. Its complete private run
+remains VALIDATION PENDING because this sandbox cannot create the output
+directory. Keep the current P89 checkout intact by using a new worktree:
+
+```powershell
+Set-Location 'F:\Dev\MKEXT\SOURCE\mkdosext'
+git fetch origin research/p90-mk2-stage-reconstruction
+if ($LASTEXITCODE -ne 0) { throw 'Fetch failed' }
+$p90Source = 'F:\Dev\MKEXT\SOURCE\mkdosext-p90'
+if (Test-Path -LiteralPath $p90Source) { throw 'Choose a new SOURCE worktree path' }
+git worktree add --detach $p90Source origin/research/p90-mk2-stage-reconstruction
+if ($LASTEXITCODE -ne 0) { throw 'Worktree creation failed' }
+Set-Location -LiteralPath $p90Source
+.\scripts\research\p90\run_p90_windows.ps1 -SourceRoot $p90Source -Archive 'F:\Dev\MKEXT\FIXTURES\VALIDATION\P82-LAYERS-665462781a7544f3909d48c3edf553a1.zip'
+```
+
+The runner records Git HEAD/tree, refuses dirty source, validates original
+P82 pixels, runs P90 source oracles and creates a fresh `FIXTURES\VALIDATION\P90-*`
+directory. It exports **partial contribution diagnostics**, not full stages.
+No game launch, download, upload, branch switch or source merge is performed.
