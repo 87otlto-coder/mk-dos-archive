@@ -1,0 +1,1775 @@
+{
+  "schema": "mk2_p90_root_layout_static_v1",
+  "status": "PASS_STATIC_ROOT_LAYOUT",
+  "sourceExeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "classification": "VERIFIED",
+  "classificationScope": "ORIGINAL_STATIC_DATAFLOW_ONLY",
+  "records": [
+    {
+      "stage": "tomb",
+      "stageIndex": 1,
+      "mode": "mode_equals_2",
+      "rootObject2": 94704,
+      "rootSpanSha256": "08ff38b4448ec3d428dc342d8cb3252419d9e31660f0eeb04e5cdfd53ba6685c",
+      "endExclusiveObject2": 94828,
+      "headerSignedWords": [
+        0,
+        182,
+        -1,
+        288,
+        24,
+        548
+      ],
+      "initialDefaultHorizontalInteger": 288,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 94736,
+          "kind": "setup_pair",
+          "setupObject2": 95064,
+          "originSignedXY": [
+            0,
+            -52
+          ],
+          "size": [
+            896,
+            56
+          ],
+          "controlCount": 7,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 289,
+          "selectionMaskObject2": 485327,
+          "initialOriginMinusHorizontal": [
+            -289,
+            -52
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 94744,
+          "kind": "setup_pair",
+          "setupObject2": 95082,
+          "originSignedXY": [
+            0,
+            158
+          ],
+          "size": [
+            896,
+            48
+          ],
+          "controlCount": 1,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 289,
+          "selectionMaskObject2": 485727,
+          "initialOriginMinusHorizontal": [
+            -289,
+            158
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 94752,
+          "kind": "setup_pair",
+          "setupObject2": 95100,
+          "originSignedXY": [
+            0,
+            -58
+          ],
+          "size": [
+            850,
+            224
+          ],
+          "controlCount": 44,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 266,
+          "selectionMaskObject2": 486127,
+          "initialOriginMinusHorizontal": [
+            -266,
+            -58
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 94760,
+          "kind": "setup_pair",
+          "setupObject2": 95136,
+          "originSignedXY": [
+            0,
+            94
+          ],
+          "size": [
+            800,
+            30
+          ],
+          "controlCount": 20,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 241,
+          "selectionMaskObject2": 486527,
+          "initialOriginMinusHorizontal": [
+            -241,
+            94
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 94768,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 94772,
+          "kind": "setup_pair",
+          "setupObject2": 95154,
+          "originSignedXY": [
+            0,
+            46
+          ],
+          "size": [
+            320,
+            80
+          ],
+          "controlCount": 5,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 1,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            -1,
+            46
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 95064,
+          "channelObject2": 541484,
+          "initialInteger": 289
+        },
+        {
+          "setupObject2": 95082,
+          "channelObject2": 541480,
+          "initialInteger": 289
+        },
+        {
+          "setupObject2": 95100,
+          "channelObject2": 541476,
+          "initialInteger": 266
+        },
+        {
+          "setupObject2": 95136,
+          "channelObject2": 541472,
+          "initialInteger": 241
+        },
+        {
+          "setupObject2": 95154,
+          "channelObject2": 541464,
+          "initialInteger": 1
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94976,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94984,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94992,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95000,
+          "tokenPointerObject2": 541512,
+          "payloadPointerObject2": 541478
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 95008,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 158,
+          "rawParameter3": 56
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95024,
+          "tokenPointerObject2": 541516,
+          "payloadPointerObject2": 541482
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 95032,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95036,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95044,
+          "tokenPointerObject2": 541520,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95052,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    },
+    {
+      "stage": "tomb",
+      "stageIndex": 1,
+      "mode": "mode_equals_1",
+      "rootObject2": 94828,
+      "rootSpanSha256": "710588ccc75747806badd0a85845dfa1869a2590e78ffa14760e8fcb267ad8a0",
+      "endExclusiveObject2": 94940,
+      "headerSignedWords": [
+        0,
+        182,
+        -1,
+        288,
+        24,
+        548
+      ],
+      "initialDefaultHorizontalInteger": 288,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 94860,
+          "kind": "setup_pair",
+          "setupObject2": 95064,
+          "originSignedXY": [
+            0,
+            -52
+          ],
+          "size": [
+            896,
+            56
+          ],
+          "controlCount": 7,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 289,
+          "selectionMaskObject2": 485327,
+          "initialOriginMinusHorizontal": [
+            -289,
+            -52
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 94868,
+          "kind": "setup_pair",
+          "setupObject2": 95082,
+          "originSignedXY": [
+            0,
+            158
+          ],
+          "size": [
+            896,
+            48
+          ],
+          "controlCount": 1,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 289,
+          "selectionMaskObject2": 485727,
+          "initialOriginMinusHorizontal": [
+            -289,
+            158
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 94876,
+          "kind": "setup_pair",
+          "setupObject2": 95118,
+          "originSignedXY": [
+            0,
+            -58
+          ],
+          "size": [
+            850,
+            224
+          ],
+          "controlCount": 10,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 266,
+          "selectionMaskObject2": 486127,
+          "initialOriginMinusHorizontal": [
+            -266,
+            -58
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 94884,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486527
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 94888,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 94892,
+          "kind": "setup_pair",
+          "setupObject2": 95154,
+          "originSignedXY": [
+            0,
+            46
+          ],
+          "size": [
+            320,
+            80
+          ],
+          "controlCount": 5,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 1,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            -1,
+            46
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 95064,
+          "channelObject2": 541484,
+          "initialInteger": 289
+        },
+        {
+          "setupObject2": 95082,
+          "channelObject2": 541480,
+          "initialInteger": 289
+        },
+        {
+          "setupObject2": 95100,
+          "channelObject2": 541476,
+          "initialInteger": 266
+        },
+        {
+          "setupObject2": 95154,
+          "channelObject2": 541464,
+          "initialInteger": 1
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94976,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94984,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94992,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95000,
+          "tokenPointerObject2": 541512,
+          "payloadPointerObject2": 541478
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 95008,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 158,
+          "rawParameter3": 56
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95024,
+          "tokenPointerObject2": 541516,
+          "payloadPointerObject2": 541482
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 95032,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95036,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95044,
+          "tokenPointerObject2": 541520,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95052,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    },
+    {
+      "stage": "tomb",
+      "stageIndex": 1,
+      "mode": "mode_other",
+      "rootObject2": 94828,
+      "rootSpanSha256": "710588ccc75747806badd0a85845dfa1869a2590e78ffa14760e8fcb267ad8a0",
+      "endExclusiveObject2": 94940,
+      "headerSignedWords": [
+        0,
+        182,
+        -1,
+        288,
+        24,
+        548
+      ],
+      "initialDefaultHorizontalInteger": 288,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 94860,
+          "kind": "setup_pair",
+          "setupObject2": 95064,
+          "originSignedXY": [
+            0,
+            -52
+          ],
+          "size": [
+            896,
+            56
+          ],
+          "controlCount": 7,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 289,
+          "selectionMaskObject2": 485327,
+          "initialOriginMinusHorizontal": [
+            -289,
+            -52
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 94868,
+          "kind": "setup_pair",
+          "setupObject2": 95082,
+          "originSignedXY": [
+            0,
+            158
+          ],
+          "size": [
+            896,
+            48
+          ],
+          "controlCount": 1,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 289,
+          "selectionMaskObject2": 485727,
+          "initialOriginMinusHorizontal": [
+            -289,
+            158
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 94876,
+          "kind": "setup_pair",
+          "setupObject2": 95118,
+          "originSignedXY": [
+            0,
+            -58
+          ],
+          "size": [
+            850,
+            224
+          ],
+          "controlCount": 10,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 266,
+          "selectionMaskObject2": 486127,
+          "initialOriginMinusHorizontal": [
+            -266,
+            -58
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 94884,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486527
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 94888,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 94892,
+          "kind": "setup_pair",
+          "setupObject2": 95154,
+          "originSignedXY": [
+            0,
+            46
+          ],
+          "size": [
+            320,
+            80
+          ],
+          "controlCount": 5,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 1,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            -1,
+            46
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 95064,
+          "channelObject2": 541484,
+          "initialInteger": 289
+        },
+        {
+          "setupObject2": 95082,
+          "channelObject2": 541480,
+          "initialInteger": 289
+        },
+        {
+          "setupObject2": 95100,
+          "channelObject2": 541476,
+          "initialInteger": 266
+        },
+        {
+          "setupObject2": 95154,
+          "channelObject2": 541464,
+          "initialInteger": 1
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94976,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94984,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 94992,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95000,
+          "tokenPointerObject2": 541512,
+          "payloadPointerObject2": 541478
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 95008,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 158,
+          "rawParameter3": 56
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95024,
+          "tokenPointerObject2": 541516,
+          "payloadPointerObject2": 541482
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 95032,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95036,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95044,
+          "tokenPointerObject2": 541520,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 95052,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    },
+    {
+      "stage": "portal",
+      "stageIndex": 7,
+      "mode": "mode_equals_2",
+      "rootObject2": 91000,
+      "rootSpanSha256": "9c26a66e49e4819e8e36fe875d42f185c98e25b7b0c35533cc3c48efe5b0e8a0",
+      "endExclusiveObject2": 91088,
+      "headerSignedWords": [
+        0,
+        190,
+        3,
+        368,
+        48,
+        688
+      ],
+      "initialDefaultHorizontalInteger": 368,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 91032,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 485327
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 91036,
+          "kind": "setup_pair",
+          "setupObject2": 91412,
+          "originSignedXY": [
+            1,
+            -8
+          ],
+          "size": [
+            896,
+            176
+          ],
+          "controlCount": 20,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 289,
+          "selectionMaskObject2": 485727,
+          "initialOriginMinusHorizontal": [
+            -288,
+            -8
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 91044,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486127
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 91048,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486527
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 91052,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 91056,
+          "kind": "setup_pair",
+          "setupObject2": 91430,
+          "originSignedXY": [
+            1,
+            -6
+          ],
+          "size": [
+            320,
+            168
+          ],
+          "controlCount": 8,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 1,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            0,
+            -6
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 91412,
+          "channelObject2": 541480,
+          "initialInteger": 289
+        },
+        {
+          "setupObject2": 91430,
+          "channelObject2": 541464,
+          "initialInteger": 1
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91200,
+          "tokenPointerObject2": 541496,
+          "payloadPointerObject2": 541462
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91208,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91216,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91224,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 91232,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 164,
+          "rawParameter3": 40
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91248,
+          "tokenPointerObject2": 541516,
+          "payloadPointerObject2": 541482
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 91256,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91260,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91268,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    },
+    {
+      "stage": "portal",
+      "stageIndex": 7,
+      "mode": "mode_equals_1",
+      "rootObject2": 91088,
+      "rootSpanSha256": "2fc1d9b1338675f4725af6687bbb26b837a7094deee4da1b2f334a67d5db7385",
+      "endExclusiveObject2": 91164,
+      "headerSignedWords": [
+        0,
+        190,
+        3,
+        368,
+        48,
+        688
+      ],
+      "initialDefaultHorizontalInteger": 368,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 91120,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 485327
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 91124,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 485727
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 91128,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486127
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 91132,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486527
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 91136,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 91140,
+          "kind": "setup_pair",
+          "setupObject2": 91430,
+          "originSignedXY": [
+            1,
+            -6
+          ],
+          "size": [
+            320,
+            168
+          ],
+          "controlCount": 8,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 1,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            0,
+            -6
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 91430,
+          "channelObject2": 541464,
+          "initialInteger": 1
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91200,
+          "tokenPointerObject2": 541496,
+          "payloadPointerObject2": 541462
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91208,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91216,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91224,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 91232,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 164,
+          "rawParameter3": 40
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91248,
+          "tokenPointerObject2": 541516,
+          "payloadPointerObject2": 541482
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 91256,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91260,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91268,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    },
+    {
+      "stage": "portal",
+      "stageIndex": 7,
+      "mode": "mode_other",
+      "rootObject2": 91088,
+      "rootSpanSha256": "2fc1d9b1338675f4725af6687bbb26b837a7094deee4da1b2f334a67d5db7385",
+      "endExclusiveObject2": 91164,
+      "headerSignedWords": [
+        0,
+        190,
+        3,
+        368,
+        48,
+        688
+      ],
+      "initialDefaultHorizontalInteger": 368,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 91120,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 485327
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 91124,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 485727
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 91128,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486127
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 91132,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486527
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 91136,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 368,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 91140,
+          "kind": "setup_pair",
+          "setupObject2": 91430,
+          "originSignedXY": [
+            1,
+            -6
+          ],
+          "size": [
+            320,
+            168
+          ],
+          "controlCount": 8,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 1,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            0,
+            -6
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 91430,
+          "channelObject2": 541464,
+          "initialInteger": 1
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91200,
+          "tokenPointerObject2": 541496,
+          "payloadPointerObject2": 541462
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91208,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91216,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91224,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 91232,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 164,
+          "rawParameter3": 40
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91248,
+          "tokenPointerObject2": 541516,
+          "payloadPointerObject2": 541482
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 91256,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91260,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 91268,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    },
+    {
+      "stage": "tower",
+      "stageIndex": 3,
+      "mode": "mode_equals_2",
+      "rootObject2": 96316,
+      "rootSpanSha256": "f1fea5e496fac2ff963e26723d004d0baff09b24acd23d674f418bfb02de23e9",
+      "endExclusiveObject2": 96404,
+      "headerSignedWords": [
+        6413,
+        190,
+        3,
+        288,
+        24,
+        548
+      ],
+      "initialDefaultHorizontalInteger": 288,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 96348,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 485327
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 96352,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 485727
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 96356,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486127
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 96360,
+          "kind": "setup_pair",
+          "setupObject2": 96604,
+          "originSignedXY": [
+            0,
+            0
+          ],
+          "size": [
+            1031,
+            64
+          ],
+          "controlCount": 2,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 356,
+          "selectionMaskObject2": 486527,
+          "initialOriginMinusHorizontal": [
+            -356,
+            0
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 96368,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 96372,
+          "kind": "setup_pair",
+          "setupObject2": 96622,
+          "originSignedXY": [
+            0,
+            -52
+          ],
+          "size": [
+            1031,
+            64
+          ],
+          "controlCount": 20,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 356,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            -356,
+            -52
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 96604,
+          "channelObject2": 541472,
+          "initialInteger": 356
+        },
+        {
+          "setupObject2": 96622,
+          "channelObject2": 541464,
+          "initialInteger": 356
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96516,
+          "tokenPointerObject2": 541492,
+          "payloadPointerObject2": 541458
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96524,
+          "tokenPointerObject2": 541496,
+          "payloadPointerObject2": 541462
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96532,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96540,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96548,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96556,
+          "tokenPointerObject2": 541512,
+          "payloadPointerObject2": 541478
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 96564,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 147,
+          "rawParameter3": 64
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 96580,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96584,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96592,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    },
+    {
+      "stage": "tower",
+      "stageIndex": 3,
+      "mode": "mode_equals_1",
+      "rootObject2": 96404,
+      "rootSpanSha256": "adc3577ca7f80fb3af471ddb91af7952d1522febbf45f0cef6f8f513d7fe1b2e",
+      "endExclusiveObject2": 96480,
+      "headerSignedWords": [
+        6413,
+        190,
+        3,
+        288,
+        24,
+        548
+      ],
+      "initialDefaultHorizontalInteger": 288,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 96436,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 485327
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 96440,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 485727
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 96444,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486127
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 96448,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486527
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 96452,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 96456,
+          "kind": "setup_pair",
+          "setupObject2": 96622,
+          "originSignedXY": [
+            0,
+            -52
+          ],
+          "size": [
+            1031,
+            64
+          ],
+          "controlCount": 20,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 356,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            -356,
+            -52
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 96622,
+          "channelObject2": 541464,
+          "initialInteger": 356
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96516,
+          "tokenPointerObject2": 541492,
+          "payloadPointerObject2": 541458
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96524,
+          "tokenPointerObject2": 541496,
+          "payloadPointerObject2": 541462
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96532,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96540,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96548,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96556,
+          "tokenPointerObject2": 541512,
+          "payloadPointerObject2": 541478
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 96564,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 147,
+          "rawParameter3": 64
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 96580,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96584,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96592,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    },
+    {
+      "stage": "tower",
+      "stageIndex": 3,
+      "mode": "mode_other",
+      "rootObject2": 96404,
+      "rootSpanSha256": "adc3577ca7f80fb3af471ddb91af7952d1522febbf45f0cef6f8f513d7fe1b2e",
+      "endExclusiveObject2": 96480,
+      "headerSignedWords": [
+        6413,
+        190,
+        3,
+        288,
+        24,
+        548
+      ],
+      "initialDefaultHorizontalInteger": 288,
+      "setupBindings": [
+        {
+          "slotObject2": 488531,
+          "entryObject2": 96436,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541520,
+          "horizontalAccumulatorObject2": 541484,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 485327
+        },
+        {
+          "slotObject2": 488535,
+          "entryObject2": 96440,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541516,
+          "horizontalAccumulatorObject2": 541480,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 485727
+        },
+        {
+          "slotObject2": 488539,
+          "entryObject2": 96444,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541512,
+          "horizontalAccumulatorObject2": 541476,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486127
+        },
+        {
+          "slotObject2": 488543,
+          "entryObject2": 96448,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541508,
+          "horizontalAccumulatorObject2": 541472,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486527
+        },
+        {
+          "slotObject2": 488547,
+          "entryObject2": 96452,
+          "kind": "disabled_sentinel",
+          "value": 1,
+          "objectListHeadObject2": 541504,
+          "horizontalAccumulatorObject2": 541468,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 288,
+          "selectionMaskObject2": 486927
+        },
+        {
+          "slotObject2": 488551,
+          "entryObject2": 96456,
+          "kind": "setup_pair",
+          "setupObject2": 96622,
+          "originSignedXY": [
+            0,
+            -52
+          ],
+          "size": [
+            1031,
+            64
+          ],
+          "controlCount": 20,
+          "objectListHeadObject2": 541500,
+          "horizontalAccumulatorObject2": 541464,
+          "verticalAccumulatorObject2": 541416,
+          "initialHorizontalInteger": 356,
+          "selectionMaskObject2": 487327,
+          "initialOriginMinusHorizontal": [
+            -356,
+            -52
+          ],
+          "projectionQualification": "CONDITIONAL_SOURCE_ARITHMETIC_NOT_OBSERVED_VIEWPORT"
+        }
+      ],
+      "centerOverrides": [
+        {
+          "setupObject2": 96622,
+          "channelObject2": 541464,
+          "initialInteger": 356
+        }
+      ],
+      "drawCommands": [
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96516,
+          "tokenPointerObject2": 541492,
+          "payloadPointerObject2": 541458
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96524,
+          "tokenPointerObject2": 541496,
+          "payloadPointerObject2": 541462
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96532,
+          "tokenPointerObject2": 541500,
+          "payloadPointerObject2": 541466
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96540,
+          "tokenPointerObject2": 541504,
+          "payloadPointerObject2": 541470
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96548,
+          "tokenPointerObject2": 541508,
+          "payloadPointerObject2": 541474
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96556,
+          "tokenPointerObject2": 541512,
+          "payloadPointerObject2": 541478
+        },
+        {
+          "opcode": "minus_one_draw",
+          "object2Offset": 96564,
+          "sourcePointerObject2": 541482,
+          "rawParameter2": 147,
+          "rawParameter3": 64
+        },
+        {
+          "opcode": "other_negative",
+          "object2Offset": 96580,
+          "signedToken": -2
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96584,
+          "tokenPointerObject2": 541528,
+          "payloadPointerObject2": 541486
+        },
+        {
+          "opcode": "positive_pair",
+          "object2Offset": 96592,
+          "tokenPointerObject2": 541536,
+          "payloadPointerObject2": 541486
+        }
+      ]
+    }
+  ],
+  "sourceCodeSpans": [
+    {
+      "physicalStart": 532320,
+      "physicalEndExclusive": 532446,
+      "sha256": "faf57d03935bb629a70975b38ebf095ae5e564bc2693e31a9bc57ded283ffed0"
+    },
+    {
+      "physicalStart": 531382,
+      "physicalEndExclusive": 531469,
+      "sha256": "55b71809cf14272e35c4842dadb8965073d044cc834c749a74b5c84bc450a529"
+    },
+    {
+      "physicalStart": 551573,
+      "physicalEndExclusive": 551619,
+      "sha256": "16cb5efbdd640be2370b2de6c681eab1ac2eae8604009f9c2431dd7de942795d"
+    },
+    {
+      "physicalStart": 531856,
+      "physicalEndExclusive": 531887,
+      "sha256": "122ba4acc4760ff121bfeb964211854ff306eb3ce1bf61fa17052af70513221b"
+    },
+    {
+      "physicalStart": 602596,
+      "physicalEndExclusive": 602707,
+      "sha256": "7bfd108da4180a98a2903454f19718414040595d1b2b88680ca88ee937f99057"
+    },
+    {
+      "physicalStart": 603532,
+      "physicalEndExclusive": 603562,
+      "sha256": "e0475437b881630ebbfcaae275ac913b3b99f2735996b07784b05b9bf9d70364"
+    }
+  ],
+  "runtimeObserved": false,
+  "completeStageReconstruction": false,
+  "nativePaletteAllocationVerified": false,
+  "nativeAnimationTimingVerified": false,
+  "cameraPositionsObserved": 0,
+  "limits": [
+    "Root assignment stores the address of a setup+origin pair into mutable slot storage.",
+    "The updater associates the slot with a render-object list and horizontal accumulator.",
+    "Origins and initial center arithmetic do not establish a live framebuffer or camera bounds.",
+    "Draw commands preserve source order; list contents, activations, velocities and flags remain runtime dependent.",
+    "Tower is a static parser holdout only; no general whole-stage support is claimed."
+  ]
+}
