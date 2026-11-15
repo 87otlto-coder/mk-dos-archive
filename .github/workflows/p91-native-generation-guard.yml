@@ -31,9 +31,27 @@ jobs:
           echo "PATH=$PATH"
           command -v g++ || { echo 'GCC missing after MSYS2 provisioning'; exit 2; }
           g++ --version | head -1
+          set +e
           g++ -std=c++14 -O0 -Wall -Wextra -Werror -pedantic \
             scripts/research/p91/test_native_generation_guard.cpp -o p91-guard.exe
-          ./p91-guard.exe | tee p91-guard-result.txt
+          compiler_exit=$?
+          set -e
+          echo "P91_COMPILER_EXIT=$compiler_exit"
+          if [ "$compiler_exit" -ne 0 ]; then
+            echo "CC1PLUS=$(g++ -print-prog-name=cc1plus)"
+            command -v ld || true
+            exit "$compiler_exit"
+          fi
+          test -s p91-guard.exe
+          ls -l p91-guard.exe
+          ldd p91-guard.exe || true
+          set +e
+          ./p91-guard.exe > p91-guard-result.txt 2>&1
+          run_exit=$?
+          set -e
+          echo "P91_GUARD_EXECUTION_EXIT=$run_exit"
+          cat p91-guard-result.txt
+          if [ "$run_exit" -ne 0 ]; then exit "$run_exit"; fi
           grep -Fx 'P91_NATIVE_GENERATION_GUARD=PASS (21 original-free cases)' p91-guard-result.txt
           echo 'P91_ORIGINAL_GAME_EXECUTED=false'
           echo 'P91_NATIVE_TOMB_PACKET_CAPTURED=false'
