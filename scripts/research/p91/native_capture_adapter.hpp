@@ -205,7 +205,7 @@ public:
             return;
         }
         if (!active_ || stopped_) return;
-        if (++serial_ > 200000000ull) {refuse("instruction budget");return;}
+        if (++serial_ > 2000000000ull) {refuse("global instruction budget");return;}
         if (!cpu.pmode || !cpu.code.big || !cpu.stack.big || PAGING_Enabled())
             return;
         if (!bound_) {
@@ -230,8 +230,8 @@ public:
             }
             return;
         }
-        if (serial_-boundSerial_>20000000ull) {
-            refuse("no completed frame in bounded instruction budget");return;
+        if (targetSeen_ && serial_-targetSerial_>20000000ull) {
+            refuse("no completed target frame in bounded instruction budget");return;
         }
         if (ip<mapping_.object1Base) return;
         const uint32_t offset=ip-mapping_.object1Base;
@@ -268,6 +268,7 @@ public:
                 refuse("target stage/mode lost during generation");
             return;
         }
+        if (!targetSeen_) {targetSeen_=true;targetSerial_=serial_;}
         if (phase==Phase::DrawEntry && !(e.renderGate&1u)) {
             guard_.observe(phase,e);
             return;
@@ -303,7 +304,8 @@ private:
     bool stopped_=false;
     bool bound_=false;
     bool selftestDone_=false;
-    uint64_t serial_=0,boundSerial_=0,witnessSerial_=0;
+    uint64_t serial_=0,boundSerial_=0,witnessSerial_=0,targetSerial_=0;
+    bool targetSeen_=false;
     uint32_t witnessLinear_=0;
     std::string captureDir_,selftestDir_;
     Binding mapping_;
@@ -363,7 +365,11 @@ private:
         if (!within_ram(linearBuffer,PIXELS,limit) ||
             !native_ram_read(uint32_t(linearBuffer),PIXELS,ev->buffer.data()))
             return false;
-        if (!read_object_lists(o2,mapping_.operandBias,ev->hasObjects))
+        // List heads are mode/stage-dependent. Never reject an unrelated
+        // stage because its pointers do not follow Tomb's list contract.
+        if (ev->stage==1 && ev->mode==2 &&
+            ev->controlStream==ev->operandBias+0x17300u &&
+            !read_object_lists(o2,mapping_.operandBias,ev->hasObjects))
             return false;
         std::memcpy(ev->paletteSlots.data(),o2.data()+0x75b00u,
                     PALETTE_SLOTS);
