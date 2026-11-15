@@ -139,17 +139,24 @@ class Collector:
       self.completed={'drawEntry':self.generated['entry'],'drawComplete':r,'presentEntry':p,'postPresent':s}
       return self.completed
 
-def save_private(plan,phases,path):
+def save_private(plan,phases,path,*,input_fingerprints,adapter_identity):
     """Only completed collector output; exclusive new private directory/files."""
     out=Path(path).resolve();base=Path(r'F:\Dev\MKEXT\FIXTURES\VALIDATION').resolve()
     need(out.is_relative_to(base) and out!=base and not out.exists(),'new canonical private directory required')
     need(set(phases)=={'drawEntry','drawComplete','presentEntry','postPresent'},'incomplete collector output')
+    need(input_fingerprints==plan['requiredOriginalFingerprints'],'observed original fingerprints required')
+    need(set(adapter_identity)>={'upstreamCommit','patchSha256','executableSha256','core','pagingEnabled'},'adapter build identity incomplete')
+    need(adapter_identity['core']=='normal' and adapter_identity['pagingEnabled'] is False,'unsupported adapter/core')
+    collector=Collector(plan);collector.draw_entry(phases['drawEntry']);collector.draw_ret(phases['drawComplete'])
+    collector.present_entry(phases['presentEntry']);collector.scheduler_entry(phases['postPresent'])
     manifest={'schema':'mk2_p91_native_snapshot_v1','classification':'VALIDATION PENDING','nativeGameVerified':False,
       'planSha256':sha(json.dumps(plan,sort_keys=True,separators=(',',':')).encode()),'sourceExeSha256':plan['sourceExeSha256'],
-      'phases':{},'files':[],'scanoutVerified':False,'adapterBuildIdentityRequired':True}
+      'originalInputFingerprints':input_fingerprints,'adapterIdentity':adapter_identity,
+      'phases':{},'files':[],'scanoutVerified':False}
     blobs={}
     for phase,s in phases.items():
       meta={k:v for k,v in s.items() if not isinstance(v,bytes)}
+      meta['decodedState']=decode_state(plan,s['mapping'],s['object2'])
       for key,value in s.items():
         if isinstance(value,bytes):
           name=phase+'-'+key+'.bin';blobs[name]=value;meta[key+'File']=name

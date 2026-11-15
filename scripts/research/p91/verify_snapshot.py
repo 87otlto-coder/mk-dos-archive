@@ -3,13 +3,16 @@ not proof that an unverified backend actually observed the original game.
 """
 import argparse,hashlib,json
 from pathlib import Path
-from snapshot import Collector,need,sha
+from snapshot import Collector,need,sha,decode_state
 
 def verify_folder(plan,folder):
     root=Path(folder).resolve();manifest=json.loads((root/'manifest.json').read_text(encoding='utf-8'))
     need(manifest['schema']=='mk2_p91_native_snapshot_v1','snapshot schema')
     need(manifest['planSha256']==sha(json.dumps(plan,sort_keys=True,separators=(',',':')).encode()),'capture plan identity')
     need(manifest['sourceExeSha256']==plan['sourceExeSha256'],'source executable identity')
+    need(manifest['originalInputFingerprints']==plan['requiredOriginalFingerprints'],'original input fingerprint set')
+    need(set(manifest['adapterIdentity'])>={'upstreamCommit','patchSha256','executableSha256','core','pagingEnabled'},'adapter provenance missing')
+    need(manifest['adapterIdentity']['upstreamCommit']=='029bd65c5dcc7cdc7f2e14e35278620d9707d969','wrong DOSBox source revision')
     payload={}
     for row in manifest['files']:
       name=row['path'];need(name not in payload and Path(name).name==name and name.endswith('.bin'),'unsafe/duplicate capture member')
@@ -25,6 +28,7 @@ def verify_folder(plan,folder):
           need(value in payload,'missing phase member');phase[key[:-4]]=payload[value];referenced.append(value)
         else:phase[key]=value
       phases[name]=phase
+      need(meta['decodedState']==decode_state(plan,phase['mapping'],phase['object2']),'decoded manifest fields differ from bytes')
     need(set(referenced)==set(payload) and len(referenced)==len(payload),'unreferenced/reused phase member')
     need(set(p.name for p in root.iterdir())=={'manifest.json',*payload},'unmanifested capture contents')
     need(set(phases)=={'drawEntry','drawComplete','presentEntry','postPresent'},'phase set')

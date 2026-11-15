@@ -1,0 +1,208 @@
+{
+  "schema": "mk2_p91_capture_plan_v1",
+  "sourceExeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "requiredOriginalFingerprints": {
+    "MK2.EXE": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+    "TOMB.GRA": "be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613",
+    "IMAGES.GRA": "2b26796a64c2aebfee75832696aeae9bbcf9df56d82cb9a39df58a557d3ad8cf"
+  },
+  "objects": [
+    {
+      "number": 1,
+      "virtualSize": 257688,
+      "preferredBaseNotRuntimeBase": 65536
+    },
+    {
+      "number": 2,
+      "virtualSize": 550496,
+      "preferredBaseNotRuntimeBase": 327680
+    }
+  ],
+  "windows": [
+    {
+      "name": "frame_entry",
+      "physical": 421968,
+      "object1Offset": 21500,
+      "length": 24,
+      "relocations": [
+        {
+          "byteOffset": 2,
+          "targetObject": 2,
+          "targetOffset": 352980
+        },
+        {
+          "byteOffset": 14,
+          "targetObject": 2,
+          "targetOffset": 482546
+        }
+      ],
+      "maskedSha256": "a67258592f0550e312761184f4e23754bb51b61219f517ce3f4c3d44ff424f45"
+    },
+    {
+      "name": "draw_entry",
+      "physical": 603074,
+      "object1Offset": 202606,
+      "length": 39,
+      "relocations": [
+        {
+          "byteOffset": 2,
+          "targetObject": 2,
+          "targetOffset": 352980
+        },
+        {
+          "byteOffset": 14,
+          "targetObject": 2,
+          "targetOffset": 484918
+        },
+        {
+          "byteOffset": 23,
+          "targetObject": 2,
+          "targetOffset": 484906
+        }
+      ],
+      "maskedSha256": "8cdd5f0e31d27be6fc40a21962c7af202a42473008308107c3db69b8a2a259e6"
+    },
+    {
+      "name": "draw_ret",
+      "physical": 603621,
+      "object1Offset": 203153,
+      "length": 1,
+      "relocations": [],
+      "maskedSha256": "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e"
+    },
+    {
+      "name": "present_entry",
+      "physical": 414752,
+      "object1Offset": 14284,
+      "length": 21,
+      "relocations": [
+        {
+          "byteOffset": 2,
+          "targetObject": 2,
+          "targetOffset": 196940
+        },
+        {
+          "byteOffset": 11,
+          "targetObject": 2,
+          "targetOffset": 482542
+        }
+      ],
+      "maskedSha256": "d60bf17d7db9538c634b03b4befb3c61fe577c424ae5fb9c73b67446da263753"
+    },
+    {
+      "name": "scheduler_entry",
+      "physical": 422109,
+      "object1Offset": 21641,
+      "length": 50,
+      "relocations": [
+        {
+          "byteOffset": 2,
+          "targetObject": 2,
+          "targetOffset": 202620
+        },
+        {
+          "byteOffset": 14,
+          "targetObject": 2,
+          "targetOffset": 219916
+        },
+        {
+          "byteOffset": 22,
+          "targetObject": 2,
+          "targetOffset": 219920
+        },
+        {
+          "byteOffset": 32,
+          "targetObject": 2,
+          "targetOffset": 219920
+        },
+        {
+          "byteOffset": 44,
+          "targetObject": 2,
+          "targetOffset": 219908
+        }
+      ],
+      "maskedSha256": "d038006b13341f6691a7601d11a965241e84aa74559dcdef8481c04e65ee0073"
+    }
+  ],
+  "mapping": {
+    "discoveryPhysical": 421968,
+    "dataOperandByteOffset": 2,
+    "dataOperandTargetObject2": 352980,
+    "object1LinearBase": "CS.base + EIP - (physical - 0x61C54)",
+    "object2OperandBias": "relocated inline DWORD - original Object2 target offset",
+    "object2LinearBase": "DS.base + object2OperandBias",
+    "acceptance": "All masked code windows and every relocation must agree; never use LE preferred bases as loaded bases."
+  },
+  "stateObject2": {
+    "mode": 196940,
+    "stage": 488575,
+    "controlStream": 482550,
+    "renderGate": 352980,
+    "updateEnable": 482546,
+    "alternatePath": 353248,
+    "drawBuffer": 484906,
+    "lastPresentedBuffer": 484910,
+    "horizontalAccumulators": [
+      541456,
+      541460,
+      541464,
+      541468,
+      541472,
+      541476,
+      541480,
+      541484,
+      541488
+    ],
+    "vertical": 541416,
+    "verticalRate": 541412,
+    "listHeads": [
+      541492,
+      541496,
+      541500,
+      541504,
+      541508,
+      541512,
+      541516,
+      541520,
+      541524,
+      541528,
+      541532,
+      541536,
+      541540
+    ],
+    "movementGate": 481928,
+    "paletteSlots": {
+      "offset": 482048,
+      "count": 60,
+      "stride": 8
+    },
+    "resourceTable": {
+      "offset": 193588,
+      "stride": 24
+    }
+  },
+  "target": {
+    "stage": 1,
+    "mode": 2,
+    "controlStreamObject2": 94976
+  },
+  "renderObject": {
+    "bytes": 88,
+    "nextOffset": 0,
+    "xVelocity": 16,
+    "yVelocity": 20,
+    "xPosition": 24,
+    "yPosition": 28,
+    "sortKey": 32,
+    "shapeFlags": 36,
+    "resourceToken": 40,
+    "dimensions": 44,
+    "paletteHandle": 48,
+    "objectFlags": 52,
+    "descriptor": 60,
+    "clipFlags": 74
+  },
+  "pairing": "draw-entry -> draw-ret stores generation keyed by source buffer -> present-entry byte equality -> scheduler-entry after PRESENT",
+  "classification": "VERIFIED_STATIC_SOURCE",
+  "originalRuntimeObserved": false
+}

@@ -1,5 +1,5 @@
 """Small original-free capture-mechanism tests; optional exact EXE mapping test."""
-import argparse,copy,hashlib,struct,sys,unittest
+import argparse,copy,hashlib,json,struct,sys,tempfile,unittest
 from pathlib import Path
 from snapshot import Collector,resolve_mapping,decode_state
 
@@ -82,6 +82,30 @@ class Mechanism(unittest.TestCase):
     def test_target_guard(self):
       e=event(self.plan,self.mapping,'draw_entry',1);b=bytearray(e['object2']);put(b,0x3014c,3);e['object2']=bytes(b)
       with self.assertRaisesRegex(ValueError,'not Tomb'):Collector(self.plan).draw_entry(e)
+    def test_synthetic_packet_readback(self):
+      from verify_snapshot import verify_folder
+      from snapshot import sha
+      plan=self.plan;plan['sourceExeSha256']='0'*64;plan['requiredOriginalFingerprints']={'SYNTHETIC':'0'*64}
+      phases=self.run_sequence()
+      m={'schema':'mk2_p91_native_snapshot_v1','sourceExeSha256':'0'*64,
+        'planSha256':sha(json.dumps(plan,sort_keys=True,separators=(',',':')).encode()),
+        'originalInputFingerprints':plan['requiredOriginalFingerprints'],
+        'adapterIdentity':{'upstreamCommit':'029bd65c5dcc7cdc7f2e14e35278620d9707d969','patchSha256':'0'*64,'executableSha256':'0'*64,'core':'normal','pagingEnabled':False},
+        'files':[],'phases':{}}
+      with tempfile.TemporaryDirectory(prefix='p91-synthetic-') as folder:
+        root=Path(folder)
+        for name,event_data in phases.items():
+          meta={k:v for k,v in event_data.items() if not isinstance(v,bytes)}
+          meta['decodedState']=decode_state(plan,event_data['mapping'],event_data['object2'])
+          for key,data in event_data.items():
+            if not isinstance(data,bytes):continue
+            filename=name+'-'+key+'.bin';(root/filename).write_bytes(data);meta[key+'File']=filename
+            m['files'].append({'path':filename,'bytes':len(data),'sha256':sha(data)})
+          m['phases'][name]=meta
+        (root/'manifest.json').write_text(json.dumps(m))
+        self.assertEqual(verify_folder(plan,root)['status'],'PASS_P91_PACKET_CONSISTENCY')
+        (root/m['files'][0]['path']).write_bytes(b'corruption')
+        with self.assertRaisesRegex(ValueError,'digest/size'):verify_folder(plan,root)
 
 def original_mapping_test(exe,source_root):
     from capture_plan import make

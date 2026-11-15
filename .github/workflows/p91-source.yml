@@ -1,0 +1,19 @@
+name: P91 runtime capture source controls
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/p91-mk2-runtime-snapshot]
+    paths: ['scripts/research/p91/**', '.github/workflows/p91-source.yml']
+permissions:
+  contents: read
+jobs:
+  capture-model:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Original-free snapshot pairing and refusal checks
+        run: python -B scripts/research/p91/test_snapshot.py
