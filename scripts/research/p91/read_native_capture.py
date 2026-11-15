@@ -170,6 +170,8 @@ def parse_native(data:bytes,plan:dict)->dict:
 def verify_raw(folder:Path,plan:dict)->dict:
     """Refuse any missing, overwritten or inconsistent private raw evidence."""
     need(folder.is_dir(),"private raw capture directory missing")
+    need(not (folder/"p91-capture-refusal.json").exists(),
+         "native capture refusal evidence present; packet cannot be accepted")
     marker=json.loads((folder/MARKER).read_text(encoding="utf-8"))
     need(marker["schema"]=="mkext_p91_native_raw_complete_v2" and
          marker["raw"]==RAW and marker["phases"]==4,
