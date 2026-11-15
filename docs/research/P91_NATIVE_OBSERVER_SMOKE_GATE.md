@@ -62,3 +62,33 @@ If the build or smoke test fails, inspect the failed compiler/runtime step,
 fix the minimal demonstrated defect in this isolated branch, and rerun only
 the bounded source + build gate. Preserve P91/P90 checkpoints and all local
 canonical `SOURCE/`, `TOOLS/`, and private `FIXTURES/` separation.
+
+## Windows four-phase guard verification
+
+**VERIFIED original-free C++14 mechanism, not live emulator capture.** The
+independent native `native_generation_guard.hpp` and
+`test_native_generation_guard.cpp` implement/refuse mixed generations, gated-off
+draw changes, bad return sites, changed palette slots, mismatched native buffers,
+VGA aperture disagreement, DAC drift, unsupported context and unproven
+scheduler-only arrival. The guard is intentionally not yet connected to a
+live MK2 instruction stream.
+
+The first Windows test runner exposed excessive stack usage in the test and
+guard: local Linux tests passed, but Windows process startup returned exit
+127. Under a deliberately constrained 1 MB Linux stack the original test
+reproduced a crash. Moving retained full-frame evidence to heap-owned event
+objects removed that reproduced failure. Original-free tests passed again
+under a 1 MB stack, and exact tested Git blobs were committed.
+
+[Windows CI #43747420122](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43747420122)
+**SUCCESS** at `0b66d33f1527020746c4187f9557aba0c2e68de3`.
+The job recorded `P91_COMPILER_EXIT=0`,
+`P91_GUARD_EXECUTION_EXIT=0` and
+`P91_NATIVE_GENERATION_GUARD=PASS (21 original-free cases)`.
+Zero copyrighted files or generated executable artifacts were uploaded.
+
+**Next live adapter gate:** connect the tested generation guard and source
+capture plan to the pinned, no-game-verified DOSBox-X normal-core hook. Preserve
+four-phase synchronous RAM/DAC evidence with source-window relocation proof,
+actual return witness, full Object1/Object2 images and private exclusive output;
+compile and test no-game error paths before issuing any local game-run command.
