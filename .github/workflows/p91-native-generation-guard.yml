@@ -1,0 +1,33 @@
+name: P91 native generation guard (Windows original-free)
+on:
+  push:
+    branches: ['research/p91-native-observer-smoke']
+    paths:
+      - 'scripts/research/p91/native_generation_guard.hpp'
+      - 'scripts/research/p91/test_native_generation_guard.cpp'
+      - '.github/workflows/p91-native-generation-guard.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-generation-guard:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: false
+          install: mingw-w64-x86_64-gcc
+      - name: Compile C++14 four-phase guard with warnings as errors and execute synthetic refusals
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          g++ -std=c++14 -O0 -Wall -Wextra -Werror -pedantic \
+            scripts/research/p91/test_native_generation_guard.cpp -o p91-guard.exe
+          ./p91-guard.exe | tee p91-guard-result.txt
+          grep -Fx 'P91_NATIVE_GENERATION_GUARD=PASS (21 original-free cases)' p91-guard-result.txt
+          echo 'P91_ORIGINAL_GAME_EXECUTED=false'
+          echo 'P91_NATIVE_TOMB_PACKET_CAPTURED=false'
+          # No capture or executable artifacts uploaded.
