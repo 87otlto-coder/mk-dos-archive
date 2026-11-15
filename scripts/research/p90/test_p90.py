@@ -50,6 +50,19 @@ class OriginalControls(unittest.TestCase):
     def test_source_mutation_refused(self):
         b=bytearray(self.exe);b[0x81f9c]^=1
         with self.assertRaises(ValueError):analyze(bytes(b),ROOT)
+    def test_camera_and_hostile_order_changes(self):
+        from camera_source import make
+        from verify_camera_source import verify as camera_verify
+        report=make(self.exe,ROOT)
+        self.assertEqual(camera_verify(self.exe,report)['assertions'],47)
+        for field in ('runtimeObserved','cameraLimitsMeasured','perFrameParallaxVerified'):
+            bad=copy.deepcopy(report);bad[field]=True
+            with self.assertRaises(ValueError):camera_verify(self.exe,bad)
+        bad=copy.deepcopy(report)
+        bad['tables'][0]['entriesInOriginalOrder'].sort(key=lambda r:r['thresholdUnsigned16_16'])
+        with self.assertRaises(ValueError):camera_verify(self.exe,bad)
+        bad=copy.deepcopy(report);bad['tables'][0]['staticSelectionExamples'][8]['selectedRoutinePhysical']=0x82573
+        with self.assertRaises(ValueError):camera_verify(self.exe,bad)
 
 ROOT=Path(__file__).resolve().parents[3]
 EXE=None
@@ -59,4 +72,3 @@ if __name__=='__main__':
     suite=unittest.defaultTestLoader.loadTestsFromTestCase(OriginalFree)
     if EXE:suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(OriginalControls))
     result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())
-
