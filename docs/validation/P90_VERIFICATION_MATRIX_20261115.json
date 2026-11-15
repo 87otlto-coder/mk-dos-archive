@@ -97,6 +97,15 @@
     "powershellLauncher": {
       "parser": "PASS",
       "fullPrivateExecution": "VALIDATION PENDING"
+    },
+    "hostedWindowsSourceCI": {
+      "status": "SUCCESS",
+      "runId": 43718944754,
+      "commit": "17a616dfe784cb4fc04e1c877935aa590689f915",
+      "originalFreeControls": 7,
+      "powershellSyntax": "PASS",
+      "artifacts": 0,
+      "originalGameDataPresent": false
     }
   },
   "notExecuted": [
@@ -105,8 +114,7 @@
     "two reached camera positions per stage",
     "actor foreground occlusion",
     "native animation timing",
-    "new private projection PNG export",
-    "P90 hosted CI"
+    "new private projection PNG export"
   ],
   "blockers": [
     {
@@ -121,5 +129,6 @@
       "missing": "Paused original runtime snapshot linking loaded LE bases, object lists, nine channels, vertical state, native buffer and DAC",
       "effect": "No exact original viewport or camera/depth/timing claim"
     }
-  ]
+  ],
+  "implementationTree": "f6ad3689707143cffdf82a0ce0b80fdf497b5ea4"
 }
