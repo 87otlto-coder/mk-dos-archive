@@ -1,0 +1,27 @@
+name: P91 private Windows package source controls (no games)
+on:
+  push:
+    branches: ['research/p91-native-observer-smoke']
+    paths:
+      - 'scripts/research/p91/package_native_capture.py'
+      - 'scripts/research/p91/test_package_native_capture.py'
+      - '.github/workflows/p91-package-source-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  portable-package-model:
+    runs-on: windows-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Synthetic portable package checks with overwrite refusals
+        shell: pwsh
+        run: |
+          python -B scripts/research/p91/test_package_native_capture.py
+          if ($LASTEXITCODE -ne 0) { throw 'P91 package source gate failed' }
+          Write-Host 'P91_PACKAGE_SOURCE_CONTROLS=PASS'
+          Write-Host 'P91_ORIGINAL_GAME_EXECUTED=false'
