@@ -1,0 +1,299 @@
+{
+  "schema": "mk2_p90_camera_selection_static_v1",
+  "classification": "VERIFIED",
+  "classificationScope": "STATIC_CODE_AND_TABLE_ORDER_ONLY",
+  "sourceExeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "tables": [
+    {
+      "directionLabel": "positive",
+      "sourceTableObject2": 90000,
+      "entriesInOriginalOrder": [
+        {
+          "sourceEntryObject2": 90000,
+          "thresholdUnsigned16_16": 65536,
+          "routineObject1": 133171,
+          "routinePhysical": 533639,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90008,
+          "thresholdUnsigned16_16": 131072,
+          "routineObject1": 133203,
+          "routinePhysical": 533671,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90016,
+          "thresholdUnsigned16_16": 163840,
+          "routineObject1": 133228,
+          "routinePhysical": 533696,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90024,
+          "thresholdUnsigned16_16": 196608,
+          "routineObject1": 133265,
+          "routinePhysical": 533733,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90032,
+          "thresholdUnsigned16_16": 262144,
+          "routineObject1": 133301,
+          "routinePhysical": 533769,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90040,
+          "thresholdUnsigned16_16": 393216,
+          "routineObject1": 133333,
+          "routinePhysical": 533801,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90048,
+          "thresholdUnsigned16_16": 458752,
+          "routineObject1": 133366,
+          "routinePhysical": 533834,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90056,
+          "thresholdUnsigned16_16": 655360,
+          "routineObject1": 133440,
+          "routinePhysical": 533908,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90064,
+          "thresholdUnsigned16_16": 524288,
+          "routineObject1": 133407,
+          "routinePhysical": 533875,
+          "reachableByPositiveFirstMatch": false
+        }
+      ],
+      "zeroThresholdTerminatorObject2": 90072,
+      "staticSelectionExamples": [
+        {
+          "inputUnsignedMagnitude": 1,
+          "selectedRoutinePhysical": 533639,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 65536,
+          "selectedRoutinePhysical": 533639,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 131072,
+          "selectedRoutinePhysical": 533671,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 163840,
+          "selectedRoutinePhysical": 533696,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 196608,
+          "selectedRoutinePhysical": 533733,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 262144,
+          "selectedRoutinePhysical": 533769,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 393216,
+          "selectedRoutinePhysical": 533801,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 458752,
+          "selectedRoutinePhysical": 533834,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 524288,
+          "selectedRoutinePhysical": 533908,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 655360,
+          "selectedRoutinePhysical": 533908,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 655361,
+          "selectedRoutinePhysical": null,
+          "zeroTerminatorErrorPath": true
+        }
+      ]
+    },
+    {
+      "directionLabel": "negative",
+      "sourceTableObject2": 90076,
+      "entriesInOriginalOrder": [
+        {
+          "sourceEntryObject2": 90076,
+          "thresholdUnsigned16_16": 65536,
+          "routineObject1": 133473,
+          "routinePhysical": 533941,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90084,
+          "thresholdUnsigned16_16": 131072,
+          "routineObject1": 133507,
+          "routinePhysical": 533975,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90092,
+          "thresholdUnsigned16_16": 163840,
+          "routineObject1": 133539,
+          "routinePhysical": 534007,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90100,
+          "thresholdUnsigned16_16": 196608,
+          "routineObject1": 133578,
+          "routinePhysical": 534046,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90108,
+          "thresholdUnsigned16_16": 262144,
+          "routineObject1": 133616,
+          "routinePhysical": 534084,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90116,
+          "thresholdUnsigned16_16": 393216,
+          "routineObject1": 133650,
+          "routinePhysical": 534118,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90124,
+          "thresholdUnsigned16_16": 458752,
+          "routineObject1": 133685,
+          "routinePhysical": 534153,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90132,
+          "thresholdUnsigned16_16": 655360,
+          "routineObject1": 133763,
+          "routinePhysical": 534231,
+          "reachableByPositiveFirstMatch": true
+        },
+        {
+          "sourceEntryObject2": 90140,
+          "thresholdUnsigned16_16": 524288,
+          "routineObject1": 133728,
+          "routinePhysical": 534196,
+          "reachableByPositiveFirstMatch": false
+        }
+      ],
+      "zeroThresholdTerminatorObject2": 90148,
+      "staticSelectionExamples": [
+        {
+          "inputUnsignedMagnitude": 1,
+          "selectedRoutinePhysical": 533941,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 65536,
+          "selectedRoutinePhysical": 533941,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 131072,
+          "selectedRoutinePhysical": 533975,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 163840,
+          "selectedRoutinePhysical": 534007,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 196608,
+          "selectedRoutinePhysical": 534046,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 262144,
+          "selectedRoutinePhysical": 534084,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 393216,
+          "selectedRoutinePhysical": 534118,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 458752,
+          "selectedRoutinePhysical": 534153,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 524288,
+          "selectedRoutinePhysical": 534231,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 655360,
+          "selectedRoutinePhysical": 534231,
+          "zeroTerminatorErrorPath": false
+        },
+        {
+          "inputUnsignedMagnitude": 655361,
+          "selectedRoutinePhysical": null,
+          "zeroTerminatorErrorPath": true
+        }
+      ]
+    }
+  ],
+  "sourceCodeSpans": [
+    {
+      "start": 532689,
+      "endExclusive": 533081,
+      "sha256": "a2b12d8e20878601234319a4d799b111f4551135accde888c28451befb74c96f"
+    },
+    {
+      "start": 533639,
+      "endExclusive": 534266,
+      "sha256": "7777111a3820b180948af3097bbd8485271bc9d9fe3969145493f3016e554cbc"
+    }
+  ],
+  "cameraWordObject2": 541486,
+  "cameraMinimumGlobalObject2": 482586,
+  "cameraMaximumGlobalObject2": 482590,
+  "viewportComparisonInsets": [
+    40,
+    279
+  ],
+  "speedMagnitudeInputGlobalsObject2": [
+    483290,
+    483678
+  ],
+  "zeroMagnitudeDefaultRoutinePhysical": {
+    "positive": 533696,
+    "negative": 534007
+  },
+  "tableSelection": "FIRST_UNSIGNED_THRESHOLD_GE_INPUT_IN_SOURCE_ORDER; ZERO_TERMINATOR_REACHES_DIVIDE_BY_ZERO",
+  "runtimeObserved": false,
+  "cameraLimitsMeasured": false,
+  "perFrameParallaxVerified": false,
+  "limits": [
+    "Preserve table order: 0xA0000 precedes 0x80000, so the final entry is unreachable by this first-match scan.",
+    "Root+0xC and +0xE feed the compared minimum/maximum globals, but this is not proof of reached viewport endpoints.",
+    "Distinct one-object and two-object camera paths exist; these tables belong to the two-object path.",
+    "Do not equate source rate-selection magnitudes, renderer invocations, scheduler ticks or elapsed seconds."
+  ]
+}
