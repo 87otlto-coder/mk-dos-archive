@@ -134,6 +134,67 @@ class MCPTests(unittest.TestCase):
                                    exercise_step_commands=True)
         worker.join(timeout=1)
 
+    def test_no_game_remote_break_from_running_accepts_true_stop(self):
+        peer, worker, requests = simulate([
+            ("REQ 1 PING", "BEGIN 1 OK\nPONG\nEND 1\n"),
+            ("REQ 2 BREAK", "BEGIN 2 OK\nEND 2\n"),
+            ("REQ 3 EXEC STEPIN",
+             "BEGIN 3 OK\nDEBUG: STEPIN CS:IP=F000:D187 AX=0000 BX=0000 CX=0000 DX=0000\nEND 3\n"),
+            ("REQ 4 EXEC EV EAX", "BEGIN 4 OK\nEV of 'EAX' is:\n0\nEND 4\n"),
+        ])
+        with peer:
+            result = subject.probe_break_from_running(subject.Control(peer))
+        worker.join(timeout=1)
+        self.assertTrue(result["runningToStoppedBreakVerified"])
+        self.assertEqual(result["stepinAttempts"], 1)
+        self.assertFalse(result["originalGameMounted"])
+        self.assertEqual(requests[-1], "REQ 4 EXEC EV EAX")
+
+    def test_no_game_running_break_retries_only_precondition_error(self):
+        peer, worker, requests = simulate([
+            ("REQ 1 PING", "BEGIN 1 OK\nPONG\nEND 1\n"),
+            ("REQ 2 BREAK", "BEGIN 2 OK\nEND 2\n"),
+            ("REQ 3 EXEC STEPIN",
+             "BEGIN 3 ERR\nDEBUG: STEPIN requires the debugger to be stopped\n*** Debugger command not recognized\nEND 3\n"),
+            ("REQ 4 EXEC STEPIN",
+             "BEGIN 4 OK\nDEBUG: STEPIN CS:IP=F000:D187 AX=0000 BX=0000 CX=0000 DX=0000\nEND 4\n"),
+            ("REQ 5 EXEC EV EAX", "BEGIN 5 OK\nEV of 'EAX' is:\n0\nEND 5\n"),
+        ])
+        with peer:
+            result = subject.probe_break_from_running(
+                subject.Control(peer), max_attempts=2)
+        worker.join(timeout=1)
+        self.assertTrue(result["stoppedStepinVerified"])
+        self.assertEqual(result["stepinAttempts"], 2)
+
+    def test_no_game_break_ack_without_stopped_state_refused(self):
+        peer, worker, requests = simulate([
+            ("REQ 1 PING", "BEGIN 1 OK\nPONG\nEND 1\n"),
+            ("REQ 2 BREAK", "BEGIN 2 OK\nEND 2\n"),
+            ("REQ 3 EXEC STEPIN",
+             "BEGIN 3 ERR\nDEBUG: STEPIN requires the debugger to be stopped\n*** Debugger command not recognized\nEND 3\n"),
+            ("REQ 4 EXEC STEPIN",
+             "BEGIN 4 ERR\n*** Debugger command not recognized\nEND 4\n"),
+        ])
+        with peer, self.assertRaisesRegex(ValueError, "no accepted STEPIN"):
+            subject.probe_break_from_running(
+                subject.Control(peer), max_attempts=2)
+        worker.join(timeout=1)
+        self.assertEqual(requests[-1], "REQ 4 EXEC STEPIN")
+
+    def test_no_game_break_unknown_transport_error_refused(self):
+        peer, worker, requests = simulate([
+            ("REQ 1 PING", "BEGIN 1 OK\nPONG\nEND 1\n"),
+            ("REQ 2 BREAK", "BEGIN 2 OK\nEND 2\n"),
+            ("REQ 3 EXEC STEPIN",
+             "BEGIN 3 ERR\ntransport invalid\nEND 3\n"),
+        ])
+        with peer, self.assertRaisesRegex(ValueError, "transport invalid"):
+            subject.probe_break_from_running(
+                subject.Control(peer), max_attempts=3)
+        worker.join(timeout=1)
+        self.assertEqual(requests[-1], "REQ 3 EXEC STEPIN")
+
     def test_missing_pong_rejected(self):
         peer, worker, _ = simulate([
             ("REQ 1 PING", "BEGIN 1 OK\nNOT_PONG\nEND 1\n"),
