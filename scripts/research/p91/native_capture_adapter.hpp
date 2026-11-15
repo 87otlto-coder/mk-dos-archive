@@ -87,6 +87,11 @@ struct PhaseData {
     std::array<uint32_t,8> vgaRegisters{};
     std::array<uint8_t,4> returnStack{};
     uint32_t returnStackLinear=0;
+    uint32_t returnOpcodeLinear=0;
+    uint64_t returnOpcodeSerial=0;
+    uint32_t returnOpcode=0;
+    uint32_t returnEspBefore=0,returnEspAfter=0;
+    uint32_t returnStackBefore=0,returnSsBaseBefore=0;
 };
 
 static bool read_object_lists(const std::vector<uint8_t> &data,uint32_t bias,
@@ -140,8 +145,8 @@ public:
             if (n>UINT32_MAX) {ok=false;return;}
             u32(uint32_t(n));if (n) put(p,n);
         };
-        static const uint8_t magic[8]={'P','9','1','N','A','T','0','1'};
-        put(magic,8);u32(1);u32(4);
+        static const uint8_t magic[8]={'P','9','1','N','A','T','0','2'};
+        put(magic,8);u32(2);u32(4);
         for (unsigned i=0;i<4;++i) {
             const auto &d=*phases[i];const auto &e=*d.event;
             u32(i);u64(e.serial);u32(e.instructionLinear);
@@ -154,6 +159,10 @@ public:
             u32(e.returnWitnessLinear);u64(e.returnWitnessSerial);
             u32(e.dacBits);u32(e.pelMask);
             u32(d.returnStackLinear);
+            u32(d.returnOpcodeLinear);u64(d.returnOpcodeSerial);
+            u32(d.returnOpcode);u32(d.returnEspBefore);
+            u32(d.returnEspAfter);u32(d.returnStackBefore);
+            u32(d.returnSsBaseBefore);
             for (uint32_t reg:d.cpuRegisters) u32(reg);
             for (uint32_t reg:d.vgaRegisters) u32(reg);
             blob(d.object1.data(),d.object1.size());
@@ -167,7 +176,7 @@ public:
         if (!ok || !closed) return false; // file has no completion witness
         char marker[768]={};
         const int n=std::snprintf(marker,sizeof(marker),
-            "{\"schema\":\"mkext_p91_native_raw_complete_v1\","
+            "{\"schema\":\"mkext_p91_native_raw_complete_v2\","
             "\"raw\":\"p91-native-raw.bin\",\"bytes\":%llu,\"sha256\":\"%s\","
             "\"phases\":4,\"nativeGameVerified\":false,"
             "\"scanoutVerified\":false,\"adapterAcceptancePending\":true}\n",
