@@ -1,0 +1,117 @@
+name: P89 passive DOSBox-X Windows build (no game)
+
+# Experimental source-patch compile: Windows only, no games or full-source
+# artifacts. One executable, one-day retention. This is not a release.
+on:
+  push:
+    branches: ['research/p89-extraction-unknowns']
+    paths:
+      - '.github/workflows/p89-passive-dosbox-windows.yml'
+      - 'scripts/research/p89/r1_dosbox_passive_read_overlay.py'
+      - 'scripts/research/p89/test_r1_dosbox_passive_read_overlay.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p89-passive-windows
+  cancel-in-progress: true
+
+jobs:
+  source-overlay-build:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Original-free passive patch Python tests
+        shell: pwsh
+        run: |
+          python scripts/research/p89/test_r1_dosbox_passive_read_overlay.py
+          if ($LASTEXITCODE -ne 0) { throw 'Original-free tests failed' }
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            git make mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-libtool mingw-w64-x86_64-nasm
+            autoconf automake
+      - name: Clone verified exact upstream DOSBox-X source
+        shell: pwsh
+        run: |
+          $source = Join-Path $env:RUNNER_TEMP 'P89_DOSBOX_029bd65_SOURCE'
+          if (Test-Path -LiteralPath $source) { throw 'Refusing existing checkout' }
+          git clone --filter=blob:none --no-checkout https://github.com/joncampbell123/dosbox-x.git "$source"
+          if ($LASTEXITCODE -ne 0) { throw 'Clone failed' }
+          git -C "$source" checkout --detach '029bd65c5dcc7cdc7f2e14e35278620d9707d969'
+          if ($LASTEXITCODE -ne 0) { throw 'Exact upstream checkout failed' }
+          $sha = (git -C "$source" rev-parse HEAD).Trim()
+          if ($sha -ne '029bd65c5dcc7cdc7f2e14e35278620d9707d969') {
+            throw "Wrong upstream source: $sha"
+          }
+          "DOSBOX_SOURCE=$source" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Generate, review and apply reversible private patch
+        shell: pwsh
+        run: |
+          $dir = Join-Path $env:RUNNER_TEMP 'FIXTURES\VALIDATION\P89_PASSIVE_CI'
+          New-Item -Path $dir -ItemType Directory -Force | Out-Null
+          $patch = Join-Path $dir 'dosbox-p89-read-return.patch'
+          python scripts/research/p89/r1_dosbox_passive_read_overlay.py --upstream "$env:DOSBOX_SOURCE" --output "$patch"
+          if ($LASTEXITCODE -ne 0) { throw 'Patch generation failed' }
+          git -C "$env:DOSBOX_SOURCE" apply --check "$patch"
+          if ($LASTEXITCODE -ne 0) { throw 'Generated patch not applicable' }
+          git -C "$env:DOSBOX_SOURCE" apply "$patch"
+          if ($LASTEXITCODE -ne 0) { throw 'Generated patch apply failed' }
+          git -C "$env:DOSBOX_SOURCE" diff --check
+          if ($LASTEXITCODE -ne 0) { throw 'Patch formatting error' }
+          $changed = @(git -C "$env:DOSBOX_SOURCE" diff --name-only)
+          if ($changed.Count -ne 1 -or $changed[0] -ne 'src/dos/dos.cpp') {
+            throw "Unexpected upstream modifications: $changed"
+          }
+      - name: Supply upstream MinGW libslirp build dependency
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          if ! pkg-config --exists slirp; then
+            git clone --depth 1 https://github.com/msys2/MINGW-packages.git /tmp/p89-mingw-packages
+            cd /tmp/p89-mingw-packages/mingw-w64-libslirp
+            sed -i -e "s/^mingw_arch=\(.*\)/mingw_arch=('mingw64')/" PKGBUILD
+            MINGW_ARCH=MINGW64 makepkg-mingw -sCLf --noconfirm
+            pacman --noconfirm -U mingw-w64-*-any.pkg.tar.zst
+          fi
+      - name: Compile SDL2 executable from instrumented original source
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cd "$(cygpath -u "$DOSBOX_SOURCE")"
+          ./build-mingw-sdl2
+          test -s src/dosbox-x.exe
+          strip -s src/dosbox-x.exe
+      - name: Verify exact executable bounds and digest
+        shell: pwsh
+        run: |
+          $exe = Join-Path $env:DOSBOX_SOURCE 'src\dosbox-x.exe'
+          if (!(Test-Path -LiteralPath $exe)) { throw 'Compiled exe missing' }
+          $size = (Get-Item -LiteralPath $exe).Length
+          if ($size -le 100000 -or $size -ge 80000000) {
+            throw "Unexpected experimental executable size $size"
+          }
+          $hash = (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash
+          Write-Host "P89_PASSIVE_BUILD_UPSTREAM=029bd65c5dcc7cdc7f2e14e35278620d9707d969"
+          Write-Host "P89_PASSIVE_BUILD_EXE_SHA256=$hash"
+          Write-Host "P89_PASSIVE_BUILD_EXE_SIZE=$size"
+          New-Item -ItemType Directory -Path 'p89-passive-output' -ErrorAction Stop | Out-Null
+          Copy-Item -LiteralPath $exe -Destination 'p89-passive-output\dosbox-x.exe' -ErrorAction Stop
+      - name: Upload a single one-day experimental executable (no game/source)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p89-passive-dosbox-sdl2-exe
+          path: p89-passive-output/dosbox-x.exe
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 6
