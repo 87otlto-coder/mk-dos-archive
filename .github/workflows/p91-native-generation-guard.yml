@@ -18,12 +18,19 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
-          update: false
-          install: mingw-w64-x86_64-gcc
+          update: true
+          install: >-
+            git make mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-libtool mingw-w64-x86_64-nasm
+            autoconf automake
       - name: Compile C++14 four-phase guard with warnings as errors and execute synthetic refusals
         shell: msys2 {0}
         run: |
           set -euo pipefail
+          echo "MSYSTEM=$MSYSTEM"
+          echo "PATH=$PATH"
+          command -v g++ || { echo 'GCC missing after MSYS2 provisioning'; exit 2; }
+          g++ --version | head -1
           g++ -std=c++14 -O0 -Wall -Wextra -Werror -pedantic \
             scripts/research/p91/test_native_generation_guard.cpp -o p91-guard.exe
           ./p91-guard.exe | tee p91-guard-result.txt
