@@ -1,0 +1,177 @@
+name: P91 native DOSBox-X API smoke (Windows, no games)
+
+# First native observer integration gate. Builds pinned upstream and exercises
+# a real normal-core instruction hook + RAM/VGA reads from the built-in DOS
+# shell only. No commercial games or raw captures in CI.
+on:
+  push:
+    branches: ['research/p91-native-observer-smoke']
+    paths:
+      - 'scripts/research/p91/native_observer_smoke_overlay.py'
+      - 'scripts/research/p91/test_native_observer_smoke_overlay.py'
+      - '.github/workflows/p91-native-observer-smoke-windows.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p91-native-smoke-windows
+  cancel-in-progress: true
+
+jobs:
+  pinned-native-smoke:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Seven original-free overlay refusal and placement controls
+        shell: pwsh
+        run: |
+          python -B scripts/research/p91/test_native_observer_smoke_overlay.py
+          if ($LASTEXITCODE -ne 0) { throw 'P91 overlay tests failed' }
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            git make mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-libtool mingw-w64-x86_64-nasm
+            autoconf automake
+      - name: Pin a clean exact DOSBox-X checkout
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = Join-Path $env:RUNNER_TEMP 'P91_DOSBOX_029bd65_SOURCE'
+          if (Test-Path -LiteralPath $source) { throw 'Existing source directory refused' }
+          git clone --filter=blob:none --no-checkout https://github.com/joncampbell123/dosbox-x.git $source
+          if ($LASTEXITCODE -ne 0) { throw 'Upstream clone failed' }
+          git -C $source checkout --detach '029bd65c5dcc7cdc7f2e14e35278620d9707d969'
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned checkout failed' }
+          if ((git -C $source rev-parse HEAD).Trim() -ne '029bd65c5dcc7cdc7f2e14e35278620d9707d969') {
+            throw 'Pinned upstream commit changed'
+          }
+          "P91_UPSTREAM=$source" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Generate isolated patch and apply after upstream guards
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $private = Join-Path $env:RUNNER_TEMP 'FIXTURES\VALIDATION\P91-BUILD-SMOKE'
+          New-Item -Path $private -ItemType Directory -ErrorAction Stop -Force | Out-Null
+          $patch = Join-Path $private 'p91-api-smoke.patch'
+          python -B scripts/research/p91/native_observer_smoke_overlay.py --upstream $env:P91_UPSTREAM --output $patch
+          if ($LASTEXITCODE -ne 0) { throw 'Overlay generator failed' }
+          git -C $env:P91_UPSTREAM apply --check $patch
+          if ($LASTEXITCODE -ne 0) { throw 'Patch cannot apply to exact upstream' }
+          git -C $env:P91_UPSTREAM apply $patch
+          if ($LASTEXITCODE -ne 0) { throw 'Patch application failed' }
+          git -C $env:P91_UPSTREAM diff --check
+          if ($LASTEXITCODE -ne 0) { throw 'Patch whitespace check failed' }
+          $changed = @(git -C $env:P91_UPSTREAM diff --name-only)
+          if ($changed.Count -ne 1 -or $changed[0] -ne 'src/cpu/core_normal.cpp') {
+            throw "Unexpected upstream modifications: $changed"
+          }
+          "P91_PATCH_SHA256=$((Get-FileHash -LiteralPath $patch -Algorithm SHA256).Hash.ToLower())" |
+              Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Supply known upstream MinGW libslirp dependency
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          if ! pkg-config --exists slirp; then
+            git clone --depth 1 https://github.com/msys2/MINGW-packages.git /tmp/p91-mingw-packages
+            cd /tmp/p91-mingw-packages/mingw-w64-libslirp
+            sed -i -e "s/^mingw_arch=\(.*\)/mingw_arch=('mingw64')/" PKGBUILD
+            MINGW_ARCH=MINGW64 makepkg-mingw -sCLf --noconfirm
+            pacman --noconfirm -U mingw-w64-*-any.pkg.tar.zst
+          fi
+      - name: Compile real DOSBox-X normal-core observer hook (SDL2)
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cd "$(cygpath -u "$P91_UPSTREAM")"
+          ./build-mingw-sdl2
+          test -s src/dosbox-x.exe
+          strip -s src/dosbox-x.exe
+      - name: Exercise real no-game hook, RAM and VGA API; test negative paths
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = Join-Path $env:P91_UPSTREAM 'src\dosbox-x.exe'
+          if (-not (Test-Path -LiteralPath $exe)) { throw 'Instrumented executable missing' }
+          $size = (Get-Item -LiteralPath $exe).Length
+          if ($size -le 100000 -or $size -ge 80000000) { throw "Unexpected executable size $size" }
+          $smoke = Join-Path $env:RUNNER_TEMP 'FIXTURES\VALIDATION\P91-NO-GAME-API'
+          New-Item -ItemType Directory -Path $smoke -ErrorAction Stop | Out-Null
+          $config = Join-Path $smoke 'smoke.conf'
+          # No drive mount. Only DOSBox's bundled DOS shell runs.
+          @'
+          [sdl]
+          fullscreen=false
+          output=surface
+          [dosbox]
+          machine=svga_s3
+          [cpu]
+          core=normal
+          cycles=fixed 3000
+          [autoexec]
+          exit
+          '@ | Set-Content -LiteralPath $config -Encoding ascii
+          function Run-NoGame($armed) {
+            $start = New-Object System.Diagnostics.ProcessStartInfo
+            $start.FileName = $exe
+            $start.WorkingDirectory = Split-Path -Parent $exe
+            $start.Arguments = '-noconsole -conf "' + $config + '" -exit'
+            $start.UseShellExecute = $false
+            $start.RedirectStandardOutput = $true
+            $start.RedirectStandardError = $true
+            $start.CreateNoWindow = $true
+            $start.EnvironmentVariables['SDL_VIDEODRIVER'] = 'dummy'
+            if ($armed) { $start.EnvironmentVariables['MKEXT_P91_SMOKE_DIR'] = $smoke }
+            else { $start.EnvironmentVariables.Remove('MKEXT_P91_SMOKE_DIR') }
+            $p = [System.Diagnostics.Process]::Start($start)
+            $stdoutTask = $p.StandardOutput.ReadToEndAsync()
+            $stderrTask = $p.StandardError.ReadToEndAsync()
+            if (-not $p.WaitForExit(60000)) {
+              try { $p.Kill() } catch {}
+              throw 'DOSBox no-game process timed out'
+            }
+            $stdout = $stdoutTask.GetAwaiter().GetResult()
+            $stderr = $stderrTask.GetAwaiter().GetResult()
+            if ($p.ExitCode -ne 0) {
+              Write-Host $stdout
+              Write-Host $stderr
+              throw "DOSBox no-game process exited $($p.ExitCode)"
+            }
+          }
+          $report = Join-Path $smoke 'p91-no-game-smoke.json'
+          Run-NoGame $false
+          if (Test-Path -LiteralPath $report) { throw 'Unarmed execution emitted report' }
+          Run-NoGame $true
+          if (-not (Test-Path -LiteralPath $report)) { throw 'Normal-core hook not reached' }
+          $result = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
+          if ($result.schema -ne 'mkext_p91_no_game_api_smoke_v1' -or
+              $result.result -ne 'PASS' -or
+              $result.normalCoreHookCalled -ne $true -or
+              $result.ramReadParity -ne $true -or
+              $result.ramBoundsChecked -ne $true -or
+              $result.pagingDisabled -ne $true -or
+              $result.dacReadNonMutating -ne $true -or
+              $result.dacComponentDepthSupported -ne $true -or
+              $result.nativeFrameCaptured -ne $false) {
+            throw 'Native no-game API smoke failed acceptance'
+          }
+          $reportHash = (Get-FileHash -LiteralPath $report -Algorithm SHA256).Hash.ToLower()
+          Run-NoGame $true
+          if ((Get-FileHash -LiteralPath $report -Algorithm SHA256).Hash.ToLower() -ne $reportHash) {
+            throw 'Existing report overwritten'
+          }
+          Write-Host 'P91_NATIVE_NO_GAME_API_SMOKE=PASS'
+          Write-Host 'P91_UPSTREAM=029bd65c5dcc7cdc7f2e14e35278620d9707d969'
+          Write-Host "P91_PATCH_SHA256=$env:P91_PATCH_SHA256"
+          Write-Host "P91_EXE_SHA256=$((Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLower())"
+          Write-Host 'P91_ORIGINAL_GAME_EXECUTED=false'
+          Write-Host 'P91_NATIVE_TOMB_PACKET_CAPTURED=false'
+          # No raw memory, DAC or image artifacts uploaded.
