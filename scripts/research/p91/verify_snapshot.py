@@ -8,11 +8,13 @@ from snapshot import Collector,need,sha,decode_state
 def verify_folder(plan,folder):
     root=Path(folder).resolve();manifest=json.loads((root/'manifest.json').read_text(encoding='utf-8'))
     need(manifest['schema']=='mk2_p91_native_snapshot_v1','snapshot schema')
+    need(manifest['nativeGameVerified'] is False and manifest['scanoutVerified'] is False,'unsupported native/scanout assertion')
     need(manifest['planSha256']==sha(json.dumps(plan,sort_keys=True,separators=(',',':')).encode()),'capture plan identity')
     need(manifest['sourceExeSha256']==plan['sourceExeSha256'],'source executable identity')
     need(manifest['originalInputFingerprints']==plan['requiredOriginalFingerprints'],'original input fingerprint set')
     need(set(manifest['adapterIdentity'])>={'upstreamCommit','patchSha256','executableSha256','core','pagingEnabled'},'adapter provenance missing')
     need(manifest['adapterIdentity']['upstreamCommit']=='029bd65c5dcc7cdc7f2e14e35278620d9707d969','wrong DOSBox source revision')
+    need(manifest['adapterIdentity']['core']=='normal' and manifest['adapterIdentity']['pagingEnabled'] is False,'unsupported adapter context')
     payload={}
     for row in manifest['files']:
       name=row['path'];need(name not in payload and Path(name).name==name and name.endswith('.bin'),'unsafe/duplicate capture member')

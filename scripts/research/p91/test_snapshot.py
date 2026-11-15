@@ -93,7 +93,7 @@ class Mechanism(unittest.TestCase):
       from snapshot import sha
       plan=self.plan;plan['sourceExeSha256']='0'*64;plan['requiredOriginalFingerprints']={'SYNTHETIC':'0'*64}
       phases=self.run_sequence()
-      m={'schema':'mk2_p91_native_snapshot_v1','sourceExeSha256':'0'*64,
+      m={'schema':'mk2_p91_native_snapshot_v1','sourceExeSha256':'0'*64,'nativeGameVerified':False,'scanoutVerified':False,
         'planSha256':sha(json.dumps(plan,sort_keys=True,separators=(',',':')).encode()),
         'originalInputFingerprints':plan['requiredOriginalFingerprints'],
         'adapterIdentity':{'upstreamCommit':'029bd65c5dcc7cdc7f2e14e35278620d9707d969','patchSha256':'0'*64,'executableSha256':'0'*64,'core':'normal','pagingEnabled':False},

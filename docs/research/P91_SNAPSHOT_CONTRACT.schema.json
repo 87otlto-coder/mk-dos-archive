@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mk2-p91-native-snapshot-v1",
+  "title": "P91 private generation-bracketed Tomb runtime packet",
+  "type": "object",
+  "required": [
+    "schema",
+    "sourceExeSha256",
+    "planSha256",
+    "originalInputFingerprints",
+    "adapterIdentity",
+    "phases",
+    "files",
+    "nativeGameVerified",
+    "scanoutVerified"
+  ],
+  "properties": {
+    "schema": {
+      "const": "mk2_p91_native_snapshot_v1"
+    },
+    "sourceExeSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "planSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "originalInputFingerprints": {
+      "type": "object",
+      "required": [
+        "MK2.EXE",
+        "TOMB.GRA",
+        "IMAGES.GRA"
+      ],
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "adapterIdentity": {
+      "type": "object",
+      "required": [
+        "upstreamCommit",
+        "patchSha256",
+        "executableSha256",
+        "core",
+        "pagingEnabled"
+      ],
+      "properties": {
+        "upstreamCommit": {
+          "const": "029bd65c5dcc7cdc7f2e14e35278620d9707d969"
+        },
+        "patchSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "executableSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "core": {
+          "const": "normal"
+        },
+        "pagingEnabled": {
+          "const": false
+        }
+      }
+    },
+    "nativeGameVerified": {
+      "const": false
+    },
+    "scanoutVerified": {
+      "const": false
+    },
+    "phases": {
+      "type": "object",
+      "required": [
+        "drawEntry",
+        "drawComplete",
+        "presentEntry",
+        "postPresent"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "drawEntry": {
+          "$ref": "#/$defs/phase"
+        },
+        "drawComplete": {
+          "$ref": "#/$defs/phase"
+        },
+        "presentEntry": {
+          "$ref": "#/$defs/phase"
+        },
+        "postPresent": {
+          "$ref": "#/$defs/phase"
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "bytes",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "phase": {
+      "type": "object",
+      "required": [
+        "boundary",
+        "instructionSerial",
+        "instructionLinear",
+        "mapping",
+        "cpuRegisters",
+        "decodedState",
+        "object1File",
+        "object2File",
+        "bufferFile",
+        "codeWindow0File",
+        "codeWindow1File",
+        "codeWindow2File",
+        "codeWindow3File",
+        "codeWindow4File"
+      ],
+      "properties": {
+        "boundary": {
+          "enum": [
+            "draw_entry",
+            "draw_ret",
+            "present_entry",
+            "scheduler_entry"
+          ]
+        },
+        "instructionSerial": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "instructionLinear": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mapping": {
+          "type": "object",
+          "required": [
+            "object1LinearBase",
+            "object2LinearBase",
+            "nearCodeOffsetBias",
+            "object2OperandBias",
+            "csBase",
+            "dsBase",
+            "codeEvidence"
+          ]
+        },
+        "cpuRegisters": {
+          "type": "object",
+          "required": [
+            "eax",
+            "ebx",
+            "ecx",
+            "edx",
+            "esi",
+            "edi",
+            "ebp",
+            "esp",
+            "eip",
+            "eflags",
+            "cs",
+            "ds",
+            "es",
+            "ss",
+            "ssBase",
+            "cr0",
+            "cr3"
+          ]
+        },
+        "decodedState": {
+          "type": "object",
+          "required": [
+            "stage",
+            "mode",
+            "controlStream",
+            "drawBuffer",
+            "lastPresentedBuffer",
+            "horizontalAccumulators",
+            "cameraHighWordSigned",
+            "orderedLists",
+            "objects",
+            "paletteSlots"
+          ]
+        },
+        "object1File": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+        },
+        "object2File": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+        },
+        "bufferFile": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+        },
+        "codeWindow0File": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+        },
+        "codeWindow1File": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+        },
+        "codeWindow2File": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+        },
+        "codeWindow3File": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+        },
+        "codeWindow4File": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+[.]bin$"
+        }
+      }
+    }
+  },
+  "$comment": "Semantic equality/order/target/code relocation checks are mandatory in verify_snapshot.py. Native adapter integration is unaccepted; schema/hash agreement alone never proves original execution. Additional phase fields include raw DAC, DAC width, PEL mask, actual return-stack bytes and return witness. Private files must never be committed."
+}
