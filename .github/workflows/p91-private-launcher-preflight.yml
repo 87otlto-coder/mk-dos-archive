@@ -1,0 +1,28 @@
+name: P91 private capture launcher preflight (Windows, no games)
+on:
+  push:
+    branches: ['research/p91-native-observer-smoke']
+    paths:
+      - 'scripts/research/p91/run_private_capture.py'
+      - 'scripts/research/p91/test_run_private_capture.py'
+      - '.github/workflows/p91-private-launcher-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  launcher-refusal-controls:
+    runs-on: windows-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Ten synthetic disposable-copy, build fingerprint and failure refusal tests
+        shell: pwsh
+        run: |
+          python -B scripts/research/p91/test_run_private_capture.py
+          if ($LASTEXITCODE -ne 0) { throw 'P91 private launcher preflight gate failed' }
+          Write-Host 'P91_PRIVATE_LAUNCHER_PREFLIGHT=PASS'
+          Write-Host 'P91_ORIGINAL_GAME_EXECUTED=false'
+          Write-Host 'P91_NATIVE_TOMB_PACKET_CAPTURED=false'
