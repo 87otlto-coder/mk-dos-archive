@@ -1,0 +1,40 @@
+name: P91 native capture source-mapping core (Windows, no games)
+on:
+  push:
+    branches: ['research/p91-native-observer-smoke']
+    paths:
+      - 'scripts/research/p91/native_capture_core.hpp'
+      - 'scripts/research/p91/test_native_capture_core.cpp'
+      - '.github/workflows/p91-native-capture-core.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-source-core:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            git make mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-libtool mingw-w64-x86_64-nasm
+            autoconf automake
+      - name: Compile and run SHA256/rebased-window and 21-case guard tests
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          g++ -std=c++14 -O2 -Wall -Wextra -Werror -pedantic \
+            scripts/research/p91/test_native_capture_core.cpp -o p91-core.exe
+          ./p91-core.exe | tee p91-core.txt
+          grep -Fx 'P91_NATIVE_SOURCE_MAPPING=PASS (SHA256, 12 relocations, bounds)' p91-core.txt
+          g++ -std=c++14 -O2 -Wall -Wextra -Werror -pedantic \
+            scripts/research/p91/test_native_generation_guard.cpp -o p91-guard.exe
+          ./p91-guard.exe | tee p91-guard.txt
+          grep -Fx 'P91_NATIVE_GENERATION_GUARD=PASS (21 original-free cases)' p91-guard.txt
+          echo 'P91_ORIGINAL_GAME_EXECUTED=false'
+          echo 'P91_NATIVE_TOMB_PACKET_CAPTURED=false'
+          # No artifacts uploaded.
