@@ -18,7 +18,7 @@ def replay(code, data, root, *, start=0x81f60, stop=0x81fa6, budget=800):
     physical; immediate pointers in this exact subset all target Object-2.
     Only data writes go to an in-memory overlay; original bytes never change.
     """
-    r={'a':root+0x1c,'b':0,'d':0};mem={};stack=[];pc=start;equal=False;trace=[]
+    r={'a':root+0x1c,'b':0,'d':0};mem={};stack=[];pc=start;equal=False;trace=[];centers=[];center_setup=None
     def u(p):return struct.unpack_from('<I',code,p)[0]
     def read(a):
         if a in mem:return mem[a]
@@ -27,7 +27,7 @@ def replay(code, data, root, *, start=0x81f60, stop=0x81fa6, budget=800):
     def write(a,v):need(0<=a<0x100000,'bounded mutable address');mem[a]=v&0xffffffff
     for _ in range(budget):
       if pc==stop:
-        need(not stack,'stack imbalance');return mem,trace
+        need(not stack,'stack imbalance');return mem,trace,r,centers
       trace.append(pc); op=code[pc:pc+2]
       if op==b'\x8b\x18':r['b']=read(r['a']);pc+=2
       elif op==b'\x8b\x10':r['d']=read(r['a']);pc+=2
@@ -37,11 +37,14 @@ def replay(code, data, root, *, start=0x81f60, stop=0x81fa6, budget=800):
       elif op==b'\x89\x15':write(u(pc+2),r['d']);pc+=6
       elif op==b'\x89\x13':write(r['b'],r['d']);pc+=2
       elif op==b'\x89\x03':write(r['b'],r['a']);pc+=2
-      elif op==b'\x89\x18':write(r['a'],r['b']);pc+=2
+      elif op==b'\x89\x18':
+        write(r['a'],r['b'])
+        centers.append({'setupObject2':center_setup,'channelObject2':r['a'],'initialInteger':signed(r['b'])>>16});pc+=2
       elif op==b'\x83\x3d':equal=read(u(pc+2))==(signed(code[pc+6],8)&0xffffffff);pc+=7
       elif op==b'\x81\xeb':r['b']=(r['b']-u(pc+2))&0xffffffff;pc+=6
       elif op==b'\xd1\xeb':r['b']>>=1;pc+=2
-      elif code[pc:pc+3]==b'\x0f\xbf\x1b':r['b']=signed(read(r['b'])&65535,16)&0xffffffff;pc+=3
+      elif code[pc:pc+3]==b'\x0f\xbf\x1b':
+        center_setup=r['b'];r['b']=signed(read(r['b'])&65535,16)&0xffffffff;pc+=3
       elif code[pc:pc+3]==b'\xc1\xe3\x10':r['b']=(r['b']<<16)&0xffffffff;pc+=3
       elif op==b'\x85\xdb':equal=r['b']==0;pc+=2
       elif op==b'\xf7\xc3':equal=(r['b']&u(pc+2))==0;pc+=6
@@ -74,7 +77,9 @@ def verify(b, report):
       need(key not in coverage,'duplicate stage/mode');coverage.add(key)
       root=u(modes[mode]+4*idx);eq(row['rootObject2'],root,'mode table root')
       eq(row['stageIndex'],idx,'stage index')
-      memory,trace=replay(b,data,root)
+      memory,trace,registers,centers=replay(b,data,root)
+      eq(row['endExclusiveObject2'],registers['a'],'instruction-replayed end boundary')
+      eq(row['centerOverrides'],centers,'instruction-replayed setup to channel centers')
       eq(row['headerSignedWords'],list(struct.unpack_from('<6h',data,root+4)),'root header')
       eq(row['initialDefaultHorizontalInteger'],struct.unpack_from('<h',data,root+10)[0],'initial horizontal')
       bindings=row['setupBindings'];eq(len(bindings),6,'six assigned slots')
