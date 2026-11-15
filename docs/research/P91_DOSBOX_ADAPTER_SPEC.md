@@ -16,12 +16,16 @@ Do not put the hook at `restart_opcode`: prefixes would duplicate events.
 Do not rely on cached `reg_eip` midway through a decoded instruction.
 Disable the observer unless a private capture destination was explicitly armed.
 
-The adapter must require `cpu.pmode && cpu.code.big && !paging.enabled` and
+The adapter must require `cpu.pmode && cpu.code.big && cpu.stack.big && !paging.enabled` and
 bound all ordinary RAM reads against `MEM_TotalPages()*4096`, using overflow-
 checked addition. Unsupported context is a refusal, not a guessed translation.
 Use `MEM_BlockRead` for bounded RAM. Its upstream signature takes **LinearPt**;
 the `PhysPt` type used by old core-local names does not establish physical
 addressing. Never use a host pointer equal to an emulated linear address.
+Materialize lazy CPU flags with the upstream `FillFlags()` semantics before
+retaining EFLAGS at a capture phase; do not report stale cached flag bits.
+The initial adapter refuses 16-bit stack contexts rather than assuming ESP
+has the same effective address semantics there.
 
 ## Discover loaded bases without scanning all memory
 
@@ -91,7 +95,9 @@ required. Host wall time is not an animation clock.
 Complete Object2 contains the nine accumulators, vertical state/rate, control
 stream, list heads, palette allocation slots, source-resource mappings and
 statically allocated object pools. Walk actual +0 links in order, not sorted
-copies. Each object allocation is **0x58 bytes** (22 DWORD zeroing at `0x936E9`),
+copies. Use the plan's actual positive-command list heads in source draw order;
+do not reinterpret every neighbouring DWORD as another list. Each object
+allocation is **0x58 bytes** (22 DWORD zeroing at `0x936E9`),
 not an assumed 0x50/0x60/0x64 record. Preserve raw bytes plus decoded fields.
 Multipart descriptor arrays use 12-byte entries under flag gates. Follow any
 external descriptor, palette record or node with separate bounded block reads

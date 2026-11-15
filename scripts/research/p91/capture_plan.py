@@ -41,6 +41,21 @@ def make(b,root):
     le=0x28f0c;ot=le+struct.unpack_from('<I',b,le+0x40)[0]
     objects=[{'number':i+1,'virtualSize':struct.unpack_from('<I',b,ot+24*i)[0],
       'preferredBaseNotRuntimeBase':struct.unpack_from('<I',b,ot+24*i+4)[0]} for i in range(2)]
+    # Reuse the accepted Tomb stream grammar solely to select actual draw-list
+    # heads. Adjacent globals (e.g. 0x84354/0x8435C) are not assumed to be lists.
+    cursor=0x17300;commands=[];heads=[]
+    for _ in range(32):
+      token=struct.unpack_from('<i',b,O2+cursor)[0];site=cursor;cursor+=4
+      if token==0:break
+      if token>0:
+        channel=struct.unpack_from('<I',b,O2+cursor)[0]
+        for p,value in ((site,token),(cursor,channel)):
+          r=fx.get((2,p));need(r and r['targetObject']==2 and r['targetOffset']==value,'typed Tomb command pointer')
+        commands.append({'kind':'object_list','headObject2':token,'horizontalWordObject2':channel});heads.append(token);cursor+=4
+      elif token==-1:
+        commands.append({'kind':'packed_floor','arguments':list(struct.unpack_from('<3I',b,O2+cursor))});cursor+=12
+      else:need(token==-2,'unexpected Tomb command');commands.append({'kind':'conditional_effect'})
+    else:raise ValueError('P91 plan: unterminated Tomb stream')
     return {'schema':'mk2_p91_capture_plan_v1','sourceExeSha256':SHA,
       'requiredOriginalFingerprints':{'MK2.EXE':SHA,'TOMB.GRA':'be4f2427e79ff50eaca2fdbfb2fb6f534d9b61fb20cc79744648401d07a9b613',
         'IMAGES.GRA':'2b26796a64c2aebfee75832696aeae9bbcf9df56d82cb9a39df58a557d3ad8cf'},
@@ -53,9 +68,9 @@ def make(b,root):
       'stateObject2':{'mode':0x3014c,'stage':0x7747f,'controlStream':0x75cf6,'renderGate':0x562d4,
         'updateEnable':0x75cf2,'alternatePath':0x563e0,'drawBuffer':0x7662a,'lastPresentedBuffer':0x7662e,
         'horizontalAccumulators':list(range(0x84310,0x84334,4)),'vertical':0x842e8,'verticalRate':0x842e4,
-        'listHeads':list(range(0x84334,0x84368,4)),'movementGate':0x75a88,
+        'listHeads':heads,'movementGate':0x75a88,
         'paletteSlots':{'offset':0x75b00,'count':60,'stride':8},'resourceTable':{'offset':0x2f434,'stride':24}},
-      'target':{'stage':1,'mode':2,'controlStreamObject2':0x17300},
+      'target':{'stage':1,'mode':2,'controlStreamObject2':0x17300,'sourceCommandOrder':commands},
       'renderObject':{'bytes':0x58,'nextOffset':0,'xVelocity':0x10,'yVelocity':0x14,'xPosition':0x18,
         'yPosition':0x1c,'sortKey':0x20,'shapeFlags':0x24,'resourceToken':0x28,'dimensions':0x2c,
         'paletteHandle':0x30,'objectFlags':0x34,'descriptor':0x3c,'clipFlags':0x4a},

@@ -156,19 +156,14 @@
     "vertical": 541416,
     "verticalRate": 541412,
     "listHeads": [
-      541492,
-      541496,
       541500,
       541504,
       541508,
       541512,
       541516,
-      541520,
-      541524,
       541528,
-      541532,
-      541536,
-      541540
+      541520,
+      541536
     ],
     "movementGate": 481928,
     "paletteSlots": {
@@ -184,7 +179,60 @@
   "target": {
     "stage": 1,
     "mode": 2,
-    "controlStreamObject2": 94976
+    "controlStreamObject2": 94976,
+    "sourceCommandOrder": [
+      {
+        "kind": "object_list",
+        "headObject2": 541500,
+        "horizontalWordObject2": 541466
+      },
+      {
+        "kind": "object_list",
+        "headObject2": 541504,
+        "horizontalWordObject2": 541470
+      },
+      {
+        "kind": "object_list",
+        "headObject2": 541508,
+        "horizontalWordObject2": 541474
+      },
+      {
+        "kind": "object_list",
+        "headObject2": 541512,
+        "horizontalWordObject2": 541478
+      },
+      {
+        "kind": "packed_floor",
+        "arguments": [
+          541482,
+          158,
+          56
+        ]
+      },
+      {
+        "kind": "object_list",
+        "headObject2": 541516,
+        "horizontalWordObject2": 541482
+      },
+      {
+        "kind": "conditional_effect"
+      },
+      {
+        "kind": "object_list",
+        "headObject2": 541528,
+        "horizontalWordObject2": 541486
+      },
+      {
+        "kind": "object_list",
+        "headObject2": 541520,
+        "horizontalWordObject2": 541486
+      },
+      {
+        "kind": "object_list",
+        "headObject2": 541536,
+        "horizontalWordObject2": 541486
+      }
+    ]
   },
   "renderObject": {
     "bytes": 88,
