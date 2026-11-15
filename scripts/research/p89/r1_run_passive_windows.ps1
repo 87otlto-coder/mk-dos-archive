@@ -64,7 +64,7 @@ $captured = $false
 try {
     [Environment]::SetEnvironmentVariable('MKEXT_P89_CAPTURE_DIR', $evidence, 'Process')
     $args = "-conf " + ('"{0}"' -f $conf) + ' -nopromptfolder -console -log-fileio -log-int21'
-    $process = Start-Process -FilePath $exe -ArgumentList $args -WorkingDirectory $evidence -PassThru
+    $process = Start-Process -FilePath $exe -ArgumentList $args -WorkingDirectory $evidence -RedirectStandardError $stderr -PassThru
     $clock = [Diagnostics.Stopwatch]::StartNew()
     while ($clock.Elapsed.TotalSeconds -lt $TimeoutSeconds) {
         if ((Test-Path -LiteralPath $binary) -and (Test-Path -LiteralPath $tsv)) {
