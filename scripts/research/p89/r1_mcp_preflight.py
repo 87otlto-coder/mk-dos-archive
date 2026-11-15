@@ -115,9 +115,59 @@ def probe_protocol(channel: Control, *, exercise_resume: bool = False,
     return result
 
 
+
+def probe_break_from_running(channel: Control, *, max_attempts: int = 12) -> dict:
+    """No-game test: RUNNING -> acknowledged BREAK -> actual stopped STEPIN.
+
+    Only the successful STEPIN response proves a stopped guest CPU. Keep this
+    control independent of any MK3 fixture or source asset. The known October
+    20 debugger can acknowledge BREAK without entering a stoppable state.
+    """
+    require(1 <= max_attempts <= 20, "invalid remote-break attempt budget")
+    pong = channel.request("PING")
+    require(any(x.strip() == "PONG" for x in pong), "running-state PING not acknowledged")
+    channel.request("BREAK")
+    attempts = 0
+    while attempts < max_attempts:
+        attempts += 1
+        try:
+            output = channel.request("EXEC STEPIN")
+        except ValueError as error:
+            msg = str(error).lower()
+            if ("requires the debugger to be stopped" in msg or
+                    "*** debugger command not recognized" in msg):
+                # The upstream wrapper reports generic recognition failure
+                # even when STEPIN exists but the debugger isn't stopped.
+                import time
+                time.sleep(0.1)
+                continue
+            raise
+        require(any("STEPIN CS:IP=" in line for line in output),
+                "remote STEPIN returned success but no stop witness")
+        registers = channel.request("EXEC EV EAX")
+        require(any("EV of" in line for line in registers),
+                "remote register read after STEPIN missing")
+        return {
+            "status": "PASS",
+            "protocol": "DOSBOX_X_MCP_LOCALHOST_V1",
+            "runningToStoppedBreakVerified": True,
+            "remoteBreakAcknowledged": True,
+            "stoppedStepinVerified": True,
+            "stepinAttempts": attempts,
+            "originalGameMounted": False,
+            "originalDataReadOrDecoded": False,
+            "registerOutputLines": registers[:3],
+        }
+    raise ValueError(
+        "P89 MCP preflight: remote BREAK was acknowledged, but no accepted "
+        "STEPIN after " + str(max_attempts) + " bounded no-game attempts"
+    )
+
+
 def run(executable: Path, validation: Path, timeout: float = 20.0,
         *, exercise_resume: bool = False,
-        exercise_step_commands: bool = False) -> dict:
+        exercise_step_commands: bool = False,
+        exercise_break_from_running: bool = False) -> dict:
     exe = executable.resolve(strict=True)
     require(exe.is_file() and exe.name.lower() == "dosbox-x.exe",
             "DOSBox-X executable not found")
@@ -139,14 +189,20 @@ def run(executable: Path, validation: Path, timeout: float = 20.0,
             with (folder / "dosbox-x-preflight-stderr.txt").open("x", encoding="utf-8") as errors:
                 process = subprocess.Popen(
                     [str(exe), "-conf", str(config), "-nopromptfolder",
-                     "-console", "-break-start", "-noautoexec"],
+                     "-console"] +
+                    ([] if exercise_break_from_running else ["-break-start"]) +
+                    ["-noautoexec"],
                     cwd=str(folder), stdout=subprocess.DEVNULL, stderr=errors)
                 peer, address = listener.accept()
                 try:
                     require(address[0] == "127.0.0.1", "non-local debugger connection refused")
-                    result = probe_protocol(Control(peer),
+                    result = (
+                        probe_break_from_running(Control(peer))
+                        if exercise_break_from_running
+                        else probe_protocol(Control(peer),
                                             exercise_resume=exercise_resume,
                                             exercise_step_commands=exercise_step_commands)
+                    )
                 finally:
                     peer.close()
                 result["dosboxProcessId"] = process.pid
@@ -173,11 +229,18 @@ def main() -> int:
                         help="Extra no-game test: remote RUN, BREAK, then EV EAX")
     parser.add_argument("--exercise-step-commands", action="store_true",
                         help="No-game test: STEPIN and exact BPINT/BPLIST/BPDEL commands required by original MK3 probe")
+    parser.add_argument("--exercise-break-from-running", action="store_true",
+                        help="No-game bounded RUNNING -> MCP BREAK -> real STEPIN stop test")
     args = parser.parse_args()
     try:
+        require(not (args.exercise_break_from_running and
+                     (args.exercise_run_break or args.exercise_step_commands)),
+                "running-state test cannot be combined with stopped-state options")
         print(json.dumps(run(args.exe, args.validation,
                              exercise_resume=args.exercise_run_break,
-                             exercise_step_commands=args.exercise_step_commands), indent=2))
+                             exercise_step_commands=args.exercise_step_commands,
+                             exercise_break_from_running=args.exercise_break_from_running),
+                         indent=2))
         return 0
     except (ValueError, OSError, EOFError, UnicodeError,
             subprocess.SubprocessError, socket.timeout) as error:
