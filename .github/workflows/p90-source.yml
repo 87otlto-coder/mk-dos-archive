@@ -1,0 +1,26 @@
+name: P90 MK2 source controls
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/p90-mk2-stage-reconstruction]
+    paths: ['scripts/research/p90/**', '.github/workflows/p90-source.yml']
+permissions:
+  contents: read
+jobs:
+  original-free:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Original-free interpreter and refusal controls
+        run: python -B scripts/research/p90/test_p90.py
+      - name: PowerShell launcher syntax
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile((Join-Path $pwd 'scripts/research/p90/run_p90_windows.ps1'), [ref]$tokens, [ref]$errors) | Out-Null
+          if ($errors.Count) { throw ($errors | Out-String) }
