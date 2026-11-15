@@ -1,0 +1,30 @@
+name: P91 native raw packet independent readback (Windows, no games)
+on:
+  push:
+    branches: ['research/p91-native-observer-smoke']
+    paths:
+      - 'scripts/research/p91/read_native_capture.py'
+      - 'scripts/research/p91/test_read_native_capture.py'
+      - '.github/workflows/p91-native-raw-readback.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  readback-model:
+    runs-on: windows-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Synthetic four-phase readback, integrity and failure refusals
+        shell: pwsh
+        run: |
+          python -B scripts/research/p91/test_read_native_capture.py
+          if ($LASTEXITCODE -ne 0) { throw 'Native raw readback validation failed' }
+          python -B scripts/research/p91/test_snapshot.py
+          if ($LASTEXITCODE -ne 0) { throw 'Original P91 Collector regression failed' }
+          Write-Host 'P91_RAW_READBACK_SYNTHETIC=PASS'
+          Write-Host 'P91_ORIGINAL_GAME_EXECUTED=false'
+          Write-Host 'P91_NATIVE_TOMB_PACKET_CAPTURED=false'
