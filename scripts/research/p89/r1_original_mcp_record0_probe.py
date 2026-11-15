@@ -85,15 +85,17 @@ def require_original_debug_copy(game: Path, evidence: Path, private_root: Path) 
 
 
 def await_stopped(channel: Control, deadline: float, *,
-                  stepin_confirmed_for_session: bool = False) -> dict[str, int]:
+                  stepin_confirmed_for_session: bool = False,
+                  remote_break_acknowledged: bool = False) -> dict[str, int]:
     """Capture pre-step registers only if STEPIN confirms an actual stopped CPU.
 
     A plain EV query also succeeds while DOSBox-X is RUNNING and is not a
     stopped-state witness. With the original October 20 MCP implementation,
     a failed EXEC STEPIN can return the generic "*** Debugger command not
     recognized" both for a truly unsupported command and for a supported
-    command issued while RUNNING. The latter may be retried only AFTER
-    STEPIN actually succeeded once in this exact emulator process.
+    command issued while RUNNING. The latter may be retried only after
+    a successful same-process STEPIN or an explicit MCP BREAK acknowledgement.
+    BREAK-acknowledged startup still needs a real STEPIN before any RUN.
     """
     retries = 0
     while time.monotonic() < deadline:
@@ -106,7 +108,8 @@ def await_stopped(channel: Control, deadline: float, *,
                 "requires the debugger to be stopped" in msg or
                 "*** debugger command not recognized" in msg
             )
-            if running_or_unknown and stepin_confirmed_for_session:
+            if running_or_unknown and (
+                    stepin_confirmed_for_session or remote_break_acknowledged):
                 retries += 1
                 time.sleep(0.05)
                 continue
@@ -162,20 +165,44 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
             with stderr.open("x", encoding="utf-8") as errors:
                 process = subprocess.Popen([
                     str(exe), "-conf", str(cfg), "-nopromptfolder",
-                    "-console", "-break-start", "-log-fileio", "-log-int21",
+                    "-console", "-log-fileio", "-log-int21",
                 ], cwd=str(output), stdout=subprocess.DEVNULL, stderr=errors)
-                peer, address = listener.accept()
+                try:
+                    peer, address = listener.accept()
+                except socket.timeout as error:
+                    raise ValueError(
+                        "MCP connection timeout during emulator startup "
+                        "(no localhost connection within 40 seconds)"
+                    ) from error
                 require(address[0] == "127.0.0.1", "nonlocal debugger connection")
                 try:
                     channel = Control(peer)
-                    require(any(x.strip() == "PONG" for x in channel.request("PING")),
+                    try:
+                        pong = channel.request("PING")
+                    except socket.timeout as error:
+                        raise ValueError(
+                            "MCP connected, but PING response timed out"
+                        ) from error
+                    require(any(x.strip() == "PONG" for x in pong),
                             "debugger TCP handshake failed")
-                    # -break-start guarantees a paused emulator BEFORE the
-                    # autoexec/game startup. This first accepted STEPIN is an
-                    # in-process capability witness, unlike a separate preflight.
-                    # Do not misclassify the early real-mode BIOS address as
-                    # DEBUGBOX's later protected-mode MK3 entry point.
-                    initial = await_stopped(channel, deadline)
+                    # Earlier original-game startup reached MCP without
+                    # -break-start. On the October 20 build, -break-start
+                    # plus the game autoexec yielded a pre-MCP timeout.
+                    # Send an explicit BREAK after connection instead.
+                    try:
+                        channel.request("BREAK")
+                    except socket.timeout as error:
+                        raise ValueError(
+                            "MCP PING worked, but remote BREAK timed out"
+                        ) from error
+                    # BREAK acknowledges a request, NOT a verified CPU stop.
+                    # Require an actual accepted STEPIN in the SAME emulator
+                    # before setting any original MK3 breakpoints or RUN.
+                    # This first captured state may be BIOS, not game entry.
+                    initial = await_stopped(
+                        channel, min(deadline, time.monotonic() + 15),
+                        remote_break_acknowledged=True
+                    )
                     channel.request("EXEC BPDEL *")
                     channel.request("EXEC BPINT 21 42")
                     observed_seek = None
@@ -220,7 +247,8 @@ def run(executable: Path, game: Path, validation: Path, private_root: Path,
                         "seekRequestRegistersBeforeStep": observed_seek,
                         "readRequestRegistersBeforeStep": observed_read,
                         "startupBiosRegistersBeforeStep": initial,
-                        "startupStoppedByBreakStart": True,
+                        "startupRemoteBreakAcknowledged": True,
+                        "startupStoppedByVerifiedStepin": True,
                         "stepinConfirmedInOriginalProcessBeforeRun": True,
                         "runBudgetSeconds": budget,
                         "sourceReadCompletionWitnessed": False,
