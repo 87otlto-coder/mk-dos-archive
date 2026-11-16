@@ -1,5 +1,15 @@
 # MK DOS Extractor — project status
 
+## SPELUNK 001 — ORIGINAL MK2 PALETTE CHANNEL-SELECTOR PROVENANCE (2026-11-16)
+
+**VERIFIED STATIC only; no new DOS runtime capture or extractor implementation.** From the untouched canonical original DOS `MK2.EXE` (SHA-256 `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65`), independently checked a source-backed **eight-row renderer channel table** (`Object2+0x15B68`, 32 type-7 LE pointer sites), and the indirect selector-to-`ESI` / `[ESI+0x0E]` palette request route. Five stage-script pointer chains connect the **same mutable Object2 channel-zero selector `0x77453`** to the established O120/O121 Tomb 80 / Portal 80 / `IMAGES.GRA` 79 palette table entries. 48 typed source references target channel zero, compared with 2–4 for each other channel. The code's ninth preloaded row is not processed. The channel globals are writable *virtual* Object2 addresses beyond file-backed bytes: their **live values cannot be read from MK2.EXE**.
+
+The independently run private original-EXE audit passed **19 opcode anchors**, all **27,004 LE fixups / 26,994 unique sites**, eight channel entries, five conditional setup/palette chains and **16 original-file positive/negative tests** (including mutation controls with the canonical whole-file hash guard bypassed only to test the deeper source checks). Script, test, source-safe result JSON and detailed limitations committed to isolated `research/spelunk-001-mk2-palette-provenance`; no original binaries or extracted graphics committed, no CI artifact or emulator test.
+
+[Research](docs/research/SPELUNK_001_MK2_PALETTE_CHANNEL_BRIDGE.md) · [Source-safe evidence](docs/validation/SPELUNK_001_MK2_PALETTE_CHANNEL_BRIDGE_20261116.json) · [Reproducer](scripts/research/spelunk001/spelunk_001_channel_bridge.py) · [16 tests](scripts/research/spelunk001/test_spelunk_001_channel_bridge.py).
+
+**UNKNOWN / runtime pending:** which stream actually selects each setup in gameplay, active selector contents, live palette allocator handle, DAC start/bank, stage composition. Existing P91 kit remains untouched; future private snapshot can compare channel selector globals across draw/presentation phases. Do not assume a live palette or recolour extracted indices based solely on these conditional links.
+
 ### P91 PORTABLE WINDOWS CAPTURE KIT — VERIFIED 2026-11-16
 
 **VERIFIED build/no-game portability; original MK2 runtime capture NOT YET EXECUTED.**
