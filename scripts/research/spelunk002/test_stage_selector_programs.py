@@ -96,7 +96,7 @@ class StageProgramTests(unittest.TestCase):
         self.tamper(0x81BE0,b"\x90","original opcode mismatch")
 
     def test_mode_table_pointer_mutation(self):
-        self.tamper(m.OBJ2+0x15BEC+4,b"\xAA","pointer bytes disagree")
+        self.tamper(m.OBJ2+0x15BEC+4,b"\xAA","wrong typed pointer")
 
     def test_root_selector_pointer_mutation(self):
         self.tamper(m.OBJ2+0x171F0+0x1C,b"\xAA","pointer bytes disagree")
@@ -105,10 +105,10 @@ class StageProgramTests(unittest.TestCase):
         self.tamper(m.OBJ2+0x16398,b"\x02","wrong typed pointer")
 
     def test_tomb_setup_pointer_mutation(self):
-        self.tamper(m.OBJ2+0x17210,b"\xAA","pointer bytes disagree")
+        self.tamper(m.OBJ2+0x17210,b"\xAA","wrong typed pointer")
 
     def test_tomb_scaled_destination_pointer_mutation(self):
-        self.tamper(m.OBJ2+0x17244,b"\xAA","pointer bytes disagree")
+        self.tamper(m.OBJ2+0x17244,b"\xAA","wrong typed pointer")
 
     def test_tomb_scaled_width_mutation(self):
         # Width is an input scalar, not a typed relocation: a different width
