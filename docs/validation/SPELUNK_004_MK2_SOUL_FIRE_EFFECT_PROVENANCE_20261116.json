@@ -1,0 +1,160 @@
+{
+  "schema": "mk2_spelunk_004_effect_source_order_provenance_v1",
+  "date": "2026-11-16",
+  "classification": "VERIFIED_STATIC_SOURCE_ORDER_AND_CONDITIONAL_CONTROL",
+  "originalSource": {
+    "exeBytes": 861133,
+    "exeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+    "leRelocations": 27004,
+    "uniqueLESourceSites": 26994
+  },
+  "resourceIdentities": [
+    {
+      "filename": "SOUL.GRA",
+      "resourceId": 16,
+      "bytes": 47612,
+      "sha256": "39483001099bad825de6e6f219020ef12e9f1f97a4fbbe1449312d6572479376"
+    },
+    {
+      "filename": "FIRESKEL.GRA",
+      "resourceId": 7,
+      "bytes": 57128,
+      "sha256": "a530b1840d4bc7adf6303cc0388262e51dfd21b5801ed1dc9523c3339ea19b8e"
+    }
+  ],
+  "staticSummary": {
+    "sourceEffectLists": 4,
+    "sourceOrderedEntries": 29,
+    "uniqueSpriteStreamDescriptors": 29,
+    "completeSOULResourceBytes": 47612,
+    "fireskelLinkedSpanBytes": 2784,
+    "completeFIRESKELResource": false,
+    "doesNotClaimExhaustiveMK2Coverage": true
+  },
+  "tracks": [
+    {
+      "tag": "soul_loop",
+      "listObject2": 122152,
+      "resource": "SOUL.GRA",
+      "frames": 3,
+      "uniqueSprites": 3,
+      "resourceSpan": [
+        0,
+        16328
+      ],
+      "encodedSpanSha256": "01fc53b78d7c87e84afdf9be45b67e7374b3183ff1ed9ca992ed33d0e37ef7f0",
+      "control": "loop_marker_1_with_typed_back_pointer",
+      "loopBackObject2": 122152
+    },
+    {
+      "tag": "soul_finite",
+      "listObject2": 122172,
+      "resource": "SOUL.GRA",
+      "frames": 14,
+      "uniqueSprites": 14,
+      "resourceSpan": [
+        16328,
+        47612
+      ],
+      "encodedSpanSha256": "17e6f33c9cefe9977c5a8577914aadb43600752080c3f5b0681f0fb27f342cb2",
+      "control": "unrelocated_zero_terminator"
+    },
+    {
+      "tag": "fireskel_if_negative",
+      "listObject2": 121144,
+      "resource": "FIRESKEL.GRA",
+      "frames": 6,
+      "uniqueSprites": 6,
+      "resourceSpan": [
+        54100,
+        56228
+      ],
+      "encodedSpanSha256": "0c4b334e628f7135a38311bacd2c08e4097947ec45d0cbd20a0ce9d68aff5b47",
+      "control": "loop_marker_1_with_typed_back_pointer",
+      "loopBackObject2": 121144
+    },
+    {
+      "tag": "fireskel_if_nonnegative",
+      "listObject2": 121176,
+      "resource": "FIRESKEL.GRA",
+      "frames": 6,
+      "uniqueSprites": 6,
+      "resourceSpan": [
+        56228,
+        56884
+      ],
+      "encodedSpanSha256": "a3c3bc87bf4af776ee95f18008c4cd812c37ceb5d7385d63300913097c879174",
+      "control": "loop_marker_1_with_typed_back_pointer",
+      "loopBackObject2": 121176
+    }
+  ],
+  "sourceMechanisms": {
+    "soul": {
+      "phaseOneListCursorWritePhysical": 607796,
+      "phaseOneNormalReaderCallPhysical": 607816,
+      "phaseOneSourceCounterLiteral": 16,
+      "phaseOneYieldCountLiteral": 4,
+      "phaseTwoListCursorWritePhysical": 607885,
+      "phaseTwoDirectRunnerJumpPhysical": 607910,
+      "phaseTwoYieldCountLiteral": 4,
+      "normalReaderPhysical": 552133,
+      "sequenceRunnerPhysical": 552089
+    },
+    "fireskel": {
+      "signBitSourceObject2": 481988,
+      "signTestPhysical": 606354,
+      "conditionalJumpPhysical": 606359,
+      "negativeListLoadPhysical": 606344,
+      "nonnegativeListLoadPhysical": 606361,
+      "selectedListTaskField": 92,
+      "taskFieldWritePhysical": 606366,
+      "taskToGlobalCursorPhysical": 606476,
+      "globalCursorObject2": 481912,
+      "initialDescriptorSeedPhysical": 606624,
+      "sourceJumpToRunnerPhysical": 606520,
+      "sharedSpriteAdvanceHelperPhysical": 410458,
+      "conditionalSourceNotObservedRunning": true
+    }
+  },
+  "verification": {
+    "privateIndependentOriginalFileChecks": 194,
+    "privateOriginalMutationControls": 10,
+    "privateFixtureCheckerIndependentOfCommittedProducer": true,
+    "committedPrivateFixtureSuiteStatus": "NOT_RUN_WITH_ORIGINAL",
+    "originalFreeWindowsCI": {
+      "run": 43947941505,
+      "conclusion": "success",
+      "syntheticTests": 13
+    },
+    "runtimeEmulatorGameExecuted": false,
+    "graphicsExported": false
+  },
+  "classificationBoundaries": {
+    "sourceFrameListOrderingVerified": true,
+    "fullSOULBytePartitionVerified": true,
+    "FIRESKELFullByteCoverage": false,
+    "actualTaskActivation": false,
+    "nativePaletteOrDAC": false,
+    "realFrameDurationsOrFPS": false,
+    "liveObjectPosition": false,
+    "originalFramebufferParity": false
+  },
+  "priorWork": [
+    "O69 broad sprite resource census already authenticated individual sprite-descriptor records",
+    "O136-O137 verified six other stage effect source-ordered lists",
+    "O169 original normal frame reader marker semantics",
+    "O218-O228 PIT BLOOD.GRA sprite 177 is already independently sourced; not a new Spelunk004 discovery"
+  ],
+  "notPromoted": [
+    "BANG.GRA multi-list pointer clusters",
+    "BLOOD.GRA other effect-list groups",
+    "SUCK.GRA source effect lists",
+    "EXPLODE.GRA and menus/font tables"
+  ],
+  "notes": [
+    "This record is source-safe hashes, offsets and code provenance only, not original encoded sprite or palette bytes.",
+    "4 authenticated control-linked lists are not exhaustive MK2 animation census.",
+    "SOUL complete source-byte partition does not imply active effect playback in any fight.",
+    "The sign test selects a FIRESKEL list conditionally, not an observed runtime branch or palette allocation."
+  ]
+}
