@@ -1,0 +1,28 @@
+name: Spelunk 002 MK2 selector interpreter (Windows, source only)
+on:
+  push:
+    branches: ['research/spelunk-002-mk2-stage-selector-programs']
+    paths:
+      - 'scripts/research/spelunk002/**'
+      - '.github/workflows/spelunk-002-source-tests.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic-selector:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Import source audit and run eight original-free selector tests
+        shell: pwsh
+        run: |
+          python -B -m unittest discover -s scripts/research/spelunk002 -p test_synthetic_stage_selector.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 002 synthetic selector tests failed' }
+          Write-Host 'SPELUNK_002_SYNTHETIC=PASS'
+          Write-Host 'SPELUNK_002_ORIGINAL_EXE_TESTED_IN_CI=false'
+          Write-Host 'SPELUNK_002_DOS_GAME_EXECUTED=false'
+          # Deliberately no build artifacts and no original game files.
