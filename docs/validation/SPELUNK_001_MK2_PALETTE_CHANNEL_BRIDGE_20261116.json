@@ -1,0 +1,216 @@
+{
+  "schema": "mk2_spelunk_001_channel_palette_bridge_v1",
+  "classification": "VERIFIED_STATIC_CONDITIONAL",
+  "canonicalExeSHA256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "typedFixupEntries": 27004,
+  "uniqueFixupSites": 26994,
+  "activeChannels": 8,
+  "sourceInstructionAnchors": 19,
+  "loopSourcePhysical": 531379,
+  "loopSelectorReadPhysical": 531417,
+  "selectedSetupReadPhysical": 531539,
+  "paletteHandleStorePhysical": 531935,
+  "channels": [
+    {
+      "ordinal": 0,
+      "tableObject2Offset": 88936,
+      "sourceStateObject2": 485327,
+      "verticalStateObject2": 541416,
+      "horizontalStateObject2": 541484,
+      "activeSetupSelectorObject2": 488531
+    },
+    {
+      "ordinal": 1,
+      "tableObject2Offset": 88952,
+      "sourceStateObject2": 485727,
+      "verticalStateObject2": 541416,
+      "horizontalStateObject2": 541480,
+      "activeSetupSelectorObject2": 488535
+    },
+    {
+      "ordinal": 2,
+      "tableObject2Offset": 88968,
+      "sourceStateObject2": 486127,
+      "verticalStateObject2": 541416,
+      "horizontalStateObject2": 541476,
+      "activeSetupSelectorObject2": 488539
+    },
+    {
+      "ordinal": 3,
+      "tableObject2Offset": 88984,
+      "sourceStateObject2": 486527,
+      "verticalStateObject2": 541416,
+      "horizontalStateObject2": 541472,
+      "activeSetupSelectorObject2": 488543
+    },
+    {
+      "ordinal": 4,
+      "tableObject2Offset": 89000,
+      "sourceStateObject2": 486927,
+      "verticalStateObject2": 541416,
+      "horizontalStateObject2": 541468,
+      "activeSetupSelectorObject2": 488547
+    },
+    {
+      "ordinal": 5,
+      "tableObject2Offset": 89016,
+      "sourceStateObject2": 487327,
+      "verticalStateObject2": 541416,
+      "horizontalStateObject2": 541464,
+      "activeSetupSelectorObject2": 488551
+    },
+    {
+      "ordinal": 6,
+      "tableObject2Offset": 89032,
+      "sourceStateObject2": 487727,
+      "verticalStateObject2": 541416,
+      "horizontalStateObject2": 541460,
+      "activeSetupSelectorObject2": 488555
+    },
+    {
+      "ordinal": 7,
+      "tableObject2Offset": 89048,
+      "sourceStateObject2": 488127,
+      "verticalStateObject2": 541416,
+      "horizontalStateObject2": 541456,
+      "activeSetupSelectorObject2": 488559
+    }
+  ],
+  "incomingSelectorReferences": [
+    {
+      "channel": 0,
+      "selectorObject2Offset": 488531,
+      "typedIncomingCount": 48,
+      "incomingCodeCount": 1,
+      "incomingDataCount": 47
+    },
+    {
+      "channel": 1,
+      "selectorObject2Offset": 488535,
+      "typedIncomingCount": 2,
+      "incomingCodeCount": 1,
+      "incomingDataCount": 1
+    },
+    {
+      "channel": 2,
+      "selectorObject2Offset": 488539,
+      "typedIncomingCount": 4,
+      "incomingCodeCount": 3,
+      "incomingDataCount": 1
+    },
+    {
+      "channel": 3,
+      "selectorObject2Offset": 488543,
+      "typedIncomingCount": 3,
+      "incomingCodeCount": 2,
+      "incomingDataCount": 1
+    },
+    {
+      "channel": 4,
+      "selectorObject2Offset": 488547,
+      "typedIncomingCount": 3,
+      "incomingCodeCount": 2,
+      "incomingDataCount": 1
+    },
+    {
+      "channel": 5,
+      "selectorObject2Offset": 488551,
+      "typedIncomingCount": 3,
+      "incomingCodeCount": 2,
+      "incomingDataCount": 1
+    },
+    {
+      "channel": 6,
+      "selectorObject2Offset": 488555,
+      "typedIncomingCount": 3,
+      "incomingCodeCount": 2,
+      "incomingDataCount": 1
+    },
+    {
+      "channel": 7,
+      "selectorObject2Offset": 488559,
+      "typedIncomingCount": 3,
+      "incomingCodeCount": 2,
+      "incomingDataCount": 1
+    }
+  ],
+  "stageScriptBridges": [
+    {
+      "family": "portal80",
+      "commandSelectorObject2": 91028,
+      "selectedChannelObject2": 488531,
+      "relativeSetupPointer": 8,
+      "conditionalSetupObject2": 91412,
+      "paletteTableObject2": 91448,
+      "paletteSlot": 2,
+      "paletteRecordObject1Offset": 161164,
+      "paletteRecordPhysical": 561632,
+      "countedWords": 80,
+      "resourceFromPriorO121": "PORTAL.GRA"
+    },
+    {
+      "family": "tomb80_a",
+      "commandSelectorObject2": 94732,
+      "selectedChannelObject2": 488531,
+      "relativeSetupPointer": 4,
+      "conditionalSetupObject2": 95064,
+      "paletteTableObject2": 96208,
+      "paletteSlot": 2,
+      "paletteRecordObject1Offset": 161650,
+      "paletteRecordPhysical": 562118,
+      "countedWords": 80,
+      "resourceFromPriorO121": "TOMB.GRA"
+    },
+    {
+      "family": "tomb80_b",
+      "commandSelectorObject2": 94856,
+      "selectedChannelObject2": 488531,
+      "relativeSetupPointer": 4,
+      "conditionalSetupObject2": 95064,
+      "paletteTableObject2": 96208,
+      "paletteSlot": 2,
+      "paletteRecordObject1Offset": 161650,
+      "paletteRecordPhysical": 562118,
+      "countedWords": 80,
+      "resourceFromPriorO121": "TOMB.GRA"
+    },
+    {
+      "family": "images79_a",
+      "commandSelectorObject2": 190404,
+      "selectedChannelObject2": 488531,
+      "relativeSetupPointer": 8,
+      "conditionalSetupObject2": 190436,
+      "paletteTableObject2": 190536,
+      "paletteSlot": 2,
+      "paletteRecordObject1Offset": 176490,
+      "paletteRecordPhysical": 576958,
+      "countedWords": 79,
+      "resourceFromPriorO121": "IMAGES.GRA"
+    },
+    {
+      "family": "images79_b",
+      "commandSelectorObject2": 190208,
+      "selectedChannelObject2": 488531,
+      "relativeSetupPointer": 8,
+      "conditionalSetupObject2": 190240,
+      "paletteTableObject2": 190340,
+      "paletteSlot": 2,
+      "paletteRecordObject1Offset": 176330,
+      "paletteRecordPhysical": 576798,
+      "countedWords": 79,
+      "resourceFromPriorO121": "IMAGES.GRA"
+    }
+  ],
+  "runtimeEvidence": {
+    "selectedSetupObserved": false,
+    "paletteHandleObserved": false,
+    "dacStartObserved": false,
+    "framebufferReconstructionObserved": false
+  },
+  "notes": [
+    "Eight source-aligned rows are traversed before the ninth row; the ninth is not executed by this loop.",
+    "Script/selector/palette provenance is conditional and does not identify live ESI or palette handle.",
+    "Both 79-word families are IMAGES.GRA provenance per independently established O121, not Tomb or Portal stage resource ownership.",
+    "Channel selector addresses are writable Object2 virtual offsets beyond the file-backed Object2 pages. Do not read them as file bytes."
+  ]
+}
