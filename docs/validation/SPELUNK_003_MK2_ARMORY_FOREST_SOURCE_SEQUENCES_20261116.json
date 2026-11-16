@@ -1,0 +1,209 @@
+{
+  "schema": "mk2_spelunk_003_armory_forest_source_animation_inventory_v1",
+  "classification": "VERIFIED_STATIC_SOURCE_FRAME_ORDER",
+  "sourceIdentity": {
+    "exeSHA256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+    "originalExeBytes": 861133,
+    "LEFixups": 27004,
+    "uniqueLESourceSites": 26994
+  },
+  "independentPrivateValidation": {
+    "checksPassed": 213,
+    "deliberateMutationsChecked": 7,
+    "authoritativeInput": "owner-supplied original mk2.zip",
+    "originalGameExecuted": false,
+    "exactCommittedFixtureSuiteExecuted": false
+  },
+  "originalFreeCI": {
+    "runID": 43943213598,
+    "suite": "12 synthetic Python tests",
+    "result": "PASS",
+    "originalCommercialAssetsUsed": false,
+    "artifactsUploaded": false
+  },
+  "trackSummary": {
+    "stageTracks": 2,
+    "orderedEntries": 32,
+    "uniqueEncodedSpriteStreams": 19
+  },
+  "previouslyVerifiedRelatedEvidence": {
+    "O136O137StageTrackEntries": 43,
+    "O221PitTrackEntries": 14,
+    "combinedSourceOrderedEntriesIncludingThisSpelunk": 89,
+    "completeExhaustiveAnimationCensus": false
+  },
+  "tracks": [
+    {
+      "name": "armory_source_12",
+      "stage": "Armory",
+      "configurationIndex": 5,
+      "resourceName": "ARMORY.GRA",
+      "resourceID": 26,
+      "originalResourceSHA256": "fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
+      "listObject2": 92372,
+      "entryCount": 12,
+      "uniqueSprites": 12,
+      "termination": "unrelocated_zero_word",
+      "originalSourceRange": [
+        116608,
+        126336
+      ],
+      "encodedSpanSHA256": "064a81c5e52a83d6156e906c8d150e261f57ed3d95861d170469572c1e468541",
+      "imageDimensions": [
+        10,
+        64
+      ],
+      "descriptorLocalXY": [
+        0,
+        0
+      ],
+      "originalDescriptorObject2": [
+        92652,
+        92668,
+        92680,
+        92692,
+        92704,
+        92716,
+        92728,
+        92740,
+        92752,
+        92764,
+        92776,
+        92788
+      ],
+      "uniqueSourceStarts": [
+        116608,
+        117324,
+        118196,
+        119112,
+        120096,
+        121108,
+        122032,
+        122920,
+        123700,
+        124416,
+        125060,
+        125712
+      ],
+      "ordinalToUniqueSprite": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "sourceObjectTask": {
+        "initializerPhysical": 534972,
+        "registrationPhysical": 535007,
+        "registeredCallbackPhysical": 535055,
+        "frameCursorWriterPhysical": 535107,
+        "seedWriterPhysical": 535137,
+        "originalRawTaskYieldArgument": 6,
+        "sharedFrameReaderPhysical": 552133,
+        "readerCallsitesPhysical": [
+          535183,
+          535204,
+          535222
+        ],
+        "modeZeroRegistrationSkips": true
+      }
+    },
+    {
+      "name": "forest_source_20",
+      "stage": "Living Forest",
+      "configurationIndex": 4,
+      "resourceName": "FOREST.GRA",
+      "resourceID": 27,
+      "originalResourceSHA256": "8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
+      "listObject2": 93496,
+      "entryCount": 20,
+      "uniqueSprites": 7,
+      "termination": "unrelocated_zero_word",
+      "originalSourceRange": [
+        164752,
+        193860
+      ],
+      "encodedSpanSHA256": "1c8da5ad56e6f21561932afd0c637cabedabb22e47fe66fe384f4cadfd941721",
+      "imageDimensions": [
+        64,
+        64
+      ],
+      "descriptorLocalXY": [
+        0,
+        0
+      ],
+      "originalDescriptorObject2": [
+        93972,
+        93988,
+        94000,
+        94012,
+        94024,
+        94036,
+        94048
+      ],
+      "uniqueSourceStarts": [
+        164752,
+        169012,
+        173184,
+        177328,
+        181460,
+        185624,
+        189776
+      ],
+      "ordinalToUniqueSprite": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        5,
+        6,
+        5,
+        6,
+        5,
+        6,
+        5,
+        6,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "sourceObjectTask": {
+        "initializerPhysical": 535252,
+        "registrationPhysical": 535287,
+        "registeredCallbackPhysical": 535620,
+        "frameCursorWriterPhysical": 535696,
+        "seedWriterPhysical": 535729,
+        "originalRawTaskYieldArgument": 5,
+        "sharedFrameReaderPhysical": 552133,
+        "readerCallsitesPhysical": [
+          535183,
+          535204,
+          535222
+        ],
+        "modeZeroRegistrationSkips": true
+      }
+    }
+  ],
+  "evidenceBoundaries": {
+    "sourceDescriptorsDecodedAndHashed": true,
+    "fullRGBAExportGenerated": false,
+    "originalIndexedRGBAColourOwnershipUnknown": true,
+    "liveFrameActivationObserved": false,
+    "gameplayFrameOrderAndPeriodObserved": false,
+    "stageWorldPlacementObserved": false,
+    "sourceLoopTerminationDoesNotProveOneShot": true
+  },
+  "caveat": "These are source-backed conditional effect-track records, not a claim of complete MK2 animation coverage or observed gameplay playback."
+}
