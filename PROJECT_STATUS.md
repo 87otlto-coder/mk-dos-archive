@@ -1,5 +1,40 @@
 # MK DOS Extractor — project status
 
+### P91 PORTABLE WINDOWS CAPTURE KIT — VERIFIED 2026-11-16
+
+**VERIFIED build/no-game portability; original MK2 runtime capture NOT YET EXECUTED.**
+The source-pinned four-phase native DOSBox-X adapter, its private Python
+raw-packet verifier and guarded Windows launcher have passed their respective
+Windows no-game CI and synthetic refusal gates.
+
+[Portable workflow #43753635156](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43753635156)
+**SUCCESS**, at source commit `9d890e4ed0ed05e8e2216380dfe02b64847f57ca`.
+The final executable launched from its portable extracted folder with a
+restricted DLL PATH; hook/RAM/DAC/overwrite checks passed. Exactly one
+one-day artifact `P91-Private-Windows-Capture-Kit` (ID `14177863632`)
+was uploaded, without original DOS game or extracted copyrighted assets.
+Its ZIP CRC and ten file entries were independently inspected after download.
+
+Portable ZIP SHA-256:
+`dbfef25aa9c77c0f78fc267840da340a8252b51f5428d8459038ed89300f8f4b`.
+
+Portable executable SHA-256:
+`3962316035d95d581e35bdfe09b8ae84daa6e5644853c04d91708f17d49b78bd`.
+
+Pinned patch SHA-256:
+`c9ad618064755fe887d74ad39a87f6264901cb9815219691643d86f782c6d334`.
+
+The uploaded private `mk2.zip` separately matched the plan's three required
+original fingerprints (MK2.EXE, TOMB.GRA, IMAGES.GRA); current contents of the
+user's F: fixture directory still require the launcher's local read-only
+fingerprint check. No original Tomb mode-2 snapshot, DAC capture or
+reconstructed stage has been verified. Next accepted step: **one user-local,
+bounded private original MK2 run** from a disposable copy, using
+`F:\Dev\MKEXT\TOOLS\P91Capture\Run-P91-Private-Capture.cmd`. Refusals and
+incomplete packets are preserved privately under FIXTURES/VALIDATION; never
+publish those game-derived files to GitHub. See
+[technical integration handoff](docs/research/P91_NATIVE_CAPTURE_INTEGRATION.md).
+
 ## P91 NATIVE TOMB FOUR-PHASE ADAPTER — ISOLATED WINDOWS RESEARCH CHECKPOINT, 2026-11-15
 
 **Complete original-game Tomb snapshot NOT YET captured.** `research/p91-native-observer-smoke` now contains the pinned normal-core native four-phase adapter, direct CPU/RAM/VGA DAC access, source-window identity revalidation, gate-off draw preservation, original presentation near-RET stack proof, raw v2 packet writer, independent packet converter, and Windows single-entry-point private launcher. Static accepted P90/P91 research and user original fixtures were not modified.
