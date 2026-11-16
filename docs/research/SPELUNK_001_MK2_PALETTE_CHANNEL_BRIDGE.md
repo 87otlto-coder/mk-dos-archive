@@ -6,6 +6,33 @@
 **Source identity:** SHA-256 `fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65`, length 861,133 bytes.  
 **Classification:** VERIFIED STATIC / conditional relationships only; native active setup, returned palette handle and DAC bank remain **UNKNOWN**.
 
+## Later qualification — Spelunk 002 (2026-11-16)
+
+**Preserve the original relocation-backed graph, but correct its interpretation.**
+Spelunk 001's five command → `0x77453` → setup chains identify a common
+**root-program destination base**, **not** necessarily the channel in which
+each setup is installed. The original loader at `0x81F9C` writes a pointer
+to the current two-DWORD setup cell, then advances to the next selector.
+A preceding literal `1` writes an *explicit skip* to channel zero and
+advances the source/selector cursors.
+
+- Tomb mode=2: channel 0 holds setup `0x17358`; other active
+  channels are 1,2,3,5, with 4 explicitly skipped.
+- Portal mode=2: **channel 0 is skipped**, setup `0x16514` is on
+  **channel 1**, and `0x16526` is on channel 5.
+- The two 79-word `IMAGES.GRA` source-program links also follow an
+  initial channel-zero skip; their first setup therefore belongs to
+  **channel 1** in those root programs.
+
+Thus the previously claimed **shared channel-zero selector reference count**
+is still a true static typed-reference census, but it cannot be used as
+evidence that all five setup records were **active in channel zero**.
+The earlier source-resource/colour-record relationships remain conditional
+and the O119 perturbation observations remain intact. See
+[Spelunk 002](SPELUNK_002_MK2_STAGE_SELECTOR_PROGRAMS.md) and its
+[30-case metadata](../validation/SPELUNK_002_MK2_STAGE_SELECTOR_CENSUS_20261116.json).
+No native runtime palette handle, DAC ownership or frame was observed.
+
 ## Why this was investigated
 
 Do not rediscover earlier successes. O119 recorded actual DOS gameplay perturbations proving selected *80-word* Tomb and Portal source records influence stage colour. O120 authenticated their Object2 setup/palette-pointer tables. O121 decoded selector fields and showed that the historical `tomb79` and `portal79` candidate records actually belong to `IMAGES.GRA`, not those stage GRA files. O260/O267 independently observed a *different* Pit wall palette cache/DAC queue path, which must not be generalized as Tomb/Portal ownership.
