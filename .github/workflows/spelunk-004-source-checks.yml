@@ -1,0 +1,34 @@
+name: Spelunk 004 MK2 Soul/Fire original-free source checks (Windows)
+on:
+  push:
+    branches: ['research/spelunk-004-mk2-soul-fire-sequences']
+    paths:
+      - 'scripts/research/spelunk004/**'
+      - '.github/workflows/spelunk-004-source-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-free:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile both source audit and private fixture test; test synthetic RLE and source trust boundaries
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -B -m py_compile scripts/research/spelunk004/trace_soul_fireskel_source.py
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk004 producer syntax failed' }
+          python -B -m py_compile scripts/research/spelunk004/test_original_fixture.py
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk004 private fixture test syntax failed' }
+          python -B -m unittest discover -s scripts/research/spelunk004 -p test_synthetic_effect_lists.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk004 original-free tests failed' }
+          Write-Host 'SPELUNK_004_SYNTHETIC=PASS'
+          Write-Host 'SPELUNK_004_ORIGINAL_DOS_EXECUTED=false'
+          Write-Host 'SPELUNK_004_COMMERCIAL_ASSETS_USED_IN_CI=false'
+          Write-Host 'SPELUNK_004_ORIGINAL_FIXTURE_REGRESSION_RUN=false'
+          # No source or payload artifacts uploaded.
