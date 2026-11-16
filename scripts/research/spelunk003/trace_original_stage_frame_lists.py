@@ -163,6 +163,28 @@ def verify_control(b,fx,t):
                         "callbackPhysical":OBJ1+target})
     require(t["callbackPhysical"]<writer,
             "animation writer not in callback region")
+    # The stage initializer registers a separate task callback before
+    # the list writer runs. Both registrations have a mode!=0 source gate;
+    # allocation/execution is not proven by a function pointer.
+    if t["resource"]=="ARMORY.GRA":
+        gate=0x829bc;registration=0x829df
+        taskFunction=0x82a0f
+        expectedGate=bytes.fromhex("833d4c010300007426")
+    else:
+        gate=0x82ae7;registration=0x82af7
+        taskFunction=0x82c44
+        expectedGate=bytes.fromhex("833d4c010300007413")
+    require(b[gate:gate+len(expectedGate)]==expectedGate,
+            "original mode-zero registration gate changed")
+    require(b[registration]==0xba,
+            "missing original task callback pointer register")
+    pointer(b,fx,1,registration+1-OBJ1,1,taskFunction-OBJ1)
+    call=registration+5
+    require(b[call]==0xe8 and
+            call+5+struct.unpack_from("<i",b,call+1)[0]==0x67222,
+            "task callback is not registered with source scheduler")
+    require(taskFunction<writer,
+            "source task writer outside registered callback")
     # Original Armory multi-object consumer, shared by Forest's JMP at
     # 0x82CA9. A CALL to source reader is stronger than a pointer-list scan.
     calls=[0x82a8f,0x82aa4,0x82ab6]
@@ -183,7 +205,13 @@ def verify_control(b,fx,t):
     # runtime may call a different callback, suppress rendering or die.
     require(b[0x86d3b:0x86d40]==bytes.fromhex("83fb007412"),
             "original reader zero-marker branch changed")
-    return {"stageRoots":targets,"cursorWritePhysical":writer,
+    return {"stageRoots":targets,
+            "stageModeZeroSkipsRegistration":True,
+            "registrationGatePhysical":gate,
+            "registrationPhysical":registration,
+            "registeredTaskCallbackPhysical":taskFunction,
+            "taskRegistrationHelperPhysical":0x67222,
+            "cursorWritePhysical":writer,
             "cursorObject2":CURSOR,"sourceSequenceListObject2":t["list"],
             "firstDescriptorSeedPhysical":seed,"seedObject2":SEED,
             "sharedConsumerPhysical":0x82a87,
