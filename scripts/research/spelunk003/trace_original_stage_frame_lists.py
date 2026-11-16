@@ -20,7 +20,7 @@ SEED=0x75a6c
 TRACKS={
  "armory_source_12":{
    "stageIndex":5,"stageName":"Armory","resource":"ARMORY.GRA","resourceID":26,
-   "graSHA256":"fb68c5fb702648a148beed1dc0019c9f593b3055a9666f65c96c6a0fad638aa1",
+   "graSHA256":"fb68c5fb70267dc64cf176056c7711f43973f9b8b8a2e53513f43afc7c56c612",
    "list":0x168d4,"count":12,"unique":12,"firstDescriptor":0x169ec,
    "sourceRange":[0x1c780,0x1ed80],"spriteShape":[10,64],
    "callbackPhysical":0x829bc,"writerPhysical":0x82a43,
@@ -29,7 +29,7 @@ TRACKS={
  },
  "forest_source_20":{
    "stageIndex":4,"stageName":"Living Forest","resource":"FOREST.GRA","resourceID":27,
-   "graSHA256":"8aef888aeef6d790e66cb8c042c246add0fa9b9fe89bda7cb5492fb1a4142c73",
+   "graSHA256":"8aef888aeef608eefe03e3cdc142035ff3a53984b77b525850a218c68b7e44b9",
    "list":0x16d38,"count":20,"unique":7,"firstDescriptor":0x16f14,
    "sourceRange":[0x28390,0x2f544],"spriteShape":[64,64],
    "callbackPhysical":0x82ad4,"writerPhysical":0x82c90,
