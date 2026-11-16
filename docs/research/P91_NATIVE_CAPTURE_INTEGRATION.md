@@ -94,12 +94,29 @@ source-identified executable and an existing writable private validation
 destination, then launch only a disposable game copy under FIXTURES.
 Errors and partial packets are preserved, without a success marker.
 
-The **portable native executable/DLL package and one-folder no-game acceptance
-are VALIDATION PENDING** through
-[Windows portable workflow #43753635156](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43753635156).
-It permits exactly one one-day test-kit artifact (no commercial data) **only
-if** the bundled native executable runs with a restricted Windows PATH and
-passes the same real CPU/RAM/DAC and no-overwrite checks.
+The **portable native executable package and one-folder no-game acceptance are
+VERIFIED** through
+[Windows portable workflow #43753635156](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/43753635156)
+(source commit `9d890e4ed0ed05e8e2216380dfe02b64847f57ca`).
+The job passed the separate-folder restricted-PATH CPU/RAM/DAC and
+no-overwrite smoke tests, and uploaded precisely one 1-day artifact:
+`P91-Private-Windows-Capture-Kit` (ID `14177863632`), containing
+ten files (DOSBox-X executable, licensing, canonical plan, Python
+verifier/launcher, CMD and README). The artifact was downloaded and
+its ZIP CRC and member hashes were checked independently.
+
+- Portable ZIP SHA-256:
+  `dbfef25aa9c77c0f78fc267840da340a8252b51f5428d8459038ed89300f8f4b`
+- Portable DOSBox-X executable SHA-256:
+  `3962316035d95d581e35bdfe09b8ae84daa6e5644853c04d91708f17d49b78bd`
+- Pinned observer patch SHA-256:
+  `c9ad618064755fe887d74ad39a87f6264901cb9815219691643d86f782c6d334`
+- All three original private input fingerprints required by the plan
+  (`MK2.EXE`, `TOMB.GRA`, `IMAGES.GRA`) matched the uploaded private
+  `mk2.zip` independently. **This is not proof those exact files currently
+  reside in the user's canonical F: fixture location.**
+- The package contains no commercial game assets. No original MK2 game was
+  launched or captured by GitHub Actions.
 
 After the portable gate passes, validate the exact downloaded kit, use one
 bounded private Tomb mode-2 run, and independently verify the raw v2 packet
