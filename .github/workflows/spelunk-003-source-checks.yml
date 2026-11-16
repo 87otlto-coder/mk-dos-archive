@@ -1,0 +1,32 @@
+name: Spelunk 003 MK2 Armory Forest original-free source checks (Windows)
+on:
+  push:
+    branches: ['research/spelunk-003-mk2-armory-forest-animation']
+    paths:
+      - 'scripts/research/spelunk003/**'
+      - '.github/workflows/spelunk-003-source-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-controls:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile source and execute 12 original-free RLE/pointer/sequence refusals
+        shell: pwsh
+        run: |
+          python -B -m py_compile scripts/research/spelunk003/trace_original_stage_frame_lists.py
+          if ($LASTEXITCODE -ne 0) { throw 'Original-source audit syntax failure' }
+          python -B -m py_compile scripts/research/spelunk003/test_original_fixture.py
+          if ($LASTEXITCODE -ne 0) { throw 'Private-fixture regression syntax failure' }
+          python -B -m unittest discover -s scripts/research/spelunk003 -p test_synthetic_frames.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 003 original-free controls failed' }
+          Write-Host 'SPELUNK_003_SYNTHETIC=PASS'
+          Write-Host 'SPELUNK_003_ORIGINAL_MK2_USED_IN_CI=false'
+          Write-Host 'SPELUNK_003_RUNTIME_CAPTURED=false'
+          # No CI artifact and no commercial source files.
