@@ -104,7 +104,7 @@ class OriginalAnimationEvidence(unittest.TestCase):
         b=bytearray(self.raw["ARMORY.GRA"])
         off=0x1c780
         b[off:off+4]=b"\x00\x00\x00\x00"
-        with self.assertRaisesRegex(ValueError,"length invalid"):
+        with self.assertRaisesRegex(ValueError,"indexedLiteral crossed row"):
             m.rle_index_mask(bytes(b),off,10,64)
 
     def test_reproduced_metadata_deterministic(self):
