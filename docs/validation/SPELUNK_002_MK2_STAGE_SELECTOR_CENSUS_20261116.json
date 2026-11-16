@@ -1,0 +1,709 @@
+{
+  "schema": "mk2_spelunk_002_independently_checked_selector_census_v1",
+  "classification": "VERIFIED_STATIC_CONDITIONAL",
+  "sourceExeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "sourceExeLength": 861133,
+  "leFixupRecords": 27004,
+  "uniqueFixupSites": 26994,
+  "modeCases": 30,
+  "uniqueRootPrograms": 20,
+  "modeTablesObject2": {
+    "mode_equals_2": 89068,
+    "mode_equals_1": 89192,
+    "mode_other": 89316
+  },
+  "globalSelectorOffsetsObject2": [
+    488531,
+    488535,
+    488539,
+    488543,
+    488547,
+    488551,
+    488555,
+    488559
+  ],
+  "sourceOpcodesPhysical": {
+    "resetDefault": 531286,
+    "rootProgram": 532320,
+    "writeSkip": 532351,
+    "writeSetupCursor": 532380,
+    "readDerivedSetupWord": 532421,
+    "storeDerivedGlobal": 532441,
+    "channelRead": 531417,
+    "setupRead": 531539
+  },
+  "markerSemantics": {
+    "defaultStop": 197184,
+    "explicitSkip": 1,
+    "endRootProgram": -1,
+    "beginDerivedGlobalWrites": -2
+  },
+  "arithmetic": "uint32 MOVSX(s16(setup[0])); SHR 1; SUB 159; SHL 16; source-backed integer transform, no runtime-position claim",
+  "modeTotals": {
+    "mode_equals_2": {
+      "setupAssignments": 44,
+      "explicitSkips": 21,
+      "derivedGlobalWrites": 39
+    },
+    "mode_equals_1": {
+      "setupAssignments": 30,
+      "explicitSkips": 35,
+      "derivedGlobalWrites": 25
+    },
+    "mode_other": {
+      "setupAssignments": 30,
+      "explicitSkips": 35,
+      "derivedGlobalWrites": 25
+    }
+  },
+  "cases": [
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 0,
+      "resourceFromPriorO130": "DEDPOOL.GRA",
+      "rootObject2Offset": 89656,
+      "setupChannels": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "explicitSkipChannels": [
+        1
+      ],
+      "unwrittenDefaultChannels": [
+        5,
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 4
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 1,
+      "resourceFromPriorO130": "TOMB.GRA",
+      "rootObject2Offset": 94704,
+      "setupChannels": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "explicitSkipChannels": [
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 5
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 2,
+      "resourceFromPriorO130": "BATTLE.GRA",
+      "rootObject2Offset": 102756,
+      "setupChannels": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 6
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 3,
+      "resourceFromPriorO130": "TOWER.GRA",
+      "rootObject2Offset": 96316,
+      "setupChannels": [
+        3,
+        5
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 2
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 4,
+      "resourceFromPriorO130": "FOREST.GRA",
+      "rootObject2Offset": 93014,
+      "setupChannels": [
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        4
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 5
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 5,
+      "resourceFromPriorO130": "ARMORY.GRA",
+      "rootObject2Offset": 92068,
+      "setupChannels": [
+        1,
+        3,
+        4
+      ],
+      "explicitSkipChannels": [
+        0,
+        2
+      ],
+      "unwrittenDefaultChannels": [
+        5,
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 4
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 6,
+      "resourceFromPriorO130": "PIT.GRA",
+      "rootObject2Offset": 100752,
+      "setupChannels": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6
+      ],
+      "explicitSkipChannels": [
+        3
+      ],
+      "unwrittenDefaultChannels": [
+        7
+      ],
+      "derivedGlobalWrites": 6
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 7,
+      "resourceFromPriorO130": "PORTAL.GRA",
+      "rootObject2Offset": 91000,
+      "setupChannels": [
+        1,
+        5
+      ],
+      "explicitSkipChannels": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 2
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 8,
+      "resourceFromPriorO130": "ARENA.GRA",
+      "rootObject2Offset": 99424,
+      "setupChannels": [
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        5
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 5
+    },
+    {
+      "mode": "mode_equals_2",
+      "configurationIndex": 9,
+      "resourceFromPriorO130": "CAVE.GRA",
+      "rootObject2Offset": 99304,
+      "setupChannels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explicitSkipChannels": [],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 0
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 0,
+      "resourceFromPriorO130": "DEDPOOL.GRA",
+      "rootObject2Offset": 89764,
+      "setupChannels": [
+        0
+      ],
+      "explicitSkipChannels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        5,
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 1
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 1,
+      "resourceFromPriorO130": "TOMB.GRA",
+      "rootObject2Offset": 94828,
+      "setupChannels": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "explicitSkipChannels": [
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 4
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 2,
+      "resourceFromPriorO130": "BATTLE.GRA",
+      "rootObject2Offset": 102900,
+      "setupChannels": [
+        2,
+        4,
+        6,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 4
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 3,
+      "resourceFromPriorO130": "TOWER.GRA",
+      "rootObject2Offset": 96404,
+      "setupChannels": [
+        5
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 1
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 4,
+      "resourceFromPriorO130": "FOREST.GRA",
+      "rootObject2Offset": 93146,
+      "setupChannels": [
+        2,
+        3,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        4,
+        5,
+        6
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 3
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 5,
+      "resourceFromPriorO130": "ARMORY.GRA",
+      "rootObject2Offset": 92172,
+      "setupChannels": [
+        3,
+        4
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        2
+      ],
+      "unwrittenDefaultChannels": [
+        5,
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 3
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 6,
+      "resourceFromPriorO130": "PIT.GRA",
+      "rootObject2Offset": 100892,
+      "setupChannels": [
+        0,
+        1,
+        6
+      ],
+      "explicitSkipChannels": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "unwrittenDefaultChannels": [
+        7
+      ],
+      "derivedGlobalWrites": 3
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 7,
+      "resourceFromPriorO130": "PORTAL.GRA",
+      "rootObject2Offset": 91088,
+      "setupChannels": [
+        5
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 1
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 8,
+      "resourceFromPriorO130": "ARENA.GRA",
+      "rootObject2Offset": 99424,
+      "setupChannels": [
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        5
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 5
+    },
+    {
+      "mode": "mode_equals_1",
+      "configurationIndex": 9,
+      "resourceFromPriorO130": "CAVE.GRA",
+      "rootObject2Offset": 99304,
+      "setupChannels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explicitSkipChannels": [],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 0
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 0,
+      "resourceFromPriorO130": "DEDPOOL.GRA",
+      "rootObject2Offset": 89836,
+      "setupChannels": [
+        0
+      ],
+      "explicitSkipChannels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        5,
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 1
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 1,
+      "resourceFromPriorO130": "TOMB.GRA",
+      "rootObject2Offset": 94828,
+      "setupChannels": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "explicitSkipChannels": [
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 4
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 2,
+      "resourceFromPriorO130": "BATTLE.GRA",
+      "rootObject2Offset": 102900,
+      "setupChannels": [
+        2,
+        4,
+        6,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 4
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 3,
+      "resourceFromPriorO130": "TOWER.GRA",
+      "rootObject2Offset": 96404,
+      "setupChannels": [
+        5
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 1
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 4,
+      "resourceFromPriorO130": "FOREST.GRA",
+      "rootObject2Offset": 93254,
+      "setupChannels": [
+        2,
+        3,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        4,
+        5,
+        6
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 3
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 5,
+      "resourceFromPriorO130": "ARMORY.GRA",
+      "rootObject2Offset": 92172,
+      "setupChannels": [
+        3,
+        4
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        2
+      ],
+      "unwrittenDefaultChannels": [
+        5,
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 3
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 6,
+      "resourceFromPriorO130": "PIT.GRA",
+      "rootObject2Offset": 100892,
+      "setupChannels": [
+        0,
+        1,
+        6
+      ],
+      "explicitSkipChannels": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "unwrittenDefaultChannels": [
+        7
+      ],
+      "derivedGlobalWrites": 3
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 7,
+      "resourceFromPriorO130": "PORTAL.GRA",
+      "rootObject2Offset": 91088,
+      "setupChannels": [
+        5
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 1
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 8,
+      "resourceFromPriorO130": "ARENA.GRA",
+      "rootObject2Offset": 99424,
+      "setupChannels": [
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "explicitSkipChannels": [
+        0,
+        1,
+        5
+      ],
+      "unwrittenDefaultChannels": [],
+      "derivedGlobalWrites": 5
+    },
+    {
+      "mode": "mode_other",
+      "configurationIndex": 9,
+      "resourceFromPriorO130": "CAVE.GRA",
+      "rootObject2Offset": 99304,
+      "setupChannels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "explicitSkipChannels": [],
+      "unwrittenDefaultChannels": [
+        6,
+        7
+      ],
+      "derivedGlobalWrites": 0
+    }
+  ],
+  "correctionOf001": {
+    "qualification": "0x77453 is a base slot destination pointer, not proof its first referenced setup is assigned to slot0. A leading literal 1 skips slot0.",
+    "portalMode2": {
+      "channel0": "EXPLICIT_SKIP",
+      "setupAtChannel1": 91412,
+      "setupAtChannel5": 91430
+    },
+    "tombMode2": {
+      "setupChannels": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "skipChannel": 4
+    },
+    "images79": {
+      "firstSetupAtChannel": 1,
+      "resourceFromO121": "IMAGES.GRA"
+    }
+  },
+  "runtimeNotObserved": {
+    "selectedRoot": false,
+    "selectedSetup": false,
+    "paletteHandle": false,
+    "dacStart": false,
+    "framebuffer": false,
+    "animationTiming": false
+  }
+}
