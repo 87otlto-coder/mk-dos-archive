@@ -1,0 +1,282 @@
+{
+  "schema": "mk2_spelunk_006_suck_full_resource_static_provenance_v1",
+  "date": "2026-11-17",
+  "classification": "VERIFIED_STATIC_CONDITIONAL_SOURCE_GROUPS",
+  "original": {
+    "MK2_EXE_sha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+    "MK2_EXE_bytes": 861133,
+    "SUCK_GRA_sha256": "d5672116021a56c27b94a14c1eb51e83bb077209cf67fcf92add51553e862d08",
+    "SUCK_GRA_bytes": 122000,
+    "resourceId": 14,
+    "LEfixupRecords": 27004,
+    "LEuniqueSourceSites": 26994
+  },
+  "sourceSelector": {
+    "tableObject2": 113568,
+    "slots": [
+      {
+        "slot": 0,
+        "groupObject2": 114256
+      },
+      {
+        "slot": 1,
+        "groupObject2": 114344
+      },
+      {
+        "slot": 2,
+        "groupObject2": 114168
+      },
+      {
+        "slot": 3,
+        "groupObject2": 113980
+      },
+      {
+        "slot": 4,
+        "groupObject2": 114068
+      },
+      {
+        "slot": 5,
+        "groupObject2": 114068
+      },
+      {
+        "slot": 6,
+        "groupObject2": 113692
+      },
+      {
+        "slot": 7,
+        "groupObject2": 113780
+      },
+      {
+        "slot": 8,
+        "groupObject2": 113880
+      },
+      {
+        "slot": 9,
+        "groupObject2": 113880
+      },
+      {
+        "slot": 10,
+        "groupObject2": 113880
+      },
+      {
+        "slot": 11,
+        "groupObject2": 113616
+      }
+    ],
+    "slotCount": 12,
+    "distinctGroupCount": 9,
+    "groupedAliases": [
+      {
+        "slots": [
+          4,
+          5
+        ],
+        "sameGroup": 114068
+      },
+      {
+        "slots": [
+          8,
+          9,
+          10
+        ],
+        "sameGroup": 113880
+      }
+    ],
+    "sourceCodePhysical": {
+      "sourceTableLoad": 542410,
+      "typedSelectorReferenceOperand": 542411,
+      "indexHelperCall": 542415,
+      "indexHelper": 413394,
+      "selectingObjectFieldOffset": 70,
+      "selectedCursorStore": 542420,
+      "sourceGlobalCursorObject2": 481912,
+      "rawSchedulerCountInstruction": 542425,
+      "schedulerWaitJump": 542440,
+      "waitHelper": 550949,
+      "separateGeneralCommandInterpreter": 409209,
+      "descriptorBearingRecordConsumer": 409823
+    },
+    "commandToInterpreterDirectInvocationProven": false,
+    "runtimeSelectorRangeProven": false
+  },
+  "prefix": {
+    "bytes": [
+      0,
+      117872
+    ],
+    "sha256": "32bd54ff93057d401ae4612a0d7e48529819ec9c321b73e6b2d4aac80d02b513",
+    "distinctSourceSprites": 65,
+    "sourceGroups": [
+      {
+        "groupObject2": 114256,
+        "orderedSourceRecords": 7,
+        "zeroTerminalObject2": 114284,
+        "firstDescriptorObject2": 136244,
+        "lastDescriptorObject2": 136316,
+        "resourceByteRange": [
+          0,
+          15356
+        ],
+        "compressedSourceSha256": "3784d23d3369945d3580501d53a117aaf0d7002b715461a8777acf29340d0c71",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      },
+      {
+        "groupObject2": 114344,
+        "orderedSourceRecords": 7,
+        "zeroTerminalObject2": 114372,
+        "firstDescriptorObject2": 136328,
+        "lastDescriptorObject2": 136400,
+        "resourceByteRange": [
+          15356,
+          27852
+        ],
+        "compressedSourceSha256": "53940941e1e810f0ee657f21d3a624a62f6e5b1baca99c269f57daecf3855936",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      },
+      {
+        "groupObject2": 114168,
+        "orderedSourceRecords": 7,
+        "zeroTerminalObject2": 114196,
+        "firstDescriptorObject2": 136412,
+        "lastDescriptorObject2": 136484,
+        "resourceByteRange": [
+          27852,
+          40656
+        ],
+        "compressedSourceSha256": "c7040a0a90f5abda123c9e703b6c9653584dc5207a12ba090f4d3d9035e255e8",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      },
+      {
+        "groupObject2": 113980,
+        "orderedSourceRecords": 7,
+        "zeroTerminalObject2": 114008,
+        "firstDescriptorObject2": 136496,
+        "lastDescriptorObject2": 136568,
+        "resourceByteRange": [
+          40656,
+          53272
+        ],
+        "compressedSourceSha256": "3ba1fdb1f05456164ce2a25dd8ae466c00ea793a45386fe9c64cad96230c908a",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      },
+      {
+        "groupObject2": 114068,
+        "orderedSourceRecords": 8,
+        "zeroTerminalObject2": 114100,
+        "firstDescriptorObject2": 136580,
+        "lastDescriptorObject2": 136664,
+        "resourceByteRange": [
+          53272,
+          67248
+        ],
+        "compressedSourceSha256": "e1f8da09e7e8c17f50ccf60807947891ec59abef37437a1dad95b971b0fe3e16",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      },
+      {
+        "groupObject2": 113692,
+        "orderedSourceRecords": 7,
+        "zeroTerminalObject2": 113720,
+        "firstDescriptorObject2": 136676,
+        "lastDescriptorObject2": 136748,
+        "resourceByteRange": [
+          67248,
+          78424
+        ],
+        "compressedSourceSha256": "88dbb184e50ac181529f4556cf4887bb5974b14629615716ebcab4334c8f7b49",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      },
+      {
+        "groupObject2": 113780,
+        "orderedSourceRecords": 8,
+        "zeroTerminalObject2": 113812,
+        "firstDescriptorObject2": 136760,
+        "lastDescriptorObject2": 136844,
+        "resourceByteRange": [
+          78424,
+          94132
+        ],
+        "compressedSourceSha256": "3f44939eda6a86dbf61d9f1d0b86f85d1a2a9d63a26dae9f7fdbe654a1fb1ea2",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      },
+      {
+        "groupObject2": 113880,
+        "orderedSourceRecords": 8,
+        "zeroTerminalObject2": 113912,
+        "firstDescriptorObject2": 136856,
+        "lastDescriptorObject2": 136940,
+        "resourceByteRange": [
+          94132,
+          108340
+        ],
+        "compressedSourceSha256": "4a7dd6eca3380cf5a4a43fe12b38c6ad134b7a1fa8d5310023a5e2dd26b63f49",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      },
+      {
+        "groupObject2": 113616,
+        "orderedSourceRecords": 6,
+        "zeroTerminalObject2": 113640,
+        "firstDescriptorObject2": 136952,
+        "lastDescriptorObject2": 137012,
+        "resourceByteRange": [
+          108340,
+          117872
+        ],
+        "compressedSourceSha256": "10f7a1afb581759a681caa11955dd71aea8cdd0a71d388fb0a1a54224984c2d4",
+        "nestedRecordStructure": "typed pointer to (typed original sprite-descriptor pointer, literal unrelocated zero)"
+      }
+    ],
+    "zeroTerminatedPointerLists": true,
+    "allRecordsHaveLiteralZeroSecondDword": true,
+    "duplicateOriginalSpritesAcrossGroups": 0
+  },
+  "suffixPreviouslyVerifiedInSpelunk005": {
+    "bytes": [
+      117872,
+      122000
+    ],
+    "sha256": "a87b9cab47d98fa6f7db0e24947baae153c42d881d9f5696d9e728fbe1e58130",
+    "distinctSourceSprites": 18,
+    "lists": [
+      {
+        "object2": 114432,
+        "count": 5,
+        "marker": 0
+      },
+      {
+        "object2": 114456,
+        "count": 5,
+        "marker": 0
+      },
+      {
+        "object2": 114480,
+        "count": 8,
+        "marker": 1,
+        "backPointer": 114480
+      }
+    ]
+  },
+  "wholeResource": {
+    "uniqueOriginalSpriteStreams": 83,
+    "compressedByteCoverage": 122000,
+    "gaps": 0,
+    "overlaps": 0,
+    "allIndexedFramesDecodeWithOriginalRLE": true,
+    "originalResourceFullyPartitioned": true,
+    "qualifiedSourceStructure": "9 nested source groups plus 3 previously code-linked suffix lists; not 12 verified timed animations"
+  },
+  "verification": {
+    "privateOriginalEXE_and_SUCK_GRA_readOnlyAudit": "PASS",
+    "privateOriginalRegressionTests": 20,
+    "privateOriginalRegressionResult": "PASS (locally equivalent audit source; repository copy must also be checked)",
+    "originalGameExecuted": false,
+    "originalDisplayParity": false
+  },
+  "unknowns": [
+    "Which selector slot is chosen in a live effect",
+    "Whether selected group passes through generic source interpreter on a particular frame",
+    "Display dwell time, ordering over runtime transitions, start/end triggers",
+    "Native DAC/palette allocation",
+    "Final screen position, occlusion and framebuffer parity"
+  ],
+  "provenancePolicy": "No original EXE, GRA, compressed byte streams, indexed pixel planes, masks or palette entries are committed. Original sprite catalogue may already be covered by O69; novelty is source grouping and complete interval proof."
+}
