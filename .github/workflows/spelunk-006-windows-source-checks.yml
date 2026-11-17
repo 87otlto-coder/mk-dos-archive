@@ -1,0 +1,34 @@
+name: Spelunk 006 MK2 SUCK nested source checks (Windows, no games)
+on:
+  push:
+    branches: ['research/spelunk-006-mk2-suck-nested-source-groups']
+    paths:
+      - 'scripts/research/spelunk006/**'
+      - '.github/workflows/spelunk-006-windows-source-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-free-parser-tests:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile source; run ten synthetic controls without original game
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          python -B -m py_compile scripts/research/spelunk006/trace_suck_nested_sources.py
+          if ($LASTEXITCODE -ne 0) { throw 'Source audit is not valid Python' }
+          python -B -m py_compile scripts/research/spelunk006/test_original_fixture.py
+          if ($LASTEXITCODE -ne 0) { throw 'Private regression source is not valid Python' }
+          python -B -m unittest discover -s scripts/research/spelunk006 -p test_synthetic_source.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 006 synthetic tests failed' }
+          Write-Host 'SPELUNK_006_SYNTHETIC_TESTS=PASS'
+          Write-Host 'SPELUNK_006_ORIGINAL_GAME_EXECUTED=false'
+          Write-Host 'SPELUNK_006_PROPRIETARY_INPUTS_IN_CI=false'
+          Write-Host 'SPELUNK_006_NATIVE_DAC_OR_TIMING_VERIFIED=false'
+          # Never upload proprietary files, decoded sprite planes or CI artifacts.
