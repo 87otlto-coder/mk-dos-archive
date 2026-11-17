@@ -83,7 +83,8 @@ def code_witnesses(exe,fx):
       0x846d9:'b804000000', # raw coroutine/scheduler count 4
       0x846e8:'e938210000', # JMP 0x86825 (wait)
       0x64ed2:'8b5f468b0498c3', # index 4-byte table by DWORD [EDI+0x46]
-      0x86825:'528d6dfc8945005a', # wait bookkeeping, NOT sprite reader
+      0x86825:'528d6dfc8945005a', # scheduler helper begins
+      0x8682d:'e847d6fdff', # direct CALL to 0x63E79 source interpreter
       0x63e79:'a1785a07008b008305785a070004', # shared cursor bytecode interpreter
       0x63e93:'e847020000', # CALL 0x640DF on pointer-like command
       0x640df:'57894742', # original descriptor-bearing item consumer
@@ -98,14 +99,14 @@ def code_witnesses(exe,fx):
         require(exe[physical:physical+len(t)]==t,'code opcode '+hex(physical))
     ptr(exe,fx,1,0x846cb-O1,2,SELECTOR)
     ptr(exe,fx,1,0x846d5-O1,2,0x75a78)
-    for site,target in ((0x846cf,0x64ed2),(0x846e8,0x86825),(0x63e93,0x640df)):
+    for site,target in ((0x846cf,0x64ed2),(0x846e8,0x86825),(0x8682d,0x63e79),(0x63e93,0x640df)):
         require(site+5+struct.unpack_from('<i',exe,site+1)[0]==target,'wrong near branch '+hex(site))
     return {'selectorLoadPhysical':0x846ca,'indexHelperPhysical':0x64ed2,
             'indexSourceObjectField':0x46,'selectionStorePhysical':0x846d4,
             'sourceGlobalCursorObject2':0x75a78,'schedulerWaitJumpPhysical':0x846e8,
             'sharedCommandInterpreterPhysical':0x63e79,
             'genericDescriptorCommandPhysical':0x640df,
-            'directSelectedGroupToInterpreterCallProven':False,
+            'directSelectedGroupToInterpreterCallProven':True,
             'runtimeSelectorBoundedOrObserved':False}
 
 def decode(gra,start,w,h):
@@ -229,7 +230,7 @@ def audit(exe,gra,strict_identity=True):
             'notes':['A source table slot is not a timed frame; the 12 slot table aliases nine distinct zero-terminated groups.',
                      'Each group contains pointers to original eight-byte command records (sprite descriptor pointer, literal zero), not direct sprite descriptors.',
                      'Original 0x64ED2 uses [EDI+0x46] as table index, but no original-file evidence proves runtime selector bounds or which slot is chosen.',
-                     'Generic 0x63E79/0x640DF interpreter code can consume a pointer-bearing command record; direct invocation from the selector store is not established.',
+                     'Static control flow 0x846E8 -> 0x86825 -> CALL 0x63E79 -> CALL 0x640DF proves the source-selected group reaches the original interpreter when the effect routine runs.',
                      '83 distinct original indexed sprite streams cover 100% of SUCK.GRA resource bytes; individual sprite discovery may already be in O69.']}
 
 def main():
