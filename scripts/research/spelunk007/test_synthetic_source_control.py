@@ -7,7 +7,7 @@ def dw(n):return struct.pack("<I",n&0xffffffff)
 def rep(n,index):return dw((n<<10)|(index<<2)|2)
 
 def fake_control_source():
-    exe=bytearray(0x93000)
+    exe=bytearray(0xd0000)  # cover original Object2 relocated data and physical code
     exe[0x86d14:0x86d26]=bytes.fromhex("83fb0175c3528b52048915785a07005aeb9f")
     anchors={
         0x90661:"8b56688915785a07005a",
@@ -93,7 +93,7 @@ class Synthetic(unittest.TestCase):
         self.assertEqual(s.PIT_IMPACT_PHYSICAL,s.O2+s.PIT_IMPACT_DESCRIPTOR)
 
     def test_scan_cannot_promote_empty_synthetic_blob(self):
-        fake=bytes(0x93000)
+        fake=bytes(0xd0000)
         with self.assertRaisesRegex(ValueError,"canonical O69 BLOOD"):
             s.scan_descriptors(fake,bytes(32))
 
