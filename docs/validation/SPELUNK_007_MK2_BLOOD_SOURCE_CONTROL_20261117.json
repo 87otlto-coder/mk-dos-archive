@@ -1,0 +1,372 @@
+{
+  "schema": "mk2_spelunk_007_blood_source_list_control_v1",
+  "classification": "VERIFIED_STATIC_SOURCE_ORDER_AND_CONTROL",
+  "date": "2026-11-17",
+  "source": {
+    "exeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+    "bloodGraSha256": "9a47dd926c27a6570bcd81cbb0a3ff1bae2106a26e0f5360c8018fea6f16a5a9",
+    "bloodResourceID": 9,
+    "bytes": 111780,
+    "LErecords": 27004,
+    "uniqueLEsites": 26994
+  },
+  "provenance": {
+    "O69HadAlreadyValidated178Sprites": true,
+    "O218O228HadAlreadyLinkedPitSource177": true,
+    "originalSourceRecheckedReadOnly": true
+  },
+  "totals": {
+    "originalIndexedSpriteStreams": 178,
+    "byteCoverage": "111780/111780",
+    "sourcePointerListStructures": 18,
+    "sourceOrderedDescriptorReferences": 155,
+    "distinctSpritesInLists": 153,
+    "spritesNotInTheseLists": 25,
+    "sourceDescriptorsWithTypedReferences": 159,
+    "directCursorWriterGroups": 12,
+    "indirectSelectorGroups": 1,
+    "unclassifiedCursorConsumerGroups": 5
+  },
+  "normalReader": {
+    "physical": 552133,
+    "rewindHandlingPhysical": 552212,
+    "rewindOriginalInstructionWitness": "83fb0175c3528b52048915785a07005aeb9f"
+  },
+  "sourceIntroThenLoop": [
+    {
+      "rootObject2": 118924,
+      "entries": 18,
+      "terminal": 1,
+      "typedRewindPointerObject2": 118948,
+      "introEntryOrdinalRange": [
+        0,
+        5
+      ],
+      "repeatingEntryOrdinalRange": [
+        6,
+        17
+      ],
+      "sourceCountForLoop": 12
+    },
+    {
+      "rootObject2": 119160,
+      "entries": 14,
+      "terminal": 1,
+      "typedRewindPointerObject2": 119188,
+      "introEntryOrdinalRange": [
+        0,
+        6
+      ],
+      "repeatingEntryOrdinalRange": [
+        7,
+        13
+      ],
+      "sourceCountForLoop": 7
+    }
+  ],
+  "innerEntryVariantSelection": {
+    "tableObject2": 118824,
+    "rootListObject2": 118840,
+    "entryOrdinals": [
+      0,
+      3,
+      5,
+      8
+    ],
+    "pointedListOffsets": [
+      118840,
+      118852,
+      118860,
+      118872
+    ],
+    "selectionPhysical": 591457,
+    "pointerDereferencePhysical": 591508,
+    "sourceInput": "high 16 bits of task [ESI+0x68]",
+    "selectorBoundsObserved": false
+  },
+  "repeatedReferences": {
+    "listObject2": 119360,
+    "ordered": 8,
+    "unique": 6,
+    "firstFourPointers": [
+      131684,
+      131684,
+      131700,
+      131700
+    ]
+  },
+  "sourceGroups": [
+    {
+      "rootObject2": 118752,
+      "orderedEntries": 11,
+      "uniqueDescriptorCount": 11,
+      "sourceByteExtent": [
+        34448,
+        37236
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        590223
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 118800,
+      "orderedEntries": 5,
+      "uniqueDescriptorCount": 5,
+      "sourceByteExtent": [
+        37236,
+        37912
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [],
+      "evidenceClassification": "STRUCTURAL_ONLY_DIRECT_WRITER_UNKNOWN"
+    },
+    {
+      "rootObject2": 118840,
+      "orderedEntries": 12,
+      "uniqueDescriptorCount": 12,
+      "sourceByteExtent": [
+        100360,
+        103196
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [],
+      "evidenceClassification": "VERIFIED_INDIRECT_ENTRY_SELECTOR"
+    },
+    {
+      "rootObject2": 118892,
+      "orderedEntries": 7,
+      "uniqueDescriptorCount": 7,
+      "sourceByteExtent": [
+        37912,
+        43932
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        591813
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 118924,
+      "orderedEntries": 18,
+      "uniqueDescriptorCount": 18,
+      "sourceByteExtent": [
+        43932,
+        46616
+      ],
+      "control": "ONE_WITH_TYPED_INTERIOR_REWIND",
+      "directCodeWriterPhysical": [
+        592158,
+        592249
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119068,
+      "orderedEntries": 7,
+      "uniqueDescriptorCount": 7,
+      "sourceByteExtent": [
+        92768,
+        97380
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        592942
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119160,
+      "orderedEntries": 14,
+      "uniqueDescriptorCount": 14,
+      "sourceByteExtent": [
+        0,
+        34088
+      ],
+      "control": "ONE_WITH_TYPED_INTERIOR_REWIND",
+      "directCodeWriterPhysical": [
+        593497
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119224,
+      "orderedEntries": 5,
+      "uniqueDescriptorCount": 5,
+      "sourceByteExtent": [
+        34088,
+        34280
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        593139,
+        593563
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119248,
+      "orderedEntries": 2,
+      "uniqueDescriptorCount": 2,
+      "sourceByteExtent": [
+        34280,
+        34448
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [],
+      "evidenceClassification": "STRUCTURAL_ONLY_DIRECT_WRITER_UNKNOWN"
+    },
+    {
+      "rootObject2": 119260,
+      "orderedEntries": 4,
+      "uniqueDescriptorCount": 4,
+      "sourceByteExtent": [
+        46616,
+        47732
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        593258,
+        593672,
+        594321,
+        594611,
+        594876,
+        594911,
+        595182,
+        595377,
+        595425,
+        595511
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119280,
+      "orderedEntries": 3,
+      "uniqueDescriptorCount": 3,
+      "sourceByteExtent": [
+        47732,
+        48528
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [],
+      "evidenceClassification": "STRUCTURAL_ONLY_DIRECT_WRITER_UNKNOWN"
+    },
+    {
+      "rootObject2": 119296,
+      "orderedEntries": 10,
+      "uniqueDescriptorCount": 10,
+      "sourceByteExtent": [
+        48528,
+        50464
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        595192,
+        595235
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119340,
+      "orderedEntries": 4,
+      "uniqueDescriptorCount": 4,
+      "sourceByteExtent": [
+        50464,
+        51344
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [],
+      "evidenceClassification": "STRUCTURAL_ONLY_DIRECT_WRITER_UNKNOWN"
+    },
+    {
+      "rootObject2": 119360,
+      "orderedEntries": 8,
+      "uniqueDescriptorCount": 6,
+      "sourceByteExtent": [
+        51344,
+        53820
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        589870,
+        591226,
+        594498,
+        594768
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119396,
+      "orderedEntries": 13,
+      "uniqueDescriptorCount": 13,
+      "sourceByteExtent": [
+        53820,
+        67812
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        590475,
+        590712,
+        590869,
+        591026,
+        594132
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119452,
+      "orderedEntries": 16,
+      "uniqueDescriptorCount": 16,
+      "sourceByteExtent": [
+        67812,
+        77988
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        593822,
+        593944
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    },
+    {
+      "rootObject2": 119520,
+      "orderedEntries": 7,
+      "uniqueDescriptorCount": 7,
+      "sourceByteExtent": [
+        77988,
+        80428
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [],
+      "evidenceClassification": "STRUCTURAL_ONLY_DIRECT_WRITER_UNKNOWN"
+    },
+    {
+      "rootObject2": 119552,
+      "orderedEntries": 9,
+      "uniqueDescriptorCount": 9,
+      "sourceByteExtent": [
+        80428,
+        92768
+      ],
+      "control": "UNRELOCATED_ZERO",
+      "directCodeWriterPhysical": [
+        590117
+      ],
+      "evidenceClassification": "VERIFIED_DIRECT_CURSOR_WRITER"
+    }
+  ],
+  "independentPrivateSourceInspection": {
+    "validatedOriginalEXEandGRA": true,
+    "sourceOriginalFixtureFullCommittedTestSuite": "VALIDATION_PENDING"
+  },
+  "runtimeNotEstablished": {
+    "animationTiming": false,
+    "activePaletteDAC": false,
+    "realFightActivation": false,
+    "renderPlacement": false,
+    "originalFramebufferParity": false
+  },
+  "noGameAssetsUploaded": true
+}
