@@ -1,0 +1,261 @@
+{
+  "schema": "mk2_spelunk_009_bang_secondary_static_source_evidence_v1",
+  "date": "2026-11-17",
+  "confidence": "VERIFIED_STATIC_SOURCE_WITH_RUNTIME_LIMITS",
+  "ownerOriginals": {
+    "originalExeSHA256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+    "originalBangGraSHA256": "76bdab89c4262555560bd3958eecca58460bddb4d75f5bce90331ab419151152",
+    "originalExeBytes": 861133,
+    "originalBangGraBytes": 29556,
+    "originalResourceId": 12,
+    "LEFixupRecords": 27004,
+    "uniqueLEFixupSites": 26994
+  },
+  "reconciliation": {
+    "O69PriorOriginalGraphicCensus": 101,
+    "O005Prior11SelectorLists": 11,
+    "O005PriorOrderedListReferences": 95,
+    "O005PriorUniqueListSprites": 93,
+    "previouslyUnselectedUniqueSourceSprites": 8,
+    "originalFullGRAByteCoverage": 29556,
+    "allSourceStreamsContiguous": true,
+    "newOriginalArtworkClaim": false
+  },
+  "originalSourceColourProvenance": {
+    "sourceRecordObject1": 158916,
+    "sourceRecordPhysical": 559384,
+    "explicitTypedLEPointerCount": 12,
+    "alsoPreviouslyLinkedBySpelunk008BloodGRA": true,
+    "independentlyObservedBloodLinks": 22,
+    "sourceReferenceTargetsIdentical": true,
+    "twelveDistinctDACPalettesClaim": false,
+    "nonheaderPaletteOwnershipEstablished": false,
+    "liveDACAllocationObserved": false,
+    "headers": [
+      {
+        "descriptorObject2": 133156,
+        "pointerSiteObject2": 133168,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 8,
+        "encodedSourceByteRange": [
+          0,
+          1476
+        ],
+        "encodedRangeSHA256": "3b01fd914763b3f18b05a613de5c7d5990cb48e69863e6abd9ff8298f25a5553"
+      },
+      {
+        "descriptorObject2": 133256,
+        "pointerSiteObject2": 133268,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 6,
+        "encodedSourceByteRange": [
+          1476,
+          1960
+        ],
+        "encodedRangeSHA256": "84db8bfcaf014746cc5056b0983485943f119779a8a0141d85a9567e96cd2fd5"
+      },
+      {
+        "descriptorObject2": 133332,
+        "pointerSiteObject2": 133344,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 13,
+        "encodedSourceByteRange": [
+          1960,
+          3460
+        ],
+        "encodedRangeSHA256": "ad516dab55afb2d2ddb85871681192cafd0d86743e2812ad87d55ce38f2e83c8"
+      },
+      {
+        "descriptorObject2": 133492,
+        "pointerSiteObject2": 133504,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 12,
+        "encodedSourceByteRange": [
+          3460,
+          4420
+        ],
+        "encodedRangeSHA256": "a1ea57e716c960a62dcb8aee8e2b7167c8b716f187d9a871862f5c2f3cd12442"
+      },
+      {
+        "descriptorObject2": 133640,
+        "pointerSiteObject2": 133652,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 8,
+        "encodedSourceByteRange": [
+          4420,
+          6916
+        ],
+        "encodedRangeSHA256": "463c1f4ac8f9ae7a7e8b5e9ecae53036ad29e076faf455c2b388725d564431d7"
+      },
+      {
+        "descriptorObject2": 133740,
+        "pointerSiteObject2": 133752,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 8,
+        "encodedSourceByteRange": [
+          6916,
+          11824
+        ],
+        "encodedRangeSHA256": "c0863bb458c3e07e2677b6b929204514cefb13d926b0345900cb9d51716ee13b"
+      },
+      {
+        "descriptorObject2": 133840,
+        "pointerSiteObject2": 133852,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 8,
+        "encodedSourceByteRange": [
+          11824,
+          15012
+        ],
+        "encodedRangeSHA256": "fe0903043b45ee9dc76458f491f5503d9af28ce756297f753fa74f4de7f8b975"
+      },
+      {
+        "descriptorObject2": 133940,
+        "pointerSiteObject2": 133952,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 8,
+        "encodedSourceByteRange": [
+          15012,
+          19004
+        ],
+        "encodedRangeSHA256": "6e1e3a79554744febcca8a32d4d93dc50a776e5824c2250729805c729ed93709"
+      },
+      {
+        "descriptorObject2": 134040,
+        "pointerSiteObject2": 134052,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 8,
+        "encodedSourceByteRange": [
+          19004,
+          21224
+        ],
+        "encodedRangeSHA256": "1d51f0b00fcafa699e045984c870c8e68b17b29735ae6801abd7831a91b067ba"
+      },
+      {
+        "descriptorObject2": 134140,
+        "pointerSiteObject2": 134152,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 6,
+        "encodedSourceByteRange": [
+          21224,
+          23748
+        ],
+        "encodedRangeSHA256": "f8f914d4d88df445c55867e1cb25e39fdc32df1a3e3dc43ba353cf7f469421d9"
+      },
+      {
+        "descriptorObject2": 134216,
+        "pointerSiteObject2": 134228,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 8,
+        "encodedSourceByteRange": [
+          23748,
+          24692
+        ],
+        "encodedRangeSHA256": "baf2865cd7d357e515a66a8ec5204c47d81528b97d74be4d9abf12be31bfd29e"
+      },
+      {
+        "descriptorObject2": 134316,
+        "pointerSiteObject2": 134328,
+        "sourceRecordObject1": 158916,
+        "distinctIndexedSprites": 8,
+        "encodedSourceByteRange": [
+          24692,
+          29556
+        ],
+        "encodedRangeSHA256": "c36fec70291c40d9c79943524e2c934d45714084e0366897059dbfdb1c157534"
+      }
+    ]
+  },
+  "originalSourceConsumer": {
+    "initialDescriptorSeedPhysical": 541398,
+    "originalSeedDescriptorObject2": 134316,
+    "cursorWriterPhysical": 541408,
+    "pairedReaderCallPhysical": 541418,
+    "pairedReaderPhysical": 540365,
+    "originalReaderZeroPointerExit": 540398,
+    "originalReaderZeroSignedXExit": 540435,
+    "symmetricFanoutPhysical": 540470,
+    "originalEightCallSitesPhysical": [
+      540470,
+      540487,
+      540510,
+      540527,
+      540550,
+      540567,
+      540590,
+      540607
+    ],
+    "constructorWrapperPhysical": 540613,
+    "spriteConstructorPhysical": 410952,
+    "descriptorUpdatePhysical": 604028,
+    "conditionalRendererObjectDescriptorAssignPhysical": 604115,
+    "objectDescriptorFieldOffset": 60,
+    "maxStaticConstructorCallsitesPerAcceptedRecord": 8,
+    "uniqueAcceptedRecordsInSourceConnectedGroup": 5,
+    "conditionalCallsiteOpportunitiesFromOneGroupTraversal": 40,
+    "actualAllocationOrFramePresentationUnknown": true,
+    "coordinateRounding": "SAR arithmetic shift then SHL loses low bit for odd signed values; 29 -> 14 -> 28 before mirroring."
+  },
+  "secondaryRecords": [
+    {
+      "rootObject2": 112604,
+      "recordCount": 6,
+      "typedIncomingCodePointers": 1,
+      "sourceAcceptedBeforeStop": 5,
+      "termination": "SIXTH_RECORD_SIGNED_X_ZERO",
+      "lastRecordXY": [
+        0,
+        -48
+      ],
+      "trailingZeroObject2": 112652,
+      "signedXSequence": [
+        48,
+        46,
+        40,
+        29,
+        16,
+        0
+      ],
+      "directOriginalCodeConsumerVerified": true
+    },
+    {
+      "rootObject2": 112656,
+      "recordCount": 1,
+      "typedIncomingCodePointers": 0,
+      "sourceAcceptedBeforeStopIfSameReaderUsed": 1,
+      "termination": "UNRELOCATED_ZERO_POINTER",
+      "trailingZeroObject2": 112664,
+      "structurallyCompatibleButConsumerUnknown": true
+    },
+    {
+      "rootObject2": 112668,
+      "recordCount": 8,
+      "typedIncomingCodePointers": 0,
+      "sourceAcceptedBeforeStopIfSameReaderUsed": 8,
+      "termination": "UNRELOCATED_ZERO_POINTER",
+      "trailingZeroObject2": 112732,
+      "structurallyCompatibleButConsumerUnknown": true
+    }
+  ],
+  "privateReadOnlyVerification": {
+    "originalGameZIPReadOnly": true,
+    "exactOriginalPrivateRegressionCount": 25,
+    "privateRegressionFailures": 0,
+    "producerCommittedGitBlobSHA1": "2ef4a16e8d901dc7e76531fc40b58013ed1c252a",
+    "testsCommittedGitBlobSHA1": "52af79fb21af6ec5dae0c3282a8f88f7840739ae",
+    "privateFullReportSHA256": "784a8ae0f0ca8fa224efbfb317b31f454c4c5edf13221fdb72f8fbaadd7cc168",
+    "windowsSourceOnlyCIRun": 44116493434,
+    "originalFreeSyntheticCases": 14,
+    "CIConclusion": "success",
+    "CIOriginalCommercialFilesPresent": false
+  },
+  "runtimeNotClaimed": {
+    "secondaryGroupsBOrCExecuted": false,
+    "nativeDACOrPaletteHandle": false,
+    "objectConstructorSucceeded": false,
+    "frameDurationOrFPS": false,
+    "realPresentedFrame": false,
+    "globalPlacementOrOcclusion": false
+  },
+  "safety": "No source ZIP, original executable bytes, compressed sprite streams, indexed pixel planes, native palette words, sound, or runtime captures committed."
+}
