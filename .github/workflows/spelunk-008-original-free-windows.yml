@@ -1,0 +1,34 @@
+name: Spelunk 008 blood source palette links (Windows original-free)
+on:
+  push:
+    branches: ['research/spelunk-008-mk2-blood-palette-headers']
+    paths:
+      - 'scripts/research/spelunk008/**'
+      - '.github/workflows/spelunk-008-original-free-windows.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-free-trust-tests:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile producer and private suite; execute 15 original-free source checks
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -B -m py_compile scripts/research/spelunk008/trace_blood_palette_headers.py
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 008 reproducer source syntax failed' }
+          python -B -m py_compile scripts/research/spelunk008/test_original_fixture.py
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 008 private test source syntax failed' }
+          python -B -m unittest discover -s scripts/research/spelunk008 -p test_synthetic_source.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 008 original-free tests failed' }
+          Write-Host 'SPELUNK_008_SYNTHETIC=PASS'
+          Write-Host 'SPELUNK_008_ORIGINAL_DOS_IN_CI=false'
+          Write-Host 'SPELUNK_008_NATIVE_DAC_VERIFIED=false'
+          Write-Host 'SPELUNK_008_GAME_RUNTIME_EXECUTED=false'
+          # No original commercial binaries, palette words, pixels, or artifacts.
