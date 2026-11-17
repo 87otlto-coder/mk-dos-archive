@@ -16,9 +16,9 @@ It establishes complete original encoded sprite-stream coverage and an exportabl
 
 At original physical `0x846CA`, original code loads Object2 `0x1BBA0`, a typed LE-backed **12-DWORD selector table**. It calls helper `0x64ED2` at `0x846CF`. The helper uses `MOV EBX,[EDI+0x46]`, then `MOV EAX,[EAX+EBX*4]` to choose a group pointer. At `0x846D4`, it writes the result to the shared source cursor at Object2 `0x75A78`. The path prepares raw argument `4` and jumps at `0x846E8` to `0x86825`.
 
-**The latter is scheduler/wait control, not a sprite reader.** The value `4` is not a measured display frame duration. The observed input value `[EDI+0x46]`, selection frequency and range checks are **UNKNOWN**. The source table has twelve entries, but that does not prove a live selector cannot read beyond them.
+**The latter is scheduler/wait control, not itself a sprite reader. Crucially, the helper at `0x8682D` directly calls the original source interpreter `0x63E79`, which dispatches descriptor-bearing pointer commands through `0x640DF` at `0x63E93`.** This closes the original control-flow bridge from selector table to interpreter. The value `4` is still not a measured display frame duration. The observed input value `[EDI+0x46]`, selection frequency and range checks are **UNKNOWN**. The source table has twelve entries, but that does not prove a live selector cannot read beyond them.
 
-The original generic source interpreter at physical `0x63E79` reads pointer-valued commands from the same cursor and calls `0x640DF`, which dereferences sprite-bearing records and their original descriptor fields (including signed local X/Y). This is a **source-backed compatible record grammar**, but **no direct invocation of the interpreter from the selected-list cursor store was proven** in this investigation. It must not be promoted to actual on-screen animation or compositing.
+The original generic source interpreter at physical `0x63E79` reads pointer-valued commands from the same cursor and calls `0x640DF`, which dereferences sprite-bearing records and their original descriptor fields (including signed local X/Y). This is a **source-backed invoked record grammar**: selected group address → `0x75A78` cursor → `0x86825` scheduler helper → **direct `0x8682D` call to interpreter `0x63E79`** → `0x63E93` call to descriptor command handler `0x640DF`. The branch and command semantics are verified from exact original opcodes and near-target arithmetic. This still does **not** prove which group runs during a fight, an actual display-frame timeline, palette ownership or complete composition.
 
 ## What the twelve slots select
 
@@ -58,11 +58,11 @@ This is **not** a claim of 83 newly discovered artworks. O69 already investigate
 ## Reproduction and falsification
 
 - **Private original-input audit:** the script `scripts/research/spelunk006/trace_suck_nested_sources.py` reads original `mk2.zip`, refuses other EXE/GRA hashes, re-parses every LE fixup, checks 15 exact original code anchors, checks every group and descriptor relocation, decodes and hashes all 83 indexed/mask frames, validates source byte boundaries and refuses an existing output path. It writes *only* source-safe metadata JSON.
-- **Private original-fixture regression source:** `scripts/research/spelunk006/test_original_fixture.py` contains 20 read-only positive, deterministic, adversarial and no-overwrite controls. The locally equivalent original-input audit and **20 original-file regression tests passed** (one assertion expectation was corrected during development). The **exact GitHub-committed copy's private-fixture execution remains VALIDATION PENDING**; do not conflate this with Windows source-only CI.
+- **Private original-fixture regression source:** `scripts/research/spelunk006/test_original_fixture.py` contains 20 read-only positive, deterministic, adversarial and no-overwrite controls. The locally equivalent original-input audit and **21 original-file regression tests passed** (one assertion expectation was corrected during development). The **exact GitHub-committed copy's private-fixture execution remains VALIDATION PENDING**; do not conflate this with Windows source-only CI.
 - **Original-free Windows CI:** [run #44041851628](https://github.com/87otlto-coder/mk-dos-archive/actions/runs/44041851628) **SUCCESS**, compiling the producer and private test source and running **10 synthetic source/LE/RLE/opacity tests**; no DOS game, original resource or artifact uploaded.
 - **Source-safe evidence:** `docs/validation/SPELUNK_006_MK2_SUCK_SOURCE_GROUPS_20261117.json` records the twelve slots, nine distinct group spans and SHA-256 values, code offsets and the complete 83-stream interval proof. The private full-detail JSON with all 83 per-frame SHA hashes stays outside GitHub.
 
-**Original-file mutation tests** reject altered code, relocation-backed table entries, nested descriptor pointer sites, eight-byte record zeros, source group zero terminators, wrong GRA resource IDs, suffix terminators, malformed RLE, changed source hashes and pre-existing output files. The tests do not modify the ZIP.
+**Original-file mutation tests** also authenticate the direct `0x8682D → 0x63E79` call target and reject altered code, relocation-backed table entries, nested descriptor pointer sites, eight-byte record zeros, source group zero terminators, wrong GRA resource IDs, suffix terminators, malformed RLE, changed source hashes and pre-existing output files. The tests do not modify the ZIP.
 
 ## Extractor implications
 
@@ -73,12 +73,12 @@ This is **not** a claim of 83 newly discovered artworks. O69 already investigate
 
 ## Confidence register
 
-**VERIFIED STATIC:** original input identity, 12 source-selected pointer slots, nine distinct nested groups, zero-terminated group record grammar, 65 unique prefix descriptors, 18 previously code-linked suffix descriptors, 83 contiguous RLE streams, 122,000/122,000 source-byte coverage, original code helper/wait and generic interpreter instruction semantics.
+**VERIFIED STATIC:** original input identity, 12 source-selected pointer slots, nine distinct nested groups, zero-terminated group record grammar, 65 unique prefix descriptors, 18 previously code-linked suffix descriptors, 83 contiguous RLE streams, 122,000/122,000 source-byte coverage, original code helper/wait, and **the instruction-confirmed `0x8682D` direct call into the `0x63E79` interpreter and `0x640DF` descriptor-bearing command handler**.
 
 **INFERRED:** the best exporter data model separates nested source-script groups and original indexed sprite assets rather than inventing one linear animation.
 
-**UNKNOWN / VALIDATION PENDING:** whether the selection leads into `0x63E79` during a fight; the live selector and branch state; which and how many sprites actually display; frame timing or task cadence; original VGA DAC/palette allocation; world position, occlusion or complete framebuffer matching.
+**UNKNOWN / VALIDATION PENDING:** whether the source-confirmed selection path executes in any specific fight; the live selector and branch state; which and how many sprites actually display; frame timing or task cadence; original VGA DAC/palette allocation; world position, occlusion or complete framebuffer matching.
 
 ### Next targeted question
 
-Before spelunking still more unrelated object lists, investigate **the live-independent code bridge between SUCK's selected source cursor and the generic `0x63E79` interpreter**. If the path is entirely scheduled/dynamic and no static call proves it, record that boundary and move on. This directly improves confidence in whether the 65 source records form exported animation command groups or merely available effect script variants.
+**The selected-cursor → generic interpreter bridge has now been proven in this expedition.** The next extraction-relevant static target is identifying **BLOOD.GRA's secondary effect-list consumers** without repeating O218/O228's source177 findings, or resolving the nonuniform BANG.GRA secondary descriptor region from Spelunk 005. Real display timing and DAC still require independent runtime evidence.
