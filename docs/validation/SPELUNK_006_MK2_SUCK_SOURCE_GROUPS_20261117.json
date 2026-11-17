@@ -94,9 +94,12 @@
       "schedulerWaitJump": 542440,
       "waitHelper": 550949,
       "separateGeneralCommandInterpreter": 409209,
-      "descriptorBearingRecordConsumer": 409823
+      "descriptorBearingRecordConsumer": 409823,
+      "schedulerHelperCallsInterpreterPhysical": 550957,
+      "genericInterpreterPhysical": 409209,
+      "spriteBearingRecordConsumerPhysical": 409823
     },
-    "commandToInterpreterDirectInvocationProven": false,
+    "commandToInterpreterDirectInvocationProven": true,
     "runtimeSelectorRangeProven": false
   },
   "prefix": {
@@ -262,12 +265,12 @@
     "overlaps": 0,
     "allIndexedFramesDecodeWithOriginalRLE": true,
     "originalResourceFullyPartitioned": true,
-    "qualifiedSourceStructure": "9 nested source groups plus 3 previously code-linked suffix lists; not 12 verified timed animations"
+    "qualifiedSourceStructure": "9 nested source groups with direct static path into original interpreter, plus three previously code-linked suffix lists; not 12 verified timed animations"
   },
   "verification": {
     "privateOriginalEXE_and_SUCK_GRA_readOnlyAudit": "PASS",
-    "privateOriginalRegressionTests": 20,
-    "privateOriginalRegressionResult": "PASS (locally equivalent audit source; repository copy must also be checked)",
+    "privateOriginalRegressionTests": 21,
+    "privateOriginalRegressionResult": "PASS, locally executed original private fixture with original equivalent audit source; exact GitHub copy still requires independent private re-run",
     "originalGameExecuted": false,
     "originalDisplayParity": false
   },
