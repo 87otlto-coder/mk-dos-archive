@@ -1,0 +1,34 @@
+name: Spelunk 005 MK2 BANG-SUCK source-only synthetic checks (Windows)
+on:
+  push:
+    branches: ['research/spelunk-005-mk2-bang-suck-source-ownership']
+    paths:
+      - 'scripts/research/spelunk005/**'
+      - '.github/workflows/spelunk-005-source-only-windows.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-free-source:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Import prior common parser, compile new script and test original-free mechanisms
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -B -m py_compile scripts/research/spelunk004/trace_soul_fireskel_source.py
+          if ($LASTEXITCODE -ne 0) { throw 'Inherited parser syntax failed' }
+          python -B -m py_compile scripts/research/spelunk005/trace_bang_suck_sources.py
+          if ($LASTEXITCODE -ne 0) { throw 'New original-input producer syntax failed' }
+          python -B -m unittest discover -s scripts/research/spelunk005 -p test_synthetic_source_mechanics.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk005 synthetic controls failed' }
+          Write-Host 'SPELUNK005_SYNTHETIC=PASS'
+          Write-Host 'SPELUNK005_ORIGINAL_DOS_FILE_TESTED_IN_CI=false'
+          Write-Host 'SPELUNK005_EMULATOR_GAME_EXECUTED=false'
+          Write-Host 'SPELUNK005_NATIVE_PALETTE_OR_FPS_VERIFIED=false'
+          # No uploaded artifacts or copyrighted game source.
