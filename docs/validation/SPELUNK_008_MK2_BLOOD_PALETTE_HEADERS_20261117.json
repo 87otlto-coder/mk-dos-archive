@@ -1,0 +1,408 @@
+{
+  "schema": "mk2_spelunk_008_blood_palette_source_anchors_v1",
+  "classification": "VERIFIED_STATIC_TYPED_SOURCE_LINKS",
+  "date": "2026-11-17",
+  "game": "Original DOS Mortal Kombat II",
+  "canonicalOriginalExeSha256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+  "originalBloodGraSha256": "9a47dd926c27a6570bcd81cbb0a3ff1bae2106a26e0f5360c8018fea6f16a5a9",
+  "originalBloodResourceBytes": 111780,
+  "resourceId": 9,
+  "LERelocations": 27004,
+  "uniqueLESourceSites": 26994,
+  "knownO69IndexedSprites": 178,
+  "fullSourceByteCoverage": true,
+  "originalRecordAtObject1": 158916,
+  "originalRecordPhysical": 559384,
+  "headerPointerDescription": "22 typed LE Object2 descriptor+12 pointers to original Object1 color-record source; NOT 22 independently activated DAC palettes",
+  "originalHeaderRecords": [
+    {
+      "descriptorObject2": 130652,
+      "pointerSourceObject2": 130664,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 7,
+      "originalSourceByteRange": [
+        0,
+        11920
+      ],
+      "originalEncodedSourceRangeSha256": "fabcb295c7069fe00a251197975df8acc83839f323ee48df992d9b0004b250e6"
+    },
+    {
+      "descriptorObject2": 130740,
+      "pointerSourceObject2": 130752,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 7,
+      "originalSourceByteRange": [
+        11920,
+        34088
+      ],
+      "originalEncodedSourceRangeSha256": "8456246cbe585e701b88fa153295f7cccb2a3fcc6890f0178c8651e0bf89888c"
+    },
+    {
+      "descriptorObject2": 130828,
+      "pointerSourceObject2": 130840,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 6,
+      "originalSourceByteRange": [
+        34088,
+        34352
+      ],
+      "originalEncodedSourceRangeSha256": "1dbd0bd2fa108e03cd00ba196297546c2e9685c31b40d0f7dfee97dfba57e201"
+    },
+    {
+      "descriptorObject2": 130904,
+      "pointerSourceObject2": 130916,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 1,
+      "originalSourceByteRange": [
+        34352,
+        34448
+      ],
+      "originalEncodedSourceRangeSha256": "1bea3770a7634488db2f1a865b7462f72c2cf5477df789112261eca7813b355d"
+    },
+    {
+      "descriptorObject2": 130920,
+      "pointerSourceObject2": 130932,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 16,
+      "originalSourceByteRange": [
+        34448,
+        37912
+      ],
+      "originalEncodedSourceRangeSha256": "f12c255d3348563fe9f28372219a9ce48cf02d24e0256d7aae8c0ec3e35ecf37"
+    },
+    {
+      "descriptorObject2": 131116,
+      "pointerSourceObject2": 131128,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 7,
+      "originalSourceByteRange": [
+        37912,
+        43932
+      ],
+      "originalEncodedSourceRangeSha256": "6b15b3c051de2e7df2532567ea55ef376a0a17af29c49cac16961159b5bd576f"
+    },
+    {
+      "descriptorObject2": 131204,
+      "pointerSourceObject2": 131216,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 18,
+      "originalSourceByteRange": [
+        43932,
+        46616
+      ],
+      "originalEncodedSourceRangeSha256": "7093938c5c7ddddfc4c34867f22108f7c593350ffc8bf7bdf51446c84dda14c3"
+    },
+    {
+      "descriptorObject2": 131424,
+      "pointerSourceObject2": 131436,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 7,
+      "originalSourceByteRange": [
+        46616,
+        48528
+      ],
+      "originalEncodedSourceRangeSha256": "55f695c227e66312fbd8c917e19e3c1f9f87f28ab69e808d2877d8809dd03f63"
+    },
+    {
+      "descriptorObject2": 131512,
+      "pointerSourceObject2": 131524,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 14,
+      "originalSourceByteRange": [
+        48528,
+        51344
+      ],
+      "originalEncodedSourceRangeSha256": "4b8f7a2f8fba1462a9beaa3595315edad0e97d7ff7113cb5a89aba966a488adf"
+    },
+    {
+      "descriptorObject2": 131684,
+      "pointerSourceObject2": 131696,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 6,
+      "originalSourceByteRange": [
+        51344,
+        53820
+      ],
+      "originalEncodedSourceRangeSha256": "66fa3a32c3e746b799d87c3b6b1f3a6e2b0cb58f4d977b5c82824921a91c6612"
+    },
+    {
+      "descriptorObject2": 131760,
+      "pointerSourceObject2": 131772,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 13,
+      "originalSourceByteRange": [
+        53820,
+        67812
+      ],
+      "originalEncodedSourceRangeSha256": "3281f716eff2b79ad3848971b6c5e12e39aa5f2ce9d445382180d7b5a9cc073a"
+    },
+    {
+      "descriptorObject2": 131920,
+      "pointerSourceObject2": 131932,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 15,
+      "originalSourceByteRange": [
+        67812,
+        77764
+      ],
+      "originalEncodedSourceRangeSha256": "2eeeb12ee2113417363bf4f27172281be29d28d71522eb69e03d1405574125d3"
+    },
+    {
+      "descriptorObject2": 132104,
+      "pointerSourceObject2": 132116,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 1,
+      "originalSourceByteRange": [
+        77764,
+        77988
+      ],
+      "originalEncodedSourceRangeSha256": "159e0cf1e72e37ebc4520f8db917253650fc9a00d3fdb08f9ed0fe117f8fd095"
+    },
+    {
+      "descriptorObject2": 132120,
+      "pointerSourceObject2": 132132,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 7,
+      "originalSourceByteRange": [
+        77988,
+        80428
+      ],
+      "originalEncodedSourceRangeSha256": "edaa6789464de56684a7f1f36352a290fb07a2cc7578b62844fb9b030a000178"
+    },
+    {
+      "descriptorObject2": 132208,
+      "pointerSourceObject2": 132220,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 9,
+      "originalSourceByteRange": [
+        80428,
+        92768
+      ],
+      "originalEncodedSourceRangeSha256": "3ef490af648367c7607d5ecc4d3c50c4a94d58e0428c96a21365fce4e368f899"
+    },
+    {
+      "descriptorObject2": 132320,
+      "pointerSourceObject2": 132332,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 7,
+      "originalSourceByteRange": [
+        92768,
+        97380
+      ],
+      "originalEncodedSourceRangeSha256": "dd584a0b1fb74cd015be60a543eb2b5a0d782cca94cd0f112dd17e87aeb2e8bc"
+    },
+    {
+      "descriptorObject2": 132408,
+      "pointerSourceObject2": 132420,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 9,
+      "originalSourceByteRange": [
+        97380,
+        100360
+      ],
+      "originalEncodedSourceRangeSha256": "dfe7c25d0902173189337048ad6d095f5c9a8818e643d3138fed70e86a5165c5"
+    },
+    {
+      "descriptorObject2": 132520,
+      "pointerSourceObject2": 132532,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 12,
+      "originalSourceByteRange": [
+        100360,
+        103196
+      ],
+      "originalEncodedSourceRangeSha256": "aad7d751c0daa8cbc369a7b4c2e34296cf5e4dc1bb2eb64e8de01130169141ab"
+    },
+    {
+      "descriptorObject2": 132668,
+      "pointerSourceObject2": 132680,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 5,
+      "originalSourceByteRange": [
+        103196,
+        104640
+      ],
+      "originalEncodedSourceRangeSha256": "d45e6b7d2f275fec570346ade6b819cda0c065743d6d34d23ebc784728b66edf"
+    },
+    {
+      "descriptorObject2": 132732,
+      "pointerSourceObject2": 132744,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 7,
+      "originalSourceByteRange": [
+        104640,
+        109692
+      ],
+      "originalEncodedSourceRangeSha256": "c9feb8e8391dac3150ed85080421bc3793e18d446fabbaed5e78bddea18e4b3b"
+    },
+    {
+      "descriptorObject2": 132820,
+      "pointerSourceObject2": 132832,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 3,
+      "originalSourceByteRange": [
+        109692,
+        111552
+      ],
+      "originalEncodedSourceRangeSha256": "f257dbc0f1d86018de00b947a7ad307228ddf9093204cb6b7311aca737c2a1d8"
+    },
+    {
+      "descriptorObject2": 132860,
+      "pointerSourceObject2": 132872,
+      "pointerTargetObject1": 158916,
+      "numberOfContiguousDescriptors": 1,
+      "originalSourceByteRange": [
+        111552,
+        111780
+      ],
+      "originalEncodedSourceRangeSha256": "70ee0aed52b5257742fb5f665264a86a1f935e1621b4ce234acf0d12b646d073"
+    }
+  ],
+  "previousO218O228": {
+    "pitBloodSprite177DescriptorObject2": 132860,
+    "originalSourceOffset": 111552,
+    "nativeSize": [
+      14,
+      9
+    ],
+    "opaquePixels": 73,
+    "sourceRecordAssociationVerifiedBefore008": true,
+    "actualDACBankStateStillUnknown": true
+  },
+  "previousO007": {
+    "sourceLists": 18,
+    "orderedEntries": 155,
+    "distinctSpritesInThoseLists": 153,
+    "distinctSpritesOutsideThoseLists": 25
+  },
+  "sourceOrphanListRootExclusion": [
+    {
+      "root": 118800,
+      "entries": 5,
+      "typedLEInboundToAnyEntry": 0,
+      "exactRawLittleEndianRootDwordOccurrences": 0,
+      "provenUnused": false,
+      "confirmedCursorConsumer": false
+    },
+    {
+      "root": 119248,
+      "entries": 2,
+      "typedLEInboundToAnyEntry": 0,
+      "exactRawLittleEndianRootDwordOccurrences": 0,
+      "provenUnused": false,
+      "confirmedCursorConsumer": false
+    },
+    {
+      "root": 119280,
+      "entries": 3,
+      "typedLEInboundToAnyEntry": 0,
+      "exactRawLittleEndianRootDwordOccurrences": 0,
+      "provenUnused": false,
+      "confirmedCursorConsumer": false
+    },
+    {
+      "root": 119340,
+      "entries": 4,
+      "typedLEInboundToAnyEntry": 0,
+      "exactRawLittleEndianRootDwordOccurrences": 0,
+      "provenUnused": false,
+      "confirmedCursorConsumer": false
+    },
+    {
+      "root": 119520,
+      "entries": 7,
+      "typedLEInboundToAnyEntry": 0,
+      "exactRawLittleEndianRootDwordOccurrences": 0,
+      "provenUnused": false,
+      "confirmedCursorConsumer": false
+    }
+  ],
+  "nonListSourceSpriteGroups": [
+    {
+      "firstDescriptorObject2": 132408,
+      "lastDescriptorObject2": 132508,
+      "distinctSprites": 9,
+      "originalSourceByteRange": [
+        97380,
+        100360
+      ],
+      "encodedSpanSha256": "dfe7c25d0902173189337048ad6d095f5c9a8818e643d3138fed70e86a5165c5"
+    },
+    {
+      "firstDescriptorObject2": 132668,
+      "lastDescriptorObject2": 132820,
+      "distinctSprites": 13,
+      "originalSourceByteRange": [
+        103196,
+        110256
+      ],
+      "encodedSpanSha256": "20b29e682bda214aa6d2fe26969e12f32b01c3c783098898a9598ef6ce1f810d"
+    },
+    {
+      "firstDescriptorObject2": 132836,
+      "lastDescriptorObject2": 132860,
+      "distinctSprites": 3,
+      "originalSourceByteRange": [
+        110256,
+        111780
+      ],
+      "encodedSpanSha256": "bc41149015fa46d186e488e3718bb1960bffda4ee8abaf753e86c5f276c3b8a2"
+    }
+  ],
+  "originalDirectCodeSpriteSeeds": [
+    {
+      "physical": 593085,
+      "descriptorObject2": 132408
+    },
+    {
+      "physical": 595275,
+      "descriptorObject2": 132408
+    },
+    {
+      "physical": 595287,
+      "descriptorObject2": 132668
+    },
+    {
+      "physical": 525963,
+      "descriptorObject2": 132820
+    },
+    {
+      "physical": 526054,
+      "descriptorObject2": 132860
+    }
+  ],
+  "originalPitPairTableTypedReferences": [
+    {
+      "sourceObject2": 81312,
+      "descriptorObject2": 132836
+    },
+    {
+      "sourceObject2": 81320,
+      "descriptorObject2": 132848
+    },
+    {
+      "sourceObject2": 81328,
+      "descriptorObject2": 132836
+    },
+    {
+      "sourceObject2": 81336,
+      "descriptorObject2": 132848
+    }
+  ],
+  "privateFixtureVerified": {
+    "originalDosFilesReadOnly": true,
+    "committedSourceGitBlobSha1": "152f6117fae9107a6b002079b285b314b853fa41",
+    "committedTestSourceGitBlobSha1": "61a504cecfc309841193f6bceb49e6989f9aa18f",
+    "originalInputRegressionTestsPassed": 19,
+    "originalInputRegressionTestsFailed": 0,
+    "sourceSafeOutputSha256": "7afc889328a215a908152ec78080b375ab05e8500cc17ae2a8b9047c1f99e392",
+    "validationType": "exact committed source and exact committed test source run privately against owner original mk2.zip"
+  },
+  "runtimeEvidence": {
+    "livePaletteDacKnown": false,
+    "frameDurationKnown": false,
+    "neighboringDescriptorsProvenSequentiallyAnimated": false,
+    "unknownFiveListsProvenDead": false
+  },
+  "copyrightSafety": "Only derived addresses, counts and cryptographic source fingerprints committed; no raw palette words, indexed planes or game binaries."
+}
