@@ -180,11 +180,13 @@ def source_control(exe,fx):
         require(0x1d038<=target<=0x1d038+11*4 and (target-0x1d038)%4==0,
                 "variant target not within 12-entry original list")
     # Source at 0x90661 takes a DWORD from [ESI+0x68], moves its high
-    # word to EAX and uses (cursor<<2)+0x1D028 to dereference a list start.
+    # word into EAX, ZEROES cursor high 16 bits, and uses the original
+    # LOW 16-bit index (cursor<<2)+0x1D028 to dereference a list entry.
     # Exact original selector arithmetic and typed table base.
     anchors={
         0x90661:"8b56688915785a07005a",
         0x9066b:"a1785a0700c1e810",
+        0x90673:"66c7057a5a07000000",
         0x9067c:"c125785a070002",
         0x90683:"8105785a070028d00100",
         0x9068d:"50a1785a0700528b108915785a0700",
@@ -202,7 +204,7 @@ def source_control(exe,fx):
             "variantSelectorTableObject2":VARIANT_TABLE,
             "variantPointerDestinationsObject2":list(VARIANT_DESTINATIONS),
             "variantEntryIndices":[(x-0x1d038)//4 for x in VARIANT_DESTINATIONS],
-            "variantInputTaskField":"[ESI+0x68] high WORD as source-derived index",
+            "variantInputTaskField":"LOW 16 bits of [ESI+0x68] choose list entry; original HIGH 16 bits preserved in EAX",
             "variantCodePhysical":0x90661,
             "variantDereferencePhysical":0x90694,
             "variantRuntimeBoundsVerified":False}
