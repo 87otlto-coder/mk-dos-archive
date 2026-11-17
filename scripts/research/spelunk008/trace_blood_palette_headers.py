@@ -30,6 +30,8 @@ DIRECT_SEEDS = ((0x90cbd,0x20538),(0x9154b,0x20538),
                 (0x806e6,0x206fc))
 PAIR_SITES = ((0x13da0,0x206e4),(0x13da8,0x206f0),
               (0x13db0,0x206e4),(0x13db8,0x206f0))
+CONSTRUCTOR_CALLS = ((0x90cc7,0x64548),(0x91561,0x64548),
+                     (0x80695,0x64548),(0x806f0,0x64548))
 EXPECTED_GROUP_SIZES = (7,7,6,1,16,7,18,7,14,6,13,15,1,7,9,7,9,12,5,7,3,1)
 
 
@@ -206,6 +208,18 @@ def classify(exe,gra,fx,ds):
         seeded.append({'originalInstructionPhysical':code,'sourceDescriptorObject2':d,
                        'selectorGlobalObject2':0x75a6c,
                        'paletteHeaderAtSeed':d in anchors})
+    # Original alternatives at 0x9154B and 0x91557 join at the SAME
+    # sprite constructor. The other two immediate selector writes also
+    # have direct constructor calls; no runtime activation is presumed.
+    require(exe[0x91555:0x91557]==bytes.fromhex('eb0a'),
+            'alternate BLOOD seed short branch to shared constructor')
+    constructors=[]
+    for physical,target in CONSTRUCTOR_CALLS:
+        require(exe[physical]==0xe8 and
+                physical+5+struct.unpack_from('<i',exe,physical+1)[0]==target,
+                'original BLOOD sprite constructor call '+hex(physical))
+        constructors.append({'originalCallPhysical':physical,
+                             'sourceConstructorPhysical':target})
     paired=[]
     for site,d in PAIR_SITES:
         pointer(exe,fx,2,site,2,d)
@@ -231,7 +245,8 @@ def classify(exe,gra,fx,ds):
                              'sourceSha256':sha(gra[spans[0][0]:spans[-1][1]])})
     require(sorted(found)==remaining,'unlisted sprite groups not exact complement')
     return {'paletteAnchors':groups,'unlinkedListRoots':unlinked,
-            'directSourceSeeds':seeded,'pitPairedDescriptorReferences':paired,
+            'directSourceSeeds':seeded,'constructorCallWits':constructors,
+            'pitPairedDescriptorReferences':paired,
             'unlistedSpriteGroups':other_groups,'unlistedSpriteCount':25,
             'listReferencedSpriteCount':153}
 
