@@ -1,0 +1,323 @@
+{
+  "schema": "mk2_spelunk_005_bang_suck_static_source_provenance_v1",
+  "date": "2026-11-17",
+  "classification": "VERIFIED_STATIC_SOURCE_AND_CONSUMER_LINKS",
+  "verifiedFixture": {
+    "exeSHA256": "fa93afdc74160ef7bccf1454cd951bdf6008fb418d9c97f9e8c44a36f29f2c65",
+    "exeBytes": 861133,
+    "LEFixups": 27004,
+    "LEUniqueSites": 26994
+  },
+  "resources": [
+    {
+      "name": "BANG.GRA",
+      "resourceId": 12,
+      "bytes": 29556,
+      "sha256": "76bdab89c4262555560bd3958eecca58460bddb4d75f5bce90331ab419151152"
+    },
+    {
+      "name": "SUCK.GRA",
+      "resourceId": 14,
+      "bytes": 122000,
+      "sha256": "d5672116021a56c27b94a14c1eb51e83bb077209cf67fcf92add51553e862d08"
+    }
+  ],
+  "bang": {
+    "selectorTableObject2": 111892,
+    "selectorReferenceCodePhysical": 540946,
+    "selectorInputSignedWordOffset": 10,
+    "pointerSelectedViaIndexNotGuaranteedInRangeAtRuntime": true,
+    "sourceTaskRegisteredAtPhysical": 541089,
+    "taskCallbackPhysical": 541630,
+    "selectedListTaskOffset": 88,
+    "cursorObject2": 481912,
+    "cursorAssignmentPhysical": 541650,
+    "originalFrameAdvanceHelperPhysical": 410458,
+    "numberOfTableEntries": 11,
+    "orderedListReferences": 95,
+    "distinctListSprites": 93,
+    "listFamilies": [
+      {
+        "selectorIndex": 0,
+        "listObject2": 111936,
+        "orderedEntries": 8,
+        "distinctDescriptors": 8,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 111936,
+        "uniqueEncodedSourceSpan": [
+          4420,
+          6916
+        ]
+      },
+      {
+        "selectorIndex": 1,
+        "listObject2": 111976,
+        "orderedEntries": 8,
+        "distinctDescriptors": 8,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 111976,
+        "uniqueEncodedSourceSpan": [
+          6916,
+          11824
+        ]
+      },
+      {
+        "selectorIndex": 2,
+        "listObject2": 112016,
+        "orderedEntries": 8,
+        "distinctDescriptors": 8,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 112016,
+        "uniqueEncodedSourceSpan": [
+          11824,
+          15012
+        ]
+      },
+      {
+        "selectorIndex": 3,
+        "listObject2": 112056,
+        "orderedEntries": 8,
+        "distinctDescriptors": 8,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 112056,
+        "uniqueEncodedSourceSpan": [
+          15012,
+          19004
+        ]
+      },
+      {
+        "selectorIndex": 4,
+        "listObject2": 112096,
+        "orderedEntries": 8,
+        "distinctDescriptors": 8,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 112096,
+        "uniqueEncodedSourceSpan": [
+          19004,
+          21224
+        ]
+      },
+      {
+        "selectorIndex": 5,
+        "listObject2": 112136,
+        "orderedEntries": 8,
+        "distinctDescriptors": 6,
+        "termination": "unrelocated_zero",
+        "backPointerObject2": null,
+        "uniqueEncodedSourceSpan": [
+          21224,
+          23748
+        ]
+      },
+      {
+        "selectorIndex": 6,
+        "listObject2": 112172,
+        "orderedEntries": 8,
+        "distinctDescriptors": 8,
+        "termination": "unrelocated_zero",
+        "backPointerObject2": null,
+        "uniqueEncodedSourceSpan": [
+          23748,
+          24692
+        ]
+      },
+      {
+        "selectorIndex": 7,
+        "listObject2": 112208,
+        "orderedEntries": 8,
+        "distinctDescriptors": 8,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 112208,
+        "uniqueEncodedSourceSpan": [
+          0,
+          1476
+        ]
+      },
+      {
+        "selectorIndex": 8,
+        "listObject2": 112248,
+        "orderedEntries": 6,
+        "distinctDescriptors": 6,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 112248,
+        "uniqueEncodedSourceSpan": [
+          1476,
+          1960
+        ]
+      },
+      {
+        "selectorIndex": 9,
+        "listObject2": 112280,
+        "orderedEntries": 13,
+        "distinctDescriptors": 13,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 112280,
+        "uniqueEncodedSourceSpan": [
+          1960,
+          3460
+        ]
+      },
+      {
+        "selectorIndex": 10,
+        "listObject2": 112340,
+        "orderedEntries": 12,
+        "distinctDescriptors": 12,
+        "termination": "literal_one_and_typed_backpointer",
+        "backPointerObject2": 112340,
+        "uniqueEncodedSourceSpan": [
+          3460,
+          4420
+        ]
+      }
+    ],
+    "separateDescriptorRegion": {
+      "firstCodeConnectedObject2": 112604,
+      "readerPhysical": 540365,
+      "writerPhysical": 541408,
+      "callsitePhysical": 541418,
+      "firstBlockPointerSignedXYRecords": 6,
+      "firstBlockSignedXValues": [
+        48,
+        46,
+        40,
+        29,
+        16,
+        0
+      ],
+      "signedXZeroStopsReaderBeforeEmission": true,
+      "firstBlockUnrelocatedZeroObject2": 112652,
+      "laterUnclassifiedTypedPointerRegionObject2": [
+        112656,
+        112728
+      ],
+      "laterUnclassifiedPointerOffsets": [
+        112656,
+        112668,
+        112676,
+        112684,
+        112692,
+        112700,
+        112708,
+        112716,
+        112724
+      ],
+      "interveningUnrelocatedZeroObject2": 112664,
+      "laterRegionHasDirectTypedIncomingCodeReference": false,
+      "laterRegionConfirmedAnimationList": false,
+      "uniqueSpritesNotInSelectorLists": 8,
+      "additionalDistinctDescriptorObject2": [
+        134316,
+        134332,
+        134344,
+        134356,
+        134368,
+        134380,
+        134392,
+        134404
+      ]
+    },
+    "resourceBytePartition": {
+      "selectorListUniqueSpriteIntervals": [
+        0,
+        24692
+      ],
+      "nonselectorDescriptorIntervals": [
+        24692,
+        29556
+      ],
+      "mainSpanSHA256": "9fee940d2b69237a811fa14dac682b4f9f3e544c4f7cbbe261ce263231e559dd",
+      "otherSpanSHA256": "c36fec70291c40d9c79943524e2c934d45714084e0366897059dbfdb1c157534",
+      "distinctSourceSpriteStreams": 101,
+      "gapCount": 0,
+      "overlapCount": 0,
+      "completeOriginalCompressedSpriteCoverage": true
+    }
+  },
+  "suck": {
+    "sourceListFamilies": [
+      {
+        "tag": "finite_a",
+        "object2": 114432,
+        "entries": 5,
+        "uniqueSprites": 5,
+        "terminator": "unrelocated_zero",
+        "sourceEncodedSpan": [
+          117872,
+          118636
+        ],
+        "spanSHA256": "272820b535377fc97d3190625719cfb0982ebc494a595ceeabedefc7f3b7b241",
+        "codeSourcePhysical": 543017,
+        "consumer": "0x848e9 constructor_then_0x86c99_sequence_runner"
+      },
+      {
+        "tag": "finite_b",
+        "object2": 114456,
+        "entries": 5,
+        "uniqueSprites": 5,
+        "terminator": "unrelocated_zero",
+        "sourceEncodedSpan": [
+          118636,
+          119428
+        ],
+        "spanSHA256": "be9c590b51c5ea8e7bd6ef9846f318ee2e5d01a68a83dbb0264a007233f8c502",
+        "codeSourcesPhysical": [
+          543044,
+          543071
+        ],
+        "consumer": "0x848e9_constructor_then_0x86c99_sequence_runner"
+      },
+      {
+        "tag": "loop",
+        "object2": 114480,
+        "entries": 8,
+        "uniqueSprites": 8,
+        "terminator": "one_and_typed_self_pointer",
+        "sourceEncodedSpan": [
+          119428,
+          122000
+        ],
+        "spanSHA256": "1dca9a833be03d3016dbae001114dfe7b3f70aa63ac457e88f0232be9ad00e50",
+        "codeSourcePhysical": 543128,
+        "consumer": "0x86cc5_normal_reader_then_0x6435a_frame_advance"
+      }
+    ],
+    "separateLookup": {
+      "object2": 114520,
+      "sourcePhysical": 543292,
+      "readPathPhysical": 543302,
+      "descriptorPointers": [
+        137152,
+        137168,
+        137204,
+        137204
+      ],
+      "distinctDescriptorCount": 3,
+      "sourceConsecutiveTimedFrames": false
+    },
+    "linkedGRABytes": [
+      117872,
+      122000
+    ],
+    "linkedSpanBytes": 4128,
+    "linkedSpanSHA256": "a87b9cab47d98fa6f7db0e24947baae153c42d881d9f5696d9e728fbe1e58130",
+    "wholeResourcePartition": false,
+    "unqualifiedPrefixBytes": 117872
+  },
+  "privateReadOnlyEvidence": {
+    "independentSourceStructuralChecks": 600,
+    "deliberateInMemoryRefusals": 11,
+    "committedOriginalFixtureTestSuite": "VALIDATION_PENDING"
+  },
+  "runtimeNotVerified": {
+    "sourceListSelectedDuringFight": false,
+    "actualPresentationPixelReadback": false,
+    "animationFrameTime": false,
+    "nativeDACOrPalette": false,
+    "completeStageComposition": false
+  },
+  "priorResearchRelations": [
+    "O69 originally recognized many individual resource sprite records; do not relabel this as discovery of new artwork.",
+    "Spelunk004 normal sprite reader and common RLE decoder reused without modifications.",
+    "O218/O228 BLOOD.GRA source177 does not belong to this BANG/SUCK evidence."
+  ]
+}
