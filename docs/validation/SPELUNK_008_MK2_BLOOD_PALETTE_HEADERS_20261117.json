@@ -391,11 +391,11 @@
   ],
   "privateFixtureVerified": {
     "originalDosFilesReadOnly": true,
-    "committedSourceGitBlobSha1": "152f6117fae9107a6b002079b285b314b853fa41",
-    "committedTestSourceGitBlobSha1": "61a504cecfc309841193f6bceb49e6989f9aa18f",
-    "originalInputRegressionTestsPassed": 19,
+    "committedSourceGitBlobSha1": "f146138c2ed9f9547bc77ee62cb29d0ea5ed86e1",
+    "committedTestSourceGitBlobSha1": "e88e2ca60ed53cb2a9387c607274787d4769f993",
+    "originalInputRegressionTestsPassed": 20,
     "originalInputRegressionTestsFailed": 0,
-    "sourceSafeOutputSha256": "7afc889328a215a908152ec78080b375ab05e8500cc17ae2a8b9047c1f99e392",
+    "sourceSafeOutputSha256": "a0a1906bdd2a24df143ae47d3f31cfe938352bef6d6cc9f5f62f177d97777a42",
     "validationType": "exact committed source and exact committed test source run privately against owner original mk2.zip"
   },
   "runtimeEvidence": {
@@ -404,5 +404,18 @@
     "neighboringDescriptorsProvenSequentiallyAnimated": false,
     "unknownFiveListsProvenDead": false
   },
-  "copyrightSafety": "Only derived addresses, counts and cryptographic source fingerprints committed; no raw palette words, indexed planes or game binaries."
+  "copyrightSafety": "Only derived addresses, counts and cryptographic source fingerprints committed; no raw palette words, indexed planes or game binaries.",
+  "originalConstructorProof": {
+    "sourceSelectedDescriptorGlobalObject2": 481900,
+    "constructorPhysical": 410952,
+    "originalNearCallSites": [
+      593095,
+      595297,
+      525973,
+      526064
+    ],
+    "alternateSeedShortJumpPhysical": 595285,
+    "alternateSeedSharedConstructorPhysical": 595297,
+    "originalGameRunObserved": false
+  }
 }
