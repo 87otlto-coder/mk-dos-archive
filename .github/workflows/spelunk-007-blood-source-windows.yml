@@ -1,0 +1,36 @@
+name: Spelunk 007 original MK2 blood source control (Windows, game-free)
+on:
+  push:
+    branches: ['research/spelunk-007-mk2-blood-list-control']
+    paths:
+      - 'scripts/research/spelunk007/**'
+      - '.github/workflows/spelunk-007-blood-source-windows.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check source syntax and twelve original-free controls
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -B -m py_compile scripts/research/spelunk006/trace_suck_nested_sources.py
+          if ($LASTEXITCODE -ne 0) { throw 'Inherited LE/RLE source syntax failed' }
+          python -B -m py_compile scripts/research/spelunk007/trace_blood_source_lists.py
+          if ($LASTEXITCODE -ne 0) { throw 'Blood original source audit syntax failed' }
+          python -B -m py_compile scripts/research/spelunk007/test_original_fixture.py
+          if ($LASTEXITCODE -ne 0) { throw 'Private fixture test source syntax failed' }
+          python -B -m unittest discover -s scripts/research/spelunk007 -p test_synthetic_source_control.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 007 original-free controls failed' }
+          Write-Host 'SPELUNK_007_SYNTHETIC=PASS'
+          Write-Host 'SPELUNK_007_COMMERCIAL_INPUTS_IN_CI=false'
+          Write-Host 'SPELUNK_007_GAME_EXECUTED=false'
+          Write-Host 'SPELUNK_007_NATIVE_TIMING_OR_DAC_VALIDATED=false'
+          # Do not upload CI artifacts or commercial game bytes.
