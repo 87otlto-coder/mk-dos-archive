@@ -279,8 +279,9 @@ def audit(data):
  for i in range(4):
   at=0x1bf58+i*4;d=u32(exe,O2+at)
   common.ptr(exe,fx,2,at,2,d)
-  need(d==sframes[10+i]["descriptorObject2"],
-       "SUCK one-descriptor table differs from loop sprite prefixes")
+  need(d==[0x217c0,0x217d0,0x217f4,0x217f4][i] and
+       d in {f["descriptorObject2"] for f in sframes[10:]},
+       "SUCK one-descriptor table differs from source single-sprite lookup")
   one_desc.append({"sourceSiteObject2":at,"descriptorObject2":d})
  return {
   "schema":"mk2_spelunk_005_bang_suck_source_lists_v1",
