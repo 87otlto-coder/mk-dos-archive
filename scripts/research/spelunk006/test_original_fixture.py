@@ -62,7 +62,11 @@ class OriginalSUCK(unittest.TestCase):
         self.assertEqual((c['selectorLoadPhysical'],c['indexHelperPhysical'],c['selectionStorePhysical']), (0x846ca,0x64ed2,0x846d4))
         self.assertEqual(c['indexSourceObjectField'],0x46)
         self.assertEqual(c['schedulerWaitJumpPhysical'],0x846e8)
-        self.assertFalse(c['directSelectedGroupToInterpreterCallProven'])
+        self.assertTrue(c['directSelectedGroupToInterpreterCallProven'])
+
+    def test_direct_interpreter_call_opcode_and_target(self):
+        self.assertEqual(self.exe[0x8682d:0x86832].hex(),'e847d6fdff')
+        self.assertEqual(0x86832+__import__('struct').unpack_from('<i',self.exe,0x8682e)[0],0x63e79)
 
     def test_suffix_links_preserved(self):
         r=self.report
