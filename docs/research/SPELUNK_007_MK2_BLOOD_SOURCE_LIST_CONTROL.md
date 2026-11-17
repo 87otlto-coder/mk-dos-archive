@@ -38,7 +38,7 @@ An original four-pointer table at Object2 `0x1D028` contains type-7 LE targets:
 | 2 | `0x1D04C` | 5 |
 | 3 | `0x1D058` | 8 |
 
-The original source at `0x90661–0x9069C` transfers source state from task `[ESI+0x68]`, isolates its high 16-bit portion, performs the source index×4 / table-base arithmetic at `0x9067C–0x9068D`, dereferences the selected pointer at `0x90694`, and installs that result in Object2 cursor `0x75A78`. The table-base operand is itself an original typed relocation.
+The original source at `0x90661–0x9069C` transfers a DWORD from task `[ESI+0x68]` into cursor `0x75A78`. At `0x9066B` it copies the **high 16 bits into EAX**, then at `0x90673` it **clears the cursor's high word**. Thus the index×4 / table-base arithmetic at `0x9067C–0x9068D` uses the **low 16 bits** of the original task DWORD, not its high 16 bits. At `0x90694` it dereferences the chosen pointer and stores that result back in cursor `0x75A78`. The exact original high-word clearing opcode is `66c7057a5a07000000`. The table-base operand is itself an original typed relocation.
 
 This is **one underlying 12-entry descriptor list with four source-selected entry points**, not four separate source-image records or four independently timed animations. Actual runtime index bounds and which slot a real fight chooses remain **UNKNOWN**. The specific task-field packing and downstream wait/reader presentation are not guessed beyond the original source instructions.
 
