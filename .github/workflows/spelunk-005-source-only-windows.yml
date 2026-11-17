@@ -25,6 +25,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Inherited parser syntax failed' }
           python -B -m py_compile scripts/research/spelunk005/trace_bang_suck_sources.py
           if ($LASTEXITCODE -ne 0) { throw 'New original-input producer syntax failed' }
+          python -B -m py_compile scripts/research/spelunk005/test_original_fixture.py
+          if ($LASTEXITCODE -ne 0) { throw 'Private original-fixture regression suite has invalid syntax' }
           python -B -m unittest discover -s scripts/research/spelunk005 -p test_synthetic_source_mechanics.py -v
           if ($LASTEXITCODE -ne 0) { throw 'Spelunk005 synthetic controls failed' }
           Write-Host 'SPELUNK005_SYNTHETIC=PASS'
