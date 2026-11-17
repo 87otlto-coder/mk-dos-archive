@@ -119,7 +119,6 @@ def rle_end(resource,start,w,h):
                 at+=(n+3)&~3
             require(0<n<=w-x,'source run crosses row')
             x+=n
-
     return at
 
 
@@ -274,6 +273,5 @@ def main():
                       'descriptorSourceGroups':len(result['paletteAnchors']),
                       'unreferencedListRoots':len(result['unlinkedListRoots']),
                       'unlistedSprites':result['unlistedSpriteCount']}))
-
 
 if __name__=='__main__':main()
