@@ -29,7 +29,8 @@ SUCK_SPECS=(
  ("suck_finite_b",0x1bf18,5,0,None),
  ("suck_loop",0x1bf30,8,1,0x1bf30),
 )
-BANG_PAIRS=(("source_connected",0x1b7dc,6),("separate_no_direct_typed_inbound",0x1b810,9))
+BANG_PAIRS=(("source_connected",0x1b7dc,6),)
+BANG_UNCLASSIFIED_RANGE=(0x1b810,0x1b858)
 def need(ok,msg):
  if not ok:raise ValueError("SPELUNK005: "+msg)
 def u32(b,at):return struct.unpack_from("<I",b,at)[0]
@@ -157,32 +158,61 @@ def sequence(exe,fx,gra,rid,start,count,token,back):
          "orderedEntries":frames}
 
 def bang_placement(exe,fx,gra):
- arrangements=[]
- for label,root,count in BANG_PAIRS:
-  pairs=[]
-  for i in range(count):
-   at=root+8*i;d=u32(exe,O2+at)
-   common.ptr(exe,fx,2,at,2,d)
-   sprite=descriptor(exe,fx,gra,12,d)
-   signedXY=[s16(exe,O2+at+4),s16(exe,O2+at+6)]
-   pairs.append({"sourceEntryObject2":at,"descriptorObject2":d,
-                 "pairedSignedWords":signedXY,
-                 "descriptorSourceSpan":[sprite["sourceStart"],
-                                         sprite["sourceEndExclusive"]]})
-  end=root+8*count
-  need(u32(exe,O2+end)==0 and (2,end) not in fx,
-       "paired coordinate block terminator changed")
-  arrangements.append({"label":label,"sourceStartObject2":root,
-                       "pointerPairs":pairs,"terminatorObject2":end,
-                       "directCodeReferenceObserved":label=="source_connected",
-                       "firstZeroSignedXAt":next((i for i,p in enumerate(pairs)
-                                               if p["pairedSignedWords"][0]==0),None)})
- # Original reader checks signed X==0 before reading the associated Y.
- need(arrangements[0]["firstZeroSignedXAt"]==5,
-      "code-connected paired records changed terminator position")
- need(arrangements[1]["firstZeroSignedXAt"] is None,
-      "second paired table source terminator changed")
- return arrangements
+ # The only *code-connected* original 8-byte pointer+two-signed-word
+ # records start at 0x1B7DC. The reader at 0x83ECD stops on the first
+ # signed X==0, so its sixth pointer record is a sentinel, not proof of
+ # a sixth rendered sprite.
+ label,root,count=BANG_PAIRS[0]
+ first=[]
+ for i in range(count):
+  at=root+8*i;d=u32(exe,O2+at)
+  common.ptr(exe,fx,2,at,2,d)
+  sprite=descriptor(exe,fx,gra,12,d)
+  first.append({"sourceEntryObject2":at,"descriptorObject2":d,
+               "pairedSignedWords":[s16(exe,O2+at+4),s16(exe,O2+at+6)],
+               "descriptorSourceSpan":[sprite["sourceStart"],
+                                       sprite["sourceEndExclusive"]]})
+ stop=root+8*count
+ need(u32(exe,O2+stop)==0 and (2,stop) not in fx,
+      "source-connected BANG paired block no longer has zero word")
+ need([p["pairedSignedWords"][0] for p in first]==[48,46,40,29,16,0],
+      "source-connected BANG signed-X sentinel placement changed")
+ # The following region is **not** homogeneous pairs: one unrelocated zero
+ # appears between otherwise typed descriptor pointers. Source semantics
+ # were NOT established. Record only what the original LE fixups prove.
+ start,end=BANG_UNCLASSIFIED_RANGE
+ tail=[]
+ for at in range(start,end,4):
+  e=fx.get((2,at))
+  if e is None or e[:3]!=(7,16,2):continue
+  d=e[3]
+  if not (0<=d<0x32000 and O2+d+12<=len(exe)):continue
+  if (u32(exe,O2+d+8)>>24)!=12:continue
+  common.ptr(exe,fx,2,at,2,d)
+  sprite=descriptor(exe,fx,gra,12,d)
+  tail.append({"sourceEntryObject2":at,"descriptorObject2":d,
+               "descriptorSourceSpan":[sprite["sourceStart"],
+                                       sprite["sourceEndExclusive"]]})
+ need([p["sourceEntryObject2"] for p in tail]==
+      [0x1b810,0x1b81c,0x1b824,0x1b82c,0x1b834,
+       0x1b83c,0x1b844,0x1b84c,0x1b854],
+      "unclassified BANG descriptor-pointer sites changed")
+ need((2,0x1b818) not in fx and u32(exe,O2+0x1b818)==0,
+      "intervening unrelocated BANG zero missing")
+ return [
+  {"label":"source_connected_pointer_signed_xy",
+   "sourceStartObject2":root,"pointerPairs":first,
+   "firstZeroSignedXAt":5,
+   "readerStopsBeforeDrawingThatPointer":True,
+   "directCodeReferenceObserved":True},
+  {"label":"separate_unclassified_typed_descriptor_region",
+   "sourceRegionObject2":[start,end],
+   "pointerPairs":tail,
+   "containsNonuniformInterveningZero":True,
+   "directCodeReferenceObserved":False,
+   "otherFieldsNotClassified":True}
+ ]
+
 
 def coverage(frames,bytes_total):
  by_descriptor={}
@@ -282,7 +312,7 @@ def audit(data):
   "qualification":[
       "BANG has source byte-complete descriptor coverage, not proven execution of every listed animation/paired record.",
       "The 11 BANG lists have 95 references to 93 sprites: two repeated descriptor references in the sixth list are deliberate source data.",
-      "The first BANG pointer/coordinate stream has a signed-X zero stop; the later nine-record block has no direct typed code reference identified.",
+      "The first BANG pointer/signed-XY stream stops at the sixth record's X=0 before drawing that descriptor; the later nine typed descriptor references are not a uniform record stride and have no identified direct code consumer.",
       "SUCK three source lists are not equivalent: two five-entry zero-terminated and one eight-entry loop; separate four-pointer lookup is not a fourth ordered animation.",
       "Global cursor or source call arguments are not actual display frame duration.",
       "Resource IDs 12 and 14 identify original files, not active VGA DAC palette banks."
