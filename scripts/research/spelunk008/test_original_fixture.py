@@ -47,6 +47,10 @@ class Original(unittest.TestCase):
     def test_direct_seed_selection(self):
         self.assertEqual([(x['originalInstructionPhysical'],x['sourceDescriptorObject2'])
                           for x in self.r['directSourceSeeds']],list(a.DIRECT_SEEDS))
+    def test_constructor_join_and_branches(self):
+        self.assertEqual(self.exe[0x91555:0x91557].hex(),'eb0a')
+        self.assertEqual([(x['originalCallPhysical'],x['sourceConstructorPhysical'])
+                          for x in self.r['constructorCallWits']],list(a.CONSTRUCTOR_CALLS))
     def test_pit_pair_sites(self):
         self.assertEqual([(x['sourceObject2'],x['descriptorObject2'])
                           for x in self.r['pitPairedDescriptorReferences']],list(a.PAIR_SITES))
