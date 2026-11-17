@@ -81,8 +81,9 @@
     ],
     "selectionPhysical": 591457,
     "pointerDereferencePhysical": 591508,
-    "sourceInput": "high 16 bits of task [ESI+0x68]",
-    "selectorBoundsObserved": false
+    "sourceInput": "LOW 16 bits of task [ESI+0x68] after high word of cursor is cleared at physical 0x90673; original HIGH half saved in EAX",
+    "selectorBoundsObserved": false,
+    "originalClearHighWordPhysical": 591475
   },
   "repeatedReferences": {
     "listObject2": 119360,
