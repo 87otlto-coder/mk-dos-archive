@@ -1,0 +1,34 @@
+name: Spelunk 009 MK2 BANG paired records (Windows original-free)
+on:
+  push:
+    branches: ['research/spelunk-009-mk2-bang-secondary-records']
+    paths:
+      - 'scripts/research/spelunk009/**'
+      - '.github/workflows/spelunk-009-bang-original-free.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-controls:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile exact private source and run commercial-free control tests
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -B -m py_compile scripts/research/spelunk009/trace_bang_secondary.py
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 009 producer syntax failure' }
+          python -B -m py_compile scripts/research/spelunk009/test_original_fixture.py
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 009 private fixture test syntax failure' }
+          python -B -m unittest discover -s scripts/research/spelunk009 -p test_synthetic_source.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Spelunk 009 original-free synthetic failure' }
+          Write-Host 'SPELUNK_009_SYNTHETIC=PASS'
+          Write-Host 'SPELUNK_009_COMMERCIAL_FILES_IN_CI=false'
+          Write-Host 'SPELUNK_009_ORIGINAL_GAME_RUN=false'
+          Write-Host 'SPELUNK_009_LIVE_DAC_OR_FRAME_TIMING_VERIFIED=false'
+          # No original DOS games, extracted sprites or CI artifacts are uploaded.
