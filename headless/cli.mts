@@ -3,6 +3,7 @@ import { mountain, mountainRelationships } from './mountain.mts';
 
 import { sourceSprites, spriteFamilies } from './source-sprites.mts';
 import { sourceProgram } from './source-program.mts';
+import { stageSetup } from './stage-setup.mts';
 import { diagnostic } from './preview.mts';
 
 async function main([command, root, resource, ordinal, output, ...extra]: string[]) {
@@ -12,9 +13,13 @@ async function main([command, root, resource, ordinal, output, ...extra]: string
     return;
   }
   if (!root || !resource)
-    throw new Error('Usage: identify ROOT | list ROOT RESOURCE | relationships ROOT RESOURCE | extract/preview ROOT RESOURCE ORDINAL NEW_DIRECTORY');
+    throw new Error('Usage: stage ROOT STAGE MODE | identify ROOT | list ROOT RESOURCE | relationships ROOT RESOURCE | extract/preview ROOT RESOURCE ORDINAL NEW_DIRECTORY');
   if (command === 'relationships' && !ordinal) {
     console.log(JSON.stringify(resource === 'mountain.gra' ? await mountainRelationships(root) : await sourceProgram(root, resource), null, 2));
+    return;
+  }
+  if (command === 'stage' && ordinal && !output) {
+    console.log(JSON.stringify(await stageSetup(root, resource, ordinal), null, 2));
     return;
   }
   const listing = command === 'list' && !ordinal;
