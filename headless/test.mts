@@ -4,6 +4,7 @@ import { readFile, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { decodeFrames, intro, sha, writeAsset } from './engine.mts';
+import { mountain, decodeMountain } from './mountain.mts';
 
 test('native LZW frame preserves index zero', () => {
   const codes = Array.from({length: 64000}, (_, i) => [256, i % 256]).flat();
@@ -51,5 +52,25 @@ test('original intro exports match independent hashes and boundaries', {skip: !r
     }
   } finally {
     await rm(output, {recursive: true});
+  }
+});
+
+test('Mountain rejects malformed descriptor or resource evidence', () => {
+  assert.throws(() => decodeMountain(new Uint8Array(861133), new Uint8Array()), /filename pool/);
+});
+
+test('original Mountain graphics match independent pixels, masks and extents', {skip: !root}, async () => {
+  const reference = JSON.parse(await readFile(new URL('../scripts/fixtures/mk2-p13-mountain-independent-parity.json', import.meta.url), 'utf8'));
+  const assets = await mountain(root!);
+  assert.equal(assets.length, reference.records.length);
+  for (const [i, asset] of assets.entries()) {
+    const record = reference.records[i];
+    assert.equal(sha(asset.indices), record.pixelSHA256);
+    assert.equal(sha(asset.opacity), record.maskSHA256);
+    assert.equal(asset.metadata.source.offset, record.offset);
+    assert.equal(asset.metadata.source.endExclusive, record.endExclusive);
+    assert.equal(asset.metadata.source.descriptorPhysical, record.descriptorPhysical);
+    assert.equal(asset.metadata.selectedBySourceTable, record.selected);
+    assert.deepEqual(asset.metadata.commandCounts, record.commands);
   }
 });
