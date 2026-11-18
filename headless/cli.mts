@@ -1,4 +1,5 @@
 import { identify, intro, writeAsset } from './engine.mts';
+import { mountain } from './mountain.mts';
 
 async function main([command, root, resource, ordinal, output]: string[]) {
   if (command === 'identify' && root && !resource) {
@@ -7,7 +8,7 @@ async function main([command, root, resource, ordinal, output]: string[]) {
   }
   if (!root || !resource)
     throw new Error('Usage: identify ROOT | list ROOT RESOURCE | extract ROOT RESOURCE ORDINAL NEW_DIRECTORY');
-  const assets = await intro(root, resource);
+  const assets = resource === 'mountain.gra' ? await mountain(root) : await intro(root, resource);
   if (command === 'list' && !ordinal) {
     console.log(JSON.stringify(assets.map(asset => asset.metadata), null, 2));
     return;
