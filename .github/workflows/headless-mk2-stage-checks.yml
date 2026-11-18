@@ -1,0 +1,27 @@
+name: Headless MK2 stage checks
+
+on:
+  push:
+    branches: [feat/headless-mk2-stages]
+    paths:
+      - 'headless/**'
+      - '.github/workflows/headless-mk2-stage-checks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  original-free:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: node --test headless/test.mts headless/source-sprites.test.mts headless/source-program.test.mts headless/stage-setup.test.mts
+      - run: python -m pip install Pillow==13.0.0
+      - run: python headless/test-stage-components.py -v
