@@ -11,6 +11,45 @@ interface IndexedImage {
   indices: Uint8Array; mask: Uint8Array;
   minIndex: number; maxIndex: number; commandCounts: { skip: number; rle: number; literal: number };
 }
+export function mountainOrders(exe: Uint8Array) {
+  const ev = new DataView(exe.buffer, exe.byteOffset, exe.byteLength);
+  const u32 = (position: number) => ev.getUint32(position, true);
+  const sourceOrders: number[][] = [];
+  for (let variant = 0; variant < 6; variant++) {
+    const target = u32(OBJ2_IMAGE + 0x2af80 + variant*4);
+    ensure(target === 0x2af98 + variant*32, `O96R original word-stream pointer ${variant}`);
+    const words = Array.from({length:16}, (_,i) => ev.getInt16(OBJ2_IMAGE + target + i*2,true));
+    ensure(words[14] === 13 && words[15] === -1 &&
+      JSON.stringify([...words.slice(0,14)].sort((a,b)=>a-b)) === JSON.stringify([...Array(13)].map((_,i)=>i).concat([14])),
+      `O96U conditional object-source token domain variant ${variant}`);
+    sourceOrders.push(words.slice(0,14));
+  }
+  ensure(new Set(sourceOrders.map(x=>JSON.stringify(x))).size===5 &&
+    JSON.stringify(sourceOrders[2])===JSON.stringify(sourceOrders[3]), 'O96U six variants / five distinct source orders');
+  for (let j=0;j<14;j++) {
+    ensure(ev.getInt16(OBJ2_IMAGE + 0x1c2c6 + j*2,true)===771-47*j,
+      `O96S source object high-word input ${j}`);
+  }
+  return sourceOrders;
+}
+
+export async function mountainRelationships(root: string) {
+  const executable = await identify(root);
+  const exe = await verified(root, executable.file, executable.bytes, executable.sha256);
+  const assets = await mountain(root);
+  return {
+    schema: 1, kind: 'conditional-source-object-lists', evidence: 'VERIFIED', executable,
+    runtimeSelectedVariant: 'UNKNOWN', runtimePlaybackOrder: 'UNKNOWN', runtimeTiming: 'UNKNOWN',
+    pointerTablePhysical: OBJ2_IMAGE + POINTER_TABLE,
+    variants: mountainOrders(exe).map((tokens, ordinal) => ({
+      ordinal, wordStreamPhysical: OBJ2_IMAGE + 0x2af98 + ordinal * 32,
+      tokens, terminatorWords: [13, -1],
+      assetIds: tokens.map(token => assets[Math.min(token, 13)].metadata.id)
+    })),
+    adjacentUnselectedAssetId: assets[14].metadata.id
+  };
+}
+
 function ensure(ok: unknown, reason: string): asserts ok {
   if (!ok) throw Error('P13 original MOUNTAIN.GRA: ' + reason);
 }
