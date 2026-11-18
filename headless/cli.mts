@@ -3,7 +3,8 @@ import { mountain, mountainRelationships } from './mountain.mts';
 
 import { diagnostic } from './preview.mts';
 
-async function main([command, root, resource, ordinal, output]: string[]) {
+async function main([command, root, resource, ordinal, output, ...extra]: string[]) {
+  if (extra.length) throw new Error('Unexpected arguments');
   if (command === 'identify' && root && !resource) {
     console.log(JSON.stringify(await identify(root), null, 2));
     return;
@@ -14,12 +15,15 @@ async function main([command, root, resource, ordinal, output]: string[]) {
     console.log(JSON.stringify(await mountainRelationships(root), null, 2));
     return;
   }
+  const listing = command === 'list' && !ordinal;
+  const exporting = (command === 'extract' || command === 'preview') && /^\d+$/.test(ordinal) && output;
+  if (!listing && !exporting) throw new Error('Invalid command or arguments');
   const assets = resource === 'mountain.gra' ? await mountain(root) : await intro(root, resource);
-  if (command === 'list' && !ordinal) {
+  if (listing) {
     console.log(JSON.stringify(assets.map(asset => asset.metadata), null, 2));
     return;
   }
-  if ((command === 'extract' || command === 'preview') && /^\d+$/.test(ordinal) && output && assets[Number(ordinal)]) {
+  if (exporting && assets[Number(ordinal)]) {
     const asset = assets[Number(ordinal)];
     await writeAsset(output, asset, command === 'preview' ? diagnostic(asset) : undefined);
     return;
