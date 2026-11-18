@@ -66,3 +66,64 @@ config('BLOOD.GRA', r[7]['sourceBloodGraSha256'], r[7]['allSprites'],
        (['sourceStart','sourceEndExclusive','descriptorObject2','dimensions','localXY'],'indexedSha256','opacityMaskSha256'))
 assert [len(families[f]['records']) for f in ['armory.gra','forest.gra','soul.gra','fireskel.gra','bang.gra','suck.gra','blood.gra']] == [12,7,17,12,101,83,178]
 output.write_text(json.dumps(families,separators=(',',':'))+'\n',encoding='utf8')
+
+programs = {}
+def asset_id(name, descriptor):
+    return f'mk2:sprite:{name}:{descriptor:x}'
+
+def ordered(name, label, root, marker, rewind, entries, evidence=None):
+    result = dict(kind='descriptor-list', label=label, rootObject2=root,
+                  entries=[dict(siteObject2=root + i*4, descriptorObject2=d, assetId=asset_id(name, d))
+                           for i, d in enumerate(entries)],
+                  control=dict(kind='stop' if marker == 0 else 'rewind', sourceMarker=marker,
+                               targetObject2=rewind, targetOrdinal=None if rewind is None else (rewind-root)//4))
+    if rewind is not None:
+        assert rewind >= root and (rewind-root)%4 == 0 and result['control']['targetOrdinal'] < len(entries)
+    if evidence is not None:
+        result['consumerEvidence'] = evidence
+    return result
+
+for t in r[3]['tracks']:
+    name = t['resourceName'].lower()
+    programs[name] = dict(programs=[ordered(name, t['track'], t['listObject2'], t['terminalWord'], None,
+                                           [f['descriptorObject2'] for f in t['frames']], t['sourceCode'])])
+
+for resource in ['SOUL', 'FIRESKEL']:
+    name = resource.lower()+'.gra'
+    programs[name] = dict(kind='source-phases' if resource == 'SOUL' else 'conditional-source-lists',
+                          sourceControl=r[4][resource]['sourceControl'], programs=[
+       ordered(name,t['track'],t['listObject2'],t['sourceLoopToken'],t['sourceBackPointerObject2'],
+               [f['descriptorObject2'] for f in t['sourceOrderedFrames']])
+       for t in r[4]['tracks'] if t['sourceResource'].lower() == name])
+
+for resource in ['BANG', 'SUCK']:
+    name = resource.lower()+'.gra'
+    programs[name] = dict(sourceControl=r[5]['control'][resource], programs=[
+       ordered(name, t.get('selectorIndex', t.get('trackName')), t['listObject2'], t['terminator'], t['backPointer'],
+               [f['descriptorObject2'] for f in t['orderedEntries']])
+       for t in r[5][resource]['sourceListFamilies']])
+
+def link(name, row):
+    return dict(row, assetId=asset_id(name, row['descriptorObject2']))
+
+programs['suck.gra'].update(selectorTableObject2=r[6]['sourceSelectorTableObject2'],
+                            selectorSlots=r[6]['selectorSlots'], nestedInterpreter=r[6]['codeProvenance'],
+                            nestedGroups=[dict(t, records=[link('suck.gra', f) for f in t['records']])
+                                          for t in r[6]['nestedSourceGroups']],
+                            singleDescriptorLookup=[link('suck.gra', t) for t in r[5]['SUCK']['separateSingleDescriptorLookup']])
+programs['bang.gra'].update(selectorTableObject2=bang['selectorTableObject2'],
+                            secondaryGroups=[dict(t, records=[link('bang.gra', f) for f in t['records']])
+                                             for t in r[9]['secondaryGroups']],
+                            constructor=r[9]['consumerInstructions'],
+                            paletteSourceAnchors=r[9]['sourceColourGroups'])
+programs['blood.gra'] = dict(programs=[
+    ordered('blood.gra', t['rootObject2'],t['rootObject2'],t['marker'],t['rewindObject2'],
+            t['originalDescriptorOrderObject2'],
+            dict(kind=t['codeLinked'], cursorWritesPhysical=t['directCodeCursorWritePhysical']))
+    for t in r[7]['sourceLists']], entrySelector=r[7]['sourceReaderAndVariantControls'],
+    paletteSourceAnchors=r[8]['paletteAnchors'], directSeeds=r[8]['directSourceSeeds'],
+    constructors=r[8]['constructorCallWits'], placementReferences=r[8]['pitPairedDescriptorReferences'],
+    structuralOnlyLists=r[8]['unlinkedListRoots'])
+for name, program in programs.items():
+    output.with_name(name.removesuffix('.gra')+'-program.json').write_text(
+        json.dumps(program,separators=(',',':'))+'\n', encoding='utf8')
