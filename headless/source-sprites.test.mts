@@ -24,6 +24,8 @@ for (const [name, count] of Object.entries({
   test(`${name} original indexed and opacity reference parity`, {skip: !root}, async () => {
     const sprites = await sourceSprites(root!, `${name}.gra`);
     assert.equal(sprites.length, count);
+    assert.equal(sprites.filter(sprite => sprite.metadata.paletteSourcePointer !== null).length,
+      name === 'bang' ? 12 : name === 'blood' ? 22 : 0);
     assert.equal(new Set(sprites.map(x => x.metadata.id)).size, count);
     assert.equal(new Set(sprites.map(x => x.metadata.source.offset)).size, count);
   });
