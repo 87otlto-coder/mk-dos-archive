@@ -10,7 +10,7 @@ Continuation of `1c5ad1c6c2420471432b5badbf3cb1235af95a14`. The canonical checko
 | Stage structure | Tomb, Portal, Tower × modes 1, 2, other | VERIFIED STATIC. Nine manifests matched P90 root spans, ordered bindings, origins, state channels, centers and draw commands. |
 | Stage source components | Tomb and Portal source-local P82 layers and packed floors | VERIFIED STATIC for hash-pinned P82 planes and original GRA identities. Tower is a stage-structure holdout. |
 | Conditional viewport contributions | Tomb and Portal mode 2, initializer and +32 vectors | Eighteen index and mask pairs matched independent P90 hashes. VGA palette, live transforms, object activation and compositing remain UNKNOWN. |
-| Authentic viewport | P91 Tomb mode 2 | VALIDATION PENDING. See the runtime update below. |
+| Authentic viewport | P91 Tomb mode 2 | VALIDATION PENDING. [Runtime recovery checkpoint](P91-CYCLE3-RECOVERY.md). |
 
 The stage command reads the authenticated original EXE's root table, setup and draw programs. It preserves disabled sentinels and untouched slots separately. Setup addresses, signed origins, dimensions, control and sprite table pointers, list heads, and state channels come from the original records and verified source rules. Four O120-qualified palette families expose source record links only. It does not infer DAC allocation. The parser is locked to the fixture fingerprint and checked against references previously qualified by P90's independent initializer replay.
 
