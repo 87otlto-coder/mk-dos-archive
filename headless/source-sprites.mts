@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import index from './spelunk-index.json' with { type: 'json' };
 import { identify, sha, verified } from './engine.mts';
 
@@ -45,6 +46,17 @@ export async function sourceSprites(root: string, name: string) {
   const resource = await verified(root, name, family.bytes, family.sha256);
   const resourceId = exe.toString('latin1', 0xa0ef1, 0xa13a7).split('\0').indexOf(name.toUpperCase());
   if (resourceId < 0) throw new Error('Resource registry mismatch');
+  const anchors = new Map<number, { descriptorPointerSiteObject2: number; sourceRecordObject1: number }>();
+  if (name === 'bang.gra' || name === 'blood.gra') {
+    const program = JSON.parse(await readFile(new URL(`./${name.slice(0, -4)}-program.json`, import.meta.url), 'utf8'));
+    for (const anchor of program.paletteSourceAnchors) {
+      const site = anchor.typedSourcePointerObject2 ?? anchor.typedPalettePointerSiteObject2;
+      const sourceRecord = anchor.sourceRecordObject1 ?? anchor.sourcePaletteRecordObject1;
+      if (site !== anchor.anchorDescriptorObject2 + 12 || exe.readUInt32LE(object2Physical + site) !== sourceRecord)
+        throw new Error('Source descriptor palette pointer mismatch');
+      anchors.set(anchor.anchorDescriptorObject2, {descriptorPointerSiteObject2: site, sourceRecordObject1: sourceRecord});
+    }
+  }
   const assets = family.records.map(([offset, endExclusive, descriptorObject2, width, height, x, y], ordinal) => {
     const physical = object2Physical + descriptorObject2;
     const packed = exe.readUInt32LE(physical + 8);
@@ -58,7 +70,7 @@ export async function sourceSprites(root: string, name: string) {
       ...decodeSprite(encoded, width, height),
       metadata: {
         schema: 1, id: `mk2:sprite:${name}:${descriptorObject2.toString(16)}`, ordinal, width, height,
-        descriptorLocalXY: [x, y],
+        descriptorLocalXY: [x, y], paletteSourcePointer: anchors.get(descriptorObject2) ?? null,
         source: { name, offset, endExclusive, sha256: family.sha256, bytes: family.bytes,
           descriptorObject2, descriptorPhysical: physical, descriptorBaseBytes: 12, resourceId,
           encodedSha256: sha(encoded), executable },
