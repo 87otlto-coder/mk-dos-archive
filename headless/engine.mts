@@ -131,14 +131,15 @@ export async function intro(root: string, name: string) {
 export type Asset = { indices: Uint8Array; opacity: Uint8Array;
   metadata: { width: number; height: number; [field: string]: unknown } };
 
-export async function writeAsset(output: string, asset: Asset, preview?: Uint8Array) {
+export async function writeAsset(output: string, asset: Asset, preview?: { pam: Uint8Array; mapped: Uint8Array; mode: string; runtimeFidelity: string }) {
   const contents = [
     ['indices.bin', asset.indices], ['opacity.bin', asset.opacity]
-  ] as const;
+  ] as [string, Uint8Array][];
+  if (preview) contents.push(['preview.pam', preview.pam], ['diagnostic-palette-mapped.bin', preview.mapped]);
   await mkdir(output);
   for (const [name, data] of contents) await writeFile(join(output, name), data, {flag: 'wx'});
-  if (preview) await writeFile(join(output, 'preview.pam'), preview, {flag: 'wx'});
   await writeFile(join(output, 'metadata.json'), JSON.stringify({
-    ...asset.metadata, sha256: Object.fromEntries(contents.map(([name, data]) => [name, sha(data)]))
+    ...asset.metadata, ...(preview && { preview: { mode: preview.mode, runtimeFidelity: preview.runtimeFidelity } }),
+    sha256: Object.fromEntries(contents.map(([name, data]) => [name, sha(data)]))
   }, null, 2) + '\n', {flag: 'wx'});
 }
