@@ -1,5 +1,7 @@
 # MK DOS Extractor headless foundation
 
+The continuation branch adds seven original MK2 sprite families. See [MK2 source programs](MK2-SOURCE-PROGRAMS.md) for current coverage, commands and validation.
+
 Node.js 24 runs these TypeScript modules directly. There is no install or build step. The CLI and its tests import only this directory, Node built-ins and the committed hash-only test references. See [migration audit](MIGRATION.md).
 
 ## Windows PowerShell
