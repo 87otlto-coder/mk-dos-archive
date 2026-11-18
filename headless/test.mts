@@ -6,6 +6,8 @@ import { join } from 'node:path';
 import { decodeFrames, intro, sha, writeAsset } from './engine.mts';
 import { mountain, decodeMountain, mountainRelationships } from './mountain.mts';
 
+import { diagnostic } from './preview.mts';
+
 test('native LZW frame preserves index zero', () => {
   const codes = Array.from({length: 64000}, (_, i) => [256, i % 256]).flat();
   codes.push(257);
@@ -38,13 +40,21 @@ test('original intro exports match independent hashes and boundaries', {skip: !r
       for (const [i, asset] of assets.entries()) {
         const frame = expected[i];
         const source = asset.metadata.source;
+        const rendered = diagnostic(asset);
+        assert.equal(sha(rendered.rgba), frame.rgbaSha256);
+        assert.equal(sha(rendered.mapped), frame.paletteKnownMaskSha256);
         assert.equal(sha(asset.indices), frame.indicesSha256);
         assert.equal(source.sourceFrameStart, frame.frameHeaderStart);
         assert.equal(source.compressedStart, frame.compressedStart);
         assert.equal(source.compressedEnd, frame.compressedEnd);
         assert.equal(source.terminatedByZeroSubblock, frame.terminatedByZeroSubblock);
         const path = join(output, resource + i);
-        await writeAsset(path, asset);
+        await writeAsset(path, asset, rendered);
+        const pam = await readFile(join(path, 'preview.pam'));
+        const headerEnd = pam.indexOf('ENDHDR\n') + 7;
+        assert.ok(headerEnd > 7);
+        assert.equal(sha(pam.subarray(headerEnd)), frame.rgbaSha256);
+        assert.equal(sha(await readFile(join(path, 'diagnostic-palette-mapped.bin'))), frame.paletteKnownMaskSha256);
         assert.equal(sha(await readFile(join(path, 'indices.bin'))), frame.indicesSha256);
         assert.deepEqual(await readFile(join(path, 'opacity.bin')), Buffer.alloc(64000, 1));
         await assert.rejects(writeAsset(path, asset), {code: 'EEXIST'});
@@ -65,6 +75,8 @@ test('original Mountain graphics match independent pixels, masks and extents', {
   assert.equal(assets.length, reference.records.length);
   for (const [i, asset] of assets.entries()) {
     const record = reference.records[i];
+    assert.equal(sha(diagnostic(asset).rgba), record.diagnosticRgbaSHA256);
+    assert.ok(diagnostic(asset).mapped.every(value => value === 0));
     assert.equal(sha(asset.indices), record.pixelSHA256);
     assert.equal(sha(asset.opacity), record.maskSHA256);
     assert.equal(asset.metadata.source.offset, record.offset);
