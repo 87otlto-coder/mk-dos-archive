@@ -101,7 +101,7 @@ export async function verified(root: string, name: string, size: number, digest:
 
 export async function identify(root: string) {
   await verified(root, 'mk2.exe', 861133, EXE_SHA);
-  return { game: 'MK2 DOS', file: 'mk2.exe', sha256: EXE_SHA };
+  return { game: 'MK2 DOS', file: 'mk2.exe', bytes: 861133, sha256: EXE_SHA };
 }
 
 export async function intro(root: string, name: string) {
