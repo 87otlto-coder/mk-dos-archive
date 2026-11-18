@@ -1,3 +1,5 @@
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile, mkdtemp, rm } from 'node:fs/promises';
@@ -97,4 +99,38 @@ test('Mountain relationships match independent conditional source orders', {skip
   }
   assert.equal(result.runtimePlaybackOrder, 'UNKNOWN');
   assert.deepEqual(await mountainRelationships(root!), result);
+});
+
+const cli = fileURLToPath(new URL('./cli.mts', import.meta.url));
+const run = (...args: string[]) => spawnSync(process.execPath, [cli, ...args], {encoding: 'utf8'});
+
+test('CLI rejects unsupported commands and missing input', () => {
+  assert.equal(run('bogus', '.', 'probe.gra').status, 1);
+  assert.equal(run('identify', '.').status, 1);
+  assert.equal(run('extract', '.', 'probe.gra', '-1', 'output').status, 1);
+});
+
+test('standalone CLI preserves canonical output across separate executions', {skip: !root}, async () => {
+  const out = await mkdtemp(join(tmpdir(), 'mk-cli-'));
+  try {
+    const command = (...args: string[]) => {
+      const result = run(args[0], root!, ...args.slice(1));
+      assert.equal(result.status, 0, result.stderr);
+      return result.stdout;
+    };
+    assert.equal(JSON.parse(command('identify')).game, 'MK2 DOS');
+    assert.equal(JSON.parse(command('list', 'probe.gra')).length, 30);
+    assert.equal(JSON.parse(command('relationships', 'mountain.gra')).variants.length, 6);
+    const first = join(out, 'first'), second = join(out, 'second');
+    command('preview', 'acclaim.gra', '0', first);
+    command('preview', 'acclaim.gra', '0', second);
+    for (const name of ['indices.bin', 'opacity.bin', 'preview.pam', 'diagnostic-palette-mapped.bin', 'metadata.json'])
+      assert.deepEqual(await readFile(join(first, name)), await readFile(join(second, name)));
+    command('extract', 'mountain.gra', '14', join(out, 'mountain'));
+    assert.equal((await readFile(join(out, 'mountain', 'indices.bin'))).length, 1435);
+    assert.equal(run('preview', root!, 'acclaim.gra', '0', first).status, 1);
+    assert.equal(run('extract', root!, 'mountain.gra', '15', join(out, 'unknown')).status, 1);
+  } finally {
+    await rm(out, {recursive: true});
+  }
 });
