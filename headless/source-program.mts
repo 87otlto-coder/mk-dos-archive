@@ -24,9 +24,32 @@ export async function sourceProgram(root: string, resource: string) {
     const record = anchor.sourceRecordObject1 ?? anchor.sourcePaletteRecordObject1;
     if (word(site) !== record) throw new Error('Source palette pointer mismatch');
   }
-  for (const group of [...program.nestedGroups ?? [], ...program.secondaryGroups ?? []])
+  for (const group of program.nestedGroups ?? []) {
     for (const entry of group.records)
-      if (!assets.has(entry.assetId)) throw new Error('Source-program record asset is missing');
+      if (!assets.has(entry.assetId) || word(entry.tableEntryObject2) !== entry.commandRecordObject2 ||
+          word(entry.commandRecordObject2) !== entry.descriptorObject2 || word(entry.commandRecordObject2 + 4) !== 0)
+        throw new Error('Nested source-program command mismatch');
+    if (word(group.zeroTerminatorObject2) !== 0) throw new Error('Nested source-program terminator mismatch');
+  }
+  for (const group of program.secondaryGroups ?? []) {
+    for (const entry of group.records) {
+      const physical = 0xa0c54 + entry.entryObject2;
+      if (!assets.has(entry.assetId) || word(entry.entryObject2) !== entry.descriptorObject2 ||
+          exe.readInt16LE(physical + 4) !== entry.signedRelativeXY[0] ||
+          exe.readInt16LE(physical + 6) !== entry.signedRelativeXY[1])
+        throw new Error('Signed-coordinate source-program record mismatch');
+    }
+    if (word(group.trailingZeroObject2) !== 0) throw new Error('Procedural source-program terminator mismatch');
+  }
+  for (const entry of program.singleDescriptorLookup ?? [])
+    if (!assets.has(entry.assetId) || word(entry.sourceSiteObject2) !== entry.descriptorObject2)
+      throw new Error('Single-descriptor lookup mismatch');
+  if (program.entrySelector) {
+    const {variantSelectorTableObject2, variantPointerDestinationsObject2} = program.entrySelector;
+    for (const [slot, target] of variantPointerDestinationsObject2.entries())
+      if (word(variantSelectorTableObject2 + slot * 4) !== target)
+        throw new Error('Alternate entry-point selector mismatch');
+  }
   for (const slot of program.selectorSlots ?? [])
     if (word(program.selectorTableObject2 + slot.selectorSlot * 4) !== slot.sourceGroupObject2)
       throw new Error('Nested source-program selector mismatch');
