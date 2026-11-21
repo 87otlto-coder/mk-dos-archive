@@ -1,5 +1,13 @@
 # MK DOS Archive repository instructions
 
+## Active product priority — 2026-11-21
+
+**Read [docs/MK2_CREATIVE_TOOLKIT_SOP.md](docs/MK2_CREATIVE_TOOLKIT_SOP.md) before planning or changing extractor work.** The current mission is an **MK2-first creative toolkit** for animated wallpapers, usable sprite/stage animations, WAV effects and MIDI/music exports—not exhaustive DOS reconstruction. MK1/MK3 development is paused until MK2 v1 is accepted.
+
+**Current sole deliverable:** finished, watchable **Living Forest Wallpaper v0.1** (native 320×200 MP4, 30 fps, 10-second seamless loop). Reuse O196/O197/O201/O202 research. Do not start P91, native framebuffer work, new spelunking, audio, other stages, UI redesign, or a cross-game expansion during this milestone. Preserve original extracted pixels/masks; label visually chosen palette, placement and timing as CREATIVE rather than VERIFIED RUNTIME.
+
+**Operating rule:** implement and visually verify a usable output first. Research only an explicit product blocker; run focused tests. Keep historical evidence, the old research workbench and existing Windows-only CI/retention protections intact. Historical next-pass instructions are not current priorities.
+
 ## GitHub Actions storage and repository governance
 
 Git is authoritative for source, build recipes, lockfiles, synthetic tests and shareable research records. Use review branches and pull requests. Preserve source history and repository visibility.
