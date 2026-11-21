@@ -1,0 +1,147 @@
+{
+  "size": [
+    968,
+    200
+  ],
+  "fps": 30,
+  "seconds": 20,
+  "camera_amplitude": 12,
+  "backdrop_stops": [
+    [
+      0,
+      [
+        5,
+        10,
+        11
+      ]
+    ],
+    [
+      94,
+      [
+        7,
+        16,
+        16
+      ]
+    ],
+    [
+      123,
+      [
+        4,
+        33,
+        32
+      ]
+    ],
+    [
+      148,
+      [
+        8,
+        23,
+        20
+      ]
+    ],
+    [
+      199,
+      [
+        10,
+        24,
+        20
+      ]
+    ]
+  ],
+  "palette": "O196 EXE-linked 80-color candidate",
+  "placements": "Full 968-pixel foreground with v03 relative layer origins",
+  "layers": [
+    [
+      5,
+      384,
+      56,
+      304,
+      68,
+      0.42
+    ],
+    [
+      4,
+      616,
+      96,
+      182,
+      50,
+      0.67
+    ],
+    [
+      3,
+      640,
+      112,
+      168,
+      44,
+      1
+    ],
+    [
+      2,
+      728,
+      160,
+      123,
+      -2,
+      0
+    ],
+    [
+      1,
+      968,
+      184,
+      0,
+      0,
+      0
+    ]
+  ],
+  "creative": "Fixed framing, floor and layers 1 and 2; slow sinusoidal background drift; mirrored floor margins",
+  "floor": [
+    896,
+    32,
+    36,
+    168,
+    0
+  ],
+  "fractional_pan": true,
+  "tree_animation": {
+    "source_positions": [
+      [
+        234,
+        72
+      ],
+      [
+        459,
+        72
+      ],
+      [
+        675,
+        72
+      ]
+    ],
+    "start_frame": 63,
+    "frames_per_entry": 4
+  },
+  "cameos": [
+    {
+      "name": "jade",
+      "position": [
+        490,
+        71
+      ],
+      "step": 23,
+      "start": 36,
+      "travel": 13,
+      "hold": 23
+    },
+    {
+      "name": "smoke",
+      "position": [
+        681,
+        71
+      ],
+      "step": -17,
+      "start": 197,
+      "travel": 13,
+      "hold": 23
+    }
+  ],
+  "extend_floor": true
+}

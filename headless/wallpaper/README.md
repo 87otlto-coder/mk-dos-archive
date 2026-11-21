@@ -69,3 +69,20 @@ for Jade or 0x16F7C for Smoke. Both point to the Forest palette record.
 v03 alternates the two cameos on a fixed wallpaper timeline. The blocking,
 movement, and timing are creative fits. Each sprite is composited behind
 the foreground opacity mask and shares the foreground camera transform.
+
+## v04 fixed-camera panorama
+
+Use the same private v03 inputs and render with the panoramic scene file.
+
+```powershell
+python headless/wallpaper/render-forest.py $env:O196_ZIP_PATH $env:O197_ZIP_PATH `
+    "$out\MK2_Living_Forest_Panorama_v04.mp4" --ffmpeg $ffmpeg `
+    --scene headless/wallpaper/forest-scene-v04.json --animations $out
+if ($LASTEXITCODE) { throw 'Forest panorama render failed' }
+```
+
+The panorama uses the full 968-pixel foreground canvas. The full original
+896-pixel floor is centered, with 36 pixels reflected at each edge. The floor
+and layers 1-2 are stationary. Layers 3-5 drift on a 20-second sinusoidal loop,
+with approximately 12, 8, and 5 pixels of movement each way. Tree-face and
+cameo cues retain their v03 timing.

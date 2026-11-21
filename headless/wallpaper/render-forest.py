@@ -7,7 +7,7 @@ from pathlib import Path
 import subprocess
 from zipfile import ZipFile
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 
 def indexed_image(indices, opacity, size, colors, reference=None):
@@ -71,6 +71,17 @@ def load_scene(config, floor_zip, layer_zip, animations=None, program=None):
             bytes([1]) * (width * height), (width, height), colors,
             floor.read("results/forest_896x32_candidate_rgba.png"),
         )
+        if config.get("extend_floor"):
+            # Cover the panorama margins while keeping every original floor column.
+            output_width = config["size"][0]
+            right = output_width - x - width
+            if not (0 <= x <= width and 0 <= right <= width):
+                raise ValueError("Floor must fit inside the panorama")
+            expanded = Image.new("RGBA", (output_width, height))
+            expanded.paste(ImageOps.mirror(image.crop((0, 0, x, height))), (0, 0))
+            expanded.paste(image, (x, 0))
+            expanded.paste(ImageOps.mirror(image.crop((width - right, 0, width, height))), (x + width, 0))
+            image, x = expanded, 0
         draw.append((image, x, y, ratio))
     return draw
 

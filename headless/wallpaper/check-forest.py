@@ -19,7 +19,7 @@ if "tree_animation" in config:
     assert len({image.tobytes() for image in sequence}) == 7
 count = config["fps"] * config["seconds"]
 first = forest.render(config, draw, 0)
-assert first.size == (320, 200)
+assert first.size == tuple(config["size"])
 assert forest.render(config, draw, count).tobytes() == first.tobytes()
 assert forest.render(config, draw, 75).tobytes() != forest.render(config, draw, 225).tobytes()
 
