@@ -51,7 +51,20 @@ def load_scene(config, floor_zip, layer_zip, animations=None, program=None):
             )
             if layer == 1 and "tree_animation" in config:
                 image = animate_trees(image, colors, config["tree_animation"], animations, program)
-            draw.append((image, x, y, ratio))
+            if layer == 1 and config.get("cameos"):
+                if animations is None:
+                    raise ValueError("The cameo scene requires --animations")
+                cameos = []
+                for cue in config["cameos"]:
+                    name = cue["name"]
+                    sprite = indexed_image(
+                        (animations / f"{name}-indices.bin").read_bytes(),
+                        (animations / f"{name}-opacity.bin").read_bytes(), (25, 89), colors,
+                    )
+                    cameos.append((cue, sprite))
+                draw.append((image, x, y, ratio, cameos))
+            else:
+                draw.append((image, x, y, ratio))
         width, height, x, y, ratio = config["floor"]
         image = indexed_image(
             floor.read("results/forest_896x32_original_indices.bin"),
@@ -83,6 +96,22 @@ def animate_trees(layer, colors, settings, assets, program_path):
     return composed
 
 
+def place_cameos(foreground, cameos, frame_number):
+    for cue, sprite in cameos:
+        elapsed = frame_number - cue["start"]
+        edge, hold = cue["travel"], cue["hold"]
+        duration = edge * 2 + hold
+        if 0 <= elapsed <= duration:
+            phase = min(elapsed / edge, 1, (duration - elapsed) / edge)
+            eased = (1 - math.cos(math.pi * phase)) / 2
+            x, y = cue["position"]
+            combined = Image.new("RGBA", foreground.size)
+            combined.alpha_composite(sprite, (x + round(cue["step"] * eased), y))
+            combined.alpha_composite(foreground)
+            return combined
+    return foreground
+
+
 def render(config, draw, frame_number):
     frames = config["seconds"] * config["fps"]
     camera = config["camera_amplitude"] * math.sin(math.tau * (frame_number % frames) / frames)
@@ -96,11 +125,13 @@ def render(config, draw, frame_number):
             rows.append(shade * width)
     rows.append(bytes(stops[-1][1]) * width)
     frame = Image.frombytes("RGB", (width, height), b"".join(rows))
-    for image, x, y, ratio in draw:
+    for image, x, y, ratio, *extras in draw:
         if isinstance(image, list):
             settings = config["tree_animation"]
             index = (frame_number % frames - settings["start_frame"]) // settings["frames_per_entry"]
             image = image[min(max(index, 0), len(image) - 1)]
+        if extras:
+            image = place_cameos(image, extras[0], frame_number % frames)
         position = x + camera * ratio
         if config.get("fractional_pan") and ratio:
             # Pillow resamples RGBA with premultiplied alpha to keep transparent edges clean.

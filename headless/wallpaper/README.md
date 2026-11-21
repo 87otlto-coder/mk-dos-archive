@@ -49,3 +49,23 @@ against the three repeated trunks. The original O200 object fields give the same
 per source entry, one cycle at 2.1 seconds, with the idle frame held outside it.
 Fractional horizontal positioning uses bilinear filtering, so motion is smoother
 at the cost of a little horizontal softness between native pixel positions.
+
+## v03 hidden characters
+
+After preparing the v02 sprites and the two forensic ZIPs, extract the two
+original 25×89 Forest cameo sprites into the same private output folder.
+
+```powershell
+node headless/wallpaper/extract-forest-cameos.mts $original $out
+if ($LASTEXITCODE) { throw 'Forest cameo extraction failed' }
+python headless/wallpaper/render-forest.py $env:O196_ZIP_PATH $env:O197_ZIP_PATH `
+    "$out\MK2_Living_Forest_Wallpaper_v03.mp4" --ffmpeg $ffmpeg `
+    --scene headless/wallpaper/forest-scene-v03.json --animations $out
+if ($LASTEXITCODE) { throw 'Forest wallpaper render failed' }
+```
+
+The DOS Forest task at physical EXE offset 0x82B04 selects descriptor 0x16F6C
+for Jade or 0x16F7C for Smoke. Both point to the Forest palette record.
+v03 alternates the two cameos on a fixed wallpaper timeline. The blocking,
+movement, and timing are creative fits. Each sprite is composited behind
+the foreground opacity mask and shares the foreground camera transform.
