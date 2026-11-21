@@ -13,10 +13,21 @@ scene, animations, program = optional or (renderer.with_name("forest-scene.json"
 config = json.loads(scene.read_text(encoding="utf-8-sig"))
 draw = forest.load_scene(config, floor_zip, layer_zip, animations, program)
 if "tree_animation" in config:
-    sequence, = [image for image, *_ in draw if isinstance(image, list)]
-    assert len(sequence) == 20
-    assert sequence[0].tobytes() == sequence[-1].tobytes()
-    assert len({image.tobytes() for image in sequence}) == 7
+    animation, = [image for image, *_ in draw if isinstance(image, (list, tuple))]
+    if isinstance(animation, tuple):
+        idle, sequences = animation
+        positions = config["tree_animation"]["source_positions"]
+        for sequence, (x, y) in zip(sequences, positions, strict=True):
+            peak = ImageChops.difference(idle.convert("RGB"), sequence[6].convert("RGB"))
+            bounds = peak.getbbox()
+            assert bounds and x <= bounds[0] < bounds[2] <= x + 64
+            assert y <= bounds[1] < bounds[3] <= y + 64
+    else:
+        sequences = [animation]
+    for sequence in sequences:
+        assert len(sequence) == 20
+        assert sequence[0].tobytes() == sequence[-1].tobytes()
+        assert len({image.tobytes() for image in sequence}) == 7
 count = config["fps"] * config["seconds"]
 first = forest.render(config, draw, 0)
 assert first.size == tuple(config["size"])

@@ -86,3 +86,12 @@ The panorama uses the full 968-pixel foreground canvas. The full original
 and layers 1-2 are stationary. Layers 3-5 drift on a 20-second sinusoidal loop,
 with approximately 12, 8, and 5 pixels of movement each way. Tree-face and
 cameo cues retain their v03 timing.
+
+## v05 staggered tree roars
+
+Use the v04 command with `forest-scene-v05.json` and a new output filename.
+`tree_animation.start_frames` sets one cue per tree in the same order as
+`source_positions`. The three cues begin at 3, 9, and 14.5 seconds, left
+to right. Each cue plays the full 20-entry source sequence at four video
+frames per entry while the other trees hold their idle pose. Use
+`start_frame` for the earlier synchronized mode.

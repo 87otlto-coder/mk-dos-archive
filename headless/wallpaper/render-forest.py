@@ -98,11 +98,32 @@ def animate_trees(layer, colors, settings, assets, program_path):
             (meta["width"], meta["height"]), colors,
         )
     sequence = [frames[entry["assetId"]] for entry in program["entries"]]
+    positions = settings["source_positions"]
+    idle = layer.copy()
+    for position in positions:
+        idle.alpha_composite(sequence[0], tuple(position))
+
+    if "start_frames" in settings:
+        starts = settings["start_frames"]
+        duration = len(sequence) * settings["frames_per_entry"]
+        if len(starts) != len(positions) or any(b - a < duration for a, b in zip(starts, starts[1:])):
+            raise ValueError("Staggered roars require one non-overlapping cue per tree")
+        clips = []
+        for position in positions:
+            clip = []
+            for sprite in sequence:
+                image = layer.copy()
+                for anchor in positions:
+                    image.alpha_composite(sprite if anchor == position else sequence[0], tuple(anchor))
+                clip.append(image)
+            clips.append(clip)
+        return idle, clips
+
     composed = []
     for sprite in sequence:
         image = layer.copy()
-        for x, y in settings["source_positions"]:
-            image.alpha_composite(sprite, (x, y))
+        for position in positions:
+            image.alpha_composite(sprite, tuple(position))
         composed.append(image)
     return composed
 
@@ -141,6 +162,15 @@ def render(config, draw, frame_number):
             settings = config["tree_animation"]
             index = (frame_number % frames - settings["start_frame"]) // settings["frames_per_entry"]
             image = image[min(max(index, 0), len(image) - 1)]
+        elif isinstance(image, tuple):
+            idle, clips = image
+            image = idle
+            settings = config["tree_animation"]
+            for start, clip in zip(settings["start_frames"], clips):
+                index = (frame_number % frames - start) // settings["frames_per_entry"]
+                if 0 <= index < len(clip):
+                    image = clip[index]
+                    break
         if extras:
             image = place_cameos(image, extras[0], frame_number % frames)
         position = x + camera * ratio
