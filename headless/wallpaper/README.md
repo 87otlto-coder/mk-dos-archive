@@ -25,3 +25,27 @@ if ($LASTEXITCODE) { throw 'Forest wallpaper render failed' }
 ```
 
 Existing private O196/O197 ZIPs can be passed directly. Use `--still` for a single PNG or `--frames` for numbered native-size PNGs. Keep all generated media and forensic packages under FIXTURES.
+
+## v02 animated scene
+
+After exporting the two forensic ZIPs as above, extract the seven Forest sprites
+with the existing headless CLI. Use the same original DOS directory.
+
+```powershell
+foreach ($i in 0..6) {
+    node headless/cli.mts extract $original forest.gra $i "$out\anim-$i"
+    if ($LASTEXITCODE) { throw "Forest sprite $i extraction failed" }
+}
+python headless/wallpaper/render-forest.py $env:O196_ZIP_PATH $env:O197_ZIP_PATH `
+    "$out\MK2_Living_Forest_Wallpaper_v02.mp4" --ffmpeg $ffmpeg `
+    --scene headless/wallpaper/forest-scene-v02.json --animations $out
+if ($LASTEXITCODE) { throw 'Forest wallpaper render failed' }
+```
+
+v02 uses the checked-in 20-entry Forest descriptor list and extracted sprite masks.
+The foreground canvas placements (234, 72), (459, 72), and (675, 72) were fitted
+against the three repeated trunks. The original O200 object fields give the same
+225- and 216-pixel spacing. Timing is a wallpaper choice: four output frames
+per source entry, one cycle at 2.1 seconds, with the idle frame held outside it.
+Fractional horizontal positioning uses bilinear filtering, so motion is smoother
+at the cost of a little horizontal softness between native pixel positions.

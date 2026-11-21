@@ -1,0 +1,122 @@
+{
+  "size": [
+    320,
+    200
+  ],
+  "fps": 30,
+  "seconds": 10,
+  "camera_amplitude": 36,
+  "backdrop_stops": [
+    [
+      0,
+      [
+        5,
+        10,
+        11
+      ]
+    ],
+    [
+      94,
+      [
+        7,
+        16,
+        16
+      ]
+    ],
+    [
+      123,
+      [
+        4,
+        33,
+        32
+      ]
+    ],
+    [
+      148,
+      [
+        8,
+        23,
+        20
+      ]
+    ],
+    [
+      199,
+      [
+        10,
+        24,
+        20
+      ]
+    ]
+  ],
+  "palette": "O196 EXE-linked 80-color candidate",
+  "placements": "O201 fitted origins for layers 1\u20134 and floor; O202 ratios for layers 1\u20135",
+  "layers": [
+    [
+      5,
+      384,
+      56,
+      -32,
+      68,
+      0
+    ],
+    [
+      4,
+      616,
+      96,
+      -154,
+      50,
+      0.5
+    ],
+    [
+      3,
+      640,
+      112,
+      -168,
+      44,
+      0.625
+    ],
+    [
+      2,
+      728,
+      160,
+      -213,
+      -2,
+      0.75
+    ],
+    [
+      1,
+      968,
+      184,
+      -336,
+      0,
+      1
+    ]
+  ],
+  "creative": "Layer 5 centered for coverage; dark horizon backdrop; sinusoidal camera; floor pans with layer 1",
+  "floor": [
+    896,
+    32,
+    -300,
+    168,
+    1
+  ],
+  "fractional_pan": true,
+  "tree_animation": {
+    "source_positions": [
+      [
+        234,
+        72
+      ],
+      [
+        459,
+        72
+      ],
+      [
+        675,
+        72
+      ]
+    ],
+    "start_frame": 63,
+    "frames_per_entry": 4
+  }
+}

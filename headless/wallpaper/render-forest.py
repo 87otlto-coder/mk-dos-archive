@@ -10,7 +10,7 @@ from zipfile import ZipFile
 from PIL import Image
 
 
-def indexed_image(indices, opacity, size, colors, reference):
+def indexed_image(indices, opacity, size, colors, reference=None):
     if len(indices) != math.prod(size) or len(opacity) != len(indices):
         raise ValueError(f"Unexpected index or opacity length for {size}")
     if any(value not in (0, 1) for value in set(opacity)):
@@ -21,6 +21,8 @@ def indexed_image(indices, opacity, size, colors, reference):
     indexed.putpalette(bytes(channel for key in range(256) for channel in colors.get(key, (0, 0, 0))))
     rgba = indexed.convert("RGBA")
     rgba.putalpha(Image.frombytes("L", size, opacity).point([0] + [255] * 255))
+    if reference is None:
+        return rgba
     expected = Image.open(io.BytesIO(reference)).convert("RGBA")
     # Hidden RGB is immaterial. Compare opacity separately from visible color.
     for image in (rgba, expected):
@@ -33,7 +35,7 @@ def indexed_image(indices, opacity, size, colors, reference):
     return rgba
 
 
-def load_scene(config, floor_zip, layer_zip):
+def load_scene(config, floor_zip, layer_zip, animations=None, program=None):
     with ZipFile(floor_zip) as floor, ZipFile(layer_zip) as layers:
         palette = json.loads(floor.read("evidence/palette_80_original_words_and_candidate_rgb.json"))
         colors = {entry["index"]: tuple(entry["rgb8"]) for entry in palette["colors"]}
@@ -47,6 +49,8 @@ def load_scene(config, floor_zip, layer_zip):
                 layers.read(prefix + "opacity_mask.bin"), (width, height), colors,
                 layers.read(prefix + "candidate_color.png"),
             )
+            if layer == 1 and "tree_animation" in config:
+                image = animate_trees(image, colors, config["tree_animation"], animations, program)
             draw.append((image, x, y, ratio))
         width, height, x, y, ratio = config["floor"]
         image = indexed_image(
@@ -56,6 +60,27 @@ def load_scene(config, floor_zip, layer_zip):
         )
         draw.append((image, x, y, ratio))
     return draw
+
+
+def animate_trees(layer, colors, settings, assets, program_path):
+    if assets is None:
+        raise ValueError("The animated scene requires --animations")
+    program = json.loads(program_path.read_text(encoding="utf-8"))["programs"][0]
+    frames = {}
+    for folder in sorted(assets.glob("anim-*")):
+        meta = json.loads((folder / "metadata.json").read_text(encoding="utf-8"))
+        frames[meta["id"]] = indexed_image(
+            (folder / "indices.bin").read_bytes(), (folder / "opacity.bin").read_bytes(),
+            (meta["width"], meta["height"]), colors,
+        )
+    sequence = [frames[entry["assetId"]] for entry in program["entries"]]
+    composed = []
+    for sprite in sequence:
+        image = layer.copy()
+        for x, y in settings["source_positions"]:
+            image.alpha_composite(sprite, (x, y))
+        composed.append(image)
+    return composed
 
 
 def render(config, draw, frame_number):
@@ -72,7 +97,18 @@ def render(config, draw, frame_number):
     rows.append(bytes(stops[-1][1]) * width)
     frame = Image.frombytes("RGB", (width, height), b"".join(rows))
     for image, x, y, ratio in draw:
-        frame.paste(image, (x + round(camera * ratio), y), image.getchannel("A"))
+        if isinstance(image, list):
+            settings = config["tree_animation"]
+            index = (frame_number % frames - settings["start_frame"]) // settings["frames_per_entry"]
+            image = image[min(max(index, 0), len(image) - 1)]
+        position = x + camera * ratio
+        if config.get("fractional_pan") and ratio:
+            # Pillow resamples RGBA with premultiplied alpha to keep transparent edges clean.
+            image = image.transform((width, height), Image.Transform.AFFINE,
+                                    (1, 0, -position, 0, 1, -y), Image.Resampling.BILINEAR)
+            frame.paste(image, (0, 0), image.getchannel("A"))
+        else:
+            frame.paste(image, (x + round(camera * ratio), y), image.getchannel("A"))
     return frame
 
 
@@ -83,11 +119,13 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--scene", type=Path, default=Path(__file__).with_name("forest-scene.json"))
     parser.add_argument("--ffmpeg", default="ffmpeg")
+    parser.add_argument("--animations", type=Path)
+    parser.add_argument("--program", type=Path, default=Path(__file__).resolve().parents[1] / "forest-program.json")
     parser.add_argument("--still", action="store_true")
     parser.add_argument("--frames", action="store_true")
     args = parser.parse_args()
     config = json.loads(args.scene.read_text(encoding="utf-8-sig"))
-    draw = load_scene(config, args.floor_zip, args.layer_zip)
+    draw = load_scene(config, args.floor_zip, args.layer_zip, args.animations, args.program)
     if args.still:
         render(config, draw, 0).save(args.output)
         return
