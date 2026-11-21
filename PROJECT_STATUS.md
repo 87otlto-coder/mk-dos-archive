@@ -1,8 +1,21 @@
 # MK DOS Extractor — project status
 
-**Last status reconciliation:** 2026-11-06
+**Last source-status reconciliation:** 2026-11-06
+**Active product-priority decision:** 2026-11-21
 **Project:** ChatGPT Project “MK Dos Extractor”  
 **GitHub:** https://github.com/87otlto-coder/mk-dos-archive
+
+## Active product direction — 2026-11-21 (supersedes historical next-pass priorities)
+
+The project is now **MK2-first creative asset toolkit** development. Finish MK2 v1 before starting MK1, then MK3. The primary outcomes are animated wallpaper videos, practical source-backed stage/sprite previews and exports, usable WAV sound effects, and playable music/MIDI exports—not perfect runtime emulation. Read [the current SOP](docs/MK2_CREATIVE_TOOLKIT_SOP.md) before assigning work.
+
+**ONE active deliverable:** MK2 **Living Forest Wallpaper v0.1**, using O196 floor, O197 five original layers, O201 starting visual calibration and O202 parallax ratios. Target native 320×200, 30 fps, 10-second seamless-loop MP4 plus reproducible scene configuration. Native 1920×1080 and upscaling are unnecessary; the user's nearest-neighbor upscaler is separate. Do not begin audio, other stages, MK1, MK3, UI overhaul, new spelunks or P91 until the wallpaper has a real video deliverable and review.
+
+**Next sequential milestones:** (2) MK2 WAV effects + music/MIDI (legacy O94D 312 source-rate WAV effects and O109H 165 supported MIDI representations); (3) more stage wallpaper presets; (4) MK2 sprites/animated exports; (5) MK2 v1 catalog, practical preview/export workflow and user acceptance. No parallel game work.
+
+**Quality rule:** actual original asset data and export correctness are strict; creative palette, positioning, camera, parallax and loop timing may be chosen visually and labeled CREATIVE. Complete native framebuffer parity, game-tick accuracy, DAC ownership and device-perfect soundtrack synthesis are **not** prerequisites for creative release. Suspend P90/P91 and costly native investigations unless a specific product-blocking failure and user approval justify them.
+
+**Latest separately tested headless development:** `feat/headless-mk2-stages` at `0deaf71ee66f9dbf8b06ae63f684620381891dcf`. User Windows run: **20/20 Node tests + 2/2 P82 component tests, zero failures**. These validate source extraction and static components, not a wallpaper video. Existing legacy browser/research source and P16 `main` evidence remain preserved. Historical statements below (e.g., "next P17", prior three-game goals) are archival snapshots, **not current work instructions**.
 
 ## Current P16 consolidated source checkpoint — 2026-11-06
 
