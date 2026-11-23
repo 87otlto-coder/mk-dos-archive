@@ -2,6 +2,9 @@
 
 ## Active product priority — 2026-11-21
 
+For **in-chat stage rendering**, read [docs/CHAT_FIRST_CREATIVE_SCENES.md](docs/CHAT_FIRST_CREATIVE_SCENES.md). Check mounted user game fixtures and current source before requesting uploads; produce authentic source-backed assets, not AI substitutes. Keep all media private.
+
+
 **Read [docs/MK2_CREATIVE_TOOLKIT_SOP.md](docs/MK2_CREATIVE_TOOLKIT_SOP.md) before planning or changing extractor work.** The current mission is an **MK2-first creative toolkit** for animated wallpapers, usable sprite/stage animations, WAV effects and MIDI/music exports—not exhaustive DOS reconstruction. MK1/MK3 development is paused until MK2 v1 is accepted.
 
 **Current sole deliverable:** finished, watchable **Living Forest Wallpaper v0.1** (native 320×200 MP4, 30 fps, 10-second seamless loop). Reuse O196/O197/O201/O202 research. Do not start P91, native framebuffer work, new spelunking, audio, other stages, UI redesign, or a cross-game expansion during this milestone. Preserve original extracted pixels/masks; label visually chosen palette, placement and timing as CREATIVE rather than VERIFIED RUNTIME.

@@ -4,6 +4,8 @@ A source-backed **MK2-first creative toolkit** for animated wallpapers, sprite/s
 
 > **Current priority (2026-11-21):** finish one usable result at a time, starting with **Living Forest Wallpaper v0.1**, not exact native framebuffer reconstruction. See the [active creative toolkit SOP](docs/MK2_CREATIVE_TOOLKIT_SOP.md). Historical forensic research and fidelity labels remain available; current creative presentation may use clearly labeled aesthetic choices.
 
+Read the [chat-first scene workflow](docs/CHAT_FIRST_CREATIVE_SCENES.md) for direct, original-fixture headless reconstruction and future scene-editor control requirements.
+
 ## Active plan and development branch
 
 - **Single current deliverable:** Living Forest Wallpaper v0.1, using existing O196/O197/O201/O202 assets and parallax evidence. Deliver a real 320×200, 30 fps, 10-second seamless-loop MP4 and reproduction instructions before starting the next item.

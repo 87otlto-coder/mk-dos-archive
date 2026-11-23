@@ -43,3 +43,7 @@ These are **sequential deliverables**, not parallel research tracks. Revise thei
 - Windows workspace: `F:\Dev\MKEXT\SOURCE` (source), `F:\Dev\MKEXT\TOOLS` (tools), `F:\Dev\MKEXT\FIXTURES` (original games, extracted data, private renders/validation). Original commercial bytes, derived copyrighted exports, videos and secrets must never enter GitHub or CI artifacts.
 - Follow existing Windows-only CI and artifact-retention rules in [AGENTS.md](../AGENTS.md); keep source-safe configuration, tests and documentation in GitHub.
 - Start each sprint by reading this SOP, the current source branch and the last relevant handoff. State one deliverable, prerequisites and practical acceptance test. Finish with: **what the user can now use; proof of its output; remaining blockers; exact code checkpoint; next single milestone.**
+
+## Chat-first creative stage reproduction and deferred UI
+
+Use [chat-first scene workflow](CHAT_FIRST_CREATIVE_SCENES.md) when the user asks for source-based stage/wallpaper output inside ChatGPT. **Check already mounted private game fixtures and actual GitHub source before asking for uploads or moving execution elsewhere.** Reuse O132/O136 and proven scene renderers, produce a static candidate before animation, and inspect actual media. Never substitute AI artwork or public screenshots for DOS assets. Preserve an editable `scene.json` as the eventual UI's single source of truth; expose independent layer/camera, object timeline, wrapping, occlusion, pixel-sampling, palette and export controls when UI work is scheduled, **not now**.
