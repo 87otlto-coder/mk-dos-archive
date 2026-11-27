@@ -47,3 +47,8 @@ These are **sequential deliverables**, not parallel research tracks. Revise thei
 ## Chat-first creative stage reproduction and deferred UI
 
 Use [chat-first scene workflow](CHAT_FIRST_CREATIVE_SCENES.md) when the user asks for source-based stage/wallpaper output inside ChatGPT. **Check already mounted private game fixtures and actual GitHub source before asking for uploads or moving execution elsewhere.** Reuse O132/O136 and proven scene renderers, produce a static candidate before animation, and inspect actual media. Never substitute AI artwork or public screenshots for DOS assets. Preserve an editable `scene.json` as the eventual UI's single source of truth; expose independent layer/camera, object timeline, wrapping, occlusion, pixel-sampling, palette and export controls when UI work is scheduled, **not now**.
+
+
+## Future scene editor: owner-approved product requirement (2026-11-27)
+
+The user must be able to **visually compose and reposition stage elements before exporting**—direct canvas dragging, numeric X/Y adjustments, layer enable/lock/order, camera/reference versus fixed panorama framing, independent parallax/wrap settings, editable source-animation timelines, occlusion, original-mask preservation, named presets and output settings. **Do not implement the UI yet.** The binding requirements and actual Living Forest, Pit II, Portal and Kombat Tomb acceptance scenarios are documented in [Future Scene Editor Requirements](FUTURE_SCENE_EDITOR_REQUIREMENTS.md). The same versioned scene recipe must drive both UI preview and the headless exporter; original indexed data and provenance remain unchanged.
